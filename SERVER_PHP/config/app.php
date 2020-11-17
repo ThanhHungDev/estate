@@ -227,6 +227,11 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+
+        'SupportString' => App\Helpers\SupportString::class,
+        'SupportDB' => App\Helpers\SupportDB::class,
+        'SupportRouter' => App\Helpers\SupportRouter::class,
+
     ],
 
 ];
