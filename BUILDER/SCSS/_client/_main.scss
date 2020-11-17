@@ -1,0 +1,10 @@
+
+@import "./_backtop.scss";
+@import "./_alo_now.scss";
+
+.wrapper-page{
+    font-family: 'Roboto', sans-serif; 
+    &.neo-scroll{
+        overflow: hidden;
+    }
+}
