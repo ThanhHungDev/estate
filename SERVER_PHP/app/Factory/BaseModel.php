@@ -21,9 +21,7 @@ class BaseModel implements FactoryModelInterface{
     public static $DBModel;
     public static $PostModel;
     public static $PostTagActiveModel;
-    public static $RatingModel;
     public static $TagModel;
-    public static $TopicModel;
     public static $UserModel;
     public static $OptionModel;
     public static $RoleModel;
@@ -57,14 +55,6 @@ class BaseModel implements FactoryModelInterface{
         return self::$PostTagActiveModel;
     }
 
-    public function createRatingModel(){
-        
-        if(!self::$RatingModel){
-            self::$RatingModel = new RatingEloquentRepository();
-        }
-        return self::$RatingModel;
-    }
-
     public function createTagModel(){
         
         if(!self::$TagModel){
@@ -73,15 +63,6 @@ class BaseModel implements FactoryModelInterface{
         return self::$TagModel;
     }
 
-
-    public function createTopicModel(){
-
-        if(!self::$TopicModel){
-            self::$TopicModel = new TopicEloquentRepository();
-        }
-        
-        return self::$TopicModel;
-    }
 
     public function createUserModel(){
         

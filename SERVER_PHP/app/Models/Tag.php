@@ -9,9 +9,7 @@ class Tag extends Model
 {
     protected $table = 'tags';
 
-    protected $fillable = ['id', 'name', 'slug', 'excerpt', 
-    'content', 'background', 'thumbnail', 'site_name', 
-    'image_seo', 'keyword_seo', 'description_seo'];
+    protected $fillable = ['id', 'name', 'slug', 'excerpt' ];
 
 
     public function getName( $limit = 10, $ellipsis = '...' ){
@@ -22,13 +20,6 @@ class Tag extends Model
         return null;
     }
 
-    public function getKeywordSeo( $limit = 10, $ellipsis = '...' ){
-
-        if( $this->keyword_seo ){
-            return SupportString::limitText( $this->keyword_seo, $limit, $ellipsis );
-        }
-        return null;
-    }
     public function getDescriptionSeo( $limit = 10, $ellipsis = '...' ){
 
         if( $this->description_seo ){
@@ -37,14 +28,4 @@ class Tag extends Model
         return null;
     }
 
-
-    
-    /**
-     * là mối quan hệ dạng nhiều nhiều ví dụ : 
-     * product -> activity -> style thì thứ tự sẽ là như dưới
-     */
-    public function posts(){
-
-        return $this->belongsToMany( Post::class, 'post_tag_actives', 'tag_id', 'post_id');
-    }
 }

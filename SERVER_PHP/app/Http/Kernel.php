@@ -62,5 +62,15 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+
+        'ADMIN_LOGGED' =>\App\Http\Middleware\ADMIN_LOGGED::class,
+        'HTML_MINIFIER' => \App\Http\Middleware\HTML_MIFIER::class,
+
+        'PERMISSION_CENSOR'            => \App\Http\Middleware\PERMISSION_CENSOR::class,
+        'PERMISSION_DELETE'            => \App\Http\Middleware\PERMISSION_DELETE::class,
+        'PERMISSION_EDIT'              => \App\Http\Middleware\PERMISSION_EDIT::class,
+        'PERMISSION_INSERT'            => \App\Http\Middleware\PERMISSION_INSERT::class,
+        'PERMISSION_PERMISSION_EDITOR' => \App\Http\Middleware\PERMISSION_PERMISSION_EDITOR::class,
+        'PERMISSION_VIEW'              => \App\Http\Middleware\PERMISSION_VIEW::class,
     ];
 }

@@ -28,6 +28,10 @@ function runScss(name){
       .pipe(livereload())
 }
 function runJavascript(name){
+   var subfolder = 'client'
+   if( name == 'jsAdmin'){
+      subfolder = 'admin'
+   }
    return gulp.src([ resources[name] ])
       .pipe(cache('linting'))
       .pipe(minify({
@@ -37,7 +41,7 @@ function runJavascript(name){
          noSource: true
       }))
       // .pipe(rename({ suffix: '.min' }))
-      .pipe(gulp.dest(path.join(__dirname, '/../SERVER_PHP/public/js/client/')))
+      .pipe(gulp.dest(path.join(__dirname, '/../SERVER_PHP/public/js/'+ subfolder +'/')))
       .pipe(livereload())
 }
 
@@ -93,6 +97,11 @@ gulp.task('watch', function () {
    gulp.watch([
       'SCSS/material.scss'
    ], gulp.series('material'))
+
+   gulp.watch([
+      'SCSS/admin.scss',
+      'SCSS/_admin/*.scss'
+   ], gulp.series('admin'))
 
    gulp.watch([
       'JAVASCRIPT/client/*.js',

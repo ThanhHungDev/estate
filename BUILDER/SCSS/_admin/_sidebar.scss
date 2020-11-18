@@ -71,18 +71,18 @@ $width_sidebar_mini: 60px;
         }
 
         /** fix icon design */
-        &:before{
-            position: absolute;
-            z-index: 1;
-            content: ".";
-            color: transparent;
-            background-color: $white;
-            top: 15px;
-            left: 42px;
-            bottom: 0;
-            width: 24px;
-            height: 24px;
-        }
+        // &:before{
+        //     position: absolute;
+        //     z-index: 1;
+        //     content: ".";
+        //     color: transparent;
+        //     background-color: $white;
+        //     top: 15px;
+        //     left: 42px;
+        //     bottom: 0;
+        //     width: 24px;
+        //     height: 24px;
+        // }
     }
     .navigate_default{
         

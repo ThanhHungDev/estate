@@ -11,11 +11,7 @@ interface FactoryModelInterface
 
     public function createPostTagActiveModel();
 
-    public function createRatingModel();
-
     public function createTagModel();
-
-    public function createTopicModel();
 
     public function createUserModel();
 
