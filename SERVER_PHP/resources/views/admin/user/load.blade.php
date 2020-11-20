@@ -44,6 +44,23 @@
 <div class="page__user admin-main-content">
 
     <div class="row block-content">
+        <div class="col-12 bg-white search">
+            <form class="form-inline" action="" method="GET">
+                <label for="role">role:</label>
+                <select name="role">
+                    <option value="0">chọn role</option>
+                    @foreach ($roles as $role)
+                    <option value="{{$role->id}}" {{ $query['role'] == $role->id ? "selected": null }}>
+                        {{$role->name}}
+                    </option>
+                    @endforeach
+                </select>
+                <label for="user">email người dùng:</label>
+                <input type="text" id="user" placeholder="nhập email của user" name="user"  value="{{ $query['user'] }}" />
+                <button type="submit">Tìm Kiếm</button>
+            </form>
+        </div>
+
         <div class="col-12 bg-white shadows-1 px-3 py-3 table-list">
             <div class="row thead-list">
                 <div class="col-1">image</div>
@@ -80,7 +97,7 @@
                     @endphp
                     {{ implode (", ", $permissionNames) }}
                 </div>
-                <div class="col-1">{{ $user->role_id }}</div>
+                <div class="col-1">{{ $user->role->name }}</div>
                 <div class="col-1">
                     <a href="{{ Route('USER_EDIT_PERMISSION', ['id' =>  $user->id]) }}">permission</a>    
                 </div>

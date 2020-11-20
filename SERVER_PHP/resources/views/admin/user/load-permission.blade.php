@@ -67,7 +67,10 @@
                     {{ $permission->name }}
                 </div>
                 <div class="col-1">
-                    @if($user->role->type == Config::get('constant.TYPE-PERMISSION.USER'))
+                    @if(
+                        $user->role->type != Config::get('constant.TYPE-PERMISSION.SUPPER-ADMIN')
+                        && Illuminate\Support\Facades\Gate::allows('permission')
+                    )
                     <input type="checkbox" 
                     onchange="updateComponent('{{ $user->id }}', '{{ $permission->id }}', this)"
                     {{ $permissionUsers->contains('name' , $permission->name) ? "checked" : '' }} />

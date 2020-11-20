@@ -29,6 +29,7 @@ class Kernel extends HttpKernel
      */
     protected $middlewareGroups = [
         'web' => [
+            'throttle:10,1',
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
@@ -65,6 +66,7 @@ class Kernel extends HttpKernel
 
         'ADMIN_LOGGED' =>\App\Http\Middleware\ADMIN_LOGGED::class,
         'HTML_MINIFIER' => \App\Http\Middleware\HTML_MIFIER::class,
+        'CACHE_PAGE' => \App\Http\Middleware\CACHE_PAGE::class,
 
         'PERMISSION_CENSOR'            => \App\Http\Middleware\PERMISSION_CENSOR::class,
         'PERMISSION_DELETE'            => \App\Http\Middleware\PERMISSION_DELETE::class,

@@ -9,16 +9,16 @@
         <div class="header__nav">
             <ul class="header__nav__navigate">
                 <li class="header__nav__navigate__link {{ Route::is("ADMIN_DASHBOARD") ? 'active' : null}}">
-                    <a href="{{ Route('ADMIN_LOGOUT') }}">dashboard</a>
+                    <a href="{{ Route('ADMIN_DASHBOARD') }}">dashboard</a>
                 </li>
                 @if(Illuminate\Support\Facades\Gate::allows('permission'))
-                <li class="header__nav__navigate__link">
+                <li class="header__nav__navigate__link {{ Route::is("ADMIN_LOAD_PERMISSION") ? 'active' : null}}">
                     <a href="{{ Route('ADMIN_LOAD_PERMISSION') }}">Permissions</a>
                 </li>
-                <li class="header__nav__navigate__link">
+                <li class="header__nav__navigate__link {{ Route::is("ADMIN_LOAD_ROLE") ? 'active' : null}}">
                     <a href="{{ Route('ADMIN_LOAD_ROLE') }}">Roles</a>
                 </li>
-                <li class="header__nav__navigate__link">
+                <li class="header__nav__navigate__link {{ Route::is("ADMIN_LOAD_USER") ? 'active' : null}}">
                     <a href="{{ Route('ADMIN_LOAD_USER') }}">users</a>
                 </li>
                 @endif

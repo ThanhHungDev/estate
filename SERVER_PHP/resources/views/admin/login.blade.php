@@ -40,9 +40,9 @@
         <div class="login-form-wrapper">
             <form class="login-form" action="{{ Route('ADMIN_POST_LOGIN') }}" method="POST" >
                 {!! csrf_field() !!}
-                @if (Session::has('LOGIN_ERROR'))
+                @if (Session::has(Config::get('constant.LOGIN_ERROR')))
                 <div class="alert alert-warning">
-                    {{ Session::get('LOGIN_ERROR') }}
+                    {{ Session::get(Config::get('constant.LOGIN_ERROR')) }}
                 </div>
                 @endif
                 @if($errors->any())
@@ -56,14 +56,14 @@
                     <input name="email" ref="email" type="text" autoCorrect="off" autoCapitalize="none" class="input-control" placeholder="Email Address" />
                 </div>
                 @if($errors->has('email'))
-                    <div class="text-danger text-left">{{ $errors->first('email') }}</div>
+                    <div class="text-color-danger text-left">{{ $errors->first('email') }}</div>
                 @endif
                 <div class="input-group">
                     <i class="hero-icon hero-lock-outline"></i>
                     <input name="password" ref="password" type="password" autoCorrect="off" autoCapitalize="none" class="input-control" placeholder="Password" />
                 </div>
                 @if($errors->has('password'))
-                    <div class="text-danger text-left">{{ $errors->first('password') }}</div>
+                    <div class="text-color-danger text-left">{{ $errors->first('password') }}</div>
                 @endif
                 <button type="submit" class="btn btn-login aqua-gradient-rgba">
                     Log In Admin
@@ -71,6 +71,60 @@
             </form>
         </div>
     </div>
+    <button onclick="getLocation()">Try It</button>
+
+<p id="demo"></p>
+
+<script>
+
+var x=document.getElementById("demo");
+function getLocation()
+  {
+  if (navigator.geolocation)
+    {
+    navigator.geolocation.getCurrentPosition(showPosition,showError);
+    }
+  else{x.innerHTML="Geolocation is not supported by this browser.";}
+  }
+
+function showPosition(position)
+  {
+  var lat=position.coords.latitude;
+  var lon=position.coords.longitude;
+  var latlon=new google.maps.LatLng(lat, lon)
+  var mapholder=document.getElementById('mapholder')
+  mapholder.style.height='250px';
+  mapholder.style.width='100%';
+
+  var myOptions={
+  center:latlon,zoom:14,
+  mapTypeId:google.maps.MapTypeId.ROADMAP,
+  mapTypeControl:false,
+  navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
+  };
+  var map=new google.maps.Map(document.getElementById("mapholder"),myOptions);
+  var marker=new google.maps.Marker({position:latlon,map:map,title:"You are here!"});
+  }
+
+function showError(error)
+  {
+  switch(error.code) 
+    {
+    case error.PERMISSION_DENIED:
+      x.innerHTML="User denied the request for Geolocation."
+      break;
+    case error.POSITION_UNAVAILABLE:
+      x.innerHTML="Location information is unavailable."
+      break;
+    case error.TIMEOUT:
+      x.innerHTML="The request to get user location timed out."
+      break;
+    case error.UNKNOWN_ERROR:
+      x.innerHTML="An unknown error occurred."
+      break;
+    }
+  }
+</script>
 </body>
 </html>
 

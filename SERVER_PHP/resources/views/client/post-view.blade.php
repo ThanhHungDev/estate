@@ -55,10 +55,10 @@
 
 @section('make-up-data')
 @if($post->stylesheet)
-{!! '<style>'. $post->stylesheet . '</style>' !!}
+{!! $post->stylesheet !!}
 @endif
-@if($post->javscript)
-{!! '<script>'. $post->javscript . '</script>' !!}
+@if($post->javascript)
+{!! $post->javascript !!}
 @endif
 @endsection
 

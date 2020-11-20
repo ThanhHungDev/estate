@@ -31,16 +31,20 @@ class OptionController extends Controller
             $option->truncate();
 
             $optionInputs = [];
-            for ($i=0; $i < count($optionInput['key']); $i++) { 
+            if($optionInput && count($optionInput['key'])){
+
+                for ($i=0; $i < count($optionInput['key']); $i++) { 
                 
-                $optionInputs[] = [
-                    'key' => trim($optionInput['key'][$i]),
-                    'type' => $optionInput['type'][$i],
-                    'value_text' => $optionInput['value_text'][$i],
-                    'value_html' => $optionInput['value_html'][$i]
-                ];
+                    $optionInputs[] = [
+                        'key' => trim($optionInput['key'][$i]),
+                        'type' => $optionInput['type'][$i],
+                        'value_text' => $optionInput['value_text'][$i],
+                        'value_html' => $optionInput['value_html'][$i]
+                    ];
+                }
+                $option->insert($optionInputs);
             }
-            $option->insert($optionInputs);
+            
             
 
             $request->session()->flash(Config::get('constant.SAVE_SUCCESS'), true);

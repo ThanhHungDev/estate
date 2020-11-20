@@ -18,7 +18,9 @@ return [
         'POST'  => 1,
     ],
     'TYPE-PERMISSION' => [
-        'ADMIN' => 'admin',
-        'USER' => 'user'
+        'SUPPER-ADMIN' => 'manager',
+        'ADMIN'        => 'admin',
+        'USER-SALES'   => 'user sales',
+        'USER-SHOPPER' => 'custommer'
     ]
 ];

@@ -201,6 +201,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+
+        Jenssegers\Agent\AgentServiceProvider::class,
+
     ],
 
     /*
@@ -254,9 +257,12 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
 
+        'RemoteInfor' => App\Helpers\RemoteInfor::class,
         'SupportString' => App\Helpers\SupportString::class,
         'SupportDB' => App\Helpers\SupportDB::class,
         'SupportRouter' => App\Helpers\SupportRouter::class,
+
+        'Agent' => Jenssegers\Agent\Facades\Agent::class,
 
     ],
 

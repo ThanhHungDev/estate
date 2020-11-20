@@ -90,10 +90,27 @@ class UserController extends Controller
      *
      * @return View
      */
-    public function load(){
+    public function load(Request $request){
         $limit = 10;
-        $users = $this->model->createUserModel()->paginate( $limit );
-        return view('admin.user.load', compact(['users']));
+        $query      = $request->all('role', 'user');
+        
+        $condition = [
+            'orderby' => [ 'field' => 'id', 'type' => 'DESC' ]
+        ];
+
+        if($query['role']){
+            
+            $condition['role'] = $query['role'];
+        }
+
+        if($query['user']){
+
+            $condition['user'] = $query['user'];
+        }
+
+        $users = $this->model->createUserModel()->getUserByCondition($condition)->paginate( $limit )->appends(request()->query());
+        $roles = $this->model->createRoleModel()->getAll();
+        return view('admin.user.load', compact(['users', 'roles', 'query']));
     }
 
     /**
