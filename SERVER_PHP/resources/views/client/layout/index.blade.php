@@ -17,13 +17,13 @@
     <link rel="icon" type="image/png" href="{{ asset('favicon.ico' . Config::get('app.version')) }}">
     <link rel="stylesheet" href="{{ asset('css/client.css' . Config::get('app.version'))}}">
 
-    <script>
+    {{-- <script>
         
         if ('serviceWorker' in navigator) {
             console.log("có hộ trợ run service");
             navigator.serviceWorker.register('/service.js');
         }
-    </script>
+    </script> --}}
 
     <script type='application/ld+json'>
         {
@@ -72,13 +72,13 @@
     </script>
 
     <script>
-        const CONFIG_COMPANY_NAME = "{{ Config::get("app.company_name") }}";
+        const CONFIG_COMPANY_NAME    = "{{ Config::get("app.company_name") }}";
         const CONFIG_COMPANY_ADDRESS = "{{ implode(',', [ Config::get("app.company_address_street"), Config::get("app.company_address_locality"), Config::get("app.company_address_region"), Config::get("app.company_address_country")]) }}"
     </script>
     <script src="https://www.google.com/recaptcha/api.js?hl=vi"></script>
     <script src="https://maps.google.com/maps/api/js?key={{ env('GOOGLE_PLACES_API') }}"></script>
 
-    @php $analatic_key = Config::get("app.analatic") @endphp
+    {{-- @php $analatic_key = Config::get("app.analatic") @endphp
     @if($analatic_key)
     <script async src="https://www.googletagmanager.com/gtag/js?id={{ $analatic_key }}"></script>
     <script>
@@ -88,7 +88,7 @@
 
         gtag('config', "{{ $analatic_key }}");
     </script>
-    @endif
+    @endif --}}
 
     @yield('stylesheets')
 </head>
