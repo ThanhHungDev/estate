@@ -1,0 +1,22 @@
+$_bg_header : #242526;
+$_bg_header_after: #3a3b3c;
+$_color_header_text: #a7aaae;
+
+
+.header{
+    background-color: $_bg_header;
+    padding: 6px 15px;
+}
+.logo{
+    display: inline-block;
+
+    &__img{
+        max-width: 40px;
+        max-height: 40px;
+    }
+        
+    &__application_name{
+
+        color: aliceblue;
+    }
+}

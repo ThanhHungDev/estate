@@ -54,6 +54,6 @@
         
         <div id="map-canvas" class="map-us"></div>
     </div>
-    @include('client.partial.backtop')
-    @include('client.partial.alo-now')
+    {{-- @include('client.partial.backtop')
+    @include('client.partial.alo-now') --}}
 </div>

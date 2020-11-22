@@ -15,7 +15,14 @@
     <link rel="alternate" type="application/rss+xml" title="{{ Config::get("app.alternate_name") }}" href="" />
 
     <link rel="icon" type="image/png" href="{{ asset('favicon.ico' . Config::get('app.version')) }}">
-    <link rel="stylesheet" href="{{ asset('css/client.css' . Config::get('app.version'))}}">
+    <link rel="stylesheet" href="{{ asset('css/animate.min.css' . Config::get('app.version'))}}">
+    <link rel="stylesheet" href="{{ asset('css/awesome.min.css' . Config::get('app.version'))}}">
+    <link rel="stylesheet" href="{{ asset('css/client.min.css' . Config::get('app.version'))}}">
+    <link rel="stylesheet" href="{{ asset('css/library.min.css' . Config::get('app.version'))}}">
+    <link rel="stylesheet" href="{{ asset('css/material.min.css' . Config::get('app.version'))}}">
+    <link rel="stylesheet" href="{{ asset('css/admin.min.css' . Config::get('app.version'))}}">
+
+    <script async='async' defer='defer' src='{{ asset('js/library/lazysizes.min.js' . Config::get('app.version')) }}'></script>
 
     {{-- <script>
         
@@ -95,6 +102,7 @@
 <body>
     
     <div class="wrapper-page">
+        @include('client.partial.tophead')
         @include('client.partial.header')
         <div class="page-content-layout">
             @yield('content')
