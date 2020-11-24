@@ -3,7 +3,6 @@
 
 @section('title', Config::get("app.name"))
 @section('description', Config::get("app.description"))
-@section('keywords', Config::get("app.keywords"))
 
 @section('meta-seo')
     <link rel="canonical" href="{{ asset('/') }}" />

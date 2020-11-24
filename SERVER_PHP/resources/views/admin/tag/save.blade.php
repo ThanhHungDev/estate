@@ -83,12 +83,6 @@
             </div>
             <div class="row block-content">
                 <div class="col-12 bg-color-white shadows-1 px-3 py-3">
-                    <h2 class="title">meta keyword</h2>
-                    <textarea class="height-80px" name="keyword_seo" cols="30" rows="10">{{ old('keyword_seo', $tag->keyword_seo) }}</textarea>
-                </div>
-            </div>
-            <div class="row block-content">
-                <div class="col-12 bg-color-white shadows-1 px-3 py-3">
                     <h2 class="title">meta description</h2>
                     <textarea class="height-80px" name="description_seo" cols="30" rows="10">{{ old('description_seo', $tag->description_seo) }}</textarea>
                 </div>

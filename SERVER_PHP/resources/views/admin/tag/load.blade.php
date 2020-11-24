@@ -48,7 +48,6 @@
             <div class="row thead-list">
                 <div class="col-1">image</div>
                 <div class="col-3">name</div>
-                <div class="col-4">keyword</div>
                 <div class="col-3">description</div>
                 <div class="col-1">#remove#</div>
             </div>
@@ -62,7 +61,6 @@
                         {{ $tag->getName(30) }}
                     </a>
                 </div>
-                <div class="col-4">{{ $tag->getKeywordSeo(30) }}</div>
                 <div class="col-3">{{ $tag->getDescriptionSeo(30) }}</div>
                 <div class="col-1">
                     @if(Illuminate\Support\Facades\Gate::allows('delete'))

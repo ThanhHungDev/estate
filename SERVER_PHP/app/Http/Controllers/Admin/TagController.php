@@ -39,7 +39,7 @@ class TagController extends Controller
         ///setting data insert table tag
         $tagInput = $request->only( 'name', 'slug', 'excerpt', 
         'content', 'background', 'thumbnail', 'site_name', 
-        'image_seo', 'keyword_seo', 'description_seo');
+        'image_seo', 'description_seo');
 
         /// create catalogue
                    $catalogue   = Catalogue::generate($tagInput['content']);

@@ -16,7 +16,6 @@
     <meta property="og:image" content="@yield('image_seo')" />
     <meta property="og:description" content="@yield('description')" />
     <meta name="description" content="@yield('description')">
-    <meta name="keywords" content="@yield('keywords')">
 
     <link rel="icon" type="image/png" sizes="192x192"  href="{{ asset('android-icon-192x192.png' . Config::get('app.version')) }}"/>
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png' . Config::get('app.version')) }}">

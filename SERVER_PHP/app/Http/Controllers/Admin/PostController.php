@@ -49,7 +49,7 @@ class PostController extends Controller
         ///setting data insert table post
         $postInput = $request->only('topic_id', 'rating_id', 'rate_value', 'title', 'slug', 'excerpt', 
         'content', 'background', 'thumbnail', 'public', 'site_name', 
-        'image_seo', 'keyword_seo', 'description_seo', 'type', 'stylesheet', 'javascript');
+        'image_seo', 'description_seo', 'type', 'stylesheet', 'javascript');
 
 
         /// check permission 

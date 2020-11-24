@@ -18,7 +18,7 @@ class options extends Seeder
                 [
                     'key'        => "footer-title",
                     'type'       => 1,
-                    'value_text' => 'Hdev chia sẽ kinh nghiệm cho cộng đồng Developer',
+                    'value_text' => 'topbds nguồn tin bất động sản đáng tin cậy',
                     'value_html' => null,
                     'language'   => Config::get('app.locale')
                 ],

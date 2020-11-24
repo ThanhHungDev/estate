@@ -8,7 +8,6 @@
     <meta name="robots" content="index, follow" />
     <title> @yield('title') </title>
     <meta name="description" content="@yield('description')">
-    <meta name="keywords" content="@yield('keywords')">
 
     @yield('meta-seo')
 

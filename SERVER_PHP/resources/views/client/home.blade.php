@@ -2,7 +2,6 @@
 
 @section('title', Config::get("app.name"))
 @section('description', Config::get("app.description"))
-@section('keywords', Config::get("app.keywords"))
 
 @section('meta-seo')
     <link rel="canonical" href="{{ asset('/') }}" />
@@ -25,6 +24,6 @@
 @endsection
 @section('content')
     <div class="content">
-        content page
+        content page land
     </div>
 @endsection

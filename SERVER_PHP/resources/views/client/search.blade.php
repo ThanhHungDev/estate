@@ -2,7 +2,6 @@
 
 @section('title', 'tìm kiếm bài viết | ' . Config::get("app.name"))
 @section('description', Config::get("app.name") . ", " . $query . ", " . implode( ", ", $tags->pluck('name')->toArray()))
-@section('keywords', Config::get("app.name") . ", " . $query . ", " . implode( ", ", $tags->pluck('name')->toArray()))
 
 
 @section('meta-seo')

@@ -32,7 +32,6 @@ class ADMIN_VALIDATE_SAVE_TAG extends FormRequest
             'thumbnail'        => 'required|max:510',
             'site_name'        => 'required|max:150',
             'image_seo'        => 'required|max:510',
-            'keyword_seo'      => 'required|max:255',
             'description_seo'  => 'required|max:255'
         ];
     }
@@ -56,8 +55,6 @@ class ADMIN_VALIDATE_SAVE_TAG extends FormRequest
             'site_name.max'            => ':attribute vượt quá :max kí tự',
             'image_seo.required'       => ':attribute phải được nhập',
             'image_seo.max'            => ':attribute vượt quá :max kí tự',
-            'keyword_seo.required'     => ':attribute phải được nhập',
-            'keyword_seo.max'          => ':attribute vượt quá :max kí tự',
             'description_seo.required' => ':attribute phải được nhập',
             'description_seo.max'      => ':attribute vượt quá :max kí tự'
         ];

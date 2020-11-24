@@ -2,7 +2,6 @@
 
 @section('title', $post->title)
 @section('description', $post->description_seo )
-@section('keywords', $post->keyword_seo )
 
 @section('meta-seo')
     <link rel="canonical" href="{{ asset('/') }}" />
