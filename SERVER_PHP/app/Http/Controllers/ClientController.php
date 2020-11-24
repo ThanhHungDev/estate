@@ -92,4 +92,20 @@ class ClientController extends Controller
         
         return view('client.post-view', compact('post', 'tags', 'topic', 'rateAuthor', 'postMaxView', 'posts_in_topic'));
     }
+
+    public function favourites(){
+        return view('client.home');
+    }
+    public function viewPostArticle($slug = null){
+        return view('client.home');
+    }
+    public function storePostArticle($slug = null){
+        return view('client.home');
+    }
+    public function viewNews($slug = null){
+        return view('client.home');
+    }
+    public function storeNews($slug = null){
+        return view('client.home');
+    }
 }

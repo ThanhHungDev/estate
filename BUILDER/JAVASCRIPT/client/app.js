@@ -52,6 +52,18 @@ $(document).ready(function () {
 })
 
 
+function copyClipboard(copyText) {
+  
+    /* Select the text field */
+    copyText.select()
+    /*For mobile devices*/
+    copyText.setSelectionRange(0, 99999)
+
+    /* Copy the text inside the text field */
+    document.execCommand("copy")
+  }
+
+
 function backToTop() {
 
     if (window.pageYOffset > 0) {
