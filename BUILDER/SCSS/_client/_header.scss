@@ -101,12 +101,12 @@
 }
 
 .account{
-    display: inline-block;
     margin: 0;
     padding: 6px 20px 6px 15px;
     float: right;
 
     &>&__link{
+        @include clearfix();
         padding: 0 5px;
         position: relative;
         display: inline-block;
@@ -114,7 +114,7 @@
 
         &>a{
             background-color: #d0d1d4;
-            display: inline-block;
+            display: block;
             border-radius: 50%;
             width: 40px;
             height: 40px;
@@ -140,26 +140,30 @@
         border-bottom-left-radius: 20px;
         border-bottom-right-radius: 20px;
         background-color: $gray-300;
+        
 
         &__link{
-            display: inline-block;
+            display: table!important;
             vertical-align: middle;
             width: 100%;
-            min-width: 150px;
+            max-width: 150px;
             background-color: transparent!important;
 
             &__img{
+                vertical-align: middle;
                 max-width: 40px;
                 max-height: 40px;
                 border-radius: 50%;
                 margin-top: 1px;
+                display: table-cell;
             } 
         }
 
         .username{
-            display: inline-block;
             vertical-align: middle;
+            display: table-cell;
             width: 100px;
+            padding: 0 10px;
             color: #89aa72;
             text-align: left;
             overflow: hidden;
