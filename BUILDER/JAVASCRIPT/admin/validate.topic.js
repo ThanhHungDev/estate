@@ -36,10 +36,6 @@ function validateForm(formJquery){
                 required : true,
                 maxlength: 510
             },
-            keyword_seo : {
-                required : true,
-                maxlength: 255
-            },
             description_seo : {
                 required : true,
                 maxlength: 255
@@ -79,10 +75,6 @@ function validateForm(formJquery){
             image_seo : {
                 required : "cần nhập hình ảnh (image_seo) để seo tốt hơn",
                 maxlength: "phần hình ảnh (image_seo) không vượt quá {0} kí tự"
-            },
-            keyword_seo : {
-                required : "cần thêm mô tả keyword seo(keyword_seo)",
-                maxlength: "phần keyword (keyword_seo) không vượt quá {0} kí tự"
             },
             description_seo : {
                 required : "cần thêm mô tả seo(description_seo)",
