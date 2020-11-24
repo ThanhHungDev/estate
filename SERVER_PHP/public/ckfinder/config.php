@@ -34,16 +34,8 @@ $config['authentication'] = function () {
 
 $license = [
     [   
-        'licenseName' => 'blog.ebudezain.com',
-        'licenseKey'  => '*K?M-*1**-C**6-*C**-*5**-H*L*-2**B'
-    ],
-    [   
-        'licenseName' => 'blog.ebudezain.dev.com',
-        'licenseKey'  => '*4?6-*1**-F**4-*F**-*H**-F*7*-3**L'
-    ],
-    [   
-        'licenseName' => 'ebudezain.com',
-        'licenseKey'  => 'E636G5GV316DY4W5XJQ1H9865QSMT'
+        'licenseName' => 'topbds.vn',
+        'licenseKey'  => '*8?A-*1**-9**L-*9**-*M**-T*Q*-2**E'
     ],
 ];
 $activeLicense = [   'licenseName' => '', 'licenseKey'  => ''];
