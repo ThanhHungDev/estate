@@ -45,7 +45,7 @@
     display: inline-block;
     
 
-    &__link{
+    &>&__link{
         padding: 0 15px;
         position: relative;
         display: inline-block;
@@ -92,19 +92,82 @@
             a{
                 background-color: transparent;
                 border-radius: 0;
-                
-
                 i{
                     color: #600303;
                 }
             }
+        }   
+    }
+}
+
+.account{
+    display: inline-block;
+    margin: 0;
+    padding: 6px 20px 6px 15px;
+    float: right;
+
+    &>&__link{
+        padding: 0 5px;
+        position: relative;
+        display: inline-block;
+        border-bottom: 2px solid transparent;
+
+        &>a{
+            background-color: #d0d1d4;
+            display: inline-block;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            position: relative;
+            
+            i{
+                padding: 9px;
+                color: #89aa72;
+                vertical-align: middle;
+                font-size: 20px;
+            }
         }
         
     }
+    .avatar{
+        padding-left: 0;
+        padding-right: 0;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        background-color: $gray-300;
 
-    
+        &__link{
+            display: inline-block;
+            vertical-align: middle;
+            width: 100%;
+            min-width: 150px;
+            background-color: transparent!important;
+
+            &__img{
+                max-width: 40px;
+                max-height: 40px;
+                border-radius: 50%;
+                margin-top: 1px;
+            } 
+        }
+
+        .username{
+            display: inline-block;
+            vertical-align: middle;
+            width: 100px;
+            color: #89aa72;
+            text-align: left;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
 }
-
 
 
 @include Responsive(SM){
@@ -112,8 +175,10 @@
     .menu{
 
         &__mobile_close{
+            position: absolute;
+            right: 15px;
             text-align: right;
-            display: block;
+            display: inline-block;
             padding: 10px;
             border-bottom: 1px solid #f2f2f2;
             margin-bottom: 10px;

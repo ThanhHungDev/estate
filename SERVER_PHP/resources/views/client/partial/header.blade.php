@@ -5,9 +5,7 @@
     </a>
     <div id="menu" class="menu">
         @include('client.partial.navigate')
-        <ul class="menu__account">
-
-        </ul>
+        @include('client.partial.account')
     </div>
     <i id="js_btn_header_toggle__menu" class="d-none btn_header_toggle__menu fad fa-align-justify"></i>
 </div>

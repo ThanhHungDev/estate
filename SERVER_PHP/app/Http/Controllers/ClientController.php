@@ -108,4 +108,8 @@ class ClientController extends Controller
     public function storeNews($slug = null){
         return view('client.home');
     }
+
+    public function profile(){
+        return view('client.home');
+    }
 }
