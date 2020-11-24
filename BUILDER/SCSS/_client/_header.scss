@@ -107,7 +107,7 @@
 
     &>&__link{
         @include clearfix();
-        padding: 0 5px;
+        padding: 0;
         position: relative;
         display: inline-block;
         border-bottom: 2px solid transparent;
@@ -132,7 +132,7 @@
         }
         
     }
-    .avatar{
+    &>&__link.group-show{
         padding-left: 0;
         padding-right: 0;
         border-top-left-radius: 20px;
@@ -142,38 +142,54 @@
         background-color: $gray-300;
         
 
-        &__link{
+        &>a{
             display: table!important;
             vertical-align: middle;
             width: 100%;
-            max-width: 150px;
+            
+            padding: 1px;
             background-color: transparent!important;
 
-            &__img{
+            img{
                 vertical-align: middle;
                 max-width: 40px;
                 max-height: 40px;
                 border-radius: 50%;
-                margin-top: 1px;
                 display: table-cell;
+                background-color:  #d0d1d4;
             } 
+            i{
+                max-width: 40px;
+                border-radius: 50%;
+                background-color: #d0d1d4;
+            }
+            .text{
+                vertical-align: middle;
+                display: table-cell;
+                width: 100px;
+                padding: 0 3px;
+                color: #89aa72;
+                text-align: left;
+                max-width: 80px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
         }
 
-        .username{
-            vertical-align: middle;
-            display: table-cell;
-            width: 100px;
-            padding: 0 10px;
-            color: #89aa72;
-            text-align: left;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
+        
     }
 }
 
 
+@include Responsive(MD){
+
+    .navigate{
+        margin: 0;
+        padding: 6px 20px 6px 50px;
+        display: inline-block;
+    }
+}
 @include Responsive(SM){
 
     .menu{

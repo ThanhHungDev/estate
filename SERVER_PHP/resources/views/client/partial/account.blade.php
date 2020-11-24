@@ -1,26 +1,32 @@
 <ul class="account">
-    
-    <li class="account__link avatar {{ SupportRouter::fillClassActive('active', 'PROFILE') }}">
-        @auth
-        <a title="hồ sơ của bạn"
-        href="{{ Route('PROFILE') }}" class="avatar__link">
-            <img class="avatar__link__img lazyload" src="{{ Config::get('app.lazyload') }}" data-src="{{ asset(Auth::user()->avatar . Config::get('app.version')) }}" alt="{{ Auth::user()->name }}"/>
-            <span class="username">{{ Auth::user()->name }}</span>
+    @auth
+    <li class="account__link group-show {{ SupportRouter::fillClassActive('active', 'PROFILE') }}">
+        <a title="hồ sơ của bạn" href="{{ Route('PROFILE') }}">
+            <img class="lazyload" src="{{ Config::get('app.lazyload') }}" data-src="{{ asset(Auth::user()->avatar . Config::get('app.version')) }}" alt="{{ Auth::user()->name }}"/>
+            <span class="text">{{ Auth::user()->name }}</span>
         </a>
-        @endauth
-        @guest
-        <a title="đăng nhập"
-        href="{{ Route('LOGIN') }}" class="avatar__link">
-            <img class="avatar__link__img lazyload" src="{{ Config::get('app.lazyload') }}" data-src="{{ asset(env('AVATAR_DEFAULT') . Config::get('app.version')) }}" alt="đăng nhập"/>
-            <span class="username">đăng nhập</span>
-        </a>
-        @endguest
     </li>
+    <li title="đăng xuất"
+    class="account__link group-show">
+        <a href="{{ Route('LOGOUT') }}">
+            <i class="fas fa-sign-out"></i>
+            <span class="text">logout</span>
+        </a>
+    </li>
+    @endauth
     @guest
+    <li title="đăng nhập"
+    class="account__link group-show {{ SupportRouter::fillClassActive('active', 'VIEW_POST_ARTICLE') }}">
+        <a  href="{{ Route('LOGIN') }}">
+            <img class="lazyload" src="{{ Config::get('app.lazyload') }}" data-src="{{ asset(env('AVATAR_DEFAULT') . Config::get('app.version')) }}" alt="đăng nhập"/>
+            <span class="text">đăng nhập</span>
+        </a>
+    </li>
     <li title="đăng kí thành viên"
-    class="account__link {{ SupportRouter::fillClassActive('active', 'VIEW_POST_ARTICLE') }}">
+    class="account__link group-show {{ SupportRouter::fillClassActive('active', 'VIEW_POST_ARTICLE') }}">
         <a href="{{ Route('VIEW_POST_ARTICLE') }}">
             <i class="fad fa-user-plus"></i>
+            <span class="text">đăng ký</span>
         </a>
     </li>
     @endguest
