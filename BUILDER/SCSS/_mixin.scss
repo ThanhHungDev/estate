@@ -78,7 +78,9 @@
 }
 
 @mixin Responsive($canvas) {
-  @if $canvas == XS {
+  @if $canvas == XXS {
+    @media (max-width:$XXS)  { @content; } 
+  }@else if $canvas == XS {
     @media (max-width:$XS)  { @content; } 
   }@else if $canvas == SM {
     @media (max-width: $SM) { @content; } 

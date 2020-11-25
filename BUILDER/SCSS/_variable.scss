@@ -80,7 +80,8 @@ $font-size-lg:                $font-size-base * 1.25 !default;
 
 
 // Khai báo kích thước tương ứng với màn hình thiết bị
-   
+
+$XXS : 450px;   /// <  450px 
 $XS : 575px;    /// <  576px 
 $SM : 768px;    // 576px -> 768px
 $MD : 991px;    /// 768px -> 991px

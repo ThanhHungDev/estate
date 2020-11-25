@@ -20,7 +20,8 @@
     <link rel="stylesheet" href="{{ asset('css/library.min.css' . Config::get('app.version'))}}">
     <link rel="stylesheet" href="{{ asset('css/material.min.css' . Config::get('app.version'))}}">
     <link rel="stylesheet" href="{{ asset('css/admin.min.css' . Config::get('app.version'))}}">
-
+    <link rel="stylesheet" href="{{ asset('css/library/tipped.css' . Config::get('app.version'))}}">
+    
     <script async='async' defer='defer' src='{{ asset('js/library/lazysizes.min.js' . Config::get('app.version')) }}'></script>
 
     {{-- <script>
@@ -108,6 +109,12 @@
         </div>
         @include('client.partial.footer')
     </div>
+    <script src="{{ asset('js/library/jquery.min.js' . Config::get('app.version')) }}"></script>
+    <script src="{{ asset('js/library/tipped.min.js' . Config::get('app.version')) }}"></script>
+    
+    <script src="{{ asset('js/client/app.min.js' . Config::get('app.version')) }}"></script>
+
+    
     @yield('javascripts')
     @yield('make-up-data')
     

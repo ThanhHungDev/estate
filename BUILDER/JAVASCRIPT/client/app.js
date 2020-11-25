@@ -1,6 +1,9 @@
 
 
 $(document).ready(function () {
+
+    /// create tooltip 
+    Tipped.create('.simple-tooltip', {skin: 'light', size: 'large' });
     
 
     drawGoogleMap();
