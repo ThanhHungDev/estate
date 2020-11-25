@@ -51,9 +51,11 @@
     .menu{
 
         &__mobile_close{
-            
+            text-align: right;
+            display: block;
             padding: 10px;
-            margin: 0;
+            border-bottom: 1px solid #f2f2f2;
+            margin-bottom: 10px;
     
             .menu__mobile_close__icon{
                 font-size: 30px;    

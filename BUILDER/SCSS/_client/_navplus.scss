@@ -99,12 +99,12 @@
         &__link{
             padding: 0 2px;
             .title{
-                
-                max-width: 70px;
+                padding: 0 5px 0 0;
+                max-width: 75px;
             }
     
         }
-        .btn-logout-header{
+        .btn-logout-header, .btn-register-header{
             display: none;
         }
     }

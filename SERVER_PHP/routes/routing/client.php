@@ -27,6 +27,7 @@ Route::group(['prefix' => '/','middleware' => [ 'HTML_MINIFIER']], function () {
     Route::get('/login', 'ClientController@login')->name('LOGIN');
 
     Route::get('/logout', 'ClientController@login')->name('LOGOUT');
+    Route::get('/register', 'ClientController@register')->name('REGISTER');
     
 
     Route::get('/article/{slug?}','ClientController@viewPostArticle')->name('VIEW_POST_ARTICLE');

@@ -1,4 +1,7 @@
 <div class="wrapper-navigate">
+    <div  class="menu__mobile_close">
+        <i id="js_menu__mobile_close" class="menu__mobile_close__icon fad fa-window-close"></i>
+    </div>
     <ul class="navigate">
         <li  title="trang chủ"
         class="navigate__link simple-tooltip {{ SupportRouter::fillClassActive('active', 'HOME_PAGE') }}">
@@ -31,18 +34,23 @@
         <li title="liên hệ với chúng tôi"
         class="navigate__link simple-tooltip {{ SupportRouter::fillClassActive('active', 'CONTACT_PAGE') }}">
             <a href="{{ Route('CONTACT_PAGE') }}">
-                <i class="fal fa-phone-alt"></i>
-                <span class="title">Liên Hệ</span>
+                <i class="fal fa-layer-plus"></i>
+                <span class="title">Đăng bài</span>
             </a>
         </li>
-        @auth
         <li class="navigate__link btn-logout-header">
             <a href="{{ Route('LOGOUT') }}">
-                <i class="fas fa-sign-out"></i>
+                <i class="fal fa-sign-out-alt"></i>
                 <span class="title">đăng xuất</span>
             </a>
         </li>
-        @endauth
+        
+        <li class="navigate__link btn-register-header">
+            <a href="{{ Route('REGISTER') }}">
+                <i class="fal fa-user-plus"></i>
+                <span class="title">đăng ký</span>
+            </a>
+        </li>
     </ul>
 </div>
 

@@ -19,12 +19,12 @@
         <li title="bấm để đăng nhập"
         class="navplus__link simple-tooltip {{ SupportRouter::fillClassActive('active', 'VIEW_POST_ARTICLE') }}">
             <a  href="{{ Route('LOGIN') }}">
-                <img class="lazyload" src="{{ Config::get('app.lazyload') }}" data-src="{{ asset(env('AVATAR_DEFAULT') . Config::get('app.version')) }}" alt="đăng nhập"/>
+                <i class="fad fa-sign-in-alt"></i>
                 <span class="title">đăng nhập</span>
             </a>
         </li>
         <li title="đăng kí thành viên"
-        class="navplus__link simple-tooltip {{ SupportRouter::fillClassActive('active', 'VIEW_POST_ARTICLE') }}">
+        class="navplus__link simple-tooltip btn-register-header {{ SupportRouter::fillClassActive('active', 'VIEW_POST_ARTICLE') }}">
             <a href="{{ Route('VIEW_POST_ARTICLE') }}">
                 <i class="fad fa-user-plus"></i>
                 <span class="title">đăng ký</span>
