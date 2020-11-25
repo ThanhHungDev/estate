@@ -52,6 +52,11 @@ $(document).ready(function () {
         $("#menu").toggleClass("show")
         $("body").toggleClass("neo-scroll")
     })
+
+    window.addEventListener('error', (event) => {
+        
+        alert(`có lỗi cần send mail ${event.type}: ${event.message}\n`)
+    });
 })
 
 
