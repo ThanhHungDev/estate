@@ -38,19 +38,22 @@
                 <span class="title">Đăng bài</span>
             </a>
         </li>
+        @auth
         <li class="navigate__link btn-logout-header">
             <a href="{{ Route('LOGOUT') }}">
                 <i class="fal fa-sign-out-alt"></i>
                 <span class="title">đăng xuất</span>
             </a>
         </li>
-        
+        @endauth
+        @guest
         <li class="navigate__link btn-register-header">
             <a href="{{ Route('REGISTER') }}">
                 <i class="fal fa-user-plus"></i>
                 <span class="title">đăng ký</span>
             </a>
         </li>
+        @endguest
     </ul>
 </div>
 
