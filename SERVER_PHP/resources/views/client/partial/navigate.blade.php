@@ -1,7 +1,3 @@
-<div  class="menu__mobile_close">
-    <i id="js_menu__mobile_close" class="menu__mobile_close__icon fad fa-window-close"></i>
-</div>
-
 <ul class="navigate">
     <li  title="trang chủ"
     class="navigate__link {{ SupportRouter::fillClassActive('active', 'HOME_PAGE') }}">
