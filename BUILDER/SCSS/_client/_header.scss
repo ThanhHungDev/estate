@@ -3,6 +3,24 @@
     background-color: $white;
     box-shadow: 0 2px 10px 0 rgba(0,0,0,.2);
     position: relative;
+
+    .logo{
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        @include render-transform(translateY(-50%));
+        display: inline-block;
+    
+        &__img{
+            max-width: 40px;
+            max-height: 40px;
+        }
+            
+        &__application_name{
+    
+            color: aliceblue;
+        }
+    }
 }
 
 .btn_header_toggle__menu{
@@ -13,23 +31,7 @@
     display: block;
 }
 
-.logo{
-    position: absolute;
-    left: 15px;
-    top: 50%;
-    @include render-transform(translateY(-50%));
-    display: inline-block;
 
-    &__img{
-        max-width: 40px;
-        max-height: 40px;
-    }
-        
-    &__application_name{
-
-        color: aliceblue;
-    }
-}
 
 
 .menu{

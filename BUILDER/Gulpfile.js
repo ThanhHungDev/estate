@@ -22,7 +22,7 @@ const resources = {
 function runScss(name){
    return gulp.src(resources[name])
       .pipe(sass())
-      .pipe(minifyCss({ compatibility: 'ie8' }))
+      .pipe(minifyCss({ compatibility: 'ie8', keepSpecialComments : 0 }))
       .pipe(rename({ suffix: '.min' }))
       .pipe(gulp.dest(path.join(__dirname, '/../SERVER_PHP/public/css/')))
       .pipe(livereload())

@@ -14,12 +14,29 @@
     <link rel="alternate" type="application/rss+xml" title="{{ Config::get("app.alternate_name") }}" href="" />
 
     <link rel="icon" type="image/png" href="{{ asset('favicon.ico' . Config::get('app.version')) }}">
-    <link rel="stylesheet" href="{{ asset('css/animate.min.css' . Config::get('app.version'))}}">
+
+    <link rel="preload" href="/font/font-awe/webfonts/fa-brands-400.woff2" as="font" />
+    <link rel="preload" href="/font/font-awe/webfonts/fa-duotone-900.woff2" as="font" />
+    <link rel="preload" href="/font/font-awe/webfonts/fa-light-300.woff2" as="font" />
+    <link rel="preload" href="/font/font-awe/webfonts/fa-regular-400.woff2" as="font" />
+    <link rel="preload" href="/font/font-awe/webfonts/fa-solid-900.woff2" as="font" />
+    <link rel="preload" as="style" href="{{ asset('css/awesome.min.css' . Config::get('app.version'))}}">
+    <link rel="preload" as="style" href="{{ asset('css/client.min.css' . Config::get('app.version'))}}">
+    <script rel="preload" as="script" src='{{ asset('js/library/jquery.min.js' . Config::get('app.version')) }}'></script>
+    <script rel="preload" as="script" src="{{ asset('js/library/tipped.min.js' . Config::get('app.version')) }}"></script>
+    <script rel="preload" as="script" src="{{ asset('js/client/app.min.js' . Config::get('app.version')) }}"></script>
+  
+
+  
+
+
+
+    {{-- <link rel="stylesheet" href="{{ asset('css/animate.min.css' . Config::get('app.version'))}}"> --}}
     <link rel="stylesheet" href="{{ asset('css/awesome.min.css' . Config::get('app.version'))}}">
     <link rel="stylesheet" href="{{ asset('css/client.min.css' . Config::get('app.version'))}}">
-    <link rel="stylesheet" href="{{ asset('css/library.min.css' . Config::get('app.version'))}}">
-    <link rel="stylesheet" href="{{ asset('css/material.min.css' . Config::get('app.version'))}}">
-    <link rel="stylesheet" href="{{ asset('css/admin.min.css' . Config::get('app.version'))}}">
+    {{-- <link rel="stylesheet" href="{{ asset('css/library.min.css' . Config::get('app.version'))}}"> --}}
+    {{-- <link rel="stylesheet" href="{{ asset('css/material.min.css' . Config::get('app.version'))}}"> --}}
+    
     <link rel="stylesheet" href="{{ asset('css/library/tipped.css' . Config::get('app.version'))}}">
     
     <script async='async' defer='defer' src='{{ asset('js/library/lazysizes.min.js' . Config::get('app.version')) }}'></script>
@@ -82,8 +99,8 @@
         const CONFIG_COMPANY_NAME    = "{{ Config::get("app.company_name") }}";
         const CONFIG_COMPANY_ADDRESS = "{{ implode(',', [ Config::get("app.company_address_street"), Config::get("app.company_address_locality"), Config::get("app.company_address_region"), Config::get("app.company_address_country")]) }}"
     </script>
-    <script src="https://www.google.com/recaptcha/api.js?hl=vi"></script>
-    <script src="https://maps.google.com/maps/api/js?key={{ env('GOOGLE_PLACES_API') }}"></script>
+    {{-- <script src="https://www.google.com/recaptcha/api.js?hl=vi"></script> --}}
+    {{-- <script src="https://maps.google.com/maps/api/js?key={{ env('GOOGLE_PLACES_API') }}"></script> --}}
 
     {{-- @php $analatic_key = Config::get("app.analatic") @endphp
     @if($analatic_key)
@@ -111,7 +128,6 @@
     </div>
     <script src="{{ asset('js/library/jquery.min.js' . Config::get('app.version')) }}"></script>
     <script src="{{ asset('js/library/tipped.min.js' . Config::get('app.version')) }}"></script>
-    
     <script src="{{ asset('js/client/app.min.js' . Config::get('app.version')) }}"></script>
 
     
