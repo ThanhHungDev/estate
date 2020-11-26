@@ -2,6 +2,27 @@
     float: right;
 }
 
+.count{
+
+    &__mess, &__noti{
+        
+        &.show{
+            position: absolute;
+            top: -3px;
+            right: -3px;
+            background: $red;
+            line-height: 1;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            font-size: 11px;
+            color: $white;
+            display: inline-block;
+            text-align: center;
+            padding-top: 4px;
+        }
+    }
+}
 
 .navplus{
     margin: 0;

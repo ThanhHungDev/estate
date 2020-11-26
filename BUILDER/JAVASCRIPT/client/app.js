@@ -53,7 +53,7 @@ $(document).ready(function () {
         $("body").toggleClass("neo-scroll")
     })
     $("#js_menu__mobile_close_pc").click(function(){
-        console.log("dsdsfsdfds")
+        
         $("#menu").toggleClass("show")
         $("body").toggleClass("neo-scroll")
     })

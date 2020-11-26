@@ -1,5 +1,5 @@
 <div class="wrapper-navplus">
-    <ul class="navplus">
+    <ul class="navplus count">
         @auth
         <li title='tài khoản <strong>{{ Auth::user()->name }}</strong> đang đăng nhập'
         class="navplus__link simple-tooltip {{ SupportRouter::fillClassActive('active', 'PROFILE') }}">
@@ -35,12 +35,14 @@
         class="navplus__link simple-tooltip {{ SupportRouter::fillClassActive('active', 'VIEW_POST_ARTICLE') }}">
             <a href="{{ Route('VIEW_POST_ARTICLE') }}">
                 <i class="fad fa-comment-dots"></i>
+                <span id="js__count__mess" class="count__mess show">1</span>
             </a>
         </li>
         <li title="thông báo"
         class="navplus__link simple-tooltip {{ SupportRouter::fillClassActive('active', 'VIEW_POST_NEWS') }}">
             <a href="{{ Route('VIEW_POST_NEWS') }}">
                 <i class="fad fa-bell"></i>
+                <span id="js__count__noti" class="count__noti show">2+</span>
             </a>
         </li>
     </ul>
