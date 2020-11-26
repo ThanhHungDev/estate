@@ -20,8 +20,8 @@
     <link rel="preload" href="/font/font-awe/webfonts/fa-light-300.woff2" as="font" />
     <link rel="preload" href="/font/font-awe/webfonts/fa-regular-400.woff2" as="font" />
     <link rel="preload" href="/font/font-awe/webfonts/fa-solid-900.woff2" as="font" /> --}}
-    <link rel="preload" as="style" href="{{ asset('css/awesome.min.css' . Config::get('app.version'))}}">
-    <link rel="preload" as="style" href="{{ asset('css/client.min.css' . Config::get('app.version'))}}">
+    <link async rel="preload" as="style" href="{{ asset('css/awesome.min.css' . Config::get('app.version'))}}">
+    <link async rel="preload" as="style" href="{{ asset('css/client.min.css' . Config::get('app.version'))}}">
     <script async rel="preload" as="script" src='{{ asset('js/library/jquery.min.js' . Config::get('app.version')) }}'></script>
     <script async rel="preload" as="script" src="{{ asset('js/library/tipped.min.js' . Config::get('app.version')) }}"></script>
     <script async rel="preload" as="script" src="{{ asset('js/client/app.min.js' . Config::get('app.version')) }}"></script>
