@@ -44,11 +44,12 @@
         display: block; 
         text-align: right;
         cursor: pointer;
-        padding: 10px;
+        
         border-bottom: 1px solid #f2f2f2;
         margin-bottom: 10px;
         .menu__mobile_close__icon_pc{
-            font-size: 30px;    
+            font-size: 30px;   
+            padding: 10px; 
         }
     }
     
@@ -68,13 +69,13 @@
         &__mobile_close{
             text-align: right;
             display: block;
-            padding: 10px;
             border-bottom: 1px solid #f2f2f2;
             margin-bottom: 10px;
             cursor: pointer;
     
             .menu__mobile_close__icon{
-                font-size: 30px;    
+                font-size: 30px; 
+                padding: 10px;   
             }
         }
 
