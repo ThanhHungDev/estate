@@ -88,9 +88,10 @@
         &.show{
             .wrapper-navigate{
                 opacity: 1;
-                    z-index: 111111111;
-                    left: 0;
-                    right: 0;
+                z-index: 111111111;
+                left: 0;
+                right: 0;
+                overflow-y: scroll;
             }
         }
         .wrapper-navigate{
@@ -109,6 +110,7 @@
             @include render-gradient(0deg, #ffd1d4, #d6ffc6);
 
             .navigate{
+                padding: 0 10px;
                 &__link{
                     display: block;
                     padding: 10px 20px 5px 10px;

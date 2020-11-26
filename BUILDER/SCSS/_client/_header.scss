@@ -10,7 +10,7 @@
     font-size: 30px;
     padding: 20px 8px 10px 8px;
     cursor: pointer;
-    display: none;
+    display: block;
 }
 
 .logo{
@@ -44,9 +44,7 @@
 
 @include Responsive(SM){
 
-    .btn_header_toggle__menu{
-        display: unset;
-    }
+
    
     .menu{
 

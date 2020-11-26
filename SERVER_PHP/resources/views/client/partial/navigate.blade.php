@@ -55,5 +55,6 @@
         </li>
         @endguest
     </ul>
+    @include('client.partial.submenu')
 </div>
 

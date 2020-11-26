@@ -6,13 +6,13 @@ $(document).ready(function () {
     Tipped.create('.simple-tooltip', {skin: 'light', size: 'large' });
     
 
-    drawGoogleMap();
-    drawMapContact();
+    // drawGoogleMap();
+    // drawMapContact();
 
-    jQuery(window).on("resize", function (e) {
-        drawGoogleMap();
-        drawMapContact();
-    });
+    // jQuery(window).on("resize", function (e) {
+    //     drawGoogleMap();
+    //     drawMapContact();
+    // });
 
     /***
      * 
