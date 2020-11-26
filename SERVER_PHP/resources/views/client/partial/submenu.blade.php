@@ -1,4 +1,7 @@
 <div class="submenu">
+    <div  class="menu__mobile_close_pc">
+        <i id="js_menu__mobile_close_pc" class="menu__mobile_close__icon_pc fad fa-window-close"></i>
+    </div>
     <ul class="subnavigate">
         <li  title="trang chủ"
         class="subnavigate__link simple-tooltip {{ SupportRouter::fillClassActive('active', 'HOME_PAGE') }}">
