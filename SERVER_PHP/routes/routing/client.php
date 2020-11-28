@@ -8,6 +8,7 @@ Route::get('/404', function(){
 
 
 Route::group(['prefix' => '/','middleware' => [ 'HTML_MINIFIER']], function () { ///'READ_CACHE',
+
     Route::get('/','ClientController@index')->name('HOME_PAGE');
 
     Route::get('/favourites', 'ClientController@favourites')->name('FAVOURITES');
@@ -25,9 +26,12 @@ Route::group(['prefix' => '/','middleware' => [ 'HTML_MINIFIER']], function () {
     Route::get('/search', 'ClientController@searchPost')->name('SEARCH_POST');
 
     Route::get('/login', 'ClientController@login')->name('LOGIN');
+    Route::get('/forgot', 'ClientController@login')->name('FORGOT');
+    
 
     Route::get('/logout', 'ClientController@login')->name('LOGOUT');
-    Route::get('/register', 'ClientController@register')->name('REGISTER');
+    Route::get('/register-saler', 'SalerController@register')->name('REGISTER_SALER');
+    Route::get('/register-custommer', 'CustommerController@register')->name('REGISTER_CUSTOMMER');
     
 
     Route::get('/article/{slug?}','ClientController@viewPostArticle')->name('VIEW_POST_ARTICLE');

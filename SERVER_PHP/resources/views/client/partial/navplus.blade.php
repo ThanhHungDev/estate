@@ -8,7 +8,8 @@
                 <span class="title">{{ Auth::user()->name }}</span>
             </a>
         </li>
-        <li class="navplus__link simple-tooltip btn-logout-header" title="bấm để đăng xuất">
+        <li title="bấm để đăng xuất <br /> đăng xuất khỏi thiết bị sẽ giúp bạn bảo mật tài khoản hơn"
+        class="navplus__link simple-tooltip btn-logout-header" >
             <a href="{{ Route('LOGOUT') }}">
                 <i class="fas fa-sign-out"></i>
                 <span class="title">thoát</span>
@@ -16,16 +17,16 @@
         </li>
         @endauth
         @guest
-        <li title="bấm để đăng nhập"
+        <li title="bấm để đăng nhập vào quản lý tài khoản của bạn <br /> khi đăng nhập vào hệ thống bạn sẽ có nhiều đặc quyền hơn"
         class="navplus__link simple-tooltip {{ SupportRouter::fillClassActive('active', 'VIEW_POST_ARTICLE') }}">
             <a  href="{{ Route('LOGIN') }}">
                 <i class="fad fa-sign-in-alt"></i>
                 <span class="title">đăng nhập</span>
             </a>
         </li>
-        <li title="đăng kí thành viên"
+        <li title="đăng kí người bán hàng <br/> ngừoi bán hàng đăng bài và quản lý các bất động sản của mình"
         class="navplus__link simple-tooltip btn-register-header {{ SupportRouter::fillClassActive('active', 'VIEW_POST_ARTICLE') }}">
-            <a href="{{ Route('VIEW_POST_ARTICLE') }}">
+            <a href="{{ Route('REGISTER_SALER') }}">
                 <i class="fad fa-user-plus"></i>
                 <span class="title">đăng ký</span>
             </a>

@@ -19,8 +19,7 @@
     <meta name="twitter:image" content="{{ Config::get("app.image") }}" />
 @endsection
 @section('javascripts')
-    {{-- <script src="{{ asset('js/library/jquery.min.js' . Config::get('app.version')) }}"></script>
-    <script src="{{ asset('js/client/app.min.js' . Config::get('app.version')) }}"></script> --}}
+    
 @endsection
 @section('content')
     <div class="content">

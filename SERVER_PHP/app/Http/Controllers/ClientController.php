@@ -16,6 +16,15 @@ class ClientController extends Controller
         return view('client.home');
     }
 
+    /**
+     * login form
+     */
+    public function login(){
+
+        return view('client.login');
+    }
+
+
     public function contact( ){
         
         return view('client.contact');

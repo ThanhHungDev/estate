@@ -29,9 +29,9 @@
 
         <li title="tin bất động sản"
         class="subnavigate__link simple-tooltip {{ SupportRouter::fillClassActive('active', 'REGISTER') }}">
-            <a href="{{ Route('REGISTER') }}">
+            <a href="{{ Route('REGISTER_CUSTOMMER') }}">
                 <i class="fal fa-newspaper"></i>
-                <span class="title">bán họ hàng thêm</span>
+                <span class="title">Đăng ký - người mua</span>
             </a>
         </li>
         

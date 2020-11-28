@@ -1,0 +1,29 @@
+.page__login{
+
+    // background: url('/images/background/background-topbds.jpg');
+    display: inline-block;
+    width: 100%;
+    min-height: 200px;
+    vertical-align: middle;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    padding: 16px;
+
+    img {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: auto;
+        opacity: 0.4;
+    }
+
+    &__form{
+        display: block;
+        max-width: 450px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+    }
+}
