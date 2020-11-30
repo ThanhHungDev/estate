@@ -3,6 +3,7 @@ namespace App\Helpers;
 
 use Illuminate\Support\Facades\Cache;
 use stdClass;
+use Jenssegers\Agent\Agent;
 
 class RemoteInfor
 {
@@ -38,6 +39,13 @@ class RemoteInfor
      * @var string
      */
     protected static $ipInfor;
+
+    /**
+     * HTTP agent  
+     *
+     * @var string
+     */
+    protected static $agent = null;
 
     // [...]
 
@@ -141,6 +149,52 @@ class RemoteInfor
         return self:: $ipInfor;
     }
 
+    public static function getAgent(){
+
+        return new Agent();
+    }
+
+    
+    /**
+    * Check if the device is a desktop computer.
+    * @param  string|null $userAgent deprecated
+    * @param  array $httpHeaders deprecated
+    * @return bool
+    */
+    public static function isDesktop()
+    {
+        if(!self::$agent){
+            self::$agent = new Agent();
+        }
+        return self::$agent->isDesktop();
+    }
+
+    /**
+    * Check if the device is a Tablet computer.
+    * @param  string|null $userAgent deprecated
+    * @param  array $httpHeaders deprecated
+    * @return bool
+    */
+    public static function isTablet(){
+        if(!self::$agent){
+            self::$agent = new Agent();
+        }
+        return self::$agent->isTablet();
+    }
+
+    /**
+        * Check if the device is a mobile phone.
+        * @param  string|null $userAgent deprecated
+        * @param  array $httpHeaders deprecated
+        * @return bool
+        */
+    public function isPhone()
+    {
+        if(!self::$agent){
+            self::$agent = new Agent();
+        }
+        return self::$agent->isPhone();
+    }
     
 }
 class IpInfor{

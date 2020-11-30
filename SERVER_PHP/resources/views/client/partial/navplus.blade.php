@@ -18,7 +18,7 @@
         @endauth
         @guest
         
-        <li title="bấm để đăng nhập vào quản lý tài khoản của bạn <br /> khi đăng nhập vào hệ thống bạn sẽ có nhiều đặc quyền hơn"
+        <li @if(RemoteInfor::isDesktop()) title="bấm để đăng nhập vào quản lý tài khoản của bạn <br /> khi đăng nhập vào hệ thống bạn sẽ có nhiều đặc quyền hơn" @endif
         class="navplus__link simple-tooltip {{ SupportRouter::fillClassActive('active', 'VIEW_POST_ARTICLE') }}">
             <a 
             @if(Route::is('LOGIN'))
@@ -31,11 +31,11 @@
             </a>
         </li>
         
-        <li title="đăng kí người bán hàng <br/> ngừoi bán hàng đăng bài và quản lý các bất động sản của mình"
+        <li @if(RemoteInfor::isDesktop()) title="đăng kí người bán hàng <br/> ngừoi bán hàng đăng bài và quản lý các bất động sản của mình" @endif
         class="navplus__link simple-tooltip btn-register-header {{ SupportRouter::fillClassActive('active', 'VIEW_POST_ARTICLE') }}">
             <a href="{{ Route('REGISTER_SALER') }}">
                 <i class="fad fa-user-plus"></i>
-                <span class="title">đăng ký</span>
+            <span class="title">đăng ký</span>
             </a>
         </li>
         @endguest
