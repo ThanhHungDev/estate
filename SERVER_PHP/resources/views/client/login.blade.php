@@ -20,7 +20,7 @@
 @endsection
 
 @section('preload')
-    <link rel="preload" as="image" href="{{ asset('/images/community_bg.png'. Config::get('app.version')) }}">
+    <link rel="preload" as="image" href="{{ asset('/images/cityscape.jpg') }}">
 @endsection
 
 @section('javascripts')
@@ -29,7 +29,7 @@
 @section('content')
     <div class="content">
         <div class="page page__login">
-            <img src="{{ asset('/images/cityscape.jpg'. Config::get('app.version')) }}">
+            <div class="page__login__bg"></div>
             <form action="{{ 1 }}" class="page__login__form form">
                 {!! csrf_field() !!}
                 @if (Session::has(Config::get('constant.LOGIN_ERROR')))

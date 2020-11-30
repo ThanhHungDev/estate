@@ -10,6 +10,23 @@
     overflow: hidden;
     padding: 16px;
 
+    .page__login__bg{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        background: rgba(0, 0, 0, 0) url(/images/cityscape.jpg) no-repeat fixed center center / cover;
+        color: #fff;
+        font-family: "Arial";
+        font-size: 15px;
+        min-height: 265px;
+        padding: 60px 15px 10px;
+        text-align: center;
+        opacity: 0.5;
+    }
+
     img {
         position: absolute;
         left: 0;
