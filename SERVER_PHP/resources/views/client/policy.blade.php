@@ -1,6 +1,6 @@
 @extends('client.layout.index')
 
-@section('title', 'Đăng ký - ' . Config::get("app.name"))
+@section('title', 'policy - ' . Config::get("app.name"))
 @section('description', Config::get("app.description"))
 
 @section('meta-seo')
@@ -19,18 +19,12 @@
     <meta name="twitter:image" content="{{ Config::get("app.image") }}" />
 @endsection
 
-@section('preload')
-    <link rel="preload" as="image" href="{{ asset('/images/cityscape.jpg') }}">
-@endsection
 
 @section('javascripts')
     
 @endsection
 @section('content')
     <div class="content">
-        <div class="page page__register">
-            <div class="page__register__bg"></div>
-            @include('client.partial.form-register')
-        </div>
+        điều lệ policy
     </div>
 @endsection

@@ -1,6 +1,6 @@
 @extends('client.layout.index')
 
-@section('title', Config::get("app.name"))
+@section('title', 'Đăng nhập - ' . Config::get("app.name"))
 @section('description', Config::get("app.description"))
 
 @section('meta-seo')

@@ -124,8 +124,20 @@ class ClientController extends Controller
 
     public function register(){
 
-        $roleModel = $this->model->createRoleModel();
-        $roles = $roleModel->getAll();
-        return view('client.register', compact('roles'));
+        return view('client.register');
+    }
+
+    public function forgot(){
+
+        return view('client.forgot');
+    }
+
+    public function policy(){
+
+        return view('client.policy');
+    }
+    public function term(){
+
+        return view('client.term');
     }
 }

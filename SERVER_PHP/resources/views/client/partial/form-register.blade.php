@@ -38,7 +38,7 @@
         @endif
         
         <div class="user-type position-relative">
-            <h5 class="user-type__title">bạn là đăng kí để: </h5>
+            <h5 class="user-type__title">Bạn đăng kí để: </h5>
             <i class="user-type__icon far fa-question-square"></i>
             @if(Config::get('constant.ROLE'))
             <label class="container__radio">Đăng bán

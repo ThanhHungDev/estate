@@ -26,11 +26,13 @@ Route::group(['prefix' => '/','middleware' => [ 'HTML_MINIFIER']], function () {
     Route::get('/search', 'ClientController@searchPost')->name('SEARCH_POST');
 
     Route::get('/login', 'ClientController@login')->name('LOGIN');
-    Route::get('/forgot', 'ClientController@login')->name('FORGOT');
+    Route::get('/forgot', 'ClientController@forgot')->name('FORGOT');
     
 
     Route::get('/logout', 'ClientController@login')->name('LOGOUT');
     Route::get('/register', 'ClientController@register')->name('REGISTER');
+    Route::get('/policy', 'ClientController@policy')->name('POLICY');
+    Route::get('/term', 'ClientController@term')->name('TERM');
     
 
     Route::get('/article/{slug?}','ClientController@viewPostArticle')->name('VIEW_POST_ARTICLE');
