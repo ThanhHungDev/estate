@@ -20,12 +20,7 @@
         
         <li @if(RemoteInfor::isDesktop()) title="bấm để đăng nhập vào quản lý tài khoản của bạn <br /> khi đăng nhập vào hệ thống bạn sẽ có nhiều đặc quyền hơn" @endif
         class="navplus__link simple-tooltip {{ SupportRouter::fillClassActive('active', 'VIEW_POST_ARTICLE') }}">
-            <a 
-            @if(Route::is('LOGIN'))
-                href="{{ Route('LOGIN') }}" 
-            @else
-                href="#md__login" rel="modal:open"
-            @endif >
+            <a href="{{ Route('LOGIN') }}" >
                 <i class="fad fa-sign-in-alt"></i>
                 <span class="title">đăng nhập</span>
             </a>

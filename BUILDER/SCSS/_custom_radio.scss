@@ -12,54 +12,55 @@
     -ms-user-select: none;
     user-select: none;
     padding-right: 20px;
-}
 
-/* Hide the browser's default radio button */
-.container__radio input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-}
 
-/* Create a custom radio button */
-.checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 24px;
-    width: 24px;
-    background-color: #eee;
-    border-radius: 50%;
-}
+    
+    /* Hide the browser's default radio button */
+    input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
 
-/* On mouse-over, add a grey background color */
-.container__radio:hover input ~ .checkmark {
-    background-color: #d4eedc;
-}
+        /* When the radio button is checked, add a blue background */
+        &:checked ~ .checkmark {
+            background-color:  #10772f;
+            
 
-/* When the radio button is checked, add a blue background */
-.container__radio input:checked ~ .checkmark {
-    background-color:  #10772f;
-}
+            &:after {
+                display: block;
+            }
+        }
+    }
 
-/* Create the indicator (the dot/circle - hidden when not checked) */
-.checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-}
+    /* Create a custom radio button */
+    .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 24px;
+        width: 24px;
+        background-color: #eee;
+        border-radius: 50%;
+        border: 1px solid  #647e6c;
 
-/* Show the indicator (dot/circle) when checked */
-.container__radio input:checked ~ .checkmark:after {
-    display: block;
-}
+        /* Create the indicator (the dot/circle - hidden when not checked) */
+        &:after {
+            content: "";
+            position: absolute;
+            display: none;
+            top: 7px;
+            left: 7px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: white;
+        }
+    }
 
-/* Style the indicator (dot/circle) */
-.container__radio .checkmark:after {
-    top: 7px;
-    left: 7px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: white;
+    /* On mouse-over, add a grey background color */
+    &:hover input ~ .checkmark {
+        background-color: #b6f0c7;
+    }
+
+    
 }

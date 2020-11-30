@@ -6,13 +6,13 @@ $(document).ready(function () {
     Tipped.create('.simple-tooltip', {skin: 'light', size: 'large' });
     
 
-    // drawGoogleMap();
-    // drawMapContact();
+    drawGoogleMap();
+    drawMapContact();
 
-    // jQuery(window).on("resize", function (e) {
-    //     drawGoogleMap();
-    //     drawMapContact();
-    // });
+    jQuery(window).on("resize", function (e) {
+        drawGoogleMap();
+        drawMapContact();
+    });
 
     /***
      * 
@@ -114,9 +114,13 @@ function drawGoogleMap(){
     var styledMap = new google.maps.StyledMapType(styles, {
         name: "Google Map",
     });
-    var myLatlng = new google.maps.LatLng(10.651623, 107.270763);
+    if(typeof MAP_LAT == 'undefined' || typeof MAP_LONG == 'undefined'){
+        MAP_LAT = 10.651623
+        MAP_LONG = 107.270763
+    }
+    var myLatlng = new google.maps.LatLng(MAP_LAT, MAP_LONG);
     var mapOptions = {
-        zoom: 10,
+        zoom: 15,
         scrollwheel: false,
         center: myLatlng,
         mapTypeControlOptions: {

@@ -98,10 +98,13 @@
 
     <script>
         const CONFIG_COMPANY_NAME    = "{{ Config::get("app.company_name") }}";
-        const CONFIG_COMPANY_ADDRESS = "{{ implode(',', [ Config::get("app.company_address_street"), Config::get("app.company_address_locality"), Config::get("app.company_address_region"), Config::get("app.company_address_country")]) }}"
+        const CONFIG_COMPANY_ADDRESS = "{{ implode(',', [ Config::get("app.company_address_street"), Config::get("app.company_address_locality"), Config::get("app.company_address_region"), Config::get("app.company_address_country")]) }}";
+
+        const MAP_LAT  = "{{ Config::get('app.map_lat') }}";
+        const MAP_LONG = "{{ Config::get('app.map_long') }}";
     </script>
-    {{-- <script src="https://www.google.com/recaptcha/api.js?hl=vi"></script> --}}
-    {{-- <script src="https://maps.google.com/maps/api/js?key={{ env('GOOGLE_PLACES_API') }}"></script> --}}
+    <script src="https://www.google.com/recaptcha/api.js?hl=vi"></script>
+    <script src="https://maps.google.com/maps/api/js?key={{ env('GOOGLE_PLACES_API') }}"></script>
 
     {{-- @php $analatic_key = Config::get("app.analatic") @endphp
     @if($analatic_key)
