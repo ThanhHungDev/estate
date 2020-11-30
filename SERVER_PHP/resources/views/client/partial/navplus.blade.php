@@ -17,13 +17,20 @@
         </li>
         @endauth
         @guest
+        
         <li title="bấm để đăng nhập vào quản lý tài khoản của bạn <br /> khi đăng nhập vào hệ thống bạn sẽ có nhiều đặc quyền hơn"
         class="navplus__link simple-tooltip {{ SupportRouter::fillClassActive('active', 'VIEW_POST_ARTICLE') }}">
-            <a  href="{{ Route('LOGIN') }}">
+            <a 
+            @if(Route::is('LOGIN'))
+                href="{{ Route('LOGIN') }}" 
+            @else
+                href="#md__login" rel="modal:open"
+            @endif >
                 <i class="fad fa-sign-in-alt"></i>
                 <span class="title">đăng nhập</span>
             </a>
         </li>
+        
         <li title="đăng kí người bán hàng <br/> ngừoi bán hàng đăng bài và quản lý các bất động sản của mình"
         class="navplus__link simple-tooltip btn-register-header {{ SupportRouter::fillClassActive('active', 'VIEW_POST_ARTICLE') }}">
             <a href="{{ Route('REGISTER_SALER') }}">

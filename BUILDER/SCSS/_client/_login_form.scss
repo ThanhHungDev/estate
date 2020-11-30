@@ -1,10 +1,30 @@
-.page__login{
-
+.page__login {
     .form{
         background-color: #e5ffea;
         border-radius: 4px;
         box-shadow: 0 4px 32px 0 rgba(10, 14, 29, .02), 0 8px 64px 0 rgba(10, 14, 29, .08);
         padding: 15px;
+    }
+}
+.modal__login.modal{
+    background-color: #e5ffea;
+
+    .model__form__login{
+        // background: url('/images/background/background-topbds.jpg');
+        display: inline-block;
+        width: 100%;
+        min-height: 200px;
+        vertical-align: middle;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        padding: 16px;
+    }
+}
+
+.page__login, .modal__login{
+
+    .form{
 
         &__title{
             padding:  0 20px 10px;
