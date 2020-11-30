@@ -121,4 +121,11 @@ class ClientController extends Controller
     public function profile(){
         return view('client.home');
     }
+
+    public function register(){
+
+        $roleModel = $this->model->createRoleModel();
+        $roles = $roleModel->getAll();
+        return view('client.register', compact('roles'));
+    }
 }

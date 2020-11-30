@@ -42,12 +42,8 @@
     </div>
     <h4 class="description">
         chưa có tài khoản? Bạn muốn
-        <a href="{{ Route('REGISTER_SALER') }}" class="register-inline">
-            đăng ký đăng bán
-        </a>
-        hoặc
-        <a href="{{ Route('REGISTER_CUSTOMMER') }}" class="register-inline">
-            đăng ký tìm mua
+        <a href="{{ Route('REGISTER') }}" class="register-inline">
+            đăng ký
         </a>
     </h4>
 </form>

@@ -49,7 +49,7 @@
         @guest
         <li class="navigate__link btn-register-header" 
         title="đăng kí người bán hàng <br/> ngừoi bán hàng đăng bài và quản lý các bất động sản của mình">
-            <a href="{{ Route('REGISTER_SALER') }}">
+            <a href="{{ Route('REGISTER') }}">
                 <i class="fal fa-user-plus"></i>
                 <span class="title">đăng ký</span>
             </a>

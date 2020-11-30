@@ -33,7 +33,7 @@
         
         <li @if(RemoteInfor::isDesktop()) title="đăng kí người bán hàng <br/> ngừoi bán hàng đăng bài và quản lý các bất động sản của mình" @endif
         class="navplus__link simple-tooltip btn-register-header {{ SupportRouter::fillClassActive('active', 'VIEW_POST_ARTICLE') }}">
-            <a href="{{ Route('REGISTER_SALER') }}">
+            <a href="{{ Route('REGISTER') }}">
                 <i class="fad fa-user-plus"></i>
             <span class="title">đăng ký</span>
             </a>
