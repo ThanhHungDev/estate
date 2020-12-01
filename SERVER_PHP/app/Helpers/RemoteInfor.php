@@ -188,7 +188,20 @@ class RemoteInfor
         * @param  array $httpHeaders deprecated
         * @return bool
         */
-    public function isPhone()
+    public static function isMobile()
+    {
+        if(!self::$agent){
+            self::$agent = new Agent();
+        }
+        return self::$agent->isPhone();
+    }
+    /**
+        * Check if the device is a mobile phone.
+        * @param  string|null $userAgent deprecated
+        * @param  array $httpHeaders deprecated
+        * @return bool
+    */
+    public static function isPhone()
     {
         if(!self::$agent){
             self::$agent = new Agent();
@@ -201,7 +214,7 @@ class RemoteInfor
      * @param  string|null $userAgent
      * @return bool
      */
-    public function isRobot()
+    public static function isRobot()
     {
         if(!self::$agent){
             self::$agent = new Agent();

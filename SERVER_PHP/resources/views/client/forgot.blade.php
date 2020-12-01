@@ -21,7 +21,7 @@
 
 @section('javascripts')
 @if(!RemoteInfor::isRobot())
-<script src='https://www.google.com/recaptcha/api.js'></script>
+<script src="https://www.google.com/recaptcha/api.js?hl=vi"></script>
 @endif
 @endsection
 @section('content')
