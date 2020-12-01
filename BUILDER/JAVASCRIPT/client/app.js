@@ -18,6 +18,9 @@ function loadJS(src, cb){
 
 $(document).ready(function () {
 
+    /// slider 
+    $('.slick__slider').slick({ rtl: true });
+
     /// create tooltip 
     Tipped.create('.simple-tooltip', {skin: 'light', size: 'large' });
     
@@ -118,7 +121,6 @@ function drawGoogleMapLazyload() {
             function(entries, observer) {
                 // Detect intersection https://calendar.perfplanet.com/2017/progressive-image-loading-using-intersection-observer-and-sqip/#comment-102838
                 var isIntersecting = typeof entries[0].isIntersecting === 'boolean' ? entries[0].isIntersecting : entries[0].intersectionRatio >= 1
-                console.log(entries[0].intersectionRatio, "entries[0].intersectionRatio") 
                 if (isIntersecting) {
                     loadJS('https://maps.googleapis.com/maps/api/js?key=' + GOOGLE_PLACES_API, drawGoogleMap )
                     observer.unobserve(map)

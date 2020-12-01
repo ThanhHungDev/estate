@@ -1,6 +1,6 @@
 @extends('client.layout.index')
 
-@section('title', 'tìm kiếm bài viết | ' . Config::get("app.name"))
+@section('title', 'tìm kiếm | ' . Config::get("app.name"))
 @section('description', Config::get("app.name") . ", " . $query . ", " . implode( ", ", $tags->pluck('name')->toArray()))
 
 

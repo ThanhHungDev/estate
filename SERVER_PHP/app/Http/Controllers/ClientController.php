@@ -31,7 +31,7 @@ class ClientController extends Controller
     }
 
     
-    public function searchPost( Request $request){
+    public function search( Request $request){
 
         $limit = 10;
         $query = null;

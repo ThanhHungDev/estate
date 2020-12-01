@@ -54,17 +54,16 @@
         {
             "@context":"https://schema.org/",
             "@type":"WebSite",
-            "@id":"#website",
             "url":"{{ asset('/') }}",
             "name":"{{ Config::get("app.name") }}",
             "alternateName":"{{ Config::get("app.alternate_name") }}",
             "potentialAction":{
                 "@type":"SearchAction",
-                "target":"{{ Route('SEARCH_POST', [ 'q' => null ]) }}/{search_term_string}",
+                "target":"{{ Route('SEARCH') }}?q={search_term_string}",
                 "query-input":"required name=search_term_string"
             }
         }
-    </script> 
+    </script>
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -136,8 +135,8 @@
     <script defer src="{{ asset('js/library/jquery.min.js' . Config::get('app.version')) }}"></script>
     <script defer src="{{ asset('js/library/tipped.min.js' . Config::get('app.version')) }}"></script>
     <script defer src="{{ asset('js/library/modal.jquery.min.js' . Config::get('app.version')) }}"></script>
+    <script defer src="{{ asset('js/library/slick.min.js' . Config::get('app.version')) }}"></script>
     <script defer src="{{ asset('js/client/app.min.js' . Config::get('app.version')) }}"></script>
-
     
     @yield('javascripts')
     @yield('make-up-data')

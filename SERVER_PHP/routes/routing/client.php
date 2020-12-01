@@ -23,7 +23,7 @@ Route::group(['prefix' => '/','middleware' => [ 'HTML_MINIFIER']], function () {
 
     Route::get('/topic/{slug}','ClientController@topicDetail')->name('TOPIC_VIEW');
 
-    Route::get('/search', 'ClientController@searchPost')->name('SEARCH_POST');
+    Route::get('/search', 'ClientController@search')->name('SEARCH');
 
     Route::get('/login', 'ClientController@login')->name('LOGIN');
     Route::get('/forgot', 'ClientController@forgot')->name('FORGOT');
