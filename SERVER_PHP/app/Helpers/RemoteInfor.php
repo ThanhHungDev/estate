@@ -195,6 +195,19 @@ class RemoteInfor
         }
         return self::$agent->isPhone();
     }
+
+    /**
+     * Check if device is a robot.
+     * @param  string|null $userAgent
+     * @return bool
+     */
+    public function isRobot()
+    {
+        if(!self::$agent){
+            self::$agent = new Agent();
+        }
+        return self::$agent->isRobot();
+    }
     
 }
 class IpInfor{
