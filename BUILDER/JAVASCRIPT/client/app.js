@@ -107,6 +107,10 @@ function backToTop() {
 
 function drawGoogleMapLazyload() {
 
+    // if( typeof IS_ROBOT != "undefined" && IS_ROBOT ){
+    //     return false
+    // }
+
     var map = document.getElementById("map-canvas")
     if (GOOGLE_PLACES_API && map) {
         
@@ -116,7 +120,7 @@ function drawGoogleMapLazyload() {
                 var isIntersecting = typeof entries[0].isIntersecting === 'boolean' ? entries[0].isIntersecting : entries[0].intersectionRatio >= 1
                 console.log(entries[0].intersectionRatio, "entries[0].intersectionRatio") 
                 if (isIntersecting) {
-                    loadJS('https://maps.googleapis.com/maps/api/js?callback=drawGoogleMap&key=' + GOOGLE_PLACES_API )
+                    loadJS('https://maps.googleapis.com/maps/api/js?key=' + GOOGLE_PLACES_API, drawGoogleMap )
                     observer.unobserve(map)
                 }
             },
