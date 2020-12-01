@@ -1,4 +1,20 @@
+/*! loadJS: load a JS file asynchronously. [c]2014 @scottjehl, Filament Group, Inc. (Based on http://goo.gl/REQGQ by Paul Irish). Licensed MIT */
+function loadJS(src, cb){
 
+    var ref    = document.getElementsByTagName( "script" )[ 0 ]
+    var script = document.createElement( "script" )
+
+    script.src   = src
+    script.async = true
+
+    ref.parentNode.insertBefore( script, ref )
+
+    if (cb && typeof(cb) === "function") {
+
+        script.onload = cb
+    }
+    return script
+}
 
 $(document).ready(function () {
 
@@ -6,12 +22,12 @@ $(document).ready(function () {
     Tipped.create('.simple-tooltip', {skin: 'light', size: 'large' });
     
 
-    drawGoogleMap();
-    drawMapContact();
+    drawGoogleMapLazyload();
+    // drawMapContact();
 
     jQuery(window).on("resize", function (e) {
-        drawGoogleMap();
-        drawMapContact();
+        // drawGoogleMap();
+        // drawMapContact();
     });
 
     /***
@@ -89,8 +105,34 @@ function backToTop() {
 
 
 
+function drawGoogleMapLazyload() {
+
+    var map = document.getElementById("map-canvas")
+    if (GOOGLE_PLACES_API && map) {
+        
+        var observer = new IntersectionObserver(
+            function(entries, observer) {
+                // Detect intersection https://calendar.perfplanet.com/2017/progressive-image-loading-using-intersection-observer-and-sqip/#comment-102838
+                var isIntersecting = typeof entries[0].isIntersecting === 'boolean' ? entries[0].isIntersecting : entries[0].intersectionRatio >= 1
+                console.log(entries[0].intersectionRatio, "entries[0].intersectionRatio") 
+                if (isIntersecting) {
+                    loadJS('https://maps.googleapis.com/maps/api/js?callback=drawGoogleMap&key=' + GOOGLE_PLACES_API )
+                    observer.unobserve(map)
+                }
+            },
+            {
+                rootMargin: '400px',
+                threshold: 0
+            }
+        )
+
+        observer.observe(map)
+    }
+}
+
 
 function drawGoogleMap(){
+    
     var styles = [
         {
             stylers: [{ saturation: 0 }],

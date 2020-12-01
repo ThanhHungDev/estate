@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Jenssegers\Agent\Agent;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 
 include_once("routing/admin.php");
 include_once("routing/client.php");
+
+// $agent = new Agent();
+// if($agent->isPhone()){
+//     include_once("routing/amp.php");
+// }

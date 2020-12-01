@@ -102,9 +102,10 @@
 
         const MAP_LAT  = "{{ Config::get('app.map_lat') }}";
         const MAP_LONG = "{{ Config::get('app.map_long') }}";
+        const GOOGLE_PLACES_API = "{{ env('GOOGLE_PLACES_API') }}";
+
+        const IS_DESKTOP = parseInt("{{ RemoteInfor::isDesktop() ? 1 : 0 }}");
     </script>
-    <script src="https://www.google.com/recaptcha/api.js?hl=vi"></script>
-    <script src="https://maps.google.com/maps/api/js?key={{ env('GOOGLE_PLACES_API') }}"></script>
 
     {{-- @php $analatic_key = Config::get("app.analatic") @endphp
     @if($analatic_key)
