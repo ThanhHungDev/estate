@@ -23,10 +23,16 @@
 @endsection
 @section('content')
     <div class="content">
-        <div class="slick__slider">
-            <div>your content 2</div>
-            <div>your content 3</div>
-            <div>your content 4</div>
+        <div class="slider">
+            <div class="slider__item">
+                <img src="{{ asset('/images/slider-hight.jpg')}}" />
+            </div>
+            <div class="slider__item d-none">
+                <img src="{{ asset('/images/slider-find-hight.jpg')}}" />
+            </div>
+            <div class="slider__item d-none">
+                <img src="{{ asset('/images/slider-sales.jpg')}}" />
+            </div>
         </div>
         content page land
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Commodi autem non magnam laborum sit voluptatum nisi, impedit corrupti, distinctio, quas nobis similique officia expedita numquam possimus quisquam adipisci excepturi aliquid.

@@ -19,7 +19,12 @@ function loadJS(src, cb){
 $(document).ready(function () {
 
     /// slider 
-    $('.slick__slider').slick({ rtl: true });
+    $('.slider>div.d-none').removeClass('d-none')
+    $('.slider').slick({
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1
+    });
 
     /// create tooltip 
     Tipped.create('.simple-tooltip', {skin: 'light', size: 'large' });
