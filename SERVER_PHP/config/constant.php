@@ -28,5 +28,19 @@ return [
     'ROLE' => [
         'SALER' => 3,
         'CUSTOMMER' => 4,
+    ],
+    'HOME_SLIDER' => [
+        [
+            'alt' => 'đăng tin tin tức bất động sản(bds)',
+            'src' => '/images/slider-hight.jpg'
+        ],
+        [
+            'alt' => 'topbds tìm tin tức bất động sản(bds)',
+            'src' => '/images/slider-find-hight.jpg'
+        ],
+        [
+            'alt' => 'topbds kích thích bán hàng bất động sản(bds)',
+            'src' => '/images/slider-sales.jpg'
+        ]
     ]
 ];

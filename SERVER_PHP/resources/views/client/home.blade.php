@@ -20,7 +20,10 @@
 @endsection
 
 @section('preload')
-    <link rel="preload" as="image" href="{{ asset('/images/slider-hight.jpg') }}">
+    @php $sliders = Config::get('constant.HOME_SLIDER'); @endphp
+    @foreach ($sliders as $slider)
+    <link rel="preload" as="image" href="{{ asset($slider['src'])}}">
+    @endforeach
 @endsection
 
 
@@ -30,15 +33,12 @@
 @section('content')
     <div class="content">
         <div class="slider">
+            
+            @foreach ($sliders as $slider)
             <div class="slider__item">
-                <img src="{{ asset('/images/slider-hight.jpg')}}" />
+                <img src="{{ asset($slider['src'])}}" alt="{{ $slider['alt'] }}" />
             </div>
-            <div class="slider__item d-none">
-                <img src="{{ asset('/images/slider-find-hight.jpg')}}" />
-            </div>
-            <div class="slider__item d-none">
-                <img src="{{ asset('/images/slider-sales.jpg')}}" />
-            </div>
+            @endforeach
         </div>
         content page land
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Commodi autem non magnam laborum sit voluptatum nisi, impedit corrupti, distinctio, quas nobis similique officia expedita numquam possimus quisquam adipisci excepturi aliquid.
