@@ -18,6 +18,12 @@
     <meta name="twitter:site" content="{{ Config::get('site_fb') }}" />
     <meta name="twitter:image" content="{{ Config::get("app.image") }}" />
 @endsection
+
+@section('preload')
+    <link rel="preload" as="image" href="{{ asset('/images/slider-hight.jpg') }}">
+@endsection
+
+
 @section('javascripts')
     
 @endsection
