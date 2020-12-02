@@ -34,8 +34,8 @@
     <div class="content">
         <div class="slider">
             
-            @foreach ($sliders as $slider)
-            <div class="slider__item">
+            @foreach ($sliders as $key => $slider)
+            <div class="slider__item @if($key) {{ 'd-none' }} @endif">
                 <img src="{{ asset($slider['src'])}}" alt="{{ $slider['alt'] }}" />
             </div>
             @endforeach
