@@ -13,7 +13,6 @@
 
     <link rel="alternate" type="application/rss+xml" title="{{ Config::get("app.alternate_name") }}" href="" />
 
-    <link rel="icon" type="image/png" href="{{ asset('favicon.ico' . Config::get('app.version')) }}">
 
     {{-- <link rel="preload" href="/font/font-awe/webfonts/fa-brands-400.woff2" as="font" />
     <link rel="preload" href="/font/font-awe/webfonts/fa-duotone-900.woff2" as="font" />
@@ -23,6 +22,8 @@
     <link rel="preload" as="style" href="{{ asset('css/awesome.min.css' . Config::get('app.version')) }}">
     <link rel="preload" as="style" href="{{ asset('css/client.min.css' . Config::get('app.version')) }}">
     <link rel="preload" as="style" href="{{ asset('css/library.min.css' . Config::get('app.version')) }}">
+    <link rel="preload" as="image" href="{{ asset('logo.png' . Config::get('app.version')) }}">
+    
     
     {{-- <script rel="preload" as="script" src='{{ asset('js/library/jquery.min.js' . Config::get('app.version')) }}'></script> --}}
     {{-- <script rel="preload" as="script" src="{{ asset('js/client/app.min.js' . Config::get('app.version')) }}"></script> --}}
@@ -41,7 +42,7 @@
     <link rel="stylesheet" href="{{ asset('css/library/tipped.css' . Config::get('app.version'))}}">
     
     <script async='async' defer='defer' src='{{ asset('js/library/lazysizes.min.js' . Config::get('app.version')) }}'></script>
-
+    <link rel="icon" type="image/png" href="{{ asset('favicon.ico' . Config::get('app.version')) }}">
     {{-- <script>
         
         if ('serviceWorker' in navigator) {

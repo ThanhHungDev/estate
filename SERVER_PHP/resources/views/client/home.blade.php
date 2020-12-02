@@ -20,6 +20,7 @@
 @endsection
 
 @section('preload')
+    <link rel="preload" as="image" href="{{ asset('slick/ajax-loader.gif') }}">
     @php $sliders = Config::get('constant.HOME_SLIDER'); @endphp
     @foreach ($sliders as $slider)
     <link rel="preload" as="image" href="{{ asset($slider['src'])}}">
