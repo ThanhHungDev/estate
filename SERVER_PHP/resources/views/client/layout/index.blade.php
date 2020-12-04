@@ -19,6 +19,7 @@
     <link rel="preload" href="/font/font-awe/webfonts/fa-light-300.woff2" as="font" />
     <link rel="preload" href="/font/font-awe/webfonts/fa-regular-400.woff2" as="font" />
     <link rel="preload" href="/font/font-awe/webfonts/fa-solid-900.woff2" as="font" /> --}}
+    <link rel="preload" as="style" href="{{ asset('css/animate.min.css' . Config::get('app.version')) }}">
     <link rel="preload" as="style" href="{{ asset('css/awesome.min.css' . Config::get('app.version')) }}">
     <link rel="preload" as="style" href="{{ asset('css/client.min.css' . Config::get('app.version')) }}">
     <link rel="preload" as="style" href="{{ asset('css/library.min.css' . Config::get('app.version')) }}">
@@ -33,7 +34,7 @@
 
 
 
-    {{-- <link rel="stylesheet" href="{{ asset('css/animate.min.css' . Config::get('app.version'))}}"> --}}
+    <link rel="stylesheet" href="{{ asset('css/animate.min.css' . Config::get('app.version'))}}">
     <link rel="stylesheet" href="{{ asset('css/awesome.min.css' . Config::get('app.version'))}}">
     <link rel="stylesheet" href="{{ asset('css/client.min.css' . Config::get('app.version'))}}">
     <link rel="stylesheet" href="{{ asset('css/library.min.css' . Config::get('app.version'))}}">

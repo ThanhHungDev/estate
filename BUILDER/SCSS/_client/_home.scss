@@ -2,10 +2,67 @@
 
     width: 100%;
     &__item{
+        position: relative;
 
-        img{
+        .slider__content{
+            display: block;
+            position: absolute;
+            left: 50%;
+            top: 40%;
+            @include render-transform(translate(-50%, -50%));
+            
+            &-title{
+                font-size: 30px;
+                color: mix(#fff, $green_dark, 85%);
+                font-weight: 900;
+                text-shadow: 
+                    -0.0075em 0.0075em 0 mix(#fff, $green_dark, 94%),
+                    0.005em 0.005em 0 mix(#fff, $green_dark, 60%),
+                    0.01em 0.01em 0 mix(#fff, $green_dark, 62%), 
+                    0.015em 0.015em mix(#fff, $green_dark, 64%), 
+                    0.02em 0.02em 0 mix(#fff, $green_dark, 66%), 
+                    0.025em 0.025em 0 mix(#fff, $green_dark, 68%),
+                    0.03em 0.03em 0 mix(#fff, $green_dark, 70%),
+                    0.035em 0.035em 0 mix(#fff, $green_dark, 72%);
+            }
+        }
+        &-background{
             width: 100%;
             height: auto;
         }
+    }
+
+    
+}
+.slick-active {
+    .slick-tada {
+        animation-name: tada;
+    }
+    .slick-bounce{
+        
+        animation-name: bounce;
+        transform-origin: center bottom;
+    }
+    .slick-slide-in-down {
+        animation-name: slideInDown;
+    }
+}
+
+
+
+@include Responsive(MD){
+
+    .slider{
+
+        &__item{
+            position: relative;
+    
+            .slider__content{
+                left: 15px;
+                @include render-transform(translateX(0%));
+            }
+        }
+    
+        
     }
 }
