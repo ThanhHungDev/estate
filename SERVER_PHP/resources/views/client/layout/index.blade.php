@@ -25,6 +25,11 @@
     <link rel="preload" as="style" href="{{ asset('css/library.min.css' . Config::get('app.version')) }}">
     <link rel="preload" as="image" href="{{ asset('logo.png' . Config::get('app.version')) }}">
     
+    <link rel="preload" as="script" href="{{ asset('js/library/jquery.min.js' . Config::get('app.version')) }}">
+    <link rel="preload" as="script" href="{{ asset('js/library/tipped.min.js' . Config::get('app.version')) }}">
+    <link rel="preload" as="script" href="{{ asset('js/library/modal.jquery.min.js' . Config::get('app.version')) }}">
+    <link rel="preload" as="script" href="{{ asset('js/library/slick.min.js' . Config::get('app.version')) }}">
+    <link rel="preload" as="script" href="{{ asset('js/client/app.min.js' . Config::get('app.version')) }}">
     
     {{-- <script rel="preload" as="script" src='{{ asset('js/library/jquery.min.js' . Config::get('app.version')) }}'></script> --}}
     {{-- <script rel="preload" as="script" src="{{ asset('js/client/app.min.js' . Config::get('app.version')) }}"></script> --}}
@@ -134,11 +139,11 @@
         </div>
         @include('client.partial.footer')
     </div>
-    <script defer src="{{ asset('js/library/jquery.min.js' . Config::get('app.version')) }}"></script>
-    <script defer src="{{ asset('js/library/tipped.min.js' . Config::get('app.version')) }}"></script>
-    <script defer src="{{ asset('js/library/modal.jquery.min.js' . Config::get('app.version')) }}"></script>
-    <script defer src="{{ asset('js/library/slick.min.js' . Config::get('app.version')) }}"></script>
-    <script defer src="{{ asset('js/client/app.min.js' . Config::get('app.version')) }}"></script>
+    <script src="{{ asset('js/library/jquery.min.js' . Config::get('app.version')) }}"></script>
+    <script src="{{ asset('js/library/tipped.min.js' . Config::get('app.version')) }}"></script>
+    <script src="{{ asset('js/library/modal.jquery.min.js' . Config::get('app.version')) }}"></script>
+    <script src="{{ asset('js/library/slick.min.js' . Config::get('app.version')) }}"></script>
+    <script src="{{ asset('js/client/app.min.js' . Config::get('app.version')) }}"></script>
     
     @yield('javascripts')
     @yield('make-up-data')

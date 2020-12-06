@@ -38,7 +38,7 @@
 @endsection
 @section('content')
     <div class="content">
-        <div class="slider slider-gradient">
+        <div class="slider">
             
             @foreach ($sliders as $key => $slider)
             <div class="slider__item @if($key) {{ 'd-none' }} @endif">
