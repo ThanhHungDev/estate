@@ -22,4 +22,6 @@ interface FactoryModelInterface
     public function createPermissionModel();
 
     public function createPermissionRoleModel();
+
+    public function createCategoriesModel();
 }

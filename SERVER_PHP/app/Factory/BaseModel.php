@@ -3,6 +3,7 @@
 namespace App\Factory;
 
 use App\Factory\FactoryModelInterface;
+use App\Repositories\Category\CategoryEloquentRepository;
 use App\Repositories\DB\DBEloquentRepository;
 use App\Repositories\Option\OptionEloquentRepository;
 use App\Repositories\Permission\PermissionEloquentRepository;
@@ -27,6 +28,7 @@ class BaseModel implements FactoryModelInterface{
     public static $RoleModel;
     public static $PermissionModel;
     public static $PermissionRoleModel;
+    public static $CategoryModel;
 
 
 
@@ -105,4 +107,15 @@ class BaseModel implements FactoryModelInterface{
         }
         return self::$PermissionRoleModel;
     }
+
+    public function createCategoriesModel()
+    {
+        
+        if(!self::$CategoryModel){
+            self::$CategoryModel = new CategoryEloquentRepository();
+        }
+        return self::$CategoryModel;
+    }
+
+    
 }

@@ -13,7 +13,8 @@ class ClientController extends Controller
      */
     public function index(){
 
-        return view('client.home');
+        $categories = $this->model->createCategoriesModel()->getAll();
+        return view('client.home', compact('categories'));
     }
 
     /**

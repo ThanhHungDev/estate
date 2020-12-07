@@ -29,51 +29,6 @@ return [
         'SALER' => 3,
         'CUSTOMMER' => 4,
     ],
-    'HOME_SLIDER' => [
-        [
-            'title' => ' Bất động sản giá tốt! ',
-            'description' => 'Chốt Sale nhanh - Đăng tin ngay!',
-            'animation' => 'animated slick-tada',
-            'alt' => 'đăng tin tin tức bất động sản(bds)',
-            'src' => '/images/slider/slider1.jpg'
-        ],
-        [
-            'title' => 'Tin bất động sản miễn phí! ',
-            'description' => 'Đăng tin miễn phí, xem tin miễn phí!',
-            'animation' => 'animated slick-bounce',
-            'alt' => 'topbds tìm tin tức bất động sản(bds)',
-            'src' => '/images/slider/slider2.jpg'
-        ],
-        [
-            'title' => 'Tin bất động sản miễn phí! ',
-            'description' => 'Đăng tin miễn phí, xem tin miễn phí!',
-            'animation' => 'animated slick-slide-in-down',
-            'alt' => 'topbds chat với nhau bảo mật',
-            'src' => '/images/slider/slider3.jpg'
-        ]
-    ],
-    'HOME_SLIDER_MOBILE' => [
-        [
-            'title' => ' Bất động sản giá tốt! ',
-            'description' => 'Chốt Sale nhanh - Đăng tin ngay!',
-            'animation' => 'animated slick-tada',
-            'alt' => 'đăng tin tin tức bất động sản(bds)',
-            'src' => '/images/slider/slider1-tablet.jpg'
-        ],
-        [
-            'title' => 'Tin bất động sản miễn phí! ',
-            'description' => 'Đăng tin miễn phí, xem tin miễn phí!',
-            'animation' => 'animated slick-bounce',
-            'alt' => 'topbds tìm tin tức bất động sản(bds)',
-            'src' => '/images/slider/slider2-tablet.jpg'
-        ],
-        [
-            'title' => 'Tin bất động sản miễn phí! ',
-            'description' => 'Đăng tin miễn phí, xem tin miễn phí!',
-            'animation' => 'animated slick-slide-in-down',
-            'alt' => 'topbds tìm tin tức bất động sản(bds)',
-            'src' => '/images/slider/slider3-tablet.jpg'
-        ]
-    ]
+    'BG_HOME_SEARCH' => '/images/slider/home-realtor-main-bg.jpg'
 
 ];

@@ -87,8 +87,42 @@ $(document).ready(function () {
         
         alert(`có lỗi cần send mail ${event.type}: ${event.message}\n`)
     });
+
+
+    //// load select 2 
+    var singleSelect = $('.js__single-select'),
+        multiSelect  = $(".js__multi-select")
+    if(singleSelect.length){
+        runSelect2Single(singleSelect)
+    }
+    if(multiSelect.length){
+        runSelect2Multi(multiSelect) 
+    }
 })
 
+function runSelect2Single(dom){
+    dom.select2(
+        { 
+            minimumResultsForSearch: -1,
+            language: {
+                noResults: function(){
+                    return "không có kết quả trùng khớp";
+                }
+            },
+        }
+    );
+}
+function runSelect2Multi(dom){
+    dom.select2(
+        { 
+            language: {
+                noResults: function(){
+                    return "không có kết quả trùng khớp";
+                }
+            },
+        }
+    );
+}
 
 function copyClipboard(copyText) {
   

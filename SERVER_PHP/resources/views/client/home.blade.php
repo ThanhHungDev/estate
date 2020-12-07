@@ -20,40 +20,41 @@
 @endsection
 
 @section('preload')
+    <link rel="preload" as="image" href="{{  asset(Config::get('constant.BG_HOME_SEARCH') . Config::get('app.version')) }}">
     <link rel="preload" as="image" href="{{ asset('slick/ajax-loader.gif') }}">
-    @php
-    $sliders = Config::get('constant.HOME_SLIDER');
-    if(!RemoteInfor::isDesktop()){
-        $sliders = Config::get('constant.HOME_SLIDER_MOBILE');
-    }
-    @endphp
-    @foreach ($sliders as $slider)
-    <link rel="preload" as="image" href="{{ asset($slider['src'])}}">
-    @endforeach
+    <link rel="preload" as="script" href="{{ asset('js/library/select2.min.js'. Config::get('app.version')) }}">
 @endsection
 
 
 @section('javascripts')
-    
+    <script src="{{ asset('js/library/select2.min.js' . Config::get('app.version')) }}"></script>
 @endsection
 @section('content')
     <div class="content">
-        <div class="slider">
-            
-            @foreach ($sliders as $key => $slider)
-            <div class="slider__item @if($key) {{ 'd-none' }} @endif">
-                <div class="slider__content" >
-                    <div class="@isset($slider['animation']) {{ $slider['animation'] }} @endisset">
-                        <h4 class="slider__content-title">{{ $slider['title'] }}</h4>
-                        <h5 class="slider__content-subtitle">{{ $slider['description'] }}</h5>
-                    </div>
-                    
-                </div>
-                <img class="slider__item-background" src="{{ asset($slider['src'])}}" alt="{{ $slider['alt'] }}" />
+        <div class="homepage__search"  style="background-image: url({{ asset(Config::get('constant.BG_HOME_SEARCH') . Config::get('app.version')) }});">
+            <div class="homesearch">
+                <h4 class="homesearch__title">Cách Tốt nhất để</h4>
+                <h1 class="homesearch__main-title">Tìm Kiếm Bất Động Sản Hoàn Hảo</h1>
             </div>
-            @endforeach
+            <div class="search__form">
+                <form action="" class="form__homepage">
 
-
+                    {{-- https://homepress.stylemixthemes.com/home-agent/
+                    https://homepress.stylemixthemes.com/home-real-estate-v2/
+                    https://homepress.stylemixthemes.com/home-search-over-image/ --}}
+                    <select name="" id="" class="homesearch__select-category js__single-select">
+                        <option value="">chọn loại hình</option>
+                        @if(!$categories->isEmpty())
+                        @foreach ($categories as $category)
+                        <option value="{{ $category->slug }}">{{ $category->title }}</option>
+                        @endforeach
+                        @endif
+                    </select>
+                    <div class="input-group">
+                        <input class="homesearch__input" type="text"  />
+                    </div>
+                </form>
+            </div>
         </div>
         content page land
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Commodi autem non magnam laborum sit voluptatum nisi, impedit corrupti, distinctio, quas nobis similique officia expedita numquam possimus quisquam adipisci excepturi aliquid.

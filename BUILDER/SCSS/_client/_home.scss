@@ -1,74 +1,38 @@
-.slider{
-
-    width: 100%;
-    &__item{
-        position: relative;
-
-        .slider__content{
-            display: block;
-            position: absolute;
-            left: 50%;
-            top: 40%;
-            @include render-transform(translate(-50%, -50%));
-            
-            &-title{
-                font-size: 30px;
-                color: mix(#fff, $green_dark, 85%);
-                font-weight: 900;
-                text-shadow: 
-                    -0.0075em 0.0075em 0 mix(#fff, $green_dark, 94%),
-                    0.005em 0.005em 0 mix(#fff, $green_dark, 60%),
-                    0.01em 0.01em 0 mix(#fff, $green_dark, 62%), 
-                    0.015em 0.015em mix(#fff, $green_dark, 64%), 
-                    0.02em 0.02em 0 mix(#fff, $green_dark, 66%), 
-                    0.025em 0.025em 0 mix(#fff, $green_dark, 68%),
-                    0.03em 0.03em 0 mix(#fff, $green_dark, 70%),
-                    0.035em 0.035em 0 mix(#fff, $green_dark, 72%);
-            }
-        }
-        &-background{
-            width: 100%;
-            height: auto;
-        }
-    }
-
-    .slick-dots{
-        
-    }
+.homepage__search{
+    
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: background .3s,border .3s,border-radius .3s,box-shadow .3s;
+    padding: 50px;
+    z-index: 10;
     
 }
-.slick-active {
-    .slick-tada {
-        animation-name: tada;
-    }
-    .slick-bounce{
+
+.homesearch{
+    
+    &__title{
         
-        animation-name: bounce;
-        transform-origin: center bottom;
+        
+        font-size: 16px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        padding: 0 5px;
     }
-    .slick-slide-in-down {
-        animation-name: slideInDown;
+
+    &__main-title{
+        font-size: 24px;
+        font-weight: 600;
+        text-transform: uppercase;
+        margin: 0 0 20px 0;
+    }
+
+    &__select-category{
+        display: block;
+        width: 30%;
     }
 }
-
-
-
-@include Responsive(MD){
-
-    .slider{
-
-        &__item{
-            position: relative;
-    
-            .slider__content{
-                left: 15px;
-                @include render-transform(translateX(0%));
-            }
-        }
-    
-        
-    }
-}
-
+/// elementor-widget-wrap
 /// link download pts 
 /// https://download035.fshare.vn/dl/mvV0ttABfKecN-I5O-fuLmhwQheizih38XD31SSl7OMBymV1GivjZPtxLZIuChIF73dUHkqwvzwXkvze/Adobe_Photoshop_CC_2019_v20.0.7.zip
