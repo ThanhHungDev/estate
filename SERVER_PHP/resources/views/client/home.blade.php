@@ -27,31 +27,32 @@
 
 
 @section('javascripts')
-    <script src="{{ asset('js/library/select2.min.js' . Config::get('app.version')) }}"></script>
+    <script src="{{ asset('js/library/select2.full.min.js' . Config::get('app.version')) }}"></script>
 @endsection
 @section('content')
     <div class="content">
-        <div class="homepage__search"  style="background-image: url({{ asset(Config::get('constant.BG_HOME_SEARCH') . Config::get('app.version')) }});">
+        <div class="homepage__search"  style="background: rgba(0, 0, 0, 0) url({{ asset(Config::get('constant.BG_HOME_SEARCH') . Config::get('app.version')) }}) no-repeat fixed center center / cover;">
             <div class="homesearch">
-                <h4 class="homesearch__title">Cách Tốt nhất để</h4>
+                <h4 class="homesearch__title">Cách tốt nhất để</h4>
                 <h1 class="homesearch__main-title">Tìm Kiếm Bất Động Sản Hoàn Hảo</h1>
             </div>
             <div class="search__form">
-                <form action="" class="form__homepage">
-
-                    {{-- https://homepress.stylemixthemes.com/home-agent/
-                    https://homepress.stylemixthemes.com/home-real-estate-v2/
-                    https://homepress.stylemixthemes.com/home-search-over-image/ --}}
-                    <select name="" id="" class="homesearch__select-category js__single-select">
-                        <option value="">chọn loại hình</option>
-                        @if(!$categories->isEmpty())
-                        @foreach ($categories as $category)
-                        <option value="{{ $category->slug }}">{{ $category->title }}</option>
-                        @endforeach
-                        @endif
-                    </select>
+                <form action="" class="form">
+                    <div class="wrapper-select">
+                        <select name="" id="" class="form__select-category js__single-select">
+                            <option value="">chọn loại hình</option>
+                            @if(!$categories->isEmpty())
+                            @foreach ($categories as $category)
+                            <option value="{{ $category->slug }}">{{ $category->title }}</option>
+                            @endforeach
+                            @endif
+                        </select>
+                    </div>
                     <div class="input-group">
-                        <input class="homesearch__input" type="text"  />
+                        <input class="form__input" type="text"  placeholder="Nhập từ khóa tìm kiếm"/>
+                    </div>
+                    <div class="wrapper-search-btn">
+                        <button class="btn__search">Tìm Kiếm</button>
                     </div>
                 </form>
             </div>

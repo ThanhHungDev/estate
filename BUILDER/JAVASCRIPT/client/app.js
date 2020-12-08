@@ -102,13 +102,15 @@ $(document).ready(function () {
 
 function runSelect2Single(dom){
     dom.select2(
-        { 
+        {
+            width: '100%',
             minimumResultsForSearch: -1,
             language: {
                 noResults: function(){
                     return "không có kết quả trùng khớp";
                 }
             },
+            
         }
     );
 }
