@@ -4,12 +4,15 @@ namespace App\Factory;
 
 use App\Factory\FactoryModelInterface;
 use App\Repositories\Category\CategoryEloquentRepository;
+use App\Repositories\Commune\CommuneEloquentRepository;
 use App\Repositories\DB\DBEloquentRepository;
+use App\Repositories\District\DistrictEloquentRepository;
 use App\Repositories\Option\OptionEloquentRepository;
 use App\Repositories\Permission\PermissionEloquentRepository;
 use App\Repositories\PermissionRole\PermissionRoleEloquentRepository;
 use App\Repositories\Post\PostEloquentRepository;
 use App\Repositories\PostTagActive\PostTagActiveEloquentRepository;
+use App\Repositories\Province\ProvinceEloquentRepository;
 use App\Repositories\Rating\RatingEloquentRepository;
 use App\Repositories\Role\RoleEloquentRepository;
 use App\Repositories\Tag\TagEloquentRepository;
@@ -29,6 +32,9 @@ class BaseModel implements FactoryModelInterface{
     public static $PermissionModel;
     public static $PermissionRoleModel;
     public static $CategoryModel;
+    public static $ProvinceModel;
+    public static $CommuneModel;
+    public static $DistrictModel;
 
 
 
@@ -117,5 +123,38 @@ class BaseModel implements FactoryModelInterface{
         return self::$CategoryModel;
     }
 
-    
+    // public function createLocationModel(){
+
+    //     if(!self::$LocationModel){
+    //         self::$LocationModel = new LocationEloquentRepository();
+    //     }
+    //     return self::$LocationModel;
+    // }
+
+    public function createProvinceModel()
+    {
+        
+        if(!self::$ProvinceModel){
+            self::$ProvinceModel = new ProvinceEloquentRepository();
+        }
+        return self::$ProvinceModel;
+    }
+
+    public function createCommuneModel()
+    {
+        
+        if(!self::$CommuneModel){
+            self::$CommuneModel = new CommuneEloquentRepository();
+        }
+        return self::$CommuneModel;
+    }
+
+    public function createDistrictModel()
+    {
+        
+        if(!self::$DistrictModel){
+            self::$DistrictModel = new DistrictEloquentRepository();
+        }
+        return self::$DistrictModel;
+    }
 }

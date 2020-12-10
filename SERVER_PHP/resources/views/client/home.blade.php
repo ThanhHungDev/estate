@@ -21,12 +21,23 @@
 
 @section('preload')
     <link rel="preload" as="image" href="{{  asset(Config::get('constant.BG_HOME_SEARCH') . Config::get('app.version')) }}">
-    <link rel="preload" as="image" href="{{ asset('slick/ajax-loader.gif') }}">
+    {{-- <link rel="preload" as="image" href="{{ asset('slick/ajax-loader.gif') }}"> --}}
     <link rel="preload" as="script" href="{{ asset('js/library/select2.min.js'. Config::get('app.version')) }}">
 @endsection
 
 
 @section('javascripts')
+    <script>
+        @if($provinces)
+        const PROVINCES = JSON.parse(`{!! $provinces !!}`);
+        @endif
+        @if($districts)
+        const DISTRICTS = JSON.parse(`{!! $districts !!}`);
+        @endif
+        @if($communes)
+        const COMMUNES = JSON.parse(`{!! $communes !!}`);
+        @endif
+    </script>
     <script src="{{ asset('js/library/select2.full.min.js' . Config::get('app.version')) }}"></script>
 @endsection
 @section('content')
@@ -38,21 +49,40 @@
             </div>
             <div class="search__form">
                 <form action="" class="form">
-                    <div class="wrapper-select">
-                        <select name="" id="" class="form__select-category js__single-select">
-                            <option value="">chọn loại hình</option>
-                            @if(!$categories->isEmpty())
-                            @foreach ($categories as $category)
-                            <option value="{{ $category->slug }}">{{ $category->title }}</option>
-                            @endforeach
-                            @endif
-                        </select>
+                    <div class="wrapper-head-form">
+                        <div class="wrapper-select">
+                            <select name="" class="form__select-category js__single-select">
+                                <option value="">chọn loại hình</option>
+                                @if(!$categories->isEmpty())
+                                @foreach ($categories as $category)
+                                <option value="{{ $category->slug }}">{{ $category->title }}</option>
+                                @endforeach
+                                @endif
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <input class="form__input" type="text"  placeholder="Nhập từ khóa tìm kiếm"/>
+                        </div>
+                        <div class="wrapper-search-btn">
+                            <button class="btn__search">Tìm Kiếm</button>
+                        </div>
                     </div>
-                    <div class="input-group">
-                        <input class="form__input" type="text"  placeholder="Nhập từ khóa tìm kiếm"/>
-                    </div>
-                    <div class="wrapper-search-btn">
-                        <button class="btn__search">Tìm Kiếm</button>
+                    <div class="wrapper-bottom-form">
+                        <div class="wrapper-select select2__home-bottom">
+                            <select name="" id="js__select-province" class="form__select-category">
+                                <option value="0">chọn tỉnh</option>
+                            </select>
+                        </div>
+                        <div class="wrapper-select select2__home-bottom">
+                            <select name="" id="js__select-district"  class="form__select-category">
+                                <option value="0">chọn huyện</option>
+                            </select>
+                        </div>
+                        <div class="wrapper-select select2__home-bottom">
+                            <select name="" id="js__select-commune" class="form__select-category">
+                                <option value="0">chọn xã</option>
+                            </select>
+                        </div>
                     </div>
                 </form>
             </div>

@@ -261,6 +261,7 @@ return [
         'SupportString' => App\Helpers\SupportString::class,
         'SupportDB' => App\Helpers\SupportDB::class,
         'SupportRouter' => App\Helpers\SupportRouter::class,
+        'SupportCache' => App\Helpers\SupportCache::class,
 
         'Agent' => Jenssegers\Agent\Facades\Agent::class,
 

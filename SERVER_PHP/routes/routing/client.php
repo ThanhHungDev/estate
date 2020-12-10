@@ -9,7 +9,7 @@ Route::get('/404', function(){
 
 Route::group(['prefix' => '/','middleware' => [ 'HTML_MINIFIER']], function () { ///'READ_CACHE',
 
-    Route::get('/','ClientController@index')->name('HOME_PAGE');
+    Route::get('/','ClientController@index')->name('HOME_PAGE')->middleware(['CACHE_LOCATIONS']);
 
     Route::get('/favourites', 'ClientController@favourites')->name('FAVOURITES');
 

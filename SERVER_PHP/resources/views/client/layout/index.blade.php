@@ -28,7 +28,7 @@
     <link rel="preload" as="script" href="{{ asset('js/library/jquery.min.js' . Config::get('app.version')) }}">
     <link rel="preload" as="script" href="{{ asset('js/library/tipped.min.js' . Config::get('app.version')) }}">
     <link rel="preload" as="script" href="{{ asset('js/library/modal.jquery.min.js' . Config::get('app.version')) }}">
-    <link rel="preload" as="script" href="{{ asset('js/library/slick.min.js' . Config::get('app.version')) }}">
+    {{-- <link rel="preload" as="script" href="{{ asset('js/library/slick.min.js' . Config::get('app.version')) }}"> --}}
     <link rel="preload" as="script" href="{{ asset('js/client/app.min.js' . Config::get('app.version')) }}">
     
     {{-- <script rel="preload" as="script" src='{{ asset('js/library/jquery.min.js' . Config::get('app.version')) }}'></script> --}}
@@ -142,7 +142,7 @@
     <script src="{{ asset('js/library/jquery.min.js' . Config::get('app.version')) }}"></script>
     <script src="{{ asset('js/library/tipped.min.js' . Config::get('app.version')) }}"></script>
     <script src="{{ asset('js/library/modal.jquery.min.js' . Config::get('app.version')) }}"></script>
-    <script src="{{ asset('js/library/slick.min.js' . Config::get('app.version')) }}"></script>
+    {{-- <script src="{{ asset('js/library/slick.min.js' . Config::get('app.version')) }}"></script> --}}
     <script src="{{ asset('js/client/app.min.js' . Config::get('app.version')) }}"></script>
     
     @yield('javascripts')

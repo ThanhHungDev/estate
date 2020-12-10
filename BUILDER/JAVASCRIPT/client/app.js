@@ -18,14 +18,14 @@ function loadJS(src, cb){
 
 $(document).ready(function () {
 
-    /// slider 
-    $('.slider>div.d-none').removeClass('d-none')
-    $('.slider').slick({
-        infinite: true,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        dots: true,
-    });
+    // /// slider 
+    // $('.slider>div.d-none').removeClass('d-none')
+    // $('.slider').slick({
+    //     infinite: true,
+    //     slidesToShow: 1,
+    //     slidesToScroll: 1,
+    //     dots: true,
+    // });
 
     /// create tooltip 
     Tipped.create('.simple-tooltip', {skin: 'light', size: 'large' });
@@ -92,6 +92,90 @@ $(document).ready(function () {
     //// load select 2 
     var singleSelect = $('.js__single-select'),
         multiSelect  = $(".js__multi-select")
+
+    var select2Commune = $('#js__select-commune')
+    if( select2Commune ){
+        
+        if(typeof COMMUNES != 'undefined'){
+            runSelect2Single(select2Commune, { data : [] } )
+        }
+    }
+
+    var select2District = $('#js__select-district')
+    if( select2District ){
+        
+        if(typeof DISTRICTS != 'undefined'){
+            runSelect2Single(select2District, { data : [] } )
+            .on("change", function (e) {
+
+                
+                var districtValue  = this.value
+                var select2Commune = $('#js__select-commune')
+                
+                if( districtValue == 0 ){
+                    
+                    /// không chọn gì hết ta cần reset xã
+                    select2Commune.find('option:not(:first)').remove()
+                    select2Commune.select2("destroy")
+                    runSelect2Single(select2Commune, { data : [] })
+                    select2Commune.trigger('change')
+                }else if( typeof COMMUNES != 'undefined' ){
+
+                    var cloneCommune   = []
+                    for( var iCom = 0; iCom < COMMUNES.length; iCom ++ ){
+
+                        if( COMMUNES[iCom].district == districtValue){
+
+                            var obj = { id: COMMUNES[iCom].id, text: COMMUNES[iCom].text }
+                            cloneCommune.push(obj)
+                        }
+                    }
+                    select2Commune.find('option:not(:first)').remove()
+                    select2Commune.select2("destroy")
+                    runSelect2Single(select2Commune, { data : cloneCommune })
+                    select2Commune.trigger('change')
+                }
+            })
+        }
+    }
+    var select2province = $('#js__select-province')
+    if( select2province ){
+        
+        if(typeof PROVINCES != 'undefined'){
+            runSelect2Single(select2province, { data : PROVINCES } )
+            .on("change", function (e) {
+
+                var provinceValue = this.value
+                var select2District = $('#js__select-district')
+
+                if( provinceValue == 0 ){
+                    
+                    /// không chọn gì hết ta cần reset huyện
+                    select2District.find('option:not(:first)').remove()
+                    select2District.select2("destroy")
+                    runSelect2Single(select2District, { data : [] })
+                    select2District.trigger('change')
+                }else if( typeof DISTRICTS != 'undefined' ){
+
+                    
+                    var cloneDistrict   = []
+
+                    for( var iDis = 0; iDis < DISTRICTS.length; iDis ++ ){
+
+                        if( DISTRICTS[iDis].province == provinceValue){
+
+                            var obj = { id: DISTRICTS[iDis].id, text: DISTRICTS[iDis].text }
+                            cloneDistrict.push(obj)
+                        }
+                    }
+                    select2District.find('option:not(:first)').remove()
+                    select2District.select2("destroy")
+                    runSelect2Single(select2District, { data : cloneDistrict })
+                    select2District.trigger('change')
+                }
+            })
+        }
+    }
     if(singleSelect.length){
         runSelect2Single(singleSelect)
     }
@@ -100,19 +184,25 @@ $(document).ready(function () {
     }
 })
 
-function runSelect2Single(dom){
-    dom.select2(
-        {
-            width: '100%',
-            minimumResultsForSearch: -1,
-            language: {
-                noResults: function(){
-                    return "không có kết quả trùng khớp";
-                }
-            },
-            
+function runSelect2Single(dom, options){
+    var DF_OPTION = {
+        width: '100%',
+        language: {
+            noResults: function(){
+                return "không có kết quả trùng khớp";
+            }
         }
-    );
+    }
+
+    var isObject = (null == options || "object" != typeof options)
+    if (!isObject){
+        for (var attr in options) {
+            if (options.hasOwnProperty(attr)){
+                DF_OPTION[attr] = options[attr]
+            }
+        }
+    }
+    return dom.select2( DF_OPTION )
 }
 function runSelect2Multi(dom){
     dom.select2(

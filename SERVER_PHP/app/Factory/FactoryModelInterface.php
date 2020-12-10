@@ -24,4 +24,10 @@ interface FactoryModelInterface
     public function createPermissionRoleModel();
 
     public function createCategoriesModel();
+
+    public function createProvinceModel();
+
+    public function createCommuneModel();
+
+    public function createDistrictModel();
 }

@@ -11,16 +11,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(users::class);
+        // $this->call(users::class);
         $this->call(provinces::class);
         $this->call(districts::class);
         $this->call(communes::class);
-        $this->call(options::class);
-        $this->call(permissions::class);
-        $this->call(roles::class);
-        $this->call(permission_roles::class);
-        $this->call(categories::class);
-        $this->call(lands::class);
-        $this->call(tags::class);
+        // $this->call(options::class);
+        // $this->call(permissions::class);
+        // $this->call(roles::class);
+        // $this->call(permission_roles::class);
+        // $this->call(categories::class);
+        // $this->call(lands::class);
+        // $this->call(tags::class);
     }
 }

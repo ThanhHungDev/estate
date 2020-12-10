@@ -10,6 +10,24 @@ class provinces extends Seeder
      * Run the database seeds.
      *
      * @return void
+     * select * from communes as cm join districts as dt on (cm.district_id = dt.id) where cm.slug like '%hop-thinh%';
+
+
+     * UPDATE communes as cm
+     * SET slug = concat(dt.slug, '-', cm.slug)
+     * FROM districts as dt
+     * WHERE cm.district_id = dt.id;
+
+
+     * UPDATE districts as dt
+     * SET slug = concat(pv.slug, '-', dt.slug)
+     * FROM provinces as pv
+     * WHERE dt.province_id = pv.id;
+
+
+
+     * delete from provinces where id > 0;
+     * 
      */
     public function run()
     {
