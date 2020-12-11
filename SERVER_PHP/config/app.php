@@ -215,7 +215,7 @@ return [
 
 
         Jenssegers\Agent\AgentServiceProvider::class,
-
+        App\Providers\ResponseServiceProvider::class,
     ],
 
     /*
@@ -272,6 +272,7 @@ return [
         'RemoteInfor' => App\Helpers\RemoteInfor::class,
         'SupportString' => App\Helpers\SupportString::class,
         'SupportDB' => App\Helpers\SupportDB::class,
+        'SupportHtml' => App\Helpers\SupportHtml::class,
         'SupportRouter' => App\Helpers\SupportRouter::class,
         'SupportCache' => App\Helpers\SupportCache::class,
 

@@ -145,34 +145,42 @@ $(document).ready(function () {
             runSelect2Single(select2province, { data : PROVINCES } )
             .on("change", function (e) {
 
-                var provinceValue = this.value
+                var provinceValue   = this.value
                 var select2District = $('#js__select-district')
+                /// add loadding
+                var optionFirst = select2District.find('option:first')
+                var dataDistricts = [{
+                    id: 0,
+                    text: optionFirst.text() + '<b class="spinner"><i></i><i></i><i></i><i></i></b>'
+                }]
+                /// reset select 2 district to none loading 
+                select2District.find('option').remove()
 
-                if( provinceValue == 0 ){
+                select2District.select2("destroy")
+                runSelect2Single(select2District, { data : dataDistricts })
+                // select2District.trigger('change')
+                
+                // if( provinceValue == 0 ){
                     
-                    /// không chọn gì hết ta cần reset huyện
-                    select2District.find('option:not(:first)').remove()
-                    select2District.select2("destroy")
-                    runSelect2Single(select2District, { data : [] })
-                    select2District.trigger('change')
-                }else if( typeof DISTRICTS != 'undefined' ){
+                    
+                // }else if( typeof DISTRICTS != 'undefined' ){
 
                     
-                    var cloneDistrict   = []
+                //     var cloneDistrict   = []
 
-                    for( var iDis = 0; iDis < DISTRICTS.length; iDis ++ ){
+                //     for( var iDis = 0; iDis < DISTRICTS.length; iDis ++ ){
 
-                        if( DISTRICTS[iDis].province == provinceValue){
+                //         if( DISTRICTS[iDis].province == provinceValue){
 
-                            var obj = { id: DISTRICTS[iDis].id, text: DISTRICTS[iDis].text }
-                            cloneDistrict.push(obj)
-                        }
-                    }
-                    select2District.find('option:not(:first)').remove()
-                    select2District.select2("destroy")
-                    runSelect2Single(select2District, { data : cloneDistrict })
-                    select2District.trigger('change')
-                }
+                //             var obj = { id: DISTRICTS[iDis].id, text: DISTRICTS[iDis].text }
+                //             cloneDistrict.push(obj)
+                //         }
+                //     }
+                //     select2District.find('option:not(:first)').remove()
+                //     select2District.select2("destroy")
+                //     runSelect2Single(select2District, { data : cloneDistrict })
+                //     select2District.trigger('change')
+                // }
             })
         }
     }
@@ -191,6 +199,9 @@ function runSelect2Single(dom, options){
             noResults: function(){
                 return "không có kết quả trùng khớp";
             }
+        },
+        escapeMarkup: function(markup) {
+            return markup;
         }
     }
 
@@ -202,6 +213,7 @@ function runSelect2Single(dom, options){
             }
         }
     }
+    // console.log(dom.select2( DF_OPTION ).data('select2').$dropdown.addClass('my-container'))
     return dom.select2( DF_OPTION )
 }
 function runSelect2Multi(dom){

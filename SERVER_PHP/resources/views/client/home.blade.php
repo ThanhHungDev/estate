@@ -35,12 +35,8 @@
     <script>
         @if($provinces)
         const PROVINCES = JSON.parse(`{!! $provinces !!}`);
-        @endif
-        @if($districts)
-        const DISTRICTS = JSON.parse(`{!! $districts !!}`);
-        @endif
-        @if($communes)
-        const COMMUNES = JSON.parse(`{!! $communes !!}`);
+        const DISTRICTS = [];
+        const COMMUNES  = [];
         @endif
     </script>
     <script src="{{ asset('js/library/select2.full.min.js' . Config::get('app.version')) }}"></script>
@@ -114,7 +110,7 @@
                         </div>
                         <div class="block__content__item">
                             <a href="{{ asset('/') }}" class="count__icon">
-                                <img  src="{{ asset('/images/home/chart-icon-color.png' . Config::get('app.version')) }}" alt="chart-icon-color số lượng bài đăng"/>
+                                <img  src="{{ asset('/images/home/bar-chart-icon.png' . Config::get('app.version')) }}" alt="chart-icon-color số lượng bài đăng"/>
                             </a>
                             <a href="{{ asset('/') }}" class="count__text">
                                 <h5 class="count">14,113 Tin</h5>
@@ -142,7 +138,7 @@
                         </div>
                         <div class="block__content__item">
                             <a href="{{ asset('/') }}" class="count__icon">
-                                <img  src="{{ asset('/images/home/chart-icon-color.png' . Config::get('app.version')) }}" alt="chart-icon-color số lượng bài đăng"/>
+                                <img  src="{{ asset('/images/home/bar-chart-icon.png' . Config::get('app.version')) }}" alt="chart-icon-color số lượng bài đăng"/>
                             </a>
                             <a href="{{ asset('/') }}" class="count__text">
                                 <h5 class="count">14,113 Tin</h5>
@@ -170,7 +166,7 @@
                         </div>
                         <div class="block__content__item">
                             <a href="{{ asset('/') }}" class="count__icon">
-                                <img  src="{{ asset('/images/home/chart-icon-color.png' . Config::get('app.version')) }}" alt="chart-icon-color số lượng bài đăng"/>
+                                <img  src="{{ asset('/images/home/bar-chart-icon.png' . Config::get('app.version')) }}" alt="chart-icon-color số lượng bài đăng"/>
                             </a>
                             <a href="{{ asset('/') }}" class="count__text">
                                 <h5 class="count">14,113 Tin</h5>

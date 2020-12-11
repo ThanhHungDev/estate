@@ -20,9 +20,13 @@ class CACHE_LOCATIONS
      */
     public function handle($request, Closure $next)
     {
-        $this->createCacheProvince($request);
-        $this->createCacheDistrict($request);
-        $this->createCacheCommune($request);
+        if( Config::get('app.isproduct') ){
+
+            $this->createCacheProvince($request);
+            $this->createCacheDistrict($request);
+            $this->createCacheCommune($request);
+        }
+        
 
         return $next($request);
     }

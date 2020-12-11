@@ -1,4 +1,5 @@
 // <div class="spinner"><div></div><div></div><div></div><div></div></div>
+// <b class="spinner"><i></i><i></i><i></i><i></i></b>
 
 
 .spinner {
@@ -8,7 +9,7 @@
   min-width: 20px;
   min-height: 20px;
 }
-.spinner div {
+.spinner div, .spinner i {
   box-sizing: border-box;
   display: block;
   position: absolute;

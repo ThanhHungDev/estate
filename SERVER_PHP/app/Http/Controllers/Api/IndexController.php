@@ -15,7 +15,7 @@ class IndexController extends Controller
         $slugs = [];
         
         $slugs['post'] = $this->model->createPostModel()->get(['slug'])->pluck('slug');
-        $slugs['topic'] = $this->model->createTopicModel()->get(['slug'])->pluck('slug');
+        $slugs['topic'] = $this->model->createCategoriesModel()->get(['slug'])->pluck('slug');
         $slugs['tag'] = $this->model->createTagModel()->get(['slug'])->pluck('slug');
 
         /// run sitemap 

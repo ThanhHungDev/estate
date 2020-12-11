@@ -56,19 +56,23 @@
             }
             &__content{
                 display: flex;
-                justify-content: center;
+                justify-content: space-around;
 
                 @include Responsive(LG){
 
-                    display: flex;
                     flex-direction: column;
-                    justify-content: center;
+                    justify-content: space-around;
                 }
                 @include Responsive(SM){
 
-                    display: flex;
                     flex-direction: row;
-                    justify-content: center;
+                    justify-content: space-around;
+                    align-items: center;
+                }
+                @include Responsive(XXS){
+
+                    flex-direction: column;
+                    justify-content: left;
                 }
 
 
