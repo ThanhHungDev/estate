@@ -20,6 +20,11 @@
 @endsection
 
 @section('preload')
+    <link rel="preload" as="image" href="{{ asset('/images/home/rent.png' . Config::get('app.version')) }}"/>
+    <link rel="preload" as="image" href="{{ asset('/images/home/hand.png' . Config::get('app.version')) }}"/>
+    <link rel="preload" as="image" href="{{ asset('/images/home/byer.png' . Config::get('app.version')) }}"/>
+
+    <link rel="preload" as="image" href="{{ asset('/images/home/chart-icon-color.png' . Config::get('app.version')) }}"/>
     <link rel="preload" as="image" href="{{  asset(Config::get('constant.BG_HOME_SEARCH') . Config::get('app.version')) }}">
     {{-- <link rel="preload" as="image" href="{{ asset('slick/ajax-loader.gif') }}"> --}}
     <link rel="preload" as="script" href="{{ asset('js/library/select2.full.min.js'. Config::get('app.version')) }}">
@@ -90,20 +95,86 @@
         <div class="intro">
             <div class="myservice">
                 <div class="block">
-                    <img src="{{ asset('/images/home/byer.png' . Config::get('app.version')) }}" alt="Mua bán nhà đất"/>
-                    <h3 class="title">Mua bán nhà đất</h3>
+                    <div class="block__head">
+                        <img src="{{ asset('/images/home/byer.png' . Config::get('app.version')) }}" alt="Mua bán nhà đất"/>
+                        <h3 class="title">Mua bán nhà đất</h3>
+                    </div>
+                    <div class="block__content">
+                        <div class="block__content__item">
+                            <a href="{{ asset('/') }}" class="count__icon">
+                                <img  src="{{ asset('/images/home/chart-icon-color.png' . Config::get('app.version')) }}" alt="chart-icon-color số lượng bài đăng"/>
+                            </a>
+                            <a href="{{ asset('/') }}" class="count__text">
+                                <h5 class="count">12.111.343</h5>
+                                <h5 class="texttype">bài đăng</h5>
+                            </a>
+                        </div>
+                        <div class="block__content__item">
+                            <a href="{{ asset('/') }}" class="count__icon">
+                                <img  src="{{ asset('/images/home/chart-icon-color.png' . Config::get('app.version')) }}" alt="chart-icon-color số lượng bài đăng"/>
+                            </a>
+                            <a href="{{ asset('/') }}" class="count__text">
+                                <h5 class="count">14,113 Tin</h5>
+                                <h5 class="texttype">Tin mới trong 24h</h5>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="myservice">
                 <div class="block">
-                    <img src="{{ asset('/images/home/rent.png' . Config::get('app.version')) }}" alt="Thuê, cho thuê nhà đất"/>
-                    <h3 class="title">Thuê, cho thuê nhà đất</h3>
+                    <div class="block__head">
+                        <img src="{{ asset('/images/home/rent.png' . Config::get('app.version')) }}" alt="Thuê, cho thuê nhà đất"/>
+                        <h3 class="title">Thuê, cho thuê nhà đất</h3>
+                    </div>
+                    <div class="block__content">
+                        <div class="block__content__item">
+                            <a href="{{ asset('/') }}" class="count__icon">
+                                <img  src="{{ asset('/images/home/chart-icon-color.png' . Config::get('app.version')) }}" alt="chart-icon-color số lượng bài đăng"/>
+                            </a>
+                            <a href="{{ asset('/') }}" class="count__text">
+                                <h5 class="count">12.111.343</h5>
+                                <h5 class="texttype">bài đăng</h5>
+                            </a>
+                        </div>
+                        <div class="block__content__item">
+                            <a href="{{ asset('/') }}" class="count__icon">
+                                <img  src="{{ asset('/images/home/chart-icon-color.png' . Config::get('app.version')) }}" alt="chart-icon-color số lượng bài đăng"/>
+                            </a>
+                            <a href="{{ asset('/') }}" class="count__text">
+                                <h5 class="count">14,113 Tin</h5>
+                                <h5 class="texttype">Tin mới trong 24h</h5>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="myservice">
                 <div class="block">
-                    <img src="{{ asset('/images/home/hand.png' . Config::get('app.version')) }}" alt="sang nhượng"/>
-                    <h3 class="title">Sang nhượng</h3>
+                    <div class="block__head">
+                        <img src="{{ asset('/images/home/hand.png' . Config::get('app.version')) }}" alt="sang nhượng"/>
+                        <h3 class="title">Sang nhượng</h3>
+                    </div>
+                    <div class="block__content">
+                        <div class="block__content__item">
+                            <a href="{{ asset('/') }}" class="count__icon">
+                                <img  src="{{ asset('/images/home/chart-icon-color.png' . Config::get('app.version')) }}" alt="chart-icon-color số lượng bài đăng"/>
+                            </a>
+                            <a href="{{ asset('/') }}" class="count__text">
+                                <h5 class="count">12.111.343</h5>
+                                <h5 class="texttype">bài đăng</h5>
+                            </a>
+                        </div>
+                        <div class="block__content__item">
+                            <a href="{{ asset('/') }}" class="count__icon">
+                                <img  src="{{ asset('/images/home/chart-icon-color.png' . Config::get('app.version')) }}" alt="chart-icon-color số lượng bài đăng"/>
+                            </a>
+                            <a href="{{ asset('/') }}" class="count__text">
+                                <h5 class="count">14,113 Tin</h5>
+                                <h5 class="texttype">Tin mới trong 24h</h5>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
