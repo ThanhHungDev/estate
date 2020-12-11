@@ -21,6 +21,11 @@
             width: 85%;
             margin: 0 auto;
         }
+        @include Responsive(XS){
+        
+            width: 100%;
+            margin: 0 auto;
+        }
 
         .block{
             padding: 18px 10px;

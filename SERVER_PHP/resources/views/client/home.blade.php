@@ -25,7 +25,7 @@
     <link rel="preload" as="image" href="{{ asset('/images/home/byer.png' . Config::get('app.version')) }}"/>
 
     <link rel="preload" as="image" href="{{ asset('/images/home/chart-icon-color.png' . Config::get('app.version')) }}"/>
-    <link rel="preload" as="image" href="{{  asset(Config::get('constant.BG_HOME_SEARCH') . Config::get('app.version')) }}">
+    {{-- <link rel="preload" as="image" href="{{  asset(Config::get('constant.BG_HOME_SEARCH') . Config::get('app.version')) }}"> --}}
     {{-- <link rel="preload" as="image" href="{{ asset('slick/ajax-loader.gif') }}"> --}}
     <link rel="preload" as="script" href="{{ asset('js/library/select2.full.min.js'. Config::get('app.version')) }}">
 @endsection
@@ -47,7 +47,10 @@
 @endsection
 @section('content')
     <div class="content">
-        <div class="homepage__search"  style="background: rgba(0, 0, 0, 0) url({{ asset(Config::get('constant.BG_HOME_SEARCH') . Config::get('app.version')) }}) no-repeat fixed center center / cover;">
+        <div class="homepage__search" 
+         style="background: rgba(0, 0, 0, 0) "
+         {{-- url({{ asset(Config::get('constant.BG_HOME_SEARCH') . Config::get('app.version')) }}) no-repeat fixed center center / cover; --}}
+         >
             <div class="homesearch">
                 <h4 class="homesearch__title">Cách tốt nhất để</h4>
                 <h1 class="homesearch__main-title">Tìm Kiếm Bất Động Sản Hoàn Hảo</h1>
