@@ -14,9 +14,13 @@ use Jenssegers\Agent\Agent;
 |
 */
 
+Route::group([ 'middleware' => [ 'CACHE_STATIC_REFRESH']], function () {
 
-include_once("routing/admin.php");
-include_once("routing/client.php");
+    include_once("routing/admin.php");
+    include_once("routing/client.php");
+});
+
+
 
 // $agent = new Agent();
 // if($agent->isPhone()){

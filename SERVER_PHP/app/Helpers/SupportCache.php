@@ -5,20 +5,24 @@ use Illuminate\Support\Facades\Cache;
 
 class SupportCache{
 
+    public static $ROUTE_NAME = null;
+    public static $PARAMETERS = null;
+
     public static function createCacheKeyByRequest($request) {
 
-        $parameters = $request->route()->parameters();
-        $routeName  = $request->route()->getName();
+        if( !self::$PARAMETERS ){
 
-        $slug = $parameters['slug'] ?? null;
-        //key for caching/retrieving the response value
-        if($routeName != 'POST_VIEW' && $routeName != 'TOPIC_VIEW' && $routeName != 'TAG_VIEW'){
-            return null;
+            self::$PARAMETERS = $request->route()->parameters();
         }
-        if(!$slug ){
-            return null;
+        if( !self::$ROUTE_NAME ){
+
+            self::$ROUTE_NAME = $request->route()->getName();
         }
-        return $routeName . $slug;
+        
+        $slug = self::$PARAMETERS['slug'] ?? null;
+        
+        
+        return self::$ROUTE_NAME . $slug;
     }
 
     public static function saveCacheByRequest($request, $value) {
