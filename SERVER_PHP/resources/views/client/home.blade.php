@@ -43,7 +43,13 @@
 @section('content')
     <div class="content">
         <div class="homepage__search" 
-        style="background-color: #b7b7b7; background: url({{ asset(Config::get('constant.BG_HOME_SEARCH') . Config::get('app.version')) }}) no-repeat fixed center center / cover;"
+        style="background-color: #b7b7b7; 
+        background-image: url('{{ asset(Config::get('constant.BG_HOME_SEARCH').Config::get('app.version')) }}');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        background-size: cover;
+        "
         >
             <div class="homesearch">
                 <h4 class="homesearch__title">Cách tốt nhất để</h4>

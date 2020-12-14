@@ -20,6 +20,15 @@
     
             color: aliceblue;
         }
+
+        @include Responsive(XS){
+
+            display: none;
+        }
+        @include Responsive(XXS){
+
+            display: block;
+        }
     }
 }
 
