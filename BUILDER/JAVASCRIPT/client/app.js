@@ -18,20 +18,11 @@ function loadJS(src, cb){
 
 $(document).ready(function () {
 
-    // /// slider 
-    // $('.slider>div.d-none').removeClass('d-none')
-    // $('.slider').slick({
-    //     infinite: true,
-    //     slidesToShow: 1,
-    //     slidesToScroll: 1,
-    //     dots: true,
-    // });
-
     /// create tooltip 
     Tipped.create('.simple-tooltip', {skin: 'light', size: 'large' });
     
 
-    drawGoogleMapLazyload();
+    // drawGoogleMapLazyload();
     // drawMapContact();
 
     jQuery(window).on("resize", function (e) {
@@ -89,11 +80,9 @@ $(document).ready(function () {
     });
 
 
-    //// load select 2 
-    var singleSelect = $('.js__single-select'),
-        multiSelect  = $(".js__multi-select")
-
+    //// load select 2 - location
     var select2Commune = $('#js__select-commune')
+    var COMMUNES = []
     if( select2Commune ){
         
         if(typeof COMMUNES != 'undefined'){
@@ -102,6 +91,7 @@ $(document).ready(function () {
     }
 
     var select2District = $('#js__select-district')
+    var DISTRICTS = []
     if( select2District ){
         
         if(typeof DISTRICTS != 'undefined'){
@@ -111,29 +101,48 @@ $(document).ready(function () {
                 
                 var districtValue  = this.value
                 var select2Commune = $('#js__select-commune')
+                /// add loadding
+                var optionFirstCommune     = select2Commune.find('option:first')
+                var optionFirstCommuneText = optionFirstCommune.text()
                 
                 if( districtValue == 0 ){
-                    
-                    /// không chọn gì hết ta cần reset xã
-                    select2Commune.find('option:not(:first)').remove()
-                    select2Commune.select2("destroy")
-                    runSelect2Single(select2Commune, { data : [] })
-                    select2Commune.trigger('change')
-                }else if( typeof COMMUNES != 'undefined' ){
+                    var dataCommunesNull = [{ id: 0, text: optionFirstCommuneText }]
+                    /// reset select 2 Commune to none loading 
+                    resetSelect2Location(select2Commune, dataCommunesNull)
+                }else {
 
-                    var cloneCommune   = []
-                    for( var iCom = 0; iCom < COMMUNES.length; iCom ++ ){
+                    var dataCommunes = [{
+                        id: 0,
+                        text: optionFirstCommuneText + '<b class="spinner"><i></i><i></i><i></i><i></i></b>'
+                    }]
+                    /// reset select 2 district to none loading 
+                    resetSelect2Location(select2Commune, dataCommunes)
 
-                        if( COMMUNES[iCom].district == districtValue){
+                    /// fetch ajax DISTRICT
+                    if( typeof ROUTE_COMMUNES == 'undefined'){
 
-                            var obj = { id: COMMUNES[iCom].id, text: COMMUNES[iCom].text }
-                            cloneCommune.push(obj)
-                        }
+                        var ROUTE_COMMUNES = "/api/v1/communes"
                     }
-                    select2Commune.find('option:not(:first)').remove()
-                    select2Commune.select2("destroy")
-                    runSelect2Single(select2Commune, { data : cloneCommune })
-                    select2Commune.trigger('change')
+                    if( !COMMUNES.length  ){
+
+                        fetch(ROUTE_COMMUNES)
+                        .then((resp) => resp.json())
+                        .then(function(res) {
+
+                            COMMUNES = res.data
+                            var communesInDistrict = [{ id: 0, text: optionFirstCommuneText }]
+                            .concat(filterLocation(COMMUNES, 'district', districtValue ))
+                            resetSelect2Location(select2Commune, communesInDistrict )
+                            return true
+                        })
+                        .catch(function(error) {
+                            console.log(error)
+                        })
+                    }else{
+                        var communesInDistrict = [{ id: 0, text: optionFirstCommuneText }]
+                            .concat(filterLocation(COMMUNES, 'district', districtValue ))
+                            resetSelect2Location(select2Commune, communesInDistrict )
+                    }
                 }
             })
         }
@@ -148,49 +157,84 @@ $(document).ready(function () {
                 var provinceValue   = this.value
                 var select2District = $('#js__select-district')
                 /// add loadding
-                var optionFirst = select2District.find('option:first')
-                var dataDistricts = [{
-                    id: 0,
-                    text: optionFirst.text() + '<b class="spinner"><i></i><i></i><i></i><i></i></b>'
-                }]
-                /// reset select 2 district to none loading 
-                select2District.find('option').remove()
-
-                select2District.select2("destroy")
-                runSelect2Single(select2District, { data : dataDistricts })
-                // select2District.trigger('change')
+                var optionFirst     = select2District.find('option:first')
+                var optionFirstText = optionFirst.text()
                 
-                // if( provinceValue == 0 ){
-                    
-                    
-                // }else if( typeof DISTRICTS != 'undefined' ){
+                if( provinceValue == 0 ){
+                    var dataDistrictsNull = [{ id: 0, text: optionFirstText }]
+                    /// reset select 2 district to none loading 
+                    resetSelect2Location(select2District, dataDistrictsNull)
+                }else {
 
-                    
-                //     var cloneDistrict   = []
+                    var dataDistricts = [{
+                        id: 0,
+                        text: optionFirstText + '<b class="spinner"><i></i><i></i><i></i><i></i></b>'
+                    }]
+                    /// reset select 2 district to none loading 
+                    resetSelect2Location(select2District, dataDistricts)
 
-                //     for( var iDis = 0; iDis < DISTRICTS.length; iDis ++ ){
+                    /// fetch ajax DISTRICT
+                    if( typeof ROUTE_DISTRICTS == 'undefined'){
 
-                //         if( DISTRICTS[iDis].province == provinceValue){
+                        var ROUTE_DISTRICTS = "/api/v1/districts"
+                    }
+                    if( !DISTRICTS.length  ){
 
-                //             var obj = { id: DISTRICTS[iDis].id, text: DISTRICTS[iDis].text }
-                //             cloneDistrict.push(obj)
-                //         }
-                //     }
-                //     select2District.find('option:not(:first)').remove()
-                //     select2District.select2("destroy")
-                //     runSelect2Single(select2District, { data : cloneDistrict })
-                //     select2District.trigger('change')
-                // }
+                        fetch(ROUTE_DISTRICTS)
+                        .then((resp) => resp.json())
+                        .then(function(res) {
+
+                            DISTRICTS = res.data
+                            var districtsInProvince = [{ id: 0, text: optionFirstText }]
+                            .concat(filterLocation(DISTRICTS, 'province', provinceValue ))
+                            resetSelect2Location(select2District, districtsInProvince )
+                            return true
+                        })
+                        .catch(function(error) {
+                            console.log(error)
+                        })
+                    }else{
+                        var districtsInProvince = [{ id: 0, text: optionFirstText }]
+                        .concat(filterLocation(DISTRICTS, 'province', provinceValue ))
+                        resetSelect2Location(select2District, districtsInProvince )
+                    }
+                }
             })
         }
     }
+    var singleSelect = $('.js__single-select'),
+        multiSelect  = $(".js__multi-select")
     if(singleSelect.length){
         runSelect2Single(singleSelect)
     }
     if(multiSelect.length){
         runSelect2Multi(multiSelect) 
     }
+    /// end select2 
 })
+
+function filterLocation( data, field, value ){
+
+    var cloneData   = []
+
+    for( var iData = 0; iData < data.length; iData ++ ){
+
+        if( data[iData][field] == value){
+
+            var obj = { id: data[iData].id, text: data[iData].text }
+            cloneData.push(obj)
+        }
+    }
+    return cloneData
+}
+
+function resetSelect2Location( dom, data ){
+
+    dom.find('option').remove()
+    dom.select2("destroy")
+    runSelect2Single(dom, { data : data })
+    dom.trigger('change')
+}
 
 function runSelect2Single(dom, options){
     var DF_OPTION = {

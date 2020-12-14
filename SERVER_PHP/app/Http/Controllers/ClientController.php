@@ -14,7 +14,7 @@ class ClientController extends Controller
     public function index( Request $request){
 
         $categories = $this->model->createCategoriesModel()->getAll();
-        $provinces = $request->get(Config::get('constant.CACHES.LOCATION.PROVINCE'));
+        $provinces  = $request->get(Config::get('constant.CACHES.LOCATION.PROVINCE'));
 
         return view('client.home', compact('categories', 'provinces'));
     }

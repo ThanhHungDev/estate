@@ -26,6 +26,12 @@ Route::group([ 'prefix'=>'/v1' ], function () {
 
     // Lấy danh sách districts
     Route::get('districts', 'Api\DistrictController@districts')
+    ->name('DISTRICTS')
+    ->middleware([ 'CACHE_LOCATIONS']);
+
+    // Lấy danh sách districts
+    Route::get('communes', 'Api\CommuneController@communes')
+    ->name('COMMUNES')
     ->middleware([ 'CACHE_LOCATIONS']);
 
 });

@@ -33,20 +33,18 @@
 
 @section('javascripts')
     <script>
-        @if($provinces)
         const PROVINCES = JSON.parse(`{!! $provinces !!}`);
-        const DISTRICTS = [];
-        const COMMUNES  = [];
-        @endif
+        
+        const ROUTE_DISTRICTS = "{{ Route('DISTRICTS') }}";
+        const ROUTE_COMMUNES  = "{{ Route('COMMUNES') }}";
     </script>
     <script src="{{ asset('js/library/select2.full.min.js' . Config::get('app.version')) }}"></script>
 @endsection
 @section('content')
     <div class="content">
         <div class="homepage__search" 
-         style="background: rgba(0, 0, 0, 0) "
-         {{-- url({{ asset(Config::get('constant.BG_HOME_SEARCH') . Config::get('app.version')) }}) no-repeat fixed center center / cover; --}}
-         >
+        style="background-color: #b7b7b7; background: url({{ asset(Config::get('constant.BG_HOME_SEARCH') . Config::get('app.version')) }}) no-repeat fixed center center / cover;"
+        >
             <div class="homesearch">
                 <h4 class="homesearch__title">Cách tốt nhất để</h4>
                 <h1 class="homesearch__main-title">Tìm Kiếm Bất Động Sản Hoàn Hảo</h1>

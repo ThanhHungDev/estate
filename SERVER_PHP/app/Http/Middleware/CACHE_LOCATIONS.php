@@ -20,13 +20,10 @@ class CACHE_LOCATIONS
      */
     public function handle($request, Closure $next)
     {
-        if( Config::get('app.isproduct') ){
-
-            $this->createCacheProvince($request);
-            $this->createCacheDistrict($request);
-            $this->createCacheCommune($request);
-        }
         
+        $this->createCacheProvince($request);
+        $this->createCacheDistrict($request);
+        $this->createCacheCommune($request);
 
         return $next($request);
     }
@@ -40,7 +37,7 @@ class CACHE_LOCATIONS
             $provinces  = json_encode([]);
         }else 
         //If it's cached...
-        if (!Cache::has($provinceKey)){
+        if (!Cache::has($provinceKey) || !Config::get('app.isproduct')){
 
             /// get model province
             $provinceModel = new ProvinceEloquentRepository();
@@ -63,7 +60,7 @@ class CACHE_LOCATIONS
             $districts  = json_encode([]);
         }else 
         //If it's cached...
-        if (!Cache::has($districtKey)){
+        if (!Cache::has($districtKey) || !Config::get('app.isproduct')){
 
             /// get model distinct
             $districtModel = new DistrictEloquentRepository();
@@ -86,7 +83,7 @@ class CACHE_LOCATIONS
             $communes  = json_encode([]);
         }else 
         //If it's cached...
-        if (!Cache::has($communeKey)){
+        if (!Cache::has($communeKey) || !Config::get('app.isproduct')){
 
             /// get model commune
             $communeModel = new CommuneEloquentRepository();
