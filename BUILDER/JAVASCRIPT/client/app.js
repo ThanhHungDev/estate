@@ -83,7 +83,7 @@ $(document).ready(function () {
     //// load select 2 - location
     var select2Commune = $('#js__select-commune')
     var COMMUNES = []
-    if( select2Commune ){
+    if( select2Commune.length ){
         
         if(typeof COMMUNES != 'undefined'){
             runSelect2Single(select2Commune, { data : [] } )
@@ -92,7 +92,7 @@ $(document).ready(function () {
 
     var select2District = $('#js__select-district')
     var DISTRICTS = []
-    if( select2District ){
+    if( select2District.length ){
         
         if(typeof DISTRICTS != 'undefined'){
             runSelect2Single(select2District, { data : [] } )
@@ -148,7 +148,7 @@ $(document).ready(function () {
         }
     }
     var select2province = $('#js__select-province')
-    if( select2province ){
+    if( select2province.length ){
         
         if(typeof PROVINCES != 'undefined'){
             runSelect2Single(select2province, { data : PROVINCES } )
@@ -205,25 +205,25 @@ $(document).ready(function () {
 
     
     var select2Price = $('#js__select-price')
-    if( select2Price ){
+    if( select2Price.length ){
         
         runSelect2Single(select2Price, { minimumResultsForSearch: -1 } )
     }
 
     var select2Price = $('#js__select-area')
-    if( select2Price ){
+    if( select2Price.length ){
         
         runSelect2Single(select2Price, { minimumResultsForSearch: -1 } )
     }
 
     var select2Price = $('#js__select-direction')
-    if( select2Price ){
+    if( select2Price.length ){
         
         runSelect2Single(select2Price, { minimumResultsForSearch: -1 } )
     }
 
     var select2Price = $('#js__select-facade')
-    if( select2Price ){
+    if( select2Price.length ){
         
         runSelect2Single(select2Price, { minimumResultsForSearch: -1 } )
     }

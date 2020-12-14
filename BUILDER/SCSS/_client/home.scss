@@ -54,6 +54,7 @@
 
         .search__locations{
             display: flex;
+            align-items: center;
         }
         .wrapper-bottom-form{
             padding: 10px 20px 10px;
@@ -163,7 +164,8 @@
             color: $white;
             outline: 0;
             padding: 0;
-            line-height: 10px;
+            line-height: 18px;
+            display: inline-block;
         }
         
     }
