@@ -207,7 +207,31 @@ $(document).ready(function () {
     var select2Price = $('#js__select-price')
     if( select2Price.length ){
         
-        runSelect2Single(select2Price, { minimumResultsForSearch: -1 } )
+        runSelect2Single(select2Price, { minimumResultsForSearch: -1, data: [
+            { id: 1, text: '<div id="slider"></div>disabled option', disabled: true },
+            { id: 1, text: 'hi' }
+        ]} )
+        
+
+        setTimeout(function(){
+            var slider = document.getElementById('slider')
+            console.log(slider, " slider ui ")
+            if(slider){
+                noUiSlider.create(slider, {
+                    start: [1, 100],
+                    connect: [ false, true, false ],
+                    range: {
+                        'min': [1],
+                        'max': [100]
+                    }
+                })
+                slider.noUiSlider.on('update', function (values) {
+                    console.log(values.join('tỷ - ') + 'tỷ')
+                })
+            }
+            
+        }, 30000)
+        
     }
 
     var select2Price = $('#js__select-area')

@@ -32,6 +32,7 @@
 
 
 @section('javascripts')
+    <script src="{{ asset('/js/library/nouislider.min.js' . Config::get('app.version')) }}"></script>
     <script>
         const PROVINCES = JSON.parse(`{!! $provinces !!}`);
         
@@ -125,6 +126,9 @@
                     </div>
                 </form>
             </div>
+        </div>
+        <div class="test-range" style="background-color: beige">hung
+            
         </div>
         <div class="intro">
             <div class="myservice">
