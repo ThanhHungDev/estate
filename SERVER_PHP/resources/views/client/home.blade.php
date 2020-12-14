@@ -43,12 +43,14 @@
 @section('content')
     <div class="content">
         <div class="homepage__search" 
-        style="background-color: #b7b7b7; 
-        background-image: url('{{ asset(Config::get('constant.BG_HOME_SEARCH').Config::get('app.version')) }}');
+        style="
+        background: url('{{ asset(Config::get('constant.BG_HOME_SEARCH').Config::get('app.version')) }}');
+        background-position: center;
         background-repeat: no-repeat;
         background-attachment: fixed;
-        background-position: center;
-        background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
         "
         >
             <div class="homesearch">
