@@ -44,23 +44,39 @@
     .form{
         position: relative;
         z-index: 2;
+        padding: 10px 0;
 
         .wrapper-head-form{
-            padding: 20px 20px 10px;
+            padding: 10px 20px 10px;
             display: flex;
             flex-direction: row;
         }
 
+        .search__locations{
+            display: flex;
+        }
         .wrapper-bottom-form{
-            padding: 10px 20px 20px;
+            padding: 10px 20px 10px;
             display: flex;
             flex-direction: row;
             z-index: 2;
+            width: 70%;
+            width: calc(100% - 150px);
+
+            &.advanced-search{
+                width: 100%;
+            }
+        }
+        .wrapper__more{
+            width: 30%;
+            max-width: 100px;
+            padding: 5px 15px 5px;
+            text-align: center;
         }
 
         &:before{
             background-color: $green_dark;
-            opacity: 0.6;
+            opacity: 0.85;
             content: "";
             position: absolute;
             top: 0;
@@ -118,8 +134,8 @@
                 min-width: auto;
                 box-shadow: none;
                 text-decoration: none;
-                background-color: $green_dark;
-                color: $white;
+                background-color: #d4ffe3;
+                color: $green_dark;
                 text-transform: uppercase;
                 outline: 0;
                 padding: 14px 30px;
@@ -128,10 +144,26 @@
                 font-weight: 600;
                 font-size: 13px;
                 outline: none;
-                border: 1px solid $green_light;
+                border: 1px solid $green_dark;
                 margin: 0;
+                box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
                 @extend .btn;
+
+                &:hover{
+                    box-shadow: 0 10px 20px 0 rgba(255, 255, 255, 0.3), 0 6px 20px 0 rgba(255, 255, 255, 0.3);
+                }
             }
+        }
+        .btn__search-more{
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            text-align: center;
+            box-shadow: none;
+            color: $white;
+            outline: 0;
+            padding: 0;
+            line-height: 10px;
         }
         
     }
@@ -154,9 +186,21 @@
                 flex-direction: column;
             }
 
-            .wrapper-bottom-form{
-
+            .search__locations{
                 flex-direction: column;
+            }
+
+            .wrapper-bottom-form{
+                padding: 0 20px 0;
+                flex-direction: column;
+                width: 100%;
+            }
+            .wrapper__more{
+                width: 100%;
+                max-width: unset;
+                display: block;
+                padding: 0 30px 10px;
+                text-align: right;
             }
             
 

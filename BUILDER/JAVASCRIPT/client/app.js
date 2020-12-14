@@ -202,16 +202,63 @@ $(document).ready(function () {
             })
         }
     }
-    var singleSelect = $('.js__single-select'),
-        multiSelect  = $(".js__multi-select")
+
+    
+    var select2Price = $('#js__select-price')
+    if( select2Price ){
+        
+        runSelect2Single(select2Price, { minimumResultsForSearch: -1 } )
+    }
+
+    var select2Price = $('#js__select-area')
+    if( select2Price ){
+        
+        runSelect2Single(select2Price, { minimumResultsForSearch: -1 } )
+    }
+
+    var select2Price = $('#js__select-direction')
+    if( select2Price ){
+        
+        runSelect2Single(select2Price, { minimumResultsForSearch: -1 } )
+    }
+
+    var select2Price = $('#js__select-facade')
+    if( select2Price ){
+        
+        runSelect2Single(select2Price, { minimumResultsForSearch: -1 } )
+    }
+
+    var singleSelect = $('.js__single-select')
     if(singleSelect.length){
+
         runSelect2Single(singleSelect)
     }
+
+    var multiSelect  = $(".js__multi-select")
     if(multiSelect.length){
+
         runSelect2Multi(multiSelect) 
     }
     /// end select2 
 })
+
+function toggleAdvancedSearch(){
+
+    var btnAdvancedSearch = document.getElementById("js__toggle-advanced-search")
+    var domAdvancedSearch = document.getElementById("js__advanced-search")
+
+    var classChevronRight = 'fa-chevron-double-right',
+        classChevronDown  = 'fa-chevron-double-down',
+        classIcon = 'icon'
+    var chervons = btnAdvancedSearch.getElementsByClassName(classIcon)
+    if(chervons.length){
+
+        chervons[0].classList.toggle(classChevronRight)
+        chervons[0].classList.toggle(classChevronDown)
+    }
+
+    domAdvancedSearch.classList.toggle('d-none')
+}
 
 function filterLocation( data, field, value ){
 

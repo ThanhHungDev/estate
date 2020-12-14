@@ -77,20 +77,49 @@
                             <button class="btn__search">Tìm Kiếm</button>
                         </div>
                     </div>
-                    <div class="wrapper-bottom-form">
+                    <div class="search__locations">
+                        <div class="wrapper-bottom-form">
+                            <div class="wrapper-select select2__home-bottom">
+                                <select name="" id="js__select-province" class="form__select-category">
+                                    <option value="0">chọn tỉnh</option>
+                                </select>
+                            </div>
+                            <div class="wrapper-select select2__home-bottom">
+                                <select name="" id="js__select-district"  class="form__select-category">
+                                    <option value="0">chọn huyện</option>
+                                </select>
+                            </div>
+                            <div class="wrapper-select select2__home-bottom">
+                                <select name="" id="js__select-commune" class="form__select-category">
+                                    <option value="0">chọn xã</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="wrapper__more">
+                            <a id="js__toggle-advanced-search" onclick="toggleAdvancedSearch()" href="javascript:void(0)" class="btn__search-more"> 
+                                Công cụ khác &nbsp; <i class="icon fad fa-chevron-double-right"></i> 
+                            </a>
+                        </div>
+                    </div>
+                    <div id="js__advanced-search" class="wrapper-bottom-form advanced-search d-none">
                         <div class="wrapper-select select2__home-bottom">
-                            <select name="" id="js__select-province" class="form__select-category">
-                                <option value="0">chọn tỉnh</option>
+                            <select name="" id="js__select-price" class="form__select-category">
+                                <option value="0">chọn giá</option>
                             </select>
                         </div>
                         <div class="wrapper-select select2__home-bottom">
-                            <select name="" id="js__select-district"  class="form__select-category">
-                                <option value="0">chọn huyện</option>
+                            <select name="" id="js__select-area" class="form__select-category">
+                                <option value="0">chọn diện tích</option>
                             </select>
                         </div>
                         <div class="wrapper-select select2__home-bottom">
-                            <select name="" id="js__select-commune" class="form__select-category">
-                                <option value="0">chọn xã</option>
+                            <select name="" id="js__select-direction" class="form__select-category">
+                                <option value="0">chọn hướng</option>
+                            </select>
+                        </div>
+                        <div class="wrapper-select select2__home-bottom">
+                            <select name="" id="js__select-facade" class="form__select-category">
+                                <option value="0">diện tích mặt tiền</option>
                             </select>
                         </div>
                     </div>
