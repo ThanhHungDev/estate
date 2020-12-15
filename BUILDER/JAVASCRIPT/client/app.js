@@ -232,13 +232,19 @@ $(document).ready(function () {
                             <div class="value-price" id="spice__value"></div>
                         </div>`
                     )
+
+                    var startsUiSlider = [0.1, 10]
+                    if($("#js__price-range-input").val()){
+                        startsUiSlider = $("#js__price-range-input").val().split('-')
+                    }
+
                     
                     var $slider__spice = $spiceRange.find('#slider__spice')
                     if(!initPriceRange && $slider__spice.length){
 
                         var dom__price = $slider__spice.get(0)
                         noUiSlider.create(dom__price, {
-                            start: [0.1, 10],
+                            start: startsUiSlider,
                             connect: [ false, true, false ],
                             step: 0.1,
                             range: {
@@ -277,9 +283,7 @@ $(document).ready(function () {
                     }
                     return $spiceRange
                 }
-                if( parseInt(state.id) != 1){
-                    $("#js__price-range-input").val("")
-                }
+                
                 return state.text
             }
         })
@@ -289,6 +293,8 @@ $(document).ready(function () {
             var valSelecting = parseInt(e.params.args.data.id)
             if(valSelecting == 1){
                 e.preventDefault()
+            }else{
+                $("#js__price-range-input").val("")
             }
 
             var $option_price_range = $select2Price.find('option[value='+valSelecting+']')
