@@ -311,3 +311,23 @@
   top: auto;
   right: 28px;
 }
+
+
+
+
+
+.select2-results {
+
+  .noUi-horizontal {
+    
+    height: 6px;
+  }
+  .noUi-horizontal .noUi-handle {
+    
+    height: 15px;
+  }
+  .noUi-handle:before,
+  .noUi-handle:after {
+    height: 6px;
+  }
+}

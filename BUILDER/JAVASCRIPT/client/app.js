@@ -203,65 +203,127 @@ $(document).ready(function () {
         }
     }
 
+
     
-    var select2Price = $('#js__select-price')
-    if( select2Price.length ){
-        
-        runSelect2Single(select2Price, { minimumResultsForSearch: -1, data: [
-            { id: 1, text: '<div id="slider"></div>disabled option', disabled: true },
-            { id: 1, text: 'hi' }
-        ]} )
-        
+    
 
-        setTimeout(function(){
-            var slider = document.getElementById('slider')
-            console.log(slider, " slider ui ")
-            if(slider){
-                noUiSlider.create(slider, {
-                    start: [1, 100],
-                    connect: [ false, true, false ],
-                    range: {
-                        'min': [1],
-                        'max': [100]
+    var initPriceRange = false
+    var $select2Price = $('#js__select-price')
+    function closeSelect2PriceRange(){
+        var $select2Price = $('#js__select-price')
+        if($select2Price.length){
+            $select2Price.select2("close")
+        }
+    }
+    if( $select2Price.length ){
+        
+        runSelect2Single($select2Price, { 
+            minimumResultsForSearch: -1,
+            theme: 'default js__class__select-price',
+            templateResult: function (state) {
+                if (!state.id) {
+                    return state.text
+                }
+                if( parseInt(state.id) == 1){
+                    $spiceRange = $(
+                        `<div class="wrapper-range-select2">
+                            <!-- <div class="text-click-me">bấm để chọn</div> -->
+                            <div id="slider__spice"></div>
+                            <div class="value-price" id="spice__value"></div>
+                        </div>`
+                    )
+                    
+                    var $slider__spice = $spiceRange.find('#slider__spice')
+                    if(!initPriceRange && $slider__spice.length){
+
+                        var dom__price = $slider__spice.get(0)
+                        noUiSlider.create(dom__price, {
+                            start: [0.1, 10],
+                            connect: [ false, true, false ],
+                            step: 0.1,
+                            range: {
+                                'min': [0.1],
+                                'max': [10]
+                            }
+                        })
+                        dom__price.noUiSlider.on('update', function (values) {
+
+                            $select2Price.find('option[value=1]').attr("price__range",'1')
+                            var $option_price_range = $select2Price.find('option[price__range=1]')
+                            
+                            var fromVal = parseInt(( values[0] * 10 )) / 10,
+                                toVal   = parseInt(( values[1] * 10 )) / 10
+                            if( fromVal < 1){
+                                fromVal = ( fromVal * 1000 ) + ' triệu -' 
+                            }else{
+                                fromVal = fromVal + ' tỷ -' 
+                            }
+                            if( toVal < 1){
+                                toVal = ( toVal * 1000 ) + ' triệu' 
+                            }else{
+                                toVal += ' tỷ'
+                            }
+                            
+                            var textPriceRange = fromVal + toVal,
+                                valPriceRange  = values.join('-')
+                            
+                            $("#spice__value").text(textPriceRange)
+                            $('.js__class__select-price').find(".select2-selection__rendered").text(textPriceRange)
+                            /// fix option select
+                            $option_price_range.text(textPriceRange).val(valPriceRange)
+                            
+                            $("#js__price-range-input").val(valPriceRange)
+                        })
                     }
-                })
-                slider.noUiSlider.on('update', function (values) {
-                    console.log(values.join('tỷ - ') + 'tỷ')
-                })
+                    return $spiceRange
+                }
+                if( parseInt(state.id) != 1){
+                    $("#js__price-range-input").val("")
+                }
+                return state.text
             }
+        })
+        $select2Price.on('select2:selecting', function (e) {
+            // Do something
             
-        }, 30000)
+            var valSelecting = parseInt(e.params.args.data.id)
+            if(valSelecting == 1){
+                e.preventDefault()
+            }
+
+            var $option_price_range = $select2Price.find('option[value='+valSelecting+']')
+            $('.js__class__select-price').find(".select2-selection__rendered").text($option_price_range.val())
+        })
+    }
+
+    var $select2Area = $('#js__select-area')
+    if( $select2Area.length ){
         
+        runSelect2Single($select2Area, { minimumResultsForSearch: -1 } )
     }
 
-    var select2Price = $('#js__select-area')
-    if( select2Price.length ){
+    var $select2Direction = $('#js__select-direction')
+    if( $select2Direction.length ){
         
-        runSelect2Single(select2Price, { minimumResultsForSearch: -1 } )
+        runSelect2Single($select2Direction, { minimumResultsForSearch: -1 } )
     }
 
-    var select2Price = $('#js__select-direction')
-    if( select2Price.length ){
+    var $select2Facade = $('#js__select-facade')
+    if( $select2Facade.length ){
         
-        runSelect2Single(select2Price, { minimumResultsForSearch: -1 } )
+        runSelect2Single($select2Facade, { minimumResultsForSearch: -1 } )
     }
 
-    var select2Price = $('#js__select-facade')
-    if( select2Price.length ){
-        
-        runSelect2Single(select2Price, { minimumResultsForSearch: -1 } )
+    var $singleSelect = $('.js__single-select')
+    if($singleSelect.length){
+
+        runSelect2Single($singleSelect)
     }
 
-    var singleSelect = $('.js__single-select')
-    if(singleSelect.length){
+    var $multiSelect  = $(".js__multi-select")
+    if($multiSelect.length){
 
-        runSelect2Single(singleSelect)
-    }
-
-    var multiSelect  = $(".js__multi-select")
-    if(multiSelect.length){
-
-        runSelect2Multi(multiSelect) 
+        runSelect2Multi($multiSelect) 
     }
     /// end select2 
 })
@@ -317,6 +379,12 @@ function runSelect2Single(dom, options){
         },
         escapeMarkup: function(markup) {
             return markup;
+        },
+        templateSelection: function(state) {
+            return state.text
+        },
+        templateResult: function (state) {
+            return state.text
         }
     }
 
