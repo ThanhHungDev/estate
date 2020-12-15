@@ -305,7 +305,7 @@ $(document).ready(function () {
     var $select2Area = $('#js__select-area')
     if( $select2Area.length ){
         
-        runSelect2Single($select2Area, { minimumResultsForSearch: -1 } )
+        runSelect2Multi($select2Area, { minimumResultsForSearch: -1 } )
     }
 
     var $select2Direction = $('#js__select-direction')
@@ -408,13 +408,20 @@ function runSelect2Single(dom, options){
 function runSelect2Multi(dom){
     dom.select2(
         { 
+            width: '100%',
             language: {
                 noResults: function(){
                     return "không có kết quả trùng khớp";
                 }
             },
         }
-    );
+    )
+    dom.on("select2:selecting", function(e) { 
+
+        var currselspan = dom.next().find('.select2-selection--multiple').first()
+        $(currselspan).scrollTop($(currselspan).prop('scrollHeight'))
+        $(".select2-selection--multiple input").focus()
+    });
 }
 
 function copyClipboard(copyText) {

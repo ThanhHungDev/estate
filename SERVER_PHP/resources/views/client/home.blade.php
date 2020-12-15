@@ -102,23 +102,29 @@
                             </a>
                         </div>
                     </div>
-                    @php
-                    $RANGES_PRICE = Config::get('constant.RANGE-PRICE');
-                    @endphp
                     <div id="js__advanced-search" class="wrapper-bottom-form advanced-search d-none">
                         <div class="wrapper-select select2__home-bottom">
+                            @php
+                            $RANGES_PRICE = Config::get('constant.RANGE-PRICE');
+                            @endphp
                             <select name="" id="js__select-price" class="form__select-category">
                                 <option value="0">chọn giá</option>
                                 <option value="1">chọn khoảng</option>
                                 @foreach ($RANGES_PRICE as $key => $range)
-                                <option value="{{ $key }}">{{ $range }}</option>
+                                <option value="{{ $key }}">{{ $range['text'] }}</option>
                                 @endforeach
                             </select>
                             <input type="hidden" id="js__price-range-input">
                         </div>
                         <div class="wrapper-select select2__home-bottom">
-                            <select name="" id="js__select-area" class="form__select-category">
-                                <option value="0">chọn diện tích</option>
+                            @php
+                            $RANGE_AREA = Config::get('constant.RANGE-AREA');
+                            @endphp
+                            <select name="" id="js__select-area" class="form__select-category" multiple="multiple">
+                                
+                                @foreach ($RANGE_AREA as $key => $range)
+                                <option value="{{ $key }}">{{ $range['text'] }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="wrapper-select select2__home-bottom">
