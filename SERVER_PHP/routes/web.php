@@ -17,6 +17,7 @@ use Jenssegers\Agent\Agent;
 Route::group([ 'middleware' => [ 'CACHE_STATIC_REFRESH']], function () {
 
     include_once("routing/admin.php");
+    include_once("routing/amp.php");
     include_once("routing/client.php");
 });
 

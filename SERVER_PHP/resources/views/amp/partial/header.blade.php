@@ -10,3 +10,4 @@
     </div>
     
 </div>
+@include('client.partial.modal-login')
