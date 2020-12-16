@@ -56,14 +56,14 @@
         >
             <div class="homesearch">
                 <h4 class="homesearch__title">Cách tốt nhất để</h4>
-                <h1 class="homesearch__main-title">Tìm Kiếm Bất Động Sản Hoàn Hảo</h1>
+                <h1 class="homesearch__main-title">Tìm Kiếm Bất Động Sản Phù Hợp</h1>
             </div>
             <div class="search__form">
                 <form action="" class="form">
                     <div class="wrapper-head-form">
                         <div class="wrapper-select">
                             <select name="" class="form__select-category js__single-select">
-                                <option value="">chọn loại hình</option>
+                                <option value="0">chọn loại hình</option>
                                 @if(!$categories->isEmpty())
                                 @foreach ($categories as $category)
                                 <option value="{{ $category->slug }}">{{ $category->title }}</option>
@@ -109,7 +109,6 @@
                             @endphp
                             <select name="" id="js__select-price" class="form__select-category">
                                 <option value="0">chọn giá</option>
-                                <option value="1">chọn khoảng</option>
                                 @foreach ($RANGES_PRICE as $key => $range)
                                 <option value="{{ $key }}">{{ $range['text'] }}</option>
                                 @endforeach
@@ -120,7 +119,7 @@
                             @php
                             $RANGE_AREA = Config::get('constant.RANGE-AREA');
                             @endphp
-                            <select name="" id="js__select-area" class="form__select-category" multiple="multiple">
+                            <select name="" id="js__select-area" class="form__select-category" >
                                 
                                 @foreach ($RANGE_AREA as $key => $range)
                                 <option value="{{ $key }}">{{ $range['text'] }}</option>
@@ -128,21 +127,28 @@
                             </select>
                         </div>
                         <div class="wrapper-select select2__home-bottom">
+                            @php
+                            $DIRECTION = Config::get('constant.DIRECTION');
+                            @endphp
                             <select name="" id="js__select-direction" class="form__select-category">
-                                <option value="0">chọn hướng</option>
+                                @foreach ($DIRECTION as $key => $direction)
+                                <option value="{{ $key }}">{{ $direction }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="wrapper-select select2__home-bottom">
+                            @php
+                            $FACADE = Config::get('constant.FACADE');
+                            @endphp
                             <select name="" id="js__select-facade" class="form__select-category">
-                                <option value="0">diện tích mặt tiền</option>
+                                @foreach ($FACADE as $key => $facade)
+                                <option value="{{ $key }}">{{ $facade }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
                 </form>
             </div>
-        </div>
-        <div class="test-range" style="background-color: beige">hung
-            
         </div>
         <div class="intro">
             <div class="myservice">

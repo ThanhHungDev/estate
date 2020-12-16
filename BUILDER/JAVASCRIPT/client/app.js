@@ -208,13 +208,7 @@ $(document).ready(function () {
     
 
     var initPriceRange = false
-    var $select2Price = $('#js__select-price')
-    function closeSelect2PriceRange(){
-        var $select2Price = $('#js__select-price')
-        if($select2Price.length){
-            $select2Price.select2("close")
-        }
-    }
+    var $select2Price  = $('#js__select-price')
     if( $select2Price.length ){
         
         runSelect2Single($select2Price, { 
@@ -305,7 +299,7 @@ $(document).ready(function () {
     var $select2Area = $('#js__select-area')
     if( $select2Area.length ){
         
-        runSelect2Multi($select2Area, { minimumResultsForSearch: -1 } )
+        runSelect2Single($select2Area, { minimumResultsForSearch: -1 } ) 
     }
 
     var $select2Direction = $('#js__select-direction')

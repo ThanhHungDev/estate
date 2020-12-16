@@ -55,6 +55,7 @@ Route::group(['prefix' => 'admin'], function () {
 
         ///run sitemap
         Route::get('/sitemap','Api\IndexController@index')->name('ADMIN_GET_SITEMAP');
+        Route::get('/render-sitemap','Api\IndexController@save')->name('ADMIN_STORE_SITEMAP');
     });
 });
 
