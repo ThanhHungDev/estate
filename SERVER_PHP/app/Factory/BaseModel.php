@@ -7,9 +7,11 @@ use App\Repositories\Category\CategoryEloquentRepository;
 use App\Repositories\Commune\CommuneEloquentRepository;
 use App\Repositories\DB\DBEloquentRepository;
 use App\Repositories\District\DistrictEloquentRepository;
+use App\Repositories\Gallery\GalleryEloquentRepository;
 use App\Repositories\Option\OptionEloquentRepository;
 use App\Repositories\Permission\PermissionEloquentRepository;
 use App\Repositories\PermissionRole\PermissionRoleEloquentRepository;
+use App\Repositories\Picture\PictureEloquentRepository;
 use App\Repositories\Post\PostEloquentRepository;
 use App\Repositories\PostTagActive\PostTagActiveEloquentRepository;
 use App\Repositories\Province\ProvinceEloquentRepository;
@@ -35,6 +37,8 @@ class BaseModel implements FactoryModelInterface{
     public static $ProvinceModel;
     public static $CommuneModel;
     public static $DistrictModel;
+    public static $GaleryModel;
+    public static $PictureModel;
 
 
 
@@ -87,6 +91,22 @@ class BaseModel implements FactoryModelInterface{
             self::$OptionModel = new OptionEloquentRepository();
         }
         return self::$OptionModel;
+    }
+
+    public function createPictureModel(){
+        
+        if(!self::$PictureModel){
+            self::$PictureModel = new PictureEloquentRepository();
+        }
+        return self::$PictureModel;
+    }
+
+    public function createGaleryModel(){
+        
+        if(!self::$GaleryModel){
+            self::$GaleryModel = new GalleryEloquentRepository();
+        }
+        return self::$GaleryModel;
     }
 
     public function createRoleModel(){

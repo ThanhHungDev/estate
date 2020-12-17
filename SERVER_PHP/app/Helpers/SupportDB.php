@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Config;
 class SupportDB{
 
     public static $OPTIONS = null;
+    public static $PICTURES = null;
 
     public static function getOption( $key ){
 
@@ -48,6 +49,37 @@ class SupportDB{
         }
         
         return $key;
+    }
+
+    public static function getPicture( $key ){
+
+        if( !static::$PICTURES ){
+
+            $baseModel    = new BaseModel();
+            $pictureModel = $baseModel->createPictureModel();
+            $pictures     = $pictureModel->getAll();
+            
+            static::$PICTURES = $pictures;
+        }
+
+        if( static::$PICTURES ){
+
+            $lengthPics = count(static::$PICTURES);
+
+            for ($index=0; $index < $lengthPics; $index++) { 
+
+                $DF_PICTURE_ROW = static::$PICTURES[$index];
+                if( 
+                    isset($DF_PICTURE_ROW['key']) && 
+                    $DF_PICTURE_ROW['key'] == SupportString::createSlug($key) 
+                    ){
+                        
+                    return $DF_PICTURE_ROW;
+                }
+            } 
+        }
+        
+        return null;
     }
 
     

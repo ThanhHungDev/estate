@@ -150,89 +150,15 @@
                 </form>
             </div>
         </div>
-        <div class="intro">
-            <div class="myservice">
-                <div class="block">
-                    <div class="block__head">
-                        <img src="{{ asset('/images/home/byer.png' . Config::get('app.version')) }}" alt="Mua bán nhà đất"/>
-                        <h3 class="title">Mua bán nhà đất</h3>
-                    </div>
-                    <div class="block__content">
-                        <div class="block__content__item">
-                            <a href="{{ asset('/') }}" class="count__icon">
-                                <img  src="{{ asset('/images/home/chart-icon-color.png' . Config::get('app.version')) }}" alt="chart-icon-color số lượng bài đăng"/>
-                            </a>
-                            <a href="{{ asset('/') }}" class="count__text">
-                                <h5 class="count">12.111.343</h5>
-                                <h5 class="texttype">bài đăng</h5>
-                            </a>
-                        </div>
-                        <div class="block__content__item">
-                            <a href="{{ asset('/') }}" class="count__icon">
-                                <img  src="{{ asset('/images/home/bar-chart-icon.png' . Config::get('app.version')) }}" alt="chart-icon-color số lượng bài đăng"/>
-                            </a>
-                            <a href="{{ asset('/') }}" class="count__text">
-                                <h5 class="count">14,113 Tin</h5>
-                                <h5 class="texttype">Tin mới trong 24h</h5>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="myservice">
-                <div class="block">
-                    <div class="block__head">
-                        <img src="{{ asset('/images/home/rent.png' . Config::get('app.version')) }}" alt="Thuê, cho thuê nhà đất"/>
-                        <h3 class="title">Thuê, cho thuê nhà đất</h3>
-                    </div>
-                    <div class="block__content">
-                        <div class="block__content__item">
-                            <a href="{{ asset('/') }}" class="count__icon">
-                                <img  src="{{ asset('/images/home/chart-icon-color.png' . Config::get('app.version')) }}" alt="chart-icon-color số lượng bài đăng"/>
-                            </a>
-                            <a href="{{ asset('/') }}" class="count__text">
-                                <h5 class="count">12.111.343</h5>
-                                <h5 class="texttype">bài đăng</h5>
-                            </a>
-                        </div>
-                        <div class="block__content__item">
-                            <a href="{{ asset('/') }}" class="count__icon">
-                                <img  src="{{ asset('/images/home/bar-chart-icon.png' . Config::get('app.version')) }}" alt="chart-icon-color số lượng bài đăng"/>
-                            </a>
-                            <a href="{{ asset('/') }}" class="count__text">
-                                <h5 class="count">14,113 Tin</h5>
-                                <h5 class="texttype">Tin mới trong 24h</h5>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="myservice">
-                <div class="block">
-                    <div class="block__head">
-                        <img src="{{ asset('/images/home/hand.png' . Config::get('app.version')) }}" alt="sang nhượng"/>
-                        <h3 class="title">Sang nhượng</h3>
-                    </div>
-                    <div class="block__content">
-                        <div class="block__content__item">
-                            <a href="{{ asset('/') }}" class="count__icon">
-                                <img  src="{{ asset('/images/home/chart-icon-color.png' . Config::get('app.version')) }}" alt="chart-icon-color số lượng bài đăng"/>
-                            </a>
-                            <a href="{{ asset('/') }}" class="count__text">
-                                <h5 class="count">12.111.343</h5>
-                                <h5 class="texttype">bài đăng</h5>
-                            </a>
-                        </div>
-                        <div class="block__content__item">
-                            <a href="{{ asset('/') }}" class="count__icon">
-                                <img  src="{{ asset('/images/home/bar-chart-icon.png' . Config::get('app.version')) }}" alt="chart-icon-color số lượng bài đăng"/>
-                            </a>
-                            <a href="{{ asset('/') }}" class="count__text">
-                                <h5 class="count">14,113 Tin</h5>
-                                <h5 class="texttype">Tin mới trong 24h</h5>
-                            </a>
-                        </div>
-                    </div>
+        <div class="service-intro intro">
+            <div class="intro__block">
+                <div class="intro__block-head">
+                    @php 
+                        $picture = SupportDB::getPicture('home page mua bán');
+                    @endphp 
+                    @if($picture)
+                    <img src="{{ SupportString::getUrlImageResize($picture->src) }}" alt="{{ $picture->alt }}" />
+                    @endif
                 </div>
             </div>
         </div>

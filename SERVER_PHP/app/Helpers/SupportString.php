@@ -1,5 +1,8 @@
 <?php 
 namespace App\Helpers;
+
+use Illuminate\Support\Facades\Config;
+
 class SupportString{
 
     public static function limitText($content = false, $limit = 10, $ellipsis = '...') {
@@ -64,6 +67,12 @@ class SupportString{
             return $javascript;
         }
         
+    }
+
+    public static function getUrlImageResize($imagePath, $size = 'thumbnail', $type = 'fit'){
+
+        return Route('IMAGE_RESIZE', ['size' => $size, 'type' => $type, 'imagePath' => trim($imagePath, '/')])
+        . Config::get('app.version');
     }
 }
 

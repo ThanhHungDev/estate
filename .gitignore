@@ -15,6 +15,7 @@
 /SERVER_PHP/composer.lock
 SERVER_PHP/public/sitemap.xml
 SERVER_PHP/public/sitemap/*.xml
+SERVER_PHP/public/resizes/*
 setting.vps.config
 setting.ssl.config
 

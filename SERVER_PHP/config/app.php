@@ -216,6 +216,8 @@ return [
 
         Jenssegers\Agent\AgentServiceProvider::class,
         App\Providers\ResponseServiceProvider::class,
+
+        Intervention\Image\ImageServiceProvider::class,
     ],
 
     /*
@@ -277,7 +279,11 @@ return [
         'SupportCache' => App\Helpers\SupportCache::class,
 
         'Agent' => Jenssegers\Agent\Facades\Agent::class,
+        'Image' => Intervention\Image\Facades\Image::class,
 
     ],
 
 ];
+
+
+/// php artisan vendor:publish --provider="Intervention\Image\ImageServiceProviderLaravelRecent"
