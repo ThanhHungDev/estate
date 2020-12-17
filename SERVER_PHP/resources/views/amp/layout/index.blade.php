@@ -1,21 +1,18 @@
-<!doctype html>
-<html amp lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!DOCTYPE html>
+<html ⚡ lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta http-equiv="content-language" content="vi" />
     <meta name="robots" content="index, follow" />
     <title> @yield('title') </title>
-
-    
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    @yield('api-javascripts')
     <link rel="alternate" media="handheld" href="{{ Route('HOME_PAGE') }}" />
     <link rel="alternate" media="only screen and (max-width: 761px)" href="{{ Route('HOME_PAGE') }}" />
     <link rel="amphtml"  href="{{ Route('AMP_HOME_PAGE') }}" />
-
     <meta name="description" content="@yield('description')">
-
     @yield('meta-seo')
 
     <link rel="alternate" type="application/rss+xml" title="{{ Config::get("app.alternate_name") }}" href="" />
@@ -70,8 +67,10 @@
         }
     </script>
     <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
-
     @yield('stylesheets')
+
+
+
 </head>
 <body>
     <div class="wrapper-page">

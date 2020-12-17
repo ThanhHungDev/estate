@@ -108,6 +108,10 @@
                             position: relative;
                             z-index: 2;
                         }
+                        amp-img img{
+                            position: absolute;
+                            z-index: 2;
+                        }
                     }
                     .count__text{
                         padding: 5px;

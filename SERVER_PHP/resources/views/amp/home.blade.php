@@ -20,9 +20,25 @@
 @endsection
 
 
+
+@section('stylesheets')
+
+<style amp-custom>
+    {!!  file_get_contents(public_path('css/animate.min.css')) !!}
+    {!!  file_get_contents(public_path('css/awesome.min.css')) !!}
+    {!!  file_get_contents(public_path('css/client.min.css')) !!}
+    {!!  file_get_contents(public_path('css/library.min.css')) !!}
+</style>
+@endsection
+@section('api-javascripts')
+<script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
+<script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
+@endsection
+
+
 @section('content')
 <div class="content">
-    {{-- <div class="homepage__search" 
+    <div class="homepage__search" 
     style="
         background: url('{{ asset(Config::get('constant.BG_HOME_SEARCH').Config::get('app.version')) }}');
         background-position: center;
@@ -38,7 +54,7 @@
             <h1 class="homesearch__main-title">Tìm Kiếm Bất Động Sản Phù Hợp</h1>
         </div>
         <div class="search__form">
-            <form action="" class="form">
+            <form  method="post" action-xhr="https://example.com/subscribe" class="form">
                 <div class="wrapper-head-form">
                     <div class="wrapper-select">
                         <select name="" class="form__select-category js__single-select">
@@ -76,12 +92,12 @@
                         </div>
                     </div>
                     <div class="wrapper__more">
-                        <a id="js__toggle-advanced-search" onclick="toggleAdvancedSearch()" href="javascript:void(0)" class="btn__search-more"> 
-                            Công cụ khác &nbsp; <i class="icon fad fa-chevron-double-right"></i> 
+                        <a id="js__toggle-advanced-search" on="tap:AMP.setState({toggleAdvancedSearch: !toggleAdvancedSearch})" class="btn__search-more"> 
+                            Công cụ khác &nbsp; <i [class]="'icon fad ' +(toggleAdvancedSearch ? 'fa-chevron-double-down' : 'fa-chevron-double-right')" class="icon fad fa-chevron-double-right"></i> 
                         </a>
                     </div>
                 </div>
-                <div id="js__advanced-search" class="wrapper-bottom-form advanced-search d-none">
+                <div id="js__advanced-search" [class]="'wrapper-bottom-form advanced-search ' +(toggleAdvancedSearch ? ' ' : 'd-none')"  class="wrapper-bottom-form advanced-search d-none">
                     <div class="wrapper-select select2__home-bottom">
                         @php
                         $RANGES_PRICE = Config::get('constant.RANGE-PRICE');
@@ -129,7 +145,6 @@
             </form>
         </div>
     </div>
-    --}}
     <div class="intro">
         <div class="myservice">
             <div class="block">

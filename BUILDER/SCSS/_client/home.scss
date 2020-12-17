@@ -43,7 +43,7 @@
 
     .form{
         position: relative;
-        z-index: 2;
+        z-index: 3333;
         padding: 10px 0;
 
         .wrapper-head-form{
@@ -84,7 +84,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            z-index: 0;
+            z-index: -1;
         }
         .wrapper-select{
             width: 200px;
