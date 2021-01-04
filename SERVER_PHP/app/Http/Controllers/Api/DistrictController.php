@@ -17,16 +17,9 @@ class DistrictController extends Controller
      */
     public function districts(Request $request){
         
-        $districtsJson = $request->get(Config::get('constant.CACHES.LOCATION.DISTRICT'));
-        if($districtsJson){
-
-            $districts = json_decode($districtsJson);
-        }else{
-            
-            $districtModel = new DistrictEloquentRepository();
-            $districts     = $districtModel ->get(['id', 'name as text', 'province_id as province'])
+        $districtModel = new DistrictEloquentRepository();
+        $districts     = $districtModel ->get(['id', 'name as text', 'province_id as province'])
                                             ->toArray();
-        }
         return response()
                     ->success('Your custom success $districts', $districts)
                     ->setStatusCode(Response::HTTP_OK);

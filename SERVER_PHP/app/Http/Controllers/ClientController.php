@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\Province\ProvinceEloquentRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
@@ -14,7 +15,9 @@ class ClientController extends Controller
     public function index( Request $request){
 
         $categories = $this->model->createCategoriesModel()->getAll();
-        $provinces  = $request->get(Config::get('constant.CACHES.LOCATION.PROVINCE'));
+        /// get model province
+        $provinceModel = new ProvinceEloquentRepository();
+        $provinces     = $provinceModel->get(['id', 'name as text'])->toJson();
 
         return view('client.home', compact('categories', 'provinces'));
     }

@@ -16,16 +16,9 @@ class CommuneController extends Controller
      */
     public function communes(Request $request){
         
-        $communesJson = $request->get(Config::get('constant.CACHES.LOCATION.COMMUNE'));
-        if($communesJson){
-
-            $communes = json_decode($communesJson);
-        }else{
-            
-            $communeModel = new CommuneEloquentRepository();
-            $communes     = $communeModel ->get(['id', 'name as text', 'district_id as district'])
+        $communeModel = new CommuneEloquentRepository();
+        $communes     = $communeModel ->get(['id', 'name as text', 'district_id as district'])
                                             ->toArray();
-        }
         return response()
                     ->success('Your custom success $communes', $communes)
                     ->setStatusCode(Response::HTTP_OK);
