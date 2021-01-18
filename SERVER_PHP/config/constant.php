@@ -29,7 +29,6 @@ return [
         'SALER' => 3,
         'CUSTOMMER' => 4,
     ],
-    'BG_HOME_SEARCH' => '/images/slider/home-realtor-main-bg.jpg',
 
     'CACHES' => [
         'LOCATION' => [

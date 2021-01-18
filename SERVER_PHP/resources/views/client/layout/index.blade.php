@@ -56,52 +56,6 @@
             navigator.serviceWorker.register('/service.js');
         }
     </script> --}}
-
-    <script type='application/ld+json'>
-        {
-            "@context":"https://schema.org/",
-            "@type":"WebSite",
-            "url":"{{ asset('/') }}",
-            "name":"{{ Config::get("app.name") }}",
-            "alternateName":"{{ Config::get("app.alternate_name") }}",
-            "potentialAction":{
-                "@type":"SearchAction",
-                "target":"{{ Route('SEARCH') }}?q={search_term_string}",
-                "query-input":"required name=search_term_string"
-            }
-        }
-    </script>
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "LocalBusiness",
-            "name": "{{ Config::get("app.company_name") }}",
-            "alternateName": "{{ Config::get("app.alternate_name") }}",
-            "url": "{{ asset('/') }}",
-            "telephone": "[ {{ Config::get("app.phone_one") }} , {{ Config::get("app.phone_two") }} ]",
-            "description": "{{ Config::get("app.description") }}",
-            "priceRange": "{{ Config::get("app.price_range") }}",
-            "logo": "{{ Config::get("app.logo") }}",
-            "image":"{{ Config::get("app.image") }}",
-            "hasMap": "{{ Config::get("app.map_link") }}", 
-            "email": "mailto:{{ Config::get("app.company_mail") }}",
-                "founder": "{{ Config::get("app.founder") }}",
-                "address": {
-                    "@type": "PostalAddress", 
-                    "addressLocality": "{{ Config::get("app.company_address_locality") }}",
-                    "addressCountry": "{{ Config::get("app.company_address_country") }}",
-                    "addressRegion": "{{ Config::get("app.company_address_region") }}",
-                    "postalCode":"{{ Config::get("app.company_postcode") }}",
-                    "streetAddress": "{{ Config::get("app.company_address_street") }}"
-                },
-            "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": {{ Config::get("app.map_lat") }},
-                "longitude": {{ Config::get("app.map_long") }}
-            }
-        }
-    </script>
-
     <script>
         const CONFIG_COMPANY_NAME    = "{{ Config::get("app.company_name") }}";
         const CONFIG_COMPANY_ADDRESS = "{{ implode(',', [ Config::get("app.company_address_street"), Config::get("app.company_address_locality"), Config::get("app.company_address_region"), Config::get("app.company_address_country")]) }}";

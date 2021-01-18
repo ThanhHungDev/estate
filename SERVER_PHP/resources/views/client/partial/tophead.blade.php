@@ -15,12 +15,6 @@
     </div>
     <ul class="contact">
         <li>
-            <a target="_blank" href="https://maps.google.com/?q={{ env('COMPANY_MAP_SEARCH')}}" class="map">
-                <i class="far fa-map-marker-smile"></i>
-                <span>{{ env('COMPANY_MAP_SEARCH')}}</span>
-            </a>
-        </li>
-        <li>
             <a target="_blank" href="mailto:{{ env('COMPANY_INFO') }}" class="infor">
                 <i class="fad fa-info-square"></i>
                 <span>{{ env('COMPANY_INFO') }}</span>

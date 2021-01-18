@@ -20,13 +20,6 @@
 @endsection
 
 @section('preload')
-    <link rel="preload" as="image" href="{{ asset('/images/home/rent.png' . Config::get('app.version')) }}"/>
-    <link rel="preload" as="image" href="{{ asset('/images/home/hand.png' . Config::get('app.version')) }}"/>
-    <link rel="preload" as="image" href="{{ asset('/images/home/byer.png' . Config::get('app.version')) }}"/>
-
-    <link rel="preload" as="image" href="{{ asset('/images/home/chart-icon-color.png' . Config::get('app.version')) }}"/>
-    {{-- <link rel="preload" as="image" href="{{  asset(Config::get('constant.BG_HOME_SEARCH') . Config::get('app.version')) }}"> --}}
-    {{-- <link rel="preload" as="image" href="{{ asset('slick/ajax-loader.gif') }}"> --}}
     <link rel="preload" as="script" href="{{ asset('js/library/select2.full.min.js'. Config::get('app.version')) }}">
 @endsection
 
@@ -43,17 +36,8 @@
 @endsection
 @section('content')
     <div class="content">
-        <div class="homepage__search" 
-        style="
-        background: url('{{ asset(Config::get('constant.BG_HOME_SEARCH').Config::get('app.version')) }}');
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        -o-background-size: cover;
-        -moz-background-size: cover;
-        -webkit-background-size: cover;
-        "
-        >
+        <div class="homepage__search position-relative">
+            <div class="homepage__search-bg"></div>
             <div class="homesearch">
                 <h4 class="homesearch__title">Cách tốt nhất để</h4>
                 <h1 class="homesearch__main-title">Tìm Kiếm Bất Động Sản Phù Hợp</h1>
@@ -150,18 +134,7 @@
                 </form>
             </div>
         </div>
-        <div class="service-intro intro">
-            <div class="intro__block">
-                <div class="intro__block-head">
-                    @php 
-                        $picture = SupportDB::getPicture('home page mua bán');
-                    @endphp 
-                    @if($picture)
-                    <img src="{{ SupportString::getUrlImageResize($picture->src) }}" alt="{{ $picture->alt }}" />
-                    @endif
-                </div>
-            </div>
-        </div>
+        
         
     </div>
 @endsection

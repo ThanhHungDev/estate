@@ -18,7 +18,7 @@ return [
     'og_name'                  => env('APP_OG_NAME', ''),
     'og_description'           => env('APP_OG_DESCRIPTION', ''),
     'alternate_name'           => env('APP_ALTERNATE_NAME', ''),
-    'version'                  => env('APP_VERSION'),
+    'version'                  => "?v=" . env('APP_VERSION'),
     'company'                  => env('COMPANY'),
     'company_name'             => env('COMPANY_NAME'),
     'logo'                     => env('LOGO'),
