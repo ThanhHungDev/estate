@@ -18,10 +18,6 @@ Route::group(['prefix' => '/','middleware' => [ 'HTML_MINIFIER']], function () {
     Route::get('/contact','ClientController@contact')->name('CONTACT_PAGE');
     Route::post('/contact','ClientController@mailContact')->name('MAIL_CONTACT');
 
-    Route::get('/tag/{slug}','ClientController@tagDetail')->name('TAG_VIEW');
-
-    Route::get('/topic/{slug}','ClientController@topicDetail')->name('TOPIC_VIEW');
-
     Route::get('/search', 'ClientController@search')->name('SEARCH');
 
     Route::get('/login', 'ClientController@login')->name('LOGIN');

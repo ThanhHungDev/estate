@@ -15,9 +15,9 @@
     </div>
     <ul class="contact">
         <li>
-            <a target="_blank" href="mailto:{{ env('COMPANY_INFO') }}" class="infor">
+            <a target="_blank" href="mailto:{{ env('COMPANY_MAIL') }}" class="infor">
                 <i class="fad fa-info-square"></i>
-                <span>{{ env('COMPANY_INFO') }}</span>
+                <span>{{ env('COMPANY_MAIL') }}</span>
             </a>
         </li>
         <li>
