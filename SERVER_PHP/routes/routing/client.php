@@ -10,14 +10,12 @@ Route::get('/404', function(){
 Route::group(['prefix' => '/','middleware' => [ 'HTML_MINIFIER']], function () { ///'READ_CACHE',
 
     Route::get('/','ClientController@index')->name('HOME_PAGE');
-    ///->middleware(['CACHE_STATIC_HTML', 'CACHE_LOCATIONS']);
 
     Route::get('/favourites', 'ClientController@favourites')->name('FAVOURITES');
 
     Route::get('/profile', 'ClientController@profile')->name('PROFILE');
 
     Route::get('/contact','ClientController@contact')->name('CONTACT_PAGE');
-
     Route::post('/contact','ClientController@mailContact')->name('MAIL_CONTACT');
 
     Route::get('/tag/{slug}','ClientController@tagDetail')->name('TAG_VIEW');

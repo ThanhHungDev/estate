@@ -17,7 +17,7 @@ Route::get('resizes/{size}/{type}/{imagePath}', 'ImageController@resize')
 ->where('imagePath', '(.*)')
 ->name('IMAGE_RESIZE');
 
-Route::group([ 'middleware' => [ 'CACHE_STATIC_REFRESH']], function () {
+Route::group([ 'middleware' => []], function () {
 
     include_once("routing/admin.php");
     include_once("routing/amp.php");

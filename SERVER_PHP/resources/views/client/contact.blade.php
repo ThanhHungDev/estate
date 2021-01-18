@@ -1,7 +1,7 @@
 @extends('client.layout.index')
 
-@section('title', Config::get("app.name"))
-@section('description', Config::get("app.description"))
+@section('title', "Liên hệ - " . Config::get("app.name"))
+@section('description', "Liên hệ - " . Config::get("app.description"))
 
 @section('meta-seo')
     <link rel="canonical" href="{{ asset('/') }}" />
@@ -19,21 +19,6 @@
     <meta name="twitter:image" content="{{ Config::get("app.image") }}" />
 @endsection
 
-@section('preload')
-    <link rel="preload" as="script" href="{{ asset('js/library/select2.full.min.js'. Config::get('app.version')) }}">
-@endsection
-
-
-@section('javascripts')
-    <script src="{{ asset('/js/library/nouislider.min.js' . Config::get('app.version')) }}"></script>
-    <script>
-        const PROVINCES = JSON.parse(`{!! $provinces !!}`);
-        
-        const ROUTE_DISTRICTS = "{{ Route('DISTRICTS') }}";
-        const ROUTE_COMMUNES  = "{{ Route('COMMUNES') }}";
-    </script>
-    <script src="{{ asset('js/library/select2.full.min.js' . Config::get('app.version')) }}"></script>
-@endsection
 @section('content')
     <div class="content">
         <div class="page page__contact">

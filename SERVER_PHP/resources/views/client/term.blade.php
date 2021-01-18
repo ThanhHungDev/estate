@@ -1,7 +1,7 @@
 @extends('client.layout.index')
 
-@section('title', 'term - ' . Config::get("app.name"))
-@section('description', Config::get("app.description"))
+@section('title', 'Term - ' . Config::get("app.name"))
+@section('description', 'Term - ' . Config::get("app.description"))
 
 @section('meta-seo')
     <link rel="canonical" href="{{ asset('/') }}" />

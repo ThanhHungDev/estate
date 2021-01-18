@@ -1,7 +1,7 @@
 @extends('client.layout.index')
 
-@section('title', 'tìm kiếm | ' . Config::get("app.name"))
-@section('description', Config::get("app.name") . ", " . $query . ", " . implode( ", ", $tags->pluck('name')->toArray()))
+@section('title', 'Tìm kiếm | ' . Config::get("app.name"))
+@section('description', 'Tìm kiếm | ' . Config::get("app.name") . ", " . $query . ", " . implode( ", ", $tags->pluck('name')->toArray()))
 
 
 @section('meta-seo')
