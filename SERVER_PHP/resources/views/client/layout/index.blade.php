@@ -108,6 +108,19 @@
         @include('client.partial.header')
         <div class="page-content-layout">
             @yield('content')
+            <div>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit aspernatur sequi sunt voluptas, odio exercitationem consectetur autem cumque incidunt, hic consequuntur omnis. Cupiditate deleniti laborum molestias aperiam necessitatibus ad qui.
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit aspernatur sequi sunt voluptas, odio exercitationem consectetur autem cumque incidunt, hic consequuntur omnis. Cupiditate deleniti laborum molestias aperiam necessitatibus ad qui.
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit aspernatur sequi sunt voluptas, odio exercitationem consectetur autem cumque incidunt, hic consequuntur omnis. Cupiditate deleniti laborum molestias aperiam necessitatibus ad qui.
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit aspernatur sequi sunt voluptas, odio exercitationem consectetur autem cumque incidunt, hic consequuntur omnis. Cupiditate deleniti laborum molestias aperiam necessitatibus ad qui.
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit aspernatur sequi sunt voluptas, odio exercitationem consectetur autem cumque incidunt, hic consequuntur omnis. Cupiditate deleniti laborum molestias aperiam necessitatibus ad qui.
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit aspernatur sequi sunt voluptas, odio exercitationem consectetur autem cumque incidunt, hic consequuntur omnis. Cupiditate deleniti laborum molestias aperiam necessitatibus ad qui.
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit aspernatur sequi sunt voluptas, odio exercitationem consectetur autem cumque incidunt, hic consequuntur omnis. Cupiditate deleniti laborum molestias aperiam necessitatibus ad qui.
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit aspernatur sequi sunt voluptas, odio exercitationem consectetur autem cumque incidunt, hic consequuntur omnis. Cupiditate deleniti laborum molestias aperiam necessitatibus ad qui.
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit aspernatur sequi sunt voluptas, odio exercitationem consectetur autem cumque incidunt, hic consequuntur omnis. Cupiditate deleniti laborum molestias aperiam necessitatibus ad qui.
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit aspernatur sequi sunt voluptas, odio exercitationem consectetur autem cumque incidunt, hic consequuntur omnis. Cupiditate deleniti laborum molestias aperiam necessitatibus ad qui.
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit aspernatur sequi sunt voluptas, odio exercitationem consectetur autem cumque incidunt, hic consequuntur omnis. Cupiditate deleniti laborum molestias aperiam necessitatibus ad qui.
+            </div>
         </div>
         @include('client.partial.footer')
     </div>
