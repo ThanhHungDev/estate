@@ -1,0 +1,2 @@
+127.0.0.1 - - [12/Jun/2021:17:37:40 +0900] "GET / HTTP/1.1" 200 2372 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36"
+127.0.0.1 - - [12/Jun/2021:17:37:40 +0900] "GET /favicon.ico HTTP/1.1" 200 0 "http://estate.com/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36"
