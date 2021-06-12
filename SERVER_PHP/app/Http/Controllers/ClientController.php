@@ -6,9 +6,25 @@ use App\Repositories\Province\ProvinceEloquentRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Gate;
 
 class ClientController extends Controller
 {
+    // public function __construct(){
+        
+    //     if(Auth::check()){
+    //         dd("is_supper_admin");
+    //     }
+
+    //     if(Auth::check()){
+    //         /// có login vào rồi thì check xem có phải admin không?
+    //         if (Gate::allows('is_supper_admin')) {
+    //             dd("is_supper_admin");
+    //         } else {
+    //             dd("is_admin");
+    //         }
+    //     }
+    // }
     /**
      * CLIENT HOME PAGE
      */
@@ -125,7 +141,9 @@ class ClientController extends Controller
     }
 
     public function profile(){
-        return view('client.home');
+        $profile = Auth::user();
+
+        return view('client.profile', compact(['profile']));
     }
 
     public function register(){

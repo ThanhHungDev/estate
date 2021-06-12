@@ -62,7 +62,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('/favicon/favicon-32x32.png' . Config::get('app.version')) }}">
     <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('/favicon/favicon-96x96.png' . Config::get('app.version')) }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/favicon/favicon-16x16.png' . Config::get('app.version')) }}">
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="/favicon/manifest.json">
     <meta name="msapplication-TileColor" content="#62854F">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#62854F">
@@ -108,19 +108,6 @@
         @include('client.partial.header')
         <div class="page-content-layout">
             @yield('content')
-            <div>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit aspernatur sequi sunt voluptas, odio exercitationem consectetur autem cumque incidunt, hic consequuntur omnis. Cupiditate deleniti laborum molestias aperiam necessitatibus ad qui.
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit aspernatur sequi sunt voluptas, odio exercitationem consectetur autem cumque incidunt, hic consequuntur omnis. Cupiditate deleniti laborum molestias aperiam necessitatibus ad qui.
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit aspernatur sequi sunt voluptas, odio exercitationem consectetur autem cumque incidunt, hic consequuntur omnis. Cupiditate deleniti laborum molestias aperiam necessitatibus ad qui.
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit aspernatur sequi sunt voluptas, odio exercitationem consectetur autem cumque incidunt, hic consequuntur omnis. Cupiditate deleniti laborum molestias aperiam necessitatibus ad qui.
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit aspernatur sequi sunt voluptas, odio exercitationem consectetur autem cumque incidunt, hic consequuntur omnis. Cupiditate deleniti laborum molestias aperiam necessitatibus ad qui.
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit aspernatur sequi sunt voluptas, odio exercitationem consectetur autem cumque incidunt, hic consequuntur omnis. Cupiditate deleniti laborum molestias aperiam necessitatibus ad qui.
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit aspernatur sequi sunt voluptas, odio exercitationem consectetur autem cumque incidunt, hic consequuntur omnis. Cupiditate deleniti laborum molestias aperiam necessitatibus ad qui.
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit aspernatur sequi sunt voluptas, odio exercitationem consectetur autem cumque incidunt, hic consequuntur omnis. Cupiditate deleniti laborum molestias aperiam necessitatibus ad qui.
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit aspernatur sequi sunt voluptas, odio exercitationem consectetur autem cumque incidunt, hic consequuntur omnis. Cupiditate deleniti laborum molestias aperiam necessitatibus ad qui.
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit aspernatur sequi sunt voluptas, odio exercitationem consectetur autem cumque incidunt, hic consequuntur omnis. Cupiditate deleniti laborum molestias aperiam necessitatibus ad qui.
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit aspernatur sequi sunt voluptas, odio exercitationem consectetur autem cumque incidunt, hic consequuntur omnis. Cupiditate deleniti laborum molestias aperiam necessitatibus ad qui.
-            </div>
         </div>
         @include('client.partial.footer')
     </div>
