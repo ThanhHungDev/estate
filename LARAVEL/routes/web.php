@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use Jenssegers\Agent\Agent;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,7 +13,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Route::get('resizes/{size}/{type}/{imagePath}', 'ImageController@resize')
+// ->where('imagePath', '(.*)')
+// ->name('IMAGE_RESIZE');
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group([ 'middleware' => []], function () {
+
+    include_once("routing/admin.php");
+    // include_once("routing/amp.php");
+    include_once("routing/client.php");
 });
