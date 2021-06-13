@@ -175,6 +175,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        App\Providers\ResponseServiceProvider::class,
+
     ],
 
     /*
@@ -226,6 +228,17 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+
+
+        
+        'SupportString' => App\Helpers\SupportString::class,
+        'SupportDB' => App\Helpers\SupportDB::class,
+        'SupportHtml' => App\Helpers\SupportHtml::class,
+        'SupportRouter' => App\Helpers\SupportRouter::class,
+        'SupportCache' => App\Helpers\SupportCache::class,
+
+        'Agent' => Jenssegers\Agent\Facades\Agent::class,
+        'Image' => Intervention\Image\Facades\Image::class,
     ],
 
 ];

@@ -81,10 +81,6 @@
         const MAP_LAT  = "{{ Config::get('app.map_lat') }}";
         const MAP_LONG = "{{ Config::get('app.map_long') }}";
         const GOOGLE_PLACES_API = "{{ env('GOOGLE_PLACES_API') }}";
-
-        const IS_DESKTOP = parseInt("{{ RemoteInfor::isDesktop() ? 1 : 0 }}");
-        const IS_MOBILE  = parseInt("{{ RemoteInfor::isMobile() ? 1 : 0 }}");
-        const IS_ROBOT   = parseInt("{{ RemoteInfor::isRobot() ? 1 : 0 }}");
     </script>
 
     {{-- @php $analatic_key = Config::get("app.analatic") @endphp

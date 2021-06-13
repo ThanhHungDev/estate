@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Province;
 use App\Repositories\Province\ProvinceEloquentRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,30 +12,14 @@ use Illuminate\Support\Facades\Gate;
 
 class ClientController extends Controller
 {
-    // public function __construct(){
-        
-    //     if(Auth::check()){
-    //         dd("is_supper_admin");
-    //     }
-
-    //     if(Auth::check()){
-    //         /// có login vào rồi thì check xem có phải admin không?
-    //         if (Gate::allows('is_supper_admin')) {
-    //             dd("is_supper_admin");
-    //         } else {
-    //             dd("is_admin");
-    //         }
-    //     }
-    // }
     /**
      * CLIENT HOME PAGE
      */
     public function index( Request $request){
-        dd("hung");
-        $categories = $this->model->createCategoriesModel()->getAll();
+
+        $categories = (new Category())->all();
         /// get model province
-        $provinceModel = new ProvinceEloquentRepository();
-        $provinces     = $provinceModel->get(['id', 'name as text'])->toJson();
+        $provinces     = (new Province())->get(['id', 'name as text'])->toJson();
 
         return view('client.home', compact('categories', 'provinces'));
     }

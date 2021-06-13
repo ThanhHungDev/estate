@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Repositories\Commune\CommuneEloquentRepository;
+use App\Models\Commune;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Config;
 
 class CommuneController extends Controller
 {
@@ -16,7 +15,7 @@ class CommuneController extends Controller
      */
     public function communes(Request $request){
         
-        $communeModel = new CommuneEloquentRepository();
+        $communeModel = new Commune();
         $communes     = $communeModel ->get(['id', 'name as text', 'district_id as district'])
                                             ->toArray();
         return response()

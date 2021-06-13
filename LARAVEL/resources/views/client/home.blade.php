@@ -28,7 +28,7 @@
     <script src="{{ asset('/js/library/nouislider.min.js' . Config::get('app.version')) }}"></script>
     <script>
         const PROVINCES = JSON.parse(`{!! $provinces !!}`);
-        
+        /// để select 2 trong app.js có thể nạp lên thanh search của homepage
         const ROUTE_DISTRICTS = "{{ Route('DISTRICTS') }}";
         const ROUTE_COMMUNES  = "{{ Route('COMMUNES') }}";
     </script>
@@ -112,11 +112,11 @@
                         </div>
                         <div class="wrapper-select select2__home-bottom">
                             @php
-                            $DIRECTION = Config::get('constant.DIRECTION');
+                            $DIRECTIONS = Config::get('constant.DIRECTION');
                             @endphp
                             <select name="" id="js__select-direction" class="form__select-category">
-                                @foreach ($DIRECTION as $key => $direction)
-                                <option value="{{ $key }}">{{ $direction }}</option>
+                                @foreach ($DIRECTIONS as $key => $direction)
+                                <option value="{{ $direction['VALUE'] }}">{{ $direction['TEXT'] }}</option>
                                 @endforeach
                             </select>
                         </div>

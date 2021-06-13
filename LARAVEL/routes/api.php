@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,22 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+
+
+
+
+Route::group([ 'prefix'=>'/v1' ], function () {
+
+    // Lấy danh sách districts
+    Route::get('districts', 'Api\DistrictController@districts')
+    ->name('DISTRICTS');
+    // ->middleware([ 'CACHE_LOCATIONS']);
+
+    // Lấy danh sách districts
+    Route::get('communes', 'Api\CommuneController@communes')
+    ->name('COMMUNES');
+    // ->middleware([ 'CACHE_LOCATIONS']);
+
 });

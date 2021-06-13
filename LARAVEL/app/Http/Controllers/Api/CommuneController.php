@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Repositories\Commune\CommuneEloquentRepository;
-use Illuminate\Http\Request;
+use App\Models\Commune;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Config;
 
 class CommuneController extends Controller
 {
@@ -14,9 +12,9 @@ class CommuneController extends Controller
      * get all district
      * php artisan make:resource DistrictResource
      */
-    public function communes(Request $request){
+    public function communes(){
         
-        $communeModel = new CommuneEloquentRepository();
+        $communeModel = new Commune();
         $communes     = $communeModel ->get(['id', 'name as text', 'district_id as district'])
                                             ->toArray();
         return response()

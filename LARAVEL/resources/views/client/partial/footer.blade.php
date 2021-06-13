@@ -3,10 +3,10 @@
         <div class="row">
             <div class="col-12">
                 <h3 class="footer-title">
-                    {!! SupportDB::getOption('footer-title') !!}
+                    footer-title
                 </h3>
                 <div class="des-footer">
-                    {!! SupportDB::getOption('description-footer') !!}
+                    description-footer
                 </div>
             </div>
         </div>
@@ -18,7 +18,7 @@
                 <a href="{{ env('DOMAIN_MAIN', 'https://ebudezain.com') }}" target="_blank" rel="noopener noreferrer">{{ Config::get('app.company_name') }}</a>
             </h3>
             <div class="intro__ebudezain">
-                {!! SupportDB::getOption('description-footer-intro') !!}
+                description-footer-intro
             </div>
         </div>
         <div class="dev_infor animated fadeDown">
