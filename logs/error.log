@@ -1,3 +1,0 @@
-2021/06/13 13:53:58 [alert] 12999#0: *66 setsockopt(TCP_NODELAY) failed (22: Invalid argument) while keepalive, client: 127.0.0.1, server: 0.0.0.0:80
-2021/06/13 16:47:47 [alert] 12999#0: *141 setsockopt(TCP_NODELAY) failed (22: Invalid argument) while keepalive, client: 127.0.0.1, server: 0.0.0.0:80
-2021/06/13 16:47:47 [alert] 12999#0: *147 setsockopt(TCP_NODELAY) failed (22: Invalid argument) while keepalive, client: 127.0.0.1, server: 0.0.0.0:80
