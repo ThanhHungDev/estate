@@ -166,7 +166,7 @@ $(document).ready(function () {
                     resetSelect2Location(select2District, dataDistrictsNull)
                 }else {
 
-                    var dataDistricts = [{
+                    var dataDistricts = [{ 
                         id: 0,
                         text: optionFirstText + '<b class="spinner"><i></i><i></i><i></i><i></i></b>'
                     }]

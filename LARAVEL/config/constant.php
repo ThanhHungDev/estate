@@ -1,18 +1,22 @@
 <?php
 
 return [
-
+    'LOGIN_ADMIN_SUCCESS' => "LOGIN_ADMIN_SUCCESS",
+    'LOGIN_ERROR'         => "LOGIN_ERROR",
+    'REGISTER_ERROR'      => "LOGIN_ERROR",
+    'FORGOT_ERROR'        => "FORGOT_ERROR",
+    'SAVE_ERROR'          => "SAVE_ERROR",
+    'SAVE_SUCCESS'        => "SAVE_SUCCESS",
     /*
     |--------------------------------------------------------------------------
     | Role of user
     |--------------------------------------------------------------------------
     |
     */
-
     'ROLE' => [
-        'ADMIN'  => 1,
-        'POSTER' => 2,
-        'FINDER' => 3,
+        'ADMIN'     => 1,
+        'POSTER'    => 2,
+        'CUSTOMMER' => 3,
     ],
     'GALARIES' => [
         'DEFAULT' => 1,

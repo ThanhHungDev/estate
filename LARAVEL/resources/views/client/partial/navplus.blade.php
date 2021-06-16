@@ -25,13 +25,13 @@
             </a>
         </li>
         
-        <li
-        class="navplus__link simple-tooltip {{ SupportRouter::fillClassActive('active', 'VIEW_POST_ARTICLE') }}">
+        {{-- <li
+        class="navplus__link simple-tooltip {{ SupportRouter::fillClassActive('active', 'REGISTER') }}">
             <a href="{{ Route('REGISTER') }}">
                 <i class="fad fa-user-plus"></i>
             <span class="title">đăng ký</span>
             </a>
-        </li>
+        </li> --}}
         @endguest
         <li title="tin nhắn <br/> bạn có thể nhắn tin với người đăng bài"
         class="navplus__link simple-tooltip {{ SupportRouter::fillClassActive('active', 'VIEW_POST_ARTICLE') }}">

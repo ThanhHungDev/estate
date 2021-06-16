@@ -6,7 +6,10 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "node index.js",
-        "watch": "gulp watch"
+        "watch": "gulp watch",
+        "build": "gulp",
+        "build-admin" : "gulp admin",
+        "build-library" : "gulp library"
     },
     "author": "",
     "license": "ISC",

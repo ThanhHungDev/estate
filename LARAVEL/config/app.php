@@ -13,7 +13,29 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name'                     => env('APP_NAME', 'Top bất động sản'),
+    'description'              => env('APP_DESCRIPTION', ''),
+    'og_name'                  => env('APP_OG_NAME', ''),
+    'og_description'           => env('APP_OG_DESCRIPTION', ''),
+    'alternate_name'           => env('APP_ALTERNATE_NAME', ''),
+    'version'                  => "?v=" . env('APP_VERSION'),
+    'company'                  => env('COMPANY'),
+    'company_name'             => env('COMPANY_NAME'),
+    'logo'                     => env('LOGO'),
+    'image'                    => env('IMAGE'),
+    'map_link'                 => env('MAP_LINK'),
+    'founder'                  => env('FOUNDER'),
+    'company_mail'             => env('COMPANY_MAIL'),
+    'phone'                    => env('PHONE'),
+    'map_lat'                  => env('MAP_LAT'),
+    'map_long'                 => env('MAP_LONG'),
+    'company_postcode'         => env('COMPANY_POSTCODE'),
+    'company_address_street'   => env('COMPANY_ADDRESS_STREET'),
+    'company_address_region'   => env('COMPANY_ADDRESS_REGION'),
+    'company_address_locality' => env('COMPANY_ADDRESS_LOCALITY'),
+    'company_address_country'  => env('COMPANY_ADDRESS_COUNTRY'),
+    'tax_code_date'            => env('TAX_CODE_DATE'),
+    'lazyload'                 => env('SRC_LAZYLOAD'),
 
     /*
     |--------------------------------------------------------------------------
@@ -27,6 +49,7 @@ return [
     */
 
     'env' => env('APP_ENV', 'production'),
+    'isproduct' => env('APP_ENV', 'production') == 'production',
 
     /*
     |--------------------------------------------------------------------------
@@ -39,7 +62,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', false),
+    'debug' => (bool) env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +103,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'vi',
 
     /*
     |--------------------------------------------------------------------------
@@ -93,7 +116,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'vi',
 
     /*
     |--------------------------------------------------------------------------
@@ -106,7 +129,7 @@ return [
     |
     */
 
-    'faker_locale' => 'en_US',
+    'faker_locale' => 'vi_VI',
 
     /*
     |--------------------------------------------------------------------------

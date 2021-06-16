@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('avatar');
             $table->string('password');
-            $table->integer('role_id')->default(Config::get("constant.ROLE.FINDER"));
+            $table->integer('role_id')->default(Config::get("constant.ROLE.CUSTOMMER"));
             $table->rememberToken();
             $table->timestamps();
         });

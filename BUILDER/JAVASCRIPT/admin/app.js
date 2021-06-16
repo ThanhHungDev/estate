@@ -9,7 +9,7 @@ $(document).ready(function() {
             var group = $( this ).closest(".js-group-option").find(".js-clone-value-option")
             group.find('input').addClass('d-none')
             group.find('textarea').removeClass('d-none')
-            CKEDITOR.replace( group.find('textarea').attr('id') );
+            CKEDITOR.replace( group.find('textarea').attr('id') )
         }
     })
     //// load select 2 
