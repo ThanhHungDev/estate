@@ -36,13 +36,14 @@
         float: left;
         padding: 0 10px;
         margin: 0;
-
+        
         
         a{
             display: block;
             border: 1px solid $gray_custom_nav;
             background-color: $gray_custom_nav;
             border-radius: 20px;
+            text-decoration: none!important;
             @include clearfix();
         }
 

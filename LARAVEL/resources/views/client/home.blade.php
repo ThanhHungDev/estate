@@ -134,7 +134,70 @@
                 </form>
             </div>
         </div>
-        
+        <div class="homeimportant">
+            <h3 class="homeimportant__title">
+                Điều khoản dịch vụ
+            </h3>
+            <div class="homeimportant__content">
+                <a class="homeimportant__content-des" href="{{ asset('/') }}">
+                    Chúng tôi, Công ty TNHH Hùng Thịnh - topbds.vn tạo ra 1 nền tảng tìm kiếm bất động sản phù hợp và hoàn toàn miễn phí.
+                    <span class="hidden-mobile text-color-grey">
+                        Với tiêu chí kết nối bất động sản đến với mọi người. Chúng tôi đã cung cấp các tiện ích để người sử dụng có thể trò chuyện trực tuyến với nhau.
+                    </span>
+                </a>
+                <a class="homeimportant__content-btn hover__push-right" href="{{ asset('/') }}">
+                    <i class="fas fa-long-arrow-alt-right"></i>
+                </a>
+            </div>
+        </div>
+        <div class="productmain bg-color-grey-x">
+            <h2 class="productmain__title">Bất động sản dành cho bạn</h2>
+            <p >Dựa trên ip truy cập vào website mình sẽ detect ra localtion ở đâu, khi đó chúng ta sẽ query bất động sản theo khu vực</p>
+            <div class="productmain__container">
+                
+                <div class="row">
+                    @for ($i = 0; $i < 10; $i++)
+                    <div class="col-lg-4 col-sm-6 col-xs-12 productmain__container-fixpadding"> 
+                        <div class="productmain__item property-listing">
+                            <div class="media">
+                                <a class="pull-left" href="#">
+                                    <img alt="image" class="img-responsive" 
+                                        src="https://ebudezain.com/resizes/category/fit//upload/images/front-end/thumbnail-gulp.jpg?v=1.1.26">
+                                </a>
+                                <div class="clearfix visible-sm"></div>
+    
+                                <div class="media-body productmain__item-smaller">
+                                    
+                                    <h4 class="media-heading my-0">
+                                        <a class="productmain__item-price" href="#">
+                                            $1,975,000 
+                                            <small class="pull-right">609 W Gravers Ln</small>
+                                        </a>
+                                    </h4>
+
+                                    <ul class="list-inline productmain__item-property">
+                                        <li>4,820 SqFt</li>
+                                        <li style="list-style: none">|</li>
+                                        <li>5 Beds</li>
+                                        <li style="list-style: none">|</li>
+                                        <li>5 Baths</li>
+                                    </ul>
+                                    <h5 class="productmain__item-title hidden-small-mobile">
+                                        Situated between fairmount
+                                    park and the prestigious philadelphia cricket
+                                    club, this beautiful 2+ acre property is t hùng ox & Roach-Chestnu</h5>
+                                    <span class="productmain__item-moreinfo fnt-smaller fnt-lighter fnt-arial">
+                                        Courtesy of HS Fox & Roach-Chestnut Hill Evergreen
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    @endfor
+                </div><!-- End row -->
+            </div>
+        </div>
         
     </div>
 @endsection

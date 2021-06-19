@@ -36,8 +36,8 @@
     @yield('preload')
 
   
-
-
+    <link rel="stylesheet" href="{{ asset('css/library/bootstrap.min.css' . Config::get('app.version'))}}">
+    
 
     <link rel="stylesheet" href="{{ asset('css/animate.min.css' . Config::get('app.version'))}}">
     <link rel="stylesheet" href="{{ asset('css/awesome.min.css' . Config::get('app.version'))}}">
