@@ -490,6 +490,11 @@ body {
     font-size: $font-size
   }
 }
+@each $name, $font-size in $custom-font-size {
+  .itext-#{""+$name} {
+    font-size: $font-size!important;
+  }
+}
 
 body.neo-scroll {
   overflow: hidden;
@@ -510,6 +515,37 @@ input, select, textarea, option{
   display: initial;
   @include Responsive(XS) { display: none; }
 }
+
+
+/// tạo 1 respone hidden
+$hidden_screens: ( XSM, XS, SM, MD, LG, XL, XXL ) !default;
+.hidden-small-mobile{
+  display: initial;
+  @include Responsive(XS) { display: none; }
+}
+@each $name in $hidden_screens {
+  //// cái này là để màn hình mobile thì hiện, còn màn hình pc thì tắt
+  .hidden-hero-increment-#{to-lower-case(#{$name})} {
+    display: initial;
+    @include Screen($name) { display: none; }
+  }
+  //// cái này là để màn hình mobile thì tắt, còn màn hình pc thì hiện
+  .hidden-hero-decrement-#{to-lower-case(#{$name})} {
+    display: none;
+    @include Screen($name) { display: initial; }
+  }
+  //// cái này là để màn hình mobile thì hiện, còn màn hình pc thì tắt
+  .ihidden-hero-increment-#{to-lower-case(#{$name})} {
+    display: initial!important;
+    @include Screen($name) { display: none!important; }
+  }
+  //// cái này là để màn hình mobile thì tắt, còn màn hình pc thì hiện
+  .ihidden-hero-decrement-#{to-lower-case(#{$name})} {
+    display: none!important;
+    @include Screen($name) { display: initial!important; }
+  }
+}
+
 
 .pc {
   display: block;

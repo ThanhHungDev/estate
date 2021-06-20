@@ -11,14 +11,14 @@ $alert-border-level:                -9 !default;
 $alert-color-level:                 3 !default;
 
 // Set a specific jump point for requesting color jumps
-$theme-color-interval: 8% !default;
+// $theme-color-interval: 8% !default;
 
-@function color-level($color: $primary, $level: 0) {
-  $color-base: if($level > 0, $black, $white);
-  $level: abs($level);
+// @function color-level($color: $primary, $level: 0) {
+//   $color-base: if($level > 0, $black, $white);
+//   $level: abs($level);
 
-  @return mix($color-base, $color, $level * $theme-color-interval);
-}
+//   @return mix($color-base, $color, $level * $theme-color-interval);
+// }
 
 @mixin alert-variant($background, $border, $color) {
   color: $color;
@@ -32,7 +32,7 @@ $theme-color-interval: 8% !default;
 
 
 
-.alert {
+.alert-hero {
   position: relative;
   padding: $alert-padding-y $alert-padding-x;
   margin-bottom: $alert-margin-bottom;
@@ -40,13 +40,13 @@ $theme-color-interval: 8% !default;
 }
 
 // Headings for larger alerts
-.alert-heading {
+.alert-hero-heading {
   // Specified to prevent conflicts of changing $headings-color
   color: inherit;
 }
 
 // Provide class for links that match alerts
-.alert-link {
+.alert-hero-link {
   font-weight: bold;
 }
 
@@ -55,7 +55,7 @@ $theme-color-interval: 8% !default;
 //
 // Expand the right padding and account for the close button's positioning.
 
-.alert-dismissible {
+.alert-hero-dismissible {
   padding-right: 4rem;
 
   // Adjust close link position

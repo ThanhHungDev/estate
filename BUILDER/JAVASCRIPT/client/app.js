@@ -632,3 +632,8 @@ function toggleCatalogue(e){
         $(e).closest('.catalogue').find('.catalogue__body').removeClass('d-none')
     }
 }
+
+
+function showLightGaleries(e){
+    $(e).closest('.item').find(".lightgallery img").click()
+}

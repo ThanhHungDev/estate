@@ -13,9 +13,17 @@ use Jenssegers\Agent\Agent;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Route::get('resizes/{size}/{type}/{imagePath}', 'ImageController@resize')
-// ->where('imagePath', '(.*)')
-// ->name('IMAGE_RESIZE');
+Route::get('resizes/{size}/{type}/{imagePath?}', 'ImageController@resize')
+->where('imagePath', '(.*)')
+->name('IMAGE_RESIZE');
+
+Route::get('compress/{quality}/{imagePath}', 'ImageController@encode')
+->where('imagePath', '(.*)')
+->name('IMAGE_COMPRESS');
+
+Route::get('resize-compress/{size}/{type}/{quality}/{ext}/{imagePath}', 'ImageController@resize_compress')
+->where('imagePath', '(.*)')
+->name('IMAGE_RESIZE_COMPRESS');
 
 Route::group([ 'middleware' => []], function () {
 

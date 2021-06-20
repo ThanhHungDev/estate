@@ -2,6 +2,14 @@
 
 return [
 
+    ##################################################################
+    #################### APP - SEO ###################################
+    ##################################################################
+    'lazyload_base64' => env('APP_LAZYLOAD_BASE64', 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='),
+    'image_error'     => env('APP_IMG_ERROR', '/images/failed.jpg'),
+    ##################################################################
+    ##################################################################
+    ##################################################################
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -21,8 +29,8 @@ return [
     'version'                  => "?v=" . env('APP_VERSION'),
     'company'                  => env('COMPANY'),
     'company_name'             => env('COMPANY_NAME'),
-    'logo'                     => env('LOGO'),
-    'image'                    => env('IMAGE'),
+    'logo'                     => env('APP_LOGO', '/logo.png'),
+    'image'                    => env('APP_IMAGE', '/image.png'),
     'map_link'                 => env('MAP_LINK'),
     'founder'                  => env('FOUNDER'),
     'company_mail'             => env('COMPANY_MAIL'),
