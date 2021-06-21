@@ -14,7 +14,9 @@ class SalerController extends Controller
      */
     public function profile()
     {
-        return Auth::user()->role_id;
+        $profile = Auth::user();
+
+        return view('client.saler.profile', compact(['profile']));
     }
 
     

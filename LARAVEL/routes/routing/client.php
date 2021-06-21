@@ -13,7 +13,6 @@ Route::group(['prefix' => '/','middleware' => [ 'HTML_MINIFIER']], function () {
 
     Route::get('/favourites', 'ClientController@favourites')->name('FAVOURITES');
 
-    Route::get('/profile', 'ClientController@profile')->name('PROFILE');
 
     Route::get('/contact','ClientController@contact')->name('CONTACT_PAGE');
     Route::post('/contact','ClientController@mailContact')->name('MAIL_CONTACT');

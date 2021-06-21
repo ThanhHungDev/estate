@@ -120,12 +120,6 @@ class ClientController extends Controller
         return view('client.home');
     }
 
-    public function profile(){
-        $profile = Auth::user();
-
-        return view('client.profile', compact(['profile']));
-    }
-
 
     public function forgot(){
 

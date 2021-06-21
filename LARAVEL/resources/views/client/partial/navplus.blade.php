@@ -2,8 +2,11 @@
     <ul class="navplus count">
         @auth
         <li title='tài khoản <strong>{{ Auth::user()->name }}</strong> đang đăng nhập'
-        class="navplus__link simple-tooltip {{ SupportRouter::fillClassActive('active', 'PROFILE') }}">
-            <a href="{{ Route('PROFILE') }}">
+        class="navplus__link simple-tooltip 
+        {{ SupportRouter::fillClassActive('active', 'SALER_DASHBOARD') }}
+        {{ SupportRouter::fillClassActive('active', 'CUSTOMER_DASHBOARD') }}">
+        @php $PROFILE_ROUTE_NAME = Auth::user()->role_id == Config::get('constant.ROLE.SALER') ? 'SALER_DASHBOARD' : 'CUSTOMER_DASHBOARD'; @endphp
+            <a href="{{ Route($PROFILE_ROUTE_NAME) }}">
                 <img class="lazyload" src="{{ Config::get('app.lazyload') }}" data-src="{{ asset(Auth::user()->avatar . Config::get('app.version')) }}" alt="{{ Auth::user()->name }}"/>
                 <span class="title">{{ Auth::user()->name }}</span>
             </a>
