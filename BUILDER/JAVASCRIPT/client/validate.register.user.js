@@ -42,9 +42,9 @@ function validateForm(formJquery){
                 maxlength: 30,
                 minlength: 6,
             },
-            // confirm_password : {
-            //     equalTo : "#password"
-            // },
+            confirm_password : {
+                equalTo : "#password" 
+            },
         },
         messages: {
             name : {
