@@ -15,7 +15,7 @@ return [
     */
     'ROLE' => [
         'ADMIN'     => 1,
-        'POSTER'    => 2,
+        'SALER'    => 2,
         'CUSTOMMER' => 3,
     ],
     'GALARIES' => [

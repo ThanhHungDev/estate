@@ -1,4 +1,4 @@
-<form action="{{ 1 }}" class="page__register__form form">
+<form action="{{ Route('STORE_REGISTER') }}" method="POST" class="page__register__form form js-validate-form">
     {!! csrf_field() !!}
     @if (Session::has(Config::get('constant.REGISTER_ERROR')))
     <div class="alert alert-warning">
@@ -9,6 +9,12 @@
     <div class="alert alert-danger">
         đã có lỗi, vui lòng kiểm tra lại
     </div>
+
+    {{-- @foreach ($errors->all() as $error)
+    <div class="alert alert-warning">
+        {{ $error }}
+    </div>
+    @endforeach --}}
     @endif
     <h2 class="form__title">đăng ký</h2>
     
@@ -16,25 +22,38 @@
 
         <div class="input-group">
             <i class="icon fad fa-envelope"></i>
-            <input name="email" ref="email" type="text" autoCorrect="off" autoCapitalize="none" class="input-control" placeholder="Địa chỉ email" />
+            <input name="name" type="text" autoCorrect="off" autoCapitalize="none" 
+            class="input-control jquery__append-out" placeholder="Nhập tên của bạn" 
+            value="{{ old('name') }}"/>
+        </div>
+        @if($errors->has('name'))
+            <div class="for-name text-color-danger text-left">{{ $errors->first('name') }}</div>
+        @endif
+        <div class="input-group">
+            <i class="icon fad fa-envelope"></i>
+            <input name="email" ref="email" type="text" autoCorrect="off" autoCapitalize="none" 
+            class="input-control jquery__append-out" placeholder="Địa chỉ email" 
+            value="{{ old('email') }}"/>
         </div>
         @if($errors->has('email'))
-            <div class="text-color-danger text-left">{{ $errors->first('email') }}</div>
+            <div class="for-email text-color-danger text-left">{{ $errors->first('email') }}</div>
         @endif
         <div class="input-group">
             <i class="icon fad fa-lock-open-alt"></i>
-            <input name="password" type="password" autoCorrect="off" autoCapitalize="none" class="input-control" placeholder="Mật khẩu" />
+            <input id="password" name="password" type="password" autoCorrect="off" autoCapitalize="none" 
+            class="input-control jquery__append-out" placeholder="Mật khẩu" />
         </div>
         @if($errors->has('password'))
-            <div class="text-color-danger text-left">{{ $errors->first('password') }}</div>
+            <div class="for-password text-color-danger text-left">{{ $errors->first('password') }}</div>
         @endif
 
         <div class="input-group">
             <i class="icon fad fa-retweet"></i>
-            <input name="confirm_password" type="password" autoCorrect="off" autoCapitalize="none" class="input-control" placeholder="Nhập lại mật khẩu" />
+            <input name="confirm_password" type="password" autoCorrect="off" autoCapitalize="none" 
+            class="input-control jquery__append-out" placeholder="Nhập lại mật khẩu" />
         </div>
         @if($errors->has('confirm_password'))
-            <div class="text-color-danger text-left">{{ $errors->first('confirm_password') }}</div>
+            <div class="for-confirm_password text-color-danger text-left">{{ $errors->first('confirm_password') }}</div>
         @endif
         
         <div class="user-type position-relative">
@@ -42,11 +61,14 @@
             <i class="user-type__icon far fa-question-square"></i>
             @if(Config::get('constant.ROLE'))
             <label class="container__radio">Đăng bán
-                <input type="radio" name="type" value="{{ Config::get('constant.ROLE.SALER') }}" name="role_id" checked="checked" />
+                <input type="radio" name="role_id" value="{{ Config::get('constant.ROLE.SALER') }}" 
+                @if(old('role_id') != Config::get('constant.ROLE.CUSTOMMER')) checked="checked" @endif
+                name="role_id"  />
                 <span class="checkmark"></span>
             </label>
             <label class="container__radio">Tìm mua
-                <input type="radio" name="type" value="{{ Config::get('constant.ROLE.CUSTOMMER') }}" name="role_id" />
+                <input type="radio" name="role_id" value="{{ Config::get('constant.ROLE.CUSTOMMER') }}" 
+                @if(old('role_id') == Config::get('constant.ROLE.CUSTOMMER')) checked="checked" @endif name="role_id" />
                 <span class="checkmark"></span>
             </label>
             @endif

@@ -68,12 +68,32 @@
         }
         .form-group {
             
+            .error{
+                display: block;
+                text-align: left;
+                text-transform: capitalize;
+                color: $red;
+                font-size: 12px;
+                font-weight: 100;
+                line-height: 1.2;
+            }
         
             .input-group {
                 display: block;
                 margin: 12px 0;
                 position: relative;
                 height: 50px;
+
+                &.input-group-error{
+                    .input-control{
+                        border-bottom: 1px solid $red!important;
+                        color: $red!important;
+                    }
+                    .icon{
+                        color: $red!important;
+                    }
+                }
+
                 &:hover{
 
                     .input-control{
@@ -104,7 +124,7 @@
 
                         border-bottom: 1px solid $green_dark;
                     }
-                    
+
                 }
                 .icon {
                     position: absolute;

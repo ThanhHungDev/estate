@@ -334,3 +334,9 @@ $MAX_XXL: 1400px;  /// 1320px - 1400px
   }
 }
 
+@mixin placeholder {
+  ::-webkit-input-placeholder {@content}
+  :-moz-placeholder           {@content}
+  ::-moz-placeholder          {@content}
+  :-ms-input-placeholder      {@content}  
+}

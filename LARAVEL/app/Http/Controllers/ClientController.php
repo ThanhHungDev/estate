@@ -132,10 +132,6 @@ class ClientController extends Controller
         return view('client.profile', compact(['profile']));
     }
 
-    public function register(){
-
-        return view('client.register');
-    }
 
     public function forgot(){
 

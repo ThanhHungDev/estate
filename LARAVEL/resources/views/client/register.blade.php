@@ -20,9 +20,10 @@
 @section('preload')
     <link rel="preload" as="image" href="{{ asset('/images/cityscape.jpg') }}">
 @endsection
-
-@section('javascripts')
     
+@section('javascripts')
+<script src="{{ asset('js/library/jquery.validate.min.js' . Config::get('app.version')) }}"></script>
+<script src="{{ asset('js/validate.register.user.min.js' . Config::get('app.version')) }}"></script>
 @endsection
 @section('content')
     <div class="content">

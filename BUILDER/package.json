@@ -8,8 +8,8 @@
         "start": "node index.js",
         "watch": "gulp watch",
         "build": "gulp",
-        "build-admin" : "gulp admin",
-        "build-library" : "gulp library"
+        "build-admin": "gulp admin",
+        "build-library": "gulp library"
     },
     "author": "",
     "license": "ISC",

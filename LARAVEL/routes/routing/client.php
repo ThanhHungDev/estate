@@ -25,10 +25,22 @@ Route::group(['prefix' => '/','middleware' => [ 'HTML_MINIFIER']], function () {
     
 
     Route::get('/logout', 'ClientController@login')->name('LOGOUT');
-    Route::get('/register', 'ClientController@register')->name('REGISTER');
+    
     Route::get('/policy', 'ClientController@policy')->name('POLICY');
     Route::get('/term', 'ClientController@term')->name('TERM');
+
+
+
+    //// USER CONTROLLERS
+    Route::get('/register', 'UserController@create')->name('REGISTER');
+    Route::post('/register', 'UserController@store')->name('STORE_REGISTER');
+
     
+    // include_once("saler.php");
+    Route::group(['prefix' => '/saler','middleware' => [ 'HTML_MINIFIER']], function () {
+
+        Route::get('/', 'UserController@profile')->name('SALER_PROFILE');
+    });
 
     Route::get('/article/{slug?}','ClientController@viewPostArticle')->name('VIEW_POST_ARTICLE');
     Route::post('/article/{slug}','ClientController@storePostArticle')->name('STORE_POST_ARTICLE');

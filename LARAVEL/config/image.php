@@ -22,7 +22,8 @@ return [
         'logo'            => [50, 50],
         'post'        => [ 300, 150 ],
         'small'        => [ 120, 80 ],
-    ]
+    ],
+    'AVATAR' => '/images/avatar.jpg'
 
 
 ];
