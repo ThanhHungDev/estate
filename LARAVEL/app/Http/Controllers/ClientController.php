@@ -24,13 +24,7 @@ class ClientController extends Controller
         return view('client.home', compact('categories', 'provinces'));
     }
 
-    /**
-     * login form
-     */
-    public function login(){
-
-        return view('client.login');
-    }
+    
 
 
     public function contact( ){

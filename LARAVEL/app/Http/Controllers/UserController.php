@@ -57,9 +57,10 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function profile()
-    {
-        return Auth::user()->id;
+    public function logout(){
+
+        Auth::logout();
+        return redirect()->route('LOGIN');
     }
 
     /**

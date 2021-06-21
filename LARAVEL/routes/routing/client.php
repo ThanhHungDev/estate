@@ -20,11 +20,10 @@ Route::group(['prefix' => '/','middleware' => [ 'HTML_MINIFIER']], function () {
 
     Route::get('/search', 'ClientController@search')->name('SEARCH');
 
-    Route::get('/login', 'ClientController@login')->name('LOGIN');
-    Route::get('/forgot', 'ClientController@forgot')->name('FORGOT');
-    
+    Route::get('/login', 'LoginController@login')->name('LOGIN');
+    Route::post('/login', 'LoginController@postLogin')->name('POST_LOGIN');
 
-    Route::get('/logout', 'ClientController@login')->name('LOGOUT');
+    Route::get('/forgot', 'ClientController@forgot')->name('FORGOT');
     
     Route::get('/policy', 'ClientController@policy')->name('POLICY');
     Route::get('/term', 'ClientController@term')->name('TERM');
@@ -37,9 +36,14 @@ Route::group(['prefix' => '/','middleware' => [ 'HTML_MINIFIER']], function () {
 
     
     // include_once("saler.php");
-    Route::group(['prefix' => '/saler','middleware' => [ 'HTML_MINIFIER']], function () {
-
-        Route::get('/', 'UserController@profile')->name('SALER_PROFILE');
+    Route::group(['prefix' => '/saler','middleware' => [ 'SALER_LOGGED', 'HTML_MINIFIER' ]], function () {
+        Route::get('/logout', 'UserController@logout')->name('LOGOUT');
+        Route::get('/', 'SalerController@profile')->name('SALER_DASHBOARD');
+    });
+    // include_once("customer.php");
+    Route::group(['prefix' => '/customer','middleware' => [ 'CUSTOMER_LOGGED', 'HTML_MINIFIER' ]], function () {
+        Route::get('/logout', 'UserController@logout')->name('LOGOUT');
+        Route::get('/', 'CustomerController@profile')->name('CUSTOMER_DASHBOARD');
     });
 
     Route::get('/article/{slug?}','ClientController@viewPostArticle')->name('VIEW_POST_ARTICLE');

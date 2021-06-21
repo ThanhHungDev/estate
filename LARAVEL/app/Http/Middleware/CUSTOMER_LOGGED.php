@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 
-class ADMIN_LOGGED
+class CUSTOMER_LOGGED
 {
     /**
      * Handle an incoming request.
@@ -19,7 +19,7 @@ class ADMIN_LOGGED
     {
         if(Auth::check()){
             $user = Auth::user();
-            if( $user->role_id == Config::get('constant.ROLE.ADMIN')){
+            if( $user->role_id == Config::get('constant.ROLE.CUSTOMER')){
 
                 return $next($request);
             }else{
@@ -27,6 +27,6 @@ class ADMIN_LOGGED
             }
         }
 
-        return redirect()->route('ADMIN_LOGIN');
+        return redirect()->route('LOGIN');
     }
 }

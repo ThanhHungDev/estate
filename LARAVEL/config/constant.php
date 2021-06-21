@@ -14,9 +14,9 @@ return [
     |
     */
     'ROLE' => [
-        'ADMIN'     => 1,
+        'ADMIN'    => 1,
         'SALER'    => 2,
-        'CUSTOMMER' => 3,
+        'CUSTOMER' => 3,
     ],
     'GALARIES' => [
         'DEFAULT' => 1,

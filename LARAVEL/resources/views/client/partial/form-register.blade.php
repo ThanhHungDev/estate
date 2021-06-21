@@ -62,13 +62,13 @@
             @if(Config::get('constant.ROLE'))
             <label class="container__radio">Đăng bán
                 <input type="radio" name="role_id" value="{{ Config::get('constant.ROLE.SALER') }}" 
-                @if(old('role_id') != Config::get('constant.ROLE.CUSTOMMER')) checked="checked" @endif
+                @if(old('role_id') != Config::get('constant.ROLE.CUSTOMER')) checked="checked" @endif
                 name="role_id"  />
                 <span class="checkmark"></span>
             </label>
             <label class="container__radio">Tìm mua
-                <input type="radio" name="role_id" value="{{ Config::get('constant.ROLE.CUSTOMMER') }}" 
-                @if(old('role_id') == Config::get('constant.ROLE.CUSTOMMER')) checked="checked" @endif name="role_id" />
+                <input type="radio" name="role_id" value="{{ Config::get('constant.ROLE.CUSTOMER') }}" 
+                @if(old('role_id') == Config::get('constant.ROLE.CUSTOMER')) checked="checked" @endif name="role_id" />
                 <span class="checkmark"></span>
             </label>
             @endif

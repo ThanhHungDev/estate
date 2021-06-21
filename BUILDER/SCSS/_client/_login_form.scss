@@ -49,6 +49,15 @@
         }
         .form-group {
             
+            .error{
+                display: block;
+                text-align: left; 
+                text-transform: capitalize;
+                color: $red;
+                font-size: 12px;
+                font-weight: 100;
+                line-height: 1.2;
+            }
         
             .input-group {
                 display: block;
@@ -64,6 +73,17 @@
                         color: $green_dark;
                     }
                 }
+
+                &.input-group-error{
+                    .input-control{
+                        border-bottom: 1px solid $red!important;
+                        color: $red!important;
+                    }
+                    .icon{
+                        color: $red!important;
+                    }
+                }
+
         
                 .input-control {
                     position: absolute;
