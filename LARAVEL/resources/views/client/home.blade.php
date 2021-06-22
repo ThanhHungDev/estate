@@ -223,7 +223,7 @@
                                     alt="M">
                                 <div class="hover__show-links">
                                     <button type="button" onclick="showLightGaleries(this)"
-                                    class="btn-hero btn__view-detail px-5 py-2 itext-xl">xem ảnh</button>
+                                    class="btn-hero btn__view-detail px-4 py-1 itext-md">xem ảnh</button>
                                 </div>
                                 <div class="counter__galeries">4 <i class="far fa-image"></i> - 20 <i class="far fa-eye"></i></div>
                             </div>
