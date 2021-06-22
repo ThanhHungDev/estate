@@ -37,6 +37,7 @@ SERVER_PHP/public/resizes/*
 /LARAVEL/public/sitemap.xml
 /LARAVEL/public/sitemap/*.xml
 /LARAVEL/public/resizes/*
+/LARAVEL/public/uploads/*
 
 
 

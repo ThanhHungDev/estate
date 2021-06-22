@@ -14,21 +14,9 @@ return [
     | Supported: "gd", "imagick"
     |
     */
-
-    'driver' => 'gd',
-
-    'SIZES' => [
-        'icon'            => [35, 35],
-        'logo'            => [50, 50],
-        'post'        => [ 300, 150 ],
-        'small'        => [ 120, 80 ],
-    ],
-    'AVATAR' => '/images/avatar.jpg',
     'UPLOAD' => [
-        'AVATAR'     => 'avatar',
-        'POST'       => 'post',
-        'BACKGROUND' => 'background',
-        'MIXED'      => 'mixed'
+        'DOC'   => 'doc',
+        'MIXED' => 'mixed'
     ]
 
 
