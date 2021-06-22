@@ -160,7 +160,7 @@
                 </a>
             </div>
         </div>
-        <div class="productmain bg-color-grey-x">
+        {{-- <div class="productmain bg-color-grey-x">
             <h2 class="productmain__title">Bất động sản dành cho bạn</h2>
             <p >Dựa trên ip truy cập vào website mình sẽ detect ra localtion ở đâu, khi đó chúng ta sẽ query bất động sản theo khu vực</p>
             <div class="productmain__container">
@@ -174,7 +174,7 @@
                                     <img alt="image" class="img-responsive" 
                                         src="https://ebudezain.com/resizes/category/fit//upload/images/front-end/thumbnail-gulp.jpg?v=1.1.26">
                                 </a>
-                                {{-- <div class="clearfix visible-sm"></div> --}}
+                                <!-- <div class="clearfix visible-sm"></div> -->
     
                                 <div class="media-body productmain__item-smaller">
                                     
@@ -207,7 +207,7 @@
                     @endfor
                 </div><!-- End row -->
             </div>
-        </div>
+        </div> --}}
         
 
         {{-- danh sách product --}}
@@ -250,7 +250,7 @@
                             </h4>
                             
                             <div class="detail__info media">
-                                <a class="detail__info-img pull-left" onclick="showLightGaleries(this)">
+                                <a class="detail__info-img" onclick="showLightGaleries(this)">
                                     <img class="product-image"
                                         src="{{ Route('IMAGE_RESIZE', [ 'size' => 'small' , 'type' => 'fit', 'imagePath' => "images/productions/multipurpose.jpeg" ]) }}"
                                         alt="M">

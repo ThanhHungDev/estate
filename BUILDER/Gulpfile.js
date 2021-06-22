@@ -65,11 +65,13 @@ gulp.task('sass-admin', function(){
 })
 
 gulp.task('sass-library', function(){
-   buildSass("./SCSS/library.scss")
-   buildSass("./SCSS/animate.scss")
-   buildSass("./SCSS/awesome.scss")
-   buildSass("./SCSS/material.scss")
-   return;
+   
+   return Promise.all([
+      buildSass("./SCSS/library.scss"),
+      buildSass("./SCSS/animate.scss"),
+      buildSass("./SCSS/awesome.scss"),
+      buildSass("./SCSS/material.scss")
+   ])
 })
 
 

@@ -37,6 +37,7 @@
 
   
     <link rel="stylesheet" href="{{ asset('css/library/bootstrap.min.css' . Config::get('app.version'))}}">
+    {{-- <link rel="stylesheet" href="{{ asset('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' . Config::get('app.version'))}}"> --}}
     
 
     <link rel="stylesheet" href="{{ asset('css/animate.min.css' . Config::get('app.version'))}}">

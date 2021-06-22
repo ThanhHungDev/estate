@@ -16,7 +16,7 @@ class CustomerController extends Controller
     {
         $profile = Auth::user();
 
-        return view('client.saler.profile', compact(['profile']));
+        return view('client.customer.profile', compact(['profile']));
     }
 
 }
