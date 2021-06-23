@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\Province;
 use App\Repositories\Province\ProvinceEloquentRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,19 +10,41 @@ use Illuminate\Support\Facades\Gate;
 
 class ClientController extends Controller
 {
+    // public function __construct(){
+        
+    //     if(Auth::check()){
+    //         dd("is_supper_admin");
+    //     }
+
+    //     if(Auth::check()){
+    //         /// có login vào rồi thì check xem có phải admin không?
+    //         if (Gate::allows('is_supper_admin')) {
+    //             dd("is_supper_admin");
+    //         } else {
+    //             dd("is_admin");
+    //         }
+    //     }
+    // }
     /**
      * CLIENT HOME PAGE
      */
     public function index( Request $request){
 
-        $categories = (new Category())->all();
+        $categories = $this->model->createCategoriesModel()->getAll();
         /// get model province
-        $provinces     = (new Province())->get(['id', 'name as text'])->toJson();
+        $provinceModel = new ProvinceEloquentRepository();
+        $provinces     = $provinceModel->get(['id', 'name as text'])->toJson();
 
         return view('client.home', compact('categories', 'provinces'));
     }
 
-    
+    /**
+     * login form
+     */
+    public function login(){
+
+        return view('client.login');
+    }
 
 
     public function contact( ){
@@ -120,6 +140,16 @@ class ClientController extends Controller
         return view('client.home');
     }
 
+    public function profile(){
+        $profile = Auth::user();
+
+        return view('client.profile', compact(['profile']));
+    }
+
+    public function register(){
+
+        return view('client.register');
+    }
 
     public function forgot(){
 

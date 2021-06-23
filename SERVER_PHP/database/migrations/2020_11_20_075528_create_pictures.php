@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
 
 class CreatePictures extends Migration
@@ -16,15 +17,13 @@ class CreatePictures extends Migration
         Schema::create('pictures', function (Blueprint $table) {
             
             $table->increments('id');
-            $table->string('src');
-            $table->string('alt')->nullable();
-            $table->string('key')->unique()->nullable();
-            $table->string('title')->nullable();
-            $table->integer('width')->nullable();
-            $table->integer('height')->nullable();
-            $table->integer('gallery')->nullable();
-            $table->integer('responsive')->default(1);
-            $table->integer('foreign')->nullable();
+            $table->string('src'); /// đường dẫn đến hình ảnh
+            $table->string('alt')->nullable(); /// alt là cái tham số cho seo nên có thể null
+            $table->unsignedInteger('key')->nullable(); /// là id của cái bảng mà nó nắm
+            $table->string('title')->nullable(); /// title là cái tham số cho seo nên có thể null
+            $table->integer('width')->nullable(); /// tham số chiều rộng để đỡ load img js mới biết
+            $table->integer('height')->nullable();/// tham số chiều cao để đỡ load img js mới biết
+            $table->integer('gallery')->default(Config::get("constant.GALARIES.DEFAULT")); /// nằm trong config constant 
             $table->integer('publish')->default(1);
         });
     }

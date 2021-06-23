@@ -21,22 +21,22 @@ class pictures extends Seeder
                     'id'      => 1,
                     'src'     => "/images/home/byer.png",
                     'alt'     => 'Mua bán nhà đất',
-                    'key'     => 1,
-                    'gallery' => Config::get('constant.GALARIES.DEFAULT')
+                    'key'     => SupportString::createSlug("home page mua bán"),
+                    'gallery' => Config::get('image.GALARIES.default')
                 ],
                 [
                     'id'      => 2,
                     'src'     => "/images/home/rent.png",
                     'alt'     => "Thuê, cho thuê nhà đất",
-                    'key'     => 1,
-                    'gallery' => Config::get('constant.GALARIES.DEFAULT')
+                    'key'     => SupportString::createSlug("home page Thuê cho thuê nhà đất"),
+                    'gallery' => Config::get('image.GALARIES.default')
                 ],
                 [
                     'id'      => 3,
                     'src'     => "/images/home/hand.png",
                     'alt'     => "sang nhượng",
-                    'key'     => 1,
-                    'gallery' => Config::get('constant.GALARIES.DEFAULT')
+                    'key'     => SupportString::createSlug("home page sang nhượng"),
+                    'gallery' => Config::get('image.GALARIES.default')
                 ],
             ]
         );

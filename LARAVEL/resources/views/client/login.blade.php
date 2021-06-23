@@ -24,8 +24,7 @@
 @endsection
 
 @section('javascripts')
-<script src="{{ asset('js/library/jquery.validate.min.js' . Config::get('app.version')) }}"></script>
-<script src="{{ asset('js/validate.login.user.min.js' . Config::get('app.version')) }}"></script>
+    
 @endsection
 @section('content')
     <div class="content">

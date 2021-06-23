@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\District;
+use App\Repositories\District\DistrictEloquentRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Config;
 
 class DistrictController extends Controller
 {
@@ -16,7 +17,7 @@ class DistrictController extends Controller
      */
     public function districts(Request $request){
         
-        $districtModel = new District();
+        $districtModel = new DistrictEloquentRepository();
         $districts     = $districtModel ->get(['id', 'name as text', 'province_id as province'])
                                             ->toArray();
         return response()

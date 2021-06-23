@@ -2,14 +2,6 @@
 
 return [
 
-    ##################################################################
-    #################### APP - SEO ###################################
-    ##################################################################
-    'lazyload_base64' => env('APP_LAZYLOAD_BASE64', 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='),
-    'image_error'     => env('APP_IMG_ERROR', '/images/failed.jpg'),
-    ##################################################################
-    ##################################################################
-    ##################################################################
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -21,7 +13,7 @@ return [
     |
     */
 
-    'name'                     => env('APP_NAME', 'Top bất động sản'),
+    'name'                     => env('APP_NAME', 'Laravel'),
     'description'              => env('APP_DESCRIPTION', ''),
     'og_name'                  => env('APP_OG_NAME', ''),
     'og_description'           => env('APP_OG_DESCRIPTION', ''),
@@ -29,8 +21,8 @@ return [
     'version'                  => "?v=" . env('APP_VERSION'),
     'company'                  => env('COMPANY'),
     'company_name'             => env('COMPANY_NAME'),
-    'logo'                     => env('APP_LOGO', '/logo.png'),
-    'image'                    => env('APP_IMAGE', '/image.png'),
+    'logo'                     => env('LOGO'),
+    'image'                    => env('IMAGE'),
     'map_link'                 => env('MAP_LINK'),
     'founder'                  => env('FOUNDER'),
     'company_mail'             => env('COMPANY_MAIL'),
@@ -45,6 +37,10 @@ return [
     'tax_code_date'            => env('TAX_CODE_DATE'),
     'lazyload'                 => env('SRC_LAZYLOAD'),
 
+    
+    
+
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
@@ -57,6 +53,17 @@ return [
     */
 
     'env' => env('APP_ENV', 'production'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application is Production
+    |--------------------------------------------------------------------------
+    |
+    | This value determines the "environment" your application is currently
+    | running in. This may determine how you prefer to configure various
+    | services the application utilizes. Set this in your ".env" file.
+    |
+    */
     'isproduct' => env('APP_ENV', 'production') == 'production',
 
     /*
@@ -111,7 +118,7 @@ return [
     |
     */
 
-    'locale' => 'vi',
+    'locale' => 'en',
 
     /*
     |--------------------------------------------------------------------------
@@ -124,7 +131,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'vi',
+    'fallback_locale' => 'en',
 
     /*
     |--------------------------------------------------------------------------
@@ -137,7 +144,7 @@ return [
     |
     */
 
-    'faker_locale' => 'vi_VI',
+    'faker_locale' => 'en_US',
 
     /*
     |--------------------------------------------------------------------------
@@ -206,8 +213,11 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+
+        Jenssegers\Agent\AgentServiceProvider::class,
         App\Providers\ResponseServiceProvider::class,
 
+        Intervention\Image\ImageServiceProvider::class,
     ],
 
     /*
@@ -240,6 +250,7 @@ return [
         'File' => Illuminate\Support\Facades\File::class,
         'Gate' => Illuminate\Support\Facades\Gate::class,
         'Hash' => Illuminate\Support\Facades\Hash::class,
+        'Http' => Illuminate\Support\Facades\Http::class,
         'Lang' => Illuminate\Support\Facades\Lang::class,
         'Log' => Illuminate\Support\Facades\Log::class,
         'Mail' => Illuminate\Support\Facades\Mail::class,
@@ -260,8 +271,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
 
-
-        
+        'RemoteInfor' => App\Helpers\RemoteInfor::class,
         'SupportString' => App\Helpers\SupportString::class,
         'SupportDB' => App\Helpers\SupportDB::class,
         'SupportHtml' => App\Helpers\SupportHtml::class,
@@ -270,6 +280,10 @@ return [
 
         'Agent' => Jenssegers\Agent\Facades\Agent::class,
         'Image' => Intervention\Image\Facades\Image::class,
+
     ],
 
 ];
+
+
+/// php artisan vendor:publish --provider="Intervention\Image\ImageServiceProviderLaravelRecent"

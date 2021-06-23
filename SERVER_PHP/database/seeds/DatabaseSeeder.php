@@ -15,14 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call(provinces::class);
         $this->call(districts::class);
         $this->call(communes::class);
-        $this->call(options::class);
-        $this->call(permissions::class);
-        $this->call(roles::class);
-        $this->call(permission_roles::class);
         $this->call(categories::class);
-        $this->call(lands::class);
-        $this->call(tags::class);
-        $this->call(galleries::class);
         $this->call(pictures::class);
     }
 }

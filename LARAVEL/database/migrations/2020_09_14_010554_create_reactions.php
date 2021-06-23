@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
 
 class CreateReactions extends Migration
@@ -16,10 +15,12 @@ class CreateReactions extends Migration
     {
         /// lưu cái thông tin người dùng tương tác post
         Schema::create('reactions', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->unsignedInteger('post_id')->unsigned();
             $table->unsignedInteger('user_id')->unsigned();
-            $table->integer('type')->default(Config::get('react.LIKE'));/// thích / không thích / report
+            $table->unsignedInteger('react_id')->unsigned();/// nếu muốn recomment 1 comment
+            $table->integer('type')->unsigned();/// thích / xạo chó / report / rating / comment
+            $table->text('content')->nullable();// 
             $table->timestamps();
         });
     }

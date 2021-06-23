@@ -20,9 +20,7 @@
 @endsection
 
 @section('javascripts')
-@if(!RemoteInfor::isRobot())
 <script src="https://www.google.com/recaptcha/api.js?hl=vi"></script>
-@endif
 @endsection
 @section('content')
     <div class="content">
@@ -51,11 +49,9 @@
                     @if($errors->has('email'))
                         <div class="text-color-danger text-left">{{ $errors->first('email') }}</div>
                     @endif
-                    @if(!RemoteInfor::isRobot())
                     <!-- Google reCaptcha -->
                     <div class="g-recaptcha" id="feedback-recaptcha" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY')  }}"></div>
                     <!-- End Google reCaptcha -->
-                    @endif
                     <button type="submit" class="btn btn-forgot aqua-gradient-rgba">
                         Báo Quản Trị Viên
                     </button>

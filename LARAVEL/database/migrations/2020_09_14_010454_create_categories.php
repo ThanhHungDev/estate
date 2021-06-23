@@ -18,7 +18,10 @@ class CreateCategories extends Migration
             $table->increments('id');
             $table->string('title', 150);
             $table->string('slug', 150);
+            $table->string('excerpt')->nullable();
             $table->text('content')->nullable();
+            $table->integer('sort')->default(1);
+            $table->integer('parent')->nullable();/// multi category
             $table->string('background')->nullable();
             $table->string('description')->nullable();// seo 
             $table->timestamps();

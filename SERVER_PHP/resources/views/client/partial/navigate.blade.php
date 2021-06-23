@@ -36,7 +36,7 @@
         </li>
         @endauth
         @guest
-        <li class="navigate__link">
+        <li class="navigate__link {{ SupportRouter::fillClassActive('active', 'REGISTER') }}">
             <a href="{{ Route('REGISTER') }}">
                 <i class="fal fa-user-plus"></i>
                 <span class="title">đăng ký</span>

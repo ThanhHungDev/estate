@@ -1,28 +1,27 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Config;
 
 class CreateUsersTable extends Migration
 {
     /**
      * Run the migrations.
-     * ALTER TABLE users ADD COLUMN role_id INTEGER default 1;
      *
      * @return void
      */
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('avatar');
+            $table->string('avatar')->default(Config::get("image.AVATAR"));
             $table->string('password');
-            $table->unsignedInteger('role_id')->unsigned();
-            // $table->foreign('role_id')->references('id')->on('roles')->onDelete('CASCADE');
+            $table->integer('role_id')->default(Config::get("constant.ROLE.CUSTOMER"));
             $table->rememberToken();
             $table->timestamps();
         });

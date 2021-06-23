@@ -2,11 +2,8 @@
     <ul class="navplus count">
         @auth
         <li title='tài khoản <strong>{{ Auth::user()->name }}</strong> đang đăng nhập'
-        class="navplus__link simple-tooltip 
-        {{ SupportRouter::fillClassActive('active', 'SALER_DASHBOARD') }}
-        {{ SupportRouter::fillClassActive('active', 'CUSTOMER_DASHBOARD') }}">
-        @php $PROFILE_ROUTE_NAME = Auth::user()->role_id == Config::get('constant.ROLE.SALER') ? 'SALER_DASHBOARD' : 'CUSTOMER_DASHBOARD'; @endphp
-            <a href="{{ Route($PROFILE_ROUTE_NAME) }}">
+        class="navplus__link simple-tooltip {{ SupportRouter::fillClassActive('active', 'PROFILE') }}">
+            <a href="{{ Route('PROFILE') }}">
                 <img class="lazyload" src="{{ Config::get('app.lazyload') }}" data-src="{{ asset(Auth::user()->avatar . Config::get('app.version')) }}" alt="{{ Auth::user()->name }}"/>
                 <span class="title">{{ Auth::user()->name }}</span>
             </a>
@@ -20,7 +17,8 @@
         </li>
         @endauth
         @guest
-        <li
+        
+        <li @if(RemoteInfor::isDesktop()) title="bấm để đăng nhập vào quản lý tài khoản của bạn <br /> khi đăng nhập vào hệ thống bạn sẽ có nhiều đặc quyền hơn" @endif
         class="navplus__link simple-tooltip {{ SupportRouter::fillClassActive('active', 'VIEW_POST_ARTICLE') }}">
             <a href="{{ Route('LOGIN') }}" >
                 <i class="fad fa-sign-in-alt"></i>
@@ -28,13 +26,13 @@
             </a>
         </li>
         
-        {{-- <li
-        class="navplus__link simple-tooltip {{ SupportRouter::fillClassActive('active', 'REGISTER') }}">
+        <li @if(RemoteInfor::isDesktop()) title="đăng kí người bán hàng <br/> ngừoi bán hàng đăng bài và quản lý các bất động sản của mình" @endif
+        class="navplus__link simple-tooltip {{ SupportRouter::fillClassActive('active', 'VIEW_POST_ARTICLE') }}">
             <a href="{{ Route('REGISTER') }}">
                 <i class="fad fa-user-plus"></i>
             <span class="title">đăng ký</span>
             </a>
-        </li> --}}
+        </li>
         @endguest
         <li title="tin nhắn <br/> bạn có thể nhắn tin với người đăng bài"
         class="navplus__link simple-tooltip {{ SupportRouter::fillClassActive('active', 'VIEW_POST_ARTICLE') }}">

@@ -1,52 +1,42 @@
 <?php
-
 return [
+    
     'LOGIN_ADMIN_SUCCESS' => "LOGIN_ADMIN_SUCCESS",
     'LOGIN_ERROR'         => "LOGIN_ERROR",
     'REGISTER_ERROR'      => "LOGIN_ERROR",
     'FORGOT_ERROR'        => "FORGOT_ERROR",
     'SAVE_ERROR'          => "SAVE_ERROR",
     'SAVE_SUCCESS'        => "SAVE_SUCCESS",
-    /*
-    |--------------------------------------------------------------------------
-    | Role of user
-    |--------------------------------------------------------------------------
-    |
-    */
+    'TYPE_SAVE'           => [
+        'PUBLIC'     => 1,
+        'ADMIN_READ' => 2,
+    ],
+    'TYPE_OPTION'   => [
+        'SINGLE' => 1,
+        'TEXT-HTML' => 2
+    ],
+    'TYPE-POST' => [
+        'PAGE' => 2,
+        'POST'  => 1,
+    ],
+    'TYPE-PERMISSION' => [
+        'SUPPER-ADMIN' => 'manager',
+        'ADMIN'        => 'admin',
+        'USER-SALES'   => 'user sales',
+        'USER-SHOPPER' => 'custommer'
+    ],
     'ROLE' => [
-        'ADMIN'    => 1,
-        'SALER'    => 2,
-        'CUSTOMER' => 3,
-    ],
-    'GALARIES' => [
-        'DEFAULT' => 1,
-        'POST'    => 2,
+        'SALER' => 3,
+        'CUSTOMMER' => 4,
     ],
 
-    'DIRECTION' => [
-        'DEFAULT'    => [ 'VALUE' => 1, 'TEXT' => 'Chọn hướng' ],
-        'EAST'       => [ 'VALUE' => 2, 'TEXT' => 'Hướng Đông' ],1,   /// đông
-        'NORTH_EAST' => [ 'VALUE' => 3, 'TEXT' => 'Hướng Đông Bắc' ], // đông bắc
-        'SOUTH_EAST' => [ 'VALUE' => 4, 'TEXT' => 'Hướng Đông Nam' ],   // đông nam
-        'WEST'       => [ 'VALUE' => 5, 'TEXT' => 'Hướng Tây' ],   /// tây
-        'NORTH_WEST' => [ 'VALUE' => 6, 'TEXT' => 'Hướng Tây Bắc' ],   // tây bắc
-        'SOUTH_WEST' => [ 'VALUE' => 7, 'TEXT' => 'Hướng Tây Nam' ],   // tây nam,
-        'SOUTH'      => [ 'VALUE' => 8, 'TEXT' => 'Hướng Nam' ],    /// nam
-        'NORTH'      => [ 'VALUE' => 9, 'TEXT' => 'Hướng Bắc' ],   /// bắc
+    'CACHES' => [
+        'LOCATION' => [
+            'PROVINCE' => 'PROVINCE',
+            'DISTRICT' => 'DISTRICT',
+            'COMMUNE'  => 'COMMUNE'
+        ]
     ],
-    'BALCONY' => [
-        'DEFAULT'    => [ 'VALUE' => 1, 'TEXT' => 'Chọn hướng' ],
-        'EAST'       => [ 'VALUE' => 2, 'TEXT' => 'Hướng Đông' ],1,   /// đông
-        'NORTH_EAST' => [ 'VALUE' => 3, 'TEXT' => 'Hướng Đông Bắc' ], // đông bắc
-        'SOUTH_EAST' => [ 'VALUE' => 4, 'TEXT' => 'Hướng Đông Nam' ],   // đông nam
-        'WEST'       => [ 'VALUE' => 5, 'TEXT' => 'Hướng Tây' ],   /// tây
-        'NORTH_WEST' => [ 'VALUE' => 6, 'TEXT' => 'Hướng Tây Bắc' ],   // tây bắc
-        'SOUTH_WEST' => [ 'VALUE' => 7, 'TEXT' => 'Hướng Tây Nam' ],   // tây nam,
-        'SOUTH'      => [ 'VALUE' => 8, 'TEXT' => 'Hướng Nam' ],    /// nam
-        'NORTH'      => [ 'VALUE' => 9, 'TEXT' => 'Hướng Bắc' ],   /// bắc
-    ],
-
-
     'RANGE-PRICE' => [
         '1'  => [ 'text' => 'Khoảng giá', 'min' => null, 'max' => null ],
         '2'  => [ 'text' => '&lt; 500 triệu', 'min' => null, 'max' => null ],
@@ -72,6 +62,17 @@ return [
         '9'  => [ 'text' => '300 - 500 m2', 'min' => 300, 'max' => 500 ],
         '10' => [ 'text' => '&gt;= 500 m2', 'min' => 500, 'max' => null ],
     ],
+    'DIRECTION' => [
+        "0" => 'Chọn hướng',
+        "1" => 'Đông',
+        "2" => 'Tây',
+        "3" => 'Nam',
+        "4" => 'Bắc',
+        "5" => 'Đông-Bắc',
+        "6" => 'Tây-Bắc',
+        "7" => 'Tây-Nam',
+        "8" => 'Đông-Nam',
+    ],
     'FACADE' => [
         '0' => 'Chọn diện tích mặt tiền',
         '1' => '3 - 4 m',
@@ -88,3 +89,4 @@ return [
         '12' => '>= 50 m'
     ],
 ];
+

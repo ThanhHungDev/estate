@@ -14,8 +14,7 @@ class CreateDistricts extends Migration
     public function up()
     {
         Schema::create('districts', function (Blueprint $table) {
-            $table->id();
-            
+            $table->increments('id');
             $table->string('name', 150);
             $table->string('slug', 150);
             $table->string('latitude');/// google map 

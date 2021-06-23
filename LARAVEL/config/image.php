@@ -16,21 +16,17 @@ return [
     */
 
     'driver' => 'gd',
-
-    'SIZES' => [
-        'icon'            => [35, 35],
-        'logo'            => [50, 50],
-        'post'        => [ 300, 150 ],
-        'small'        => [ 120, 80 ],
+    
+    'GALARIES' => [
+        "default" => 1 ,
+        "posts" => 2,
     ],
-    'AVATAR' => '/images/avatar.jpg',
-    'UPLOAD' => [
-        'AVATAR'     => 'avatar',
-        'POST'       => 'post',
-        'BACKGROUND' => 'background',
-        'MIXED'      => 'mixed'
+    'SIZES' => [
+        'icon' => [35, 35],
+        'logo' => [50, 50],
+        'thumbnail' => [150, 150],
+        'medium' => [300, 300],
+        'largest' => [600, 600],
     ]
 
-
 ];
-

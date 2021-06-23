@@ -29,16 +29,15 @@
     <link rel="preload" as="script" href="{{ asset('js/library/tipped.min.js' . Config::get('app.version')) }}">
     <link rel="preload" as="script" href="{{ asset('js/library/modal.jquery.min.js' . Config::get('app.version')) }}">
     {{-- <link rel="preload" as="script" href="{{ asset('js/library/slick.min.js' . Config::get('app.version')) }}"> --}}
-    <link rel="preload" as="script" href="{{ asset('js/app.min.js' . Config::get('app.version')) }}">
+    <link rel="preload" as="script" href="{{ asset('js/client/app.min.js' . Config::get('app.version')) }}">
     
     {{-- <script rel="preload" as="script" src='{{ asset('js/library/jquery.min.js' . Config::get('app.version')) }}'></script> --}}
-    {{-- <script rel="preload" as="script" src="{{ asset('js/app.min.js' . Config::get('app.version')) }}"></script> --}}
+    {{-- <script rel="preload" as="script" src="{{ asset('js/client/app.min.js' . Config::get('app.version')) }}"></script> --}}
     @yield('preload')
 
   
-    <link rel="stylesheet" href="{{ asset('css/library/bootstrap.min.css' . Config::get('app.version'))}}">
-    {{-- <link rel="stylesheet" href="{{ asset('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' . Config::get('app.version'))}}"> --}}
-    
+
+
 
     <link rel="stylesheet" href="{{ asset('css/animate.min.css' . Config::get('app.version'))}}">
     <link rel="stylesheet" href="{{ asset('css/awesome.min.css' . Config::get('app.version'))}}">
@@ -50,7 +49,6 @@
     
     <script async='async' defer='defer' src='{{ asset('js/library/lazysizes.min.js' . Config::get('app.version')) }}'></script>
     
-    <link rel="icon" type="image/png" href="{{ asset('favicon.ico' . Config::get('app.version')) }}">
     <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('/favicon/apple-icon-57x57.png' . Config::get('app.version')) }}">
     <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('/favicon/apple-icon-60x60.png' . Config::get('app.version')) }}">
     <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('/favicon/apple-icon-72x72.png' . Config::get('app.version')) }}">
@@ -58,19 +56,16 @@
     <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('/favicon/apple-icon-114x114.png' . Config::get('app.version')) }}">
     <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('/favicon/apple-icon-120x120.png' . Config::get('app.version')) }}">
     <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('/favicon/apple-icon-144x144.png' . Config::get('app.version')) }}">
-    <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('/favicon/apple-icon-152x152.png' . Config::get('app.version')) }}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('/favicon/apple-icon-152x152.pn' . Config::get('app.version')) }}g">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/favicon/apple-icon-180x180.png' . Config::get('app.version')) }}">
     <link rel="icon" type="image/png" sizes="192x192"  href="{{ asset('/favicon/android-icon-192x192.png' . Config::get('app.version')) }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('/favicon/favicon-32x32.png' . Config::get('app.version')) }}">
     <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('/favicon/favicon-96x96.png' . Config::get('app.version')) }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/favicon/favicon-16x16.png' . Config::get('app.version')) }}">
-    <link rel="manifest" href="{{ asset('/favicon/manifest.json' . Config::get('app.version')) }}">
+    <link rel="manifest" href="/favicon/manifest.json">
     <meta name="msapplication-TileColor" content="#62854F">
-    <meta name="msapplication-TileImage" content="{{ asset('/favicon/ms-icon-144x144.png' . Config::get('app.version')) }}">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#62854F">
-    {{-- dành cho bing search --}}
-    <link rel="icon" type="image/x-icon" href="{{ asset('/favicon/favicon.ico' . Config::get('app.version')) }}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/favicon/favicon.ico' . Config::get('app.version')) }}"/>
 
     {{-- <script>
         
@@ -86,6 +81,10 @@
         const MAP_LAT  = "{{ Config::get('app.map_lat') }}";
         const MAP_LONG = "{{ Config::get('app.map_long') }}";
         const GOOGLE_PLACES_API = "{{ env('GOOGLE_PLACES_API') }}";
+
+        const IS_DESKTOP = parseInt("{{ RemoteInfor::isDesktop() ? 1 : 0 }}");
+        const IS_MOBILE  = parseInt("{{ RemoteInfor::isMobile() ? 1 : 0 }}");
+        const IS_ROBOT   = parseInt("{{ RemoteInfor::isRobot() ? 1 : 0 }}");
     </script>
 
     {{-- @php $analatic_key = Config::get("app.analatic") @endphp
@@ -116,7 +115,7 @@
     <script src="{{ asset('js/library/tipped.min.js' . Config::get('app.version')) }}"></script>
     <script src="{{ asset('js/library/modal.jquery.min.js' . Config::get('app.version')) }}"></script>
     {{-- <script src="{{ asset('js/library/slick.min.js' . Config::get('app.version')) }}"></script> --}}
-    <script src="{{ asset('js/app.min.js' . Config::get('app.version')) }}"></script>
+    <script src="{{ asset('js/client/app.min.js' . Config::get('app.version')) }}"></script>
     
     @yield('javascripts')
     @yield('make-up-data')

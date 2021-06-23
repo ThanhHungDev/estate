@@ -34,8 +34,4 @@ Route::group([ 'prefix'=>'/v1' ], function () {
     ->name('COMMUNES');
     // ->middleware([ 'CACHE_LOCATIONS']);
 
-    // Lấy danh sách districts
-    Route::post('file', 'Api\FileController@store')
-    ->name('API_UPLOAD_FILE');
-    // ->middleware([ 'CACHE_LOCATIONS']);
 });

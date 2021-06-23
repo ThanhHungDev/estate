@@ -15,7 +15,7 @@ class CreateProvinces extends Migration
     public function up()
     {
         Schema::create('provinces', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('name', 150);
             $table->string('slug', 150);
             $table->string('latitude');/// google map 
