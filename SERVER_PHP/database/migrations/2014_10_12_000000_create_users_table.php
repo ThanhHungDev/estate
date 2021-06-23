@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('avatar')->default(Config::get("image.AVATAR"));
+            $table->string('background')->default(Config::get("image.BACKGROUND"));
             $table->string('password');
             $table->integer('role_id')->default(Config::get("constant.ROLE.CUSTOMER"));
             $table->rememberToken();

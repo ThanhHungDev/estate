@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 
 class users extends Seeder
@@ -20,7 +21,7 @@ class users extends Seeder
                     'email'      => 'thanhhung.code@gmail.com',
                     'avatar'     => '/images/avatar.jpg',
                     'password'   => bcrypt('123456'),
-                    'role_id'    => 1,
+                    'role_id'    => Config::get("constant.ROLE.ADMIN"),
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s')
                 ],
@@ -29,7 +30,7 @@ class users extends Seeder
                     'email'      => 'truongpham260620@gmail.com',
                     'avatar'     => '/images/avatar.jpg',
                     'password'   => bcrypt('123456'),
-                    'role_id'    => 2,
+                    'role_id'    => Config::get("constant.ROLE.CUSTOMER"),
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s')
                 ],
@@ -38,7 +39,7 @@ class users extends Seeder
                     'email'      => 'userpost@gmail.com',
                     'avatar'     => '/images/avatar.jpg',
                     'password'   => bcrypt('123456'),
-                    'role_id'    => 3,
+                    'role_id'    => Config::get("constant.ROLE.SALER"),
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s')
                 ],
@@ -47,7 +48,7 @@ class users extends Seeder
                     'email'      => 'usercustom@gmail.com',
                     'avatar'     => '/images/avatar.jpg',
                     'password'   => bcrypt('123456'),
-                    'role_id'    => 2,
+                    'role_id'    => Config::get("constant.ROLE.CUSTOMER"),
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s')
                 ]

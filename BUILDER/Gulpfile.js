@@ -36,7 +36,7 @@ let buildSass = src => {
    }))
    // minify output directory
    .pipe(rename({ suffix: '.min' }))
-   .pipe(gulp.dest(path.join(__dirname, '/../LARAVEL/public/css')))
+   .pipe(gulp.dest(path.join(__dirname, '/../SERVER_PHP/public/css')))
    // browser sync
    .pipe(livereload())
 }
@@ -52,7 +52,7 @@ let buildJs = src => {
       noSource: true
    }))
    // .pipe(rename({ suffix: '.min' }))
-   .pipe(gulp.dest(path.join(__dirname, '/../LARAVEL/public/js/')))
+   .pipe(gulp.dest(path.join(__dirname, '/../SERVER_PHP/public/js/')))
    .pipe(livereload())
 }
 

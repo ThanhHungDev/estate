@@ -20,59 +20,31 @@
 @endsection
 
 @section('content')
-    <div class="content">
-        <div class="profile custommer">
-            <div class="row-hero">
-                <div class="col-hero-12">
-                    <div class="profile__wrapper overflow-hidden">
-                        <div class="profile__head">
-                            <div class="pr-3 text-center">
-                                <img src="{{ $profile->avatar }}" alt="{{ $profile->email }}" 
-                                    class="avatar rounded mb-2 img-thumbnail"/>
-                                <a href="#" class="btn btn-outline-dark btn-sm btn-block">chỉnh trang cá nhân</a>
-                            </div>
-                            <div class="profile__head-body">
-                                <h4 class="my-0">{{ $profile->name }}</h4>
-                                <p class="small hidden-hero-decrement-md">
-                                    <i class="fal fa-address-card"></i>
-                                    {{ $profile->email }}
-                                </p>
-                            </div>
-                            <div class="profile__right">
-                                <a href="#" class="btn btn-outline-dark btn-sm btn-block">
-                                    <i class="fas fa-camera"></i>
-                                    <span class="hidden-hero-decrement-md">Chỉnh sửa ảnh bìa</span>
-                                </a>
-                            </div>
+    <div class="content custommer profile">
+        <div class="container profile__head">
+            <div class="profile__head-img" style="
+            background-image: linear-gradient(150deg, rgba(63, 174, 255, .3)15%, rgba(63, 174, 255, .3)70%, rgba(63, 174, 255, .3)94%), 
+            url({{ $profile->background }});"></div>
+            <div class="card social-prof">
+                <div class="card-body">
+                    <div class="wrapper">
+                        <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="" class="user-profile">
+                        <h3>Jane Smith</h3>
+                        <p>Web Developer</p>
+                    </div>
+                    <div class="row ">
+                        <div class="col-lg-12">
+                            <ul class=" nav nav-tabs justify-content-center s-nav">
+                                <li><a class="active" href="#">Timeline</a></li>
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">Friends</a></li>
+                                <li><a href="#">Photos</a></li>
+                                <li><a href="#">Videos</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="bg-light p-4 d-flex justify-content-end text-center bg-red">
-            <ul class="list-inline mb-0">
-                <li class="list-inline-item">
-                    <h5 class="font-weight-bold mb-0 d-block">215</h5>
-                    <small class="text-muted">
-                        <i class="fas fa-image mr-1"></i>
-                        Photos
-                    </small>
-                </li>
-                <li class="list-inline-item">
-                    <h5 class="font-weight-bold mb-0 d-block">745</h5>
-                    <small class="text-muted">
-                        <i class="fas fa-user mr-1"></i>
-                        Followers
-                    </small>
-                </li>
-                <li class="list-inline-item">
-                    <h5 class="font-weight-bold mb-0 d-block">340</h5>
-                    <small class="text-muted">
-                        <i class="fas fa-user mr-1"></i>
-                        Following
-                    </small>
-                </li>
-            </ul>
         </div>
     </div>
 @endsection

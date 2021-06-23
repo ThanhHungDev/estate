@@ -23,7 +23,8 @@ return [
         'post'        => [ 300, 150 ],
         'small'        => [ 120, 80 ],
     ],
-    'AVATAR' => '/images/avatar.jpg',
+    'AVATAR' => env('AVATAR_DEFAULT', '/images/avatar.jpg'),
+    'BACKGROUND' => env('BACKGROUND_DEFAULT', '/images/background/flores-amarillas-wallpaper.jpeg'),
     'UPLOAD' => [
         'AVATAR'     => 'avatar',
         'POST'       => 'post',

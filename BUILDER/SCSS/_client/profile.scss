@@ -1,57 +1,15 @@
 .profile{
-    
-    padding: 0 15px;
-    @include render-gradient(0deg, rgba(248, 255, 234, 0.5), rgba(64, 88, 68, 0.9));
 
-    &__wrapper{
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 0.5rem;
-        transform: translateY(2rem);
-        position: relative;
-    }
     &__head{
-        display: flex;
-        align-items: center;
-        flex-direction: column;
+        @include render-gradient(0deg, rgba(100, 147, 88, 0.1), rgba(100, 147, 88, 0.5));
 
-        &-body{
-            flex: 1;
-            text-align: center;
-        }
-        .avatar{
-            width: 90px;
+        &-img{
+            height: 150px;
+            background-size: cover;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            @include Screen(MD){ height: 200px; }
+            @include Screen(Lg){ height: 280px; }
         }
     }
-    &__right{
-        position: absolute;
-        top: 60%;
-        right: 0;
-    }
-}
-
-@include Screen(MD){
-    .profile{
-    
-        &__wrapper{
-            transform: translateY(4rem);
-        }
-        &__head{
-            align-items: center;
-            flex-direction: row;
-
-            &-body{
-                text-align: left;
-            }
-            .avatar{
-                width: 130px;
-            }
-        }
-        &__right{
-            position: unset;
-            top: unset;
-            right: unset;
-        }
-    }
-    
 }
