@@ -544,6 +544,14 @@ $hidden_screens: ( XSM, XS, SM, MD, LG, XL, XXL ) !default;
     display: none!important;
     @include Screen($name) { display: initial!important; }
   }
+  .col-reset-px-0-#{to-lower-case(#{$name})} {
+    padding-left: 0;
+    padding-right: 0;  
+    @include Screen($name) { 
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }
 }
 
 

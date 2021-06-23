@@ -67,9 +67,13 @@
         }
     }
     .card {
-        margin-bottom: 35px;
+        border-radius: 0;
+        margin-bottom: 5px;
         box-shadow: 0 10px 20px 0 rgba(26, 44, 57, 0.14);
         border: none;
+        @include Screen(SM){ margin-bottom: 10px; }
+        @include Screen(MD){ margin-bottom: 15px; }
+        @include Screen(LG){ margin-bottom: 25px; }
     }
 
     /*social */

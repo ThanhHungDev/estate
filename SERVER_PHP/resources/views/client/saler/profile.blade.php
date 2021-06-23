@@ -54,7 +54,7 @@
             <div class="container">
             
                 <div class="row">
-                    <div class="col-lg-3">
+                    <div class="col-reset-px-0-sm col-lg-3">
                         <div class="card">
                             <div class="card-body">
                                 <div class="h5 text-blue">@JaneSmith</div>
@@ -109,7 +109,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 gedf-main">
+                    <div class="col-reset-px-0-sm col-lg-6 gedf-main">
                         <!--- \\\\\\\Post-->
                         <div class="card social-timeline-card">
                             <div class="card-header">
@@ -301,7 +301,7 @@
                         </div>
                         <!-- Post /////-->
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-reset-px-0-sm col-lg-3">
                         <div class="card social-timeline-card">
                             <div class="card-body">
                                 <h5 class="card-title">People you may know</h5>
