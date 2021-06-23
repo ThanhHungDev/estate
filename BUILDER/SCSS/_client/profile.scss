@@ -66,6 +66,11 @@
             border: none;
         }
     }
+    .card {
+        margin-bottom: 35px;
+        box-shadow: 0 10px 20px 0 rgba(26, 44, 57, 0.14);
+        border: none;
+    }
 
     /*social */
     .card-one {
@@ -74,11 +79,7 @@
         background: #fff;
         box-shadow: 0 10px 7px -5px rgba(0, 0, 0, 0.4);
     }
-    .card {
-        margin-bottom: 35px;
-        box-shadow: 0 10px 20px 0 rgba(26, 44, 57, 0.14);
-        border: none;
-    }
+    
 
     .follower-wrapper li {
         list-style-type: none;
