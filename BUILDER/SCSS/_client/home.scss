@@ -263,7 +263,9 @@
 
 
 .productmain{
-    padding: 0 3%;
+    padding: 0 15px;
+    @include Screen(MD){ padding: 0 3%; }
+
     &__title{
         padding-top: 30px;
         font-size: 28px;
@@ -367,7 +369,8 @@
     max-width: 1500px;
     margin: 0 auto;
     background-color:$gray-300;
-    padding: 40px 3%;
+    padding: 40px 15px;
+    @include Screen(MD){ padding: 40px 3%; }
 
     &-fixrow{
         margin: 0 -5px;
