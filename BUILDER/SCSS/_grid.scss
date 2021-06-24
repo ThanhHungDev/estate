@@ -82,3 +82,15 @@ $containers-max-width: (
         }
     }
 }
+
+@for $i from 1 through 10 {
+
+    .text-truncate-#{$i}line {
+
+        -webkit-line-clamp: $i;
+        overflow : hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+    }
+}

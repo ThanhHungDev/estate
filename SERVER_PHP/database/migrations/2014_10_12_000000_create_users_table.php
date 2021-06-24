@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('background')->default(Config::get("image.BACKGROUND"));
             $table->string('password');
             $table->integer('role_id')->default(Config::get("constant.ROLE.CUSTOMER"));
+            $table->integer('sale_type')->default(Config::get("constant.SALE_TYPE.DEFAULT"));
             $table->rememberToken();
             $table->timestamps();
         });

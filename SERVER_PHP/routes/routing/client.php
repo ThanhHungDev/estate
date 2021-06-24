@@ -43,6 +43,8 @@ Route::group(['prefix' => '/','middleware' => [ 'HTML_MINIFIER']], function () {
     Route::group(['prefix' => '/customer','middleware' => [ 'CUSTOMER_LOGGED', 'HTML_MINIFIER' ]], function () {
         Route::get('/logout', 'UserController@logout')->name('LOGOUT');
         Route::get('/', 'CustomerController@profile')->name('CUSTOMER_DASHBOARD');
+
+        Route::get('/information', 'CustomerController@profile')->name('CUSTOMER_INFORMATION');
     });
 
     Route::get('/article/{slug?}','ClientController@viewPostArticle')->name('VIEW_POST_ARTICLE');

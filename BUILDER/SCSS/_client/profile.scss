@@ -76,6 +76,48 @@
         @include Screen(LG){ margin-bottom: 25px; }
     }
 
+    .information{
+
+        &__card{
+            
+            &-body{
+                flex: 1 1 auto;
+                min-height: 1px;
+                padding: 5px 10px 15px;
+
+                @include Screen(MD){ padding: 1.25rem 1rem 10px; }
+            }
+            &-group{
+                display: flex;
+                flex-direction: row;
+                margin: 0;
+                padding: 10px;
+            }
+            &-item{
+                padding: 15px 0 0;
+                flex: 1;
+                display: block;
+                font-size: 14px;
+                text-align: center;
+                border-top: 1px solid $gray-400;
+            }
+        }
+
+        &__title{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 16px;
+            font-weight: 700;
+            border-bottom: 1px solid $gray-400;
+            margin-bottom: 10px;
+            @include Screen(MD){ margin-bottom: 18px; }
+        }
+    }
+
+
+
+
     /*social */
     .card-one {
         position: relative;

@@ -54,26 +54,37 @@
             <div class="container">
             
                 <div class="row">
-                    <div class="col-reset-px-0-sm col-lg-3">
+                    <div class="information timeline__information col-reset-px-0-sm col-lg-3">
                         <div class="card">
-                            <div class="card-body">
-                                <div class="h5 text-blue">@JaneSmith</div>
-                                <div class="h7 "><strong>Name :</strong> Jane Smith</div>
-                                <div class="h7"><strong>About :</strong> Developer of web applications, JavaScript, PHP, Java, Python, Ruby, Java, Node.js, etc.
+                            <div class="information__card-body">
+                                <h5 class="information__title">
+                                    <span class="d-inline-block">Thông Tin cơ bản</span>
+                                    <a href="{{ Route('CUSTOMER_INFORMATION') }}" class="btn btn-edit text-blue"><i class="fad fa-edit"></i></a>
+                                </h5>
+                                <div class="h6 text-blue">{{ $profile->getNameTagLimited() }}</div>
+                                <div class="h7 text-truncate">
+                                    <strong>Chức vụ: </strong>
+                                    <span class="text-color-pink">{{ $profile->getTypeUser() }}</span>
+                                </div>
+                                <div class="h7 text-truncate-2line">
+                                    <strong>Giới Thiệu: </strong>
+                                    <span  class="text-color-grey">Developer of web applications, JavaScript, PHP, Java, Python, Ruby, Java, Node.js, etc.</span>
                                 </div>
                             </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">
-                                    <div class="h6 text-muted">Followers</div>
-                                    <div class="h5">5.2342</div>
+                            <ul class="information__card-group">
+                                <li class="information__card-item">
+                                    <div class=" text-muted"><i class="text-blue fas fa-thumbs-up"></i> Thích</div>
+                                    <div class="">100 like</div>
                                 </li>
-                                <li class="list-group-item">
-                                    <div class="h6 text-muted">Following</div>
-                                    <div class="h5">6758</div>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="h6 text-muted">Themes</div>
-                                    <div class="h5">6758</div>
+                                <li class="information__card-item">
+                                    <div class=" text-muted"><i class="text-color-warning-color-dark fas fa-percentage"></i> Đánh Giá</div>
+                                    <div class=" rating">
+                                        <span class="item-star fa fa-star text-color-warning"></span>
+                                        <span class="item-star fa fa-star text-color-warning"></span>
+                                        <span class="item-star fa fa-star text-color-warning"></span>
+                                        <span class="item-star fa fa-star"></span>
+                                        <span class="item-star fa fa-star"></span>
+                                    </div>
                                 </li>
                             </ul>
                         </div>
