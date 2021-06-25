@@ -19,6 +19,16 @@
     <meta name="twitter:image" content="{{ Config::get("app.image") }}" />
 @endsection
 
+
+@section('stylesheets')
+    <link type="text/css" rel="stylesheet" href="{{ asset('css/library/lightgallery.css' . Config::get('app.version')) }}" />
+@endsection
+@section('javascripts')
+    <script type="text/javascript" src="{{ asset('js/library/lightgallery.min.js' . Config::get('app.version')) }}"></script>
+    <script type="text/javascript">
+        lightGallery(document.getElementById('photos__responsive-images')); 
+    </script>
+@endsection
 @section('content')
     <div class="content custommer">
         <div class="timeline">
@@ -58,7 +68,7 @@
                         <div class="card">
                             <div class="information__card-body">
                                 <h5 class="information__title">
-                                    <span class="d-inline-block">Thông Tin cơ bản</span>
+                                    <span class="text-capitalize d-inline-block">Thông Tin cơ bản</span>
                                     <a href="{{ Route('CUSTOMER_INFORMATION') }}" class="btn btn-edit text-blue"><i class="fad fa-edit"></i></a>
                                 </h5>
                                 <div class="h6 text-blue">{{ $profile->getNameTagLimited() }}</div>
@@ -89,33 +99,46 @@
                             </ul>
                         </div>
                         <div class="card">
-                            <div class="card-body">
-                                <h3 class="card-title">Latest Photos</h3>
-                                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                                    <ol class="carousel-indicators">
-                                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class=""></li>
-                                        <li data-target="#carouselExampleIndicators" data-slide-to="1" class=""></li>
-                                        <li data-target="#carouselExampleIndicators" data-slide-to="2" class="active"></li>
-                                    </ol>
-                                    <div class="carousel-inner">
-                                        <div class="carousel-item">
-                                            <img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="d-block w-100" alt="...">
-                                        </div>
-                                        <div class="carousel-item">
-                                            <img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="d-block w-100" alt="...">
-                                        </div>
-                                        <div class="carousel-item active">
-                                            <img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="d-block w-100" alt="...">
-                                        </div>
+                            <div class="information__card-body">
+                                <h5 class="information__title">
+                                    <span class="text-capitalize d-inline-block">Hình ảnh đăng tải</span>
+                                    <a href="{{ Route('CUSTOMER_INFORMATION') }}" class="btn btn-edit text-blue">
+                                        <i class="fad fa-camera-retro"></i>
+                                    </a>
+                                </h5>
+                                <!-- above 757px default href/data-src will be used -->  
+                                <div class="information__photo">
+                                    <div id="photos__responsive-images" class="information__photo-group">
+                                        <a class="information__photo-item" href="{{ asset("/images/productions/multipurpose.jpeg") }}"
+                                            data-responsive="
+                                            img/2-375.jpg 375, 
+                                            img/2-480.jpg 480, 
+                                            img/2-757.jpg 757">
+                                            <img 
+                                                src="{{ asset("/images/productions/multipurpose.jpeg") }}"
+                                                onerror="this.onerror=null;this.src='{{ asset(Config::get('app.image_error')) }}';" />
+                                        </a>
+                                        <a class="information__photo-item" href="https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1568814785/photostream-photos/DSC05621_zgtcco.jpg"
+                                            data-responsive="
+                                                img/2-375.jpg 375, 
+                                                img/2-480.jpg 480, 
+                                                img/2-757.jpg 757">
+                                            <img 
+                                                src="https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1568814785/photostream-photos/DSC05621_zgtcco.jpg"
+                                                onerror="this.onerror=null;this.src='{{ asset(Config::get('app.image_error')) }}';" />
+                                        </a>
+                                        <a class="information__photo-item" href="https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1568814785/photostream-photos/DSC05513_gfbiwi.jpg"
+                                            data-responsive="
+                                                img/2-375.jpg 375, 
+                                                img/2-480.jpg 480, 
+                                                img/2-757.jpg 757">
+                                            <img 
+                                                src="https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1568814785/photostream-photos/DSC05513_gfbiwi.jpg"
+                                                onerror="this.onerror=null;this.src='{{ asset(Config::get('app.image_error')) }}';" />
+                                        </a>
+                                        <!--  Adding an empty <li> here so the final photo doesn't stretch like crazy. Try removing it and see what happens!  -->
+                                        {{-- <li></li> --}}
                                     </div>
-                                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="sr-only">Previous</span>
-                                    </a>
-                                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="sr-only">Next</span>
-                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -313,9 +336,14 @@
                         <!-- Post /////-->
                     </div>
                     <div class="col-reset-px-0-sm col-lg-3">
-                        <div class="card social-timeline-card">
-                            <div class="card-body">
-                                <h5 class="card-title">People you may know</h5>
+                        <div class="card">
+                            <div class="information__card-body">
+                                <h5 class="information__title">
+                                    <span class="text-capitalize d-inline-block">Tin Nhắn</span>
+                                    <a href="{{ Route('CUSTOMER_INFORMATION') }}" class="btn btn-edit text-blue">
+                                        <i class="fal fa-comment-alt-plus"></i>
+                                    </a>
+                                </h5>
                                 <ul class="friend-list">
                                     <li>
                                         <div class="left">
