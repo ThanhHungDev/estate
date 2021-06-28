@@ -7,10 +7,11 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Config;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -18,7 +19,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'email',
+        'password',
     ];
 
     /**
@@ -27,7 +30,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
     /**
@@ -76,4 +80,31 @@ class User extends Authenticatable
     //         return true;
     //     return false;
     // }
+
+    public function getNameTagLimited(){
+        return '@' . str_replace(' ', '_', $this->name);
+    }
+
+    public function getTypeUser(){
+        if( $this->role_id == Config::get('constant.ROLE.CUSTOMER') ){
+            /// người mua
+            return 'Khách hàng';
+        }
+        if( $this->role_id == Config::get('constant.ROLE.ADMIN') ){
+            return 'Admin';
+        }
+        if( $this->role_id == Config::get('constant.ROLE.SALER') ){
+
+            if( $this->role_id == Config::get('constant.SALE_TYPE.DEFAULT') ){
+                return 'Chưa thiết lập';
+            }
+            if( $this->role_id == Config::get('constant.SALE_TYPE.STAFF') ){
+                return 'Nhân viên bds';
+            }
+            if( $this->role_id == Config::get('constant.SALE_TYPE.OWNER') ){
+                return 'Chủ nhà';
+            }
+        }
+        return null;
+    }
 }
