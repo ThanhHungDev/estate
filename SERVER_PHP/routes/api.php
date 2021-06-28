@@ -25,17 +25,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group([ 'prefix'=>'/v1' ], function () {
 
     // Lấy danh sách districts
-    Route::get('districts', 'Api\DistrictController@districts')
+    Route::get('districts', 'App\Http\Controllers\Api\DistrictController@districts')
     ->name('DISTRICTS');
     // ->middleware([ 'CACHE_LOCATIONS']);
 
     // Lấy danh sách districts
-    Route::get('communes', 'Api\CommuneController@communes')
+    Route::get('communes', 'App\Http\Controllers\Api\CommuneController@communes')
     ->name('COMMUNES');
     // ->middleware([ 'CACHE_LOCATIONS']);
 
     // Lấy danh sách districts
-    Route::post('file', 'Api\FileController@store')
+    Route::post('file', 'App\Http\Controllers\Api\FileController@store')
     ->name('API_UPLOAD_FILE');
     // ->middleware([ 'CACHE_LOCATIONS']);
 });

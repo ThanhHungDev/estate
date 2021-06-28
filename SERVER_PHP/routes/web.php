@@ -13,15 +13,15 @@ use Jenssegers\Agent\Agent;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('resizes/{size}/{type}/{imagePath?}', 'ImageController@resize')
+Route::get('resizes/{size}/{type}/{imagePath?}', 'App\Http\Controllers\ImageController@resize')
 ->where('imagePath', '(.*)')
 ->name('IMAGE_RESIZE');
 
-Route::get('compress/{quality}/{imagePath}', 'ImageController@encode')
+Route::get('compress/{quality}/{imagePath}', 'App\Http\Controllers\ImageController@encode')
 ->where('imagePath', '(.*)')
 ->name('IMAGE_COMPRESS');
 
-Route::get('resize-compress/{size}/{type}/{quality}/{ext}/{imagePath}', 'ImageController@resize_compress')
+Route::get('resize-compress/{size}/{type}/{quality}/{ext}/{imagePath}', 'App\Http\Controllers\ImageController@resize_compress')
 ->where('imagePath', '(.*)')
 ->name('IMAGE_RESIZE_COMPRESS');
 
