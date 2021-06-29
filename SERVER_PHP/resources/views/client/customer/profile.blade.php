@@ -345,87 +345,19 @@
                                     </a>
                                 </h5>
                                 <ul class="friend-list">
-                                    <li>
-                                        <div class="left">
-                                            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                                    @if(!$friends->isEmpty())
+                                    @foreach ($friends as $key => $friend)
+                                    <li class="friend-item">
+                                        <div class="avatar">
+                                            <img class="avatar__img" src="{{ asset($friend->avatar) }}" alt="{{ $friend->name }}">
                                         </div>
-                                        <div class="right">
-                                            <h3>John Doe</h3>
+                                        <div class="friend-infor">
+                                            <div class="name">{{ $friend->name. $friend->name }}</div>
                                             <p>10 Friends</p>
                                         </div>
                                     </li>
-                                    <li>
-                                        <div class="left">
-                                            <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="">
-                                        </div>
-                                        <div class="right">
-                                            <h3>John Doe</h3>
-                                            <p>10 Friends</p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="left">
-                                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="">
-                                        </div>
-                                        <div class="right">
-                                            <h3>John Doe</h3>
-                                            <p>10 Friends</p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="left">
-                                            <img src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="">
-                                        </div>
-                                        <div class="right">
-                                            <h3>John Doe</h3>
-                                            <p>10 Friends</p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="left">
-                                            <img src="https://bootdey.com/img/Content/avatar/avatar5.png" alt="">
-                                        </div>
-                                        <div class="right">
-                                            <h3>John Doe</h3>
-                                            <p>10 Friends</p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="left">
-                                            <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="">
-                                        </div>
-                                        <div class="right">
-                                            <h3>John Doe</h3>
-                                            <p>10 Friends</p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="left">
-                                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="">
-                                        </div>
-                                        <div class="right">
-                                            <h3>John Doe</h3>
-                                            <p>10 Friends</p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="left">
-                                            <img src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="">
-                                        </div>
-                                        <div class="right">
-                                            <h3>John Doe</h3>
-                                            <p>10 Friends</p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="left">
-                                            <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
-                                        </div>
-                                        <div class="right">
-                                            <h3>John Doe</h3>
-                                            <p>10 Friends</p>
-                                        </div>
-                                    </li>
+                                    @endforeach
+                                    @endif
                                 </ul>
                             </div>
                         </div>

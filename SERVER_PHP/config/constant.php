@@ -28,6 +28,8 @@ return [
         'POST'    => 2,
     ],
 
+    'LIMIT' => 10,
+
     'DIRECTION' => [
         'DEFAULT'    => [ 'VALUE' => 1, 'TEXT' => 'Chọn hướng' ],
         'EAST'       => [ 'VALUE' => 2, 'TEXT' => 'Hướng Đông' ],1,   /// đông

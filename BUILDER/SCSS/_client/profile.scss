@@ -113,9 +113,55 @@
             margin-bottom: 10px;
             @include Screen(MD){ margin-bottom: 18px; }
         }
+        
     }
 
 
+    ul.friend-list {
+        margin: 0;
+        padding: 0;
+        li {
+            padding: 10px;
+            list-style-type: none;
+            display: flex;
+            align-items: center;
+
+            &:hover {
+                background: $background-profile;
+                cursor: pointer;
+            }
+            .avatar{
+                width: 55px;
+                height: 45px;
+                padding-right: 10px;
+                &__img {
+                    width: 100%;
+                    border-radius: 50%;
+                    margin-right: 20px;
+                }
+            }
+            .friend-infor{
+                flex: 1;
+                flex-grow: 999;
+            }
+            .name {
+                font-size: 16px;
+                font-weight: 700;
+                margin-bottom: 0;
+                line-height: 1.2;
+                -webkit-line-clamp: 2;
+                overflow : hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+            }
+            p {
+                font-size: 11px;
+                color: #6c757d;
+                margin: 0;
+            }
+        }
+    }
 
 
     /*social */
@@ -167,45 +213,6 @@
 
     .text-blue {
         color: #3afe;
-    }
-
-    ul.friend-list {
-        margin: 0;
-        padding: 0;
-    }
-
-    ul.friend-list li {
-        list-style-type: none;
-        display: flex;
-        align-items: center;
-    }
-
-    ul.friend-list li:hover {
-        background: rgba(0, 0, 0, .1);
-        cursor: pointer;
-    }
-
-    ul.friend-list .left img {
-        width: 45px;
-        height: 45px;
-        border-radius: 50%;
-        margin-right: 20px;
-    }
-
-    ul.friend-list li {
-        padding: 10px;
-    }
-
-    ul.friend-list .right h3 {
-        font-size: 16px;
-        font-weight: 700;
-        margin-bottom: 0;
-    }
-
-    ul.friend-list .right p {
-        font-size: 11px;
-        color: #6c757d;
-        margin: 0;
     }
 
     .social-timeline-card .dropdown-toggle::after {

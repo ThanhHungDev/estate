@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Channel;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class CustomerController extends Controller
@@ -16,7 +18,15 @@ class CustomerController extends Controller
     {
         $profile = Auth::user();
 
-        return view('client.customer.profile', compact(['profile']));
+        $userId = $profile->id;
+
+        $conversations = (new Channel())->getConversationsByUser($profile->id);
+        /// từ conversations dùng laravel lấy hết user id friend bạn bè
+        $idFriends = $conversations->pluck('user')->toArray();
+        /// get id friends 
+        $friends = User::whereIn('id', $idFriends)->get();
+
+        return view('client.customer.profile', compact(['profile', 'friends']));
     }
 
 }
