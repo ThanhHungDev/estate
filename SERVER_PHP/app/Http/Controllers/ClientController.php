@@ -4,11 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Province;
-use App\Repositories\Province\ProvinceEloquentRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Gate;
 
 class ClientController extends Controller
 {

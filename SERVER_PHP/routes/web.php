@@ -13,15 +13,15 @@ use Jenssegers\Agent\Agent;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('resizes/{size}/{type}/{imagePath?}', 'App\Http\Controllers\ImageController@resize')
+Route::get('resizes/{size}/{type}/{imagePath?}', [ App\Http\Controllers\ImageController::class, 'resize' ])
 ->where('imagePath', '(.*)')
 ->name('IMAGE_RESIZE');
 
-Route::get('compress/{quality}/{imagePath}', 'App\Http\Controllers\ImageController@encode')
+Route::get('compress/{quality}/{imagePath}', [ App\Http\Controllers\ImageController::class, 'encode' ])
 ->where('imagePath', '(.*)')
 ->name('IMAGE_COMPRESS');
 
-Route::get('resize-compress/{size}/{type}/{quality}/{ext}/{imagePath}', 'App\Http\Controllers\ImageController@resize_compress')
+Route::get('resize-compress/{size}/{type}/{quality}/{ext}/{imagePath}', [ App\Http\Controllers\ImageController::class, 'resize_compress' ])
 ->where('imagePath', '(.*)')
 ->name('IMAGE_RESIZE_COMPRESS');
 
@@ -31,3 +31,7 @@ Route::group([ 'middleware' => []], function () {
     // include_once("routing/amp.php");
     include_once("routing/client.php");
 });
+
+
+// (["']{1})App\\Http\\Controllers\\([A-Za-z \\]+)@([a-zA-Z_-]+)(["']{1})
+// [ App\\Http\\Controllers\\$2::class, '$3' ]
