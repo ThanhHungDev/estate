@@ -107,4 +107,16 @@ class UserController extends Controller
     {
         //
     }
+
+
+    /**
+     * messages
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function messages()
+    {
+        return 'messages';
+    }
 }

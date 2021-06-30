@@ -33,14 +33,20 @@ Route::group(['prefix' => '/','middleware' => [ 'HTML_MINIFIER']], function () {
     Route::get('/register', [ App\Http\Controllers\UserController::class, 'create' ])->name('REGISTER');
     Route::post('/register', [ App\Http\Controllers\UserController::class, 'store' ])->name('STORE_REGISTER');
 
+    // include_once("user.php");
+    Route::group(['prefix' => '/user','middleware' => [ 'USER_LOGGED' ]], function () {
+        
+        Route::get('/notifications', [ App\Http\Controllers\UserController::class, 'notifications' ])->name('VIEW_NOTIFICATION');
+        Route::get('/messages', [ App\Http\Controllers\UserController::class, 'messages' ])->name('VIEW_CHAT');
+    });
     
     // include_once("saler.php");
-    Route::group(['prefix' => '/saler','middleware' => [ 'SALER_LOGGED', 'HTML_MINIFIER' ]], function () {
+    Route::group(['prefix' => '/saler','middleware' => [ 'SALER_LOGGED' ]], function () {
         Route::get('/logout', [ App\Http\Controllers\UserController::class, 'logout' ])->name('LOGOUT');
         Route::get('/', [ App\Http\Controllers\SalerController::class, 'profile' ])->name('SALER_DASHBOARD');
     });
     // include_once("customer.php");
-    Route::group(['prefix' => '/customer','middleware' => [ 'CUSTOMER_LOGGED', 'HTML_MINIFIER' ]], function () {
+    Route::group(['prefix' => '/customer','middleware' => [ 'CUSTOMER_LOGGED' ]], function () {
         Route::get('/logout', [ App\Http\Controllers\UserController::class, 'logout' ])->name('LOGOUT');
         Route::get('/', [ App\Http\Controllers\CustomerController::class, 'profile' ])->name('CUSTOMER_DASHBOARD');
 

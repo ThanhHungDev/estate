@@ -29,6 +29,8 @@ return [
     ],
 
     'LIMIT' => 10,
+    'MAX_COUNTER_NOTIFY' => 5,
+    'MAX_COUNTER_MESSAGE' => 9,
 
     'DIRECTION' => [
         'DEFAULT'    => [ 'VALUE' => 1, 'TEXT' => 'Chọn hướng' ],

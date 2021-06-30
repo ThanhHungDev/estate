@@ -637,3 +637,13 @@ function toggleCatalogue(e){
 function showLightGaleries(e){
     $(e).closest('.item').find(".lightgallery img").click()
 }
+
+
+function showModalNoClose(e){
+    var idModal = $(e).attr('data-modal')
+    $(idModal).modal({
+        escapeClose: false,
+        clickClose: false,
+        showClose: false
+    });
+}

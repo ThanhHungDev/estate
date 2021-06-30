@@ -47,7 +47,7 @@
                             <div class="navi__page">
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <ul class=" nav nav-tabs justify-content-center s-nav">
+                                        <ul class="tabcontrol">
                                             <li><a class="active" href="#">Timeline</a></li>
                                             <li><a href="#">About</a></li>
                                             <li><a href="#">Friends</a></li>

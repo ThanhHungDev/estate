@@ -36,18 +36,34 @@
             </a>
         </li> --}}
         @endguest
-        <li title="tin nhắn <br/> bạn có thể nhắn tin với người đăng bài"
-        class="navplus__link simple-tooltip {{ SupportRouter::fillClassActive('active', 'VIEW_POST_ARTICLE') }}">
-            <a href="{{ Route('VIEW_POST_ARTICLE') }}">
+        <li title="Tin nhắn trò chuyện <br/> Bấm vào để đến trang trò chuyện."
+        class="navplus__link simple-tooltip">
+            <a href="{{ Route('VIEW_CHAT') }}">
                 <i class="fad fa-comment-dots"></i>
-                <span id="js__count__mess" class="count__mess show">1</span>
+                @isset($MESSAGES)
+                @php 
+                $countMessNoneRead = $MESSAGES->where('read', '=', false)->count(); 
+                if( $countMessNoneRead > Config::get('constant.MAX_COUNTER_MESSAGE')){
+                    $countMessNoneRead = Config::get('constant.MAX_COUNTER_MESSAGE') . "+";
+                }
+                @endphp
+                <span id="js__count__mess" class="count__mess show">{{ $countMessNoneRead }}</span>
+                @endisset
             </a>
         </li>
         <li title="thông báo"
-        class="navplus__link simple-tooltip {{ SupportRouter::fillClassActive('active', 'VIEW_POST_NEWS') }}">
-            <a href="{{ Route('VIEW_POST_NEWS') }}">
+        class="navplus__link simple-tooltip">
+            <a data-modal="#modal__notification" onclick="showModalNoClose(this)">
                 <i class="fad fa-bell"></i>
-                <span id="js__count__noti" class="count__noti show">2+</span>
+                @isset($NOTIFICATIONS)
+                @php
+                $countNotiNoneRead = $NOTIFICATIONS->where('read', '=', false)->count(); 
+                if( $countNotiNoneRead > Config::get('constant.MAX_COUNTER_NOTIFY')){
+                    $countNotiNoneRead = Config::get('constant.MAX_COUNTER_NOTIFY') . "+";
+                }
+                @endphp
+                <span id="js__count__noti" class="count__noti show">{{ $countNotiNoneRead }}</span>
+                @endisset
             </a>
         </li>
     </ul>

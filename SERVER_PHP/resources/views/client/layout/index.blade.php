@@ -121,5 +121,10 @@
     @yield('javascripts')
     @yield('make-up-data')
     
+    <!-- Modal HTML embedded directly into document -->
+    <div id="modal__notification" class="modal notification">
+        <p>Thanks for clicking. That felt good.</p>
+        <a href="#" rel="modal:close">Close</a>
+    </div>
 </body>
 </html>

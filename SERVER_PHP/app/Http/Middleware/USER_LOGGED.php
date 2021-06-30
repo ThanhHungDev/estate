@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\View;
 
-class CUSTOMER_LOGGED
+class USER_LOGGED
 {
     /**
      * Handle an incoming request.
@@ -20,9 +20,13 @@ class CUSTOMER_LOGGED
      */
     public function handle($request, Closure $next)
     {
+
         if(Auth::check()){
             $user = Auth::user();
-            if( $user->role_id == Config::get('constant.ROLE.CUSTOMER')){
+            if(
+                $user->role_id == Config::get('constant.ROLE.SALER') ||
+                $user->role_id == Config::get('constant.ROLE.CUSTOMER')
+            ){
 
                 // share notify đến tất cả các view
                 
