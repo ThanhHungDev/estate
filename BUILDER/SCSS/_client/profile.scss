@@ -492,14 +492,14 @@
     
     &-item {
         padding: 1px;
-        height: 15vh;
+        height: 100px;
         flex-grow: 1;
         // ADVANCED
         // Portrait
-        @media (max-aspect-ratio: 1/1) { height: 30vh; }
+        @media (max-aspect-ratio: 1/1) { height: 150px; }
         // Short screen
-        @include Screen(SM) { height: 20vh; }
-        @include Screen(MD) { height: 20vh; }
+        @include Screen(SM) { height: 100px; }
+        @include Screen(MD) { height: 100px; }
 
         &:last-child {
             // There's no science in using "10" here. In all my testing, this delivered the best results.
