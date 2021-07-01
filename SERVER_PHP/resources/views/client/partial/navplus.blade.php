@@ -47,7 +47,9 @@
                     $countMessNoneRead = Config::get('constant.MAX_COUNTER_MESSAGE') . "+";
                 }
                 @endphp
+                @if($countMessNoneRead)
                 <span id="js__count__mess" class="count__mess show">{{ $countMessNoneRead }}</span>
+                @endif
                 @endisset
             </a>
         </li>
@@ -62,7 +64,9 @@
                     $countNotiNoneRead = Config::get('constant.MAX_COUNTER_NOTIFY') . "+";
                 }
                 @endphp
+                @if($countNotiNoneRead)
                 <span id="js__count__noti" class="count__noti show">{{ $countNotiNoneRead }}</span>
+                @endif
                 @endisset
             </a>
         </li>

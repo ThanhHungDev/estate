@@ -122,9 +122,42 @@
     @yield('make-up-data')
     
     <!-- Modal HTML embedded directly into document -->
-    <div id="modal__notification" class="modal notification">
-        <p>Thanks for clicking. That felt good.</p>
-        <a href="#" rel="modal:close">Close</a>
+    <div id="modal__notification" class="modal modal__notification">
+        <div class="modal__header">
+            <i class="icon far fa-bell-on"></i>
+            <span class="title">Thông báo! </span>
+            <a href="#" rel="modal:close">
+                <i class="close fal fa-times"></i>
+            </a>
+        </div>
+        <div class="modal__body">
+            <div class="notification">
+                @isset($NOTIFICATIONS)
+                @if (count($NOTIFICATIONS))
+                @foreach ($NOTIFICATIONS as $noti)
+                <a class="notification__content {{ $noti->read? 'read' : null }} {{ $noti->channel_id }}" href="#">
+                    <div class="icon ">
+                        <i class="fad fa-comments-alt text-color-pink"></i>
+                    </div>
+                    <div class="notification__item">
+                      <h4 class="title">{{ $noti->title }}</h4>
+                      <p class="info">{{ $noti->body }}</p>
+                    </div>
+                </a>
+                @endforeach
+                @else
+                <div class="notification__content-404">
+                    không có thông báo
+                </div>
+                @endif
+                @endisset
+            </div>
+        </div>
+        <div class="modal__footer">
+            <a class="btn btn__close" href="#" rel="modal:close">
+                Hiện thị tất cả
+            </a>
+        </div>
     </div>
 </body>
 </html>
