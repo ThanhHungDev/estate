@@ -49,6 +49,7 @@ Route::group(['prefix' => '/','middleware' => [ 'HTML_MINIFIER']], function () {
     Route::group(['prefix' => '/customer','middleware' => [ 'CUSTOMER_LOGGED' ]], function () {
         Route::get('/logout', [ App\Http\Controllers\UserController::class, 'logout' ])->name('LOGOUT');
         Route::get('/', [ App\Http\Controllers\CustomerController::class, 'profile' ])->name('CUSTOMER_DASHBOARD');
+        Route::get('/thong-tin-co-ban', [ App\Http\Controllers\CustomerController::class, 'about' ])->name('CUSTOMER_ABOUT');
 
         Route::get('/information', [ App\Http\Controllers\CustomerController::class, 'profile' ])->name('CUSTOMER_INFORMATION');
     });

@@ -29,4 +29,18 @@ class CustomerController extends Controller
         return view('client.customer.profile', compact(['profile', 'friends']));
     }
 
+
+    /**
+     * Display the profile resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function about()
+    {
+        $profile = Auth::user();
+
+        return view('client.customer.about', compact(['profile']));
+    }
+    
+
 }
