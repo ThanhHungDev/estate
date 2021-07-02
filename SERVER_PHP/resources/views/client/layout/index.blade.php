@@ -137,11 +137,14 @@
                 @foreach ($NOTIFICATIONS as $noti)
                 <a class="notification__content {{ $noti->read? 'read' : null }} {{ $noti->channel_id }}" href="#">
                     <div class="icon ">
-                        <i class="fad fa-comments-alt text-color-pink"></i>
+                        <i class="fad fa-comments-alt"></i>
                     </div>
                     <div class="notification__item">
-                      <h4 class="title">{{ $noti->title }}</h4>
-                      <p class="info">{{ $noti->body }}</p>
+                        <h4 class="title">{{ $noti->title }}</h4>
+                        <p class="info">{{ $noti->body }}</p>
+                        @if(!$noti->read)
+                            <span class="sticky__none-read"></span>
+                        @endif
                     </div>
                 </a>
                 @endforeach
