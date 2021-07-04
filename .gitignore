@@ -78,3 +78,4 @@ logs/*
 package-lock.json
 /storage/*
 .env.*
+CHAT_BAK/*
