@@ -2,12 +2,9 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Message;
-use App\Models\Notification;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\View;
 
 class USER_LOGGED
 {
@@ -28,14 +25,6 @@ class USER_LOGGED
                 $user->role_id == Config::get('constant.ROLE.CUSTOMER')
             ){
 
-                // share notify đến tất cả các view
-                
-                $notifications = (new Notification())->getNotificationsWaitingByUser($user->id);
-                View::share('NOTIFICATIONS', $notifications);
-
-                $messages = (new Message())->getMessagesWaitingByUser($user->id);
-                View::share('MESSAGES', $messages);
-                
                 return $next($request);
             }else{
                 Auth::logout();

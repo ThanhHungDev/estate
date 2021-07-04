@@ -112,19 +112,13 @@
         </div>
         @include('client.partial.footer')
     </div>
-    <script src="{{ asset('js/library/jquery.min.js' . Config::get('app.version')) }}"></script>
-    <script src="{{ asset('js/library/tipped.min.js' . Config::get('app.version')) }}"></script>
-    <script src="{{ asset('js/library/modal.jquery.min.js' . Config::get('app.version')) }}"></script>
-    {{-- <script src="{{ asset('js/library/slick.min.js' . Config::get('app.version')) }}"></script> --}}
-    <script src="{{ asset('js/app.min.js' . Config::get('app.version')) }}"></script>
-    
-    @yield('javascripts')
-    @yield('make-up-data')
-    
+
+
+
     <!-- Modal HTML embedded directly into document -->
     <div id="modal__notification" class="modal modal__notification">
         <div class="modal__header">
-            <i class="icon far fa-bell-on"></i>
+            <i class="icon far @if(Auth::check()) fa-bell-on @else fa-sign-in @endif"></i>
             <span class="title">Thông báo! </span>
             <a href="#" rel="modal:close">
                 <i class="close fal fa-times"></i>
@@ -132,7 +126,7 @@
         </div>
         <div class="modal__body">
             <div class="notification">
-                @isset($NOTIFICATIONS)
+                @php $NOTIFICATIONS = SupportDBRealtime::getNotifications() @endphp
                 @if (count($NOTIFICATIONS))
                 @foreach ($NOTIFICATIONS as $noti)
                 <a class="notification__content {{ $noti->read? 'read' : null }} {{ $noti->channel_id }}" href="#">
@@ -153,7 +147,6 @@
                     không có thông báo
                 </div>
                 @endif
-                @endisset
             </div>
         </div>
         <div class="modal__footer">
@@ -162,5 +155,81 @@
             </a>
         </div>
     </div>
+    <!-- Modal HTML embedded directly into document -->
+    <div id="modal__messages" class="modal modal__notification">
+        <div class="modal__header">
+            <i class="icon far @if(Auth::check()) fa-bell-on @else fa-sign-in @endif"></i>
+            <span class="title">Tin nhắn chưa đọc! </span>
+            <a href="#" rel="modal:close">
+                <i class="close fal fa-times"></i>
+            </a>
+        </div>
+        <div class="modal__body">
+            <div class="notification">
+                @php $MESSAGES = SupportDBRealtime::getMessages() @endphp
+                @if (count($MESSAGES))
+                @foreach ($MESSAGES as $mess)
+                <a class="notification__content {{ $mess->read? 'read' : null }}" href="#">
+                    <div class="icon ">
+                        <i class="fad fa-comments-alt"></i>
+                    </div>
+                    <div class="notification__item">
+                        <h4 class="title">{{ $mess->body }}</h4>
+                        <p class="info">{{ $mess->body }}</p>
+                        @if(!$noti->read)
+                            <span class="sticky__none-read"></span>
+                        @endif
+                    </div>
+                </a>
+                @endforeach
+                @else
+                <div class="notification__content-404">
+                    không có tin nhắn mới
+                </div>
+                @endif
+            </div>
+        </div>
+        <div class="modal__footer">
+            <a class="btn btn__close" href="#" rel="modal:close">
+                Hiện thị tất cả
+            </a>
+        </div>
+    </div>
+
+
+
+    <script src="{{ asset('js/library/jquery.min.js' . Config::get('app.version')) }}"></script>
+    <script src="{{ asset('js/library/tipped.min.js' . Config::get('app.version')) }}"></script>
+    <script src="{{ asset('js/library/modal.jquery.min.js' . Config::get('app.version')) }}"></script>
+    {{-- <script src="{{ asset('js/library/slick.min.js' . Config::get('app.version')) }}"></script> --}}
+    <script src="{{ asset('js/app.min.js' . Config::get('app.version')) }}"></script>
+    
+    @yield('javascripts')
+    @yield('make-up-data')
+    <script type="text/javascript">
+        function generateEmailFormat(){
+            const CHARACTERS = 'abcdefghijklmnopqrstuvwxyz1234567890';
+            var email = '';
+            for( var position = 0; position < 15; position ++ ){
+                string += CHARACTERS[Math.floor(Math.random() * CHARACTERS.length)];
+            }
+            return email + '@' + window.location.hostname + '.gmail'
+        }
+        
+        //// mới vào app luôn check xem cái localStorage tồn tại không? 
+        if(typeof Storage !== "undefined") {
+            // Trình duyệt này hỗ trợ LocalStorage
+            const AUTH = localStorage.getItem('AUTH')
+            if( !AUTH ){
+                /// ngừoi dùng chưa login trình duyệt này
+                /// không biết user này là ai nên phải tạo đại 1 cái user ảo
+                var auth = {
+                    email: generateEmailFormat(),
+                    name : 'free user'
+                }
+                console.log(auth)
+            }
+        }
+    </script>
 </body>
 </html>

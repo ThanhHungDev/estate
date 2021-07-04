@@ -71,3 +71,10 @@ node_modules
 BUILDER\readme.md
 
 logs/*
+
+.env
+.env.backup
+*.DS_Store
+package-lock.json
+/storage/*
+.env.*

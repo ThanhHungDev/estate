@@ -38,11 +38,11 @@
         @endguest
         <li title="Tin nhắn trò chuyện <br/> Bấm vào để đến trang trò chuyện."
         class="navplus__link simple-tooltip">
-            <a href="{{ Route('VIEW_CHAT') }}">
+            <a data-modal="#modal__messages" onclick="showModalNoClose(this)">
                 <i class="fad fa-comment-dots"></i>
-                @isset($MESSAGES)
                 @php 
-                $countMessNoneRead = $MESSAGES->where('read', '=', false)->count(); 
+                $MESSAGES          = SupportDBRealtime::getMessages();
+                $countMessNoneRead = $MESSAGES? $MESSAGES->where('read', '=', false)->count() : 0;
                 if( $countMessNoneRead > Config::get('constant.MAX_COUNTER_MESSAGE')){
                     $countMessNoneRead = Config::get('constant.MAX_COUNTER_MESSAGE') . "+";
                 }
@@ -50,16 +50,16 @@
                 @if($countMessNoneRead)
                 <span id="js__count__mess" class="count__mess show">{{ $countMessNoneRead }}</span>
                 @endif
-                @endisset
             </a>
         </li>
         <li title="thông báo"
         class="navplus__link simple-tooltip">
             <a data-modal="#modal__notification" onclick="showModalNoClose(this)">
                 <i class="fad fa-bell"></i>
-                @isset($NOTIFICATIONS)
-                @php
-                $countNotiNoneRead = $NOTIFICATIONS->where('read', '=', false)->count(); 
+                @php 
+                $NOTIFICATIONS     = SupportDBRealtime::getNotifications();
+                $countNotiNoneRead = $NOTIFICATIONS ? $NOTIFICATIONS->where('read', '=', false)->count() : 0;
+
                 if( $countNotiNoneRead > Config::get('constant.MAX_COUNTER_NOTIFY')){
                     $countNotiNoneRead = Config::get('constant.MAX_COUNTER_NOTIFY') . "+";
                 }
@@ -67,7 +67,6 @@
                 @if($countNotiNoneRead)
                 <span id="js__count__noti" class="count__noti show">{{ $countNotiNoneRead }}</span>
                 @endif
-                @endisset
             </a>
         </li>
     </ul>

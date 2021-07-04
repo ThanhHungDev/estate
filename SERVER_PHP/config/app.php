@@ -270,6 +270,7 @@ return [
         'SupportHtml' => App\Helpers\SupportHtml::class,
         'SupportRouter' => App\Helpers\SupportRouter::class,
         'SupportCache' => App\Helpers\SupportCache::class,
+        'SupportDBRealtime' => App\Helpers\SupportDBRealtime::class,
 
         'Agent' => Jenssegers\Agent\Facades\Agent::class,
         'Image' => Intervention\Image\Facades\Image::class,
