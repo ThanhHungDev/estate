@@ -8,6 +8,9 @@ var app = require('../app');
 var debug = require('debug')('chat:server');
 var http = require('http');
 var eventIO = require('../app.socket');
+var dbConnect = require('../app.mongo.connect');
+var dotenv = require('dotenv') /// thêm dot env vào hệ thống
+dotenv.config() /// load file .env
 
 /**
  * Get port from environment and store in Express.
@@ -27,7 +30,13 @@ eventIO.io.attach(server);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
+// server.listen(port); /// comment lại 
+server.listen(port,  () => {
+
+  console.log(`server run: http://localhost:${port}`)  
+  dbConnect.myConnection()
+});
+
 server.on('error', onError);
 server.on('listening', onListening);
 
