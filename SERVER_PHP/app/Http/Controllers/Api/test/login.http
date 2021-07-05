@@ -1,0 +1,12 @@
+
+POST /api/v1/login HTTP/1.1
+Host: localhost:80
+User-Agent: rest-client
+Accept-Language: en-GB,en-US;q=0.8,en;q=0.6,zh-CN;q=0.4
+content-type: application/json
+
+{
+    "email": "truongpham260620@gmail.com",
+    "password": "123456"
+}
+################################

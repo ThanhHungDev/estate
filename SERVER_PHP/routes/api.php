@@ -38,4 +38,8 @@ Route::group([ 'prefix'=>'/v1' ], function () {
     Route::post('file', [ App\Http\Controllers\Api\FileController::class, 'store' ])
     ->name('API_UPLOAD_FILE');
     // ->middleware([ 'CACHE_LOCATIONS']);
+
+    Route::post('login', [ App\Http\Controllers\Api\APILoginController::class, 'login' ])
+    ->name('API_LOGIN');
+    // ->middleware([ 'CACHE_LOCATIONS']);
 });
