@@ -39,7 +39,14 @@ Route::group([ 'prefix'=>'/v1' ], function () {
     ->name('API_UPLOAD_FILE');
     // ->middleware([ 'CACHE_LOCATIONS']);
 
-    Route::post('login', [ App\Http\Controllers\Api\APILoginController::class, 'login' ])
+    Route::post('login', [ App\Http\Controllers\Api\LoginController::class, 'login' ])
     ->name('API_LOGIN');
     // ->middleware([ 'CACHE_LOCATIONS']);
+
+    Route::get('info', [ App\Http\Controllers\Api\LoginController::class, 'info' ]);
+    Route::group(['middleware' => 'jwt.auth'], function () {
+
+        Route::get('users', [ App\Http\Controllers\Api\UserController::class, 'index' ]);
+        
+    });
 });
