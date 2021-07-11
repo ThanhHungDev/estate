@@ -52,6 +52,8 @@ Route::group(['prefix' => '/','middleware' => [ 'HTML_MINIFIER']], function () {
         Route::get('/thong-tin-co-ban', [ App\Http\Controllers\CustomerController::class, 'about' ])->name('CUSTOMER_ABOUT');
 
         Route::get('/information', [ App\Http\Controllers\CustomerController::class, 'profile' ])->name('CUSTOMER_INFORMATION');
+        Route::get('/ajax-demo', [ App\Http\Controllers\CustomerController::class, 'getUserInfo' ])->name('CUSTOMER_AJAX');
+
     });
 
     Route::get('/article/{slug?}',[ App\Http\Controllers\ClientController::class, 'viewPostArticle' ])->name('VIEW_POST_ARTICLE');

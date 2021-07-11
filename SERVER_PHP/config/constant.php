@@ -31,6 +31,7 @@ return [
     'LIMIT' => 10,
     'MAX_COUNTER_NOTIFY' => 5,
     'MAX_COUNTER_MESSAGE' => 9,
+    'TOKEN_COOKIE_NAME' => 'TOKEN_COOKIE_NAME',
 
     'DIRECTION' => [
         'DEFAULT'    => [ 'VALUE' => 1, 'TEXT' => 'Chọn hướng' ],

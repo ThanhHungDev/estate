@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\REGISTER_REQUEST;
 use App\Models\User;
 use Illuminate\Support\Facades\Config;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class LoginController extends Controller
 {
@@ -56,15 +57,20 @@ class LoginController extends Controller
             $request->session()->flash(Config::get('constant.LOGIN_ADMIN_SUCCESS'), true);
             /// check user role 
             $user = Auth::user();
+            /// tạo 1 token đưa về client lưu vào localStorage
+            $token = JWTAuth::fromUser($user);
             if( $user->role_id == Config::get('constant.ROLE.SALER')){
 
-                return redirect()->route('SALER_DASHBOARD');
+                return redirect()->route('SALER_DASHBOARD')
+                ->withCookie(cookie()->forever(config('constant.TOKEN_COOKIE_NAME'), $token));
             }else if( $user->role_id == Config::get('constant.ROLE.CUSTOMER')){
 
-                return redirect()->route('CUSTOMER_DASHBOARD');
+                return redirect()->route('CUSTOMER_DASHBOARD')
+                ->withCookie(cookie()->forever(config('constant.TOKEN_COOKIE_NAME'), $token));
             }else{
 
-                return redirect()->route('ADMIN_DASHBOARD');                
+                return redirect()->route('ADMIN_DASHBOARD')
+                ->withCookie(cookie()->forever(config('constant.TOKEN_COOKIE_NAME'), $token));
             }
         }
         return redirect()->back()->with(Config::get('constant.LOGIN_ERROR'), 'đăng nhập thất bại!!! ');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class SalerController extends Controller
@@ -12,10 +13,11 @@ class SalerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function profile()
+    public function profile(Request $request)
     {
         $profile = Auth::user();
-
+        $token   = $request->cookie(config('constant.TOKEN_COOKIE_NAME'));
+        dd( $token );
         return view('client.saler.profile', compact(['profile']));
     }
 

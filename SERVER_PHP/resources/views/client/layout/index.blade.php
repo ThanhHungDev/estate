@@ -176,7 +176,7 @@
                     <div class="notification__item">
                         <h4 class="title">{{ $mess->body }}</h4>
                         <p class="info">{{ $mess->body }}</p>
-                        @if(!$noti->read)
+                        @if(!$mess->read)
                             <span class="sticky__none-read"></span>
                         @endif
                     </div>
