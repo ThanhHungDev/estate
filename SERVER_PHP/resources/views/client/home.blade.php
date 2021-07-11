@@ -30,7 +30,7 @@
 @section('javascripts')
     <script src="{{ asset('/js/library/nouislider.min.js' . Config::get('app.version')) }}"></script>
     <script>
-        const PROVINCES = JSON.parse(`{!! $provinces !!}`);
+        const PROVINCES = JSON.parse(`{!! $provinces ?? [] !!}`);
         /// để select 2 trong app.js có thể nạp lên thanh search của homepage
         const ROUTE_DISTRICTS = "{{ Route('DISTRICTS') }}";
         const ROUTE_COMMUNES  = "{{ Route('COMMUNES') }}";

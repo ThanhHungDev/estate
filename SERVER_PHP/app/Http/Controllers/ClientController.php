@@ -103,19 +103,39 @@ class ClientController extends Controller
     }
 
     public function favourites(){
-        return view('client.home');
+        $categories = (new Category())->all();
+        /// get model province
+        $provinces     = (new Province())->get(['id', 'name as text'])->toJson();
+
+        return view('client.home', compact('categories', 'provinces'));
     }
     public function viewPostArticle($slug = null){
-        return view('client.home');
+        $categories = (new Category())->all();
+        /// get model province
+        $provinces     = (new Province())->get(['id', 'name as text'])->toJson();
+
+        return view('client.home', compact('categories', 'provinces'));
     }
     public function storePostArticle($slug = null){
-        return view('client.home');
+        $categories = (new Category())->all();
+        /// get model province
+        $provinces     = (new Province())->get(['id', 'name as text'])->toJson();
+
+        return view('client.home', compact('categories', 'provinces'));
     }
     public function viewNews($slug = null){
-        return view('client.home');
+        $categories = (new Category())->all();
+        /// get model province
+        $provinces     = (new Province())->get(['id', 'name as text'])->toJson();
+
+        return view('client.home', compact('categories', 'provinces'));
     }
     public function storeNews($slug = null){
-        return view('client.home');
+        $categories = (new Category())->all();
+        /// get model province
+        $provinces     = (new Province())->get(['id', 'name as text'])->toJson();
+
+        return view('client.home', compact('categories', 'provinces'));
     }
 
 
