@@ -24,6 +24,7 @@
     <link type="text/css" rel="stylesheet" href="{{ asset('css/library/lightgallery.css' . Config::get('app.version')) }}" />
 @endsection
 @section('javascripts')
+    <script src="{{ asset('js/app.js'. Config::get('app.version')) }}"></script>
     <script type="text/javascript" src="{{ asset('js/library/lightgallery.min.js' . Config::get('app.version')) }}"></script>
     <script type="text/javascript">
         lightGallery(document.getElementById('photos__responsive-images')); 

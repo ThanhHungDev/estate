@@ -5,7 +5,9 @@ Route::get('/404', function(){
     echo 'không tìm thấy trang';
 })->name('CLIENT_404');
 
-
+Route::get('/spa/{any}', function () {
+    return view('index'); // or wherever your React app is bootstrapped.
+})->where('any', '.*');
 
 Route::group(['prefix' => '/','middleware' => [ 'HTML_MINIFIER']], function () { ///'READ_CACHE',
 
@@ -64,3 +66,4 @@ Route::group(['prefix' => '/','middleware' => [ 'HTML_MINIFIER']], function () {
 
     Route::get('/{slug}',[ App\Http\Controllers\ClientController::class, 'postDetail' ])->name('POST_VIEW');
 });
+
