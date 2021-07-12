@@ -17,7 +17,7 @@ GET /api/v1/users HTTP/1.1
 Host: localhost:80
 User-Agent: rest-client
 Accept-Language: en-GB,en-US;q=0.8,en;q=0.6,zh-CN;q=0.4
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL2FwaVwvdjFcL2xvZ2luIiwiaWF0IjoxNjI1NTMwNDY2LCJleHAiOjE2MjU1MzQwNjYsIm5iZiI6MTYyNTUzMDQ2NiwianRpIjoibFhCZUlmMFFOMk9rTGlOZSIsInN1YiI6MiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.nAGhQWgLSPd-yX_xMRvNn82NZpXjMBKY61G0FHiIxV0
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL2FwaVwvdjFcL2xvZ2luIiwiaWF0IjoxNjI2MTAxMjIzLCJleHAiOjE2MjYxMDQ4MjMsIm5iZiI6MTYyNjEwMTIyMywianRpIjoieElvMXU3akh2THpSeWxWZCIsInN1YiI6MiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.Ykk7ghisbW9r8uQpmW1zyNVM0CygPw9e0G-QyUhnvrc
 content-type: application/json
 ################################
 
@@ -30,7 +30,7 @@ GET /api/v1/info HTTP/1.1
 Host: localhost:80
 User-Agent: rest-client
 Accept-Language: en-GB,en-US;q=0.8,en;q=0.6,zh-CN;q=0.4
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9lc3RhdGUuY29tXC9sb2dpbiIsImlhdCI6MTYyNTk3NDg5NiwiZXhwIjoxNjI1OTc4NDk2LCJuYmYiOjE2MjU5NzQ4OTYsImp0aSI6IkhhbHEwa0pOZmRsVFUzRlgiLCJzdWIiOjIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.quz4XQV07EoS0wBF2DglyLur5KT2zwHhXhybd-XAPaA
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL2FwaVwvdjFcL2xvZ2luIiwiaWF0IjoxNjI2MTAxMjIzLCJleHAiOjE2MjYxMDQ4MjMsIm5iZiI6MTYyNjEwMTIyMywianRpIjoieElvMXU3akh2THpSeWxWZCIsInN1YiI6MiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.Ykk7ghisbW9r8uQpmW1zyNVM0CygPw9e0G-QyUhnvrc
 content-type: application/json
 ################################
 

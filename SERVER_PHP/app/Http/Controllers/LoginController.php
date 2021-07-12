@@ -59,6 +59,7 @@ class LoginController extends Controller
             $user = Auth::user();
             /// tạo 1 token đưa về client lưu vào localStorage
             $token = JWTAuth::fromUser($user);
+            dd ( $token );
             if( $user->role_id == Config::get('constant.ROLE.SALER')){
 
                 return redirect()->route('SALER_DASHBOARD')

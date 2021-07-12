@@ -1,9 +1,19 @@
-var express = require('express');
-var router = express.Router();
+/**
+ * define
+*/
+const express = require("express")
+const router  = express.Router()
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+/**
+ * Init index on your application
+ * @param {*} app from express
+ */
+let initIndex = app => {
 
-module.exports = router;
+  router.get('/', function(req, res, next) {
+    res.send('respond index');
+  });
+  
+  return app.use( "/", router )
+}
+module.exports = initIndex
