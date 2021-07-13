@@ -1,6 +1,6 @@
 const jwt  = require('jsonwebtoken')
 
-const secret = process.env.SECRET || 'jsonwebtoken-secret'
+const secret = process.env.JWT_SECRET || 'jsonwebtoken-secret'
 
 /**
  * This module used for verify jwt token
@@ -10,7 +10,8 @@ let verifyTokenAccess = async access => {
 
     console.log( access )
     /// get token user online and get all channel user can chat
-    let user = await jwt.verify( access, secret )
+    // let user = await jwt.verify( access, secret )
+    let user = await jwt.decode( access, secret )
 
     //// check token is existed
     if( !user ){
