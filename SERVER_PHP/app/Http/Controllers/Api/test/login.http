@@ -30,7 +30,7 @@ GET /api/v1/info HTTP/1.1
 Host: localhost:80
 User-Agent: rest-client
 Accept-Language: en-GB,en-US;q=0.8,en;q=0.6,zh-CN;q=0.4
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL2FwaVwvdjFcL2xvZ2luIiwiaWF0IjoxNjI2MTAxMjIzLCJleHAiOjE2MjYxMDQ4MjMsIm5iZiI6MTYyNjEwMTIyMywianRpIjoieElvMXU3akh2THpSeWxWZCIsInN1YiI6MiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.Ykk7ghisbW9r8uQpmW1zyNVM0CygPw9e0G-QyUhnvrc
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE2MjYxMzg2MDgsImV4cCI6MTYyNjE0MjIwOCwibmJmIjoxNjI2MTM4NjA4LCJqdGkiOiJBaVJyUERjQUxERkNNUElwIiwic3ViIjoyLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.o03haKP-1haeALBp3kwrg1ewlsWGJwyWcRKm63tTfMc
 content-type: application/json
 ################################
 

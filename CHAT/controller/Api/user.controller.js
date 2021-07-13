@@ -1,19 +1,4 @@
-const authHelper = require('../../helper/auth.helper')
 
-module.exports.login = async (req, res ) => {
-
-    const user = {
-        email: 'truongthanhhung@gmail.com',
-        name: "truong thanh hung"
-    }
-    /// response 
-    let response = {}
-    response.code             = 200
-    response.data             = authHelper.hashTokenAccess(user)
-    response.message          = "buộc phải login nè"
-    response.internal_message = "buộc phải login nè"
-    return res.status(response.code).json(response)
-}
 module.exports.getUser = async (req, res) => {
 
     let response = {},
@@ -39,5 +24,17 @@ module.exports.getUser = async (req, res) => {
             response.errors           = [err]
         return res.status(response.code).json(response)
     }
+}
+
+
+module.exports.index = async (req, res) => {
+
+    let response = {}
+    /// response 
+    response.code             = 200
+    response.data             = "api không cần login"
+    response.message          = "không cần login nè"
+    response.internal_message = "nologin"
+    return res.status(response.code).json(response)
 }
 

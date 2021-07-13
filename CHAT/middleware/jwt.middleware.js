@@ -1,4 +1,6 @@
-const authHelper = require("../helper/auth.helper")
+require('dotenv').config()
+const jwt    = require('jsonwebtoken')
+const secret = process.env.JWT_SECRET || 'jsonwebtoken-secret' // mình có dùng dotenv 
 
 /**
  * Middleware: Authorization user by Token
@@ -17,12 +19,13 @@ let isAuth = async (req, res, next) => {
         if (!access) {
             code = 403
             /// không tồn tại access token
-            throw new Error('Unauthorized!')
+            throw new Error('Unauthorized!!!')
         }
         // Nếu tồn tại token access
-    
+        console.log(";sdfdsf", secret)
         // Thực hiện giải mã token xem có hợp lệ hay không?
-        const user = await authHelper.verifyTokenAccess(access)
+        // let user = await jwt.decode( access, secret ) => hàm này chỉ decode thôi nghen không phải xác thực
+        const user = await jwt.verify( access, secret ) // hàm này để xác thực
 
         // Nếu token hợp lệ, lưu thông tin giải mã được vào đối tượng req, dùng cho các xử lý ở phía sau.
         req.user = user

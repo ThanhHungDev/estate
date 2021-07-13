@@ -1,11 +1,10 @@
 /**
- * define
+ * author hungtt
 */
 const express = require("express")
 const router  = express.Router()
 
-const indexApiController = require("../controller/Api/index.controller"),
-      userApiController  = require("../controller/Api/user.controller")
+const userApiController  = require("../controller/Api/user.controller")
 
 const generalMiddleware = require('../middleware/general.middleware'),
       authMiddleware    = require('../middleware/jwt.middleware')
@@ -20,16 +19,14 @@ let initAPIs = app => {
     ////////////////////////////////////////////////////////////////////////////
     router.use([ generalMiddleware.formatJsonApi, generalMiddleware.setAllowOrigin ])
     ////////////////////////////////////////////////////////////////////////////
-    /////////////////// DEFINE ROUTER NO VERIFY ////////////////////////////////
+    /////////////////// Route không cần login ////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////
-    router.post('/login', userApiController.login )
-
-    router.get('/test', indexApiController.noneLogin)
+    router.get('/test', userApiController.index)
     
     ////////////////////////////////////////////////////////////////////////////
     router.use([ authMiddleware.isAuth])
     ////////////////////////////////////////////////////////////////////////////
-    /////////////////// Route have verify //////////////////////////////////////
+    /////////// route cần verify thành công jwt ////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////
     router.get('/users', userApiController.getUser )
     
