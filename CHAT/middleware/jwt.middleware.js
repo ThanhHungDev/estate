@@ -21,8 +21,6 @@ let isAuth = async (req, res, next) => {
             /// không tồn tại access token
             throw new Error('Unauthorized!!!')
         }
-        // Nếu tồn tại token access
-        console.log(";sdfdsf", secret)
         // Thực hiện giải mã token xem có hợp lệ hay không?
         // let user = await jwt.decode( access, secret ) => hàm này chỉ decode thôi nghen không phải xác thực
         const user = await jwt.verify( access, secret ) // hàm này để xác thực
@@ -43,7 +41,29 @@ let isAuth = async (req, res, next) => {
     }
 }
 
+/**
+ * Middleware: Authorization user by token jwt in socket
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ */
+ let isAuthSocket = async token => {
+
+    try {
+
+        return await jwt.verify( token, secret )
+    } catch (error) {
+        console.log("=======================================")
+        console.log("=======================================")
+        console.log("======== socket error auth ============")
+        console.log("=======================================")
+        console.log("=======================================")
+        return false
+    }
+}
+
 
 module.exports = {
     isAuth,
+    isAuthSocket,
 }
