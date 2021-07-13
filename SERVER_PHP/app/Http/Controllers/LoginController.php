@@ -123,7 +123,7 @@ class LoginController extends Controller
             $user = Auth::user();
             /// tạo 1 token đưa về client lưu vào localStorage
             $token = JWTAuth::fromUser($user);
-            echo $token."------------";
+            echo $token."<br />------------";
             try { 
                 JWTAuth::setToken($token); //<-- set token and check
                 if (! $claim = JWTAuth::getPayload()) {

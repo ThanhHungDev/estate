@@ -1,33 +1,10 @@
 
-GET /api/nologin HTTP/1.1
+GET /api/test HTTP/1.1
 Host: localhost:3000
 User-Agent: rest-client
 Accept-Language: en-GB,en-US;q=0.8,en;q=0.6,zh-CN;q=0.4
 content-type: application/json
 ################################
-
-
-POST /api/login HTTP/1.1
-Host: localhost:3000
-User-Agent: rest-client
-Accept-Language: en-GB,en-US;q=0.8,en;q=0.6,zh-CN;q=0.4
-content-type: application/json
-################################
-
-
-
-# {
-#   "code": 200,
-#   "data": {
-#     "email": "truongthanhhung@gmail.com",
-#     "name": "truong thanh hung",
-#     "iat": 1626101058,
-#     "exp": 1626102858
-#   },
-#   "message": "buộc phải login nè",
-#   "internal_message": "buộc phải login nè"
-# }
-
 
 
 
@@ -35,6 +12,6 @@ GET /api/users HTTP/1.1
 Host: localhost:3000
 User-Agent: rest-client
 Accept-Language: en-GB,en-US;q=0.8,en;q=0.6,zh-CN;q=0.4
-Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE2MjYxMzg2MDgsImV4cCI6MTYyNjE0MjIwOCwibmJmIjoxNjI2MTM4NjA4LCJqdGkiOiJBaVJyUERjQUxERkNNUElwIiwic3ViIjoyLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.o03haKP-1haeALBp3kwrg1ewlsWGJwyWcRKm63tTfMc
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE2MjYxNTc3MjksImV4cCI6MTYyNjE2MTMyOSwibmJmIjoxNjI2MTU3NzI5LCJqdGkiOiJOeGx5SnBQWVl0M3VXdEp0Iiwic3ViIjozLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3IiwiYWhpaGkiOiJcdTAxMTFcdTFlZDMgbmdcdTFlZDFjIEN1c3RvbUNsYWltcyJ9.QtBCmXT4r68SYr2zIc8iPtfI2oE27VnSJw4lxg2zpYk
 content-type: application/json
 ################################

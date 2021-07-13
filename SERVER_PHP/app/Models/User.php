@@ -14,6 +14,24 @@ class User extends Authenticatable implements JWTSubject
 {
     use HasFactory, Notifiable;
 
+     /**
+     * @return int
+     */
+    public function getJWTIdentifier() {
+        
+        return $this->getKey();
+    }
+    
+    /**
+     * @return array
+     */
+    public function getJWTCustomClaims() {
+        return [
+            "iss" => "http://localhost",
+            "ahihi" => "đồ ngốc CustomClaims"
+        ];
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -43,31 +61,6 @@ class User extends Authenticatable implements JWTSubject
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    //  /**
-    //  * @return int
-    //  */
-    // public function getJWTIdentifier () {
-    //     return '12313';
-    // }
-
-    // /**
-    //  * @return array
-    //  */
-    // public function getJWTCustomClaims () {
-    //     return ['hung' => 'getJWTCustomClaims'];
-    // }
-
-    public function getJWTIdentifier() {
-        $hung = $this->getKey();
-        echo $hung."--------------------";
-        return $hung+111;
-    }
-    public function getJWTCustomClaims() {
-        return [
-            "iss" => "http://localhost"
-        ];
-    }
 
 
     public function getName( $limit = 10, $ellipsis = '...' ){
