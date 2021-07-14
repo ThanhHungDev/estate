@@ -24,28 +24,29 @@
     <link type="text/css" rel="stylesheet" href="{{ asset('css/library/lightgallery.css' . Config::get('app.version')) }}" />
 @endsection
 @section('javascripts')
-    <script src="{{ asset('js/app.js'. Config::get('app.version')) }}"></script>
+    
     <script type="text/javascript" src="{{ asset('js/library/lightgallery.min.js' . Config::get('app.version')) }}"></script>
     <script type="text/javascript">
         lightGallery(document.getElementById('photos__responsive-images')); 
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script> --}}
     <script>
         const jwt = '{{ Cookie::get(Config::get('constant.TOKEN_COOKIE_NAME')) }}';
-        const socket = io.connect('http://localhost:3000', {
-            query: 'token=' + jwt
-        });
-        console.log("connected ở đây không thành công đâu " + socket.connected);
-        socket.on('connect', function() {
-            console.log("Successfully connected!");
-            if(socket.connected){
-                console.log("connected ở đây sẽ thành công " + socket.connected);
-            }
-        })
-        .on('error', function(error) {
-            console.log(error)
-        })
+        // const socket = io.connect('http://localhost:3000', {
+        //     query: 'token=' + jwt
+        // });
+        // console.log("connected ở đây không thành công đâu " + socket.connected);
+        // socket.on('connect', function() {
+        //     console.log("Successfully connected!");
+        //     if(socket.connected){
+        //         console.log("connected ở đây sẽ thành công " + socket.connected);
+        //     }
+        // })
+        // .on('error', function(error) {
+        //     console.log(error)
+        // })
     </script>
+    <script src="{{ asset('js/app.js'. Config::get('app.version')) }}"></script>
 @endsection
 @section('content')
     <div class="content custommer">
@@ -56,6 +57,7 @@
                     <div class="information timeline__information col-reset-px-0-sm col-lg-3">
                         <div class="card">
                             <div class="information__card-body">
+                                <div id="example"></div>
                                 <h5 class="information__title">
                                     <span class="text-capitalize d-inline-block">Thông Tin cơ bản</span>
                                     <a href="{{ Route('CUSTOMER_INFORMATION') }}" class="btn btn-edit text-blue"><i class="fad fa-edit"></i></a>
