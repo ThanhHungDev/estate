@@ -29,8 +29,22 @@
     <script type="text/javascript">
         lightGallery(document.getElementById('photos__responsive-images')); 
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
     <script>
         const jwt = '{{ Cookie::get(Config::get('constant.TOKEN_COOKIE_NAME')) }}';
+        const socket = io.connect('http://localhost:3000', {
+            query: 'token=' + jwt
+        });
+        console.log("connected ở đây không thành công đâu " + socket.connected);
+        socket.on('connect', function() {
+            console.log("Successfully connected!");
+            if(socket.connected){
+                console.log("connected ở đây sẽ thành công " + socket.connected);
+            }
+        })
+        .on('error', function(error) {
+            console.log(error)
+        })
     </script>
 @endsection
 @section('content')
@@ -86,27 +100,27 @@
                                     <div id="photos__responsive-images" class="information__photo-group">
                                         <a class="information__photo-item" href="{{ asset("/images/productions/multipurpose.jpeg") }}"
                                             data-responsive="
-                                            img/2-375.jpg 375, 
-                                            img/2-480.jpg 480, 
-                                            img/2-757.jpg 757">
+                                                {{ asset("/images/productions/multipurpose.jpeg") }} 375, 
+                                                {{ asset("/images/productions/multipurpose.jpeg") }} 480, 
+                                                {{ asset("/images/productions/multipurpose.jpeg") }} 757">
                                             <img 
                                                 src="{{ asset("/images/productions/multipurpose.jpeg") }}"
                                                 onerror="this.onerror=null;this.src='{{ asset(Config::get('app.image_error')) }}';" />
                                         </a>
                                         <a class="information__photo-item" href="https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1568814785/photostream-photos/DSC05621_zgtcco.jpg"
                                             data-responsive="
-                                                img/2-375.jpg 375, 
-                                                img/2-480.jpg 480, 
-                                                img/2-757.jpg 757">
+                                                {{ asset("/images/productions/multipurpose.jpeg") }} 375, 
+                                                {{ asset("/images/productions/multipurpose.jpeg") }} 480, 
+                                                {{ asset("/images/productions/multipurpose.jpeg") }} 757">
                                             <img 
                                                 src="https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1568814785/photostream-photos/DSC05621_zgtcco.jpg"
                                                 onerror="this.onerror=null;this.src='{{ asset(Config::get('app.image_error')) }}';" />
                                         </a>
                                         <a class="information__photo-item" href="https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1568814785/photostream-photos/DSC05513_gfbiwi.jpg"
                                             data-responsive="
-                                                img/2-375.jpg 375, 
-                                                img/2-480.jpg 480, 
-                                                img/2-757.jpg 757">
+                                                {{ asset("/images/productions/multipurpose.jpeg") }} 375, 
+                                                {{ asset("/images/productions/multipurpose.jpeg") }} 480, 
+                                                {{ asset("/images/productions/multipurpose.jpeg") }} 757">
                                             <img 
                                                 src="https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1568814785/photostream-photos/DSC05513_gfbiwi.jpg"
                                                 onerror="this.onerror=null;this.src='{{ asset(Config::get('app.image_error')) }}';" />

@@ -12,11 +12,21 @@ io
     const { query } = socket.handshake
     const { token } = query
     if (!token){
-        next(new Error('Authentication error'));
+        
+        let err  = new Error('Authentication error')
+        err.code = 401
+        err.type = 'token'
+        err.message = 'Authentication error'
+        return next(err)
     }
     const auth = await authMiddleware.isAuthSocket(token)
     if( !auth ){
-        next(new Error('Authentication error'));
+        
+        let err  = new Error('Authentication error')
+        err.code = 403
+        err.type = 'authentication_error'
+        err.message = 'Authentication error'
+        return next(err)
     }
     socket.jwt = auth
     next();
