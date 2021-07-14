@@ -47,7 +47,7 @@ let isAuth = async (req, res, next) => {
  * @param {*} res 
  * @param {*} next 
  */
- let isAuthSocket = async token => {
+let isAuthSocket = async token => {
 
     try {
 
