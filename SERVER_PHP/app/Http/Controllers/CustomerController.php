@@ -60,4 +60,11 @@ class CustomerController extends Controller
                     ->setStatusCode(Response::HTTP_OK);
     }
 
+
+    public function firebase(){
+        $profile = Auth::user();
+
+        return view('client.customer.firebase', compact(['profile']));
+    }
+
 }
