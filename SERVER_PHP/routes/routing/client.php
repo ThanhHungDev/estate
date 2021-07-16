@@ -55,7 +55,7 @@ Route::group(['prefix' => '/','middleware' => [ 'HTML_MINIFIER']], function () {
 
         Route::get('/information', [ App\Http\Controllers\CustomerController::class, 'profile' ])->name('CUSTOMER_INFORMATION');
         Route::get('/ajax-demo', [ App\Http\Controllers\CustomerController::class, 'getUserInfo' ])->name('CUSTOMER_AJAX');
-
+        Route::get('/firebase', [ App\Http\Controllers\CustomerController::class, 'firebase' ])->name('CUSTOMER_FIREBASE');
     });
 
     Route::get('/article/{slug?}',[ App\Http\Controllers\ClientController::class, 'viewPostArticle' ])->name('VIEW_POST_ARTICLE');
