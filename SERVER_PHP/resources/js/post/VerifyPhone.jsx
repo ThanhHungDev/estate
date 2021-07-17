@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react"
+import { connect } from "react-redux"
+import axios from 'axios'
 // Firebase App (the core Firebase SDK) is always required and must be listed first
 import firebase from "firebase/app"
 import 'firebase/auth';
@@ -15,11 +17,18 @@ firebase.initializeApp(firebaseConfig);
 
 
 function VerifyPhone( props ){
+    const [ screenCode, setScreenCode ] = useState(null)
+    const [ invalidCode, setInvalidCode ] = useState(null)
     const [ invalidPhone, setInvalidPhone ] = useState(null)
     const [ isvalidRecaptcha, setIsvalidRecaptcha ] = useState(null)
     const [ alert, setAlert ] = useState(null)
 
-    let refPhone = React.createRef();
+    const [ backupPhone, setBackupPhone ] = useState('')
+
+    let refPhone = React.createRef()
+    let refCode = React.createRef()
+
+    const { CONFIG } = props
 
     /// init
     // Initialize Firebase
@@ -50,6 +59,17 @@ function VerifyPhone( props ){
         }
         setInvalidPhone(strInValid)
     }
+    function validateCode(){
+        /// thay đổi liên tục
+        let strInValid = null
+        if( !refCode.current.value && !refCode.current.value.length < 4 ){
+            strInValid = "Mã code chứa ít nhất 4 ký tự"
+        }
+        if( !refCode.current.value ){
+            strInValid = "Mã code buộc phải nhập"
+        }
+        setInvalidCode(strInValid)
+    }
 
     function sendSignInPhone(event) {
         
@@ -59,40 +79,89 @@ function VerifyPhone( props ){
         
         if( !invalidPhone && isvalidRecaptcha ){
             console.log("có xác thực")
-
+            /// lưu trữ trạng thái phone trước khi reset về dạng không có nhập phone nào
+            setBackupPhone(refPhone.current.value)
             refPhone.current.value = ''
+            //// cho recaptcha tạo mới lại
             recapchaVerifier.render()
+            /// gửi reqquest lên firebase
             firebase
             .auth()
             .signInWithPhoneNumber(number, window.recapchaVerifier)
             .then(function (confirmationResult) {
-                window.confirmationResult = confirmationResult;
-                let coderesult = confirmationResult;
-                console.log(coderesult);
+                window.confirmationResult = confirmationResult
+                console.log(confirmationResult)
+                setAlert(null)
+                setScreenCode(true)
             })
             .catch(function (error) {
-                console.log(error);
+                console.log(error)
                 setAlert(error.message)
             });
         }else if(!isvalidRecaptcha) {
             
             setAlert("bạn cần xác thực recaptcha")
         }
-
-
-        
     }
-    function verify() {
-        var code = $("#verification").val();
-        coderesult.confirm(code).then(function (result) {
-            var user = result.user;
-            console.log(user);
-            $("#successOtpAuth").text("Auth is successful");
-            $("#successOtpAuth").show();
-        }).catch(function (error) {
-            $("#error").text(error.message);
-            $("#error").show();
-        });
+    function sendVerifyCode() {
+        const code = refCode.current.value
+
+        window.confirmationResult
+            .confirm(code)
+            .then(function (result) {
+                const user = result.user;
+                setAlert(null)
+                //// lưu vào localStorage
+                if (typeof localStorage !== 'undefined') {
+                    localStorage.setItem('user', JSON.stringify(user))
+                    /// send axios cập nhật tài khoản đã được update
+                    axios.put(`https://jsonplaceholder.typicode.com/users`)
+                    .then(res => {
+                        const persons = res.data;
+                        this.setState({ persons });
+                    })
+                    .catch(error => console.log(error))
+                }
+            }).catch(function (error) {
+                setAlert("xác minh code không thành công")
+            });
+    }
+
+    if(screenCode){
+        /// screen code là đúng thì đưa ra màn hình nhập mã code
+        return <div className="wrapper-verify">
+            <div className="verify verify__notification">
+                <div className="verify__header">
+                    <i className="icon fad fa-sms"></i>
+                    <span className="title">Nhập mã code! </span>
+                </div>
+                <div className="verify__body">
+                    <div className="notification form-group">
+                        {
+                            alert && 
+                            <div className="alert alert-error" role="alert"> { alert } </div>
+                        }
+                        <div className={ "input-group " + (invalidCode && 'input-group-error' )}>
+                            <i class="icon fad fa-shield"></i>
+                            <input type="text" autoCorrect="off" autoCapitalize="none" 
+                            ref={refCode}
+                            onChange={ validateCode }
+                            className="input-control" 
+                            placeholder="nhập mã code vừa được gửi qua điện thoại" />
+                        </div>
+                        <div className="error">{ invalidCode }</div>
+                        {
+                            !invalidCode && 
+                            <button type="submit" 
+                            onClick={ sendVerifyCode }
+                            className="btn btn-login aqua-gradient-rgba">
+                                Xác Thực Mã Code
+                            </button>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
     }
 
 
@@ -108,9 +177,7 @@ function VerifyPhone( props ){
                         alert && 
                         <div className="alert alert-warning" role="alert"> { alert } </div>
                     }
-                    
                     <div className={ "input-group " + (invalidPhone && 'input-group-error' )}>
-                        
                         <i className="icon fad fa-phone-alt"></i>
                         <input type="text" autoCorrect="off" autoCapitalize="none" 
                         ref={refPhone}
@@ -120,7 +187,6 @@ function VerifyPhone( props ){
                     </div>
                     <div className="error">{ invalidPhone }</div>
                     <div id="recaptcha-container"></div>
-                    
                     {
                         !invalidPhone && 
                         <button type="submit" 
@@ -135,4 +201,9 @@ function VerifyPhone( props ){
     </div>
 }
 
-export default VerifyPhone
+let mapStateToProps = (state) => {
+    return {
+        CONFIG : state.config,
+    }
+}
+export default connect(mapStateToProps)(VerifyPhone)

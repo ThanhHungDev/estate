@@ -85,7 +85,16 @@
 
         const MAP_LAT  = "{{ Config::get('app.map_lat') }}";
         const MAP_LONG = "{{ Config::get('app.map_long') }}";
-        const GOOGLE_PLACES_API = "{{ env('GOOGLE_PLACES_API') }}";
+        const GOOGLE_PLACES_API = `{{ env('GOOGLE_PLACES_API') }}`;
+    </script>
+    @php 
+    $configApp = Config::get('app');
+    $configApp['providers'] = [];
+    $configApp['aliases'] = [];
+    @endphp
+    <script>
+        /// mới dành cho post react
+        const CONFIG_APP = `{!! json_encode($configApp) !!}`;
     </script>
 
     {{-- @php $analatic_key = Config::get("app.analatic") @endphp

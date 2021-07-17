@@ -83,7 +83,8 @@
 
     function codeverify() {
         var code = $("#verificationCode").val();
-        coderesult
+        window
+            .confirmationResult
             .confirm(code)
             .then(function (result) {
                 var user = result.user;

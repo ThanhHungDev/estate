@@ -1,18 +1,14 @@
-import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
-import jwt_decode from "jwt-decode";
- 
-
+import React from 'react'
+import { connect } from 'react-redux'
 
 import Header from './Header'
 import VerifyPhone from "./VerifyPhone"
 
 
-
 function App( props ){
 
-    const auth = jwt_decode(jwt);
-    console.log("start react post", auth)
+    const { auth } = props
+
     if( !auth ){
         return (
             <div className='guest'>
@@ -32,8 +28,9 @@ function App( props ){
 }
 
 
-export default App;
-
-if (document.getElementById('react__root')) {
-    ReactDOM.render(<App />, document.getElementById('react__root'));
+let mapStateToProps = (state) => {
+    return {
+        auth   : state.auth,
+    }
 }
+export default connect(mapStateToProps)(App)

@@ -1,1 +1,1 @@
-require('./post/App');
+require('./post/index');
