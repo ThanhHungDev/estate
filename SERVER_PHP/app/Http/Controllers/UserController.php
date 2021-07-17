@@ -119,4 +119,16 @@ class UserController extends Controller
     {
         return 'messages';
     }
+
+
+
+    public function post(){
+
+        $profile = Auth::user();
+        
+        if( $profile->role_id == Config::get('constant.ROLE.CUSTOMER') ){
+            return view('client.customer.post', compact(['profile']));
+        }
+        return view('client.saler.post', compact(['profile']));
+    }
 }

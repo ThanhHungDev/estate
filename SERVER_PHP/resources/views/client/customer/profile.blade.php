@@ -29,24 +29,9 @@
     <script type="text/javascript">
         lightGallery(document.getElementById('photos__responsive-images')); 
     </script>
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script> --}}
     <script>
         const jwt = '{{ Cookie::get(Config::get('constant.TOKEN_COOKIE_NAME')) }}';
-        // const socket = io.connect('http://localhost:3000', {
-        //     query: 'token=' + jwt
-        // });
-        // console.log("connected ở đây không thành công đâu " + socket.connected);
-        // socket.on('connect', function() {
-        //     console.log("Successfully connected!");
-        //     if(socket.connected){
-        //         console.log("connected ở đây sẽ thành công " + socket.connected);
-        //     }
-        // })
-        // .on('error', function(error) {
-        //     console.log(error)
-        // })
     </script>
-    <script src="{{ asset('js/app.js'. Config::get('app.version')) }}"></script>
 @endsection
 @section('content')
     <div class="content custommer">

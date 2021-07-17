@@ -27,8 +27,15 @@ class User extends Authenticatable implements JWTSubject
      */
     public function getJWTCustomClaims() {
         return [
-            "iss" => "http://localhost",
-            "ahihi" => "đồ ngốc CustomClaims"
+            "iss"          => "http://localhost",
+            'id'           => $this->id,
+            'name'         => $this->name,
+            'email'        => $this->email,
+            'avatar'       => $this->avatar,
+            'role_id'      => $this->role_id,
+            'sale_type'    => $this->sale_type,
+            'phone_verify' => $this->phone_verify,
+            'time_verify'  => $this->time_verify,
         ];
     }
 

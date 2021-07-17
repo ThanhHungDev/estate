@@ -206,7 +206,7 @@
     
     @yield('javascripts')
     @yield('make-up-data')
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
         function generateEmailFormat(){
             const CHARACTERS = 'abcdefghijklmnopqrstuvwxyz1234567890';
             var email = '';
@@ -230,6 +230,6 @@
                 console.log(auth)
             }
         }
-    </script>
+    </script> --}}
 </body>
 </html>

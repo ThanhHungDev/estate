@@ -11,6 +11,19 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
+// mix.js('resources/js/profile.js', 'public/js')
+//     .react()
+//     .sass('resources/sass/app.scss', 'public/css');
+
+
+mix.js('resources/js/post.js', 'public/js')
     .react()
-    .sass('resources/sass/app.scss', 'public/css');
+    .sass('resources/sass/post.scss', 'public/css');
+
+
+
+mix.browserSync({
+    proxy:'http://estate.com',
+    notify: false
+})
+.disableNotifications();

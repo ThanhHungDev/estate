@@ -15,6 +15,9 @@ class HTML_MIFIER
      */
     public function handle($request, Closure $next)
     {
+        if( env("APP_ENV") == 'local' ){
+            return $next($request);
+        }
         // $response = $next($request);
 
         // $contentType = $response->headers->get('Content-Type');

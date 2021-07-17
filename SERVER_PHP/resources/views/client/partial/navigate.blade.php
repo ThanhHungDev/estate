@@ -21,8 +21,8 @@
                 <span class="title">Đã Thích</span>
             </a>
         </li>
-        <li class="navigate__link {{ SupportRouter::fillClassActive('active', 'CONTACT_PAGE') }}">
-            <a href="{{ Route('CONTACT_PAGE') }}">
+        <li class="navigate__link {{ SupportRouter::fillClassActive('active', 'USER_POST') }}">
+            <a href="{{ Route('USER_POST') }}">
                 <i class="fal fa-layer-plus"></i>
                 <span class="title">Đăng bài</span>
             </a>
