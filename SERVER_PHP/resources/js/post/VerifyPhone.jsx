@@ -110,7 +110,8 @@ function VerifyPhone( props ){
                     }
                     
                     <div className={ "input-group " + (invalidPhone && 'input-group-error' )}>
-                        <i className="icon fad fa-envelope"></i>
+                        
+                        <i className="icon fad fa-phone-alt"></i>
                         <input type="text" autoCorrect="off" autoCapitalize="none" 
                         ref={refPhone}
                         onChange={ validatePhone }

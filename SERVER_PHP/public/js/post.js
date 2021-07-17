@@ -4092,7 +4092,7 @@ function VerifyPhone(props) {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
             className: "input-group " + (invalidPhone && 'input-group-error'),
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("i", {
-              className: "icon fad fa-envelope"
+              className: "icon fad fa-phone-alt"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
               type: "text",
               autoCorrect: "off",
