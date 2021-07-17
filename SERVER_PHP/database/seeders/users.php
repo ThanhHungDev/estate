@@ -28,7 +28,7 @@ class users extends Seeder
                     'updated_at' => date('Y-m-d H:i:s')
                 ],
                 [
-                    'name'       => 'Trương Phạm',
+                    'name'       => 'Trương Thanh Hùng Test',
                     'email'      => 'truongpham260620@gmail.com',
                     'avatar'     => '/images/avatar.jpg',
                     'password'   => bcrypt('123456'),
