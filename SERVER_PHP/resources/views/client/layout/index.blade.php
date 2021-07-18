@@ -91,6 +91,14 @@
     $configApp = Config::get('app');
     $configApp['providers'] = [];
     $configApp['aliases'] = [];
+    $configApp['API'] = [
+        'UPDATE_VERIFY_PHONE' => Route('API.USER.PATCH_VERIFY_PHONE')
+    ];
+    $configApp['WEB'] = [
+        'PATCH_VERIFY_PHONE' => Route('PATCH_VERIFY_PHONE'),
+        'LOGOUT' => Route('LOGOUT')
+    ];
+    $configApp['CONSTANT'] = Config::get('constant');
     @endphp
     <script>
         /// mới dành cho post react

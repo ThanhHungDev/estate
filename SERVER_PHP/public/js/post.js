@@ -5802,6 +5802,47 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./resources/js/action/index.js":
+/*!**************************************!*\
+  !*** ./resources/js/action/index.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "setterAuth": () => (/* binding */ setterAuth)
+/* harmony export */ });
+/* harmony import */ var _type__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./type */ "./resources/js/action/type.js");
+
+function setterAuth(auth) {
+  console.log(auth, " setterAuth ");
+  return {
+    type: _type__WEBPACK_IMPORTED_MODULE_0__.default.AUTH_SETTER,
+    payload: auth
+  };
+}
+
+/***/ }),
+
+/***/ "./resources/js/action/type.js":
+/*!*************************************!*\
+  !*** ./resources/js/action/type.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var TYPE = {
+  AUTH_SETTER: 'AUTH_SETTER'
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TYPE);
+
+/***/ }),
+
 /***/ "./resources/js/firebase.config.js":
 /*!*****************************************!*\
   !*** ./resources/js/firebase.config.js ***!
@@ -5860,6 +5901,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function App(props) {
   var auth = props.auth;
+  console.log(auth, "aaaaaaaaaaa");
 
   if (!auth) {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
@@ -5929,12 +5971,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var jwt_decode__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jwt-decode */ "./node_modules/jwt-decode/build/jwt-decode.esm.js");
 /* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! firebase/app */ "./node_modules/firebase/app/dist/index.esm.js");
 /* harmony import */ var firebase_auth__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! firebase/auth */ "./node_modules/firebase/auth/dist/index.esm.js");
 /* harmony import */ var _firebase_config__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../firebase.config */ "./resources/js/firebase.config.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _service_user_api__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../service/user.api */ "./resources/js/service/user.api.js");
+/* harmony import */ var _action_index__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../action/index */ "./resources/js/action/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -5957,6 +6000,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 // If you enabled Analytics in your project, add the Firebase SDK for Analytics
 // import "firebase/analytics"
 // Add the Firebase products that you want to use
+
+
 
 
 
@@ -5995,8 +6040,7 @@ function VerifyPhone(props) {
       setBackupPhone = _useState12[1];
 
   var refPhone = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createRef();
-  var refCode = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createRef();
-  var CONFIG = props.CONFIG; /// init
+  var refCode = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createRef(); /// init
   // Initialize Firebase
   // Tương tự như componentDidMount và componentDidUpdate:
 
@@ -6008,6 +6052,34 @@ function VerifyPhone(props) {
       }
     });
     recapchaVerifier.render();
+    var AUTH_PHONE_FIREBASE = localStorage.getItem('AUTH_PHONE_FIREBASE');
+
+    if (AUTH_PHONE_FIREBASE) {
+      AUTH_PHONE_FIREBASE = JSON.parse(AUTH_PHONE_FIREBASE);
+    } //// hàm chạy 1 lần duy nhất gọi đến api update
+
+
+    if (!props.AUTH.phone_verify && AUTH_PHONE_FIREBASE) {
+      _service_user_api__WEBPACK_IMPORTED_MODULE_6__.default.verifyPhone({
+        phone_verify: "".concat(AUTH_PHONE_FIREBASE.phoneNumber)
+      }).then(function (response) {
+        console.log(response);
+        firebase_app__WEBPACK_IMPORTED_MODULE_3__.default.auth().signOut(); // .then(() => {
+        //     // Sign-out successful.
+        // }).catch((error) => {
+        //     // An error happened.
+        // });
+
+        location.reload(); /// thành công thì refresh trang
+        // const { user, phone, jwt } = response.data
+        // /// lưu jwt vào localStorage
+        // localStorage.setItem('jwt', jwt)
+        // /// dispatch auth
+        // props.dispatch(setterAuth(jwt_decode(jwt)))
+      })["catch"](function (error) {
+        console.log("ERROR:: ", error);
+      });
+    }
   }, []);
 
   function isVietnamesePhoneNumber(number) {
@@ -6074,24 +6146,30 @@ function VerifyPhone(props) {
   function sendVerifyCode() {
     var code = refCode.current.value;
     window.confirmationResult.confirm(code).then(function (result) {
-      var _this = this;
-
       var user = result.user;
       setAlert(null); //// lưu vào localStorage
 
-      if (typeof localStorage !== 'undefined') {
-        localStorage.setItem('user', JSON.stringify(user)); /// send axios cập nhật tài khoản đã được update
+      localStorage.setItem('AUTH_PHONE_FIREBASE', JSON.stringify(user)); /// send axios cập nhật tài khoản đã được update
 
-        axios__WEBPACK_IMPORTED_MODULE_2___default().put("https://jsonplaceholder.typicode.com/users").then(function (res) {
-          var persons = res.data;
+      _service_user_api__WEBPACK_IMPORTED_MODULE_6__.default.verifyPhone({
+        phone_verify: "".concat(backupPhone)
+      }).then(function (response) {
+        console.log(response);
+        firebase_app__WEBPACK_IMPORTED_MODULE_3__.default.auth().signOut(); // .then(() => {
+        //     // Sign-out successful.
+        // }).catch((error) => {
+        //     // An error happened.
+        // });
 
-          _this.setState({
-            persons: persons
-          });
-        })["catch"](function (error) {
-          return console.log(error);
-        });
-      }
+        location.reload(); /// thành công thì refresh trang
+        // const { user, phone, jwt } = response.data
+        // /// lưu jwt vào localStorage
+        // localStorage.setItem('jwt', jwt)
+        // /// dispatch auth
+        // props.dispatch(setterAuth(jwt_decode(jwt)))
+      })["catch"](function (error) {
+        console.log("ERROR:: ", error);
+      });
     })["catch"](function (error) {
       setAlert("xác minh code không thành công");
     });
@@ -6099,31 +6177,31 @@ function VerifyPhone(props) {
 
   if (screenCode) {
     /// screen code là đúng thì đưa ra màn hình nhập mã code
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
       className: "wrapper-verify",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
         className: "verify verify__notification",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
           className: "verify__header",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("i", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("i", {
             className: "icon fad fa-sms"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("span", {
             className: "title",
             children: "Nh\u1EADp m\xE3 code! "
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
           className: "verify__body",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
             className: "notification form-group",
-            children: [alert && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+            children: [alert && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
               className: "alert alert-error",
               role: "alert",
               children: [" ", alert, " "]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
               className: "input-group " + (invalidCode && 'input-group-error'),
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("i", {
-                "class": "icon fad fa-shield"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("i", {
+                className: "icon fad fa-shield"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("input", {
                 type: "text",
                 autoCorrect: "off",
                 autoCapitalize: "none",
@@ -6132,10 +6210,10 @@ function VerifyPhone(props) {
                 className: "input-control",
                 placeholder: "nh\u1EADp m\xE3 code v\u1EEBa \u0111\u01B0\u1EE3c g\u1EEDi qua \u0111i\u1EC7n tho\u1EA1i"
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
               className: "error",
               children: invalidCode
-            }), !invalidCode && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
+            }), !invalidCode && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("button", {
               type: "submit",
               onClick: sendVerifyCode,
               className: "btn btn-login aqua-gradient-rgba",
@@ -6147,31 +6225,31 @@ function VerifyPhone(props) {
     });
   }
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
     className: "wrapper-verify",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
       className: "verify verify__notification",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
         className: "verify__header",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("i", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("i", {
           className: "icon fad fa-sms"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("span", {
           className: "title",
           children: "X\xE1c Th\u1EF1c S\u1ED1 \u0110i\u1EC7n Tho\u1EA1i! "
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
         className: "verify__body",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
           className: "notification form-group",
-          children: [alert && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+          children: [alert && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
             className: "alert alert-warning",
             role: "alert",
             children: [" ", alert, " "]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
             className: "input-group " + (invalidPhone && 'input-group-error'),
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("i", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("i", {
               className: "icon fad fa-phone-alt"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("input", {
               type: "text",
               autoCorrect: "off",
               autoCapitalize: "none",
@@ -6180,12 +6258,12 @@ function VerifyPhone(props) {
               className: "input-control",
               placeholder: "+81 ... Nh\u1EADp s\u1ED1 \u0111i\u1EC7n tho\u1EA1i"
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
             className: "error",
             children: invalidPhone
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
             id: "recaptcha-container"
-          }), !invalidPhone && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
+          }), !invalidPhone && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("button", {
             type: "submit",
             onClick: sendSignInPhone,
             className: "btn btn-login aqua-gradient-rgba",
@@ -6199,7 +6277,8 @@ function VerifyPhone(props) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    CONFIG: state.config
+    CONFIG: state.config,
+    AUTH: state.auth
   };
 };
 
@@ -6258,19 +6337,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* export default binding */ __WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var jwt_decode__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jwt-decode */ "./node_modules/jwt-decode/build/jwt-decode.esm.js");
+/* harmony import */ var _action_type__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../action/type */ "./resources/js/action/type.js");
+/* harmony import */ var _service_jwt_helper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../service/jwt.helper */ "./resources/js/service/jwt.helper.js");
 
-var auth = null;
-
-if (typeof jwt != 'undefined') {
-  auth = (0,jwt_decode__WEBPACK_IMPORTED_MODULE_0__.default)(jwt);
-}
 
 /* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : auth;
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _service_jwt_helper__WEBPACK_IMPORTED_MODULE_1__.default.AUTH;
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
+    case _action_type__WEBPACK_IMPORTED_MODULE_0__.default.AUTH_SETTER:
+      return action.payload;
+
     default:
       return state;
   }
@@ -6333,6 +6411,129 @@ var Reducer = (0,redux__WEBPACK_IMPORTED_MODULE_2__.combineReducers)({
   auth: _auth__WEBPACK_IMPORTED_MODULE_1__.default
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Reducer);
+
+/***/ }),
+
+/***/ "./resources/js/service/api.middleware.js":
+/*!************************************************!*\
+  !*** ./resources/js/service/api.middleware.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _jwt_helper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./jwt.helper */ "./resources/js/service/jwt.helper.js");
+
+
+function setup(instance) {
+  instance.interceptors.request.use(function (config) {
+    console.log("vào setup trước");
+    config.headers.Authorization = "Bearer ".concat(_jwt_helper__WEBPACK_IMPORTED_MODULE_0__.default.jwt);
+    return config;
+  }, function (err) {
+    console.log("vào setup error trước");
+    return Promise.reject(err);
+  });
+}
+
+function checkToken(instance) {
+  instance.interceptors.response.use(function (response) {
+    console.log("vào checkToken"); // if (response.headers['content-type'].startsWith('application/json')) {
+    //     response.data = camelcaseKeys(response.data, { deep: true })
+    // }
+
+    return response;
+  }, function (error) {
+    console.log("vào error checkToken");
+
+    if (error.response.status === 401 && !window.location.pathname.includes('login')) {
+      var CONFIG = {};
+
+      if (typeof CONFIG_APP != 'undefined') {
+        /// thì sao? 
+        CONFIG = JSON.parse(CONFIG_APP);
+      } // window.location.href = CONFIG.WEB.LOGOUT
+
+    }
+
+    return Promise.reject(error);
+  });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  setup: setup,
+  checkToken: checkToken
+});
+
+/***/ }),
+
+/***/ "./resources/js/service/jwt.helper.js":
+/*!********************************************!*\
+  !*** ./resources/js/service/jwt.helper.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var jwt_decode__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jwt-decode */ "./node_modules/jwt-decode/build/jwt-decode.esm.js");
+
+var jwt = localStorage.getItem('jwt');
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  AUTH: (0,jwt_decode__WEBPACK_IMPORTED_MODULE_0__.default)(jwt),
+  jwt: jwt
+});
+
+/***/ }),
+
+/***/ "./resources/js/service/user.api.js":
+/*!******************************************!*\
+  !*** ./resources/js/service/user.api.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _api_middleware__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./api.middleware */ "./resources/js/service/api.middleware.js");
+
+
+var CONFIG = {};
+
+if (typeof CONFIG_APP != 'undefined') {
+  /// thì sao? 
+  CONFIG = JSON.parse(CONFIG_APP);
+}
+
+var Api = axios__WEBPACK_IMPORTED_MODULE_0___default().create({
+  baseURL: window.location.origin,
+  withCredentials: false,
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json'
+  },
+  timeout: 5000 // request timeout
+
+});
+_api_middleware__WEBPACK_IMPORTED_MODULE_1__.default.setup(Api);
+_api_middleware__WEBPACK_IMPORTED_MODULE_1__.default.checkToken(Api);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  verifyPhone: function verifyPhone(params) {
+    console.log("vào verifyPhone", params);
+    return Api.patch(CONFIG.WEB.PATCH_VERIFY_PHONE, params).then(function (res) {
+      return res.data;
+    });
+  }
+});
 
 /***/ }),
 

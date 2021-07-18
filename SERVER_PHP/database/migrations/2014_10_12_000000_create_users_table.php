@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->integer('role_id')->default(Config::get("constant.ROLE.CUSTOMER"));
             $table->integer('sale_type')->default(Config::get("constant.SALE_TYPE.DEFAULT"));
-            $table->integer('phone_verify')->default(0);
+            $table->string('phone_verify')->nullable();
             $table->timestamp('time_verify')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->rememberToken();
             $table->timestamps();

@@ -41,6 +41,8 @@ Route::group(['prefix' => '/','middleware' => [ 'HTML_MINIFIER']], function () {
         Route::get('/notifications', [ App\Http\Controllers\UserController::class, 'notifications' ])->name('VIEW_NOTIFICATION');
         Route::get('/messages', [ App\Http\Controllers\UserController::class, 'messages' ])->name('VIEW_CHAT');
         Route::get('/post', [ App\Http\Controllers\UserController::class, 'post' ])->name('USER_POST');
+
+        Route::patch('/verify/phone', [ App\Http\Controllers\UserController::class, 'patchVerifyPhone' ])->name('PATCH_VERIFY_PHONE');
     });
     
     // include_once("saler.php");

@@ -1,13 +1,10 @@
-import jwt_decode from "jwt-decode"
+import TYPE from "../action/type";
+import jwtHelper from "../service/jwt.helper"
 
-let auth = null
-if( typeof jwt != 'undefined' ){
-    auth = jwt_decode(jwt)
-}
-
-export default function (state = auth, action) {
+export default function (state = jwtHelper.AUTH, action) {
     switch (action.type) {
-        
+        case TYPE.AUTH_SETTER:
+            return action.payload
         default:
             return state;
     }

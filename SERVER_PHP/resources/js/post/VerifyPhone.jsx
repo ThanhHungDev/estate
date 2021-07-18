@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { connect } from "react-redux"
-import axios from 'axios'
+import jwt_decode from "jwt-decode"
 // Firebase App (the core Firebase SDK) is always required and must be listed first
 import firebase from "firebase/app"
 import 'firebase/auth';
@@ -12,6 +12,8 @@ import 'firebase/auth';
 
 // Add the Firebase products that you want to use
 import firebaseConfig from "../firebase.config"
+import userAPI from "../service/user.api"
+import { setterAuth } from "../action/index"
 
 firebase.initializeApp(firebaseConfig);
 
@@ -28,7 +30,7 @@ function VerifyPhone( props ){
     let refPhone = React.createRef()
     let refCode = React.createRef()
 
-    const { CONFIG } = props
+
 
     /// init
     // Initialize Firebase
@@ -43,6 +45,35 @@ function VerifyPhone( props ){
             }
         })
         recapchaVerifier.render();
+
+        let AUTH_PHONE_FIREBASE = localStorage.getItem('AUTH_PHONE_FIREBASE')
+        if( AUTH_PHONE_FIREBASE ){
+            AUTH_PHONE_FIREBASE = JSON.parse(AUTH_PHONE_FIREBASE)
+        }
+        //// hàm chạy 1 lần duy nhất gọi đến api update
+        if( !props.AUTH.phone_verify &&  AUTH_PHONE_FIREBASE){
+            
+            userAPI.verifyPhone({ phone_verify: `${AUTH_PHONE_FIREBASE.phoneNumber}` })
+            .then( response => {
+                console.log(response)
+                firebase.auth().signOut()
+                // .then(() => {
+                //     // Sign-out successful.
+                // }).catch((error) => {
+                //     // An error happened.
+                // });
+                location.reload()
+                /// thành công thì refresh trang
+                // const { user, phone, jwt } = response.data
+                // /// lưu jwt vào localStorage
+                // localStorage.setItem('jwt', jwt)
+                // /// dispatch auth
+                // props.dispatch(setterAuth(jwt_decode(jwt)))
+            })
+            .catch(error => {
+                console.log("ERROR:: ",error);
+            });
+        }
     }, []);
 
     function isVietnamesePhoneNumber(number) {
@@ -112,16 +143,29 @@ function VerifyPhone( props ){
                 const user = result.user;
                 setAlert(null)
                 //// lưu vào localStorage
-                if (typeof localStorage !== 'undefined') {
-                    localStorage.setItem('user', JSON.stringify(user))
-                    /// send axios cập nhật tài khoản đã được update
-                    axios.put(`https://jsonplaceholder.typicode.com/users`)
-                    .then(res => {
-                        const persons = res.data;
-                        this.setState({ persons });
-                    })
-                    .catch(error => console.log(error))
-                }
+                localStorage.setItem('AUTH_PHONE_FIREBASE', JSON.stringify(user))
+                /// send axios cập nhật tài khoản đã được update
+                userAPI.verifyPhone({ phone_verify: `${backupPhone}` })
+                .then( response => {
+                    console.log(response)
+                    
+                    firebase.auth().signOut()
+                    // .then(() => {
+                    //     // Sign-out successful.
+                    // }).catch((error) => {
+                    //     // An error happened.
+                    // });
+                    location.reload()
+                    /// thành công thì refresh trang
+                    // const { user, phone, jwt } = response.data
+                    // /// lưu jwt vào localStorage
+                    // localStorage.setItem('jwt', jwt)
+                    // /// dispatch auth
+                    // props.dispatch(setterAuth(jwt_decode(jwt)))
+                })
+                .catch(error => {
+                    console.log("ERROR:: ",error)
+                });
             }).catch(function (error) {
                 setAlert("xác minh code không thành công")
             });
@@ -142,7 +186,7 @@ function VerifyPhone( props ){
                             <div className="alert alert-error" role="alert"> { alert } </div>
                         }
                         <div className={ "input-group " + (invalidCode && 'input-group-error' )}>
-                            <i class="icon fad fa-shield"></i>
+                            <i className="icon fad fa-shield"></i>
                             <input type="text" autoCorrect="off" autoCapitalize="none" 
                             ref={refCode}
                             onChange={ validateCode }
@@ -203,7 +247,8 @@ function VerifyPhone( props ){
 
 let mapStateToProps = (state) => {
     return {
-        CONFIG : state.config,
+        CONFIG: state.config,
+        AUTH  : state.auth,
     }
 }
 export default connect(mapStateToProps)(VerifyPhone)

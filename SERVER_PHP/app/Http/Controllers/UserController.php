@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\REGISTER_REQUEST;
 use App\Models\User;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Cookie;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UserController extends Controller
 {
@@ -130,5 +133,69 @@ class UserController extends Controller
             return view('client.customer.post', compact(['profile']));
         }
         return view('client.saler.post', compact(['profile']));
+    }
+
+
+
+    /**
+     * update user is verify code profile resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function patchVerifyPhone(Request $request){
+
+
+        $token = $request->bearerToken();
+        JWTAuth::setToken($token); //<-- set token and check
+        if (! $claim = JWTAuth::getPayload()) {
+            return  response()
+                    ->error(
+                        'Token user not found', 
+                        ['error' => 'user_not_found'],
+                        Response::HTTP_NOT_FOUND
+                    )
+                    ->setStatusCode(Response::HTTP_NOT_FOUND);
+        }
+        /// query db find user
+        $user = User::findOrFail($claim['id']);
+        if( !$user ){
+            return  response()
+                    ->error(
+                        'Token user not found', 
+                        ['error' => 'user_not_found'],
+                        Response::HTTP_NOT_FOUND
+                    )
+                    ->setStatusCode(Response::HTTP_NOT_FOUND);
+        }
+        if( $user->phone_verify == $request->input('phone_verify') ){
+            return  response()
+                    ->error(
+                        'Đã xác thực trùng phone nên không cần update', 
+                        ['error' => 'user_not_found'],
+                        Response::HTTP_CONFLICT
+                    )
+                    ->setStatusCode(Response::HTTP_CONFLICT);
+        }
+
+        $user->phone_verify = $request->input('phone_verify');
+        $user->save();
+
+        /// tạo 1 token đưa về client lưu vào localStorage
+        $tokenNew = JWTAuth::fromUser($user);
+
+        $response = array(
+            'status' => Response::HTTP_OK,
+            'message' => 'update patch thành công',
+            'data' => array(
+                'user' => $user->toArray(),
+                'jwt' => $tokenNew,
+                'old_jwt' => $token,
+                'phone' => $request->input('phone_verify')
+            ),
+        );
+
+        return response()
+        ->json($response, Response::HTTP_OK)   // JsonResponse object
+        ->withCookie(cookie()->forever(Config::get('constant.TOKEN_COOKIE_NAME'), $tokenNew));
     }
 }

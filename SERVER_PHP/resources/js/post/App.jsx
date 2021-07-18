@@ -9,6 +9,7 @@ function App( props ){
 
     const { auth } = props
 
+    console.log(auth, "aaaaaaaaaaa")
     if( !auth ){
         return (
             <div className='guest'>

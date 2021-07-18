@@ -47,6 +47,6 @@ Route::group([ 'prefix'=>'/v1' ], function () {
     Route::group(['middleware' => 'jwt.auth'], function () {
 
         Route::get('users', [ App\Http\Controllers\Api\UserController::class, 'index' ]);
-        
+        Route::patch('users', [ App\Http\Controllers\Api\UserController::class, 'patchVerifyPhone' ])->name('API.USER.PATCH_VERIFY_PHONE');
     });
 });

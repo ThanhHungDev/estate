@@ -1,8 +1,8 @@
 import TYPE from "./type"
-// export function setterSocket(socket){
-//     console.log(socket , " setterSocket ")
-//     return {
-//         type : TYPE.SOCCKET.SET_SOCKET_IO,
-//         payload : socket
-//     }
-// }
+export function setterAuth(auth){
+    console.log(auth , " setterAuth ")
+    return {
+        type : TYPE.AUTH_SETTER,
+        payload : auth
+    }
+}

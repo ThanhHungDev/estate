@@ -31,7 +31,11 @@
     </script>
     <script>
         const jwt = '{{ Cookie::get(Config::get('constant.TOKEN_COOKIE_NAME')) }}';
-        const KEY_CAPTCHA = '{{ env('GOOGLE_RECAPTCHA_KEY')  }}'
+        const KEY_CAPTCHA = '{{ env('GOOGLE_RECAPTCHA_KEY')  }}';
+        if (typeof localStorage !== 'undefined') {
+            console.log("setting jwt in script")
+            localStorage.setItem('jwt', jwt)
+        }
     </script>
     <script src="{{ asset('js/post.js'. Config::get('app.version')) }}"></script>
 @endsection
