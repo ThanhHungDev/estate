@@ -101,7 +101,6 @@
     $configApp['CONSTANT'] = Config::get('constant');
     @endphp
     <script>
-        /// mới dành cho post react
         const CONFIG_APP = `{!! json_encode($configApp) !!}`;
     </script>
 
