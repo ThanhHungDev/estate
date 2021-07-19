@@ -5890,8 +5890,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Header */ "./resources/js/post/Header.jsx");
-/* harmony import */ var _VerifyPhone__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./VerifyPhone */ "./resources/js/post/VerifyPhone.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _SelectCategory__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SelectCategory */ "./resources/js/post/SelectCategory.jsx");
+/* harmony import */ var _VerifyPhone__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./VerifyPhone */ "./resources/js/post/VerifyPhone.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
 
@@ -5904,20 +5906,20 @@ function App(props) {
   console.log(auth, "aaaaaaaaaaa");
 
   if (!auth) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
       className: "guest",
-      children: ["t\xE0i kho\u1EA3n x\xE1c th\u1EF1c kh\xF4ng th\xE0nh c\xF4ng! ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), "b\xE1o v\u1EDBi admin h\u1EC7 th\u1ED1ng n\u1EBFu b\u1EA1n c\u1EA3m th\u1EA5y c\xF3 b\u1EA5t th\u01B0\u1EDDng"]
+      children: ["t\xE0i kho\u1EA3n x\xE1c th\u1EF1c kh\xF4ng th\xE0nh c\xF4ng! ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "b\xE1o v\u1EDBi admin h\u1EC7 th\u1ED1ng n\u1EBFu b\u1EA1n c\u1EA3m th\u1EA5y c\xF3 b\u1EA5t th\u01B0\u1EDDng"]
     });
   }
 
   if (!auth.phone_verify) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_VerifyPhone__WEBPACK_IMPORTED_MODULE_3__.default, {});
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_VerifyPhone__WEBPACK_IMPORTED_MODULE_4__.default, {});
   }
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
     className: "AppComponent post",
     id: "Application",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Header__WEBPACK_IMPORTED_MODULE_2__.default, {})
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Header__WEBPACK_IMPORTED_MODULE_2__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_SelectCategory__WEBPACK_IMPORTED_MODULE_3__.default, {})]
   });
 }
 
@@ -5955,6 +5957,110 @@ function Header(props) {
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Header);
+
+/***/ }),
+
+/***/ "./resources/js/post/SelectCategory.jsx":
+/*!**********************************************!*\
+  !*** ./resources/js/post/SelectCategory.jsx ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+function SelectCategory(props) {
+  var CATEGORIES = props.CATEGORIES,
+      CONFIG = props.CONFIG;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    className: "categories",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "categories__wrapper",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "container",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          className: "row categories__row",
+          children: CATEGORIES.map(function (cat) {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Category, {
+              category: cat,
+              config: CONFIG
+            }, cat.id);
+          })
+        })
+      })
+    })
+  });
+}
+
+function Category(props) {
+  var category = props.category,
+      config = props.config;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(category.background),
+      _useState2 = _slicedToArray(_useState, 2),
+      src = _useState2[0],
+      setSrc = _useState2[1];
+
+  function onError() {
+    setSrc(config.image_error);
+    return null;
+  }
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    className: "categories__item",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
+      className: "categories__item-link-img",
+      href: "{{ Route('TAG_THEME_VIEW', [ 'slug' => $tag->slug ]) }}",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+        className: "lazyload",
+        src: config.lazyload_base64,
+        onError: onError,
+        "data-src": src,
+        "data-sdrc": src,
+        alt: category.title,
+        width: "300",
+        height: "300"
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
+      href: "{{ Route('TAG_THEME_VIEW', [ 'slug' => $tag->slug ]) }}",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h5", {
+        className: "categories__item-link-text",
+        children: category.title
+      })
+    })]
+  });
+}
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    CATEGORIES: state.categories,
+    CONFIG: state.config
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps)(SelectCategory));
 
 /***/ }),
 
@@ -6356,6 +6462,36 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/reducer/category.js":
+/*!******************************************!*\
+  !*** ./resources/js/reducer/category.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* export default binding */ __WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var CATE = {};
+
+if (typeof CATEGORIES != 'undefined') {
+  /// thì sao? 
+  CATE = JSON.parse(CATEGORIES);
+}
+
+/* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : CATE;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
 /***/ "./resources/js/reducer/config.js":
 /*!****************************************!*\
   !*** ./resources/js/reducer/config.js ***!
@@ -6398,17 +6534,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./config */ "./resources/js/reducer/config.js");
 /* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./auth */ "./resources/js/reducer/auth.js");
+/* harmony import */ var _category__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./category */ "./resources/js/reducer/category.js");
  ///thêm các reducer funtion cần được combine vào đây
+
 
 
  //// khởi tạo 1 biến biểu diễn REDUCER ALL 
 
-var Reducer = (0,redux__WEBPACK_IMPORTED_MODULE_2__.combineReducers)({
+var Reducer = (0,redux__WEBPACK_IMPORTED_MODULE_3__.combineReducers)({
   config: _config__WEBPACK_IMPORTED_MODULE_0__.default,
-  auth: _auth__WEBPACK_IMPORTED_MODULE_1__.default
+  auth: _auth__WEBPACK_IMPORTED_MODULE_1__.default,
+  categories: _category__WEBPACK_IMPORTED_MODULE_2__.default
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Reducer);
 

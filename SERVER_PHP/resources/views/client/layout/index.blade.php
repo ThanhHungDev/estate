@@ -102,6 +102,7 @@
     @endphp
     <script>
         const CONFIG_APP = `{!! json_encode($configApp) !!}`;
+        const CATEGORIES = `{!! json_encode($categories ?? []) !!}`;
     </script>
 
     {{-- @php $analatic_key = Config::get("app.analatic") @endphp

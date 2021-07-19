@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import Header from './Header'
+import SelectCategory from './SelectCategory'
 import VerifyPhone from "./VerifyPhone"
 
 
@@ -24,6 +25,7 @@ function App( props ){
     return (
         <div className="AppComponent post" id="Application">
             <Header />
+            <SelectCategory />
         </div>
     )
 }

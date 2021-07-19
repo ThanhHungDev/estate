@@ -86,6 +86,14 @@ $theme-color-interval: 8% !default;
   background: linear-gradient($deg, $start, $end) !important;
 }
 
+@mixin render-autofix($key, $value){
+  -webkit-#{$key}: $value;
+  -moz-#{$key}: $value;
+  -o-#{$key}: $value;
+  -ms-#{$key}: $value;
+  #{$key}: $value;
+}
+
 
 @mixin MinWidthResponsive($canvas, $value) {
   @if $canvas == XS {

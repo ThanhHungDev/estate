@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\REGISTER_REQUEST;
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cookie;
@@ -127,12 +128,13 @@ class UserController extends Controller
 
     public function post(){
 
+        $categories = (new Category())->all();
         $profile = Auth::user();
         
         if( $profile->role_id == Config::get('constant.ROLE.CUSTOMER') ){
-            return view('client.customer.post', compact(['profile']));
+            return view('client.customer.post', compact(['profile', 'categories']));
         }
-        return view('client.saler.post', compact(['profile']));
+        return view('client.saler.post', compact(['profile', 'categories']));
     }
 
 
