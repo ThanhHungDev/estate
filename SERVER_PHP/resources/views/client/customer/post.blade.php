@@ -6,17 +6,17 @@
 @section('meta-seo')
     <link rel="canonical" href="{{ asset('/') }}" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="{{ Config::get("app.og_name") }}" />
-    <meta property="og:description" content="{{ Config::get("app.og_description") }}" />
+    <meta property="og:title" content="{{ Config::get('app.og_name') }}" />
+    <meta property="og:description" content="{{ Config::get('app.og_description') }}" />
     <meta property="og:url" content="{{ asset('/') }}" />
-    <meta property="og:site_name" content="{{ Config::get("app.og_name") }}" />
-    <meta property="og:image" content="{{ Config::get("app.image") }}" />
-    <meta property="og:image:secure_url" content="{{ Config::get("app.image") }}" />
+    <meta property="og:site_name" content="{{ Config::get('app.og_name') }}" />
+    <meta property="og:image" content="{{ Config::get('app.image') }}" />
+    <meta property="og:image:secure_url" content="{{ Config::get('app.image') }}" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:description" content="{{ Config::get("app.description") }}" />
-    <meta name="twitter:title" content="{{ Config::get("app.og_name") }}" />
+    <meta name="twitter:description" content="{{ Config::get('app.description') }}" />
+    <meta name="twitter:title" content="{{ Config::get('app.og_name') }}" />
     <meta name="twitter:site" content="{{ Config::get('site_fb') }}" />
-    <meta name="twitter:image" content="{{ Config::get("app.image") }}" />
+    <meta name="twitter:image" content="{{ Config::get('app.image') }}" />
 @endsection
 
 
@@ -30,8 +30,8 @@
         lightGallery(document.getElementById('photos__responsive-images')); 
     </script>
     <script>
-        const jwt = '{{ Cookie::get(Config::get('constant.TOKEN_COOKIE_NAME')) }}';
-        const KEY_CAPTCHA = '{{ env('GOOGLE_RECAPTCHA_KEY')  }}';
+        const jwt = "{{ Cookie::get(Config::get('constant.TOKEN_COOKIE_NAME')) }}";
+        const KEY_CAPTCHA = "{{ env('GOOGLE_RECAPTCHA_KEY')  }}";
         if (typeof localStorage !== 'undefined') {
             localStorage.setItem('jwt', jwt);
         }

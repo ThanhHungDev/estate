@@ -11,7 +11,7 @@
 
     @yield('meta-seo')
 
-    <link rel="alternate" type="application/rss+xml" title="{{ Config::get("app.alternate_name") }}" href="" />
+    <link rel="alternate" type="application/rss+xml" title="{{ Config::get('app.alternate_name') }}" href="" />
 
 
     {{-- <link rel="preload" href="/font/font-awe/webfonts/fa-brands-400.woff2" as="font" />
@@ -31,7 +31,7 @@
     {{-- <link rel="preload" as="script" href="{{ asset('js/library/slick.min.js' . Config::get('app.version')) }}"> --}}
     <link rel="preload" as="script" href="{{ asset('js/app.min.js' . Config::get('app.version')) }}">
     
-    {{-- <script rel="preload" as="script" src='{{ asset('js/library/jquery.min.js' . Config::get('app.version')) }}'></script> --}}
+    {{-- <script rel="preload" as="script" src="{{ asset('js/library/jquery.min.js' . Config::get('app.version')) }}"></script> --}}
     {{-- <script rel="preload" as="script" src="{{ asset('js/app.min.js' . Config::get('app.version')) }}"></script> --}}
     @yield('preload')
 
@@ -48,7 +48,7 @@
     
     <link rel="stylesheet" href="{{ asset('css/library/tipped.css' . Config::get('app.version'))}}">
     
-    <script async='async' defer='defer' src='{{ asset('js/library/lazysizes.min.js' . Config::get('app.version')) }}'></script>
+    <script async='async' defer='defer' src="{{ asset('js/library/lazysizes.min.js' . Config::get('app.version')) }}"></script>
     
     <link rel="icon" type="image/png" href="{{ asset('favicon.ico' . Config::get('app.version')) }}">
     <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('/favicon/apple-icon-57x57.png' . Config::get('app.version')) }}">
@@ -80,8 +80,8 @@
         }
     </script> --}}
     <script>
-        const CONFIG_COMPANY_NAME    = "{{ Config::get("app.company_name") }}";
-        const CONFIG_COMPANY_ADDRESS = "{{ implode(',', [ Config::get("app.company_address_street"), Config::get("app.company_address_locality"), Config::get("app.company_address_region"), Config::get("app.company_address_country")]) }}";
+        const CONFIG_COMPANY_NAME    = "{{ Config::get('app.company_name') }}";
+        const CONFIG_COMPANY_ADDRESS = "{{ implode(',', [ Config::get('app.company_address_street'), Config::get('app.company_address_locality'), Config::get('app.company_address_region'), Config::get('app.company_address_country')]) }}";
 
         const MAP_LAT  = "{{ Config::get('app.map_lat') }}";
         const MAP_LONG = "{{ Config::get('app.map_long') }}";
@@ -96,7 +96,8 @@
     ];
     $configApp['WEB'] = [
         'PATCH_VERIFY_PHONE' => Route('PATCH_VERIFY_PHONE'),
-        'LOGOUT' => Route('LOGOUT')
+        'LOGOUT' => Route('LOGOUT'),
+        'USER_POST' =>  Route('USER_POST', ['path' => null ], false ),
     ];
     $configApp['CONSTANT'] = Config::get('constant');
     @endphp
