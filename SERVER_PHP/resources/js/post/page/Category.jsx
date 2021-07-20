@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { Link } from "react-router-dom"
 
 
 function Category( props ){
@@ -15,17 +16,18 @@ function Category( props ){
     
     return (
         <div className="categories__item">
-            <a className="categories__item-link-img" href={ `${config.REACT_ASSET}/${category.slug}` }>
+            <Link className="categories__item-link-img" to={ `/${category.slug}` }>
                 <img className="lazyload"
-                src={ config.lazyload_base64 }
-                onError={ onError }
-                data-src={src}
-                data-sdrc={src}
-                alt={ category.title } width="300" height="300"/>
-            </a>
-            <a href={ `${config.REACT_ASSET}/${category.slug}` }>
+                    src={ config.lazyload_base64 }
+                    onError={ onError }
+                    data-src={src}
+                    data-sdrc={src}
+                    alt={ category.title } width="300" height="300"/>
+            </Link>
+            
+            <Link to={ `/${category.slug}` }> {/* ${config.REACT_ASSET} */}
                 <h5 className="categories__item-link-text">{ category.title }</h5>
-            </a>
+            </Link>
         </div>
     )
 }

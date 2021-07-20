@@ -13,6 +13,9 @@ function Categories( props ){
         <div className="categories">
             <div className="categories__wrapper">
                 <div className="container">
+                    <div className="categories__header">
+                        Chọn loại Bất động sản muốn đăng
+                    </div>
                     <div className="row categories__row">
                         {
                             CATEGORIES.map( cat => <Category key={cat.id} category={cat} config={CONFIG} />)

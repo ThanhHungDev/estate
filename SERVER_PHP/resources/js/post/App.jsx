@@ -22,7 +22,6 @@ function App( props ){
 
     const { auth, CATEGORIES, CONFIG } = props
 
-    console.log(auth, "aaaaaaaaaaa")
     if( !auth ){
         return (
             <div className='guest'>

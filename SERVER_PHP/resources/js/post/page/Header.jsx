@@ -4,7 +4,7 @@ import React from 'react'
 function Header( props ){
 
     return (
-        <div className="post__header">
+        <div className="categories__header">
             header
         </div>
     )

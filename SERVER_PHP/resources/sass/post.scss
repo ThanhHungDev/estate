@@ -210,6 +210,15 @@
         margin: 0 auto;
         padding: 0 1.5%;
     }
+    &__header{
+        border-bottom: 1px solid $gray-500;
+        padding: 0 5px 10px 5px;
+        text-transform: capitalize;
+        line-height: 1.3;
+        font-size: 16px;
+        font-weight: bold;
+        padding-top: 15px;
+    }
     &__title{
         text-align: center;
         position: relative;
@@ -239,10 +248,10 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        padding-top: 1.5rem;
+        padding-top: 1rem;
     }
     &__item{
-        padding: .7rem 1.5%;
+        padding: .3rem 1.5%;
         width: 33.333%;
         color: $custom-primary-color-dark;
         @include render-autofix(transform, scale(1, 1));
