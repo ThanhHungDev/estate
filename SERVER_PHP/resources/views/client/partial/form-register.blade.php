@@ -56,23 +56,23 @@
             <div class="for-confirm_password text-color-danger text-left">{{ $errors->first('confirm_password') }}</div>
         @endif
         
-        <div class="user-type position-relative">
+        <!-- <div class="user-type position-relative">
             <h5 class="user-type__title">Bạn đăng kí để: </h5>
             <i class="user-type__icon far fa-question-square"></i>
             @if(Config::get('constant.ROLE'))
             <label class="container__radio">Đăng bán
                 <input type="radio" name="role_id" value="{{ Config::get('constant.ROLE.SALER') }}" 
-                @if(old('role_id') != Config::get('constant.ROLE.CUSTOMER')) checked="checked" @endif
+                @if(old('role_id') != Config::get('constant.ROLE.USER')) checked="checked" @endif
                 name="role_id"  />
                 <span class="checkmark"></span>
             </label>
             <label class="container__radio">Tìm mua
-                <input type="radio" name="role_id" value="{{ Config::get('constant.ROLE.CUSTOMER') }}" 
-                @if(old('role_id') == Config::get('constant.ROLE.CUSTOMER')) checked="checked" @endif name="role_id" />
+                <input type="radio" name="role_id" value="{{ Config::get('constant.ROLE.USER') }}" 
+                @if(old('role_id') == Config::get('constant.ROLE.USER')) checked="checked" @endif name="role_id" />
                 <span class="checkmark"></span>
             </label>
             @endif
-        </div>
+        </div> -->
 
 
         <button type="submit" class="btn btn-register aqua-gradient-rgba">

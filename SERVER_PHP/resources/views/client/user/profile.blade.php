@@ -30,12 +30,12 @@
         lightGallery(document.getElementById('photos__responsive-images')); 
     </script>
     <script>
-        const jwt = '{{ Cookie::get(Config::get('constant.TOKEN_COOKIE_NAME')) }}';
+        const jwt = "{{ Cookie::get(Config::get('constant.TOKEN_COOKIE_NAME')) }}";
     </script>
 @endsection
 @section('content')
     <div class="content custommer">
-        @include('client.customer.header')
+        @include('client.user.header')
         <div class="timeline">
             <div class="container">
                 <div class="row">
@@ -45,7 +45,7 @@
                                 <div id="example"></div>
                                 <h5 class="information__title">
                                     <span class="text-capitalize d-inline-block">Thông Tin cơ bản</span>
-                                    <a href="{{ Route('CUSTOMER_INFORMATION') }}" class="btn btn-edit text-blue"><i class="fad fa-edit"></i></a>
+                                    <a href="{{ Route('USER_INFORMATION') }}" class="btn btn-edit text-blue"><i class="fad fa-edit"></i></a>
                                 </h5>
                                 <div class="h6 text-blue">{{ $profile->getNameTagLimited() }}</div>
                                 <div class="h7 text-truncate">
@@ -78,39 +78,39 @@
                             <div class="information__card-body">
                                 <h5 class="information__title">
                                     <span class="text-capitalize d-inline-block">Hình ảnh đăng tải</span>
-                                    <a href="{{ Route('CUSTOMER_INFORMATION') }}" class="btn btn-edit text-blue">
+                                    <a href="{{ Route('USER_INFORMATION') }}" class="btn btn-edit text-blue">
                                         <i class="fad fa-camera-retro"></i>
                                     </a>
                                 </h5>
                                 <!-- above 757px default href/data-src will be used -->  
                                 <div class="information__photo">
                                     <div id="photos__responsive-images" class="information__photo-group">
-                                        <a class="information__photo-item" href="{{ asset("/images/productions/multipurpose.jpeg") }}"
+                                        <a class="information__photo-item" href="{{ asset('/images/productions/multipurpose.jpeg') }}"
                                             data-responsive="
-                                                {{ asset("/images/productions/multipurpose.jpeg") }} 375, 
-                                                {{ asset("/images/productions/multipurpose.jpeg") }} 480, 
-                                                {{ asset("/images/productions/multipurpose.jpeg") }} 757">
+                                                {{ asset('/images/productions/multipurpose.jpeg') }} 375, 
+                                                {{ asset('/images/productions/multipurpose.jpeg') }} 480, 
+                                                {{ asset('/images/productions/multipurpose.jpeg') }} 757">
                                             <img 
-                                                src="{{ asset("/images/productions/multipurpose.jpeg") }}"
-                                                onerror="this.onerror=null;this.src='{{ asset(Config::get('app.image_error')) }}';" />
+                                                src="{{ asset('/images/productions/multipurpose.jpeg') }}"
+                                                onerror="this.onerror=null;this.src=`{{ asset(Config::get('app.image_error')) }}`;" />
                                         </a>
                                         <a class="information__photo-item" href="https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1568814785/photostream-photos/DSC05621_zgtcco.jpg"
                                             data-responsive="
-                                                {{ asset("/images/productions/multipurpose.jpeg") }} 375, 
-                                                {{ asset("/images/productions/multipurpose.jpeg") }} 480, 
-                                                {{ asset("/images/productions/multipurpose.jpeg") }} 757">
+                                                {{ asset('/images/productions/multipurpose.jpeg') }} 375, 
+                                                {{ asset('/images/productions/multipurpose.jpeg') }} 480, 
+                                                {{ asset('/images/productions/multipurpose.jpeg') }} 757">
                                             <img 
                                                 src="https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1568814785/photostream-photos/DSC05621_zgtcco.jpg"
-                                                onerror="this.onerror=null;this.src='{{ asset(Config::get('app.image_error')) }}';" />
+                                                onerror="this.onerror=null;this.src=`{{ asset(Config::get('app.image_error')) }}`;" />
                                         </a>
                                         <a class="information__photo-item" href="https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1568814785/photostream-photos/DSC05513_gfbiwi.jpg"
                                             data-responsive="
-                                                {{ asset("/images/productions/multipurpose.jpeg") }} 375, 
-                                                {{ asset("/images/productions/multipurpose.jpeg") }} 480, 
-                                                {{ asset("/images/productions/multipurpose.jpeg") }} 757">
+                                                {{ asset('/images/productions/multipurpose.jpeg') }} 375, 
+                                                {{ asset('/images/productions/multipurpose.jpeg') }} 480, 
+                                                {{ asset('/images/productions/multipurpose.jpeg') }} 757">
                                             <img 
                                                 src="https://res.cloudinary.com/css-tricks/image/upload/f_auto,q_auto/v1568814785/photostream-photos/DSC05513_gfbiwi.jpg"
-                                                onerror="this.onerror=null;this.src='{{ asset(Config::get('app.image_error')) }}';" />
+                                                onerror="this.onerror=null;this.src=`{{ asset(Config::get('app.image_error')) }}`;" />
                                         </a>
                                         <!--  Adding an empty <li> here so the final photo doesn't stretch like crazy. Try removing it and see what happens!  -->
                                         {{-- <li></li> --}}
@@ -316,7 +316,7 @@
                             <div class="information__card-body">
                                 <h5 class="information__title">
                                     <span class="text-capitalize d-inline-block">Tin Nhắn</span>
-                                    <a href="{{ Route('CUSTOMER_INFORMATION') }}" class="btn btn-edit text-blue">
+                                    <a href="{{ Route('USER_INFORMATION') }}" class="btn btn-edit text-blue">
                                         <i class="fal fa-comment-alt-plus"></i>
                                     </a>
                                 </h5>

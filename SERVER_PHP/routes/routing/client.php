@@ -45,21 +45,13 @@ Route::group(['prefix' => '/','middleware' => [ 'HTML_MINIFIER']], function () {
         ->name('USER_POST');
 
         Route::patch('/verify/phone', [ App\Http\Controllers\UserController::class, 'patchVerifyPhone' ])->name('PATCH_VERIFY_PHONE');
-    });
-    
-    // include_once("saler.php");
-    Route::group(['prefix' => '/saler','middleware' => [ 'SALER_LOGGED' ]], function () {
-        Route::get('/logout', [ App\Http\Controllers\UserController::class, 'logout' ])->name('LOGOUT');
-        Route::get('/', [ App\Http\Controllers\SalerController::class, 'profile' ])->name('SALER_DASHBOARD');
-    });
-    // include_once("customer.php");
-    Route::group(['prefix' => '/customer','middleware' => [ 'CUSTOMER_LOGGED' ]], function () {
-        Route::get('/logout', [ App\Http\Controllers\UserController::class, 'logout' ])->name('LOGOUT');
-        Route::get('/', [ App\Http\Controllers\CustomerController::class, 'profile' ])->name('CUSTOMER_DASHBOARD');
-        Route::get('/thong-tin-co-ban', [ App\Http\Controllers\CustomerController::class, 'about' ])->name('CUSTOMER_ABOUT');
 
-        Route::get('/information', [ App\Http\Controllers\CustomerController::class, 'profile' ])->name('CUSTOMER_INFORMATION');
-        Route::get('/ajax-demo', [ App\Http\Controllers\CustomerController::class, 'getUserInfo' ])->name('CUSTOMER_AJAX');
+        Route::get('/logout', [ App\Http\Controllers\UserController::class, 'logout' ])->name('LOGOUT');
+        Route::get('/', [ App\Http\Controllers\UserController::class, 'profile' ])->name('USER_DASHBOARD');
+        Route::get('/thong-tin-co-ban', [ App\Http\Controllers\UserController::class, 'about' ])->name('USER_ABOUT');
+
+        Route::get('/information', [ App\Http\Controllers\UserController::class, 'profile' ])->name('USER_INFORMATION');
+        Route::get('/ajax-demo', [ App\Http\Controllers\UserController::class, 'getUserInfo' ])->name('USER_AJAX');
     });
 
     Route::get('/article/{slug?}',[ App\Http\Controllers\ClientController::class, 'viewPostArticle' ])->name('VIEW_POST_ARTICLE');

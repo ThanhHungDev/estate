@@ -20,8 +20,7 @@ return [
     ],
     'ROLE' => [
         'ADMIN'    => 1,
-        'SALER'    => 2,
-        'CUSTOMER' => 3,
+        'USER'     => 2,
     ],
     'GALARIES' => [
         'DEFAULT' => 1,

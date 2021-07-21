@@ -112,24 +112,12 @@ class User extends Authenticatable implements JWTSubject
     }
 
     public function getTypeUser(){
-        if( $this->role_id == Config::get('constant.ROLE.CUSTOMER') ){
+        if( $this->role_id == Config::get('constant.ROLE.USER') ){
             /// người mua
             return 'Khách hàng';
         }
         if( $this->role_id == Config::get('constant.ROLE.ADMIN') ){
             return 'Admin';
-        }
-        if( $this->role_id == Config::get('constant.ROLE.SALER') ){
-
-            if( $this->role_id == Config::get('constant.SALE_TYPE.DEFAULT') ){
-                return 'Chưa thiết lập';
-            }
-            if( $this->role_id == Config::get('constant.SALE_TYPE.STAFF') ){
-                return 'Nhân viên bds';
-            }
-            if( $this->role_id == Config::get('constant.SALE_TYPE.OWNER') ){
-                return 'Chủ nhà';
-            }
         }
         return null;
     }

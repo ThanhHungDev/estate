@@ -23,7 +23,7 @@ mix.js('resources/js/post.js', 'public/js')
 
 
 mix.browserSync({
-    proxy:'http://estate.com',
+    proxy:'http://sitters.jp',
     notify: false
 })
 .disableNotifications();

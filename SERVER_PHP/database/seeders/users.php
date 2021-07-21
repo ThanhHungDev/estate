@@ -32,7 +32,7 @@ class users extends Seeder
                     'email'      => 'truongpham260620@gmail.com',
                     'avatar'     => '/images/avatar.jpg',
                     'password'   => bcrypt('123456'),
-                    'role_id'    => Config::get("constant.ROLE.CUSTOMER"),
+                    'role_id'    => Config::get("constant.ROLE.USER"),
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s')
                 ],
@@ -41,7 +41,7 @@ class users extends Seeder
                     'email'      => 'userpost@gmail.com',
                     'avatar'     => '/images/avatar.jpg',
                     'password'   => bcrypt('123456'),
-                    'role_id'    => Config::get("constant.ROLE.SALER"),
+                    'role_id'    => Config::get("constant.ROLE.USER"),
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s')
                 ],
@@ -50,7 +50,7 @@ class users extends Seeder
                     'email'      => 'usercustom@gmail.com',
                     'avatar'     => '/images/avatar.jpg',
                     'password'   => bcrypt('123456'),
-                    'role_id'    => Config::get("constant.ROLE.CUSTOMER"),
+                    'role_id'    => Config::get("constant.ROLE.USER"),
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s')
                 ]

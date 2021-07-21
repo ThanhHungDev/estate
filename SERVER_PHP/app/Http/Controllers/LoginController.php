@@ -27,12 +27,9 @@ class LoginController extends Controller
         if (Auth::check()){
             /// check user role 
             $user = Auth::user();
-            if( $user->role_id == Config::get('constant.ROLE.SALER')){
+            if( $user->role_id == Config::get('constant.ROLE.USER')){
 
-                return redirect()->route('SALER_DASHBOARD');
-            }else if( $user->role_id == Config::get('constant.ROLE.CUSTOMER')){
-
-                return redirect()->route('CUSTOMER_DASHBOARD');
+                return redirect()->route('USER_DASHBOARD');
             }else{
 
                 return redirect()->route('ADMIN_DASHBOARD');                
@@ -64,13 +61,9 @@ class LoginController extends Controller
             /// tạo 1 token đưa về client lưu vào localStorage
             $token = JWTAuth::fromUser($user);
             
-            if( $user->role_id == Config::get('constant.ROLE.SALER')){
+            if( $user->role_id == Config::get('constant.ROLE.USER')){
 
-                return redirect()->route('SALER_DASHBOARD')
-                ->withCookie(cookie()->forever(Config::get('constant.TOKEN_COOKIE_NAME'), $token));
-            }else if( $user->role_id == Config::get('constant.ROLE.CUSTOMER')){
-
-                return redirect()->route('CUSTOMER_DASHBOARD')
+                return redirect()->route('USER_DASHBOARD')
                 ->withCookie(cookie()->forever(Config::get('constant.TOKEN_COOKIE_NAME'), $token));
             }else{
 

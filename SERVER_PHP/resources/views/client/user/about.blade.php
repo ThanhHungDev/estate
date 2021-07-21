@@ -22,7 +22,7 @@
 
 @section('content')
     <div class="content custommer">
-        @include('client.customer.header')
+        @include('client.user.header')
         <div class="about">
             <div class="container">
                 <div class="row">

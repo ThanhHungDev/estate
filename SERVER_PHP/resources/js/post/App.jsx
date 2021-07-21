@@ -21,6 +21,7 @@ const About = () => (
 function App( props ){
 
     const { auth, CATEGORIES, CONFIG } = props
+    console.log(auth, "authauthauthauth")
 
     if( !auth ){
         return (

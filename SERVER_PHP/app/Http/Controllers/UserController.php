@@ -8,11 +8,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\REGISTER_REQUEST;
+use App\Models\Channel;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cookie;
 use Tymon\JWTAuth\Facades\JWTAuth;
+
+
 
 class UserController extends Controller
 {
@@ -131,10 +134,7 @@ class UserController extends Controller
         $categories = (new Category())->all();
         $profile = Auth::user();
         
-        if( $profile->role_id == Config::get('constant.ROLE.CUSTOMER') ){
-            return view('client.customer.post', compact(['profile', 'categories']));
-        }
-        return view('client.saler.post', compact(['profile', 'categories']));
+        return view('client.user.post', compact(['profile', 'categories']));
     }
 
 
@@ -199,5 +199,63 @@ class UserController extends Controller
         return response()
         ->json($response, Response::HTTP_OK)   // JsonResponse object
         ->withCookie(cookie()->forever(Config::get('constant.TOKEN_COOKIE_NAME'), $tokenNew));
+    }
+
+
+
+
+    /**
+     * Display the profile resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function profile(Request $request)
+    {
+        $token   = $request->cookie(config('constant.TOKEN_COOKIE_NAME'));
+
+        $profile = Auth::user();
+
+        $userId = $profile->id;
+
+        $conversations = (new Channel())->getConversationsByUser($profile->id);
+        /// từ conversations dùng laravel lấy hết user id friend bạn bè
+        $idFriends = $conversations->pluck('user')->toArray();
+        /// get id friends 
+        $friends = User::whereIn('id', $idFriends)->get();
+
+        return view('client.user.profile', compact(['profile', 'friends', 'token']));
+    }
+
+
+    /**
+     * Display the profile resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function about()
+    {
+        $profile = Auth::user();
+
+        return view('client.user.about', compact(['profile']));
+    }
+    
+
+    public function getUserInfo(Request $request){
+
+        $user = JWTAuth::parseToken()->authenticate();
+        return response()
+                    ->success(
+                        'thành công',
+                        $user,
+                        Response::HTTP_OK
+                    )
+                    ->setStatusCode(Response::HTTP_OK);
+    }
+
+
+    public function firebase(){
+        $profile = Auth::user();
+
+        return view('client.user.firebase', compact(['profile']));
     }
 }

@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('avatar')->default(Config::get("image.AVATAR"));
             $table->string('background')->default(Config::get("image.BACKGROUND"));
             $table->string('password');
-            $table->integer('role_id')->default(Config::get("constant.ROLE.CUSTOMER"));
+            $table->integer('role_id')->default(Config::get("constant.ROLE.USER"));
             $table->integer('sale_type')->default(Config::get("constant.SALE_TYPE.DEFAULT"));
             $table->string('phone_verify')->nullable();
             $table->timestamp('time_verify')->default(DB::raw('CURRENT_TIMESTAMP'));

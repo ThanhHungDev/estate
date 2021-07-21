@@ -3,12 +3,18 @@ import { connect } from "react-redux"
 import StepWizard from "react-step-wizard"
 
 import HeaderApartment from "./Apartment/HeaderApartment"
+import RolePost from "./Partial/RolePost"
+
+
+
+
+
 
 /// lưu căn hộ chung cư
 function Apartment( props ){
 
     const [state, updateState] = useState({})
-    const transitions = {}
+    // const transitions = {}
     // https://github.com/jcmcneal/react-step-wizard/blob/master/app/components/transitions.less
 
     // Do something on step change
@@ -46,6 +52,7 @@ function Apartment( props ){
                 // onStepChange={onStepChange}
                 instance={setInstance}
             >
+                <RolePost />
                 <Step1 />
                 <Step2 />
                 <Step3 />
