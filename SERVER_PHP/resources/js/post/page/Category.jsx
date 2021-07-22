@@ -11,8 +11,6 @@ function Category( props ){
         setSrc( config.image_error )
         return null;
     }
-
-    console.log(config)
     
     return (
         <div className="categories__item">

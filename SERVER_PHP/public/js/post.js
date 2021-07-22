@@ -6518,7 +6518,6 @@ function Category(props) {
     return null;
   }
 
-  console.log(config);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
     className: "categories__item",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
@@ -6788,214 +6787,130 @@ var HeaderApartment = function HeaderApartment(_ref) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "default": () => (/* binding */ RolePost)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_validation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-validation */ "./node_modules/react-validation/build/main.js");
-/* harmony import */ var react_validation__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_validation__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var validator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! validator */ "../node_modules/validator/index.js");
-/* harmony import */ var validator__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(validator__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_form_input_validation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-form-input-validation */ "./node_modules/react-form-input-validation/dist/bundle.js");
+/* harmony import */ var react_form_input_validation__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_form_input_validation__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-var _excluded = ["getValues", "validate", "validateAll", "showError", "hideError", "children"],
-    _excluded2 = ["error", "isChanged", "isUsed"],
-    _excluded3 = ["hasErrors"];
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
-function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
- // import Form from 'react-validation/build/form';
-// import Input from 'react-validation/build/input';
-// import Button from 'react-validation/build/button';
-// import {
-//     MyValidationForm,
-//     MyValidationInput,
-//     MyValidationButton
-// } from "../../HocValidator"
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
- // Define own Form component
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-var Form = function Form(_ref) {
-  var getValues = _ref.getValues,
-      validate = _ref.validate,
-      validateAll = _ref.validateAll,
-      showError = _ref.showError,
-      hideError = _ref.hideError,
-      children = _ref.children,
-      props = _objectWithoutProperties(_ref, _excluded);
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-  return (
-    /*#__PURE__*/
-    // destruct non-valid props
-    (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("form", _objectSpread(_objectSpread({}, props), {}, {
-      children: children
-    }))
-  );
-}; // Define own Input component
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
-
-var Input = function Input(_ref2) {
-  var error = _ref2.error,
-      isChanged = _ref2.isChanged,
-      isUsed = _ref2.isUsed,
-      props = _objectWithoutProperties(_ref2, _excluded2);
-
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", _objectSpread({}, props)), isChanged && isUsed && error]
-  });
-}; // Define own Button component
-
-
-var Button = function Button(_ref3) {
-  var hasErrors = _ref3.hasErrors,
-      props = _objectWithoutProperties(_ref3, _excluded3);
-
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", _objectSpread(_objectSpread({}, props), {}, {
-    disabled: hasErrors
-  }));
-}; // Now call HOCs on components
-
-
-var MyValidationForm = (0,react_validation__WEBPACK_IMPORTED_MODULE_1__.form)(Form);
-var MyValidationInput = (0,react_validation__WEBPACK_IMPORTED_MODULE_1__.control)(Input);
-var MyValidationButton = (0,react_validation__WEBPACK_IMPORTED_MODULE_1__.button)(Button);
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 
 
 
-var required = function required(value, props) {
-  if (!value || props.isCheckable && !props.checked) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-      className: "form-error is-visible",
-      children: "Required"
+
+
+var RolePost = /*#__PURE__*/function (_React$Component) {
+  _inherits(RolePost, _React$Component);
+
+  var _super = _createSuper(RolePost);
+
+  function RolePost(props) {
+    var _this;
+
+    _classCallCheck(this, RolePost);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      fields: {
+        name: "",
+        email: "",
+        phone_number: ""
+      },
+      errors: {}
+    };
+    _this.form = new (react_form_input_validation__WEBPACK_IMPORTED_MODULE_1___default())(_assertThisInitialized(_this));
+
+    _this.form.useRules({
+      name: "required",
+      email: "required|email",
+      phone_number: "required|numeric|digits_between:10,12"
     });
-  }
-};
 
-var email = function email(value) {
-  if (!(0,validator__WEBPACK_IMPORTED_MODULE_3__.isEmail)(value)) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("span", {
-      className: "form-error is-visible",
-      children: ["$", value, " is not a valid email."]
-    });
-  }
-};
+    _this.form.onformsubmit = function (fields) {// Do you ajax calls here.
+    };
 
-var isEqual = function isEqual(value, props, components) {
-  var bothUsed = components.password[0].isUsed && components.confirm[0].isUsed;
-  var bothChanged = components.password[0].isChanged && components.confirm[0].isChanged;
-
-  if (bothChanged && bothUsed && components.password[0].value !== components.confirm[0].value) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-      className: "form-error is-visible",
-      children: "Passwords are not equal."
-    });
-  }
-};
-
-var RolePost = function RolePost(props) {
-  var refForm = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
-  var userInput = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
-
-  function handleSubmit(event) {
-    event.preventDefault(); // Emulate async API call 
-
-    setTimeout(function () {
-      refForm.showError(userInput, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-        children: "API error"
-      }));
-    }, 1000);
+    return _this;
   }
 
-  ;
-
-  function removeApiError() {
-    refForm.hideError(userInput);
-  }
-
-  ;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-    className: "post__role",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(MyValidationForm, {
-      ref: refForm,
-      onSubmit: handleSubmit,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
-        children: "Login"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
-          children: ["Email*", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(MyValidationInput, {
-            onFocus: removeApiError,
-            ref: userInput,
-            name: "email",
-            validations: [required]
+  _createClass(RolePost, [{
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
+        onSubmit: this.form.handleSubmit,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
+            children: ["Name", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+              type: "text",
+              name: "name",
+              onBlur: this.form.handleBlurEvent,
+              onChange: this.form.handleChangeEvent,
+              value: this.state.fields.name
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+            className: "error",
+            children: this.state.errors.name ? this.state.errors.name : ""
           })]
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
-          children: ["Password*", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(MyValidationInput, {
-            type: "password",
-            name: "password",
-            validations: [required]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
+            children: ["Email", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+              type: "text",
+              name: "email",
+              onBlur: this.form.handleBlurEvent,
+              onChange: this.form.handleChangeEvent,
+              value: this.state.fields.email
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+            className: "error",
+            children: this.state.errors.email ? this.state.errors.email : ""
           })]
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(MyValidationButton, {
-          className: "button",
-          children: "Submit"
-        })
-      })]
-    }), ";"]
-  });
-};
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
+            children: ["Phone", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+              type: "tel",
+              name: "phone_number",
+              onBlur: this.form.handleBlurEvent,
+              onChange: this.form.handleChangeEvent,
+              value: this.state.fields.phone_number
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+            className: "error",
+            children: this.state.errors.phone_number ? this.state.errors.phone_number : ""
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+            type: "submit",
+            children: "Submit"
+          })
+        })]
+      });
+    }
+  }]);
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RolePost); // export default class RolePost extends Component {
-//     handleSubmit = (event) => {
-//         event.preventDefault();
-//         // Emulate async API call
-//         setTimeout(() => {
-//             this.form.showError(this.userInput, <span>API error</span>);
-//         }, 1000);
-//     };
-//     removeApiError = () => {
-//         console.log(this.form)
-//         this.form.hideError(this.userInput);
-//     };
-//     render() {
-//         return <Form ref={c => { this.form = c }} onSubmit={this.handleSubmit.bind(this)}>
-//             <div className="row">
-//                 <div className="small-12 columns">
-//                     <h3>Leave a comment</h3>
-//                 </div>
-//             </div>
-//             <div className="row">
-//                 <div className="small-12 medium-4 columns">
-//                     <label>
-//                         <Input
-//                           onFocus={this.removeApiError}
-//                           ref={c => { this.userInput = c }}
-//                           placeholder="username"
-//                           type="text"
-//                           value="Username"
-//                           name="username"
-//                           validations={[required]}
-//                         />
-//                     </label>
-//                 </div>
-//             </div>
-//             <div className="row">
-//                 <div className="small-12 medium-6 columns">
-//                     <Button className="button">Submit</Button>
-//                 </div>
-//             </div>
-//         </Form>
-//     }
-// }
+  return RolePost;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+
 
 /***/ }),
 
@@ -8389,1504 +8304,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 function e(e){this.message=e}e.prototype=new Error,e.prototype.name="InvalidCharacterError";var r="undefined"!=typeof window&&window.atob&&window.atob.bind(window)||function(r){var t=String(r).replace(/=+$/,"");if(t.length%4==1)throw new e("'atob' failed: The string to be decoded is not correctly encoded.");for(var n,o,a=0,i=0,c="";o=t.charAt(i++);~o&&(n=a%4?64*n+o:o,a++%4)?c+=String.fromCharCode(255&n>>(-2*a&6)):0)o="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".indexOf(o);return c};function t(e){var t=e.replace(/-/g,"+").replace(/_/g,"/");switch(t.length%4){case 0:break;case 2:t+="==";break;case 3:t+="=";break;default:throw"Illegal base64url string!"}try{return function(e){return decodeURIComponent(r(e).replace(/(.)/g,(function(e,r){var t=r.charCodeAt(0).toString(16).toUpperCase();return t.length<2&&(t="0"+t),"%"+t})))}(t)}catch(e){return r(t)}}function n(e){this.message=e}function o(e,r){if("string"!=typeof e)throw new n("Invalid token specified");var o=!0===(r=r||{}).header?0:1;try{return JSON.parse(t(e.split(".")[o]))}catch(e){throw new n("Invalid token specified: "+e.message)}}n.prototype=new Error,n.prototype.name="InvalidTokenError";/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (o);
 //# sourceMappingURL=jwt-decode.esm.js.map
-
-
-/***/ }),
-
-/***/ "./node_modules/lodash.omit/index.js":
-/*!*******************************************!*\
-  !*** ./node_modules/lodash.omit/index.js ***!
-  \*******************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-/**
- * lodash (Custom Build) <https://lodash.com/>
- * Build: `lodash modularize exports="npm" -o ./`
- * Copyright jQuery Foundation and other contributors <https://jquery.org/>
- * Released under MIT license <https://lodash.com/license>
- * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
- * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
- */
-
-/** Used as the size to enable large array optimizations. */
-var LARGE_ARRAY_SIZE = 200;
-
-/** Used to stand-in for `undefined` hash values. */
-var HASH_UNDEFINED = '__lodash_hash_undefined__';
-
-/** Used as references for various `Number` constants. */
-var INFINITY = 1 / 0,
-    MAX_SAFE_INTEGER = 9007199254740991;
-
-/** `Object#toString` result references. */
-var argsTag = '[object Arguments]',
-    funcTag = '[object Function]',
-    genTag = '[object GeneratorFunction]',
-    symbolTag = '[object Symbol]';
-
-/**
- * Used to match `RegExp`
- * [syntax characters](http://ecma-international.org/ecma-262/7.0/#sec-patterns).
- */
-var reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
-
-/** Used to detect host constructors (Safari). */
-var reIsHostCtor = /^\[object .+?Constructor\]$/;
-
-/** Used to detect unsigned integer values. */
-var reIsUint = /^(?:0|[1-9]\d*)$/;
-
-/** Detect free variable `global` from Node.js. */
-var freeGlobal = typeof __webpack_require__.g == 'object' && __webpack_require__.g && __webpack_require__.g.Object === Object && __webpack_require__.g;
-
-/** Detect free variable `self`. */
-var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
-
-/** Used as a reference to the global object. */
-var root = freeGlobal || freeSelf || Function('return this')();
-
-/**
- * A faster alternative to `Function#apply`, this function invokes `func`
- * with the `this` binding of `thisArg` and the arguments of `args`.
- *
- * @private
- * @param {Function} func The function to invoke.
- * @param {*} thisArg The `this` binding of `func`.
- * @param {Array} args The arguments to invoke `func` with.
- * @returns {*} Returns the result of `func`.
- */
-function apply(func, thisArg, args) {
-  switch (args.length) {
-    case 0: return func.call(thisArg);
-    case 1: return func.call(thisArg, args[0]);
-    case 2: return func.call(thisArg, args[0], args[1]);
-    case 3: return func.call(thisArg, args[0], args[1], args[2]);
-  }
-  return func.apply(thisArg, args);
-}
-
-/**
- * A specialized version of `_.includes` for arrays without support for
- * specifying an index to search from.
- *
- * @private
- * @param {Array} [array] The array to inspect.
- * @param {*} target The value to search for.
- * @returns {boolean} Returns `true` if `target` is found, else `false`.
- */
-function arrayIncludes(array, value) {
-  var length = array ? array.length : 0;
-  return !!length && baseIndexOf(array, value, 0) > -1;
-}
-
-/**
- * This function is like `arrayIncludes` except that it accepts a comparator.
- *
- * @private
- * @param {Array} [array] The array to inspect.
- * @param {*} target The value to search for.
- * @param {Function} comparator The comparator invoked per element.
- * @returns {boolean} Returns `true` if `target` is found, else `false`.
- */
-function arrayIncludesWith(array, value, comparator) {
-  var index = -1,
-      length = array ? array.length : 0;
-
-  while (++index < length) {
-    if (comparator(value, array[index])) {
-      return true;
-    }
-  }
-  return false;
-}
-
-/**
- * A specialized version of `_.map` for arrays without support for iteratee
- * shorthands.
- *
- * @private
- * @param {Array} [array] The array to iterate over.
- * @param {Function} iteratee The function invoked per iteration.
- * @returns {Array} Returns the new mapped array.
- */
-function arrayMap(array, iteratee) {
-  var index = -1,
-      length = array ? array.length : 0,
-      result = Array(length);
-
-  while (++index < length) {
-    result[index] = iteratee(array[index], index, array);
-  }
-  return result;
-}
-
-/**
- * Appends the elements of `values` to `array`.
- *
- * @private
- * @param {Array} array The array to modify.
- * @param {Array} values The values to append.
- * @returns {Array} Returns `array`.
- */
-function arrayPush(array, values) {
-  var index = -1,
-      length = values.length,
-      offset = array.length;
-
-  while (++index < length) {
-    array[offset + index] = values[index];
-  }
-  return array;
-}
-
-/**
- * The base implementation of `_.findIndex` and `_.findLastIndex` without
- * support for iteratee shorthands.
- *
- * @private
- * @param {Array} array The array to inspect.
- * @param {Function} predicate The function invoked per iteration.
- * @param {number} fromIndex The index to search from.
- * @param {boolean} [fromRight] Specify iterating from right to left.
- * @returns {number} Returns the index of the matched value, else `-1`.
- */
-function baseFindIndex(array, predicate, fromIndex, fromRight) {
-  var length = array.length,
-      index = fromIndex + (fromRight ? 1 : -1);
-
-  while ((fromRight ? index-- : ++index < length)) {
-    if (predicate(array[index], index, array)) {
-      return index;
-    }
-  }
-  return -1;
-}
-
-/**
- * The base implementation of `_.indexOf` without `fromIndex` bounds checks.
- *
- * @private
- * @param {Array} array The array to inspect.
- * @param {*} value The value to search for.
- * @param {number} fromIndex The index to search from.
- * @returns {number} Returns the index of the matched value, else `-1`.
- */
-function baseIndexOf(array, value, fromIndex) {
-  if (value !== value) {
-    return baseFindIndex(array, baseIsNaN, fromIndex);
-  }
-  var index = fromIndex - 1,
-      length = array.length;
-
-  while (++index < length) {
-    if (array[index] === value) {
-      return index;
-    }
-  }
-  return -1;
-}
-
-/**
- * The base implementation of `_.isNaN` without support for number objects.
- *
- * @private
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is `NaN`, else `false`.
- */
-function baseIsNaN(value) {
-  return value !== value;
-}
-
-/**
- * The base implementation of `_.times` without support for iteratee shorthands
- * or max array length checks.
- *
- * @private
- * @param {number} n The number of times to invoke `iteratee`.
- * @param {Function} iteratee The function invoked per iteration.
- * @returns {Array} Returns the array of results.
- */
-function baseTimes(n, iteratee) {
-  var index = -1,
-      result = Array(n);
-
-  while (++index < n) {
-    result[index] = iteratee(index);
-  }
-  return result;
-}
-
-/**
- * The base implementation of `_.unary` without support for storing metadata.
- *
- * @private
- * @param {Function} func The function to cap arguments for.
- * @returns {Function} Returns the new capped function.
- */
-function baseUnary(func) {
-  return function(value) {
-    return func(value);
-  };
-}
-
-/**
- * Checks if a cache value for `key` exists.
- *
- * @private
- * @param {Object} cache The cache to query.
- * @param {string} key The key of the entry to check.
- * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
- */
-function cacheHas(cache, key) {
-  return cache.has(key);
-}
-
-/**
- * Gets the value at `key` of `object`.
- *
- * @private
- * @param {Object} [object] The object to query.
- * @param {string} key The key of the property to get.
- * @returns {*} Returns the property value.
- */
-function getValue(object, key) {
-  return object == null ? undefined : object[key];
-}
-
-/**
- * Checks if `value` is a host object in IE < 9.
- *
- * @private
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is a host object, else `false`.
- */
-function isHostObject(value) {
-  // Many host objects are `Object` objects that can coerce to strings
-  // despite having improperly defined `toString` methods.
-  var result = false;
-  if (value != null && typeof value.toString != 'function') {
-    try {
-      result = !!(value + '');
-    } catch (e) {}
-  }
-  return result;
-}
-
-/**
- * Creates a unary function that invokes `func` with its argument transformed.
- *
- * @private
- * @param {Function} func The function to wrap.
- * @param {Function} transform The argument transform.
- * @returns {Function} Returns the new function.
- */
-function overArg(func, transform) {
-  return function(arg) {
-    return func(transform(arg));
-  };
-}
-
-/** Used for built-in method references. */
-var arrayProto = Array.prototype,
-    funcProto = Function.prototype,
-    objectProto = Object.prototype;
-
-/** Used to detect overreaching core-js shims. */
-var coreJsData = root['__core-js_shared__'];
-
-/** Used to detect methods masquerading as native. */
-var maskSrcKey = (function() {
-  var uid = /[^.]+$/.exec(coreJsData && coreJsData.keys && coreJsData.keys.IE_PROTO || '');
-  return uid ? ('Symbol(src)_1.' + uid) : '';
-}());
-
-/** Used to resolve the decompiled source of functions. */
-var funcToString = funcProto.toString;
-
-/** Used to check objects for own properties. */
-var hasOwnProperty = objectProto.hasOwnProperty;
-
-/**
- * Used to resolve the
- * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
- * of values.
- */
-var objectToString = objectProto.toString;
-
-/** Used to detect if a method is native. */
-var reIsNative = RegExp('^' +
-  funcToString.call(hasOwnProperty).replace(reRegExpChar, '\\$&')
-  .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$'
-);
-
-/** Built-in value references. */
-var Symbol = root.Symbol,
-    getPrototype = overArg(Object.getPrototypeOf, Object),
-    propertyIsEnumerable = objectProto.propertyIsEnumerable,
-    splice = arrayProto.splice,
-    spreadableSymbol = Symbol ? Symbol.isConcatSpreadable : undefined;
-
-/* Built-in method references for those with the same name as other `lodash` methods. */
-var nativeGetSymbols = Object.getOwnPropertySymbols,
-    nativeMax = Math.max;
-
-/* Built-in method references that are verified to be native. */
-var Map = getNative(root, 'Map'),
-    nativeCreate = getNative(Object, 'create');
-
-/**
- * Creates a hash object.
- *
- * @private
- * @constructor
- * @param {Array} [entries] The key-value pairs to cache.
- */
-function Hash(entries) {
-  var index = -1,
-      length = entries ? entries.length : 0;
-
-  this.clear();
-  while (++index < length) {
-    var entry = entries[index];
-    this.set(entry[0], entry[1]);
-  }
-}
-
-/**
- * Removes all key-value entries from the hash.
- *
- * @private
- * @name clear
- * @memberOf Hash
- */
-function hashClear() {
-  this.__data__ = nativeCreate ? nativeCreate(null) : {};
-}
-
-/**
- * Removes `key` and its value from the hash.
- *
- * @private
- * @name delete
- * @memberOf Hash
- * @param {Object} hash The hash to modify.
- * @param {string} key The key of the value to remove.
- * @returns {boolean} Returns `true` if the entry was removed, else `false`.
- */
-function hashDelete(key) {
-  return this.has(key) && delete this.__data__[key];
-}
-
-/**
- * Gets the hash value for `key`.
- *
- * @private
- * @name get
- * @memberOf Hash
- * @param {string} key The key of the value to get.
- * @returns {*} Returns the entry value.
- */
-function hashGet(key) {
-  var data = this.__data__;
-  if (nativeCreate) {
-    var result = data[key];
-    return result === HASH_UNDEFINED ? undefined : result;
-  }
-  return hasOwnProperty.call(data, key) ? data[key] : undefined;
-}
-
-/**
- * Checks if a hash value for `key` exists.
- *
- * @private
- * @name has
- * @memberOf Hash
- * @param {string} key The key of the entry to check.
- * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
- */
-function hashHas(key) {
-  var data = this.__data__;
-  return nativeCreate ? data[key] !== undefined : hasOwnProperty.call(data, key);
-}
-
-/**
- * Sets the hash `key` to `value`.
- *
- * @private
- * @name set
- * @memberOf Hash
- * @param {string} key The key of the value to set.
- * @param {*} value The value to set.
- * @returns {Object} Returns the hash instance.
- */
-function hashSet(key, value) {
-  var data = this.__data__;
-  data[key] = (nativeCreate && value === undefined) ? HASH_UNDEFINED : value;
-  return this;
-}
-
-// Add methods to `Hash`.
-Hash.prototype.clear = hashClear;
-Hash.prototype['delete'] = hashDelete;
-Hash.prototype.get = hashGet;
-Hash.prototype.has = hashHas;
-Hash.prototype.set = hashSet;
-
-/**
- * Creates an list cache object.
- *
- * @private
- * @constructor
- * @param {Array} [entries] The key-value pairs to cache.
- */
-function ListCache(entries) {
-  var index = -1,
-      length = entries ? entries.length : 0;
-
-  this.clear();
-  while (++index < length) {
-    var entry = entries[index];
-    this.set(entry[0], entry[1]);
-  }
-}
-
-/**
- * Removes all key-value entries from the list cache.
- *
- * @private
- * @name clear
- * @memberOf ListCache
- */
-function listCacheClear() {
-  this.__data__ = [];
-}
-
-/**
- * Removes `key` and its value from the list cache.
- *
- * @private
- * @name delete
- * @memberOf ListCache
- * @param {string} key The key of the value to remove.
- * @returns {boolean} Returns `true` if the entry was removed, else `false`.
- */
-function listCacheDelete(key) {
-  var data = this.__data__,
-      index = assocIndexOf(data, key);
-
-  if (index < 0) {
-    return false;
-  }
-  var lastIndex = data.length - 1;
-  if (index == lastIndex) {
-    data.pop();
-  } else {
-    splice.call(data, index, 1);
-  }
-  return true;
-}
-
-/**
- * Gets the list cache value for `key`.
- *
- * @private
- * @name get
- * @memberOf ListCache
- * @param {string} key The key of the value to get.
- * @returns {*} Returns the entry value.
- */
-function listCacheGet(key) {
-  var data = this.__data__,
-      index = assocIndexOf(data, key);
-
-  return index < 0 ? undefined : data[index][1];
-}
-
-/**
- * Checks if a list cache value for `key` exists.
- *
- * @private
- * @name has
- * @memberOf ListCache
- * @param {string} key The key of the entry to check.
- * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
- */
-function listCacheHas(key) {
-  return assocIndexOf(this.__data__, key) > -1;
-}
-
-/**
- * Sets the list cache `key` to `value`.
- *
- * @private
- * @name set
- * @memberOf ListCache
- * @param {string} key The key of the value to set.
- * @param {*} value The value to set.
- * @returns {Object} Returns the list cache instance.
- */
-function listCacheSet(key, value) {
-  var data = this.__data__,
-      index = assocIndexOf(data, key);
-
-  if (index < 0) {
-    data.push([key, value]);
-  } else {
-    data[index][1] = value;
-  }
-  return this;
-}
-
-// Add methods to `ListCache`.
-ListCache.prototype.clear = listCacheClear;
-ListCache.prototype['delete'] = listCacheDelete;
-ListCache.prototype.get = listCacheGet;
-ListCache.prototype.has = listCacheHas;
-ListCache.prototype.set = listCacheSet;
-
-/**
- * Creates a map cache object to store key-value pairs.
- *
- * @private
- * @constructor
- * @param {Array} [entries] The key-value pairs to cache.
- */
-function MapCache(entries) {
-  var index = -1,
-      length = entries ? entries.length : 0;
-
-  this.clear();
-  while (++index < length) {
-    var entry = entries[index];
-    this.set(entry[0], entry[1]);
-  }
-}
-
-/**
- * Removes all key-value entries from the map.
- *
- * @private
- * @name clear
- * @memberOf MapCache
- */
-function mapCacheClear() {
-  this.__data__ = {
-    'hash': new Hash,
-    'map': new (Map || ListCache),
-    'string': new Hash
-  };
-}
-
-/**
- * Removes `key` and its value from the map.
- *
- * @private
- * @name delete
- * @memberOf MapCache
- * @param {string} key The key of the value to remove.
- * @returns {boolean} Returns `true` if the entry was removed, else `false`.
- */
-function mapCacheDelete(key) {
-  return getMapData(this, key)['delete'](key);
-}
-
-/**
- * Gets the map value for `key`.
- *
- * @private
- * @name get
- * @memberOf MapCache
- * @param {string} key The key of the value to get.
- * @returns {*} Returns the entry value.
- */
-function mapCacheGet(key) {
-  return getMapData(this, key).get(key);
-}
-
-/**
- * Checks if a map value for `key` exists.
- *
- * @private
- * @name has
- * @memberOf MapCache
- * @param {string} key The key of the entry to check.
- * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
- */
-function mapCacheHas(key) {
-  return getMapData(this, key).has(key);
-}
-
-/**
- * Sets the map `key` to `value`.
- *
- * @private
- * @name set
- * @memberOf MapCache
- * @param {string} key The key of the value to set.
- * @param {*} value The value to set.
- * @returns {Object} Returns the map cache instance.
- */
-function mapCacheSet(key, value) {
-  getMapData(this, key).set(key, value);
-  return this;
-}
-
-// Add methods to `MapCache`.
-MapCache.prototype.clear = mapCacheClear;
-MapCache.prototype['delete'] = mapCacheDelete;
-MapCache.prototype.get = mapCacheGet;
-MapCache.prototype.has = mapCacheHas;
-MapCache.prototype.set = mapCacheSet;
-
-/**
- *
- * Creates an array cache object to store unique values.
- *
- * @private
- * @constructor
- * @param {Array} [values] The values to cache.
- */
-function SetCache(values) {
-  var index = -1,
-      length = values ? values.length : 0;
-
-  this.__data__ = new MapCache;
-  while (++index < length) {
-    this.add(values[index]);
-  }
-}
-
-/**
- * Adds `value` to the array cache.
- *
- * @private
- * @name add
- * @memberOf SetCache
- * @alias push
- * @param {*} value The value to cache.
- * @returns {Object} Returns the cache instance.
- */
-function setCacheAdd(value) {
-  this.__data__.set(value, HASH_UNDEFINED);
-  return this;
-}
-
-/**
- * Checks if `value` is in the array cache.
- *
- * @private
- * @name has
- * @memberOf SetCache
- * @param {*} value The value to search for.
- * @returns {number} Returns `true` if `value` is found, else `false`.
- */
-function setCacheHas(value) {
-  return this.__data__.has(value);
-}
-
-// Add methods to `SetCache`.
-SetCache.prototype.add = SetCache.prototype.push = setCacheAdd;
-SetCache.prototype.has = setCacheHas;
-
-/**
- * Creates an array of the enumerable property names of the array-like `value`.
- *
- * @private
- * @param {*} value The value to query.
- * @param {boolean} inherited Specify returning inherited property names.
- * @returns {Array} Returns the array of property names.
- */
-function arrayLikeKeys(value, inherited) {
-  // Safari 8.1 makes `arguments.callee` enumerable in strict mode.
-  // Safari 9 makes `arguments.length` enumerable in strict mode.
-  var result = (isArray(value) || isArguments(value))
-    ? baseTimes(value.length, String)
-    : [];
-
-  var length = result.length,
-      skipIndexes = !!length;
-
-  for (var key in value) {
-    if ((inherited || hasOwnProperty.call(value, key)) &&
-        !(skipIndexes && (key == 'length' || isIndex(key, length)))) {
-      result.push(key);
-    }
-  }
-  return result;
-}
-
-/**
- * Gets the index at which the `key` is found in `array` of key-value pairs.
- *
- * @private
- * @param {Array} array The array to inspect.
- * @param {*} key The key to search for.
- * @returns {number} Returns the index of the matched value, else `-1`.
- */
-function assocIndexOf(array, key) {
-  var length = array.length;
-  while (length--) {
-    if (eq(array[length][0], key)) {
-      return length;
-    }
-  }
-  return -1;
-}
-
-/**
- * The base implementation of methods like `_.difference` without support
- * for excluding multiple arrays or iteratee shorthands.
- *
- * @private
- * @param {Array} array The array to inspect.
- * @param {Array} values The values to exclude.
- * @param {Function} [iteratee] The iteratee invoked per element.
- * @param {Function} [comparator] The comparator invoked per element.
- * @returns {Array} Returns the new array of filtered values.
- */
-function baseDifference(array, values, iteratee, comparator) {
-  var index = -1,
-      includes = arrayIncludes,
-      isCommon = true,
-      length = array.length,
-      result = [],
-      valuesLength = values.length;
-
-  if (!length) {
-    return result;
-  }
-  if (iteratee) {
-    values = arrayMap(values, baseUnary(iteratee));
-  }
-  if (comparator) {
-    includes = arrayIncludesWith;
-    isCommon = false;
-  }
-  else if (values.length >= LARGE_ARRAY_SIZE) {
-    includes = cacheHas;
-    isCommon = false;
-    values = new SetCache(values);
-  }
-  outer:
-  while (++index < length) {
-    var value = array[index],
-        computed = iteratee ? iteratee(value) : value;
-
-    value = (comparator || value !== 0) ? value : 0;
-    if (isCommon && computed === computed) {
-      var valuesIndex = valuesLength;
-      while (valuesIndex--) {
-        if (values[valuesIndex] === computed) {
-          continue outer;
-        }
-      }
-      result.push(value);
-    }
-    else if (!includes(values, computed, comparator)) {
-      result.push(value);
-    }
-  }
-  return result;
-}
-
-/**
- * The base implementation of `_.flatten` with support for restricting flattening.
- *
- * @private
- * @param {Array} array The array to flatten.
- * @param {number} depth The maximum recursion depth.
- * @param {boolean} [predicate=isFlattenable] The function invoked per iteration.
- * @param {boolean} [isStrict] Restrict to values that pass `predicate` checks.
- * @param {Array} [result=[]] The initial result value.
- * @returns {Array} Returns the new flattened array.
- */
-function baseFlatten(array, depth, predicate, isStrict, result) {
-  var index = -1,
-      length = array.length;
-
-  predicate || (predicate = isFlattenable);
-  result || (result = []);
-
-  while (++index < length) {
-    var value = array[index];
-    if (depth > 0 && predicate(value)) {
-      if (depth > 1) {
-        // Recursively flatten arrays (susceptible to call stack limits).
-        baseFlatten(value, depth - 1, predicate, isStrict, result);
-      } else {
-        arrayPush(result, value);
-      }
-    } else if (!isStrict) {
-      result[result.length] = value;
-    }
-  }
-  return result;
-}
-
-/**
- * The base implementation of `getAllKeys` and `getAllKeysIn` which uses
- * `keysFunc` and `symbolsFunc` to get the enumerable property names and
- * symbols of `object`.
- *
- * @private
- * @param {Object} object The object to query.
- * @param {Function} keysFunc The function to get the keys of `object`.
- * @param {Function} symbolsFunc The function to get the symbols of `object`.
- * @returns {Array} Returns the array of property names and symbols.
- */
-function baseGetAllKeys(object, keysFunc, symbolsFunc) {
-  var result = keysFunc(object);
-  return isArray(object) ? result : arrayPush(result, symbolsFunc(object));
-}
-
-/**
- * The base implementation of `_.isNative` without bad shim checks.
- *
- * @private
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is a native function,
- *  else `false`.
- */
-function baseIsNative(value) {
-  if (!isObject(value) || isMasked(value)) {
-    return false;
-  }
-  var pattern = (isFunction(value) || isHostObject(value)) ? reIsNative : reIsHostCtor;
-  return pattern.test(toSource(value));
-}
-
-/**
- * The base implementation of `_.keysIn` which doesn't treat sparse arrays as dense.
- *
- * @private
- * @param {Object} object The object to query.
- * @returns {Array} Returns the array of property names.
- */
-function baseKeysIn(object) {
-  if (!isObject(object)) {
-    return nativeKeysIn(object);
-  }
-  var isProto = isPrototype(object),
-      result = [];
-
-  for (var key in object) {
-    if (!(key == 'constructor' && (isProto || !hasOwnProperty.call(object, key)))) {
-      result.push(key);
-    }
-  }
-  return result;
-}
-
-/**
- * The base implementation of `_.pick` without support for individual
- * property identifiers.
- *
- * @private
- * @param {Object} object The source object.
- * @param {string[]} props The property identifiers to pick.
- * @returns {Object} Returns the new object.
- */
-function basePick(object, props) {
-  object = Object(object);
-  return basePickBy(object, props, function(value, key) {
-    return key in object;
-  });
-}
-
-/**
- * The base implementation of  `_.pickBy` without support for iteratee shorthands.
- *
- * @private
- * @param {Object} object The source object.
- * @param {string[]} props The property identifiers to pick from.
- * @param {Function} predicate The function invoked per property.
- * @returns {Object} Returns the new object.
- */
-function basePickBy(object, props, predicate) {
-  var index = -1,
-      length = props.length,
-      result = {};
-
-  while (++index < length) {
-    var key = props[index],
-        value = object[key];
-
-    if (predicate(value, key)) {
-      result[key] = value;
-    }
-  }
-  return result;
-}
-
-/**
- * The base implementation of `_.rest` which doesn't validate or coerce arguments.
- *
- * @private
- * @param {Function} func The function to apply a rest parameter to.
- * @param {number} [start=func.length-1] The start position of the rest parameter.
- * @returns {Function} Returns the new function.
- */
-function baseRest(func, start) {
-  start = nativeMax(start === undefined ? (func.length - 1) : start, 0);
-  return function() {
-    var args = arguments,
-        index = -1,
-        length = nativeMax(args.length - start, 0),
-        array = Array(length);
-
-    while (++index < length) {
-      array[index] = args[start + index];
-    }
-    index = -1;
-    var otherArgs = Array(start + 1);
-    while (++index < start) {
-      otherArgs[index] = args[index];
-    }
-    otherArgs[start] = array;
-    return apply(func, this, otherArgs);
-  };
-}
-
-/**
- * Creates an array of own and inherited enumerable property names and
- * symbols of `object`.
- *
- * @private
- * @param {Object} object The object to query.
- * @returns {Array} Returns the array of property names and symbols.
- */
-function getAllKeysIn(object) {
-  return baseGetAllKeys(object, keysIn, getSymbolsIn);
-}
-
-/**
- * Gets the data for `map`.
- *
- * @private
- * @param {Object} map The map to query.
- * @param {string} key The reference key.
- * @returns {*} Returns the map data.
- */
-function getMapData(map, key) {
-  var data = map.__data__;
-  return isKeyable(key)
-    ? data[typeof key == 'string' ? 'string' : 'hash']
-    : data.map;
-}
-
-/**
- * Gets the native function at `key` of `object`.
- *
- * @private
- * @param {Object} object The object to query.
- * @param {string} key The key of the method to get.
- * @returns {*} Returns the function if it's native, else `undefined`.
- */
-function getNative(object, key) {
-  var value = getValue(object, key);
-  return baseIsNative(value) ? value : undefined;
-}
-
-/**
- * Creates an array of the own enumerable symbol properties of `object`.
- *
- * @private
- * @param {Object} object The object to query.
- * @returns {Array} Returns the array of symbols.
- */
-var getSymbols = nativeGetSymbols ? overArg(nativeGetSymbols, Object) : stubArray;
-
-/**
- * Creates an array of the own and inherited enumerable symbol properties
- * of `object`.
- *
- * @private
- * @param {Object} object The object to query.
- * @returns {Array} Returns the array of symbols.
- */
-var getSymbolsIn = !nativeGetSymbols ? stubArray : function(object) {
-  var result = [];
-  while (object) {
-    arrayPush(result, getSymbols(object));
-    object = getPrototype(object);
-  }
-  return result;
-};
-
-/**
- * Checks if `value` is a flattenable `arguments` object or array.
- *
- * @private
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is flattenable, else `false`.
- */
-function isFlattenable(value) {
-  return isArray(value) || isArguments(value) ||
-    !!(spreadableSymbol && value && value[spreadableSymbol]);
-}
-
-/**
- * Checks if `value` is a valid array-like index.
- *
- * @private
- * @param {*} value The value to check.
- * @param {number} [length=MAX_SAFE_INTEGER] The upper bounds of a valid index.
- * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
- */
-function isIndex(value, length) {
-  length = length == null ? MAX_SAFE_INTEGER : length;
-  return !!length &&
-    (typeof value == 'number' || reIsUint.test(value)) &&
-    (value > -1 && value % 1 == 0 && value < length);
-}
-
-/**
- * Checks if `value` is suitable for use as unique object key.
- *
- * @private
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is suitable, else `false`.
- */
-function isKeyable(value) {
-  var type = typeof value;
-  return (type == 'string' || type == 'number' || type == 'symbol' || type == 'boolean')
-    ? (value !== '__proto__')
-    : (value === null);
-}
-
-/**
- * Checks if `func` has its source masked.
- *
- * @private
- * @param {Function} func The function to check.
- * @returns {boolean} Returns `true` if `func` is masked, else `false`.
- */
-function isMasked(func) {
-  return !!maskSrcKey && (maskSrcKey in func);
-}
-
-/**
- * Checks if `value` is likely a prototype object.
- *
- * @private
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is a prototype, else `false`.
- */
-function isPrototype(value) {
-  var Ctor = value && value.constructor,
-      proto = (typeof Ctor == 'function' && Ctor.prototype) || objectProto;
-
-  return value === proto;
-}
-
-/**
- * This function is like
- * [`Object.keys`](http://ecma-international.org/ecma-262/7.0/#sec-object.keys)
- * except that it includes inherited enumerable properties.
- *
- * @private
- * @param {Object} object The object to query.
- * @returns {Array} Returns the array of property names.
- */
-function nativeKeysIn(object) {
-  var result = [];
-  if (object != null) {
-    for (var key in Object(object)) {
-      result.push(key);
-    }
-  }
-  return result;
-}
-
-/**
- * Converts `value` to a string key if it's not a string or symbol.
- *
- * @private
- * @param {*} value The value to inspect.
- * @returns {string|symbol} Returns the key.
- */
-function toKey(value) {
-  if (typeof value == 'string' || isSymbol(value)) {
-    return value;
-  }
-  var result = (value + '');
-  return (result == '0' && (1 / value) == -INFINITY) ? '-0' : result;
-}
-
-/**
- * Converts `func` to its source code.
- *
- * @private
- * @param {Function} func The function to process.
- * @returns {string} Returns the source code.
- */
-function toSource(func) {
-  if (func != null) {
-    try {
-      return funcToString.call(func);
-    } catch (e) {}
-    try {
-      return (func + '');
-    } catch (e) {}
-  }
-  return '';
-}
-
-/**
- * Performs a
- * [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
- * comparison between two values to determine if they are equivalent.
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Lang
- * @param {*} value The value to compare.
- * @param {*} other The other value to compare.
- * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
- * @example
- *
- * var object = { 'a': 1 };
- * var other = { 'a': 1 };
- *
- * _.eq(object, object);
- * // => true
- *
- * _.eq(object, other);
- * // => false
- *
- * _.eq('a', 'a');
- * // => true
- *
- * _.eq('a', Object('a'));
- * // => false
- *
- * _.eq(NaN, NaN);
- * // => true
- */
-function eq(value, other) {
-  return value === other || (value !== value && other !== other);
-}
-
-/**
- * Checks if `value` is likely an `arguments` object.
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is an `arguments` object,
- *  else `false`.
- * @example
- *
- * _.isArguments(function() { return arguments; }());
- * // => true
- *
- * _.isArguments([1, 2, 3]);
- * // => false
- */
-function isArguments(value) {
-  // Safari 8.1 makes `arguments.callee` enumerable in strict mode.
-  return isArrayLikeObject(value) && hasOwnProperty.call(value, 'callee') &&
-    (!propertyIsEnumerable.call(value, 'callee') || objectToString.call(value) == argsTag);
-}
-
-/**
- * Checks if `value` is classified as an `Array` object.
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is an array, else `false`.
- * @example
- *
- * _.isArray([1, 2, 3]);
- * // => true
- *
- * _.isArray(document.body.children);
- * // => false
- *
- * _.isArray('abc');
- * // => false
- *
- * _.isArray(_.noop);
- * // => false
- */
-var isArray = Array.isArray;
-
-/**
- * Checks if `value` is array-like. A value is considered array-like if it's
- * not a function and has a `value.length` that's an integer greater than or
- * equal to `0` and less than or equal to `Number.MAX_SAFE_INTEGER`.
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is array-like, else `false`.
- * @example
- *
- * _.isArrayLike([1, 2, 3]);
- * // => true
- *
- * _.isArrayLike(document.body.children);
- * // => true
- *
- * _.isArrayLike('abc');
- * // => true
- *
- * _.isArrayLike(_.noop);
- * // => false
- */
-function isArrayLike(value) {
-  return value != null && isLength(value.length) && !isFunction(value);
-}
-
-/**
- * This method is like `_.isArrayLike` except that it also checks if `value`
- * is an object.
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is an array-like object,
- *  else `false`.
- * @example
- *
- * _.isArrayLikeObject([1, 2, 3]);
- * // => true
- *
- * _.isArrayLikeObject(document.body.children);
- * // => true
- *
- * _.isArrayLikeObject('abc');
- * // => false
- *
- * _.isArrayLikeObject(_.noop);
- * // => false
- */
-function isArrayLikeObject(value) {
-  return isObjectLike(value) && isArrayLike(value);
-}
-
-/**
- * Checks if `value` is classified as a `Function` object.
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is a function, else `false`.
- * @example
- *
- * _.isFunction(_);
- * // => true
- *
- * _.isFunction(/abc/);
- * // => false
- */
-function isFunction(value) {
-  // The use of `Object#toString` avoids issues with the `typeof` operator
-  // in Safari 8-9 which returns 'object' for typed array and other constructors.
-  var tag = isObject(value) ? objectToString.call(value) : '';
-  return tag == funcTag || tag == genTag;
-}
-
-/**
- * Checks if `value` is a valid array-like length.
- *
- * **Note:** This method is loosely based on
- * [`ToLength`](http://ecma-international.org/ecma-262/7.0/#sec-tolength).
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
- * @example
- *
- * _.isLength(3);
- * // => true
- *
- * _.isLength(Number.MIN_VALUE);
- * // => false
- *
- * _.isLength(Infinity);
- * // => false
- *
- * _.isLength('3');
- * // => false
- */
-function isLength(value) {
-  return typeof value == 'number' &&
-    value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
-}
-
-/**
- * Checks if `value` is the
- * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
- * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is an object, else `false`.
- * @example
- *
- * _.isObject({});
- * // => true
- *
- * _.isObject([1, 2, 3]);
- * // => true
- *
- * _.isObject(_.noop);
- * // => true
- *
- * _.isObject(null);
- * // => false
- */
-function isObject(value) {
-  var type = typeof value;
-  return !!value && (type == 'object' || type == 'function');
-}
-
-/**
- * Checks if `value` is object-like. A value is object-like if it's not `null`
- * and has a `typeof` result of "object".
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
- * @example
- *
- * _.isObjectLike({});
- * // => true
- *
- * _.isObjectLike([1, 2, 3]);
- * // => true
- *
- * _.isObjectLike(_.noop);
- * // => false
- *
- * _.isObjectLike(null);
- * // => false
- */
-function isObjectLike(value) {
-  return !!value && typeof value == 'object';
-}
-
-/**
- * Checks if `value` is classified as a `Symbol` primitive or object.
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is a symbol, else `false`.
- * @example
- *
- * _.isSymbol(Symbol.iterator);
- * // => true
- *
- * _.isSymbol('abc');
- * // => false
- */
-function isSymbol(value) {
-  return typeof value == 'symbol' ||
-    (isObjectLike(value) && objectToString.call(value) == symbolTag);
-}
-
-/**
- * Creates an array of the own and inherited enumerable property names of `object`.
- *
- * **Note:** Non-object values are coerced to objects.
- *
- * @static
- * @memberOf _
- * @since 3.0.0
- * @category Object
- * @param {Object} object The object to query.
- * @returns {Array} Returns the array of property names.
- * @example
- *
- * function Foo() {
- *   this.a = 1;
- *   this.b = 2;
- * }
- *
- * Foo.prototype.c = 3;
- *
- * _.keysIn(new Foo);
- * // => ['a', 'b', 'c'] (iteration order is not guaranteed)
- */
-function keysIn(object) {
-  return isArrayLike(object) ? arrayLikeKeys(object, true) : baseKeysIn(object);
-}
-
-/**
- * The opposite of `_.pick`; this method creates an object composed of the
- * own and inherited enumerable string keyed properties of `object` that are
- * not omitted.
- *
- * @static
- * @since 0.1.0
- * @memberOf _
- * @category Object
- * @param {Object} object The source object.
- * @param {...(string|string[])} [props] The property identifiers to omit.
- * @returns {Object} Returns the new object.
- * @example
- *
- * var object = { 'a': 1, 'b': '2', 'c': 3 };
- *
- * _.omit(object, ['a', 'c']);
- * // => { 'b': '2' }
- */
-var omit = baseRest(function(object, props) {
-  if (object == null) {
-    return {};
-  }
-  props = arrayMap(baseFlatten(props, 1), toKey);
-  return basePick(object, baseDifference(getAllKeysIn(object), props));
-});
-
-/**
- * This method returns a new empty array.
- *
- * @static
- * @memberOf _
- * @since 4.13.0
- * @category Util
- * @returns {Array} Returns the new empty array.
- * @example
- *
- * var arrays = _.times(2, _.stubArray);
- *
- * console.log(arrays);
- * // => [[], []]
- *
- * console.log(arrays[0] === arrays[1]);
- * // => false
- */
-function stubArray() {
-  return [];
-}
-
-module.exports = omit;
 
 
 /***/ }),
@@ -37470,6 +35887,16 @@ if (false) {} else {
 
 /***/ }),
 
+/***/ "./node_modules/react-form-input-validation/dist/bundle.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/react-form-input-validation/dist/bundle.js ***!
+  \*****************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+!function(t,e){if(true)module.exports=e(__webpack_require__(/*! validatorjs */ "./node_modules/validatorjs/src/validator.js"));else { var r, n; }}(window,function(n){return i={},o.m=r=[function(t,e,n){"use strict";var r,o=this&&this.__extends||(r=function(t,e){return(r=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(t,e){t.__proto__=e}||function(t,e){for(var n in e)e.hasOwnProperty(n)&&(t[n]=e[n])})(t,e)},function(t,e){function n(){this.constructor=t}r(t,e),t.prototype=null===e?Object.create(e):(n.prototype=e.prototype,new n)}),i=this&&this.__spreadArrays||function(){for(var t=0,e=0,n=arguments.length;e<n;e++)t+=arguments[e].length;for(var r=Array(t),o=0,e=0;e<n;e++)for(var i=arguments[e],s=0,a=i.length;s<a;s++,o++)r[o]=i[s];return r};Object.defineProperty(e,"__esModule",{value:!0}),e.Lang=void 0;var c=n(1),s=n(2);Object.defineProperty(e,"Lang",{enumerable:!0,get:function(){return s.Lang}});var a,u=(a=s.ReactFormInputValidation,o(f,a),f.useLang=function(t){c.useLang(t)},f.register=function(t,e,n){c.register(t,e,n)},f.registerAsync=function(t,e){c.registerAsync(t,e)},f.setMessages=function(t,e){c.setMessages(t,e)},f.getMessages=function(t){return c.getMessages(t)},f.getDefaultLang=function(){return c.getDefaultLang()},f.setAttributeFormatter=function(t){c.setAttributeFormatter(t)},Object.defineProperty(f.prototype,"onformsubmit",{get:function(){return this._onformsubmit},set:function(t){this._onformsubmit&&a.prototype.removeListener.call(this,"formsubmit",this._onformsubmit),this._onformsubmit=t,a.prototype.addListener.call(this,"formsubmit",this._onformsubmit)},enumerable:!1,configurable:!0}),f.prototype.addEventListener=function(t,e){return a.prototype.addListener.call(this,t,e),this},f.prototype.removeEventListener=function(t,e){return a.prototype.removeListener.call(this,t,e),this},f.prototype.useRules=function(t){this.rules=t},f.prototype.handleChangeEvent=function(t){var e,n=t.target.name;this.component&&n&&((e=Object.assign({},this.component.state.fields))[n]="checkbox"===t.target.type?this.getCheckboxValues(t.target):"radio"===t.target.type?this.getRadioButtonValues(t.target):t.target.value,this.component.setState({fields:e,isValidatorUpdate:!0}))},f.prototype.handleBlurEvent=function(t){var e=this,n=t.target;this.validate([n]).then(function(t){e.component&&e.component.hasOwnProperty("state")&&(e.errors=Object.assign(e.errors,t),e.component.setState({errors:e.errors,isValidatorUpdate:!0}))}).catch(function(t){return console.error(t)})},f.prototype.handleSubmit=function(t){var e=this;t.preventDefault(),this.validateForm(t.target).then(function(t){t&&a.prototype.emit.call(e,e.getEvent(e.component.state.fields))})},f.prototype.validateForm=function(n){var r=this;this.component&&this.component.state||(this.component.state={errors:{}});var o=[];return n.querySelectorAll("textarea,select,input:not([type='submit']):not([type='file']):not([data-ignore-validation])").forEach(function(t){o.push(t)}),new Promise(function(e){r.validate(o).then(function(t){r.errors=t,r.component.setState({errors:r.errors,isValidatorUpdate:!0}),Object.keys(r.component.state.errors)[0]&&n.querySelector('[name="'+Object.keys(r.component.state.errors)[0]+'"]')&&n.querySelector('[name="'+Object.keys(r.component.state.errors)[0]+'"]').focus(),e(0===Object.keys(r.component.state.errors).length)}).catch(function(t){return console.log(t)})})},f.prototype.getRadioButtonValues=function(t){var e=document.getElementsByName(t.name),n=i(e).filter(function(t){return!0===t.checked});return n[0]?n[0].value:""},f.prototype.getCheckboxValues=function(t){var e=document.getElementsByName(t.name),n=i(e).filter(function(t){return!0===t.checked}),r=[];return n.forEach(function(t){return r.push(t.value)}),r},f.prototype.validate=function(a){var u=this;return new Promise(function(t){var e={},r={},o={},i={},s=!1;a.forEach(function(t){var e,n=t.getAttribute("name");r[n]=u.component.state.fields[n],o[n]=u.rules[n],o[n]||(console.warn("Rule is not defind for "+n),o[n]=""),n.endsWith("_confirmation")&&(e=n.slice(0,n.indexOf("_confirmation")),r[e]=u.component.state.fields[e]),t.hasAttribute("data-attribute-name")&&(i[n]=t.getAttribute("data-attribute-name")),t.hasAttribute("data-async")&&(s=!0)});var n=new c(r,o);if(n.setAttributeNames(i),!s)return n.fails()?e=u.fillErrors(n):u.invalidateErrors(r),t(e);n.checkAsync(function(){u.invalidateErrors(r),t(e)},function(){e=u.fillErrors(n),t(e)})})},f.prototype.fillErrors=function(e){var n={};return Object.keys(e.errors.all()).forEach(function(t){n[t]=e.errors.first(t)}),n},f.prototype.invalidateErrors=function(t){var e=this;Object.keys(t).forEach(function(t){delete e.errors[t]})},f.prototype.getEvent=function(t){return new CustomEvent("formsubmit",{detail:t})},f);function f(t,e){var n=a.call(this,t,e)||this;return n.rules={},n.errors={},f.useLang(e&&e.locale?e.locale:"en"),n.component=t,n.handleChangeEvent=n.handleChangeEvent.bind(n),n.handleSubmit=n.handleSubmit.bind(n),n.handleBlurEvent=n.handleBlurEvent.bind(n),n}e.default=u},function(t,e){t.exports=n},function(t,e,n){"use strict";var r,o,i=this&&this.__extends||(r=function(t,e){return(r=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(t,e){t.__proto__=e}||function(t,e){for(var n in e)e.hasOwnProperty(n)&&(t[n]=e[n])})(t,e)},function(t,e){function n(){this.constructor=t}r(t,e),t.prototype=null===e?Object.create(e):(n.prototype=e.prototype,new n)});Object.defineProperty(e,"__esModule",{value:!0}),e.ReactFormInputValidation=e.Lang=void 0,(o=e.Lang||(e.Lang={})).ar="ar",o.az="az",o.be="be",o.bg="bg",o.bs="bs",o.ca="ca",o.cs="cs",o.cy="cy",o.da="da",o.de="de",o.el="el",o.en="en",o.es="es",o.et="et",o.eu="eu",o.fa="fa",o.fi="fi",o.fr="fr",o.hr="hr",o.hu="hu",o.id="id",o.it="it",o.ja="ja",o.ka="ka",o.ko="ko",o.It="It",o.Iv="Iv",o.mk="mk",o.mn="mn",o.ms="ms",o.nb_NO="nb_NO",o.nl="nl",o.pl="pl",o.pt="pt",o.pt_BR="pt_BR",o.ro="ro",o.ru="ru",o.se="se",o.sl="sl",o.sq="sq",o.sr="sr",o.sv="sv",o.tr="tr",o.ua="ua",o.uk="uk",o.vi="vi",o.zh="zh",o.zh_TW="zh_TW";var s,a=(u.prototype.addListener=function(t,e){t in this.listeners||(this.listeners[t]=[]),this.listeners[t].push(e)},u.prototype.removeListener=function(t,e){if(t in this.listeners)for(var n=this.listeners[t],r=0,o=n.length;r<o;r++)if(n[r]===e)return void n.splice(r,1)},u.prototype.emit=function(t){if(!(t.type in this.listeners))return!0;for(var e=this.listeners[t.type].slice(),n=0,r=e.length;n<r;n++)e[n].call(this,t.detail);return!t.defaultPrevented},u);function u(){this.listeners={}}var c,f=(i(l,c=a),l.useLang=function(t){},l.register=function(t,e,n){},l.registerAsync=function(t,e){},l.setMessages=function(t,e){},l.getMessages=function(t){return s},l.getDefaultLang=function(){return s},l.setAttributeFormatter=function(t){},l.prototype.addEventListener=function(t,e){return s},l.prototype.removeEventListener=function(t,e){return s},l.prototype.useRules=function(t){},l.prototype.handleChangeEvent=function(t){},l.prototype.handleBlurEvent=function(t){},l.prototype.handleSubmit=function(t){},l);function l(t,e){return c.call(this)||this}e.ReactFormInputValidation=f}],o.c=i,o.d=function(t,e,n){o.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:n})},o.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var r in e)o.d(n,r,function(t){return e[t]}.bind(null,r));return n},o.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return o.d(e,"a",e),e},o.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},o.p="",o(o.s=0);function o(t){if(i[t])return i[t].exports;var e=i[t]={i:t,l:!1,exports:{}};return r[t].call(e.exports,e,e.exports,o),e.l=!0,e.exports}var r,i});
+
+/***/ }),
+
 /***/ "./node_modules/react-is/cjs/react-is.development.js":
 /*!***********************************************************!*\
   !*** ./node_modules/react-is/cjs/react-is.development.js ***!
@@ -41014,1956 +39441,6 @@ function pathToRegexp (path, keys, options) {
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 !function(t,n){ true?n(exports,__webpack_require__(/*! react */ "./node_modules/react/index.js")):0}(this,function(t,o){"use strict";var i="default"in o?o.default:o;function s(t){return(s="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t})(t)}function c(t,n){for(var e=0;e<n.length;e++){var a=n[e];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(t,a.key,a)}}function p(t,n,e){return n in t?Object.defineProperty(t,n,{value:e,enumerable:!0,configurable:!0,writable:!0}):t[n]=e,t}function r(t){return(r=Object.setPrototypeOf?Object.getPrototypeOf:function(t){return t.__proto__||Object.getPrototypeOf(t)})(t)}function f(t,n){return(f=Object.setPrototypeOf||function(t,n){return t.__proto__=n,t})(t,n)}function u(t){if(void 0===t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return t}function l(e){var a=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1;if(Reflect.construct.sham)return!1;if("function"==typeof Proxy)return!0;try{return Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],function(){})),!0}catch(t){return!1}}();return function(){var t,n=r(e);return t=a?(t=r(this).constructor,Reflect.construct(n,arguments,t)):n.apply(this,arguments),n=this,!(t=t)||"object"!=typeof t&&"function"!=typeof t?u(n):t}}function n(t,n){var e,a=(n=void 0===n?{}:n).insertAt;t&&"undefined"!=typeof document&&(e=document.head||document.getElementsByTagName("head")[0],(n=document.createElement("style")).type="text/css","top"===a&&e.firstChild?e.insertBefore(n,e.firstChild):e.appendChild(n),n.styleSheet?n.styleSheet.cssText=t:n.appendChild(document.createTextNode(t)))}var d={animated:"rsw_1z",fadeInRight:"rsw_1M",fadeInLeft:"rsw_19",fadeOutRight:"rsw_3C",fadeOutLeft:"rsw_1u"};n("/**\n * Snippets from animate.css\n * Credit goes to https://github.com/daneden\n * github.com/daneden/animate.css\n*/\n.rsw_1z {\n  -webkit-animation-duration: .8192s;\n  animation-duration: .8192s;\n  -webkit-animation-fill-mode: backwards;\n  animation-fill-mode: backwards;\n}\n\n/** fadeInRight */\n@-webkit-keyframes rsw_1M {\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(100%, 0, 0);\n    transform: translate3d(100%, 0, 0);\n  }\n\n  to {\n    opacity: 1;\n    -webkit-transform: none;\n    transform: none;\n  }\n}\n\n@keyframes rsw_1M {\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(100%, 0, 0);\n    transform: translate3d(100%, 0, 0);\n  }\n\n  to {\n    opacity: 1;\n    -webkit-transform: none;\n    transform: none;\n  }\n}\n\n.rsw_1M {\n  -webkit-animation-name: rsw_1M;\n  animation-name: rsw_1M;\n}\n\n/** fadeInLeft */\n@-webkit-keyframes rsw_19 {\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(-100%, 0, 0);\n    transform: translate3d(-100%, 0, 0);\n  }\n\n  to {\n    opacity: 1;\n    -webkit-transform: none;\n    transform: none;\n  }\n}\n\n@keyframes rsw_19 {\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(-100%, 0, 0);\n    transform: translate3d(-100%, 0, 0);\n  }\n\n  to {\n    opacity: 1;\n    -webkit-transform: none;\n    transform: none;\n  }\n}\n\n.rsw_19 {\n  -webkit-animation-name: rsw_19;\n  animation-name: rsw_19;\n}\n\n/** fadeOutRight */\n@-webkit-keyframes rsw_3C {\n  from {\n    opacity: 1;\n  }\n\n  to {\n    opacity: 0;\n    -webkit-transform: translate3d(100%, 0, 0);\n    transform: translate3d(100%, 0, 0);\n  }\n}\n\n@keyframes rsw_3C {\n  from {\n    opacity: 1;\n  }\n\n  to {\n    opacity: 0;\n    -webkit-transform: translate3d(100%, 0, 0);\n    transform: translate3d(100%, 0, 0);\n  }\n}\n\n.rsw_3C {\n  -webkit-animation-name: rsw_3C;\n  animation-name: rsw_3C;\n}\n\n/** fadeOutLeft */\n@-webkit-keyframes rsw_1u {\n  from {\n    opacity: 1;\n  }\n\n  to {\n    opacity: 0;\n    -webkit-transform: translate3d(-100%, 0, 0);\n    transform: translate3d(-100%, 0, 0);\n  }\n}\n\n@keyframes rsw_1u {\n  from {\n    opacity: 1;\n  }\n\n  to {\n    opacity: 0;\n    -webkit-transform: translate3d(-100%, 0, 0);\n    transform: translate3d(-100%, 0, 0);\n  }\n}\n\n.rsw_1u {\n  -webkit-animation-name: rsw_1u;\n  animation-name: rsw_1u;\n}\n");var m="rsw_2Y",a="rsw_2f",h="rsw_3G";n("/** Step Wizard */\n.rsw_2Y {\n    position: relative;\n}\n\n.rsw_2f {\n    opacity: 0;\n    pointer-events: none;\n    position: absolute;\n    top: 0;\n    width: 100%;\n    z-index: 0;\n}\n\n.rsw_3G {\n    opacity: 1;\n    pointer-events: inherit;\n    position: relative;\n    z-index: 1;\n}\n");var e=function(){!function(t,n){if("function"!=typeof n&&null!==n)throw new TypeError("Super expression must either be null or a function");t.prototype=Object.create(n&&n.prototype,{constructor:{value:t,writable:!0,configurable:!0}}),n&&f(t,n)}(r,o.PureComponent);var t,n,e,a=l(r);function r(t){var o;return function(t,n){if(!(t instanceof n))throw new TypeError("Cannot call a class as a function")}(this,r),p(u(o=a.call(this,t)),"initialState",function(){var e={activeStep:0,classes:{},hashKeys:{},namedSteps:{}},t="object"===("undefined"==typeof window?"undefined":s(window))?o.getHash():"",n=o.getSteps();n.forEach(function(t,n){e.hashKeys[n]=t.props&&t.props.hashKey||"step".concat(n+1),e.hashKeys[e.hashKeys[n]]=n,e.namedSteps[n]=t.props&&t.props.stepName||"step".concat(n+1),e.namedSteps[e.namedSteps[n]]=n});var a=o.props.initialStep-1;return a&&n[a]&&(e.activeStep=a),o.props.isHashEnabled&&t&&void 0!==e.hashKeys[t]&&(e.activeStep=e.hashKeys[t]),o.props.transitions&&(e.classes[e.activeStep]=o.props.transitions.intro||""),e}),p(u(o),"getHash",function(){return decodeURI(window.location.hash).replace(/^#/,"")}),p(u(o),"getTransitions",function(){return o.props.transitions||{enterRight:"".concat(d.animated," ").concat(d.fadeInRight),enterLeft:"".concat(d.animated," ").concat(d.fadeInLeft),exitRight:"".concat(d.animated," ").concat(d.fadeOutRight),exitLeft:"".concat(d.animated," ").concat(d.fadeOutLeft)}}),p(u(o),"onHashChange",function(){var t=o.state.hashKeys[o.getHash()];void 0!==t&&o.setActiveStep(t)}),p(u(o),"isInvalidStep",function(t){return t<0||t>=o.totalSteps}),p(u(o),"setActiveStep",function(t){var n,e,a=o.state.activeStep;a!==t&&(o.isInvalidStep(t)?console.error("".concat(t+1," is an invalid step")):(n=o.state.classes,e=o.getTransitions(),a<t?(n[a]=e.exitLeft,n[t]=e.enterRight):(n[a]=e.exitRight,n[t]=e.enterLeft),o.setState({activeStep:t,classes:n},function(){o.onStepChange({previousStep:a+1,activeStep:t+1})})))}),p(u(o),"onStepChange",function(t){o.props.onStepChange(t),o.props.isHashEnabled&&o.updateHash(o.state.activeStep)}),p(u(o),"getSteps",function(){return i.Children.toArray(o.props.children)}),p(u(o),"firstStep",function(){return o.goToStep(1)}),p(u(o),"lastStep",function(){return o.goToStep(o.totalSteps)}),p(u(o),"nextStep",function(){return o.setActiveStep(o.state.activeStep+1)}),p(u(o),"previousStep",function(){return o.setActiveStep(o.state.activeStep-1)}),p(u(o),"goToStep",function(t){o.props.isHashEnabled&&"string"==typeof t&&void 0!==o.state.hashKeys[t]?o.setActiveStep(o.state.hashKeys[t]):o.setActiveStep(t-1)}),p(u(o),"goToNamedStep",function(t){"string"==typeof t&&void 0!==o.state.namedSteps[t]?o.setActiveStep(o.state.namedSteps[t]):console.error('Cannot find step with name "'.concat(t,'"'))}),p(u(o),"updateHash",function(t){window.location.hash=o.state.hashKeys[t]}),p(u(o),"isReactComponent",function(t){t=t.type;return"function"==typeof t||"object"===s(t)}),o.state=o.initialState(),o}return t=r,(n=[{key:"componentDidMount",value:function(){this.props.isHashEnabled&&window.addEventListener("hashchange",this.onHashChange),this.props.instance(this)}},{key:"componentWillUnmount",value:function(){this.props.isHashEnabled&&window.removeEventListener("hashchange",this.onHashChange)}},{key:"currentStep",get:function(){return this.state.activeStep+1}},{key:"totalSteps",get:function(){return this.getSteps().length}},{key:"render",value:function(){var e=this,a={currentStep:this.currentStep,totalSteps:this.totalSteps,nextStep:this.nextStep,previousStep:this.previousStep,goToStep:this.goToStep,goToNamedStep:this.goToNamedStep,firstStep:this.firstStep,lastStep:this.lastStep},o=this.state.classes,t=i.Children.map(this.getSteps(),function(t,n){return t?(a.isActive=n===e.state.activeStep,a.transitions=o[n],!e.props.isLazyMount||e.props.isLazyMount&&a.isActive?i.createElement(y,a,e.isReactComponent(t)?i.cloneElement(t,a):t):null):null});return i.createElement("div",{className:this.props.className},this.props.nav&&i.cloneElement(this.props.nav,a),i.createElement("div",{className:m},t))}}])&&c(t.prototype,n),e&&c(t,e),r}();e.defaultProps={children:[],className:null,initialStep:1,instance:function(){},isHashEnabled:!1,isLazyMount:!1,nav:null,onStepChange:function(){},transitions:void 0};var y=function(t){var n=t.children,e=t.isActive,t=t.transitions;return i.createElement("div",{className:"".concat(a," ").concat(t," ").concat(e?h:"").trim()},n)};"development",y.defaultProps={children:[],isActive:!1,transitions:""},t.Step=y,t.default=e,Object.defineProperty(t,"__esModule",{value:!0})});
-
-
-/***/ }),
-
-/***/ "./node_modules/react-validation/build/main.js":
-/*!*****************************************************!*\
-  !*** ./node_modules/react-validation/build/main.js ***!
-  \*****************************************************/
-/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
-
-!function(e,t){ true?module.exports=t(__webpack_require__(/*! react */ "./node_modules/react-validation/node_modules/react/index.js"),__webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js"),__webpack_require__(/*! uuid/v4 */ "./node_modules/uuid/v4.js"),__webpack_require__(/*! lodash.omit */ "./node_modules/lodash.omit/index.js")):0}(this,function(e,t,r,n){return function(e){function t(n){if(r[n])return r[n].exports;var o=r[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,t),o.l=!0,o.exports}var r={};return t.m=e,t.c=r,t.d=function(e,r,n){t.o(e,r)||Object.defineProperty(e,r,{configurable:!1,enumerable:!0,get:n})},t.n=function(e){var r=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(r,"a",r),r},t.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},t.p="/",t(t.s=10)}([function(t,r){t.exports=e},function(e,r){e.exports=t},function(e,t,r){"use strict";function n(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function o(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!==typeof t&&"function"!==typeof t?e:t}function i(e,t){if("function"!==typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}function a(e){var t,r;return r=t=function(t){function r(){return n(this,r),o(this,(r.__proto__||Object.getPrototypeOf(r)).apply(this,arguments))}return i(r,t),f(r,[{key:"render",value:function(){var t=this.context._getProps(this.id);return t?u.a.createElement(e,Object.assign({},t,{onChange:this.handleChange,onBlur:this.handleBlur})):null}}]),r}(c.a),t.displayName="Control("+e.name+")",r}t.a=a;var s=r(0),u=r.n(s),c=r(3),f=function(){function e(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}return function(t,r,n){return r&&e(t.prototype,r),n&&e(t,n),t}}()},function(e,t,r){"use strict";function n(e,t){var r={};for(var n in e)t.indexOf(n)>=0||Object.prototype.hasOwnProperty.call(e,n)&&(r[n]=e[n]);return r}function o(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function i(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!==typeof t&&"function"!==typeof t?e:t}function a(e,t){if("function"!==typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}var s=r(0),u=(r.n(s),r(1)),c=r.n(u),f=r(4),l=r.n(f),p=r(5),b=r.n(p),d=r(6),y=r.n(d),h=function(){function e(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}return function(t,r,n){return r&&e(t.prototype,r),n&&e(t,n),t}}(),v=function(e){function t(){var e,r,n,a;o(this,t);for(var s=arguments.length,u=Array(s),c=0;c<s;c++)u[c]=arguments[c];return r=n=i(this,(e=t.__proto__||Object.getPrototypeOf(t)).call.apply(e,[this].concat(u))),n.id=y()(),n.handleChange=function(e){e.persist(),n.context._handleChange(e,n.id),n.props.onChange&&n.props.onChange(e)},n.handleBlur=function(e){e.persist(),n.context._handleBlur(e,n.id),n.props.onBlur&&n.props.onBlur(e)},a=r,i(n,a)}return a(t,e),h(t,[{key:"componentDidMount",value:function(){this.context._register(this,this.id)}},{key:"componentWillUnmount",value:function(){this.context._unregister(this,this.id)}},{key:"componentWillReceiveProps",value:function(e){var t=e.validations,r=n(e,["validations"]),o=this.props,i=o.validations,a=n(o,["validations"]);b()(a,r)&&l()(i,t)||this.context._setProps(r,this.id)}},{key:"shouldComponentUpdate",value:function(e,t,r){return r!==this.context}},{key:"render",value:function(){return null}}]),t}(s.Component);v.contextTypes={_register:c.a.func.isRequired,_unregister:c.a.func.isRequired,_setProps:c.a.func.isRequired,_handleChange:c.a.func.isRequired,_handleBlur:c.a.func.isRequired,_getProps:c.a.func.isRequired},v.propTypes={validations:c.a.arrayOf(c.a.func),onChange:c.a.func,onBlur:c.a.func},v.defaultProps={validations:[]},t.a=v},function(e,t){e.exports=function(e,t){if(e===t)return!0;var r=e.length;if(t.length!==r)return!1;for(var n=0;n<r;n++)if(e[n]!==t[n])return!1;return!0}},function(e,t){e.exports=function(e,t){if(e===t)return!0;var r=Object.keys(e),n=Object.keys(t),o=r.length;if(n.length!==o)return!1;for(var i=0;i<o;i++){var a=r[i];if(e[a]!==t[a])return!1}return!0}},function(e,t){e.exports=r},function(e,t,r){"use strict";function n(e,t){var r={};for(var n in e)t.indexOf(n)>=0||Object.prototype.hasOwnProperty.call(e,n)&&(r[n]=e[n]);return r}function o(e,t,r){return t in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}function i(e){if(Array.isArray(e)){for(var t=0,r=Array(e.length);t<e.length;t++)r[t]=e[t];return r}return Array.from(e)}function a(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function s(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!==typeof t&&"function"!==typeof t?e:t}function u(e,t){if("function"!==typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}function c(e){var t,r,c;return r=t=function(t){function r(e,t){a(this,r);var n=s(this,(r.__proto__||Object.getPrototypeOf(r)).call(this,e,t));return c.call(n),n.state={byName:{},byId:{}},n}return u(r,t),h(r,[{key:"getChildContext",value:function(){var e=this;return{_register:this._register,_unregister:this._unregister,_setProps:this._setProps,_handleChange:this._handleChange,_handleBlur:this._handleBlur,_getProps:this._getProps,_errors:Object.keys(this.state.byId).filter(function(t){return e.state.byId[t].error})}}},{key:"render",value:function(){return l.a.createElement(e,Object.assign({},this.props,{validate:this.validate,validateAll:this.validateAll,getValues:this.getValues,showError:this.showError,hideError:this.hideError}))}}]),r}(f.PureComponent),t.displayName="Form("+e.name+")",t.propTypes={},t.childContextTypes={_register:b.a.func.isRequired,_unregister:b.a.func.isRequired,_setProps:b.a.func.isRequired,_handleChange:b.a.func.isRequired,_handleBlur:b.a.func.isRequired,_getProps:b.a.func.isRequired,_errors:b.a.array},c=function(){var e=this;this._register=function(t,r){e.setState(function(e){return{byName:Object.assign({},e.byName,o({},t.props.name,[].concat(i(e.byName[t.props.name]||[]),[r]))),byId:Object.assign({},e.byId,o({},r,Object.assign({},t.props,{isCheckable:v(t),value:t.props.value||""},v(t)?{checked:!!t.props.checked}:{})))}},e._setErrors)},this._unregister=function(t,r){var n=[].concat(i(e.state.byName[t.props.name]));n.splice(n.indexOf(r),1);var a=n.length?Object.assign({},e.state.byName,o({},t.props.name,n)):y()(e.state.byName,t.props.name);e.setState({byName:a,byId:y()(e.state.byId,r)})},this._getProps=function(t){if(e.state.byId[t]){var r=e.state.byId[t];r.validations,r.isCheckable;return n(r,["validations","isCheckable"])}},this._setProps=function(t,r){e.setState(function(e){return{byId:Object.assign({},e.byId,o({},r,Object.assign({},e.byId[r],t)))}},e._setErrors)},this._handleChange=function(t,r){var n=e.state.byId[r].isCheckable;e.setState({byId:Object.assign({},e.state.byId,n?Object.assign({},e.state.byName[e.state.byId[r].name].reduce(function(t,r){return t[r]=Object.assign({},e.state.byId[r],{checked:!1}),t},{})):{},o({},r,Object.assign({},e.state.byId[r],{isChanged:!0,value:t.target.value},n&&{checked:t.target.checked})))},e._setErrors)},this._handleBlur=function(t,r){e.setState({byId:Object.assign({},e.state.byId,o({},r,Object.assign({},e.state.byId[r],{isUsed:!0,value:t.target.value})))},e._setErrors)},this._setErrors=function(){e.setState(function(e){return{byId:Object.keys(e.byId).reduce(function(t,r){var n=e.byId[r].validations,o=e.byId[r],i=Object.keys(e.byName).reduce(function(t,r){return t[r]=e.byName[r].map(function(t){return e.byId[t]}),t},{}),a=o.value;t[r]=Object.assign({},e.byId[r]);var s=!0,u=!1,c=void 0;try{for(var f,l=n[Symbol.iterator]();!(s=(f=l.next()).done);s=!0){var p=f.value,b=p(a,o,i);if(b){t[r].error=b;break}delete t[r].error}}catch(e){u=!0,c=e}finally{try{!s&&l.return&&l.return()}finally{if(u)throw c}}return t},{})}})},this.getValues=function(){return Object.keys(e.state.byName).reduce(function(t,r){return e.state.byName[r].length>1?t[r]=e.state.byName[r].map(function(t){return e.state.byId[t].value}):t[r]=e.state.byId[e.state.byName[r][0]].value,t},{})},this.validate=function(t){e.setState(function(e){return{byId:Object.assign({},e.byId,e.byName[t].reduce(function(t,r){return t[r]=Object.assign({},e.byId[r],{isChanged:!0,isUsed:!0}),t},{}))}},e._setErrors)},this.validateAll=function(){e.setState(function(e){return{byId:Object.assign({},e.byId,Object.keys(e.byName).reduce(function(t,r){return e.byName[r].reduce(function(r,n){return t[n]=Object.assign({},e.byId[n],{isChanged:!0,isUsed:!0}),r},{}),t},{}))}},e._setErrors)},this.showError=function(t,r){t&&setTimeout(function(){e.setState({byId:Object.assign({},e.state.byId,o({},t.id,Object.assign({},e.state.byId[t.id],{isChanged:!0,isUsed:!0,error:r})))})},0)},this.hideError=function(t){e.setState(function(e){return{byId:Object.assign({},e.byId,o({},t.id,Object.assign({},y()(e.byId[t.id],"error"),{isChanged:!1,isUsed:!1})))}})}},r}t.a=c;var f=r(0),l=r.n(f),p=r(1),b=r.n(p),d=r(8),y=r.n(d),h=function(){function e(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}return function(t,r,n){return r&&e(t.prototype,r),n&&e(t,n),t}}(),v=function(e){return"radio"===e.props.type||"checkbox"===e.props.type}},function(e,t){e.exports=n},function(e,t,r){"use strict";function n(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function o(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!==typeof t&&"function"!==typeof t?e:t}function i(e,t){if("function"!==typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}function a(e){var t,r;return r=t=function(t){function r(){return n(this,r),o(this,(r.__proto__||Object.getPrototypeOf(r)).apply(this,arguments))}return i(r,t),l(r,[{key:"shouldComponentUpdate",value:function(e,t,r){return r._errors!==this.context._errors}},{key:"render",value:function(){var t=!!Object.keys(this.context._errors).length;return u.a.createElement(e,Object.assign({},this.props,{hasErrors:t}))}}]),r}(s.Component),t.contextTypes={_errors:f.a.arrayOf(f.a.oneOfType([f.a.object,f.a.string]))},t.displayName="Button("+e.name+")",r}t.a=a;var s=r(0),u=r.n(s),c=r(1),f=r.n(c),l=function(){function e(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}return function(t,r,n){return r&&e(t.prototype,r),n&&e(t,n),t}}()},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n=r(7);r.d(t,"form",function(){return n.a});var o=r(2);r.d(t,"control",function(){return o.a});var i=r(9);r.d(t,"button",function(){return i.a})}])});
-//# sourceMappingURL=main.js.map
-
-/***/ }),
-
-/***/ "./node_modules/react-validation/node_modules/react/cjs/react.development.js":
-/*!***********************************************************************************!*\
-  !*** ./node_modules/react-validation/node_modules/react/cjs/react.development.js ***!
-  \***********************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-/** @license React v16.14.0
- * react.development.js
- *
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-
-
-
-
-if (true) {
-  (function() {
-'use strict';
-
-var _assign = __webpack_require__(/*! object-assign */ "./node_modules/object-assign/index.js");
-var checkPropTypes = __webpack_require__(/*! prop-types/checkPropTypes */ "./node_modules/prop-types/checkPropTypes.js");
-
-var ReactVersion = '16.14.0';
-
-// The Symbol used to tag the ReactElement-like types. If there is no native Symbol
-// nor polyfill, then a plain number is used for performance.
-var hasSymbol = typeof Symbol === 'function' && Symbol.for;
-var REACT_ELEMENT_TYPE = hasSymbol ? Symbol.for('react.element') : 0xeac7;
-var REACT_PORTAL_TYPE = hasSymbol ? Symbol.for('react.portal') : 0xeaca;
-var REACT_FRAGMENT_TYPE = hasSymbol ? Symbol.for('react.fragment') : 0xeacb;
-var REACT_STRICT_MODE_TYPE = hasSymbol ? Symbol.for('react.strict_mode') : 0xeacc;
-var REACT_PROFILER_TYPE = hasSymbol ? Symbol.for('react.profiler') : 0xead2;
-var REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for('react.provider') : 0xeacd;
-var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace; // TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
-var REACT_CONCURRENT_MODE_TYPE = hasSymbol ? Symbol.for('react.concurrent_mode') : 0xeacf;
-var REACT_FORWARD_REF_TYPE = hasSymbol ? Symbol.for('react.forward_ref') : 0xead0;
-var REACT_SUSPENSE_TYPE = hasSymbol ? Symbol.for('react.suspense') : 0xead1;
-var REACT_SUSPENSE_LIST_TYPE = hasSymbol ? Symbol.for('react.suspense_list') : 0xead8;
-var REACT_MEMO_TYPE = hasSymbol ? Symbol.for('react.memo') : 0xead3;
-var REACT_LAZY_TYPE = hasSymbol ? Symbol.for('react.lazy') : 0xead4;
-var REACT_BLOCK_TYPE = hasSymbol ? Symbol.for('react.block') : 0xead9;
-var REACT_FUNDAMENTAL_TYPE = hasSymbol ? Symbol.for('react.fundamental') : 0xead5;
-var REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for('react.responder') : 0xead6;
-var REACT_SCOPE_TYPE = hasSymbol ? Symbol.for('react.scope') : 0xead7;
-var MAYBE_ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
-var FAUX_ITERATOR_SYMBOL = '@@iterator';
-function getIteratorFn(maybeIterable) {
-  if (maybeIterable === null || typeof maybeIterable !== 'object') {
-    return null;
-  }
-
-  var maybeIterator = MAYBE_ITERATOR_SYMBOL && maybeIterable[MAYBE_ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL];
-
-  if (typeof maybeIterator === 'function') {
-    return maybeIterator;
-  }
-
-  return null;
-}
-
-/**
- * Keeps track of the current dispatcher.
- */
-var ReactCurrentDispatcher = {
-  /**
-   * @internal
-   * @type {ReactComponent}
-   */
-  current: null
-};
-
-/**
- * Keeps track of the current batch's configuration such as how long an update
- * should suspend for if it needs to.
- */
-var ReactCurrentBatchConfig = {
-  suspense: null
-};
-
-/**
- * Keeps track of the current owner.
- *
- * The current owner is the component who should own any components that are
- * currently being constructed.
- */
-var ReactCurrentOwner = {
-  /**
-   * @internal
-   * @type {ReactComponent}
-   */
-  current: null
-};
-
-var BEFORE_SLASH_RE = /^(.*)[\\\/]/;
-function describeComponentFrame (name, source, ownerName) {
-  var sourceInfo = '';
-
-  if (source) {
-    var path = source.fileName;
-    var fileName = path.replace(BEFORE_SLASH_RE, '');
-
-    {
-      // In DEV, include code for a common special case:
-      // prefer "folder/index.js" instead of just "index.js".
-      if (/^index\./.test(fileName)) {
-        var match = path.match(BEFORE_SLASH_RE);
-
-        if (match) {
-          var pathBeforeSlash = match[1];
-
-          if (pathBeforeSlash) {
-            var folderName = pathBeforeSlash.replace(BEFORE_SLASH_RE, '');
-            fileName = folderName + '/' + fileName;
-          }
-        }
-      }
-    }
-
-    sourceInfo = ' (at ' + fileName + ':' + source.lineNumber + ')';
-  } else if (ownerName) {
-    sourceInfo = ' (created by ' + ownerName + ')';
-  }
-
-  return '\n    in ' + (name || 'Unknown') + sourceInfo;
-}
-
-var Resolved = 1;
-function refineResolvedLazyComponent(lazyComponent) {
-  return lazyComponent._status === Resolved ? lazyComponent._result : null;
-}
-
-function getWrappedName(outerType, innerType, wrapperName) {
-  var functionName = innerType.displayName || innerType.name || '';
-  return outerType.displayName || (functionName !== '' ? wrapperName + "(" + functionName + ")" : wrapperName);
-}
-
-function getComponentName(type) {
-  if (type == null) {
-    // Host root, text node or just invalid type.
-    return null;
-  }
-
-  {
-    if (typeof type.tag === 'number') {
-      error('Received an unexpected object in getComponentName(). ' + 'This is likely a bug in React. Please file an issue.');
-    }
-  }
-
-  if (typeof type === 'function') {
-    return type.displayName || type.name || null;
-  }
-
-  if (typeof type === 'string') {
-    return type;
-  }
-
-  switch (type) {
-    case REACT_FRAGMENT_TYPE:
-      return 'Fragment';
-
-    case REACT_PORTAL_TYPE:
-      return 'Portal';
-
-    case REACT_PROFILER_TYPE:
-      return "Profiler";
-
-    case REACT_STRICT_MODE_TYPE:
-      return 'StrictMode';
-
-    case REACT_SUSPENSE_TYPE:
-      return 'Suspense';
-
-    case REACT_SUSPENSE_LIST_TYPE:
-      return 'SuspenseList';
-  }
-
-  if (typeof type === 'object') {
-    switch (type.$$typeof) {
-      case REACT_CONTEXT_TYPE:
-        return 'Context.Consumer';
-
-      case REACT_PROVIDER_TYPE:
-        return 'Context.Provider';
-
-      case REACT_FORWARD_REF_TYPE:
-        return getWrappedName(type, type.render, 'ForwardRef');
-
-      case REACT_MEMO_TYPE:
-        return getComponentName(type.type);
-
-      case REACT_BLOCK_TYPE:
-        return getComponentName(type.render);
-
-      case REACT_LAZY_TYPE:
-        {
-          var thenable = type;
-          var resolvedThenable = refineResolvedLazyComponent(thenable);
-
-          if (resolvedThenable) {
-            return getComponentName(resolvedThenable);
-          }
-
-          break;
-        }
-    }
-  }
-
-  return null;
-}
-
-var ReactDebugCurrentFrame = {};
-var currentlyValidatingElement = null;
-function setCurrentlyValidatingElement(element) {
-  {
-    currentlyValidatingElement = element;
-  }
-}
-
-{
-  // Stack implementation injected by the current renderer.
-  ReactDebugCurrentFrame.getCurrentStack = null;
-
-  ReactDebugCurrentFrame.getStackAddendum = function () {
-    var stack = ''; // Add an extra top frame while an element is being validated
-
-    if (currentlyValidatingElement) {
-      var name = getComponentName(currentlyValidatingElement.type);
-      var owner = currentlyValidatingElement._owner;
-      stack += describeComponentFrame(name, currentlyValidatingElement._source, owner && getComponentName(owner.type));
-    } // Delegate to the injected renderer-specific implementation
-
-
-    var impl = ReactDebugCurrentFrame.getCurrentStack;
-
-    if (impl) {
-      stack += impl() || '';
-    }
-
-    return stack;
-  };
-}
-
-/**
- * Used by act() to track whether you're inside an act() scope.
- */
-var IsSomeRendererActing = {
-  current: false
-};
-
-var ReactSharedInternals = {
-  ReactCurrentDispatcher: ReactCurrentDispatcher,
-  ReactCurrentBatchConfig: ReactCurrentBatchConfig,
-  ReactCurrentOwner: ReactCurrentOwner,
-  IsSomeRendererActing: IsSomeRendererActing,
-  // Used by renderers to avoid bundling object-assign twice in UMD bundles:
-  assign: _assign
-};
-
-{
-  _assign(ReactSharedInternals, {
-    // These should not be included in production.
-    ReactDebugCurrentFrame: ReactDebugCurrentFrame,
-    // Shim for React DOM 16.0.0 which still destructured (but not used) this.
-    // TODO: remove in React 17.0.
-    ReactComponentTreeHook: {}
-  });
-}
-
-// by calls to these methods by a Babel plugin.
-//
-// In PROD (or in packages without access to React internals),
-// they are left as they are instead.
-
-function warn(format) {
-  {
-    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      args[_key - 1] = arguments[_key];
-    }
-
-    printWarning('warn', format, args);
-  }
-}
-function error(format) {
-  {
-    for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
-      args[_key2 - 1] = arguments[_key2];
-    }
-
-    printWarning('error', format, args);
-  }
-}
-
-function printWarning(level, format, args) {
-  // When changing this logic, you might want to also
-  // update consoleWithStackDev.www.js as well.
-  {
-    var hasExistingStack = args.length > 0 && typeof args[args.length - 1] === 'string' && args[args.length - 1].indexOf('\n    in') === 0;
-
-    if (!hasExistingStack) {
-      var ReactDebugCurrentFrame = ReactSharedInternals.ReactDebugCurrentFrame;
-      var stack = ReactDebugCurrentFrame.getStackAddendum();
-
-      if (stack !== '') {
-        format += '%s';
-        args = args.concat([stack]);
-      }
-    }
-
-    var argsWithFormat = args.map(function (item) {
-      return '' + item;
-    }); // Careful: RN currently depends on this prefix
-
-    argsWithFormat.unshift('Warning: ' + format); // We intentionally don't use spread (or .apply) directly because it
-    // breaks IE9: https://github.com/facebook/react/issues/13610
-    // eslint-disable-next-line react-internal/no-production-logging
-
-    Function.prototype.apply.call(console[level], console, argsWithFormat);
-
-    try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
-      var argIndex = 0;
-      var message = 'Warning: ' + format.replace(/%s/g, function () {
-        return args[argIndex++];
-      });
-      throw new Error(message);
-    } catch (x) {}
-  }
-}
-
-var didWarnStateUpdateForUnmountedComponent = {};
-
-function warnNoop(publicInstance, callerName) {
-  {
-    var _constructor = publicInstance.constructor;
-    var componentName = _constructor && (_constructor.displayName || _constructor.name) || 'ReactClass';
-    var warningKey = componentName + "." + callerName;
-
-    if (didWarnStateUpdateForUnmountedComponent[warningKey]) {
-      return;
-    }
-
-    error("Can't call %s on a component that is not yet mounted. " + 'This is a no-op, but it might indicate a bug in your application. ' + 'Instead, assign to `this.state` directly or define a `state = {};` ' + 'class property with the desired state in the %s component.', callerName, componentName);
-
-    didWarnStateUpdateForUnmountedComponent[warningKey] = true;
-  }
-}
-/**
- * This is the abstract API for an update queue.
- */
-
-
-var ReactNoopUpdateQueue = {
-  /**
-   * Checks whether or not this composite component is mounted.
-   * @param {ReactClass} publicInstance The instance we want to test.
-   * @return {boolean} True if mounted, false otherwise.
-   * @protected
-   * @final
-   */
-  isMounted: function (publicInstance) {
-    return false;
-  },
-
-  /**
-   * Forces an update. This should only be invoked when it is known with
-   * certainty that we are **not** in a DOM transaction.
-   *
-   * You may want to call this when you know that some deeper aspect of the
-   * component's state has changed but `setState` was not called.
-   *
-   * This will not invoke `shouldComponentUpdate`, but it will invoke
-   * `componentWillUpdate` and `componentDidUpdate`.
-   *
-   * @param {ReactClass} publicInstance The instance that should rerender.
-   * @param {?function} callback Called after component is updated.
-   * @param {?string} callerName name of the calling function in the public API.
-   * @internal
-   */
-  enqueueForceUpdate: function (publicInstance, callback, callerName) {
-    warnNoop(publicInstance, 'forceUpdate');
-  },
-
-  /**
-   * Replaces all of the state. Always use this or `setState` to mutate state.
-   * You should treat `this.state` as immutable.
-   *
-   * There is no guarantee that `this.state` will be immediately updated, so
-   * accessing `this.state` after calling this method may return the old value.
-   *
-   * @param {ReactClass} publicInstance The instance that should rerender.
-   * @param {object} completeState Next state.
-   * @param {?function} callback Called after component is updated.
-   * @param {?string} callerName name of the calling function in the public API.
-   * @internal
-   */
-  enqueueReplaceState: function (publicInstance, completeState, callback, callerName) {
-    warnNoop(publicInstance, 'replaceState');
-  },
-
-  /**
-   * Sets a subset of the state. This only exists because _pendingState is
-   * internal. This provides a merging strategy that is not available to deep
-   * properties which is confusing. TODO: Expose pendingState or don't use it
-   * during the merge.
-   *
-   * @param {ReactClass} publicInstance The instance that should rerender.
-   * @param {object} partialState Next partial state to be merged with state.
-   * @param {?function} callback Called after component is updated.
-   * @param {?string} Name of the calling function in the public API.
-   * @internal
-   */
-  enqueueSetState: function (publicInstance, partialState, callback, callerName) {
-    warnNoop(publicInstance, 'setState');
-  }
-};
-
-var emptyObject = {};
-
-{
-  Object.freeze(emptyObject);
-}
-/**
- * Base class helpers for the updating state of a component.
- */
-
-
-function Component(props, context, updater) {
-  this.props = props;
-  this.context = context; // If a component has string refs, we will assign a different object later.
-
-  this.refs = emptyObject; // We initialize the default updater but the real one gets injected by the
-  // renderer.
-
-  this.updater = updater || ReactNoopUpdateQueue;
-}
-
-Component.prototype.isReactComponent = {};
-/**
- * Sets a subset of the state. Always use this to mutate
- * state. You should treat `this.state` as immutable.
- *
- * There is no guarantee that `this.state` will be immediately updated, so
- * accessing `this.state` after calling this method may return the old value.
- *
- * There is no guarantee that calls to `setState` will run synchronously,
- * as they may eventually be batched together.  You can provide an optional
- * callback that will be executed when the call to setState is actually
- * completed.
- *
- * When a function is provided to setState, it will be called at some point in
- * the future (not synchronously). It will be called with the up to date
- * component arguments (state, props, context). These values can be different
- * from this.* because your function may be called after receiveProps but before
- * shouldComponentUpdate, and this new state, props, and context will not yet be
- * assigned to this.
- *
- * @param {object|function} partialState Next partial state or function to
- *        produce next partial state to be merged with current state.
- * @param {?function} callback Called after state is updated.
- * @final
- * @protected
- */
-
-Component.prototype.setState = function (partialState, callback) {
-  if (!(typeof partialState === 'object' || typeof partialState === 'function' || partialState == null)) {
-    {
-      throw Error( "setState(...): takes an object of state variables to update or a function which returns an object of state variables." );
-    }
-  }
-
-  this.updater.enqueueSetState(this, partialState, callback, 'setState');
-};
-/**
- * Forces an update. This should only be invoked when it is known with
- * certainty that we are **not** in a DOM transaction.
- *
- * You may want to call this when you know that some deeper aspect of the
- * component's state has changed but `setState` was not called.
- *
- * This will not invoke `shouldComponentUpdate`, but it will invoke
- * `componentWillUpdate` and `componentDidUpdate`.
- *
- * @param {?function} callback Called after update is complete.
- * @final
- * @protected
- */
-
-
-Component.prototype.forceUpdate = function (callback) {
-  this.updater.enqueueForceUpdate(this, callback, 'forceUpdate');
-};
-/**
- * Deprecated APIs. These APIs used to exist on classic React classes but since
- * we would like to deprecate them, we're not going to move them over to this
- * modern base class. Instead, we define a getter that warns if it's accessed.
- */
-
-
-{
-  var deprecatedAPIs = {
-    isMounted: ['isMounted', 'Instead, make sure to clean up subscriptions and pending requests in ' + 'componentWillUnmount to prevent memory leaks.'],
-    replaceState: ['replaceState', 'Refactor your code to use setState instead (see ' + 'https://github.com/facebook/react/issues/3236).']
-  };
-
-  var defineDeprecationWarning = function (methodName, info) {
-    Object.defineProperty(Component.prototype, methodName, {
-      get: function () {
-        warn('%s(...) is deprecated in plain JavaScript React classes. %s', info[0], info[1]);
-
-        return undefined;
-      }
-    });
-  };
-
-  for (var fnName in deprecatedAPIs) {
-    if (deprecatedAPIs.hasOwnProperty(fnName)) {
-      defineDeprecationWarning(fnName, deprecatedAPIs[fnName]);
-    }
-  }
-}
-
-function ComponentDummy() {}
-
-ComponentDummy.prototype = Component.prototype;
-/**
- * Convenience component with default shallow equality check for sCU.
- */
-
-function PureComponent(props, context, updater) {
-  this.props = props;
-  this.context = context; // If a component has string refs, we will assign a different object later.
-
-  this.refs = emptyObject;
-  this.updater = updater || ReactNoopUpdateQueue;
-}
-
-var pureComponentPrototype = PureComponent.prototype = new ComponentDummy();
-pureComponentPrototype.constructor = PureComponent; // Avoid an extra prototype jump for these methods.
-
-_assign(pureComponentPrototype, Component.prototype);
-
-pureComponentPrototype.isPureReactComponent = true;
-
-// an immutable object with a single mutable value
-function createRef() {
-  var refObject = {
-    current: null
-  };
-
-  {
-    Object.seal(refObject);
-  }
-
-  return refObject;
-}
-
-var hasOwnProperty = Object.prototype.hasOwnProperty;
-var RESERVED_PROPS = {
-  key: true,
-  ref: true,
-  __self: true,
-  __source: true
-};
-var specialPropKeyWarningShown, specialPropRefWarningShown, didWarnAboutStringRefs;
-
-{
-  didWarnAboutStringRefs = {};
-}
-
-function hasValidRef(config) {
-  {
-    if (hasOwnProperty.call(config, 'ref')) {
-      var getter = Object.getOwnPropertyDescriptor(config, 'ref').get;
-
-      if (getter && getter.isReactWarning) {
-        return false;
-      }
-    }
-  }
-
-  return config.ref !== undefined;
-}
-
-function hasValidKey(config) {
-  {
-    if (hasOwnProperty.call(config, 'key')) {
-      var getter = Object.getOwnPropertyDescriptor(config, 'key').get;
-
-      if (getter && getter.isReactWarning) {
-        return false;
-      }
-    }
-  }
-
-  return config.key !== undefined;
-}
-
-function defineKeyPropWarningGetter(props, displayName) {
-  var warnAboutAccessingKey = function () {
-    {
-      if (!specialPropKeyWarningShown) {
-        specialPropKeyWarningShown = true;
-
-        error('%s: `key` is not a prop. Trying to access it will result ' + 'in `undefined` being returned. If you need to access the same ' + 'value within the child component, you should pass it as a different ' + 'prop. (https://fb.me/react-special-props)', displayName);
-      }
-    }
-  };
-
-  warnAboutAccessingKey.isReactWarning = true;
-  Object.defineProperty(props, 'key', {
-    get: warnAboutAccessingKey,
-    configurable: true
-  });
-}
-
-function defineRefPropWarningGetter(props, displayName) {
-  var warnAboutAccessingRef = function () {
-    {
-      if (!specialPropRefWarningShown) {
-        specialPropRefWarningShown = true;
-
-        error('%s: `ref` is not a prop. Trying to access it will result ' + 'in `undefined` being returned. If you need to access the same ' + 'value within the child component, you should pass it as a different ' + 'prop. (https://fb.me/react-special-props)', displayName);
-      }
-    }
-  };
-
-  warnAboutAccessingRef.isReactWarning = true;
-  Object.defineProperty(props, 'ref', {
-    get: warnAboutAccessingRef,
-    configurable: true
-  });
-}
-
-function warnIfStringRefCannotBeAutoConverted(config) {
-  {
-    if (typeof config.ref === 'string' && ReactCurrentOwner.current && config.__self && ReactCurrentOwner.current.stateNode !== config.__self) {
-      var componentName = getComponentName(ReactCurrentOwner.current.type);
-
-      if (!didWarnAboutStringRefs[componentName]) {
-        error('Component "%s" contains the string ref "%s". ' + 'Support for string refs will be removed in a future major release. ' + 'This case cannot be automatically converted to an arrow function. ' + 'We ask you to manually fix this case by using useRef() or createRef() instead. ' + 'Learn more about using refs safely here: ' + 'https://fb.me/react-strict-mode-string-ref', getComponentName(ReactCurrentOwner.current.type), config.ref);
-
-        didWarnAboutStringRefs[componentName] = true;
-      }
-    }
-  }
-}
-/**
- * Factory method to create a new React element. This no longer adheres to
- * the class pattern, so do not use new to call it. Also, instanceof check
- * will not work. Instead test $$typeof field against Symbol.for('react.element') to check
- * if something is a React Element.
- *
- * @param {*} type
- * @param {*} props
- * @param {*} key
- * @param {string|object} ref
- * @param {*} owner
- * @param {*} self A *temporary* helper to detect places where `this` is
- * different from the `owner` when React.createElement is called, so that we
- * can warn. We want to get rid of owner and replace string `ref`s with arrow
- * functions, and as long as `this` and owner are the same, there will be no
- * change in behavior.
- * @param {*} source An annotation object (added by a transpiler or otherwise)
- * indicating filename, line number, and/or other information.
- * @internal
- */
-
-
-var ReactElement = function (type, key, ref, self, source, owner, props) {
-  var element = {
-    // This tag allows us to uniquely identify this as a React Element
-    $$typeof: REACT_ELEMENT_TYPE,
-    // Built-in properties that belong on the element
-    type: type,
-    key: key,
-    ref: ref,
-    props: props,
-    // Record the component responsible for creating this element.
-    _owner: owner
-  };
-
-  {
-    // The validation flag is currently mutative. We put it on
-    // an external backing store so that we can freeze the whole object.
-    // This can be replaced with a WeakMap once they are implemented in
-    // commonly used development environments.
-    element._store = {}; // To make comparing ReactElements easier for testing purposes, we make
-    // the validation flag non-enumerable (where possible, which should
-    // include every environment we run tests in), so the test framework
-    // ignores it.
-
-    Object.defineProperty(element._store, 'validated', {
-      configurable: false,
-      enumerable: false,
-      writable: true,
-      value: false
-    }); // self and source are DEV only properties.
-
-    Object.defineProperty(element, '_self', {
-      configurable: false,
-      enumerable: false,
-      writable: false,
-      value: self
-    }); // Two elements created in two different places should be considered
-    // equal for testing purposes and therefore we hide it from enumeration.
-
-    Object.defineProperty(element, '_source', {
-      configurable: false,
-      enumerable: false,
-      writable: false,
-      value: source
-    });
-
-    if (Object.freeze) {
-      Object.freeze(element.props);
-      Object.freeze(element);
-    }
-  }
-
-  return element;
-};
-/**
- * Create and return a new ReactElement of the given type.
- * See https://reactjs.org/docs/react-api.html#createelement
- */
-
-function createElement(type, config, children) {
-  var propName; // Reserved names are extracted
-
-  var props = {};
-  var key = null;
-  var ref = null;
-  var self = null;
-  var source = null;
-
-  if (config != null) {
-    if (hasValidRef(config)) {
-      ref = config.ref;
-
-      {
-        warnIfStringRefCannotBeAutoConverted(config);
-      }
-    }
-
-    if (hasValidKey(config)) {
-      key = '' + config.key;
-    }
-
-    self = config.__self === undefined ? null : config.__self;
-    source = config.__source === undefined ? null : config.__source; // Remaining properties are added to a new props object
-
-    for (propName in config) {
-      if (hasOwnProperty.call(config, propName) && !RESERVED_PROPS.hasOwnProperty(propName)) {
-        props[propName] = config[propName];
-      }
-    }
-  } // Children can be more than one argument, and those are transferred onto
-  // the newly allocated props object.
-
-
-  var childrenLength = arguments.length - 2;
-
-  if (childrenLength === 1) {
-    props.children = children;
-  } else if (childrenLength > 1) {
-    var childArray = Array(childrenLength);
-
-    for (var i = 0; i < childrenLength; i++) {
-      childArray[i] = arguments[i + 2];
-    }
-
-    {
-      if (Object.freeze) {
-        Object.freeze(childArray);
-      }
-    }
-
-    props.children = childArray;
-  } // Resolve default props
-
-
-  if (type && type.defaultProps) {
-    var defaultProps = type.defaultProps;
-
-    for (propName in defaultProps) {
-      if (props[propName] === undefined) {
-        props[propName] = defaultProps[propName];
-      }
-    }
-  }
-
-  {
-    if (key || ref) {
-      var displayName = typeof type === 'function' ? type.displayName || type.name || 'Unknown' : type;
-
-      if (key) {
-        defineKeyPropWarningGetter(props, displayName);
-      }
-
-      if (ref) {
-        defineRefPropWarningGetter(props, displayName);
-      }
-    }
-  }
-
-  return ReactElement(type, key, ref, self, source, ReactCurrentOwner.current, props);
-}
-function cloneAndReplaceKey(oldElement, newKey) {
-  var newElement = ReactElement(oldElement.type, newKey, oldElement.ref, oldElement._self, oldElement._source, oldElement._owner, oldElement.props);
-  return newElement;
-}
-/**
- * Clone and return a new ReactElement using element as the starting point.
- * See https://reactjs.org/docs/react-api.html#cloneelement
- */
-
-function cloneElement(element, config, children) {
-  if (!!(element === null || element === undefined)) {
-    {
-      throw Error( "React.cloneElement(...): The argument must be a React element, but you passed " + element + "." );
-    }
-  }
-
-  var propName; // Original props are copied
-
-  var props = _assign({}, element.props); // Reserved names are extracted
-
-
-  var key = element.key;
-  var ref = element.ref; // Self is preserved since the owner is preserved.
-
-  var self = element._self; // Source is preserved since cloneElement is unlikely to be targeted by a
-  // transpiler, and the original source is probably a better indicator of the
-  // true owner.
-
-  var source = element._source; // Owner will be preserved, unless ref is overridden
-
-  var owner = element._owner;
-
-  if (config != null) {
-    if (hasValidRef(config)) {
-      // Silently steal the ref from the parent.
-      ref = config.ref;
-      owner = ReactCurrentOwner.current;
-    }
-
-    if (hasValidKey(config)) {
-      key = '' + config.key;
-    } // Remaining properties override existing props
-
-
-    var defaultProps;
-
-    if (element.type && element.type.defaultProps) {
-      defaultProps = element.type.defaultProps;
-    }
-
-    for (propName in config) {
-      if (hasOwnProperty.call(config, propName) && !RESERVED_PROPS.hasOwnProperty(propName)) {
-        if (config[propName] === undefined && defaultProps !== undefined) {
-          // Resolve default props
-          props[propName] = defaultProps[propName];
-        } else {
-          props[propName] = config[propName];
-        }
-      }
-    }
-  } // Children can be more than one argument, and those are transferred onto
-  // the newly allocated props object.
-
-
-  var childrenLength = arguments.length - 2;
-
-  if (childrenLength === 1) {
-    props.children = children;
-  } else if (childrenLength > 1) {
-    var childArray = Array(childrenLength);
-
-    for (var i = 0; i < childrenLength; i++) {
-      childArray[i] = arguments[i + 2];
-    }
-
-    props.children = childArray;
-  }
-
-  return ReactElement(element.type, key, ref, self, source, owner, props);
-}
-/**
- * Verifies the object is a ReactElement.
- * See https://reactjs.org/docs/react-api.html#isvalidelement
- * @param {?object} object
- * @return {boolean} True if `object` is a ReactElement.
- * @final
- */
-
-function isValidElement(object) {
-  return typeof object === 'object' && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
-}
-
-var SEPARATOR = '.';
-var SUBSEPARATOR = ':';
-/**
- * Escape and wrap key so it is safe to use as a reactid
- *
- * @param {string} key to be escaped.
- * @return {string} the escaped key.
- */
-
-function escape(key) {
-  var escapeRegex = /[=:]/g;
-  var escaperLookup = {
-    '=': '=0',
-    ':': '=2'
-  };
-  var escapedString = ('' + key).replace(escapeRegex, function (match) {
-    return escaperLookup[match];
-  });
-  return '$' + escapedString;
-}
-/**
- * TODO: Test that a single child and an array with one item have the same key
- * pattern.
- */
-
-
-var didWarnAboutMaps = false;
-var userProvidedKeyEscapeRegex = /\/+/g;
-
-function escapeUserProvidedKey(text) {
-  return ('' + text).replace(userProvidedKeyEscapeRegex, '$&/');
-}
-
-var POOL_SIZE = 10;
-var traverseContextPool = [];
-
-function getPooledTraverseContext(mapResult, keyPrefix, mapFunction, mapContext) {
-  if (traverseContextPool.length) {
-    var traverseContext = traverseContextPool.pop();
-    traverseContext.result = mapResult;
-    traverseContext.keyPrefix = keyPrefix;
-    traverseContext.func = mapFunction;
-    traverseContext.context = mapContext;
-    traverseContext.count = 0;
-    return traverseContext;
-  } else {
-    return {
-      result: mapResult,
-      keyPrefix: keyPrefix,
-      func: mapFunction,
-      context: mapContext,
-      count: 0
-    };
-  }
-}
-
-function releaseTraverseContext(traverseContext) {
-  traverseContext.result = null;
-  traverseContext.keyPrefix = null;
-  traverseContext.func = null;
-  traverseContext.context = null;
-  traverseContext.count = 0;
-
-  if (traverseContextPool.length < POOL_SIZE) {
-    traverseContextPool.push(traverseContext);
-  }
-}
-/**
- * @param {?*} children Children tree container.
- * @param {!string} nameSoFar Name of the key path so far.
- * @param {!function} callback Callback to invoke with each child found.
- * @param {?*} traverseContext Used to pass information throughout the traversal
- * process.
- * @return {!number} The number of children in this subtree.
- */
-
-
-function traverseAllChildrenImpl(children, nameSoFar, callback, traverseContext) {
-  var type = typeof children;
-
-  if (type === 'undefined' || type === 'boolean') {
-    // All of the above are perceived as null.
-    children = null;
-  }
-
-  var invokeCallback = false;
-
-  if (children === null) {
-    invokeCallback = true;
-  } else {
-    switch (type) {
-      case 'string':
-      case 'number':
-        invokeCallback = true;
-        break;
-
-      case 'object':
-        switch (children.$$typeof) {
-          case REACT_ELEMENT_TYPE:
-          case REACT_PORTAL_TYPE:
-            invokeCallback = true;
-        }
-
-    }
-  }
-
-  if (invokeCallback) {
-    callback(traverseContext, children, // If it's the only child, treat the name as if it was wrapped in an array
-    // so that it's consistent if the number of children grows.
-    nameSoFar === '' ? SEPARATOR + getComponentKey(children, 0) : nameSoFar);
-    return 1;
-  }
-
-  var child;
-  var nextName;
-  var subtreeCount = 0; // Count of children found in the current subtree.
-
-  var nextNamePrefix = nameSoFar === '' ? SEPARATOR : nameSoFar + SUBSEPARATOR;
-
-  if (Array.isArray(children)) {
-    for (var i = 0; i < children.length; i++) {
-      child = children[i];
-      nextName = nextNamePrefix + getComponentKey(child, i);
-      subtreeCount += traverseAllChildrenImpl(child, nextName, callback, traverseContext);
-    }
-  } else {
-    var iteratorFn = getIteratorFn(children);
-
-    if (typeof iteratorFn === 'function') {
-
-      {
-        // Warn about using Maps as children
-        if (iteratorFn === children.entries) {
-          if (!didWarnAboutMaps) {
-            warn('Using Maps as children is deprecated and will be removed in ' + 'a future major release. Consider converting children to ' + 'an array of keyed ReactElements instead.');
-          }
-
-          didWarnAboutMaps = true;
-        }
-      }
-
-      var iterator = iteratorFn.call(children);
-      var step;
-      var ii = 0;
-
-      while (!(step = iterator.next()).done) {
-        child = step.value;
-        nextName = nextNamePrefix + getComponentKey(child, ii++);
-        subtreeCount += traverseAllChildrenImpl(child, nextName, callback, traverseContext);
-      }
-    } else if (type === 'object') {
-      var addendum = '';
-
-      {
-        addendum = ' If you meant to render a collection of children, use an array ' + 'instead.' + ReactDebugCurrentFrame.getStackAddendum();
-      }
-
-      var childrenString = '' + children;
-
-      {
-        {
-          throw Error( "Objects are not valid as a React child (found: " + (childrenString === '[object Object]' ? 'object with keys {' + Object.keys(children).join(', ') + '}' : childrenString) + ")." + addendum );
-        }
-      }
-    }
-  }
-
-  return subtreeCount;
-}
-/**
- * Traverses children that are typically specified as `props.children`, but
- * might also be specified through attributes:
- *
- * - `traverseAllChildren(this.props.children, ...)`
- * - `traverseAllChildren(this.props.leftPanelChildren, ...)`
- *
- * The `traverseContext` is an optional argument that is passed through the
- * entire traversal. It can be used to store accumulations or anything else that
- * the callback might find relevant.
- *
- * @param {?*} children Children tree object.
- * @param {!function} callback To invoke upon traversing each child.
- * @param {?*} traverseContext Context for traversal.
- * @return {!number} The number of children in this subtree.
- */
-
-
-function traverseAllChildren(children, callback, traverseContext) {
-  if (children == null) {
-    return 0;
-  }
-
-  return traverseAllChildrenImpl(children, '', callback, traverseContext);
-}
-/**
- * Generate a key string that identifies a component within a set.
- *
- * @param {*} component A component that could contain a manual key.
- * @param {number} index Index that is used if a manual key is not provided.
- * @return {string}
- */
-
-
-function getComponentKey(component, index) {
-  // Do some typechecking here since we call this blindly. We want to ensure
-  // that we don't block potential future ES APIs.
-  if (typeof component === 'object' && component !== null && component.key != null) {
-    // Explicit key
-    return escape(component.key);
-  } // Implicit key determined by the index in the set
-
-
-  return index.toString(36);
-}
-
-function forEachSingleChild(bookKeeping, child, name) {
-  var func = bookKeeping.func,
-      context = bookKeeping.context;
-  func.call(context, child, bookKeeping.count++);
-}
-/**
- * Iterates through children that are typically specified as `props.children`.
- *
- * See https://reactjs.org/docs/react-api.html#reactchildrenforeach
- *
- * The provided forEachFunc(child, index) will be called for each
- * leaf child.
- *
- * @param {?*} children Children tree container.
- * @param {function(*, int)} forEachFunc
- * @param {*} forEachContext Context for forEachContext.
- */
-
-
-function forEachChildren(children, forEachFunc, forEachContext) {
-  if (children == null) {
-    return children;
-  }
-
-  var traverseContext = getPooledTraverseContext(null, null, forEachFunc, forEachContext);
-  traverseAllChildren(children, forEachSingleChild, traverseContext);
-  releaseTraverseContext(traverseContext);
-}
-
-function mapSingleChildIntoContext(bookKeeping, child, childKey) {
-  var result = bookKeeping.result,
-      keyPrefix = bookKeeping.keyPrefix,
-      func = bookKeeping.func,
-      context = bookKeeping.context;
-  var mappedChild = func.call(context, child, bookKeeping.count++);
-
-  if (Array.isArray(mappedChild)) {
-    mapIntoWithKeyPrefixInternal(mappedChild, result, childKey, function (c) {
-      return c;
-    });
-  } else if (mappedChild != null) {
-    if (isValidElement(mappedChild)) {
-      mappedChild = cloneAndReplaceKey(mappedChild, // Keep both the (mapped) and old keys if they differ, just as
-      // traverseAllChildren used to do for objects as children
-      keyPrefix + (mappedChild.key && (!child || child.key !== mappedChild.key) ? escapeUserProvidedKey(mappedChild.key) + '/' : '') + childKey);
-    }
-
-    result.push(mappedChild);
-  }
-}
-
-function mapIntoWithKeyPrefixInternal(children, array, prefix, func, context) {
-  var escapedPrefix = '';
-
-  if (prefix != null) {
-    escapedPrefix = escapeUserProvidedKey(prefix) + '/';
-  }
-
-  var traverseContext = getPooledTraverseContext(array, escapedPrefix, func, context);
-  traverseAllChildren(children, mapSingleChildIntoContext, traverseContext);
-  releaseTraverseContext(traverseContext);
-}
-/**
- * Maps children that are typically specified as `props.children`.
- *
- * See https://reactjs.org/docs/react-api.html#reactchildrenmap
- *
- * The provided mapFunction(child, key, index) will be called for each
- * leaf child.
- *
- * @param {?*} children Children tree container.
- * @param {function(*, int)} func The map function.
- * @param {*} context Context for mapFunction.
- * @return {object} Object containing the ordered map of results.
- */
-
-
-function mapChildren(children, func, context) {
-  if (children == null) {
-    return children;
-  }
-
-  var result = [];
-  mapIntoWithKeyPrefixInternal(children, result, null, func, context);
-  return result;
-}
-/**
- * Count the number of children that are typically specified as
- * `props.children`.
- *
- * See https://reactjs.org/docs/react-api.html#reactchildrencount
- *
- * @param {?*} children Children tree container.
- * @return {number} The number of children.
- */
-
-
-function countChildren(children) {
-  return traverseAllChildren(children, function () {
-    return null;
-  }, null);
-}
-/**
- * Flatten a children object (typically specified as `props.children`) and
- * return an array with appropriately re-keyed children.
- *
- * See https://reactjs.org/docs/react-api.html#reactchildrentoarray
- */
-
-
-function toArray(children) {
-  var result = [];
-  mapIntoWithKeyPrefixInternal(children, result, null, function (child) {
-    return child;
-  });
-  return result;
-}
-/**
- * Returns the first child in a collection of children and verifies that there
- * is only one child in the collection.
- *
- * See https://reactjs.org/docs/react-api.html#reactchildrenonly
- *
- * The current implementation of this function assumes that a single child gets
- * passed without a wrapper, but the purpose of this helper function is to
- * abstract away the particular structure of children.
- *
- * @param {?object} children Child collection structure.
- * @return {ReactElement} The first and only `ReactElement` contained in the
- * structure.
- */
-
-
-function onlyChild(children) {
-  if (!isValidElement(children)) {
-    {
-      throw Error( "React.Children.only expected to receive a single React element child." );
-    }
-  }
-
-  return children;
-}
-
-function createContext(defaultValue, calculateChangedBits) {
-  if (calculateChangedBits === undefined) {
-    calculateChangedBits = null;
-  } else {
-    {
-      if (calculateChangedBits !== null && typeof calculateChangedBits !== 'function') {
-        error('createContext: Expected the optional second argument to be a ' + 'function. Instead received: %s', calculateChangedBits);
-      }
-    }
-  }
-
-  var context = {
-    $$typeof: REACT_CONTEXT_TYPE,
-    _calculateChangedBits: calculateChangedBits,
-    // As a workaround to support multiple concurrent renderers, we categorize
-    // some renderers as primary and others as secondary. We only expect
-    // there to be two concurrent renderers at most: React Native (primary) and
-    // Fabric (secondary); React DOM (primary) and React ART (secondary).
-    // Secondary renderers store their context values on separate fields.
-    _currentValue: defaultValue,
-    _currentValue2: defaultValue,
-    // Used to track how many concurrent renderers this context currently
-    // supports within in a single renderer. Such as parallel server rendering.
-    _threadCount: 0,
-    // These are circular
-    Provider: null,
-    Consumer: null
-  };
-  context.Provider = {
-    $$typeof: REACT_PROVIDER_TYPE,
-    _context: context
-  };
-  var hasWarnedAboutUsingNestedContextConsumers = false;
-  var hasWarnedAboutUsingConsumerProvider = false;
-
-  {
-    // A separate object, but proxies back to the original context object for
-    // backwards compatibility. It has a different $$typeof, so we can properly
-    // warn for the incorrect usage of Context as a Consumer.
-    var Consumer = {
-      $$typeof: REACT_CONTEXT_TYPE,
-      _context: context,
-      _calculateChangedBits: context._calculateChangedBits
-    }; // $FlowFixMe: Flow complains about not setting a value, which is intentional here
-
-    Object.defineProperties(Consumer, {
-      Provider: {
-        get: function () {
-          if (!hasWarnedAboutUsingConsumerProvider) {
-            hasWarnedAboutUsingConsumerProvider = true;
-
-            error('Rendering <Context.Consumer.Provider> is not supported and will be removed in ' + 'a future major release. Did you mean to render <Context.Provider> instead?');
-          }
-
-          return context.Provider;
-        },
-        set: function (_Provider) {
-          context.Provider = _Provider;
-        }
-      },
-      _currentValue: {
-        get: function () {
-          return context._currentValue;
-        },
-        set: function (_currentValue) {
-          context._currentValue = _currentValue;
-        }
-      },
-      _currentValue2: {
-        get: function () {
-          return context._currentValue2;
-        },
-        set: function (_currentValue2) {
-          context._currentValue2 = _currentValue2;
-        }
-      },
-      _threadCount: {
-        get: function () {
-          return context._threadCount;
-        },
-        set: function (_threadCount) {
-          context._threadCount = _threadCount;
-        }
-      },
-      Consumer: {
-        get: function () {
-          if (!hasWarnedAboutUsingNestedContextConsumers) {
-            hasWarnedAboutUsingNestedContextConsumers = true;
-
-            error('Rendering <Context.Consumer.Consumer> is not supported and will be removed in ' + 'a future major release. Did you mean to render <Context.Consumer> instead?');
-          }
-
-          return context.Consumer;
-        }
-      }
-    }); // $FlowFixMe: Flow complains about missing properties because it doesn't understand defineProperty
-
-    context.Consumer = Consumer;
-  }
-
-  {
-    context._currentRenderer = null;
-    context._currentRenderer2 = null;
-  }
-
-  return context;
-}
-
-function lazy(ctor) {
-  var lazyType = {
-    $$typeof: REACT_LAZY_TYPE,
-    _ctor: ctor,
-    // React uses these fields to store the result.
-    _status: -1,
-    _result: null
-  };
-
-  {
-    // In production, this would just set it on the object.
-    var defaultProps;
-    var propTypes;
-    Object.defineProperties(lazyType, {
-      defaultProps: {
-        configurable: true,
-        get: function () {
-          return defaultProps;
-        },
-        set: function (newDefaultProps) {
-          error('React.lazy(...): It is not supported to assign `defaultProps` to ' + 'a lazy component import. Either specify them where the component ' + 'is defined, or create a wrapping component around it.');
-
-          defaultProps = newDefaultProps; // Match production behavior more closely:
-
-          Object.defineProperty(lazyType, 'defaultProps', {
-            enumerable: true
-          });
-        }
-      },
-      propTypes: {
-        configurable: true,
-        get: function () {
-          return propTypes;
-        },
-        set: function (newPropTypes) {
-          error('React.lazy(...): It is not supported to assign `propTypes` to ' + 'a lazy component import. Either specify them where the component ' + 'is defined, or create a wrapping component around it.');
-
-          propTypes = newPropTypes; // Match production behavior more closely:
-
-          Object.defineProperty(lazyType, 'propTypes', {
-            enumerable: true
-          });
-        }
-      }
-    });
-  }
-
-  return lazyType;
-}
-
-function forwardRef(render) {
-  {
-    if (render != null && render.$$typeof === REACT_MEMO_TYPE) {
-      error('forwardRef requires a render function but received a `memo` ' + 'component. Instead of forwardRef(memo(...)), use ' + 'memo(forwardRef(...)).');
-    } else if (typeof render !== 'function') {
-      error('forwardRef requires a render function but was given %s.', render === null ? 'null' : typeof render);
-    } else {
-      if (render.length !== 0 && render.length !== 2) {
-        error('forwardRef render functions accept exactly two parameters: props and ref. %s', render.length === 1 ? 'Did you forget to use the ref parameter?' : 'Any additional parameter will be undefined.');
-      }
-    }
-
-    if (render != null) {
-      if (render.defaultProps != null || render.propTypes != null) {
-        error('forwardRef render functions do not support propTypes or defaultProps. ' + 'Did you accidentally pass a React component?');
-      }
-    }
-  }
-
-  return {
-    $$typeof: REACT_FORWARD_REF_TYPE,
-    render: render
-  };
-}
-
-function isValidElementType(type) {
-  return typeof type === 'string' || typeof type === 'function' || // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
-  type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === 'object' && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE || type.$$typeof === REACT_BLOCK_TYPE);
-}
-
-function memo(type, compare) {
-  {
-    if (!isValidElementType(type)) {
-      error('memo: The first argument must be a component. Instead ' + 'received: %s', type === null ? 'null' : typeof type);
-    }
-  }
-
-  return {
-    $$typeof: REACT_MEMO_TYPE,
-    type: type,
-    compare: compare === undefined ? null : compare
-  };
-}
-
-function resolveDispatcher() {
-  var dispatcher = ReactCurrentDispatcher.current;
-
-  if (!(dispatcher !== null)) {
-    {
-      throw Error( "Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://fb.me/react-invalid-hook-call for tips about how to debug and fix this problem." );
-    }
-  }
-
-  return dispatcher;
-}
-
-function useContext(Context, unstable_observedBits) {
-  var dispatcher = resolveDispatcher();
-
-  {
-    if (unstable_observedBits !== undefined) {
-      error('useContext() second argument is reserved for future ' + 'use in React. Passing it is not supported. ' + 'You passed: %s.%s', unstable_observedBits, typeof unstable_observedBits === 'number' && Array.isArray(arguments[2]) ? '\n\nDid you call array.map(useContext)? ' + 'Calling Hooks inside a loop is not supported. ' + 'Learn more at https://fb.me/rules-of-hooks' : '');
-    } // TODO: add a more generic warning for invalid values.
-
-
-    if (Context._context !== undefined) {
-      var realContext = Context._context; // Don't deduplicate because this legitimately causes bugs
-      // and nobody should be using this in existing code.
-
-      if (realContext.Consumer === Context) {
-        error('Calling useContext(Context.Consumer) is not supported, may cause bugs, and will be ' + 'removed in a future major release. Did you mean to call useContext(Context) instead?');
-      } else if (realContext.Provider === Context) {
-        error('Calling useContext(Context.Provider) is not supported. ' + 'Did you mean to call useContext(Context) instead?');
-      }
-    }
-  }
-
-  return dispatcher.useContext(Context, unstable_observedBits);
-}
-function useState(initialState) {
-  var dispatcher = resolveDispatcher();
-  return dispatcher.useState(initialState);
-}
-function useReducer(reducer, initialArg, init) {
-  var dispatcher = resolveDispatcher();
-  return dispatcher.useReducer(reducer, initialArg, init);
-}
-function useRef(initialValue) {
-  var dispatcher = resolveDispatcher();
-  return dispatcher.useRef(initialValue);
-}
-function useEffect(create, deps) {
-  var dispatcher = resolveDispatcher();
-  return dispatcher.useEffect(create, deps);
-}
-function useLayoutEffect(create, deps) {
-  var dispatcher = resolveDispatcher();
-  return dispatcher.useLayoutEffect(create, deps);
-}
-function useCallback(callback, deps) {
-  var dispatcher = resolveDispatcher();
-  return dispatcher.useCallback(callback, deps);
-}
-function useMemo(create, deps) {
-  var dispatcher = resolveDispatcher();
-  return dispatcher.useMemo(create, deps);
-}
-function useImperativeHandle(ref, create, deps) {
-  var dispatcher = resolveDispatcher();
-  return dispatcher.useImperativeHandle(ref, create, deps);
-}
-function useDebugValue(value, formatterFn) {
-  {
-    var dispatcher = resolveDispatcher();
-    return dispatcher.useDebugValue(value, formatterFn);
-  }
-}
-
-var propTypesMisspellWarningShown;
-
-{
-  propTypesMisspellWarningShown = false;
-}
-
-function getDeclarationErrorAddendum() {
-  if (ReactCurrentOwner.current) {
-    var name = getComponentName(ReactCurrentOwner.current.type);
-
-    if (name) {
-      return '\n\nCheck the render method of `' + name + '`.';
-    }
-  }
-
-  return '';
-}
-
-function getSourceInfoErrorAddendum(source) {
-  if (source !== undefined) {
-    var fileName = source.fileName.replace(/^.*[\\\/]/, '');
-    var lineNumber = source.lineNumber;
-    return '\n\nCheck your code at ' + fileName + ':' + lineNumber + '.';
-  }
-
-  return '';
-}
-
-function getSourceInfoErrorAddendumForProps(elementProps) {
-  if (elementProps !== null && elementProps !== undefined) {
-    return getSourceInfoErrorAddendum(elementProps.__source);
-  }
-
-  return '';
-}
-/**
- * Warn if there's no key explicitly set on dynamic arrays of children or
- * object keys are not valid. This allows us to keep track of children between
- * updates.
- */
-
-
-var ownerHasKeyUseWarning = {};
-
-function getCurrentComponentErrorInfo(parentType) {
-  var info = getDeclarationErrorAddendum();
-
-  if (!info) {
-    var parentName = typeof parentType === 'string' ? parentType : parentType.displayName || parentType.name;
-
-    if (parentName) {
-      info = "\n\nCheck the top-level render call using <" + parentName + ">.";
-    }
-  }
-
-  return info;
-}
-/**
- * Warn if the element doesn't have an explicit key assigned to it.
- * This element is in an array. The array could grow and shrink or be
- * reordered. All children that haven't already been validated are required to
- * have a "key" property assigned to it. Error statuses are cached so a warning
- * will only be shown once.
- *
- * @internal
- * @param {ReactElement} element Element that requires a key.
- * @param {*} parentType element's parent's type.
- */
-
-
-function validateExplicitKey(element, parentType) {
-  if (!element._store || element._store.validated || element.key != null) {
-    return;
-  }
-
-  element._store.validated = true;
-  var currentComponentErrorInfo = getCurrentComponentErrorInfo(parentType);
-
-  if (ownerHasKeyUseWarning[currentComponentErrorInfo]) {
-    return;
-  }
-
-  ownerHasKeyUseWarning[currentComponentErrorInfo] = true; // Usually the current owner is the offender, but if it accepts children as a
-  // property, it may be the creator of the child that's responsible for
-  // assigning it a key.
-
-  var childOwner = '';
-
-  if (element && element._owner && element._owner !== ReactCurrentOwner.current) {
-    // Give the component that originally created this child.
-    childOwner = " It was passed a child from " + getComponentName(element._owner.type) + ".";
-  }
-
-  setCurrentlyValidatingElement(element);
-
-  {
-    error('Each child in a list should have a unique "key" prop.' + '%s%s See https://fb.me/react-warning-keys for more information.', currentComponentErrorInfo, childOwner);
-  }
-
-  setCurrentlyValidatingElement(null);
-}
-/**
- * Ensure that every element either is passed in a static location, in an
- * array with an explicit keys property defined, or in an object literal
- * with valid key property.
- *
- * @internal
- * @param {ReactNode} node Statically passed child of any type.
- * @param {*} parentType node's parent's type.
- */
-
-
-function validateChildKeys(node, parentType) {
-  if (typeof node !== 'object') {
-    return;
-  }
-
-  if (Array.isArray(node)) {
-    for (var i = 0; i < node.length; i++) {
-      var child = node[i];
-
-      if (isValidElement(child)) {
-        validateExplicitKey(child, parentType);
-      }
-    }
-  } else if (isValidElement(node)) {
-    // This element was passed in a valid location.
-    if (node._store) {
-      node._store.validated = true;
-    }
-  } else if (node) {
-    var iteratorFn = getIteratorFn(node);
-
-    if (typeof iteratorFn === 'function') {
-      // Entry iterators used to provide implicit keys,
-      // but now we print a separate warning for them later.
-      if (iteratorFn !== node.entries) {
-        var iterator = iteratorFn.call(node);
-        var step;
-
-        while (!(step = iterator.next()).done) {
-          if (isValidElement(step.value)) {
-            validateExplicitKey(step.value, parentType);
-          }
-        }
-      }
-    }
-  }
-}
-/**
- * Given an element, validate that its props follow the propTypes definition,
- * provided by the type.
- *
- * @param {ReactElement} element
- */
-
-
-function validatePropTypes(element) {
-  {
-    var type = element.type;
-
-    if (type === null || type === undefined || typeof type === 'string') {
-      return;
-    }
-
-    var name = getComponentName(type);
-    var propTypes;
-
-    if (typeof type === 'function') {
-      propTypes = type.propTypes;
-    } else if (typeof type === 'object' && (type.$$typeof === REACT_FORWARD_REF_TYPE || // Note: Memo only checks outer props here.
-    // Inner props are checked in the reconciler.
-    type.$$typeof === REACT_MEMO_TYPE)) {
-      propTypes = type.propTypes;
-    } else {
-      return;
-    }
-
-    if (propTypes) {
-      setCurrentlyValidatingElement(element);
-      checkPropTypes(propTypes, element.props, 'prop', name, ReactDebugCurrentFrame.getStackAddendum);
-      setCurrentlyValidatingElement(null);
-    } else if (type.PropTypes !== undefined && !propTypesMisspellWarningShown) {
-      propTypesMisspellWarningShown = true;
-
-      error('Component %s declared `PropTypes` instead of `propTypes`. Did you misspell the property assignment?', name || 'Unknown');
-    }
-
-    if (typeof type.getDefaultProps === 'function' && !type.getDefaultProps.isReactClassApproved) {
-      error('getDefaultProps is only used on classic React.createClass ' + 'definitions. Use a static property named `defaultProps` instead.');
-    }
-  }
-}
-/**
- * Given a fragment, validate that it can only be provided with fragment props
- * @param {ReactElement} fragment
- */
-
-
-function validateFragmentProps(fragment) {
-  {
-    setCurrentlyValidatingElement(fragment);
-    var keys = Object.keys(fragment.props);
-
-    for (var i = 0; i < keys.length; i++) {
-      var key = keys[i];
-
-      if (key !== 'children' && key !== 'key') {
-        error('Invalid prop `%s` supplied to `React.Fragment`. ' + 'React.Fragment can only have `key` and `children` props.', key);
-
-        break;
-      }
-    }
-
-    if (fragment.ref !== null) {
-      error('Invalid attribute `ref` supplied to `React.Fragment`.');
-    }
-
-    setCurrentlyValidatingElement(null);
-  }
-}
-function createElementWithValidation(type, props, children) {
-  var validType = isValidElementType(type); // We warn in this case but don't throw. We expect the element creation to
-  // succeed and there will likely be errors in render.
-
-  if (!validType) {
-    var info = '';
-
-    if (type === undefined || typeof type === 'object' && type !== null && Object.keys(type).length === 0) {
-      info += ' You likely forgot to export your component from the file ' + "it's defined in, or you might have mixed up default and named imports.";
-    }
-
-    var sourceInfo = getSourceInfoErrorAddendumForProps(props);
-
-    if (sourceInfo) {
-      info += sourceInfo;
-    } else {
-      info += getDeclarationErrorAddendum();
-    }
-
-    var typeString;
-
-    if (type === null) {
-      typeString = 'null';
-    } else if (Array.isArray(type)) {
-      typeString = 'array';
-    } else if (type !== undefined && type.$$typeof === REACT_ELEMENT_TYPE) {
-      typeString = "<" + (getComponentName(type.type) || 'Unknown') + " />";
-      info = ' Did you accidentally export a JSX literal instead of a component?';
-    } else {
-      typeString = typeof type;
-    }
-
-    {
-      error('React.createElement: type is invalid -- expected a string (for ' + 'built-in components) or a class/function (for composite ' + 'components) but got: %s.%s', typeString, info);
-    }
-  }
-
-  var element = createElement.apply(this, arguments); // The result can be nullish if a mock or a custom function is used.
-  // TODO: Drop this when these are no longer allowed as the type argument.
-
-  if (element == null) {
-    return element;
-  } // Skip key warning if the type isn't valid since our key validation logic
-  // doesn't expect a non-string/function type and can throw confusing errors.
-  // We don't want exception behavior to differ between dev and prod.
-  // (Rendering will throw with a helpful message and as soon as the type is
-  // fixed, the key warnings will appear.)
-
-
-  if (validType) {
-    for (var i = 2; i < arguments.length; i++) {
-      validateChildKeys(arguments[i], type);
-    }
-  }
-
-  if (type === REACT_FRAGMENT_TYPE) {
-    validateFragmentProps(element);
-  } else {
-    validatePropTypes(element);
-  }
-
-  return element;
-}
-var didWarnAboutDeprecatedCreateFactory = false;
-function createFactoryWithValidation(type) {
-  var validatedFactory = createElementWithValidation.bind(null, type);
-  validatedFactory.type = type;
-
-  {
-    if (!didWarnAboutDeprecatedCreateFactory) {
-      didWarnAboutDeprecatedCreateFactory = true;
-
-      warn('React.createFactory() is deprecated and will be removed in ' + 'a future major release. Consider using JSX ' + 'or use React.createElement() directly instead.');
-    } // Legacy hook: remove it
-
-
-    Object.defineProperty(validatedFactory, 'type', {
-      enumerable: false,
-      get: function () {
-        warn('Factory.type is deprecated. Access the class directly ' + 'before passing it to createFactory.');
-
-        Object.defineProperty(this, 'type', {
-          value: type
-        });
-        return type;
-      }
-    });
-  }
-
-  return validatedFactory;
-}
-function cloneElementWithValidation(element, props, children) {
-  var newElement = cloneElement.apply(this, arguments);
-
-  for (var i = 2; i < arguments.length; i++) {
-    validateChildKeys(arguments[i], newElement.type);
-  }
-
-  validatePropTypes(newElement);
-  return newElement;
-}
-
-{
-
-  try {
-    var frozenObject = Object.freeze({});
-    var testMap = new Map([[frozenObject, null]]);
-    var testSet = new Set([frozenObject]); // This is necessary for Rollup to not consider these unused.
-    // https://github.com/rollup/rollup/issues/1771
-    // TODO: we can remove these if Rollup fixes the bug.
-
-    testMap.set(0, 0);
-    testSet.add(0);
-  } catch (e) {
-  }
-}
-
-var createElement$1 =  createElementWithValidation ;
-var cloneElement$1 =  cloneElementWithValidation ;
-var createFactory =  createFactoryWithValidation ;
-var Children = {
-  map: mapChildren,
-  forEach: forEachChildren,
-  count: countChildren,
-  toArray: toArray,
-  only: onlyChild
-};
-
-exports.Children = Children;
-exports.Component = Component;
-exports.Fragment = REACT_FRAGMENT_TYPE;
-exports.Profiler = REACT_PROFILER_TYPE;
-exports.PureComponent = PureComponent;
-exports.StrictMode = REACT_STRICT_MODE_TYPE;
-exports.Suspense = REACT_SUSPENSE_TYPE;
-exports.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = ReactSharedInternals;
-exports.cloneElement = cloneElement$1;
-exports.createContext = createContext;
-exports.createElement = createElement$1;
-exports.createFactory = createFactory;
-exports.createRef = createRef;
-exports.forwardRef = forwardRef;
-exports.isValidElement = isValidElement;
-exports.lazy = lazy;
-exports.memo = memo;
-exports.useCallback = useCallback;
-exports.useContext = useContext;
-exports.useDebugValue = useDebugValue;
-exports.useEffect = useEffect;
-exports.useImperativeHandle = useImperativeHandle;
-exports.useLayoutEffect = useLayoutEffect;
-exports.useMemo = useMemo;
-exports.useReducer = useReducer;
-exports.useRef = useRef;
-exports.useState = useState;
-exports.version = ReactVersion;
-  })();
-}
-
-
-/***/ }),
-
-/***/ "./node_modules/react-validation/node_modules/react/index.js":
-/*!*******************************************************************!*\
-  !*** ./node_modules/react-validation/node_modules/react/index.js ***!
-  \*******************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-
-if (false) {} else {
-  module.exports = __webpack_require__(/*! ./cjs/react.development.js */ "./node_modules/react-validation/node_modules/react/cjs/react.development.js");
-}
 
 
 /***/ }),
@@ -48758,121 +45235,6303 @@ function __classPrivateFieldSet(receiver, state, value, kind, f) {
 
 /***/ }),
 
-/***/ "./node_modules/uuid/lib/bytesToUuid.js":
-/*!**********************************************!*\
-  !*** ./node_modules/uuid/lib/bytesToUuid.js ***!
-  \**********************************************/
+/***/ "./node_modules/validatorjs/src/async.js":
+/*!***********************************************!*\
+  !*** ./node_modules/validatorjs/src/async.js ***!
+  \***********************************************/
 /***/ ((module) => {
 
-/**
- * Convert array of 16 byte values to UUID string format of the form:
- * XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
- */
-var byteToHex = [];
-for (var i = 0; i < 256; ++i) {
-  byteToHex[i] = (i + 0x100).toString(16).substr(1);
+function AsyncResolvers(onFailedOne, onResolvedAll) {
+  this.onResolvedAll = onResolvedAll;
+  this.onFailedOne = onFailedOne;
+  this.resolvers = {};
+  this.resolversCount = 0;
+  this.passed = [];
+  this.failed = [];
+  this.firing = false;
 }
 
-function bytesToUuid(buf, offset) {
-  var i = offset || 0;
-  var bth = byteToHex;
-  // join used to fix memory issue caused by concatenation: https://bugs.chromium.org/p/v8/issues/detail?id=3175#c4
-  return ([
-    bth[buf[i++]], bth[buf[i++]],
-    bth[buf[i++]], bth[buf[i++]], '-',
-    bth[buf[i++]], bth[buf[i++]], '-',
-    bth[buf[i++]], bth[buf[i++]], '-',
-    bth[buf[i++]], bth[buf[i++]], '-',
-    bth[buf[i++]], bth[buf[i++]],
-    bth[buf[i++]], bth[buf[i++]],
-    bth[buf[i++]], bth[buf[i++]]
-  ]).join('');
-}
+AsyncResolvers.prototype = {
 
-module.exports = bytesToUuid;
+  /**
+   * Add resolver
+   *
+   * @param {Rule} rule
+   * @return {integer}
+   */
+  add: function(rule) {
+    var index = this.resolversCount;
+    this.resolvers[index] = rule;
+    this.resolversCount++;
+    return index;
+  },
 
-
-/***/ }),
-
-/***/ "./node_modules/uuid/lib/rng-browser.js":
-/*!**********************************************!*\
-  !*** ./node_modules/uuid/lib/rng-browser.js ***!
-  \**********************************************/
-/***/ ((module) => {
-
-// Unique ID creation requires a high quality random # generator.  In the
-// browser this is a little complicated due to unknown quality of Math.random()
-// and inconsistent support for the `crypto` API.  We do the best we can via
-// feature-detection
-
-// getRandomValues needs to be invoked in a context where "this" is a Crypto
-// implementation. Also, find the complete implementation of crypto on IE11.
-var getRandomValues = (typeof(crypto) != 'undefined' && crypto.getRandomValues && crypto.getRandomValues.bind(crypto)) ||
-                      (typeof(msCrypto) != 'undefined' && typeof window.msCrypto.getRandomValues == 'function' && msCrypto.getRandomValues.bind(msCrypto));
-
-if (getRandomValues) {
-  // WHATWG crypto RNG - http://wiki.whatwg.org/wiki/Crypto
-  var rnds8 = new Uint8Array(16); // eslint-disable-line no-undef
-
-  module.exports = function whatwgRNG() {
-    getRandomValues(rnds8);
-    return rnds8;
-  };
-} else {
-  // Math.random()-based (RNG)
-  //
-  // If all else fails, use Math.random().  It's fast, but is of unspecified
-  // quality.
-  var rnds = new Array(16);
-
-  module.exports = function mathRNG() {
-    for (var i = 0, r; i < 16; i++) {
-      if ((i & 0x03) === 0) r = Math.random() * 0x100000000;
-      rnds[i] = r >>> ((i & 0x03) << 3) & 0xff;
+  /**
+   * Resolve given index
+   *
+   * @param  {integer} index
+   * @return {void}
+   */
+  resolve: function(index) {
+    var rule = this.resolvers[index];
+    if (rule.passes === true) {
+      this.passed.push(rule);
+    } else if (rule.passes === false) {
+      this.failed.push(rule);
+      this.onFailedOne(rule);
     }
 
-    return rnds;
-  };
-}
+    this.fire();
+  },
+
+  /**
+   * Determine if all have been resolved
+   *
+   * @return {boolean}
+   */
+  isAllResolved: function() {
+    return (this.passed.length + this.failed.length) === this.resolversCount;
+  },
+
+  /**
+   * Attempt to fire final all resolved callback if completed
+   *
+   * @return {void}
+   */
+  fire: function() {
+
+    if (!this.firing) {
+      return;
+    }
+
+    if (this.isAllResolved()) {
+      this.onResolvedAll(this.failed.length === 0);
+    }
+
+  },
+
+  /**
+   * Enable firing
+   *
+   * @return {void}
+   */
+  enableFiring: function() {
+    this.firing = true;
+  }
+
+};
+
+module.exports = AsyncResolvers;
 
 
 /***/ }),
 
-/***/ "./node_modules/uuid/v4.js":
-/*!*********************************!*\
-  !*** ./node_modules/uuid/v4.js ***!
-  \*********************************/
+/***/ "./node_modules/validatorjs/src/attributes.js":
+/*!****************************************************!*\
+  !*** ./node_modules/validatorjs/src/attributes.js ***!
+  \****************************************************/
+/***/ ((module) => {
+
+var replacements = {
+
+  /**
+   * Between replacement (replaces :min and :max)
+   *
+   * @param  {string} template
+   * @param  {Rule} rule
+   * @return {string}
+   */
+  between: function(template, rule) {
+    var parameters = rule.getParameters();
+    return this._replacePlaceholders(rule, template, {
+      min: parameters[0],
+      max: parameters[1]
+    });
+  },
+
+  /**
+   * Digits-Between replacement (replaces :min and :max)
+   *
+   * @param  {string} template
+   * @param  {Rule} rule
+   * @return {string}
+   */
+  digits_between: function(template, rule) {
+    var parameters = rule.getParameters();
+    return this._replacePlaceholders(rule, template, {
+      min: parameters[0],
+      max: parameters[1]
+    });
+  },
+
+  /**
+   * Required_if replacement.
+   *
+   * @param  {string} template
+   * @param  {Rule} rule
+   * @return {string}
+   */
+  required_if: function(template, rule) {
+    var parameters = rule.getParameters();
+    return this._replacePlaceholders(rule, template, {
+      other: this._getAttributeName(parameters[0]),
+      value: parameters[1]
+    });
+  },
+
+  /**
+   * Required_unless replacement.
+   *
+   * @param  {string} template
+   * @param  {Rule} rule
+   * @return {string}
+   */
+  required_unless: function(template, rule) {
+    var parameters = rule.getParameters();
+    return this._replacePlaceholders(rule, template, {
+      other: this._getAttributeName(parameters[0]),
+      value: parameters[1]
+    });
+  },
+
+  /**
+   * Required_with replacement.
+   *
+   * @param  {string} template
+   * @param  {Rule} rule
+   * @return {string}
+   */
+  required_with: function(template, rule) {
+    var parameters = rule.getParameters();
+    return this._replacePlaceholders(rule, template, {
+      field: this._getAttributeName(parameters[0])
+    });
+  },
+
+  /**
+   * Required_with_all replacement.
+   *
+   * @param  {string} template
+   * @param  {Rule} rule
+   * @return {string}
+   */
+  required_with_all: function(template, rule) {
+    var parameters = rule.getParameters();
+    var getAttributeName = this._getAttributeName.bind(this);
+    return this._replacePlaceholders(rule, template, {
+      fields: parameters.map(getAttributeName).join(', ')
+    });
+  },
+
+  /**
+   * Required_without replacement.
+   *
+   * @param  {string} template
+   * @param  {Rule} rule
+   * @return {string}
+   */
+  required_without: function(template, rule) {
+    var parameters = rule.getParameters();
+    return this._replacePlaceholders(rule, template, {
+      field: this._getAttributeName(parameters[0])
+    });
+  },
+
+  /**
+   * Required_without_all replacement.
+   *
+   * @param  {string} template
+   * @param  {Rule} rule
+   * @return {string}
+   */
+  required_without_all: function(template, rule) {
+    var parameters = rule.getParameters();
+    var getAttributeName = this._getAttributeName.bind(this);
+    return this._replacePlaceholders(rule, template, {
+      fields: parameters.map(getAttributeName).join(', ')
+    });
+  },
+
+  /**
+   * After replacement.
+   *
+   * @param  {string} template
+   * @param  {Rule} rule
+   * @return {string}
+   */
+  after: function(template, rule) {
+    var parameters = rule.getParameters();
+    return this._replacePlaceholders(rule, template, {
+      after: this._getAttributeName(parameters[0])
+    });
+  },
+
+  /**
+   * Before replacement.
+   *
+   * @param  {string} template
+   * @param  {Rule} rule
+   * @return {string}
+   */
+  before: function(template, rule) {
+    var parameters = rule.getParameters();
+    return this._replacePlaceholders(rule, template, {
+      before: this._getAttributeName(parameters[0])
+    });
+  },
+
+  /**
+   * After_or_equal replacement.
+   *
+   * @param  {string} template
+   * @param  {Rule} rule
+   * @return {string}
+   */
+  after_or_equal: function(template, rule) {
+    var parameters = rule.getParameters();
+    return this._replacePlaceholders(rule, template, {
+      after_or_equal: this._getAttributeName(parameters[0])
+    });
+  },
+
+  /**
+   * Before_or_equal replacement.
+   *
+   * @param  {string} template
+   * @param  {Rule} rule
+   * @return {string}
+   */
+  before_or_equal: function(template, rule) {
+    var parameters = rule.getParameters();
+    return this._replacePlaceholders(rule, template, {
+      before_or_equal: this._getAttributeName(parameters[0])
+    });
+  },
+
+  /**
+   * Same replacement.
+   *
+   * @param  {string} template
+   * @param  {Rule} rule
+   * @return {string}
+   */
+  same: function(template, rule) {
+    var parameters = rule.getParameters();
+    return this._replacePlaceholders(rule, template, {
+      same: this._getAttributeName(parameters[0])
+    });
+  },
+};
+
+function formatter(attribute) {
+  return attribute.replace(/[_\[]/g, ' ').replace(/]/g, '');
+}
+
+module.exports = {
+  replacements: replacements,
+  formatter: formatter
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/errors.js":
+/*!************************************************!*\
+  !*** ./node_modules/validatorjs/src/errors.js ***!
+  \************************************************/
+/***/ ((module) => {
+
+var Errors = function() {
+  this.errors = {};
+};
+
+Errors.prototype = {
+  constructor: Errors,
+
+  /**
+   * Add new error message for given attribute
+   *
+   * @param  {string} attribute
+   * @param  {string} message
+   * @return {void}
+   */
+  add: function(attribute, message) {
+    if (!this.has(attribute)) {
+      this.errors[attribute] = [];
+    }
+
+    if (this.errors[attribute].indexOf(message) === -1) {
+      this.errors[attribute].push(message);
+    }
+  },
+
+  /**
+   * Returns an array of error messages for an attribute, or an empty array
+   *
+   * @param  {string} attribute A key in the data object being validated
+   * @return {array} An array of error messages
+   */
+  get: function(attribute) {
+    if (this.has(attribute)) {
+      return this.errors[attribute];
+    }
+
+    return [];
+  },
+
+  /**
+   * Returns the first error message for an attribute, false otherwise
+   *
+   * @param  {string} attribute A key in the data object being validated
+   * @return {string|false} First error message or false
+   */
+  first: function(attribute) {
+    if (this.has(attribute)) {
+      return this.errors[attribute][0];
+    }
+
+    return false;
+  },
+
+  /**
+   * Get all error messages from all failing attributes
+   *
+   * @return {Object} Failed attribute names for keys and an array of messages for values
+   */
+  all: function() {
+    return this.errors;
+  },
+
+  /**
+   * Determine if there are any error messages for an attribute
+   *
+   * @param  {string}  attribute A key in the data object being validated
+   * @return {boolean}
+   */
+  has: function(attribute) {
+    if (this.errors.hasOwnProperty(attribute)) {
+      return true;
+    }
+
+    return false;
+  }
+};
+
+module.exports = Errors;
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang.js":
+/*!**********************************************!*\
+  !*** ./node_modules/validatorjs/src/lang.js ***!
+  \**********************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-var rng = __webpack_require__(/*! ./lib/rng */ "./node_modules/uuid/lib/rng-browser.js");
-var bytesToUuid = __webpack_require__(/*! ./lib/bytesToUuid */ "./node_modules/uuid/lib/bytesToUuid.js");
+var Messages = __webpack_require__(/*! ./messages */ "./node_modules/validatorjs/src/messages.js");
 
-function v4(options, buf, offset) {
-  var i = buf && offset || 0;
+__webpack_require__(/*! ./lang/en */ "./node_modules/validatorjs/src/lang/en.js");
 
-  if (typeof(options) == 'string') {
-    buf = options === 'binary' ? new Array(16) : null;
-    options = null;
-  }
-  options = options || {};
+var require_method = undefined;
 
-  var rnds = options.random || (options.rng || rng)();
+var container = {
 
-  // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
-  rnds[6] = (rnds[6] & 0x0f) | 0x40;
-  rnds[8] = (rnds[8] & 0x3f) | 0x80;
+  messages: {},
 
-  // Copy bytes to buffer, if provided
-  if (buf) {
-    for (var ii = 0; ii < 16; ++ii) {
-      buf[i + ii] = rnds[ii];
+  /**
+   * Set messages for language
+   *
+   * @param {string} lang
+   * @param {object} rawMessages
+   * @return {void}
+   */
+  _set: function(lang, rawMessages) {
+    this.messages[lang] = rawMessages;
+  },
+
+  /**
+   * Set message for given language's rule.
+   *
+   * @param {string} lang
+   * @param {string} attribute
+   * @param {string|object} message
+   * @return {void}
+   */
+  _setRuleMessage: function(lang, attribute, message) {
+    this._load(lang);
+    if (message === undefined) {
+      message = this.messages[lang].def;
     }
+
+    this.messages[lang][attribute] = message;
+  },
+
+  /**
+   * Load messages (if not already loaded)
+   *
+   * @param  {string} lang
+   * @return {void}
+   */
+  _load: function(lang) {
+    if (!this.messages[lang]) {
+      try {
+        var rawMessages = __webpack_require__("./node_modules/validatorjs/src/lang sync recursive ^\\.\\/.*$")("./" + lang);
+        this._set(lang, rawMessages);
+      } catch (e) {}
+    }
+  },
+
+  /**
+   * Get raw messages for language
+   *
+   * @param  {string} lang
+   * @return {object}
+   */
+  _get: function(lang) {
+    this._load(lang);
+    return this.messages[lang];
+  },
+
+  /**
+   * Make messages for given language
+   *
+   * @param  {string} lang
+   * @return {Messages}
+   */
+  _make: function(lang) {
+    this._load(lang);
+    return new Messages(lang, this.messages[lang]);
   }
 
-  return buf || bytesToUuid(rnds);
+};
+
+module.exports = container;
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/ar.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/ar.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: "الصفة :attribute يجب أن تكون مقبولة",
+  after: "الصفة :attribute يجب أن تكون بعد الصفة :after.",
+  after_or_equal: "الصفة :attribute يجب أن تكون مساوية أو بعد الصفة :after_or_equal.",
+  alpha: "حقل الصفة  :attribute يجب أن تحتوي على أحرف فقط",
+  alpha_dash: "حقل الصفة :attribute مسموح بأن يحتوي على حروف و أرقام و شرطة و شرطة منخفضة",
+  alpha_num: "حقل الصفة :attribute يجب أن يحتوي على أحرف و أرقام",
+  before: "الصفة :attribute يجب أن تكون قبل :before.",
+  before_or_equal: "الصفة :attribute يجب أن تكون مساوية أو قبل الصفة :before_or_equal.",
+  between: "حقل الصفة :attribute يجب أن يكون بين :min و :max.",
+  confirmed: "تأكيد الصفة :attribute غير متطابق.",
+  email: "الصفة :attribute صيغتها غير صحيحة",
+  date: "الصفة :attribute صيغتها ليست تاريخ صحيح",
+  def: "الصفة :attribute تحتوي على أخطاء",
+  digits: "الصفة :attribute يجب أن تكون :digits أرقام.",
+  digits_between: "يجب أن يحتوي :attribute بين :min و :max رقمًا/أرقام .",
+  different: "الصفة :attribute و الصفة :different يجب أن تكونا مختلفتين",
+  in: "الصفة :attribute المختارة، غير صحيحة.",
+  integer: "الصفة :attribute يجب أن تكون عدد صحيح",
+  hex: "حقل الصفة :attribute يجب أن يحتوي على صيغة هكسيديسمل",
+  min: {
+    numeric: "الصفة :attribute يجب أن تكون :min على الأقل",
+    string: "الصفة :attribute يجب أن تكون :min حرف على الأقل."
+  },
+  max: {
+    numeric: "الصفة :attribute لا يمكن أن تكون أكبر من  :max.",
+    string: "الصفة :attribute يجب أن لا تكون أكثر من :max حرف."
+  },
+  not_in: "الصفة :attribute المختارة غير صحيحة.",
+  numeric: "الصفة :attribute يجب أن تكون رقما.",
+  present: "حقل الصفة :attribute يجب أن يكون معرفا ، يمكن أن يكون فارغا.",
+  required: "حقل الصفة :attribute مطلوب.",
+  required_if: "حقل الصفة :attribute مطلوب حين تكون قيمة الحقل :other تساوي :value.",
+  required_unless: "حقل الصفة :attribute مطلوب حين تكون قيم الحقل :other لا تساوي :value.",
+  required_with: "حقل الصفة :attribute مطلوب حين يكون الحقا :field غير فارغ.",
+  required_with_all: "حقل الصفة :attribute مطلوب حين تكون الحقول :fields غير فارغة.",
+  required_without: "حقل الصفة :attribute مطلوب حين يكون الحقل :field فارغا.",
+  required_without_all: "حقل الصفة :attribute مطلوب حين تكون الحقول :fields فارغة.",
+  same: "حقل الصفة :attribute و حقل الصفة :same يجب أن يتطابقا.",
+  size: {
+    numeric: "الصفة :attribute يجب أن تكون :size.",
+    string: "الصفة :attribute يجب أن تكون :size حرفا."
+  },
+  string: "الصفة :attribute يجب أن تكون نص.",
+  url: "الصفة :attribute صياغتها غير صحيحة.",
+  regex: "الصفة :attribute صياغتها غير صحيحة.",
+  attributes: {
+    username: "اسم المستخدم",
+    password: "كلمة المرور",
+    email: "البريد الالكتروني",
+    website: "الموقع الالكتروني",
+    firstname: "الاسم الاول",
+    lastname: "الاسم الاخير",
+    subject: "الموضوع",
+    city: "المدينة",
+    region: "المنطقة",
+    country: "الدولة",
+    street: "الشارع",
+    zipcode: "الرمز البريدي",
+    phone: "رقم الهاتف",
+    mobile: "رقم الجوال"
+  }
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/az.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/az.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: ":attribute qəbul edilməlidir",
+  active_url: ":attribute doğru URL deyil",
+  after: ":attribute :date tarixindən sonra olmalıdır",
+  after_or_equal: ":attribute :date tarixi ilə eyni və ya sonra olmalıdır",
+  alpha: ":attribute yalnız hərflərdən ibarət ola bilər",
+  alpha_dash: ":attribute yalnız hərf, rəqəm və tire simvolundan ibarət ola bilər",
+  alpha_num: ":attribute yalnız hərf və rəqəmlərdən ibarət ola bilər",
+  array: ":attribute massiv formatında olmalıdır",
+  before: ":attribute :date tarixindən əvvəl olmalıdır",
+  before_or_equal: ":attribute :date tarixindən əvvəl və ya bərabər olmalıdır",
+  between: {
+    numeric: ":attribute :min ilə :max arasında olmalıdır",
+    file: ":attribute :min ilə :max KB ölçüsü intervalında olmalıdır",
+    string: ":attribute :min ilə :max simvolu intervalında olmalıdır",
+    array: ":attribute :min ilə :max intervalında hissədən ibarət olmalıdır"
+  },
+  boolean: " :attribute doğru və ya yanlış ola bilər",
+  confirmed: " :attribute doğrulanması yanlışdır",
+  date: " :attribute tarix formatında olmalıdır",
+  date_format: " :attribute :format formatında olmalıdır",
+  different: " :attribute və :other fərqli olmalıdır",
+  digits: " :attribute :digits rəqəmli olmalıdır",
+  digits_between: " :attribute :min ilə :max rəqəmləri intervalında olmalıdır",
+  dimensions: " :attribute doğru şəkil ölçülərində deyil",
+  distinct: " :attribute dublikat qiymətlidir",
+  email: " :attribute doğru email formatında deyil",
+  exists: " seçilmiş :attribute yanlışdır",
+  file: " :attribute fayl formatında olmalıdır",
+  filled: " :attribute qiyməti olmalıdır",
+  gt: {
+    numeric: "The :attribute must be greater than :value.",
+    file: "The :attribute must be greater than :value kilobytes.",
+    string: "The :attribute must be greater than :value characters.",
+    array: "The :attribute must have more than :value items."
+  },
+  gte: {
+    numeric: "The :attribute must be greater than or equal :value.",
+    file: "The :attribute must be greater than or equal :value kilobytes.",
+    string: "The :attribute must be greater than or equal :value characters.",
+    array: "The :attribute must have :value items or more."
+  },
+  image: " :attribute şəkil formatında olmalıdır",
+  in: " seçilmiş :attribute yanlışdır",
+  in_array: " :attribute :other qiymətləri arasında olmalıdır",
+  integer: " :attribute tam ədəd olmalıdır",
+  hex: "The :attribute field should have hexadecimal format",
+  ip: " :attribute İP adres formatında olmalıdır",
+  ipv4: " :attribute İPv4 adres formatında olmalıdır",
+  ipv6: " :attribute İPv6 adres formatında olmalıdır",
+  json: " :attribute JSON formatında olmalıdır",
+  lt: {
+    numeric: "The :attribute must be less than :value.",
+    file: "The :attribute must be less than :value kilobytes.",
+    string: "The :attribute must be less than :value characters.",
+    array: "The :attribute must have less than :value items."
+  },
+  lte: {
+    numeric: "The :attribute must be less than or equal :value.",
+    file: "The :attribute must be less than or equal :value kilobytes.",
+    string: "The :attribute must be less than or equal :value characters.",
+    array: "The :attribute must not have more than :value items."
+  },
+  max: {
+    numeric: " :attribute maksiumum :max rəqəmdən ibarət ola bilər",
+    file: " :attribute maksimum :max KB ölçüsündə ola bilər",
+    string: " :attribute maksimum :max simvoldan ibarət ola bilər",
+    array: " :attribute maksimum :max hədd'dən ibarət ola bilər"
+  },
+  mimes: " :attribute :values tipində fayl olmalıdır",
+  mimetypes: " :attribute :values tipində fayl olmalıdır",
+  min: {
+    numeric: " :attribute minimum :min rəqəmdən ibarət ola bilər",
+    file: " :attribute minimum :min KB ölçüsündə ola bilər",
+    string: " :attribute minimum :min simvoldan ibarət ola bilər",
+    array: " :attribute minimum :min hədd'dən ibarət ola bilər"
+  },
+  not_in: " seçilmiş :attribute yanlışdır",
+  numeric: " :attribute rəqəmlərdən ibarət olmalıdır",
+  present: " :attribute iştirak etməlidir",
+  regex: " :attribute formatı yanlışdır",
+  required: " :attribute mütləqdir",
+  required_if: " :attribute (:other :value ikən) mütləqdir",
+  required_unless: " :attribute (:other :values 'ə daxil ikən) mütləqdir",
+  required_with: " :attribute (:values var ikən) mütləqdir",
+  required_with_all: " :attribute (:values var ikən) mütləqdir",
+  required_without: " :attribute (:values yox ikən) mütləqdir",
+  required_without_all: " :attribute (:values yox ikən) mütləqdir",
+  same: " :attribute və :other eyni olmalıdır",
+  size: {
+    numeric: " :attribute :size ölçüsündə olmalıdır",
+    file: " :attribute :size KB ölçüsündə olmalıdır",
+    string: " :attribute :size simvoldan ibarət olmalıdır",
+    array: " :attribute :size hədd'dən ibarət olmalıdır"
+  },
+  string: " :attribute hərf formatında olmalıdır",
+  timezone: " :attribute ərazi formatında olmalıdır",
+  unique: " :attribute artıq iştirak edib",
+  uploaded: " :attribute yüklənməsi mümkün olmadı",
+  url: " :attribute formatı yanlışdır"
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/be.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/be.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: "Вы павінны прыняць :attribute.",
+  active_url: "Поле :attribute утрымлівае несапраўдны URL.",
+  after: "У полі :attribute павінна быць дата пасля :date.",
+  after_or_equal: "The :attribute must be a date after or equal to :date.",
+  alpha: "Поле :attribute можа мець толькі літары.",
+  alpha_dash: "Поле :attribute можа мець толькі літары, лічбы і злучок.",
+  alpha_num: "Поле :attribute можа мець толькі літары і лічбы.",
+  array: "Поле :attribute павінна быць масівам.",
+  before: "У полі :attribute павінна быць дата да :date.",
+  before_or_equal: "The :attribute must be a date before or equal to :date.",
+  between: {
+    numeric: "Поле :attribute павінна быць паміж :min і :max.",
+    file: "Памер файла ў поле :attribute павінен быць паміж :min і :max кілабайт.",
+    string: "Колькасць сiмвалаў у поле :attribute павінна быць паміж :min і :max.",
+    array: "Колькасць элементаў у поле :attribute павінна быць паміж :min і :max."
+  },
+  boolean: "Поле :attribute павінна мець значэнне лагічнага тыпу.",
+  confirmed: "Поле :attribute не супадае з пацвярджэннем.",
+  date: "Поле :attribute не з'яўляецца датай.",
+  date_format: "Поле :attribute не адпавядае фармату :format.",
+  different: "Палі :attribute і :other павінны адрознівацца.",
+  digits: "Даўжыня лічбавага поля :attribute павінна быць :digits.",
+  digits_between: "Даўжыня лічбавага поля :attribute павінна быць паміж :min і :max.",
+  dimensions: "The :attribute has invalid image dimensions.",
+  distinct: "The :attribute field has a duplicate value.",
+  email: "Поле :attribute павінна быць сапраўдным электронным адрасам.",
+  file: "The :attribute must be a file.",
+  filled: "Поле :attribute абавязкова для запаўнення.",
+  exists: "Выбранае значэнне для :attribute некарэктна.",
+  gt: {
+    numeric: "The :attribute must be greater than :value.",
+    file: "The :attribute must be greater than :value kilobytes.",
+    string: "The :attribute must be greater than :value characters.",
+    array: "The :attribute must have more than :value items."
+  },
+  gte: {
+    numeric: "The :attribute must be greater than or equal :value.",
+    file: "The :attribute must be greater than or equal :value kilobytes.",
+    string: "The :attribute must be greater than or equal :value characters.",
+    array: "The :attribute must have :value items or more."
+  },
+  hex: "The :attribute field should have hexadecimal format",
+  image: "Поле :attribute павінна быць малюнкам.",
+  in: "Выбранае значэнне для :attribute памылкова.",
+  in_array: "The :attribute field does not exist in :other.",
+  integer: "Поле :attribute павінна быць цэлым лікам.",
+  ip: "Поле :attribute дпавінна быць сапраўдным IP-адрасам.",
+  ipv4: "The :attribute must be a valid IPv4 address.",
+  ipv6: "The :attribute must be a valid IPv6 address.",
+  json: "Поле :attribute павінна быць JSON радком.",
+  lt: {
+    numeric: "The :attribute must be less than :value.",
+    file: "The :attribute must be less than :value kilobytes.",
+    string: "The :attribute must be less than :value characters.",
+    array: "The :attribute must have less than :value items."
+  },
+  lte: {
+    numeric: "The :attribute must be less than or equal :value.",
+    file: "The :attribute must be less than or equal :value kilobytes.",
+    string: "The :attribute must be less than or equal :value characters.",
+    array: "The :attribute must not have more than :value items."
+  },
+  max: {
+    numeric: "Поле :attribute не можа быць больш :max.",
+    file: "Памер файла ў поле :attribute не можа быць больш :max кілабайт).",
+    string: "Колькасць сiмвалаў у поле :attribute не можа перавышаць :max.",
+    array: "Колькасць элементаў у поле :attribute не можа перавышаць :max."
+  },
+  mimes: "Поле :attribute павінна быць файлам аднаго з наступных тыпаў: :values.",
+  mimetypes: "Поле :attribute павінна быць файлам аднаго з наступных тыпаў: :values.",
+  min: {
+    numeric: "Поле :attribute павінна быць не менш :min.",
+    file: "Памер файла ў полее :attribute павінен быць не менш :min кілабайт.",
+    string: "Колькасць сiмвалаў у поле :attribute павінна быць не менш :min.",
+    array: "Колькасць элементаў у поле :attribute павінна быць не менш :min."
+  },
+  not_in: "Выбранае значэнне для :attribute памылкова.",
+  not_regex: "The :attribute format is invalid.",
+  numeric: "Поле :attribute павінна быць лікам.",
+  present: "The :attribute field must be present.",
+  regex: "Поле :attribute мае памылковы фармат.",
+  required: "Поле :attribute абавязкова для запаўнення.",
+  required_if: "Поле :attribute абавязкова для запаўнення, калі :other раўняецца :value.",
+  required_unless: "Поле :attribute абавязкова для запаўнення, калі :other не раўняецца :values.",
+  required_with: "Поле :attribute абавязкова для запаўнення, калі :values ўказана.",
+  required_with_all: "Поле :attribute абавязкова для запаўнення, калі :values ўказана.",
+  required_without: "Поле :attribute абавязкова для запаўнення, калі :values не ўказана.",
+  required_without_all: "Поле :attribute абавязкова для запаўнення, калі ні адно з :values не ўказана.",
+  same: "Значэнне :attribute павінна супадаць з :other.",
+  size: {
+    numeric: "Поле :attribute павінна быць :size.",
+    file: "Размер файла в поле :attribute павінен быць :size кілабайт.",
+    string: "Колькасць сiмвалаў у поле :attribute павінна быць :size.",
+    array: "Колькасць элементаў у поле :attribute павінна быць :size."
+  },
+  string: "Поле :attribute павінна быць радком.",
+  timezone: "Поле :attribute павінна быць сапраўдным гадзінным поясам.",
+  unique: "Такое значэнне поля :attribute ўжо існуе.",
+  uploaded: "The :attribute failed to upload.",
+  url: "Поле :attribute мае памылковы фармат."
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/bg.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/bg.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: "Трябва да приемете :attribute.",
+  active_url: "Полето :attribute не е валиден URL адрес.",
+  after: "Полето :attribute трябва да бъде дата след :date.",
+  after_or_equal: "Полето :attribute трябва да бъде дата след или равна на :date.",
+  alpha: "Полето :attribute трябва да съдържа само букви.",
+  alpha_dash: "Полето :attribute трябва да съдържа само букви, цифри, долна черта и тире.",
+  alpha_num: "Полето :attribute трябва да съдържа само букви и цифри.",
+  array: "Полето :attribute трябва да бъде масив.",
+  before: "Полето :attribute трябва да бъде дата преди :date.",
+  before_or_equal: "Полето :attribute трябва да бъде дата преди или равна на :date.",
+  between: {
+    numeric: "Полето :attribute трябва да бъде между :min и :max.",
+    file: "Полето :attribute трябва да бъде между :min и :max килобайта.",
+    string: "Полето :attribute трябва да бъде между :min и :max знака.",
+    array: "Полето :attribute трябва да има между :min - :max елемента."
+  },
+  boolean: "Полето :attribute трябва да съдържа Да или Не",
+  confirmed: "Полето :attribute не е потвърдено.",
+  date: "Полето :attribute не е валидна дата.",
+  date_format: "Полето :attribute не е във формат :format.",
+  different: "Полетата :attribute и :other трябва да са различни.",
+  digits: "Полето :attribute трябва да има :digits цифри.",
+  digits_between: "Полето :attribute трябва да има между :min и :max цифри.",
+  dimensions: "Невалидни размери за снимка :attribute.",
+  distinct: "Данните в полето :attribute се дублират.",
+  email: "Полето :attribute е в невалиден формат.",
+  exists: "Избранато поле :attribute вече съществува.",
+  file: "Полето :attribute трябва да бъде файл.",
+  filled: "Полето :attribute е задължително.",
+  gt: {
+    numeric: "The :attribute must be greater than :value.",
+    file: "The :attribute must be greater than :value kilobytes.",
+    string: "The :attribute must be greater than :value characters.",
+    array: "The :attribute must have more than :value items."
+  },
+  gte: {
+    numeric: "The :attribute must be greater than or equal :value.",
+    file: "The :attribute must be greater than or equal :value kilobytes.",
+    string: "The :attribute must be greater than or equal :value characters.",
+    array: "The :attribute must have :value items or more."
+  },
+  hex: "The :attribute field should have hexadecimal format",
+  image: "Полето :attribute трябва да бъде изображение.",
+  in: "Избраното поле :attribute е невалидно.",
+  in_array: "Полето :attribute не съществува в :other.",
+  integer: "Полето :attribute трябва да бъде цяло число.",
+  ip: "Полето :attribute трябва да бъде IP адрес.",
+  ipv4: "Полето :attribute трябва да бъде IPv4 адрес.",
+  ipv6: "Полето :attribute трябва да бъде IPv6 адрес.",
+  json: "Полето :attribute трябва да бъде JSON низ.",
+  lt: {
+    numeric: "The :attribute must be less than :value.",
+    file: "The :attribute must be less than :value kilobytes.",
+    string: "The :attribute must be less than :value characters.",
+    array: "The :attribute must have less than :value items."
+  },
+  lte: {
+    numeric: "The :attribute must be less than or equal :value.",
+    file: "The :attribute must be less than or equal :value kilobytes.",
+    string: "The :attribute must be less than or equal :value characters.",
+    array: "The :attribute must not have more than :value items."
+  },
+  max: {
+    numeric: "Полето :attribute трябва да бъде по-малко от :max.",
+    file: "Полето :attribute трябва да бъде по-малко от :max килобайта.",
+    string: "Полето :attribute трябва да бъде по-малко от :max знака.",
+    array: "Полето :attribute трябва да има по-малко от :max елемента."
+  },
+  mimes: "Полето :attribute трябва да бъде файл от тип: :values.",
+  mimetypes: "Полето :attribute трябва да бъде файл от тип: :values.",
+  min: {
+    numeric: "Полето :attribute трябва да бъде минимум :min.",
+    file: "Полето :attribute трябва да бъде минимум :min килобайта.",
+    string: "Полето :attribute трябва да бъде минимум :min знака.",
+    array: "Полето :attribute трябва има минимум :min елемента."
+  },
+  not_in: "Избраното поле :attribute е невалидно.",
+  not_regex: "The :attribute format is invalid.",
+  numeric: "Полето :attribute трябва да бъде число.",
+  present: "Полето :attribute трябва да съествува.",
+  regex: "Полето :attribute е в невалиден формат.",
+  required: "Полето :attribute е задължително.",
+  required_if: "Полето :attribute се изисква, когато :other е :value.",
+  required_unless: "Полето :attribute се изисква, освен ако :other не е в :values.",
+  required_with: "Полето :attribute се изисква, когато :values има стойност.",
+  required_with_all: "Полето :attribute е задължително, когато :values имат стойност.",
+  required_without: "Полето :attribute се изисква, когато :values няма стойност.",
+  required_without_all: "Полето :attribute се изисква, когато никое от полетата :values няма стойност.",
+  same: "Полетата :attribute и :other трябва да съвпадат.",
+  size: {
+    numeric: "Полето :attribute трябва да бъде :size.",
+    file: "Полето :attribute трябва да бъде :size килобайта.",
+    string: "Полето :attribute трябва да бъде :size знака.",
+    array: "Полето :attribute трябва да има :size елемента."
+  },
+  string: "Полето :attribute трябва да бъде знаков низ.",
+  timezone: "Полето :attribute трябва да съдържа валидна часова зона.",
+  unique: "Полето :attribute вече съществува.",
+  uploaded: "Неуспешно качване на :attribute.",
+  url: "Полето :attribute е в невалиден формат."
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/bs.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/bs.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: "Polje :attribute mora biti prihvaćeno.",
+  active_url: "Polje :attribute nije validan URL.",
+  after: "Polje :attribute mora biti datum poslije :date.",
+  after_or_equal: "The :attribute must be a date after or equal to :date.",
+  alpha: "Polje :attribute može sadržati samo slova.",
+  alpha_dash: "Polje :attribute može sadržati samo slova, brojeve i povlake.",
+  alpha_num: "Polje :attribute može sadržati samo slova i brojeve.",
+  attributes: {},
+  array: "Polje :attribute mora biti niz.",
+  before: "Polje :attribute mora biti datum prije :date.",
+  before_or_equal: "The :attribute must be a date before or equal to :date.",
+  between: {
+    numeric: "Polje :attribute mora biti izmedju :min - :max.",
+    file: "Fajl :attribute mora biti izmedju :min - :max kilobajta.",
+    string: "Polje :attribute mora biti izmedju :min - :max karaktera.",
+    array: "Polje :attribute mora biti između :min - :max karaktera."
+  },
+  boolean: "Polje :attribute mora biti tačno ili netačno",
+  confirmed: "Potvrda polja :attribute se ne poklapa.",
+  date: "Polje :attribute nema ispravan datum.",
+  date_format: "Polje :attribute nema odgovarajući format :format.",
+  different: "Polja :attribute i :other moraju biti različita.",
+  digits: "Polje :attribute mora da sadži :digits brojeve.",
+  digits_between: "Polje :attribute mora biti između :min i :max broja.",
+  dimensions: "The :attribute has invalid image dimensions.",
+  distinct: "The :attribute field has a duplicate value.",
+  email: "Format polja :attribute mora biti validan email.",
+  exists: "Odabrano polje :attribute nije validno.",
+  file: "The :attribute must be a file.",
+  filled: "Polje :attribute je obavezno.",
+  gt: {
+    numeric: "The :attribute must be greater than :value.",
+    file: "The :attribute must be greater than :value kilobytes.",
+    string: "The :attribute must be greater than :value characters.",
+    array: "The :attribute must have more than :value items."
+  },
+  gte: {
+    numeric: "The :attribute must be greater than or equal :value.",
+    file: "The :attribute must be greater than or equal :value kilobytes.",
+    string: "The :attribute must be greater than or equal :value characters.",
+    array: "The :attribute must have :value items or more."
+  },
+  hex: "The :attribute field should have hexadecimal format",
+  image: "Polje :attribute mora biti slika.",
+  in: "Odabrano polje :attribute nije validno.",
+  in_array: "The :attribute field does not exist in :other.",
+  integer: "Polje :attribute mora biti broj.",
+  ip: "Polje :attribute mora biti validna IP adresa.",
+  ipv4: "The :attribute must be a valid IPv4 address.",
+  ipv6: "The :attribute must be a valid IPv6 address.",
+  json: "The :attribute must be a valid JSON string.",
+  lt: {
+    numeric: "The :attribute must be less than :value.",
+    file: "The :attribute must be less than :value kilobytes.",
+    string: "The :attribute must be less than :value characters.",
+    array: "The :attribute must have less than :value items."
+  },
+  lte: {
+    numeric: "The :attribute must be less than or equal :value.",
+    file: "The :attribute must be less than or equal :value kilobytes.",
+    string: "The :attribute must be less than or equal :value characters.",
+    array: "The :attribute must not have more than :value items."
+  },
+  max: {
+    numeric: "Polje :attribute mora biti manje od :max.",
+    file: "Polje :attribute mora biti manje od :max kilobajta.",
+    string: "Polje :attribute mora sadržati manje od :max karaktera.",
+    array: "Polje :attribute mora sadržati manje od :max karaktera."
+  },
+  mimes: "Polje :attribute mora biti fajl tipa: :values.",
+  mimetypes: "Polje :attribute mora biti fajl tipa: :values.",
+  min: {
+    numeric: "Polje :attribute mora biti najmanje :min.",
+    file: "Fajl :attribute mora biti najmanje :min kilobajta.",
+    string: "Polje :attribute mora sadržati najmanje :min karaktera.",
+    array: "Polje :attribute mora sadržati najmanje :min karaktera."
+  },
+  not_in: "Odabrani element polja :attribute nije validan.",
+  not_regex: "The :attribute format is invalid.",
+  numeric: "Polje :attribute mora biti broj.",
+  present: "The :attribute field must be present.",
+  regex: "Polje :attribute ima neispravan format.",
+  required: "Polje :attribute je obavezno.",
+  required_if: "Polje :attribute je obavezno kada :other je :value.",
+  required_unless: "The :attribute field is required unless :other is in :values.",
+  required_with: "Polje :attribute je obavezno kada je :values prikazano.",
+  required_with_all: "Polje :attribute je obavezno kada je :values prikazano.",
+  required_without: "Polje :attribute je obavezno kada :values nije prikazano.",
+  required_without_all: "Polje :attribute je obavezno kada nijedno :values nije prikazano.",
+  same: "Polja :attribute i :other se moraju poklapati.",
+  size: {
+    numeric: "Polje :attribute mora biti :size.",
+    file: "Fajl :attribute mora biti :size kilobajta.",
+    string: "Polje :attribute mora biti :size karaktera.",
+    array: "Polje :attribute mora biti :size karaktera."
+  },
+  string: "Polje :attribute mora sadrzavati slova.",
+  timezone: "Polje :attribute mora biti ispravna vremenska zona.",
+  unique: "Polje :attribute već postoji.",
+  uploaded: "The :attribute failed to upload.",
+  url: "Format polja :attribute nije validan."
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/ca.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/ca.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: 'El camp :attribute pot ser aceptat.',
+  after: 'El camp :attribute pot ser una data posterior a :after.',
+  alpha: 'El camp :attribute només pot contenir lletras.',
+  alpha_dash: 'El camp :attribute només pot contenir lletras, nombres y guions.',
+  alpha_num: 'El camp :attribute només pot contenir lletras y nombres.',
+  attributes: {},
+  between: 'El camp :attribute té que estar entre :min - :max.',
+  confirmed: 'La confirmació de :attribute no coincideix.',
+  different: 'El camp :attribute y :other poden ser diferents.',
+  digits: 'El camp :attribute pot tindre :digits dígitos.',
+  digits_between: 'El camp  :attribute ha de tenir entre :min i :max dígits.',
+  email: 'El camp :attribute no es un correu válido.',
+  'in': 'El camp :attribute es invàlid.',
+  integer: 'El camp :attribute pot ser un nombre enter.',
+  hex: 'El camp :attribute hauria de tenir format hexadecimal',
+  max: {
+    numeric: 'El camp :attribute no pot ser mayor a :max.',
+    string: 'El camp :attribute no pot ser mayor que :max caràcters.'
+  },
+  min: {
+    numeric: 'La mida del camp :attribute pot ser de al menys :min.',
+    string: 'El camp :attribute pot contenir al menys :min caràcters.'
+  },
+  not_in: 'El camp :attribute es invàlid.',
+  numeric: 'El camp :attribute pot ser numéric.',
+  present: 'El camp de :attribute pot estar present (però pot estar buit).',
+  regex: 'El format del camp :attribute es invàlid.',
+  required: 'El camp :attribute es obligatori.',
+  required_if: 'El camp :attribute es obligatori quan :other es :value.',
+  same: 'El camp :attribute y :other poden coincidir.',
+  size: {
+    numeric: 'La mida del camp :attribute pot ser :size.',
+    string: 'El camp :attribute pot contenir :size caràcters.'
+  },
+  url: 'El format de :attribute es invàlid.'
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/cs.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/cs.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: ":attribute musí být přijat.",
+  active_url: ":attribute není platnou URL adresou.",
+  after: ":attribute musí být datum po :date.",
+  after_or_equal: "The :attribute must be a date after or equal to :date.",
+  alpha: ":attribute může obsahovat pouze písmena.",
+  alpha_dash:
+    ":attribute může obsahovat pouze písmena, číslice, pomlčky a podtržítka. České znaky (á, é, í, ó, ú, ů, ž, š, č, ř, ď, ť, ň) nejsou podporovány.",
+  alpha_num: ":attribute může obsahovat pouze písmena a číslice.",
+  attributes: {},
+  array: ":attribute musí být pole.",
+  before: ":attribute musí být datum před :date.",
+  before_or_equal: "The :attribute must be a date before or equal to :date.",
+  between: {
+    numeric: ":attribute musí být hodnota mezi :min a :max.",
+    file: ":attribute musí být větší než :min a menší než :max Kilobytů.",
+    string: ":attribute musí být delší než :min a kratší než :max znaků.",
+    array: ":attribute musí obsahovat nejméně :min a nesmí obsahovat více než :max prvků."
+  },
+  boolean: ":attribute musí být true nebo false",
+  confirmed: ":attribute nebylo odsouhlaseno.",
+  date: ":attribute musí být platné datum.",
+  date_format: ":attribute není platný formát data podle :format.",
+  different: ":attribute a :other se musí lišit.",
+  digits: ":attribute musí být :digits pozic dlouhé.",
+  digits_between: ":attribute musí být dlouhé nejméně :min a nejvíce :max pozic.",
+  dimensions: ":attribute má neplatné rozměry.",
+  distinct: ":attribute má duplicitní hodnotu.",
+  email: ":attribute není platný formát.",
+  exists: "Zvolená hodnota pro :attribute není platná.",
+  file: ":attribute musí být soubor.",
+  filled: ":attribute musí být vyplněno.",
+  gt: {
+    numeric: "The :attribute must be greater than :value.",
+    file: "The :attribute must be greater than :value kilobytes.",
+    string: "The :attribute must be greater than :value characters.",
+    array: "The :attribute must have more than :value items."
+  },
+  gte: {
+    numeric: "The :attribute must be greater than or equal :value.",
+    file: "The :attribute must be greater than or equal :value kilobytes.",
+    string: "The :attribute must be greater than or equal :value characters.",
+    array: "The :attribute must have :value items or more."
+  },
+  hex: "The :attribute field should have hexadecimal format",
+  image: ":attribute musí být obrázek.",
+  in: "Zvolená hodnota pro :attribute je neplatná.",
+  in_array: ":attribute není obsažen v :other.",
+  integer: ":attribute musí být celé číslo.",
+  ip: ":attribute musí být platnou IP adresou.",
+  ipv4: "The :attribute must be a valid IPv4 address.",
+  ipv6: "The :attribute must be a valid IPv6 address.",
+  json: ":attribute musí být platný JSON řetězec.",
+  lt: {
+    numeric: "The :attribute must be less than :value.",
+    file: "The :attribute must be less than :value kilobytes.",
+    string: "The :attribute must be less than :value characters.",
+    array: "The :attribute must have less than :value items."
+  },
+  lte: {
+    numeric: "The :attribute must be less than or equal :value.",
+    file: "The :attribute must be less than or equal :value kilobytes.",
+    string: "The :attribute must be less than or equal :value characters.",
+    array: "The :attribute must not have more than :value items."
+  },
+  max: {
+    numeric: ":attribute musí být nižší než :max.",
+    file: ":attribute musí být menší než :max Kilobytů.",
+    string: ":attribute musí být kratší než :max znaků.",
+    array: ":attribute nesmí obsahovat více než :max prvků."
+  },
+  mimes: ":attribute musí být jeden z následujících datových typů :values.",
+  mimetypes: ":attribute musí být jeden z následujících datových typů :values.",
+  min: {
+    numeric: ":attribute musí být větší než :min.",
+    file: ":attribute musí být větší než :min Kilobytů.",
+    string: ":attribute musí být delší než :min znaků.",
+    array: ":attribute musí obsahovat více než :min prvků."
+  },
+  not_in: "Zvolená hodnota pro :attribute je neplatná.",
+  not_regex: "The :attribute format is invalid.",
+  numeric: ":attribute musí být číslo.",
+  present: ":attribute musí být vyplněno.",
+  regex: ":attribute nemá správný formát.",
+  required: ":attribute musí být vyplněno.",
+  required_if: ":attribute musí být vyplněno pokud :other je :value.",
+  required_unless: ":attribute musí být vyplněno dokud :other je v :value.",
+  required_with: ":attribute musí být vyplněno pokud :field je vyplněno.",
+  required_with_all: ":attribute musí být vyplněno pokud :fields je zvoleno.",
+  required_without: ":attribute musí být vyplněno pokud :field není vyplněno.",
+  required_without_all: ":attribute musí být vyplněno pokud není žádné z :fields zvoleno.",
+  same: ":attribute a :other se musí shodovat.",
+  size: {
+    numeric: ":attribute musí být přesně :size.",
+    file: ":attribute musí mít přesně :size Kilobytů.",
+    string: ":attribute musí být přesně :size znaků dlouhý.",
+    array: ":attribute musí obsahovat právě :size prvků."
+  },
+  string: ":attribute musí být řetězec znaků.",
+  timezone: ":attribute musí být platná časová zóna.",
+  unique: ":attribute musí být unikátní.",
+  uploaded: "Nahrávání :attribute se nezdařilo.",
+  url: "Formát :attribute je neplatný."
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/cy.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/cy.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: "Rhaid derbyn :attribute.",
+  active_url: "Nid yw :attribute yn URL dilys.",
+  after: "Rhaid i :attribute fod yn ddyddiad sydd ar ôl :date.",
+  after_or_equal: "The :attribute must be a date after or equal to :date.",
+  alpha: "Dim ond llythrennau'n unig gall :attribute gynnwys.",
+  alpha_dash: "Dim ond llythrennau, rhifau a dash yn unig gall :attribute gynnwys.",
+  alpha_num: "Dim ond llythrennau a rhifau yn unig gall :attribute gynnwys.",
+  attributes: {},
+  array: "Rhaid i :attribute fod yn array.",
+  before: "Rhaid i :attribute fod yn ddyddiad sydd cyn :date.",
+  before_or_equal: "The :attribute must be a date before or equal to :date.",
+  between: {
+    numeric: "Rhaid i :attribute fod rhwng :min a :max.",
+    file: "Rhaid i :attribute fod rhwng :min a :max kilobytes.",
+    string: "Rhaid i :attribute fod rhwng :min a :max nodyn.",
+    array: "Rhaid i :attribute fod rhwng :min a :max eitem."
+  },
+  boolean: "Rhaid i'r maes :attribute fod yn wir neu gau.",
+  confirmed: "Nid yw'r cadarnhad :attribute yn gyfwerth.",
+  date: "Nid yw :attribute yn ddyddiad dilys.",
+  date_format: "Nid yw :attribute yn y fformat :format.",
+  different: "Rhaid i :attribute a :other fod yn wahanol.",
+  digits: "Rhaid i :attribute fod yn :digits digid.",
+  digits_between: "Rhaid i :attribute fod rhwng :min a :max digid.",
+  dimensions: "The :attribute has invalid image dimensions.",
+  distinct: "The :attribute field has a duplicate value.",
+  email: "Rhaid i :attribute fod yn gyfeiriad ebost dilys.",
+  file: "The :attribute must be a file.",
+  filled: "Rhaid cynnwys :attribute.",
+  exists: "Nid yw :attribute yn ddilys.",
+  gt: {
+    numeric: "The :attribute must be greater than :value.",
+    file: "The :attribute must be greater than :value kilobytes.",
+    string: "The :attribute must be greater than :value characters.",
+    array: "The :attribute must have more than :value items."
+  },
+  gte: {
+    numeric: "The :attribute must be greater than or equal :value.",
+    file: "The :attribute must be greater than or equal :value kilobytes.",
+    string: "The :attribute must be greater than or equal :value characters.",
+    array: "The :attribute must have :value items or more."
+  },
+  hex: "The :attribute field should have hexadecimal format",
+  image: "Rhaid i :attribute fod yn lun.",
+  in: "Nid yw :attribute yn ddilys.",
+  in_array: "The :attribute field does not exist in :other.",
+  integer: "Rhaid i :attribute fod yn integer.",
+  ip: "Rhaid i :attribute fod yn gyfeiriad IP dilys.",
+  ipv4: "The :attribute must be a valid IPv4 address.",
+  ipv6: "The :attribute must be a valid IPv6 address.",
+  json: "The :attribute must be a valid JSON string.",
+  lt: {
+    numeric: "The :attribute must be less than :value.",
+    file: "The :attribute must be less than :value kilobytes.",
+    string: "The :attribute must be less than :value characters.",
+    array: "The :attribute must have less than :value items."
+  },
+  lte: {
+    numeric: "The :attribute must be less than or equal :value.",
+    file: "The :attribute must be less than or equal :value kilobytes.",
+    string: "The :attribute must be less than or equal :value characters.",
+    array: "The :attribute must not have more than :value items."
+  },
+  max: {
+    numeric: "Ni chai :attribute fod yn fwy na :max.",
+    file: "Ni chai :attribute fod yn fwy na :max kilobytes.",
+    string: "Ni chai :attribute fod yn fwy na :max nodyn.",
+    array: "Ni chai :attribute fod yn fwy na :max eitem."
+  },
+  mimes: "Rhaid i :attribute fod yn ffeil o'r math: :values.",
+  mimetypes: "Rhaid i :attribute fod yn ffeil o'r math: :values.",
+  min: {
+    numeric: "Rhaid i :attribute fod o leiaf :min.",
+    file: "Rhaid i :attribute fod o leiaf :min kilobytes.",
+    string: "Rhaid i :attribute fod o leiaf :min nodyn.",
+    array: "Rhaid i :attribute fod o leiaf :min eitem."
+  },
+  not_in: "Nid yw :attribute yn ddilys.",
+  not_regex: "The :attribute format is invalid.",
+  numeric: "Rhaid i :attribute fod yn rif.",
+  present: "The :attribute field must be present.",
+  regex: "Nid yw fformat :attribute yn ddilys.",
+  required: "Rhaid cynnwys :attribute.",
+  required_if: "Rhaid cynnwys :attribute pan mae :other yn :value.",
+  required_unless: "The :attribute field is required unless :other is in :values.",
+  required_with: "Rhaid cynnwys :attribute pan mae :values yn bresennol.",
+  required_with_all: "Rhaid cynnwys :attribute pan mae :values yn bresennol.",
+  required_without: "Rhaid cynnwys :attribute pan nad oes :values yn bresennol.",
+  required_without_all: "Rhaid cynnwys :attribute pan nad oes :values yn bresennol.",
+  same: "Rhaid i :attribute a :other fod yn gyfwerth.",
+  size: {
+    numeric: "Rhaid i :attribute fod yn :size.",
+    file: "Rhaid i :attribute fod yn :size kilobytes.",
+    string: "Rhaid i :attribute fod yn :size nodyn.",
+    array: "Rhaid i :attribute fod yn :size eitem."
+  },
+  string: "The :attribute must be a string.",
+  timezone: "Rhaid i :attribute fod yn timezone dilys.",
+  unique: "Mae :attribute eisoes yn bodoli.",
+  uploaded: "The :attribute failed to upload.",
+  url: "Nid yw fformat :attribute yn ddilys."
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/da.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/da.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: ':attribute skal accepteres.',
+  after: ':attribute skal være en dato efter :after.',
+  after_or_equal: ':attribute skal være en dato efter eller lig med :after_or_equal.',
+  alpha: ':attribute må kun bestå af bogstaver.',
+  alpha_dash: ':attribute må kun bestå af bogstaver, tal og bindestreger.',
+  alpha_num: ':attribute må kun bestå af bogstaver og tal.',
+  before: ':attribute skal være en dato før :before.',
+  before_or_equal: ':attribute skal være en dato før eller lig med :before_or_equal.',
+  between: ':attribute skal være mellem :min og :max.',
+  confirmed: ':attribute er ikke det samme som bekræftelsesfeltet.',
+  email: ':attribute skal være en gyldig email.',
+  date: ':attribute er ikke en gyldig dato.',
+  def: ':attribute attributen har fejl.',
+  digits: ':attribute skal have :digits cifre.',
+  digits_between: ':attribute skal have mellem :min og :max cifre.',
+  different: ':attribute og :different skal være forskellige.',
+  in: 'Det valgte :attribute er ugyldigt.',
+  integer: ':attribute skal være et heltal.',
+  hex: ':attribute skal have hexadecimalt format',
+  min: {
+    numeric: ':attribute skal være mindst :min.',
+    string: ':attribute skal være mindst :min tegn.'
+  },
+  max: {
+    numeric: ':attribute skal være højest :max.',
+    string: ':attribute skal være højest :max tegn.'
+  },
+  not_in: 'Den valgte :attribute er ugyldig',
+  numeric: ':attribute skal være et tal.',
+  present: ':attribute skal være tilstede.',
+  required: ':attribute skal udfyldes.',
+  required_if: ':attribute skal udfyldes når :other er :value.',
+  required_unless: ':attribute er påkrævet medmindre :other findes i :values.',
+  required_with: ':attribute skal udfyldes når :field er udfyldt.',
+  required_with_all: ':attribute skal udfyldes når :fields er udfyldt.',
+  required_without: ':attribute skal udfyldes når :field ikke er udfyldt.',
+  required_without_all: ':attribute skal udfyldes når ingen af :fields er udfyldt.',
+  same: ':attribute og :same skal være ens.',
+  size: {
+    numeric: ':attribute skal være :size.',
+    string: ':attribute skal være :size tegn lang.'
+  },
+  string: ':attribute skal være en streng.',
+  url: ':attribute formatet er ugyldigt.',
+  regex: ':attribute formatet er ugyldigt.',
+  attributes: {}
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/de.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/de.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: 'Das :attribute Feld muss akzeptiert werden.',
+  after: 'Das :attribute muss ein Datum nach dem :after sein.',
+  after_or_equal: 'Das :attribute Datum muss kleiner oder gleich dem :after_or_equal sein.',
+  alpha: 'Das :attribute Feld darf nur aus Buchstaben bestehen.',
+  alpha_dash: 'Das :attribute Feld darf nur aus Buchstaben, Zahlen, Binde- und Unterstrichen bestehen.',
+  alpha_num: 'Das :attribute Feld darf nur aus Buchstaben und Zahlen bestehen.',
+  before: 'Das :attribute muss ein Datum vor dem :before sein.',
+  before_or_equal: 'Das :attribute Datum muss größer oder gleich dem :before_or_equal sein.',
+  between: 'Das :attribute Feld muss zwischen :min und :max liegen.',
+  confirmed: 'Das :attribute Feld stimmt nicht mit der Bestätigung überein.',
+  email: 'Das :attribute Format ist ungültig.',
+  date: 'Das :attribute Feld muss ein gültiges Datum sein.',
+  def: 'Das :attribute Feld hat Fehler.',
+  digits: 'Das :attribute Feld muss :digits Stellen haben.',
+  digits_between: 'Das :attribute Feld muss zwischen :min und :max Stellen haben.',
+  different: 'Die Felder :attribute und :different müssen sich unterscheiden.',
+  in: 'Der gewählte Wert für :attribute ist ungültig.',
+  integer: 'Das :attribute Feld muss eine ganze Zahl sein.',
+  hex: 'Das :attribute Feld sollte hexadezimal sein',
+  min: {
+    numeric: 'Das :attribute Feld muss mindestens :min sein.',
+    string: 'Das :attribute Feld muss mindestens :min Zeichen lang sein.'
+  },
+  max: {
+    numeric: 'Das :attribute Feld darf maximal :max sein.',
+    string: 'Das :attribute Feld darf maximal :max Zeichen haben.'
+  },
+  not_in: 'Der gewählte Wert für :attribute ist ungültig.',
+  numeric: 'Das :attribute Feld muss eine Zahl sein.',
+  present: 'Das Feld :attribute muss vorhanden sein (kann aber leer sein).',
+  required: 'Das :attribute Feld muss ausgefüllt sein.',
+  required_if: 'Das :attribute Feld muss ausgefüllt sein, wenn :other :value ist.',
+  same: 'Die Felder :attribute und :same müssen übereinstimmen.',
+  size: {
+    numeric: 'Das :attribute Feld muss gleich :size sein.',
+    string: 'Das :attribute Feld muss :size Zeichen lang sein.'
+  },
+  string: 'Das :attribute Feld muss ein Satz sein.',
+  url: 'Das Format von :attribute ist ungültig.',
+  regex: 'Das :attribute Format ist ungültig.',
+  attributes: {}
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/el.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/el.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: 'Το πεδίο :attribute πρέπει να γίνει αποδεκτό.',
+  after: 'Το πεδίο :attribute πρέπει να είναι μία ημερομηνία μετά από :after.',
+  alpha: 'Το πεδίο :attribute μπορεί να περιέχει μόνο γράμματα.',
+  alpha_dash: 'Το πεδίο :attribute μπορεί να περιέχει μόνο γράμματα, αριθμούς, και παύλες.',
+  alpha_num: 'Το πεδίο :attribute μπορεί να περιέχει μόνο γράμματα και αριθμούς.',
+  between: 'Το πεδίο :attribute πρέπει να είναι μεταξύ :min και :max.',
+  confirmed: 'Η επιβεβαίωση του :attribute δεν ταιριάζει.',
+  email: 'Το πεδίο :attribute πρέπει να είναι μία έγκυρη διεύθυνση email.',
+  date: 'Το πεδίο :attribute δεν είναι έγκυρη ημερομηνία.',
+  def: 'Το πεδίο :attribute περιέχει σφάλματα.',
+  digits: 'Το πεδίο :attribute πρέπει να είναι :digits ψηφία.',
+  digits_between: 'Το πεδίο :attribute πρέπει να είναι μεταξύ :min και :max ψηφία.',
+  different: 'Το πεδίο :attribute  και :different πρέπει να είναι διαφορετικά.',
+  in: 'Το επιλεγμένο :attribute δεν είναι έγκυρο.',
+  integer: 'Το πεδίο :attribute πρέπει να είναι ακέραιος.',
+  hex: 'Το πεδίο :attribute πρέπει να είναι σε δεκαεξαδική μορφή.',
+  min: {
+    numeric: 'Το πεδίο :attribute πρέπει να είναι τουλάχιστον :min.',
+    string: 'Το πεδίο :attribute πρέπει να έχει τουλάχιστον :min χαρακτήρες.'
+  },
+  max: {
+    numeric: 'Το πεδίο :attribute δεν μπορεί να είναι μεγαλύτερο από :max.',
+    string: 'Το πεδίο :attribute δεν μπορεί να έχει περισσότερους από :max χαρακτήρες.'
+  },
+  not_in: 'Το επιλεγμένο :attribute δεν είναι αποδεκτό.',
+  numeric: 'Το πεδίο :attribute πρέπει να είναι αριθμός.',
+  present: 'The :attribute field must be present (but can be empty).',
+  required: 'Το πεδίο :attribute είναι απαραίτητο.',
+  required_if: 'Το πεδίο :attribute είναι απαραίτητο όταν το πεδίο :other είναι :value.',
+  same: 'Τα πεδία :attribute και :same πρέπει να είναι ίδια.',
+  size: {
+    numeric: 'Το πεδίο :attribute πρέπει να είναι :size.',
+    string: 'Το πεδίο :attribute πρέπει να είναι :size χαρακτήρες.'
+  },
+  string: 'Το πεδίο :attribute πρέπει να είναι αλφαριθμητικό.',
+  url: 'Το πεδίο :attribute δεν είναι έγκυρη διεύθυνση URL.',
+  regex: 'Η μορφή του :attribute δεν είναι αποδεκτή.',
+  attributes: {}
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/en.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/en.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: 'The :attribute must be accepted.',
+  after: 'The :attribute must be after :after.',
+  after_or_equal: 'The :attribute must be equal or after :after_or_equal.',
+  alpha: 'The :attribute field must contain only alphabetic characters.',
+  alpha_dash: 'The :attribute field may only contain alpha-numeric characters, as well as dashes and underscores.',
+  alpha_num: 'The :attribute field must be alphanumeric.',
+  before: 'The :attribute must be before :before.',
+  before_or_equal: 'The :attribute must be equal or before :before_or_equal.',
+  between: {
+    numeric: 'The :attribute field must be between :min and :max.',
+    string: 'The :attribute field must be between :min and :max characters.',
+  },
+  confirmed: 'The :attribute confirmation does not match.',
+  email: 'The :attribute format is invalid.',
+  date: 'The :attribute is not a valid date format.',
+  def: 'The :attribute attribute has errors.',
+  digits: 'The :attribute must be :digits digits.',
+  digits_between: 'The :attribute field must be between :min and :max digits.',
+  different: 'The :attribute and :different must be different.',
+  in: 'The selected :attribute is invalid.',
+  integer: 'The :attribute must be an integer.',
+  hex: 'The :attribute field should have hexadecimal format',
+  min: {
+    numeric: 'The :attribute must be at least :min.',
+    string: 'The :attribute must be at least :min characters.'
+  },
+  max: {
+    numeric: 'The :attribute may not be greater than :max.',
+    string: 'The :attribute may not be greater than :max characters.'
+  },
+  not_in: 'The selected :attribute is invalid.',
+  numeric: 'The :attribute must be a number.',
+  present: 'The :attribute field must be present (but can be empty).',
+  required: 'The :attribute field is required.',
+  required_if: 'The :attribute field is required when :other is :value.',
+  required_unless: 'The :attribute field is required when :other is not :value.',
+  required_with: 'The :attribute field is required when :field is not empty.',
+  required_with_all: 'The :attribute field is required when :fields are not empty.',
+  required_without: 'The :attribute field is required when :field is empty.',
+  required_without_all: 'The :attribute field is required when :fields are empty.',
+  same: 'The :attribute and :same fields must match.',
+  size: {
+    numeric: 'The :attribute must be :size.',
+    string: 'The :attribute must be :size characters.'
+  },
+  string: 'The :attribute must be a string.',
+  url: 'The :attribute format is invalid.',
+  regex: 'The :attribute format is invalid.',
+  attributes: {}
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/es.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/es.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: 'El campo :attribute debe ser aceptado.',
+  after: 'El campo :attribute debe ser una fecha posterior a :after.',
+  alpha: 'El campo :attribute solo debe contener letras.',
+  alpha_dash: 'El campo :attribute solo debe contener letras, números y guiones.',
+  alpha_num: 'El campo :attribute solo debe contener letras y números.',
+  attributes: {},
+  between: 'El campo :attribute tiene que estar entre :min - :max.',
+  confirmed: 'La confirmación de :attribute no coincide.',
+  different: 'El campo :attribute y :other deben ser diferentes.',
+  digits: 'El campo :attribute debe tener :digits dígitos.',
+  digits_between: 'El campo :attribute debe tener entre :min y :max dígitos.',
+  email: 'El campo :attribute no es un correo válido.',
+  in: 'El campo :attribute es inválido.',
+  integer: 'El campo :attribute debe ser un número entero.',
+  hex: 'El campo :attribute debe tener formato hexadecimal.',
+  max: {
+    numeric: 'El campo :attribute no debe ser mayor a :max.',
+    string: 'El campo :attribute no debe ser mayor que :max caracteres.'
+  },
+  min: {
+    numeric: 'El tamaño del campo :attribute debe ser de al menos :min.',
+    string: 'El campo :attribute debe contener al menos :min caracteres.'
+  },
+  not_in: 'El campo :attribute es inválido.',
+  numeric: 'El campo :attribute debe ser numérico.',
+  present: 'El campo de :attribute debe estar presente (pero puede estar vacío).',
+  regex: 'El formato del campo :attribute es inválido.',
+  required: 'El campo :attribute es obligatorio.',
+  required_if: 'El campo :attribute es obligatorio cuando :other es :value.',
+  same: 'El campo :attribute y :other deben coincidir.',
+  size: {
+    numeric: 'El tamaño del campo :attribute debe ser :size.',
+    string: 'El campo :attribute debe contener :size caracteres.'
+  },
+  url: 'El formato de :attribute es inválido.'
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/et.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/et.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: ":attribute tuleb aktsepteerida.",
+  active_url: ":attribute ei ole kehtiv URL.",
+  after: ":attribute peab olema kuupäev pärast :date.",
+  after_or_equal: ":attribute peab olema kuupäev pärast või samastuma :date.",
+  alpha: ":attribute võib sisaldada vaid tähemärke.",
+  alpha_dash: ":attribute võib sisaldada vaid tähti, numbreid ja kriipse.",
+  alpha_num: ":attribute võib sisaldada vaid tähti ja numbreid.",
+  attributes: {},
+  array: ":attribute peab olema massiiv.",
+  before: ":attribute peab olema kuupäev enne :date.",
+  before_or_equal: ":attribute peab olema kuupäev enne või samastuma :date.",
+  between: {
+    numeric: ":attribute peab olema :min ja :max vahel.",
+    file: ":attribute peab olema :min ja :max kilobaidi vahel.",
+    string: ":attribute peab olema :min ja :max tähemärgi vahel.",
+    array: ":attribute peab olema :min ja :max kirje vahel."
+  },
+  boolean: ":attribute väli peab olema tõene või väär.",
+  confirmed: ":attribute kinnitus ei vasta.",
+  date: ":attribute pole kehtiv kuupäev.",
+  date_format: ":attribute ei vasta formaadile :format.",
+  different: ":attribute ja :other peavad olema erinevad.",
+  digits: ":attribute peab olema :digits numbrit.",
+  digits_between: ":attribute peab olema :min ja :max numbri vahel.",
+  dimensions: ":attribute on valed pildi suurused.",
+  distinct: ":attribute väljal on topeltväärtus.",
+  email: ":attribute peab olema kehtiv e-posti aadress.",
+  exists: "Valitud :attribute on vigane.",
+  file: ":attribute peab olema fail.",
+  filled: ":attribute väli on nõutav.",
+  gt: {
+    numeric: "The :attribute must be greater than :value.",
+    file: "The :attribute must be greater than :value kilobytes.",
+    string: "The :attribute must be greater than :value characters.",
+    array: "The :attribute must have more than :value items."
+  },
+  gte: {
+    numeric: "The :attribute must be greater than or equal :value.",
+    file: "The :attribute must be greater than or equal :value kilobytes.",
+    string: "The :attribute must be greater than or equal :value characters.",
+    array: "The :attribute must have :value items or more."
+  },
+  hex: "The :attribute field should have hexadecimal format",
+  image: ":attribute peab olema pilt.",
+  in: "Valitud :attribute on vigane.",
+  in_array: ":attribute väli ei eksisteeri :other sees.",
+  integer: ":attribute peab olema täisarv.",
+  ip: ":attribute peab olema kehtiv IP aadress.",
+  ipv4: ":attribute peab olema kehtiv IPv4 aadress.",
+  ipv6: ":attribute peab olema kehtiv IPv6 aadress.",
+  json: ":attribute peab olema kehtiv JSON string.",
+  lt: {
+    numeric: "The :attribute must be less than :value.",
+    file: "The :attribute must be less than :value kilobytes.",
+    string: "The :attribute must be less than :value characters.",
+    array: "The :attribute must have less than :value items."
+  },
+  lte: {
+    numeric: "The :attribute must be less than or equal :value.",
+    file: "The :attribute must be less than or equal :value kilobytes.",
+    string: "The :attribute must be less than or equal :value characters.",
+    array: "The :attribute must not have more than :value items."
+  },
+  max: {
+    numeric: ":attribute ei tohi olla suurem kui :max.",
+    file: ":attribute ei tohi olla suurem kui :max kilobaiti.",
+    string: ":attribute ei tohi olla suurem kui :max tähemärki.",
+    array: ":attribute ei tohi sisaldada rohkem kui :max kirjet."
+  },
+  mimes: ":attribute peab olema :values tüüpi.",
+  mimetypes: ":attribute peab olema :values tüüpi.",
+  min: {
+    numeric: ":attribute peab olema vähemalt :min.",
+    file: ":attribute peab olema vähemalt :min kilobaiti.",
+    string: ":attribute peab olema vähemalt :min tähemärki.",
+    array: ":attribute peab olema vähemalt :min kirjet."
+  },
+  not_in: "Valitud :attribute on vigane.",
+  not_regex: "The :attribute format is invalid.",
+  numeric: ":attribute peab olema number.",
+  present: ":attribute väli peab olema esindatud.",
+  regex: ":attribute vorming on vigane.",
+  required: ":attribute väli on nõutud.",
+  required_if: ":attribute väli on nõutud, kui :other on :value.",
+  required_unless: ":attribute väli on nõutud, välja arvatud, kui :other on :values.",
+  required_with: ":attribute väli on nõutud, kui :values on esindatud.",
+  required_with_all: ":attribute väli on nõutud, kui :values on esindatud.",
+  required_without: ":attribute väli on nõutud, kui :values ei ole esindatud.",
+  required_without_all: ":attribute väli on nõutud, kui ükski :values pole esindatud.",
+  same: ":attribute ja :other peavad sobima.",
+  size: {
+    numeric: ":attribute peab olema :size.",
+    file: ":attribute peab olema :size kilobaiti.",
+    string: ":attribute peab olema :size tähemärki.",
+    array: ":attribute peab sisaldama :size kirjet."
+  },
+  string: ":attribute peab olema string.",
+  timezone: ":attribute peab olema kehtiv tsoon.",
+  unique: ":attribute on juba hõivatud.",
+  uploaded: ":attribute ei õnnestunud laadida.",
+  url: ":attribute vorming on vigane."
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/eu.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/eu.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: ":attribute onartua izan behar da.",
+  active_url: ":attribute ez da baliozko URL bat.",
+  after: ":attribute :date osteko data izan behar da.",
+  after_or_equal: ":attribute :date osteko data edo data berdina izan behar da.",
+  alpha: ":attribute hizkiak besterik ezin ditu izan.",
+  alpha_dash: ":attribute hizkiak, zenbakiak eta marrak besterik ezin ditu izan.",
+  alpha_num: ":attribute hizkiak eta zenbakiak besterik ezin ditu izan.",
+  attributes: {},
+  array: ":attribute bilduma izan behar da.",
+  before: ":attribute :date aurreko data izan behar da.",
+  before_or_equal: ":attribute :date aurreko data edo data berdina izan behar da.",
+  between: {
+    numeric: ":attribute :min eta :max artean egon behar da.",
+    file: ":attribute-k :min eta :max kilobyte arteko pisua izan behar du.",
+    string: ":attribute :min eta :max karaktere artean egon behar da.",
+    array: ":attribute-k :min eta :max arteko ale kantitatea euki behar du."
+  },
+  boolean: ":attribute-ren balioa egia edo gezurra izan behar da.",
+  confirmed: ":attribute-ren konfirmazioa ez dator bat.",
+  date: ":attribute ez da baliozko data.",
+  date_format: ":attribute datak ez du :format formatua.",
+  different: ":attribute eta :other ezberdinak izan behar dira.",
+  digits: ":attribute-k :digits digitu euki behar ditu.",
+  digits_between: ":attribute-k :min eta :max arteko digitu kantitatea euki behar du.",
+  dimensions: ":attribute-k ez ditu irudi neurri aproposak.",
+  distinct: ":attribute-k balio bikoiztua dauka.",
+  email: ":attribute-k baliozko posta helbidea euki behar du.",
+  exists: "Hautatutako :attribute baliogabea da.",
+  file: ":attribute fitxategi bat izan behar da.",
+  filled: ":attribute-k balioren bat euki behar du.",
+  gt: {
+    numeric: "The :attribute must be greater than :value.",
+    file: "The :attribute must be greater than :value kilobytes.",
+    string: "The :attribute must be greater than :value characters.",
+    array: "The :attribute must have more than :value items."
+  },
+  gte: {
+    numeric: "The :attribute must be greater than or equal :value.",
+    file: "The :attribute must be greater than or equal :value kilobytes.",
+    string: "The :attribute must be greater than or equal :value characters.",
+    array: "The :attribute must have :value items or more."
+  },
+  hex: "The :attribute field should have hexadecimal format",
+  image: ":attribute irudi bat izan behar da.",
+  in: "Hautatutako :attribute baliogabea da.",
+  in_array: ":attribute ez da :other-en existizen.",
+  integer: ":attribute zenbaki osoa izan behar da.",
+  ip: ":attribute baliozko IP helbidea izan behar da.",
+  ipv4: ":attribute baliozko IPv4 helbidea izan behar da.",
+  ipv6: ":attribute baliozko IPv6 helbidea izan behar da.",
+  json: ":attribute-k baliozko JSON karaktere-katea euki behar du.",
+  lt: {
+    numeric: "The :attribute must be less than :value.",
+    file: "The :attribute must be less than :value kilobytes.",
+    string: "The :attribute must be less than :value characters.",
+    array: "The :attribute must have less than :value items."
+  },
+  lte: {
+    numeric: "The :attribute must be less than or equal :value.",
+    file: "The :attribute must be less than or equal :value kilobytes.",
+    string: "The :attribute must be less than or equal :value characters.",
+    array: "The :attribute must not have more than :value items."
+  },
+  max: {
+    numeric: ":attribute ezin da :max baino handiagoa izan.",
+    file: ":attribute-k ezin du :max kilobyte baino gehiagoko pisua euki.",
+    string: ":attribute-k ezin du :max karaktere baino gehiago euki.",
+    array: ":attribute-k ezin du :max ale baino gehiago euki."
+  },
+  mimes: ":attribute :values motatako fitxategia izan behar da.",
+  mimetypes: ":attribute :values motatako fitxategia izan behar da.",
+  min: {
+    numeric: ":attribute-k gutxienez :min-eko tamaina izan behar du.",
+    file: ":attribute-k gutxienez :min kilobyteko pisua euki behar du.",
+    string: ":attribute-k gutxienez :min karaktere euki behar ditu.",
+    array: ":attribute-k gutxienez :min ale euki behar ditu."
+  },
+  not_in: "Hautatutako :attribute baliogabea da.",
+  not_regex: "The :attribute format is invalid.",
+  numeric: ":attribute zenbaki bat izan behar da.",
+  present: ":attribute bertan egon behar da.",
+  regex: ":attribute-k ez dauka formatu egokirik.",
+  required: ":attribute derrigorrezkoa da.",
+  required_if: ":attribute derrigorrezkoa da :other :value denean.",
+  required_unless: ":attribute derrigorrezkoa da :other :values-en egon ezean.",
+  required_with: ":attribute derrigorrezkoa da :values bertan dagoenean.",
+  required_with_all: ":attribute derrigorrezkoa da :values bertan dagoenean.",
+  required_without: ":attribute derrigorrezkoa da :values bertan ez dagoenean.",
+  required_without_all: ":attribute derrigorrezkoa da :values bertan ez dagoenean.",
+  same: ":attribute eta :other bat etorri behar dira.",
+  size: {
+    numeric: ":attribute-k :size-eko tamaina izan behar du.",
+    file: ":attribute-k :size kilobyteko pisua euki behar du.",
+    string: ":attribute-k :size karaktere euki beha ditu.",
+    array: ":attribute-k :size ale euki behar ditu."
+  },
+  string: ":attribute karaktere-katea izan behar da.",
+  timezone: ":attribute baliozko gunea izan behar da.",
+  unique: ":attribute jadanik erregistratua izan da.",
+  uploaded: ":attribute igotzerakoan huts egin du.",
+  url: ":attribute-k ez dauka formatu egokirik."
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/fa.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/fa.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: 'فیلد :attribute می بایست تایید شود',
+  alpha: 'فیلد :attribute می بایست فقط شامل حروف انگلیسی باشد',
+  alpha_dash: 'فیلد :attribute می بایست فقط شامل حروف انگلیسی و خط تیره و زیرخط باشد',
+  alpha_num: 'فیلد :attribute می بایست فقط شامل حروف و اعداد باشد',
+  between: 'فیلد :attribute می بایست بزرگتر از :min و کوچکتر از :max باشد',
+  confirmed: 'تطبیق فیلد :attribute صحیح نمی باشد',
+  email: 'فرمت ایمیل وارد شده در :attribute صحیح نمی‌باشد',
+  date: 'تاریخ درج شده در فیلد :attribute صحیح نیست',
+  def: 'فیلد :attribute اشکال دارد',
+  digits: 'فیلد :attribute می بایست شامل :digits رقم باشد',
+  digits_between: ':attribute باید بین :min و :max رقم باشد.',
+  different: 'فیلد :attribute می بایست مقداری غیر از :different داشته باشد',
+  in: 'فیلد :attribute انتخاب شده صحیح نمی باشد',
+  integer: 'فیلد :attribute می بایست عددی باشد',
+  hex: 'فیلد :attribute باید در فرمت مبنای ۱۶ باشد',
+  min: {
+    numeric: 'فیلد :attribute می بایست از :min بزرگتر باشد',
+    string: 'فیلد :attribute بایستی حداقل :min کاراکتر طول داشته باشد'
+  },
+  max: {
+    numeric: 'فیلد :attribute می بایست از :max کوچکتر باشد',
+    string: 'فیلد :attribute نباید بیشتر از :max کاراکتر طول داشته باشد'
+  },
+  not_in: 'فیلد :attribute انتخاب شده صحیح نمی باشد',
+  numeric: 'فیلد :attribute می بایست عددی باشد',
+  present: 'The :attribute field must be present (but can be empty).',
+  required: 'فیلد :attribute الزامی است',
+  required_if: 'در صورت دادن :value به :other تکمیل فیلد :attribute الزامی است',
+  same: 'فیلد :attribute می بایست با فیلد :same یکی باشد',
+  size: {
+    numeric: 'فیلد :attribute می بایست :size باشد',
+    string: 'فیلد :attribute می بایست :size کاراکتر طول داشته باشد'
+  },
+  string: 'فیلد :attribute می بایست متنی باشد',
+  url: 'آدرس فیلد :attribute صحیح نمی باشد',
+  regex: 'فرمت آدرس :attribute صحیح نمی باشد',
+  attributes: {}
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/fi.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/fi.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: ':attribute on oltava hyväksytty.',
+  after: ':attribute on oltava :after jälkeen.',
+  after_or_equal: ':attribute täytyy olla sama kuin :after_or_equal tai sen jälkeen.',
+  alpha: ':attribute kenttä saa sisältää ainoastaan kirjaimia.',
+  alpha_dash: ':attribute kenttä saa sisältää ainoastaan kirjaimia tai numeroita, sekä pisteitä ja alaviivoja.',
+  alpha_num: ':attribute kenttä saa sisältää ainoastaan kirjaimia tai numeroita.',
+  before: ':attribute on oltava ennen kuin :before.',
+  before_or_equal: ':attribute on oltava sama tai ennen kuin :before_or_equal.',
+  between: ':attribute on oltava :min ja :max väliltä.',
+  confirmed: ':attribute vahvistus ei täsmää.',
+  email: ':attribute on väärässä muodossa.',
+  date: ':attribute ei ole päivämäärä.',
+  def: ':attribute sisältää virheitä.',
+  digits: ':attribute on oltava :digits numeroa pitkä.',
+  digits_between: 'Kentän :attribute arvon tulee olla :min - :max numeroa.',
+  different: ':attribute ei saa olla yhtä kuin :different.',
+  in: 'Valittu :attribute ei kelpaa.',
+  integer: ':attribute ei ole numero.',
+  hex: ':attribute on oltava heksadesimaali.',
+  min: {
+    numeric: ':attribute on oltava vähintään :min.',
+    string: ':attribute on oltava vähintään :min merkkiä pitkä.'
+  },
+  max: {
+    numeric: ':attribute on oltava enintään :max.',
+    string: ':attribute on oltava enintään :max merkkiä pitkä.'
+  },
+  not_in: 'Valittu :attribute ei kelpaa.',
+  numeric: ':attribute on oltava numero.',
+  present: ':attribute kenttä on oltava (mutta saa olla tyhjä).',
+  required: ':attribute kenttä on pakollinen.',
+  required_if: ':attribute kenttä on pakollinen, jos kenttä :other on :value.',
+  required_unless: ':attribute kenttä on pakollinen, jos kenttä :other ei ole :value.',
+  required_with: ':attribute kenttä on pakollinen, jos kenttä :field ei ole tyhjä.',
+  required_with_all: ':attribute kenttä on pakollinen, jos kentät :fields eivät ole tyhjiä.',
+  required_without: ':attribute kenttä on pakollinen, jos kenttä :field on tyhjä.',
+  required_without_all: ':attribute kenttä on pakollinen, jos kentät :fields ovat tyhjiä.',
+  same: ':attribute ja :same on oltava samat.',
+  size: {
+    numeric: ':attribute on oltava :size.',
+    string: ':attribute on oltava :size merkkiä pitkä.'
+  },
+  string: ':attribute on oltava merkkijono.',
+  url: ':attribute on väärässä muodossa.',
+  regex: ':attribute on väärässä muodossa.',
+  attributes: {}
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/fr.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/fr.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: 'Le champ :attribute doit être accepté.',
+  alpha: 'Le champ :attribute ne peut contenir que des caractères alphabétiques.',
+  alpha_dash: 'Le champ :attribute ne peut contenir que des caractères alphanumériques, des tirets et des underscores.',
+  alpha_num: 'Le champ :attribute ne peut contenir que des caractères alphanumériques.',
+  between: 'La longueur du champ :attribute doit être comprise entre :min and :max.',
+  confirmed: 'Le champ :attribute n\'est pas confirmé.',
+  email: 'Le champ :attribute contient un format invalide.',
+  def: 'Le champ :attribute contient un attribut erroné.',
+  digits: 'Le champ :attribute doit être composé de :digits chiffres.',
+  digits_between: 'Le champ :attribute doit contenir entre :min et :max chiffres.',
+  different: 'Les champs :attribute et :different doivent être différents.',
+  in: 'Le champ :attribute est invalide.',
+  integer: 'Le champ :attribute doit être un entier.',
+  hex: 'Le champ :attribute doit être au format hexadécimal.',
+  min: {
+    numeric: 'Le champ :attribute doit être supérieur à :min.',
+    string: 'Le champ :attribute doit contenir plus de :min caractères.'
+  },
+  max: {
+    numeric: 'Le champ :attribute doit être inférieur à :max.',
+    string: 'Le champ :attribute doit contenir moins de :max caractères.'
+  },
+  not_in: 'Le champ :attribute est invalide.',
+  numeric: 'Le champ :attribute doit être un chiffre.',
+  present: 'Le champ :attribute doit être présent (mais peut être vide).',
+  required: 'Le champ :attribute est requis.',
+  required_if: 'Le champ :attribute est requis quand :other est :value.',
+  same: 'Les champs :attribute et :same doivent correspondre.',
+  size: {
+    numeric: 'Le champ :attribute doit être égal à :size.',
+    string: 'Le champ :attribute doit contenir :size caractères.'
+  },
+  url: 'Le format du champ :attribute est invalide.',
+  regex: 'Le format du champ :attribute est invalide.',
+  attributes: {}
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/hr.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/hr.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: "Polje :attribute mora biti prihvaćeno.",
+  active_url: "Polje :attribute nije ispravan URL.",
+  after: "Polje :attribute mora biti datum nakon :date.",
+  after_or_equal: "Polje :attribute mora biti datum veći ili jednak :date.",
+  alpha: "Polje :attribute smije sadržavati samo slova.",
+  alpha_dash: "Polje :attribute smije sadržavati samo slova, brojeve i crtice.",
+  alpha_num: "Polje :attribute smije sadržavati samo slova i brojeve.",
+  attributes: {},
+  array: "Polje :attribute mora biti niz.",
+  before: "Polje :attribute mora biti datum prije :date.",
+  before_or_equal: "Polje :attribute mora biti datum manji ili jednak :date.",
+  between: {
+    numeric: "Polje :attribute mora biti između :min - :max.",
+    file: "Polje :attribute mora biti između :min - :max kilobajta.",
+    string: "Polje :attribute mora biti između :min - :max znakova.",
+    array: "Polje :attribute mora imati između :min - :max stavki."
+  },
+  boolean: "Polje :attribute mora biti false ili true.",
+  confirmed: "Potvrda polja :attribute se ne podudara.",
+  date: "Polje :attribute nije ispravan datum.",
+  date_format: "Polje :attribute ne podudara s formatom :format.",
+  different: "Polja :attribute i :other moraju biti različita.",
+  digits: "Polje :attribute mora sadržavati :digits znamenki.",
+  digits_between: "Polje :attribute mora imati između :min i :max znamenki.",
+  dimensions: "Polje :attribute ima neispravne dimenzije slike.",
+  distinct: "Polje :attribute ima dupliciranu vrijednost.",
+  email: "Polje :attribute mora biti ispravna e-mail adresa.",
+  exists: "Odabrano polje :attribute nije ispravno.",
+  file: "Polje :attribute mora biti datoteka.",
+  filled: "Polje :attribute je obavezno.",
+  gt: {
+    numeric: "Polje :attribute mora biti veće od :value.",
+    file: "Polje :attribute mora biti veće od :value kilobajta.",
+    string: "Polje :attribute mora biti veće od :value karaktera.",
+    array: "Polje :attribute mora biti veće od :value stavki."
+  },
+  gte: {
+    numeric: "Polje :attribute mora biti veće ili jednako :value.",
+    file: "Polje :attribute mora biti veće ili jednako :value kilobajta.",
+    string: "Polje :attribute mora biti veće ili jednako :value znakova.",
+    array: "Polje :attribute mora imati :value stavki ili više."
+  },
+  hex: "The :attribute field should have hexadecimal format",
+  image: "Polje :attribute mora biti slika.",
+  in: "Odabrano polje :attribute nije ispravno.",
+  in_array: "Polje :attribute ne postoji u :other.",
+  integer: "Polje :attribute mora biti broj.",
+  ip: "Polje :attribute mora biti ispravna IP adresa.",
+  ipv4: "Polje :attribute mora biti ispravna IPv4 adresa.",
+  ipv6: "Polje :attribute mora biti ispravna IPv6 adresa.",
+  json: "Polje :attribute mora biti ispravan JSON string.",
+  lt: {
+    numeric: "Polje :attribute mora biti manje od :value.",
+    file: "Polje :attribute mora biti manje od :value kilobajta.",
+    string: "Polje :attribute mora biti manje od :value znakova.",
+    array: "Polje :attribute mora biti manje od :value stavki."
+  },
+  lte: {
+    numeric: "Polje :attribute mora biti manje ili jednako :value.",
+    file: "Polje :attribute mora biti manje ili jednako :value kilobajta.",
+    string: "Polje :attribute mora biti manje ili jednako :value znakova.",
+    array: "Polje :attribute ne smije imati više od :value stavki."
+  },
+  max: {
+    numeric: "Polje :attribute mora biti manje od :max.",
+    file: "Polje :attribute mora biti manje od :max kilobajta.",
+    string: "Polje :attribute mora sadržavati manje od :max znakova.",
+    array: "Polje :attribute ne smije imati više od :max stavki."
+  },
+  mimes: "Polje :attribute mora biti datoteka tipa: :values.",
+  mimetypes: "Polje :attribute mora biti datoteka tipa: :values.",
+  min: {
+    numeric: "Polje :attribute mora biti najmanje :min.",
+    file: "Polje :attribute mora biti najmanje :min kilobajta.",
+    string: "Polje :attribute mora sadržavati najmanje :min znakova.",
+    array: "Polje :attribute mora sadržavati najmanje :min stavki."
+  },
+  not_in: "Odabrano polje :attribute nije ispravno.",
+  not_regex: "Format polja :attribute je neispravan.",
+  numeric: "Polje :attribute mora biti broj.",
+  present: "Polje :attribute mora biti prisutno.",
+  regex: "Polje :attribute se ne podudara s formatom.",
+  required: "Polje :attribute je obavezno.",
+  required_if: "Polje :attribute je obavezno kada polje :other sadrži :value.",
+  required_unless: "Polje :attribute je obavezno osim :other je u :values.",
+  required_with: "Polje :attribute je obavezno kada postoji polje :values.",
+  required_with_all: "Polje :attribute je obavezno kada postje polja :values.",
+  required_without: "Polje :attribute je obavezno kada ne postoji polje :values.",
+  required_without_all: "Polje :attribute je obavezno kada nijedno od polja :values ne postoji.",
+  same: "Polja :attribute i :other se moraju podudarati.",
+  size: {
+    numeric: "Polje :attribute mora biti :size.",
+    file: "Polje :attribute mora biti :size kilobajta.",
+    string: "Polje :attribute mora biti :size znakova.",
+    array: "Polje :attribute mora sadržavati :size stavki."
+  },
+  string: "Polje :attribute mora biti string.",
+  timezone: "Polje :attribute mora biti ispravna vremenska zona.",
+  unique: "Polje :attribute već postoji.",
+  uploaded: "Polje :attribute nije uspešno učitano.",
+  url: "Polje :attribute nije ispravnog formata."
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/hu.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/hu.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: "A(z) :attribute el kell legyen fogadva!",
+  active_url: "A(z) :attribute nem érvényes url!",
+  after: "A(z) :attribute :date utáni dátum kell, hogy legyen!",
+  after_or_equal: "A(z) :attribute nem lehet korábbi dátum, mint :date!",
+  alpha: "A(z) :attribute kizárólag betűket tartalmazhat!",
+  alpha_dash: "A(z) :attribute kizárólag betűket, számokat és kötőjeleket tartalmazhat!",
+  alpha_num: "A(z) :attribute kizárólag betűket és számokat tartalmazhat!",
+  attributes: {},
+  array: "A(z) :attribute egy tömb kell, hogy legyen!",
+  before: "A(z) :attribute :date előtti dátum kell, hogy legyen!",
+  before_or_equal: "A(z) :attribute nem lehet későbbi dátum, mint :date!",
+  between: {
+    numeric: "A(z) :attribute :min és :max közötti szám kell, hogy legyen!",
+    file: "A(z) :attribute mérete :min és :max kilobájt között kell, hogy legyen!",
+    string: "A(z) :attribute hossza :min és :max karakter között kell, hogy legyen!",
+    array: "A(z) :attribute :min - :max közötti elemet kell, hogy tartalmazzon!"
+  },
+  boolean: "A(z) :attribute mező csak true vagy false értéket kaphat!",
+  confirmed: "A(z) :attribute nem egyezik a megerősítéssel.",
+  date: "A(z) :attribute nem érvényes dátum.",
+  date_format: "A(z) :attribute nem egyezik az alábbi dátum formátummal :format!",
+  different: "A(z) :attribute és :other értékei különbözőek kell, hogy legyenek!",
+  digits: "A(z) :attribute :digits számjegyű kell, hogy legyen!",
+  digits_between: "A(z) :attribute értéke :min és :max közötti számjegy lehet!",
+  dimensions: "A(z) :attribute felbontása nem megfelelő.",
+  distinct: "A(z) :attribute értékének egyedinek kell lennie!",
+  email: "A(z) :attribute nem érvényes email formátum.",
+  exists: "A(z) :attribute már létezik.",
+  file: "A(z) :attribute fájl kell, hogy legyen!",
+  filled: "A(z) :attribute megadása kötelező!",
+  gt: {
+    numeric: "A(z) :attribute nagyobb kell, hogy legyen, mint :value!",
+    file: "A(z) :attribute mérete nagyobb kell, hogy legyen, mint :value kilobájt.",
+    string: "A(z) :attribute hosszabb kell, hogy legyen, mint :value karakter.",
+    array: "A(z) :attribute több, mint :value elemet kell, hogy tartalmazzon."
+  },
+  gte: {
+    numeric: "A(z) :attribute nagyobb vagy egyenlő kell, hogy legyen, mint :value!",
+    file: "A(z) :attribute mérete nem lehet kevesebb, mint :value kilobájt.",
+    string: "A(z) :attribute hossza nem lehet kevesebb, mint :value karakter.",
+    array: "A(z) :attribute legalább :value elemet kell, hogy tartalmazzon."
+  },
+  hex: "The :attribute field should have hexadecimal format",
+  image: "A(z) :attribute képfájl kell, hogy legyen!",
+  in: "A kiválasztott :attribute érvénytelen.",
+  in_array: "A(z) :attribute értéke nem található a(z) :other értékek között.",
+  integer: "A(z) :attribute értéke szám kell, hogy legyen!",
+  ip: "A(z) :attribute érvényes IP cím kell, hogy legyen!",
+  ipv4: "A(z) :attribute érvényes IPv4 cím kell, hogy legyen!",
+  ipv6: "A(z) :attribute érvényes IPv6 cím kell, hogy legyen!",
+  json: "A(z) :attribute érvényes JSON szöveg kell, hogy legyen!",
+  lt: {
+    numeric: "A(z) :attribute kisebb kell, hogy legyen, mint :value!",
+    file: "A(z) :attribute mérete kisebb kell, hogy legyen, mint :value kilobájt.",
+    string: "A(z) :attribute rövidebb kell, hogy legyen, mint :value karakter.",
+    array: "A(z) :attribute kevesebb, mint :value elemet kell, hogy tartalmazzon."
+  },
+  lte: {
+    numeric: "A(z) :attribute kisebb vagy egyenlő kell, hogy legyen, mint :value!",
+    file: "A(z) :attribute mérete nem lehet több, mint :value kilobájt.",
+    string: "A(z) :attribute hossza nem lehet több, mint :value karakter.",
+    array: "A(z) :attribute legfeljebb :value elemet kell, hogy tartalmazzon."
+  },
+  max: {
+    numeric: "A(z) :attribute értéke nem lehet nagyobb, mint :max!",
+    file: "A(z) :attribute mérete nem lehet több, mint :max kilobájt.",
+    string: "A(z) :attribute hossza nem lehet több, mint :max karakter.",
+    array: "A(z) :attribute legfeljebb :max elemet kell, hogy tartalmazzon."
+  },
+  mimes: "A(z) :attribute kizárólag az alábbi fájlformátumok egyike lehet: :values.",
+  mimetypes: "A(z) :attribute kizárólag az alábbi fájlformátumok egyike lehet: :values.",
+  min: {
+    numeric: "A(z) :attribute értéke nem lehet kisebb, mint :min!",
+    file: "A(z) :attribute mérete nem lehet kevesebb, mint :min kilobájt.",
+    string: "A(z) :attribute hossza nem lehet kevesebb, mint :min karakter.",
+    array: "A(z) :attribute legalább :min elemet kell, hogy tartalmazzon."
+  },
+  not_in: "A(z) :attribute értéke érvénytelen.",
+  not_regex: "A(z) :attribute formátuma érvénytelen.",
+  numeric: "A(z) :attribute szám kell, hogy legyen!",
+  present: "A(z) :attribute mező nem található!",
+  regex: "A(z) :attribute formátuma érvénytelen.",
+  required: "A(z) :attribute megadása kötelező!",
+  required_if: "A(z) :attribute megadása kötelező, ha a(z) :other értéke :value!",
+  required_unless: "A(z) :attribute megadása kötelező, ha a(z) :other értéke nem :values!",
+  required_with: "A(z) :attribute megadása kötelező, ha a(z) :values érték létezik.",
+  required_with_all: "A(z) :attribute megadása kötelező, ha a(z) :values értékek léteznek.",
+  required_without: "A(z) :attribute megadása kötelező, ha a(z) :values érték nem létezik.",
+  required_without_all: "A(z) :attribute megadása kötelező, ha egyik :values érték sem létezik.",
+  same: "A(z) :attribute és :other mezőknek egyezniük kell!",
+  size: {
+    numeric: "A(z) :attribute értéke :size kell, hogy legyen!",
+    file: "A(z) :attribute mérete :size kilobájt kell, hogy legyen!",
+    string: "A(z) :attribute hossza :size karakter kell, hogy legyen!",
+    array: "A(z) :attribute :size elemet kell tartalmazzon!"
+  },
+  string: "A(z) :attribute szöveg kell, hogy legyen.",
+  timezone: "A(z) :attribute nem létező időzona.",
+  unique: "A(z) :attribute már foglalt.",
+  uploaded: "A(z) :attribute feltöltése sikertelen.",
+  url: "A(z) :attribute érvénytelen link."
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/id.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/id.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: ':attribute harus disetujui.',
+  after: ':attribute harus setelah :after.',
+  after_or_equal: ':attribute harus sama dengan atau setelah :after_or_equal.',
+  alpha: ':attribute hanya boleh berisi huruf.',
+  alpha_dash: ':attribute hanya boleh berisi huruf, - atau _.',
+  alpha_num: ':attribute hanya boleh berisi huruf dan angka.',
+  before: ':attribute harus sebelum :before.',
+  before_or_equal: ':attribute harus sama dengan atau sebelum :before_or_equal.',
+  between: ':attribute harus berisi antara :min dan :max.',
+  confirmed: ':attribute konfirmasi tidak sama.',
+  email: ':attribute harus berupa email.',
+  date: ':attribute format tanggal tidak benar.',
+  def: ':attribute attribute has errors.',
+  digits: ':attribute harus :digits digit.',
+  digits_between: 'Isian :attribute harus antara angka :min dan :max.',
+  different: ':attribute dan :different harus berbeda.',
+  in: ':attribute tidak benar.',
+  integer: ':attribute harus berupa angka.',
+  hex: ':attribute harus berformat heksadesimal',
+  min: {
+    numeric: ':attribute minimal :min.',
+    string: ':attribute minimal :min karakter.'
+  },
+  max: {
+    numeric: ':attribute harus lebih kecil :max.',
+    string: ':attribute maksimal :max karakter.'
+  },
+  not_in: ':attribute tidak benar.',
+  numeric: ':attribute harus berupa angka.',
+  present: ':attribute harus ada (tapi boleh kosong).',
+  required: ':attribute tidak boleh kosong.',
+  required_if: ':attribute harus di isi jika :other berisi :value.',
+  required_unless: ':attribute harus di isi jika :other tidak berisi :value.',
+  required_with: ':attribute harus di isi jika :field tidak kosong.',
+  required_with_all: ':attribute harus di isi jika :fields tidak kosong.',
+  required_without: ':attribute harus di isi jika :field kosong.',
+  required_without_all: ':attribute harus di isi jika :fields kosong.',
+  same: ':attribute dan :same harus sama.',
+  size: {
+    numeric: ':attribute harus berisi :size.',
+    string: ':attribute harus berisi :size karakter.'
+  },
+  string: ':attribute harus berupa string.',
+  url: ':attribute harus berupa format url.',
+  regex: ':attribute format tidak benar.',
+  attributes: {}
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/it.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/it.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: 'Il campo :attribute deve essere accettato.',
+  alpha: 'Il campo :attribute deve contenere sono caratteri alfabetici.',
+  alpha_dash: 'Il campo :attribute può contenere solo caratteri alfanumerici oltre a trattini e trattini bassi.',
+  alpha_num: 'Il campo :attribute deve essere alfanumerico.',
+  between: 'Il campo :attribute deve essere compreso tra :min e :max.',
+  confirmed: 'Il campo conferma :attribute non è uguale.',
+  email: 'Il formato dell\'attributo :attribute non è valido.',
+  def: 'Gli attributi del campo :attribute contengono degli errori.',
+  digits: 'Il campo :attribute deve essere di :digits cifre.',
+  digits_between: 'Il campo :attribute deve essere tra :min e :max cifre.',
+  different: 'Il campo :attribute e :different devo essere diversi.',
+  in: 'Il valore del campo :attribute non è valido.',
+  integer: 'Il campo :attribute deve essere un valore intero.',
+  hex: 'Il campo :attribute deve essere in formato esadecimale',
+  min: {
+    numeric: 'Il campo :attribute deve essere maggiore o uguale di :min.',
+    string: 'Il campo :attribute deve essere composto da almeno :min caratteri.'
+  },
+  max: {
+    numeric: 'Il campo :attribute deve essere minore o uguale di :max.',
+    string: 'Il campo :attribute deve essere composto da massimo :max caratteri.'
+  },
+  not_in: 'Il campo :attribute non è valido.',
+  numeric: 'Il campo :attribute deve essere un numero.',
+  present: 'Il campo :attribute deve essere presente (ma può essere vuoto).',
+  required: 'Il campo :attribute è richiesto.',
+  required_if: 'Il campo :attribute è richiesto quando il campo :other è uguale a :value.',
+  same: 'I campi :attribute e :same devono essere uguali.',
+  size: {
+    numeric: 'La dimensione del campo :attribute deve essere uguale a :size.',
+    string: 'Il campo :attribute deve essere di :size caratteri.'
+  },
+  string: 'Il campo :attribute deve essere una stringa.',
+  url: 'Il formato del campo :attribute non è valido.',
+  regex: 'Il formato del campo :attribute non è valido.',
+  attributes: {}
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/ja.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/ja.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: ':attributeを確認してください。',
+  after: ':attributeは:afterより後の日付を入力してください。',
+  after_or_equal: ':attributeは:after_or_equal以降の日付を入力してください。',
+  alpha: ':attributeは英字のみで入力してください。',
+  alpha_dash: ':attributeは英字とダッシュと下線のみで入力してください。',
+  alpha_num: ':attributeは英数字のみで入力してください。',
+  before: ':attributeは:beforeより前の日付を入力してください。',
+  before_or_equal: ':attributeは:before_or_equal以前の日付を入力してください。',
+  between: {
+    numeric: ':attributeは:min〜:maxの間で指定してください',
+    string: ':attributeは:min〜:max文字を入力してください'
+  },
+  confirmed: ':attributeは確認が一致しません。',
+  email: ':attributeは正しいメールアドレスを入力してください。',
+  date: ':attributeは正しい日付形式を入力してください',
+  def: ':attributeは検証エラーが含まれています。',
+  digits: ':attributeは:digitsの数字のみで入力してください。',
+  digits_between: ':attributeは、:min桁から:max桁にしてください。',
+  different: ':attributeと:differentは同じであってはなりません。',
+  in: '選択された:attributeは無効です。',
+  integer: ':attributeは整数で入力してください。',
+  hex: ':attributeは16進数で入力してください。',
+  min: {
+    numeric: ':attributeは:min以上で入力してください。',
+    string: ':attributeは:min文字以上で入力してください。'
+  },
+  max: {
+    numeric: ':attributeは:max以下で入力してください。',
+    string: ':attributeは:max文字以下で入力してください。'
+  },
+  not_in: '選択された:attributeは無効です。',
+  numeric: ':attributeは数値で入力してください。',
+  present: ':attributeを入力してください（空欄も可能です）。',
+  required: ':attributeは必須です。',
+  required_if: ':otherは:valueになったら:attributeは必須です。',
+  required_unless: ':otherが:valueでなければ:attributeは必須です。',
+  required_with: ':fieldが空欄でなければ:attributeは必須です。',
+  required_with_all: ':fieldsが空欄でなければ:attributeは必須です。',
+  required_without: ':fieldが空欄なら:attributeは必須です。',
+  required_without_all: ':fieldsが空欄なら:attributeは必須です。',
+  same: ':attributeと:sameは同じでなければなりません。',
+  size: {
+    numeric: ':attributeは:sizeを入力してください。',
+    string: ':attributeは:size文字で入力してください。'
+  },
+  string: ':attributeは文字のみで入力してください。',
+  url: ':attributeは正しいURIを入力してください。',
+  regex: ':attributeの値はパターンにマッチする必要があります。',
+  attributes: {}
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/ka.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/ka.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: ":attribute უნდა იყოს მონიშნული.",
+  active_url: ":attribute უნდა იყოს URL მისამართი.",
+  after: ":attribute უნდა იყოს :date-ის შემდეგ.",
+  after_or_equal: ":attribute უნდა იყოს :date-ის შემდეგ ან მისი ტოლი.",
+  alpha: ":attribute უნდა შეიცავდეს მხოლოდ ასოებს.",
+  alpha_dash: ":attribute უნდა შეიცავდეს მხოლოდ ასოებს, რიცხვებს და ტირეებს.",
+  alpha_num: ":attribute უნდა შეიცავდეს მხოლოდ ასოებს და რიცხვებს.",
+  attributes: {},
+  array: ":attribute უნდა იყოს მასივი.",
+  before: ":attribute უნდა იყოს :date-მდე.",
+  before_or_equal: ":attribute უნდა იყოს :date-მდე ან მისი ტოლი.",
+  between: {
+    numeric: ":attribute უნდა იყოს :min-სა და :max-ს შორის.",
+    file: ":attribute უნდა იყოს :min-სა და :max კილობაიტს შორის.",
+    string: ":attribute უნდა იყოს :min-სა და :max სიმბოლოს შორის.",
+    array: ":attribute-ის რაოდენობა უნდა იყოს :min-დან :max-მდე."
+  },
+  boolean: ":attribute უნდა იყოს true, false, 0 ან 1.",
+  confirmed: ":attribute არ ემთხვევა დადასტურებას.",
+  date: ":attribute შეიცავს თარიღის არასწორ ფორმატს.",
+  date_format: ":attribute არ ემთხვევა თარიღის ფორმატს: :format.",
+  different: ":attribute და :other არ უნდა ემთხვეოდეს ერთმანეთს.",
+  digits: ":attribute უნდა შედგებოდეს :digits ციფრისგან.",
+  digits_between: ":attribute უნდა შედგებოდეს :min-დან :max ციფრამბდე.",
+  dimensions: ":attribute შეიცავს სურათის არასწორ ზომებს.",
+  distinct: ":attribute უნდა იყოს უნიკალური.",
+  email: ":attribute უნდა იყოს სწორი ელ.ფოსტა.",
+  exists: "ასეთი :attribute არ არსებობს.",
+  file: ":attribute უნდა იყოს ფაილი.",
+  filled: ":attribute აუცილებელია.",
+  gt: {
+    numeric: ":attribute უნდა იყოს :value-ზე მეტი.",
+    file: ":attribute უნდა იყოს :value კილობაიტზე მეტი.",
+    string: ":attribute უნდა შეიცავდეს :value სიმბოლოზე მეტს.",
+    array: ":attribute უნდა შეიცავლდეს :value ელემენტზე მეტს."
+  },
+  gte: {
+    numeric: ":attribute უნდა იყოს მინიმუმ :value.",
+    file: ":attribute უნდა იყოს მინიმუმ :value კილობაიტი.",
+    string: ":attribute უნდა შეიცავდეს მინიმუმ :value სიმბოლოს.",
+    array: ":attribute უნდა შეიცავდეს მინიმუმ :value ელემენტს."
+  },
+  hex: "The :attribute field should have hexadecimal format",
+  image: ":attribute უნდა იყოს სურათი.",
+  in: "მითითებული :attribute არასწორია.",
+  in_array: ":attribute უნდა არსებობდეს :other-ში.",
+  integer: ":attribute უნდა იყოს მთელი რიცხვი.",
+  ip: ":attribute უნდა იყოს IP მისამართი.",
+  ipv4: ":attribute უნდა იყოს IPv4 მისამართი.",
+  ipv6: ":attribute უნდა იყოს IPv6 მისამართი.",
+  json: ":attribute უნდა იყოს JSON ტიპის.",
+  lt: {
+    numeric: ":attribute უნდა იყოს :value-ზე ნაკლები.",
+    file: ":attribute უნდა იყოს :value კილობაიტზე ნაკლები.",
+    string: ":attribute უნდა შეიცავდეს :value სიმბოლოზე ნაკლებს.",
+    array: ":attribute უნდა შეიცავლდეს :value ელემენტზე ნაკლებს."
+  },
+  lte: {
+    numeric: ":attribute უნდა იყოს მაქსიმუმ :value.",
+    file: ":attribute უნდა იყოს მაქსიმუმ :value კილობაიტი.",
+    string: ":attribute უნდა შეიცავდეს მაქსიმუმ :value სიმბოლოს.",
+    array: ":attribute უნდა შეიცავდეს მაქსიმუმ :value ელემენტს."
+  },
+  max: {
+    numeric: ":attribute არ უნდა აღემატებოდეს :max-ს.",
+    file: ":attribute არ უნდა აღემატებოდეს :max კილობაიტს.",
+    string: ":attribute არ უნდა აღემატებოდეს :max სიმბოლოს.",
+    array: ":attribute-ის რაოდენობა არ უნდა აღემატებოდეს :max-ს."
+  },
+  mimes: ":attribute უნდა იყოს შემდეგი ტიპის: :values.",
+  mimetypes: ":attribute უნდა იყოს შემდეგი ტიპის: :values.",
+  min: {
+    numeric: ":attribute უნდა იყოს მინიმუმ :min.",
+    file: ":attribute უნდა იყოს მინიმუმ :min კილობაიტი.",
+    string: ":attribute უნდა შეიცავდეს მინიმუმ :min სიმბოლოს.",
+    array: ":attribute უნდა იყოს მინიმუმ :min."
+  },
+  not_in: "მითითებული :attribute არასწორია.",
+  not_regex: ":attribute არასწორ ფორმატშია.",
+  numeric: ":attribute უნდა იყოს რიცხვი.",
+  present: ":attribute უნდა არსებობდეს, თუნდაც ცარიელი.",
+  regex: ":attribute არ ემთხვევა ფორმატს.",
+  required: ":attribute აუცილებელია.",
+  required_if: ":attribute აუცილებელია, თუ :other-ის მნიშვნელობა ემთხვევა :value-ს.",
+  required_unless: ":attribute აუცილებელია, თუ :values არ შეიცავს :other-ს.",
+  required_with: ":attribute აუცილებელია, თუ :values მითითებულია.",
+  required_with_all: ":attribute აუცილებელია, თუ :values მითითებულია.",
+  required_without: ":attribute აუცილებელია, თუ :values არ არის მითითებული.",
+  required_without_all: ":attribute აუცილებელია, თუ :values არ არის მითითებული.",
+  same: ":attribute და :other უნდა ემთხვეოდეს ერთმანეთს.",
+  size: {
+    numeric: ":attribute უნდა იყოს :size-ის ტოლი.",
+    file: ":attribute უნდა იყოს :size კილობაიტი.",
+    string: ":attribute უნდა შედგებოდეს :size სიმბოლოსგან.",
+    array: ":attribute უნდა შეიცავდეს :size ელემენტს."
+  },
+  string: ":attribute უნდა იყოს ტექსტი.",
+  timezone: ":attribute უნდა იყოს სასაათო სარტყელი.",
+  unique: "ასეთი :attribute უკვე არსებობს.",
+  uploaded: ":attribute-ის ატვირთვა ვერ მოხერხდა.",
+  url: ":attribute უნდა იყოს URL მისამართი."
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/ko.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/ko.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: ":attribute을(를) 동의해야 합니다.",
+  active_url: ":attribute은(는) 유효한 URL이 아닙니다.",
+  after: ":attribute은(는) :date 이후 날짜여야 합니다.",
+  after_or_equal: ":attribute은(는) :date 이후 날짜이거나 같은 날짜여야 합니다.",
+  alpha: ":attribute은(는) 문자만 포함할 수 있습니다.",
+  alpha_dash: ":attribute은(는) 문자, 숫자, 대쉬(-)만 포함할 수 있습니다.",
+  alpha_num: ":attribute은(는) 문자와 숫자만 포함할 수 있습니다.",
+  attributes: {},
+  array: ":attribute은(는) 배열이어야 합니다.",
+  before: ":attribute은(는) :date 이전 날짜여야 합니다.",
+  before_or_equal: ":attribute은(는) :date 이전 날짜이거나 같은 날짜여야 합니다.",
+  between: {
+    numeric: ":attribute은(는) :min에서 :max 사이여야 합니다.",
+    file: ":attribute은(는) :min에서 :max 킬로바이트 사이여야 합니다.",
+    string: ":attribute은(는) :min에서 :max 문자 사이여야 합니다.",
+    array: ":attribute은(는) :min에서 :max 개의 항목이 있어야 합니다."
+  },
+  boolean: ":attribute은(는) true 또는 false 이어야 합니다.",
+  confirmed: ":attribute 확인 항목이 일치하지 않습니다.",
+  date: ":attribute은(는) 유효한 날짜가 아닙니다.",
+  date_format: ":attribute이(가) :format 형식과 일치하지 않습니다.",
+  different: ":attribute와(과) :other은(는) 서로 달라야 합니다.",
+  digits: ":attribute은(는) :digits 자리 숫자여야 합니다.",
+  digits_between: ":attribute)은(는) :min에서 :max 자리 사이여야 합니다.",
+  dimensions: ":attribute은(는) 유효하지 않는 이미지 크기입니다.",
+  distinct: ":attribute 필드에 중복된 값이 있습니다.",
+  email: ":attribute은(는) 유효한 이메일 주소여야 합니다.",
+  exists: "선택된 :attribute은(는) 유효하지 않습니다.",
+  file: ":attribute은(는) 파일이어야 합니다.",
+  filled: ":attribute 필드는 값이 있어야 합니다.",
+  gt: {
+    numeric: ":attribute의 값은 :value보다 커야 합니다.",
+    file: ":attribute의 용량은 :value킬로바이트보다 커야 합니다.",
+    string: ":attribute의 길이는 :value보다 길어야 합니다.",
+    array: ":attribute의 항목수는 :value개 보다 많아야 합니다."
+  },
+  gte: {
+    numeric: ":attribute의 값은 :value보다 같거나 커야 합니다.",
+    file: ":attribute의 용량은 :value킬로바이트보다 같거나 커야 합니다.",
+    string: ":attribute의 길이는 :value보다 같거나 길어야 합니다.",
+    array: ":attribute의 항목수는 :value개 보다 같거나 많아야 합니다."
+  },
+  hex: "The :attribute field should have hexadecimal format",
+  image: ":attribute은(는) 이미지여야 합니다.",
+  in: "선택된 :attribute은(는) 유효하지 않습니다.",
+  in_array: ":attribute 필드는 :other에 존재하지 않습니다.",
+  integer: ":attribute은(는) 정수여야 합니다.",
+  ip: ":attribute은(는) 유효한 IP 주소여야 합니다.",
+  ipv4: ":attribute은(는) 유효한 IPv4 주소여야 합니다.",
+  ipv6: ":attribute은(는) 유효한 IPv6 주소여야 합니다.",
+  json: ":attribute은(는) JSON 문자열이어야 합니다.",
+  lt: {
+    numeric: ":attribute의 값은 :value보다 작아야 합니다.",
+    file: ":attribute의 용량은 :value킬로바이트보다 작아야 합니다.",
+    string: ":attribute의 길이는 :value보다 짧아야 합니다.",
+    array: ":attribute의 항목수는 :value개 보다 작아야 합니다."
+  },
+  lte: {
+    numeric: ":attribute의 값은 :value보다 같거나 작아야 합니다.",
+    file: ":attribute의 용량은 :value킬로바이트보다 같거나 작아야 합니다.",
+    string: ":attribute의 길이는 :value보다 같거나 짧아야 합니다.",
+    array: ":attribute의 항목수는 :value개 보다 같거나 작아야 합니다."
+  },
+  max: {
+    numeric: ":attribute은(는) :max보다 클 수 없습니다.",
+    file: ":attribute은(는) :max킬로바이트보다 클 수 없습니다.",
+    string: ":attribute은(는) :max자보다 클 수 없습니다.",
+    array: ":attribute은(는) :max개보다 많을 수 없습니다."
+  },
+  mimes: ":attribute은(는) 다음의 파일 형식이어야 합니다: :values.",
+  mimetypes: ":attribute은(는) 다음의 파일 형식이어야 합니다: :values.",
+  min: {
+    numeric: ":attribute은(는) 최소한 :min이어야 합니다.",
+    file: ":attribute은(는) 최소한 :min킬로바이트이어야 합니다.",
+    string: ":attribute은(는) 최소한 :min자이어야 합니다.",
+    array: ":attribute은(는) 최소한 :min개의 항목이 있어야 합니다."
+  },
+  not_in: "선택된 :attribute이(가) 유효하지 않습니다.",
+  not_regex: ":attribute의 형식이 올바르지 않습니다.",
+  numeric: ":attribute은(는) 숫자여야 합니다.",
+  present: ":attribute 필드가 있어야 합니다.",
+  regex: ":attribute 형식이 유효하지 않습니다.",
+  required: ":attribute 필드는 필수입니다.",
+  required_if: ":other이(가) :value 일 때 :attribute 필드는 필수입니다.",
+  required_unless: ":other이(가) :value에 없다면 :attribute 필드는 필수입니다.",
+  required_with: ":values이(가) 있는 경우 :attribute 필드는 필수입니다.",
+  required_with_all: ":values이(가) 모두 있는 경우 :attribute 필드는 필수입니다.",
+  required_without: ":values이(가) 없는 경우 :attribute 필드는 필수입니다.",
+  required_without_all: ":values이(가) 모두 없는 경우 :attribute 필드는 필수입니다.",
+  same: ":attribute와(과) :other은(는) 일치해야 합니다.",
+  size: {
+    numeric: ":attribute은(는) :size (이)여야 합니다.",
+    file: ":attribute은(는) :size킬로바이트여야 합니다.",
+    string: ":attribute은(는) :size자여야 합니다.",
+    array: ":attribute은(는) :size개의 항목을 포함해야 합니다."
+  },
+  string: ":attribute은(는) 문자열이어야 합니다.",
+  timezone: ":attribute은(는) 올바른 시간대 이어야 합니다.",
+  unique: ":attribute은(는) 이미 사용 중입니다.",
+  uploaded: ":attribute을(를) 업로드하지 못했습니다.",
+  url: ":attribute 형식은 유효하지 않습니다."
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/lt.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/lt.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: "Laukas :attribute turi būti priimtas.",
+  active_url: "Laukas :attribute nėra galiojantis internetinis adresas.",
+  after: "Lauko :attribute reikšmė turi būti po :date datos.",
+  after_or_equal: "The :attribute must be a date after or equal to :date.",
+  alpha: "Laukas :attribute gali turėti tik raides.",
+  alpha_dash: "Laukas :attribute gali turėti tik raides, skaičius ir brūkšnelius.",
+  alpha_num: "Laukas :attribute gali turėti tik raides ir skaičius.",
+  attributes: {},
+  array: "Laukas :attribute turi būti masyvas.",
+  before: "Laukas :attribute turi būti data prieš :date.",
+  before_or_equal: "The :attribute must be a date before or equal to :date.",
+  between: {
+    numeric: "Lauko :attribute reikšmė turi būti tarp :min ir :max.",
+    file: "Failo dydis lauke :attribute turi būti tarp :min ir :max kilobaitų.",
+    string: "Simbolių skaičius lauke :attribute turi būti tarp :min ir :max.",
+    array: "Elementų skaičius lauke :attribute turi turėti nuo :min iki :max."
+  },
+  boolean: "Lauko reikšmė :attribute turi būti 'taip' arba 'ne'.",
+  confirmed: "Lauko :attribute patvirtinimas nesutampa.",
+  date: "Lauko :attribute reikšmė nėra galiojanti data.",
+  date_format: "Lauko :attribute reikšmė neatitinka formato :format.",
+  different: "Laukų :attribute ir :other reikšmės turi skirtis.",
+  digits: "Laukas :attribute turi būti sudarytas iš :digits skaitmenų.",
+  digits_between: "Laukas :attribute tuti turėti nuo :min iki :max skaitmenų.",
+  dimensions: "Lauke :attribute įkeltas paveiksliukas neatitinka išmatavimų reikalavimo.",
+  distinct: "Laukas :attribute pasikartoja.",
+  email: "Lauko :attribute reikšmė turi būti galiojantis el. pašto adresas.",
+  file: "The :attribute must be a file.",
+  filled: "Laukas :attribute turi būti užpildytas.",
+  exists: "Pasirinkta negaliojanti :attribute reikšmė.",
+  gt: {
+    numeric: "The :attribute must be greater than :value.",
+    file: "The :attribute must be greater than :value kilobytes.",
+    string: "The :attribute must be greater than :value characters.",
+    array: "The :attribute must have more than :value items."
+  },
+  gte: {
+    numeric: "The :attribute must be greater than or equal :value.",
+    file: "The :attribute must be greater than or equal :value kilobytes.",
+    string: "The :attribute must be greater than or equal :value characters.",
+    array: "The :attribute must have :value items or more."
+  },
+  hex: "The :attribute field should have hexadecimal format",
+  image: "Lauko :attribute reikšmė turi būti paveikslėlis.",
+  in: "Pasirinkta negaliojanti :attribute reikšmė.",
+  in_array: "Laukas :attribute neegzistuoja :other lauke.",
+  integer: "Lauko :attribute reikšmė turi būti sveikasis skaičius.",
+  ip: "Lauko :attribute reikšmė turi būti galiojantis IP adresas.",
+  ipv4: "The :attribute must be a valid IPv4 address.",
+  ipv6: "The :attribute must be a valid IPv6 address.",
+  json: "Lauko :attribute reikšmė turi būti JSON tekstas.",
+  lt: {
+    numeric: "The :attribute must be less than :value.",
+    file: "The :attribute must be less than :value kilobytes.",
+    string: "The :attribute must be less than :value characters.",
+    array: "The :attribute must have less than :value items."
+  },
+  lte: {
+    numeric: "The :attribute must be less than or equal :value.",
+    file: "The :attribute must be less than or equal :value kilobytes.",
+    string: "The :attribute must be less than or equal :value characters.",
+    array: "The :attribute must not have more than :value items."
+  },
+  max: {
+    numeric: "Lauko :attribute reikšmė negali būti didesnė nei :max.",
+    file: "Failo dydis lauke :attribute reikšmė negali būti didesnė nei :max kilobaitų.",
+    string: "Simbolių kiekis lauke :attribute reikšmė negali būti didesnė nei :max simbolių.",
+    array: "Elementų kiekis lauke :attribute negali turėti daugiau nei :max elementų."
+  },
+  mimes: "Lauko reikšmė :attribute turi būti failas vieno iš sekančių tipų: :values.",
+  mimetypes: "Lauko reikšmė :attribute turi būti failas vieno iš sekančių tipų: :values.",
+  min: {
+    numeric: "Lauko :attribute reikšmė turi būti ne mažesnė nei :min.",
+    file: "Failo dydis lauke :attribute turi būti ne mažesnis nei :min kilobaitų.",
+    string: "Simbolių kiekis lauke :attribute turi būti ne mažiau nei :min.",
+    array: "Elementų kiekis lauke :attribute turi būti ne mažiau nei :min."
+  },
+  not_in: "Pasirinkta negaliojanti reikšmė :attribute.",
+  not_regex: "The :attribute format is invalid.",
+  numeric: "Lauko :attribute reikšmė turi būti skaičius.",
+  present: "Laukas :attribute turi egzistuoti.",
+  regex: "Negaliojantis lauko :attribute formatas.",
+  required: "Privaloma užpildyti lauką :attribute.",
+  required_if: "Privaloma užpildyti lauką :attribute kai :other yra :value.",
+  required_unless: "Laukas :attribute yra privalomas, nebent :other yra tarp :values reikšmių.",
+  required_with: "Privaloma užpildyti lauką :attribute kai pateikta :values.",
+  required_with_all: "Privaloma užpildyti lauką :attribute kai pateikta :values.",
+  required_without: "Privaloma užpildyti lauką :attribute kai nepateikta :values.",
+  required_without_all: "Privaloma užpildyti lauką :attribute kai nepateikta nei viena iš reikšmių :values.",
+  same: "Laukai :attribute ir :other turi sutapti.",
+  size: {
+    numeric: "Lauko :attribute reikšmė turi būti :size.",
+    file: "Failo dydis lauke :attribute turi būti :size kilobaitai.",
+    string: "Simbolių skaičius lauke :attribute turi būti :size.",
+    array: "Elementų kiekis lauke :attribute turi būti :size."
+  },
+  string: "Laukas :attribute turi būti tekstinis.",
+  timezone: "Lauko :attribute reikšmė turi būti galiojanti laiko zona.",
+  unique: "Tokia :attribute reikšmė jau pasirinkta.",
+  uploaded: "The :attribute failed to upload.",
+  url: "Negaliojantis lauko :attribute formatas."
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/lv.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/lv.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: " :attribute ir jābūt pieņemtam.",
+  active_url: " :attribute ir ar nederīgu linku.",
+  after: " :attribute ir jābūt ar datumu pēc :datums.",
+  after_or_equal: " :attribute ir jābūt ar datumu pēc vai vienādu ar :datums.",
+  alpha: " :attribute var saturēt tikai burtus.",
+  alpha_dash: " :attribute var saturēt tikai burtus, nummurus un atstarpes.",
+  alpha_num: " :attribute var tikai saturēt burtus un nummurus.",
+  attributes: {},
+  array: " :attribute ir jābūt sakārtotam.",
+  before: " :attribute ir jābūt ar datumu pirms :datums.",
+  before_or_equal: " :attribute ir jābūt ar datumu pirms vai vienādu ar :datums.",
+  between: {
+    numeric: " :attribute jābūt starp :min un :max.",
+    file: " :attribute jābūt starp :min un :max kilobaiti.",
+    string: " :attribute jābūt no :min līdz :max zīmēm.",
+    array: " :attribute jābūt no :min līdz :max vienībām."
+  },
+  boolean: " :attribute laiciņam jābūt atbilstošam vai neatbilstošam.",
+  confirmed: " :attribute apstiprinājums neatbilst.",
+  date: " :attribute nav derīgs.",
+  date_format: " :attribute neatbilst formātam :format.",
+  different: " :attribute un :other ir jābūt citiem.",
+  digits: " :attribute ir jābūt :digits ciparam.",
+  digits_between: " :attribute ir jābūt :min un :max ciparam.",
+  dimensions: " :attribute ir nederīgs attēla izmērs.",
+  distinct: " :attribute laikam ir dubulta vērtība.",
+  email: " :attribute derīgam e-pastam.",
+  exists: "Izvēlētais :attribute ir nederīgs.",
+  file: " :attribute jābūt failam.",
+  filled: ":attribute lauks ir nepieciešams.",
+  gt: {
+    numeric: "The :attribute must be greater than :value.",
+    file: "The :attribute must be greater than :value kilobytes.",
+    string: "The :attribute must be greater than :value characters.",
+    array: "The :attribute must have more than :value items."
+  },
+  gte: {
+    numeric: "The :attribute must be greater than or equal :value.",
+    file: "The :attribute must be greater than or equal :value kilobytes.",
+    string: "The :attribute must be greater than or equal :value characters.",
+    array: "The :attribute must have :value items or more."
+  },
+  hex: "The :attribute field should have hexadecimal format",
+  image: " :attribute jābūt attēlam.",
+  in: "Izvēlētais :attribute ir nederīgs.",
+  in_array: " :attribute laiks neeksistē :cits.",
+  integer: " :attribute ir jabūt skaitim.",
+  ip: " :attribute jābūt derīgai IP adresei.",
+  ipv4: "The :attribute must be a valid IPv4 address.",
+  ipv6: "The :attribute must be a valid IPv6 address.",
+  json: " :attribute jābūt derīgai JSON virknei.",
+  lt: {
+    numeric: "The :attribute must be less than :value.",
+    file: "The :attribute must be less than :value kilobytes.",
+    string: "The :attribute must be less than :value characters.",
+    array: "The :attribute must have less than :value items."
+  },
+  lte: {
+    numeric: "The :attribute must be less than or equal :value.",
+    file: "The :attribute must be less than or equal :value kilobytes.",
+    string: "The :attribute must be less than or equal :value characters.",
+    array: "The :attribute must not have more than :value items."
+  },
+  max: {
+    numeric: " :attribute nedrīkst pārsniegt :max.",
+    file: " :attribute nedrīkst pārsniegt :max kilobaiti.",
+    string: " :attribute nedrīkst pārsniegt :max zīmes.",
+    array: " :attribute nedrīkst pārsniegt :max vienības."
+  },
+  mimes: " :attribute jābūt faila tipam: :values",
+  mimetypes: " :attribute jābūt faile tipam: :values.",
+  min: {
+    numeric: " :attribute jābūt vismaz :min.",
+    file: " :attribute jābūt vismaz :min kilobaiti.",
+    string: " :attribute jābūt vismaz :min zīmes.",
+    array: " :attribute jāsatur vismaz :min vienības."
+  },
+  not_in: " izvēlieties :attribute ir nederīgs.",
+  not_regex: "The :attribute format is invalid.",
+  numeric: " :attribute jābūt skaitlim.",
+  present: " :attribute laikums ir nepieciešams.",
+  regex: " :attribute formāts ir nederīgs.",
+  required: " :attribute laukums ir nepieciešams.",
+  required_if: " :attribute laukums ir nepieciešams, ja vien :other ir :values.",
+  required_unless: " :attribute laukums ir nepieciešams, ja vien :other ir :values.",
+  required_with: " :attribute laukums ir nepieciešams, kad :values ir pieejama.",
+  required_with_all: " :attribute laukums ir nepieciešams, kad :values ir pieejama.",
+  required_without: " :attribute laukums ir nepieciešams, kad :values nav pieejama.",
+  required_without_all: " :attribute laukums ir nepieciešams, kad neviena no :values nav pieejama.",
+  same: " :attribute un :citiem ir jāsakrīt.",
+  size: {
+    numeric: " :attribute jābūt :size.",
+    file: " :attribute jābūt :size kilobaiti.",
+    string: " :attribute jābūt :size zīmes.",
+    array: " :attribute jāsatur :size vienības."
+  },
+  string: " :attribute jābūt virknē.",
+  timezone: " :attribute jābūt derīgā zonā.",
+  unique: " :attribute jau ir aizņemts.",
+  uploaded: " :attribute netika augšuplādēts.",
+  url: " :attribute formāts ir nederīgs."
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/mk.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/mk.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: "Полето :attribute мора да биде прифатено.",
+  active_url: "Полето :attribute не е валиден URL.",
+  after: "Полето :attribute мора да биде датум после :date.",
+  after_or_equal: "The :attribute must be a date after or equal to :date.",
+  alpha: "Полето :attribute може да содржи само букви.",
+  alpha_dash: "Полето :attribute може да содржи само букви, цифри, долна црта и тире.",
+  alpha_num: "Полето :attribute може да содржи само букви и цифри.",
+  attributes: {},
+  array: "Полето :attribute мора да биде низа.",
+  before: "Полето :attribute мора да биде датум пред :date.",
+  before_or_equal: "The :attribute must be a date before or equal to :date.",
+  between: {
+    numeric: "Полето :attribute мора да биде помеѓу :min и :max.",
+    file: "Полето :attribute мора да биде помеѓу :min и :max килобајти.",
+    string: "Полето :attribute мора да биде помеѓу :min и :max карактери.",
+    array: "Полето :attribute мора да има помеѓу :min - :max карактери."
+  },
+  boolean: "The :attribute field must be true or false",
+  confirmed: "Полето :attribute не е потврдено.",
+  date: "Полето :attribute не е валиден датум.",
+  date_format: "Полето :attribute не е во формат :format.",
+  different: "Полињата :attribute и :other треба да се различни.",
+  digits: "Полето :attribute треба да има :digits цифри.",
+  digits_between: "Полето :attribute треба да има помеѓу :min и :max цифри.",
+  dimensions: "The :attribute has invalid image dimensions.",
+  distinct: "The :attribute field has a duplicate value.",
+  email: "Полето :attribute не е во валиден формат.",
+  exists: "Избранато поле :attribute веќе постои.",
+  file: "The :attribute must be a file.",
+  filled: "Полето :attribute е задолжително.",
+  gt: {
+    numeric: "The :attribute must be greater than :value.",
+    file: "The :attribute must be greater than :value kilobytes.",
+    string: "The :attribute must be greater than :value characters.",
+    array: "The :attribute must have more than :value items."
+  },
+  gte: {
+    numeric: "The :attribute must be greater than or equal :value.",
+    file: "The :attribute must be greater than or equal :value kilobytes.",
+    string: "The :attribute must be greater than or equal :value characters.",
+    array: "The :attribute must have :value items or more."
+  },
+  hex: "The :attribute field should have hexadecimal format",
+  image: "Полето :attribute мора да биде слика.",
+  in: "Избраното поле :attribute е невалидно.",
+  in_array: "The :attribute field does not exist in :other.",
+  integer: "Полето :attribute мора да биде цел број.",
+  ip: "Полето :attribute мора да биде IP адреса.",
+  ipv4: "The :attribute must be a valid IPv4 address.",
+  ipv6: "The :attribute must be a valid IPv6 address.",
+  json: "The :attribute must be a valid JSON string.",
+  lt: {
+    numeric: "The :attribute must be less than :value.",
+    file: "The :attribute must be less than :value kilobytes.",
+    string: "The :attribute must be less than :value characters.",
+    array: "The :attribute must have less than :value items."
+  },
+  lte: {
+    numeric: "The :attribute must be less than or equal :value.",
+    file: "The :attribute must be less than or equal :value kilobytes.",
+    string: "The :attribute must be less than or equal :value characters.",
+    array: "The :attribute must not have more than :value items."
+  },
+  max: {
+    numeric: "Полето :attribute мора да биде помало од :max.",
+    file: "Полето :attribute мора да биде помало од :max килобајти.",
+    string: "Полето :attribute мора да има помалку од :max карактери.",
+    array: "Полето :attribute не може да има повеќе од :max карактери."
+  },
+  mimes: "Полето :attribute мора да биде фајл од типот: :values.",
+  mimetypes: "Полето :attribute мора да биде фајл од типот: :values.",
+  min: {
+    numeric: "Полето :attribute мора да биде минимум :min.",
+    file: "Полето :attribute мора да биде минимум :min килобајти.",
+    string: "Полето :attribute мора да има минимум :min карактери.",
+    array: "Полето :attribute мора да има минимум :min карактери."
+  },
+  not_in: "Избраното поле :attribute е невалидно.",
+  not_regex: "The :attribute format is invalid.",
+  numeric: "Полето :attribute мора да биде број.",
+  present: "The :attribute field must be present.",
+  regex: "Полето :attribute е во невалиден формат.",
+  required: "Полето :attribute е задолжително.",
+  required_if: "Полето :attribute е задолжително, кога :other е :value.",
+  required_unless: "The :attribute field is required unless :other is in :values.",
+  required_with: "Полето :attribute е задолжително, кога е внесено :values.",
+  required_with_all: "The :attribute field is required when :values is present.",
+  required_without: "Полето :attribute е задолжително, кога не е внесено :values.",
+  required_without_all: "The :attribute field is required when none of :values are present.",
+  same: "Полињата :attribute и :other треба да совпаѓаат.",
+  size: {
+    numeric: "Полето :attribute мора да биде :size.",
+    file: "Полето :attribute мора да биде :size килобајти.",
+    string: "Полето :attribute мора да има :size карактери.",
+    array: "Полето :attribute мора да има :size карактери."
+  },
+  string: "The :attribute must be a string.",
+  timezone: "The :attribute must be a valid zone.",
+  unique: "Полето :attribute веќе постои.",
+  uploaded: "The :attribute failed to upload.",
+  url: "Полето :attribute не е во валиден формат."
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/mn.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/mn.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: ":Attribute баталсан байх шаардлагатай.",
+  active_url: ":Attribute талбарт зөв URL хаяг оруулна уу.",
+  after: ":Attribute талбарт :date-с хойш огноо оруулна уу.",
+  after_or_equal: ":Attribute талбарт :date эсвэл түүнээс хойш огноо оруулна уу.",
+  alpha: ":Attribute талбарт латин үсэг оруулна уу.",
+  alpha_dash: ":Attribute талбарт латин үсэг, тоо болон зураас оруулах боломжтой.",
+  alpha_num: ":Attribute талбарт латин үсэг болон тоо оруулах боломжтой.",
+  attributes: {},
+  array: ":Attribute талбар массив байх шаардлагатай.",
+  before: ":Attribute талбарт :date-с өмнөх огноо оруулна уу.",
+  before_or_equal: ":attribute талбарт :date эсвэл түүнээс өмнөх огноо оруулна уу.",
+  between: {
+    numeric: ":Attribute талбарт :min-:max хооронд тоо оруулна уу.",
+    file: ":Attribute талбарт :min-:max килобайт хэмжээтэй файл оруулна уу.",
+    string: ":Attribute талбарт :min-:max урттай текст оруулна уу.",
+    array: ":Attribute массивт :min-:max элемэнт байх шаардлагатай."
+  },
+  boolean: ":Attribute талбарын утга үнэн эсвэл худал байх шаардлагатай.",
+  confirmed: ":Attribute талбарын баталагажуулалт тохирохгүй байна.",
+  date: ":Attribute талбарт оруулсан огноо буруу байна.",
+  date_format: ":Attribute талбарт :format хэлбэртэй огноо оруулна уу.",
+  different: ":Attribute талбарт :other -с өөр утга оруулах шаардлагатай.",
+  digits: ":Attribute талбарт дараах цифрүүдээс оруулах боломжтой. :digits.",
+  digits_between: ":Attribute талбарт :min-:max хоорондох цифр оруулах боломжтой.",
+  dimensions: ":Attribute талбарийн зургийн хэмжээс буруу байна.",
+  distinct: ":Attribute талбарт ялгаатай утга оруулах шаардлагатай.",
+  email: ":Attribute талбарт зөв и-мэйл хаяг оруулах шаардлагатай.",
+  exists: "Сонгогдсон :attribute буруу байна.",
+  file: ":Attribute талбарт файл оруулах шаардлагатай.",
+  filled: ":Attribute талбар шаардлагатай.",
+  gt: {
+    numeric: "The :attribute must be greater than :value.",
+    file: "The :attribute must be greater than :value kilobytes.",
+    string: "The :attribute must be greater than :value characters.",
+    array: "The :attribute must have more than :value items."
+  },
+  gte: {
+    numeric: "The :attribute must be greater than or equal :value.",
+    file: "The :attribute must be greater than or equal :value kilobytes.",
+    string: "The :attribute must be greater than or equal :value characters.",
+    array: "The :attribute must have :value items or more."
+  },
+  hex: "The :attribute field should have hexadecimal format",
+  image: ":Attribute талбарт зураг оруулна уу.",
+  in: "Сонгогдсон :attribute буруу байна.",
+  in_array: ":Attribute талбарт оруулсан утга :other -д байхгүй байна.",
+  integer: ":Attribute талбарт бүхэл тоо оруулах шаардлагатай.",
+  ip: ":Attribute талбарт зөв IP хаяг оруулах шаардлагатай.",
+  ipv4: "The :attribute must be a valid IPv4 address.",
+  ipv6: "The :attribute must be a valid IPv6 address.",
+  json: ":Attribute талбарт зөв JSON тэмдэгт мөр оруулах шаардлагатай.",
+  lt: {
+    numeric: "The :attribute must be less than :value.",
+    file: "The :attribute must be less than :value kilobytes.",
+    string: "The :attribute must be less than :value characters.",
+    array: "The :attribute must have less than :value items."
+  },
+  lte: {
+    numeric: "The :attribute must be less than or equal :value.",
+    file: "The :attribute must be less than or equal :value kilobytes.",
+    string: "The :attribute must be less than or equal :value characters.",
+    array: "The :attribute must not have more than :value items."
+  },
+  max: {
+    numeric: ":Attribute талбарт :max буюу түүнээс бага утга оруулна уу.",
+    file: ":Attribute талбарт :max килобайтаас бага хэмжээтэй файл оруулна уу.",
+    string: ":Attribute талбарт :max-с бага урттай текст оруулна уу.",
+    array: ":Attribute талбарт хамгийн ихдээ :max элемэнт оруулах боломжтой."
+  },
+  mimes: ":Attribute талбарт дараах төрлийн файл оруулах боломжтой: :values.",
+  mimetypes: ":Attribute талбарт дараах төрлийн файл оруулах боломжтой: :values.",
+  min: {
+    numeric: ":Attribute талбарт :min буюу түүнээс их тоо оруулна уу.",
+    file: ":Attribute талбарт :min килобайтаас их хэмжээтэй файл оруулна уу.",
+    string: ":Attribute талбарт :min буюу түүнээс их үсэг бүхий текст оруулна уу.",
+    array: ":Attribute талбарт хамгийн багадаа :min элемэнт оруулах боломжтой."
+  },
+  not_in: "Буруу :attribute сонгогдсон байна.",
+  not_regex: "The :attribute format is invalid.",
+  numeric: ":Attribute талбарт тоон утга оруулна уу.",
+  present: ":Attribute талбар байх шаардлагатай.",
+  regex: ":Attribute талбарт оруулсан утга буруу байна.",
+  required: ":Attribute талбар шаардлагатай.",
+  required_if: "Хэрэв :other :value бол :attribute табларт утга оруулах шаардлагатай.",
+  required_unless: ":other :values дотор байхгүй бол :attribute талбарт утга оруулах шаардлагатай.",
+  required_with: ":values утгуудийн аль нэг байвал :attribute талбар шаардлагатай.",
+  required_with_all: ":values утгууд байвал :attribute талбар шаардлагатай.",
+  required_without: "The :attribute field is required when :values is not present.",
+  required_without_all: "The :attribute field is required when none of :values are present.",
+  same: "The :attribute and :other must match.",
+  size: {
+    numeric: ":Attribute :size хэмжээтэй байх шаардлагатай.",
+    file: ":Attribute :size килобайт хэмжээтэй байх шаардлагатай.",
+    string: ":Attribute :size тэмдэгтийн урттай байх шаардлагатай.",
+    array: ":Attribute :size элемэнттэй байх шаардлагатай."
+  },
+  string: ":Attribute талбарт текст оруулна уу.",
+  timezone: ":Attribute талбарт зөв цагийн бүс оруулна уу.",
+  unique: "Оруулсан :attribute аль хэдий нь бүртгэгдсэн байна.",
+  uploaded: ":Attribute талбарт оруулсан файлыг хуулхад алдаа гарлаа.",
+  url: ":Attribute зөв url хаяг оруулна уу."
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/ms.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/ms.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: ":attribute mesti diterima pakai.",
+  active_url: ":attribute bukan URL yang sah.",
+  after: ":attribute mesti tarikh selepas :date.",
+  after_or_equal: ":attribute mesti tarikh selepas atau sama dengan :date.",
+  alpha: ":attribute hanya boleh mengandungi huruf.",
+  alpha_dash: ":attribute boleh mengandungi huruf, nombor, dan sengkang.",
+  alpha_num: ":attribute boleh mengandungi huruf dan nombor.",
+  attributes: {},
+  array: ":attribute mesti jujukan.",
+  before: ":attribute mesti tarikh sebelum :date.",
+  before_or_equal: ":attribute mesti tarikh sebelum atau sama dengan :date.",
+  between: {
+    numeric: ":attribute mesti mengandungi antara :min dan :max.",
+    file: ":attribute mesti mengandungi antara :min dan :max kilobait.",
+    string: ":attribute mesti mengandungi antara :min dan :max aksara.",
+    array: ":attribute mesti mengandungi antara :min dan :max perkara."
+  },
+  boolean: ":attribute mesti benar atau salah.",
+  confirmed: ":attribute pengesahan yang tidak sepadan.",
+  date: ":attribute bukan tarikh yang sah.",
+  date_format: ":attribute tidak mengikut format :format.",
+  different: ":attribute dan :other mesti berlainan.",
+  dimensions: ":attribute tidak sah",
+  digits: ":attribute mesti :digits.",
+  digits_between: ":attribute mesti mengandungi antara :min dan :max digits.",
+  distinct: ":attribute adalah nilai yang berulang",
+  email: ":attribute tidak sah.",
+  exists: ":attribute tidak sah.",
+  file: ":attribute mesti fail yang sah.",
+  filled: ":attribute diperlukan.",
+  gt: {
+    numeric: ":attribute mesti melebihi :value.",
+    file: ":attribute mesti melebihi :value kilobait.",
+    string: ":attribute mesti melebihi :value aksara.",
+    array: ":attribute mesti mengandungi lebih daripada :value perkara."
+  },
+  gte: {
+    numeric: ":attribute mesti melebihi atau bersamaan :value.",
+    file: ":attribute mesti melebihi atau bersamaan :value kilobait.",
+    string: ":attribute mesti melebihi atau bersamaan :value aksara.",
+    array: ":attribute mesti mengandungi :value perkara atau lebih."
+  },
+  hex: "The :attribute field should have hexadecimal format",
+  image: ":attribute mesti imej.",
+  in: ":attribute tidak sah.",
+  in_array: ":attribute tidak wujud dalam :other.",
+  integer: ":attribute mesti integer.",
+  ip: ":attribute mesti alamat IP yang sah.",
+  ipv4: ":attribute mesti alamat IPv4 yang sah.",
+  ipv6: ":attribute mesti alamat IPv6 yang sah",
+  json: ":attribute mesti JSON yang sah.",
+  lt: {
+    numeric: ":attribute mesti kurang daripada :value.",
+    file: ":attribute mesti kurang daripada :value kilobait.",
+    string: ":attribute mesti kurang daripada :value aksara.",
+    array: ":attribute mesti mengandungi kurang daripada :value perkara."
+  },
+  lte: {
+    numeric: ":attribute mesti kurang daripada atau bersamaan dengan :value.",
+    file: ":attribute mesti kurang daripada atau bersamaan dengan :value kilobait.",
+    string: ":attribute mesti kurang daripada atau bersamaan dengan :value aksara.",
+    array: ":attribute mesti mengandungi kurang daripada atau bersamaan dengan :value perkara."
+  },
+  max: {
+    numeric: "Jumlah :attribute mesti tidak melebihi :max.",
+    file: "Jumlah :attribute mesti tidak melebihi :max kilobait.",
+    string: "Jumlah :attribute mesti tidak melebihi :max aksara.",
+    array: "Jumlah :attribute mesti tidak melebihi :max perkara."
+  },
+  mimes: ":attribute mesti fail type: :values.",
+  mimetypes: ":attribute mesti fail type: :values.",
+  min: {
+    numeric: "Jumlah :attribute mesti sekurang-kurangnya :min.",
+    file: "Jumlah :attribute mesti sekurang-kurangnya :min kilobait.",
+    string: "Jumlah :attribute mesti sekurang-kurangnya :min aksara.",
+    array: "Jumlah :attribute mesti sekurang-kurangnya :min perkara."
+  },
+  not_in: ":attribute tidak sah.",
+  not_regex: "Format :attribute adalah tidak sah.",
+  numeric: ":attribute mesti nombor.",
+  present: ":attribute mesti wujud.",
+  regex: "Format :attribute tidak sah.",
+  required: "Ruangan :attribute diperlukan.",
+  required_if: "Ruangan :attribute diperlukan bila :other sama dengan :value.",
+  required_unless: "Ruangan :attribute diperlukan sekiranya :other ada dalam :values.",
+  required_with: "Ruangan :attribute diperlukan bila :values wujud.",
+  required_with_all: "Ruangan :attribute diperlukan bila :values wujud.",
+  required_without: "Ruangan :attribute diperlukan bila :values tidak wujud.",
+  required_without_all: "Ruangan :attribute diperlukan bila kesemua :values wujud.",
+  same: "Ruangan :attribute dan :other mesti sepadan.",
+  size: {
+    numeric: "Saiz :attribute mesti :size.",
+    file: "Saiz :attribute mesti :size kilobait.",
+    string: "Saiz :attribute mesti :size aksara.",
+    array: "Saiz :attribute mesti mengandungi :size perkara."
+  },
+  string: ":attribute mesti aksara.",
+  timezone: ":attribute mesti zon masa yang sah.",
+  unique: ":attribute telah wujud.",
+  uploaded: ":attribute gagal dimuat naik.",
+  url: ":attribute format tidak sah."
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/nb_NO.js":
+/*!****************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/nb_NO.js ***!
+  \****************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: ':attribute må være akseptert.',
+  alpha: ':attribute feltet kan kun inneholde alfabetiske tegn.',
+  alpha_dash: ':attribute feltet kan kun inneholde alfanumeriske tegn, i tillegg til bindestreker og understreker.',
+  alpha_num: ':attribute feltet må være alfanumerisk.',
+  between: ':attribute feltet må være mellom :min og :max.',
+  confirmed: ':attribute feltet stemmer ikke overens med bekreftelsen.',
+  email: ':attribute formatet er ugyldig.',
+  date: ':attribute er et ugyldig datoformat.',
+  def: ':attribute attributtet har feil.',
+  digits: ':attribute må være på :digits siffer.',
+  digits_between: ':attribute må være mellom :min og :max siffer.',
+  different: ':attribute og :different må være forskjellige.',
+  in: 'Den oppgitte verdien for :attribute er ugyldig.',
+  integer: ':attribute må være et heltall.',
+  hex: 'The :attribute should have hexadecimal format',
+  min: {
+    numeric: ':attribute må minst være :min.',
+    string: ':attribute må være på minst :min tegn.'
+  },
+  max: {
+    numeric: ':attribute kan ikke være større enn :max.',
+    string: ':attribute kan maks ha :max tegn.'
+  },
+  not_in: 'Den oppgitte verdien for :attribute er ugyldig.',
+  numeric: ':attribute må være et tall.',
+  present: 'The :attribute field must be present (but can be empty).',
+  required: ':attribute feltet er påkrevd.',
+  required_if: ':attribute er påkrevd når :other er :value.',
+  same: ':attribute og :same må være like.',
+  size: {
+    numeric: ':attribute må ha størrelsen :size.',
+    string: ':attribute må ha :size tegn.'
+  },
+  string: ':attribute må være tekst.',
+  url: ':attribute formatet er ugyldig.',
+  regex: ':attribute formatet er ugyldig.',
+  attributes: {}
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/nl.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/nl.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: 'Het :attribute veld moet geaccepteerd worden.',
+  after: ':attribute moet een datum na :after zijn.',
+  after_or_equal: 'De :attribute datum moet op of na :after_or_equal zijn.',
+  alpha: 'Het :attribute veld mag alleen maar letters bevatten.',
+  alpha_dash: 'Het :attribute veld mag alleen maar letters, cijfers en (liggende) streepjes bevatten.',
+  alpha_num: 'Het :attribute veld mag alleen maar letters en cijfers bevatten.',
+  before: ':attribute moet vòòr :before zijn.',
+  before_or_equal: ':attribute moet vòòr of op :before_or_equal zijn.',
+  between: 'Het :attribute veld moet tussen :min en :max liggen.',
+  confirmed: 'Het :attribute veld komt niet met de bevestiging overeen.',
+  email: 'Het :attribute formaat is ongeldig.',
+  date: 'Het :attribute veld moet een geldige datum zijn.',
+  def: 'Het :attribute veld bevat fouten.',
+  digits: 'Het :attribute veld moet :digits cijfers hebben.',
+  digits_between: ':attribute moet bestaan uit minimaal :min en maximaal :max cijfers.',
+  different: 'Het :attribute en :different veld moeten verschillend zijn.',
+  in: 'De gekozen waarde voor :attribute is ongeldig.',
+  integer: 'Het :attribute veld moet een geheel getal zijn.',
+  hex: 'Het :attribute veld moet hexadecimaal zijn',
+  min: {
+    numeric: 'Het :attribute veld moet minstens :min zijn.',
+    string: 'Het :attribute veld moet minstens :min karakters bevatten.'
+  },
+  max: {
+    numeric: 'Het :attribute veld mag maximaal :max zijn.',
+    string: 'Het :attribute veld mag niet meer dan :max karakters bevatten.'
+  },
+  not_in: 'De gekozen waarde voor :attribute is ongeldig.',
+  numeric: 'Het :attribute veld moet een getal zijn.',
+  present: 'Het :attribute veld moet aanwezig zijn (maar mag leeg zijn).',
+  required: 'Het :attribute veld moet ingevuld zijn.',
+  required_if: 'Het :attribute veld moet ingevuld zijn, wanneer :other :value is.',
+  required_unless: 'Het :attribute veld moet ingevuld zijn, wanneer :other niet :value is.',
+  required_with: 'Het :attribute veld moet ingevuld zijn, wanneer :field niet leeg is.',
+  required_with_all: 'Het :attribute veld moet ingevuld zijn, wanneer :fields niet leeg zijn.',
+  required_without: 'Het :attribute veld moet ingevuld zijn, wanneer :field leeg is.',
+  required_without_all: 'Het :attribute veld moet ingevuld zijn, wanneer :fields leeg zijn.',
+  same: 'De :attribute en :same velden moeten overeenkomen.',
+  size: {
+    numeric: 'Het :attribute veld moet :size zijn.',
+    string: 'Het :attribute veld moet :size karakters bevatten.'
+  },
+  string: 'Het :attribute veld moet een woord of zin zijn.',
+  url: 'Het :attribute veld heeft een ongeldig formaat.',
+  regex: 'Het :attribute veld heeft een ongeldig formaat.',
+  attributes: {}
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/pl.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/pl.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: 'Pole :attribute musi być zaakceptowane.',
+  alpha: 'Pole :attribute może zawierać tylko litery.',
+  alpha_dash: 'Pole :attribute moze zawierać tylko litery, myślnik i podrkeślenie.',
+  alpha_num: 'Pole :attribute moze zawierac tylko znaki alfanumeryczne.',
+  between: 'Pole :attribute musi mieć długość od :min do :max.',
+  confirmed: 'Pole :attribute nie spełnia warunku potwierdzenia.',
+  email: 'Pole :attribute ma niepoprawny format adresu email.',
+  date: 'Pole :attribute musi mieć poprawny format daty.',
+  def: 'Pole :attribute zawiera błędy.',
+  digits: 'Pole :attribute może zawierać tylko cyfry ze zbioru :digits.',
+  digits_between: 'Pole :attribute musi mieć od :min do :max cyfr.',
+  different: 'Pola :attribute i :different muszą się różnić.',
+  in: 'Pole :attribute musi należeć do zbioru :in.',
+  integer: 'Pole :attribute musi być liczbą całkowitą.',
+  hex: 'The :attribute should have hexadecimal format',
+  min: {
+    numeric: 'Pole :attribute musi być równe conajmniej :min.',
+    string: 'Pole :attribute musi zawierać conajmniej :min znaków.'
+  },
+  max: {
+    numeric: 'Pole :attribute nie moze być większe :max.',
+    string: 'Pole :attribute nie moze być dłuższe niż :max znaków.'
+  },
+  not_in: 'Pole :attribute nie może należeć do zbioru :not_in.',
+  numeric: 'Pole :attribute musi być liczbą.',
+  present: 'Polu :attribute musi być obecny (ale może być pusta).',
+  required: 'Pole :attribute jest wymagane.',
+  required_if: 'Pole :attribute jest wymagane jeśli pole :other jest równe :value.',
+  same: 'Pola :attribute i :same muszą być takie same.',
+  size: {
+    numeric: 'Pole :attribute musi być równe :size.',
+    string: 'Pole :attribute musi zawierać :size znaków.'
+  },
+  string: 'Pole :attribute musi być ciągiem znaków.',
+  url: 'Pole :attribute musi być poprawnym adresem URL.',
+  regex: 'Pole :attribute nie spełnia warunku.',
+  attributes: {}
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/pt.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/pt.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: "O campo :attribute deverá ser aceite.",
+  active_url: "O campo :attribute não contém um URL válido.",
+  after: "O campo :attribute deverá conter uma data posterior a :date.",
+  after_or_equal: "O campo :attribute deverá conter uma data posterior ou igual a :date.",
+  alpha: "O campo :attribute deverá conter apenas letras.",
+  alpha_dash: "O campo :attribute deverá conter apenas letras, números e traços.",
+  alpha_num: "O campo :attribute deverá conter apenas letras e números .",
+  attributes: {},
+  array: "O campo :attribute deverá conter uma coleção de elementos.",
+  before: "O campo :attribute deverá conter uma data anterior a :date.",
+  before_or_equal: "O Campo :attribute deverá conter uma data anterior ou igual a :date.",
+  between: {
+    numeric: "O campo :attribute deverá ter um valor entre :min - :max.",
+    file: "O campo :attribute deverá ter um tamanho entre :min - :max kilobytes.",
+    string: "O campo :attribute deverá conter entre :min - :max caracteres.",
+    array: "O campo :attribute deverá conter entre :min - :max elementos."
+  },
+  boolean: "O campo :attribute deverá conter o valor verdadeiro ou falso.",
+  confirmed: "A confirmação para o campo :attribute não coincide.",
+  date: "O campo :attribute não contém uma data válida.",
+  date_format: "A data indicada para o campo :attribute não respeita o formato :format.",
+  different: "Os campos :attribute e :other deverão conter valores diferentes.",
+  digits: "O campo :attribute deverá conter :digits caracteres.",
+  digits_between: "O campo :attribute deverá conter entre :min a :max caracteres.",
+  dimensions: "O campo :attribute deverá conter uma dimensão de imagem válida.",
+  distinct: "O campo :attribute contém um valor duplicado.",
+  email: "O campo :attribute não contém um endereço de correio eletrónico válido.",
+  exists: "O valor selecionado para o campo :attribute é inválido.",
+  file: "O campo :attribute deverá conter um ficheiro.",
+  filled: "É obrigatória a indicação de um valor para o campo :attribute.",
+  gt: {
+    numeric: "The :attribute must be greater than :value.",
+    file: "The :attribute must be greater than :value kilobytes.",
+    string: "The :attribute must be greater than :value characters.",
+    array: "The :attribute must have more than :value items."
+  },
+  gte: {
+    numeric: "The :attribute must be greater than or equal :value.",
+    file: "The :attribute must be greater than or equal :value kilobytes.",
+    string: "The :attribute must be greater than or equal :value characters.",
+    array: "The :attribute must have :value items or more."
+  },
+  hex: "The :attribute field should have hexadecimal format",
+  image: "O campo :attribute deverá conter uma imagem.",
+  in: "O campo :attribute não contém um valor válido.",
+  in_array: "O campo :attribute não existe em :other.",
+  integer: "O campo :attribute deverá conter um número inteiro.",
+  ip: "O campo :attribute deverá conter um IP válido.",
+  ipv4: "O campo :attribute deverá conter um IPv4 válido.",
+  ipv6: "O campo :attribute deverá conter um IPv6 válido.",
+  json: "O campo :attribute deverá conter um texto JSON válido.",
+  lt: {
+    numeric: "The :attribute must be less than :value.",
+    file: "The :attribute must be less than :value kilobytes.",
+    string: "The :attribute must be less than :value characters.",
+    array: "The :attribute must have less than :value items."
+  },
+  lte: {
+    numeric: "The :attribute must be less than or equal :value.",
+    file: "The :attribute must be less than or equal :value kilobytes.",
+    string: "The :attribute must be less than or equal :value characters.",
+    array: "The :attribute must not have more than :value items."
+  },
+  max: {
+    numeric: "O campo :attribute não deverá conter um valor superior a :max.",
+    file: "O campo :attribute não deverá ter um tamanho superior a :max kilobytes.",
+    string: "O campo :attribute não deverá conter mais de :max caracteres.",
+    array: "O campo :attribute não deverá conter mais de :max elementos."
+  },
+  mimes: "O campo :attribute deverá conter um ficheiro do tipo: :values.",
+  mimetypes: "O campo :attribute deverá conter um ficheiro do tipo: :values.",
+  min: {
+    numeric: "O campo :attribute deverá ter um valor superior ou igual a :min.",
+    file: "O campo :attribute deverá ter no mínimo :min kilobytes.",
+    string: "O campo :attribute deverá conter no mínimo :min caracteres.",
+    array: "O campo :attribute deverá conter no mínimo :min elementos."
+  },
+  not_in: "O campo :attribute contém um valor inválido.",
+  not_regex: "The :attribute format is invalid.",
+  numeric: "O campo :attribute deverá conter um valor numérico.",
+  present: "O campo :attribute deverá estar presente.",
+  regex: "O formato do valor para o campo :attribute é inválido.",
+  required: "É obrigatória a indicação de um valor para o campo :attribute.",
+  required_if:
+    "É obrigatória a indicação de um valor para o campo :attribute quando o valor do campo :other é igual a :value.",
+  required_unless:
+    "É obrigatória a indicação de um valor para o campo :attribute a menos que :other esteja presente em :values.",
+  required_with: "É obrigatória a indicação de um valor para o campo :attribute quando :values está presente.",
+  required_with_all:
+    "É obrigatória a indicação de um valor para o campo :attribute quando um dos :values está presente.",
+  required_without: "É obrigatória a indicação de um valor para o campo :attribute quando :values não está presente.",
+  required_without_all:
+    "É obrigatória a indicação de um valor para o campo :attribute quando nenhum dos :values está presente.",
+  same: "Os campos :attribute e :other deverão conter valores iguais.",
+  size: {
+    numeric: "O campo :attribute deverá conter o valor :size.",
+    file: "O campo :attribute deverá ter o tamanho de :size kilobytes.",
+    string: "O campo :attribute deverá conter :size caracteres.",
+    array: "O campo :attribute deverá conter :size elementos."
+  },
+  string: "O campo :attribute deverá conter texto.",
+  timezone: "O campo :attribute deverá ter um fuso horário válido.",
+  unique: "O valor indicado para o campo :attribute já se encontra registado.",
+  uploaded: "O upload do ficheiro :attribute falhou.",
+  url: "O formato do URL indicado para o campo :attribute é inválido."
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/pt_BR.js":
+/*!****************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/pt_BR.js ***!
+  \****************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: "O campo :attribute deve ser aceito.",
+  active_url: "O campo :attribute deve conter uma URL válida.",
+  after: "O campo :attribute deve conter uma data posterior a :date.",
+  after_or_equal: "O campo :attribute deve conter uma data superior ou igual a :date.",
+  alpha: "O campo :attribute deve conter apenas letras.",
+  alpha_dash: "O campo :attribute deve conter apenas letras, números e traços.",
+  alpha_num: "O campo :attribute deve conter apenas letras e números .",
+  array: "O campo :attribute deve conter um array.",
+  before: "O campo :attribute deve conter uma data anterior a :date.",
+  before_or_equal: "O campo :attribute deve conter uma data inferior ou igual a :date.",
+  between: {
+    numeric: "O campo :attribute deve conter um número entre :min e :max.",
+    file: "O campo :attribute deve conter um arquivo de :min a :max kilobytes.",
+    string: "O campo :attribute deve conter entre :min a :max caracteres.",
+    array: "O campo :attribute deve conter de :min a :max itens."
+  },
+  boolean: "O campo :attribute deve conter o valor verdadeiro ou falso.",
+  confirmed: "A confirmação para o campo :attribute não coincide.",
+  date: "O campo :attribute não contém uma data válida.",
+  date_format: "A data informada para o campo :attribute não respeita o formato :format.",
+  different: "Os campos :attribute e :other devem conter valores diferentes.",
+  digits: "O campo :attribute deve conter :digits dígitos.",
+  digits_between: "O campo :attribute deve conter entre :min a :max dígitos.",
+  dimensions: "O valor informado para o campo :attribute não é uma dimensão de imagem válida.",
+  distinct: "O campo :attribute contém um valor duplicado.",
+  email: "O campo :attribute não contém um endereço de email válido.",
+  exists: "O valor selecionado para o campo :attribute é inválido.",
+  file: "O campo :attribute deve conter um arquivo.",
+  filled: "O campo :attribute é obrigatório.",
+  gt: {
+    numeric: "O campo :attribute deve ser maior que :value.",
+    file: "O arquivo :attribute deve ser maior que :value kilobytes.",
+    string: "O campo :attribute deve ser maior que :value caracteres.",
+    array: "O campo :attribute deve ter mais que :value itens."
+  },
+  gte: {
+    numeric: "O campo :attribute deve ser maior ou igual a :value.",
+    file: "O arquivo :attribute deve ser maior ou igual a :value kilobytes.",
+    string: "O campo :attribute deve ser maior ou igual a :value caracteres.",
+    array: "O campo :attribute deve ter :value itens ou mais."
+  },
+  hex: "The :attribute field should have hexadecimal format",
+  image: "O campo :attribute deve conter uma imagem.",
+  in: "O campo :attribute não contém um valor válido.",
+  in_array: "O campo :attribute não existe em :other.",
+  integer: "O campo :attribute deve conter um número inteiro.",
+  ip: "O campo :attribute deve conter um IP válido.",
+  ipv4: "O campo :attribute deve conter um IPv4 válido.",
+  ipv6: "O campo :attribute deve conter um IPv6 válido.",
+  json: "O campo :attribute deve conter uma string JSON válida.",
+  lt: {
+    numeric: "O campo :attribute deve ser menor que :value.",
+    file: "O arquivo :attribute ser menor que :value kilobytes.",
+    string: "O campo :attribute deve ser menor que :value caracteres.",
+    array: "O campo :attribute deve ter menos que :value itens."
+  },
+  lte: {
+    numeric: "O campo :attribute deve ser menor ou igual a :value.",
+    file: "O arquivo :attribute ser menor ou igual a :value kilobytes.",
+    string: "O campo :attribute deve ser menor ou igual a :value caracteres.",
+    array: "O campo :attribute não deve ter mais que :value itens."
+  },
+  max: {
+    numeric: "O campo :attribute não pode conter um valor superior a :max.",
+    file: "O campo :attribute não pode conter um arquivo com mais de :max kilobytes.",
+    string: "O campo :attribute não pode conter mais de :max caracteres.",
+    array: "O campo :attribute deve conter no máximo :max itens."
+  },
+  mimes: "O campo :attribute deve conter um arquivo do tipo: :values.",
+  mimetypes: "O campo :attribute deve conter um arquivo do tipo: :values.",
+  min: {
+    numeric: "O campo :attribute deve conter um número superior ou igual a :min.",
+    file: "O campo :attribute deve conter um arquivo com no mínimo :min kilobytes.",
+    string: "O campo :attribute deve conter no mínimo :min caracteres.",
+    array: "O campo :attribute deve conter no mínimo :min itens."
+  },
+  not_in: "O campo :attribute contém um valor inválido.",
+  not_regex: "O formato do valor :attribute é inválido.",
+  numeric: "O campo :attribute deve conter um valor numérico.",
+  present: "O campo :attribute deve estar presente.",
+  regex: "O formato do valor informado no campo :attribute é inválido.",
+  required: "O campo :attribute é obrigatório.",
+  required_if: "O campo :attribute é obrigatório quando o valor do campo :other é igual a :value.",
+  required_unless: "O campo :attribute é obrigatório a menos que :other esteja presente em :values.",
+  required_with: "O campo :attribute é obrigatório quando :values está presente.",
+  required_with_all: "O campo :attribute é obrigatório quando um dos :values está presente.",
+  required_without: "O campo :attribute é obrigatório quando :values não está presente.",
+  required_without_all: "O campo :attribute é obrigatório quando nenhum dos :values está presente.",
+  same: "Os campos :attribute e :other devem conter valores iguais.",
+  size: {
+    numeric: "O campo :attribute deve conter o número :size.",
+    file: "O campo :attribute deve conter um arquivo com o tamanho de :size kilobytes.",
+    string: "O campo :attribute deve conter :size caracteres.",
+    array: "O campo :attribute deve conter :size itens."
+  },
+  string: "O campo :attribute deve ser uma string.",
+  timezone: "O campo :attribute deve conter um fuso horário válido.",
+  unique: "O valor informado para o campo :attribute já está em uso.",
+  uploaded: "Falha no Upload do arquivo :attribute.",
+  url: "O formato da URL informada para o campo :attribute é inválido."
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/ro.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/ro.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: ':attribute trebuie acceptat.',
+  after: ':attribute trebuie să fie după :after.',
+  after_or_equal: ':attribute trebuie să fie egal sau după :after_or_equal.',
+  alpha: 'Câmpul :attribute rebuie să conțină numai caractere alfabetice.',
+  alpha_dash: 'Câmpul:attribute poate conține numai caractere alfanumerice, precum și liniuțe și subliniere.',
+  alpha_num: 'Câmpul :attribute trebuie să fie alfanumeric.',
+  before: ':attribute trebuie să fie înainte :before.',
+  before_or_equal: ':attribute trebuie să fie egal sau înainte :before_or_equal.',
+  between: ':attribute trebuie să fie între :min și :max.',
+  confirmed: 'Confirmarea :attribute nu se potrivește.',
+  email: 'Formatul :attribute nu este valid.',
+  date: ':attribute nu este un format de dată valid.',
+  def: 'Atributul :attribute are erori.',
+  digits: ':attribute trebuie să aibă  :digits cifre.',
+  digits_between: 'Câmpul :attribute trebuie să aibă între :min și :max cifre.',
+  different: ':attribute și :different trebuie sa fie diferite.',
+  in: 'Atributul selectat :attribute nu este valid.',
+  integer: ':attribute trebuie să fie un număr întreg.',
+  hex: 'Câmpul :attribute trebuie să aibă format hexazecimal.',
+  min: {
+    numeric: ':attribute trebuie să fie mai mare de :min.',
+    string: ':attribute trebuie să contină cel puțin :min caractere.'
+  },
+  max: {
+    numeric: ':attribute nu trebuie să fie mai mare de :max.',
+    string: ':attribute poate să contină maxim :max caractere.'
+  },
+  not_in: ':attribute selectat nu este valid.',
+  numeric: ':attribute trebuie sa fie un număr.',
+  present: ':attribute trebuie sa fie prezent(dar poate fi gol).',
+  required: ' Câmpul :attribute este obligatoriu.',
+  required_if: 'Câmpul :attribute este obligatoriu cănd :other este :value.',
+  required_unless: 'Câmpul :attribute este obligatoriu cănd :other nu este :value.',
+  required_with: 'Câmpul :attribute este obligatoriu cănd :field este completat.',
+  required_with_all: 'Câmpul :attribute este obligatoriu cănd :fields sunt completate.',
+  required_without: 'Câmpul :attribute este obligatoriu cănd :field nu este completat.',
+  required_without_all: 'Câmpul :attribute este obligatoriu cănd :fields nu sunt completate.',
+  same: 'Câmpurile :attribute și :same trebuie să fie egale.',
+  size: {
+    numeric: ':attribute trebuie să fie :size.',
+    string: ':attribute trebuie să contina :size caractere.'
+  },
+  string: ':attribute trebuie să fie un contina doar caractere alfabetice.',
+  url: 'Formatul :attribute nu este valid.',
+  regex: 'Formatul :attribute nu este valid.',
+  attributes: {}
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/ru.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/ru.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: 'Вы должны принять :attribute.',
+  alpha: 'Поле :attribute может содержать только буквы.',
+  alpha_dash: 'Поле :attribute может содержать только буквы, цифры, дефисы и символы подчёркивания.',
+  alpha_num: 'Поле :attribute может содержать только буквы и цифры.',
+  between: 'Поле :attribute должно быть между :min и :max.',
+  confirmed: 'Поле :attribute не совпадает с подтверждением.',
+  email: 'Поле :attribute должно быть действительным электронным адресом.',
+  def: 'Поле :attribute содержит ошибки.',
+  digits: 'Длина цифрового поля :attribute должна быть :digits.',
+  digits_between: 'Длинна цифрового поля :attribute должна быть от :min до :max знаков.',
+  different: 'Поля :attribute и :different должны различаться.',
+  in: 'Выбранное значение для :attribute ошибочно.',
+  integer: 'Поле :attribute должно быть целым числом.',
+  hex: 'Поле :attribute должно иметь шестнадцатеричный формат',
+  min: {
+    numeric: 'Значение поля :attribute должно быть больше или равно :min.',
+    string: 'Количество символов в поле :attribute должно быть не менее :min.'
+  },
+  max: {
+    numeric: 'Значение поля :attribute должно быть меньше или равно :max.',
+    string: 'Количество символов в поле :attribute не может превышать :max.'
+  },
+  not_in: 'Выбранное значение для :attribute ошибочно.',
+  numeric: 'Поле :attribute должно быть числом.',
+  present: 'Поле :attribute должно присутствовать (но может быть пустым).',
+  required: 'Поле :attribute обязательно для заполнения.',
+  required_if: 'Поле :attribute требуется когда значения поля :other равно :value.',
+  same: 'Значение :attribute должно совпадать с :same.',
+  size: {
+    numeric: 'Значение поля :attribute должно быть равным :size.',
+    string: 'Количество символов в поле :attribute должно быть равно :size.'
+  },
+  url: 'Поле :attribute должно содержать валидный URL.',
+  regex: 'Неверный формат поля :attribute.',
+  attributes: {}
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/se.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/se.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: ':attribute måste vara accepterat.',
+  after: ':attribute måste vara efter :after.',
+  after_or_equal: ':attribute måste vara samtidigt eller efter :after_or_equal.',
+  alpha: ':attribute får bara bestå av bokstäver.',
+  alpha_dash: ':attribute får bara bestå av alfanumeriska tecken, bindestreck och understreck.',
+  alpha_num: ':attribute får bara bestå av alfanumeriska tecken',
+  before: ':attribute måste vara före :before.',
+  before_or_equal: ':attribute måste vara samtidigt eller före :before_or_equal.',
+  between: ':attribute måste vara mellan :min och :max.',
+  confirmed: ':attribute stämmer inte överens med bekräftelsefältet.',
+  email: 'Felaktigt format för :attribute.',
+  date: ':attribute är inte ett giltigt datum.',
+  def: 'Attributet :attribute innehåller fel.',
+  digits: ':attribute ska innehålla :digits siffror.',
+  different: ':attribute och :different måste vara olika.',
+  in: 'Det valda :attribute är ogiltigt.',
+  integer: ':attribute måste vara ett heltal.',
+  hex: ':attribute måste vara i hexadecimalt format',
+  min: {
+    numeric: ':attribute måste vara minst :min.',
+    string: ':attribute måste vara minst :min tecken.'
+  },
+  max: {
+    numeric: ':attribute får inte vara högre än :max.',
+    string: ':attribute får inte innehålla fler än :max tecken.'
+  },
+  not_in: 'Det valda attributet :attribute är ogiltigt',
+  numeric: ':attribute måste vara en siffra.',
+  present: ':attribute måste vara tillgängligt.',
+  required: ':attribute måste vara ifyllt.',
+  required_if: ':attribute måste vara ifyllt när :other är :value.',
+  required_unless: ':attribute måste vara ifyllt när :other inte är :value.',
+  required_with: ':attribute måste vara ifyllt när :field är ifyllt.',
+  required_with_all: ':attribute måste vara ifyllt när :fields är ifyllda.',
+  required_without: ':attribute måste vara ifyllt när :field inte är ifyllt.',
+  required_without_all: ':attribute måste vara ifyllt när ingen av :fields är ifyllda.',
+  same: ':attribute och :same måste matcha.',
+  size: {
+    numeric: ':attribute måste vara :size.',
+    string: ':attribute måste vara :size tecken lång.'
+  },
+  string: ':attribute måste vara en sträng.',
+  url: ':attribute formatet är ogiltigt.',
+  regex: ':attribute formatet är ogiltigt.',
+  attributes: {}
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/sl.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/sl.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: ":attribute mora biti sprejet.",
+  active_url: ":attribute ni pravilen.",
+  after: ":attribute mora biti za datumom :date.",
+  after_or_equal: ":attribute mora biti za ali enak :date.",
+  alpha: ":attribute lahko vsebuje samo črke.",
+  alpha_dash: ":attribute lahko vsebuje samo črke, številke in črtice.",
+  alpha_num: ":attribute lahko vsebuje samo črke in številke.",
+  attributes: {},
+  array: ":attribute mora biti polje.",
+  before: ":attribute mora biti pred datumom :date.",
+  before_or_equal: ":attribute mora biti pred ali enak :date.",
+  between: {
+    numeric: ":attribute mora biti med :min in :max.",
+    file: ":attribute mora biti med :min in :max kilobajti.",
+    string: ":attribute mora biti med :min in :max znaki.",
+    array: ":attribute mora imeti med :min in :max elementov."
+  },
+  boolean: ":attribute polje mora biti 1 ali 0",
+  confirmed: ":attribute potrditev se ne ujema.",
+  date: ":attribute ni veljaven datum.",
+  date_format: ":attribute se ne ujema z obliko :format.",
+  different: ":attribute in :other mora biti drugačen.",
+  digits: ":attribute mora imeti :digits cifer.",
+  digits_between: ":attribute mora biti med :min in :max ciframi.",
+  dimensions: ":attribute ima napačne dimenzije slike.",
+  distinct: ":attribute je duplikat.",
+  email: ":attribute mora biti veljaven e-poštni naslov.",
+  exists: "izbran :attribute je neveljaven.",
+  file: ":attribute mora biti datoteka.",
+  filled: ":attribute mora biti izpolnjen.",
+  gt: {
+    numeric: "The :attribute must be greater than :value.",
+    file: "The :attribute must be greater than :value kilobytes.",
+    string: "The :attribute must be greater than :value characters.",
+    array: "The :attribute must have more than :value items."
+  },
+  gte: {
+    numeric: "The :attribute must be greater than or equal :value.",
+    file: "The :attribute must be greater than or equal :value kilobytes.",
+    string: "The :attribute must be greater than or equal :value characters.",
+    array: "The :attribute must have :value items or more."
+  },
+  hex: "The :attribute field should have hexadecimal format",
+  image: ":attribute mora biti slika.",
+  in: "izbran :attribute je neveljaven.",
+  in_array: ":attribute ne obstaja v :other.",
+  integer: ":attribute mora biti število.",
+  ip: ":attribute mora biti veljaven IP naslov.",
+  ipv4: ":attribute mora biti veljaven IPv4 naslov.",
+  ipv6: ":attribute mora biti veljaven IPv6 naslov.",
+  json: ":attribute mora biti veljaven JSON tekst.",
+  lt: {
+    numeric: "The :attribute must be less than :value.",
+    file: "The :attribute must be less than :value kilobytes.",
+    string: "The :attribute must be less than :value characters.",
+    array: "The :attribute must have less than :value items."
+  },
+  lte: {
+    numeric: "The :attribute must be less than or equal :value.",
+    file: "The :attribute must be less than or equal :value kilobytes.",
+    string: "The :attribute must be less than or equal :value characters.",
+    array: "The :attribute must not have more than :value items."
+  },
+  max: {
+    numeric: ":attribute ne sme biti večje od :max.",
+    file: ":attribute ne sme biti večje :max kilobajtov.",
+    string: ":attribute ne sme biti večje :max znakov.",
+    array: ":attribute ne smejo imeti več kot :max elementov."
+  },
+  mimes: ":attribute mora biti datoteka tipa: :values.",
+  mimetypes: ":attribute mora biti datoteka tipa: :values.",
+  min: {
+    numeric: ":attribute mora biti vsaj dolžine :min.",
+    file: ":attribute mora imeti vsaj :min kilobajtov.",
+    string: ":attribute mora imeti vsaj :min znakov.",
+    array: ":attribute mora imeti vsaj :min elementov."
+  },
+  not_in: "izbran :attribute je neveljaven.",
+  not_regex: "The :attribute format is invalid.",
+  numeric: ":attribute mora biti število.",
+  present: "Polje :attribute mora biti prisotno.",
+  regex: "Format polja :attribute je neveljaven.",
+  required: "Polje :attribute je obvezno.",
+  required_if: "Polje :attribute je obvezno, če je :other enak :value.",
+  required_unless: "Polje :attribute je obvezno, razen če je :other v :values.",
+  required_with: "Polje :attribute je obvezno, če je :values prisoten.",
+  required_with_all: "Polje :attribute je obvezno, če so :values prisoten.",
+  required_without: "Polje :attribute je obvezno, če :values ni prisoten.",
+  required_without_all: "Polje :attribute je obvezno, če :values niso prisotni.",
+  same: "Polje :attribute in :other se morata ujemati.",
+  size: {
+    numeric: ":attribute mora biti :size.",
+    file: ":attribute mora biti :size kilobajtov.",
+    string: ":attribute mora biti :size znakov.",
+    array: ":attribute mora vsebovati :size elementov."
+  },
+  string: ":attribute mora biti tekst.",
+  timezone: ":attribute mora biti časovna cona.",
+  unique: ":attribute je že zaseden.",
+  uploaded: "Nalaganje :attribute ni uspelo.",
+  url: ":attribute format je neveljaven."
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/sq.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/sq.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: ":attribute duhet të pranohet.",
+  active_url: ":attribute nuk është adresë e saktë.",
+  after: ":attribute duhet të jetë datë pas :date.",
+  after_or_equal: "The :attribute must be a date after or equal to :date.",
+  alpha: ":attribute mund të përmbajë vetëm shkronja.",
+  alpha_dash: ":attribute mund të përmbajë vetëm shkronja, numra, dhe viza.",
+  alpha_num: ":attribute mund të përmbajë vetëm shkronja dhe numra.",
+  attributes: {},
+  array: ":attribute duhet të jetë një bashkësi (array).",
+  before: ":attribute duhet të jetë datë para :date.",
+  before_or_equal: "The :attribute must be a date before or equal to :date.",
+  between: {
+    numeric: ":attribute duhet të jetë midis :min - :max.",
+    file: ":attribute duhet të jetë midis :min - :max kilobajtëve.",
+    string: ":attribute duhet të jetë midis :min - :max karaktereve.",
+    array: ":attribute duhet të jetë midis :min - :max elementëve."
+  },
+  boolean: "Fusha :attribute duhet të jetë e vërtetë ose e gabuar",
+  confirmed: ":attribute konfirmimi nuk përputhet.",
+  date: ":attribute nuk është një datë e saktë.",
+  date_format: ":attribute nuk i përshtatet formatit :format.",
+  different: ":attribute dhe :other duhet të jenë të ndryshme.",
+  digits: ":attribute duhet të jetë :digits shifra.",
+  digits_between: ":attribute duhet të jetë midis :min dhe :max shifra.",
+  dimensions: "The :attribute has invalid image dimensions.",
+  distinct: "The :attribute field has a duplicate value.",
+  email: ":attribute formati është i pasaktë.",
+  exists: ":attribute përzgjedhur është i/e pasaktë.",
+  file: "The :attribute must be a file.",
+  filled: "Fusha :attribute është e kërkuar.",
+  gt: {
+    numeric: "The :attribute must be greater than :value.",
+    file: "The :attribute must be greater than :value kilobytes.",
+    string: "The :attribute must be greater than :value characters.",
+    array: "The :attribute must have more than :value items."
+  },
+  gte: {
+    numeric: "The :attribute must be greater than or equal :value.",
+    file: "The :attribute must be greater than or equal :value kilobytes.",
+    string: "The :attribute must be greater than or equal :value characters.",
+    array: "The :attribute must have :value items or more."
+  },
+  hex: "The :attribute field should have hexadecimal format",
+  image: ":attribute duhet të jetë imazh.",
+  in: ":attribute përzgjedhur është i/e pasaktë.",
+  in_array: "The :attribute field does not exist in :other.",
+  integer: ":attribute duhet të jetë numër i plotë.",
+  ip: ":attribute duhet të jetë një IP adresë e saktë.",
+  ipv4: "The :attribute must be a valid IPv4 address.",
+  ipv6: "The :attribute must be a valid IPv6 address.",
+  json: "The :attribute must be a valid JSON string.",
+  lt: {
+    numeric: "The :attribute must be less than :value.",
+    file: "The :attribute must be less than :value kilobytes.",
+    string: "The :attribute must be less than :value characters.",
+    array: "The :attribute must have less than :value items."
+  },
+  lte: {
+    numeric: "The :attribute must be less than or equal :value.",
+    file: "The :attribute must be less than or equal :value kilobytes.",
+    string: "The :attribute must be less than or equal :value characters.",
+    array: "The :attribute must not have more than :value items."
+  },
+  max: {
+    numeric: ":attribute nuk mund të jetë më tepër se :max.",
+    file: ":attribute nuk mund të jetë më tepër se :max kilobajtë.",
+    string: ":attribute nuk mund të jetë më tepër se :max karaktere.",
+    array: ":attribute nuk mund të ketë më tepër se :max elemente."
+  },
+  mimes: ":attribute duhet të jetë një dokument i tipit: :values.",
+  mimetypes: ":attribute duhet të jetë një dokument i tipit: :values.",
+  min: {
+    numeric: ":attribute nuk mund të jetë më pak se :min.",
+    file: ":attribute nuk mund të jetë më pak se :min kilobajtë.",
+    string: ":attribute nuk mund të jetë më pak se :min karaktere.",
+    array: ":attribute nuk mund të ketë më pak se :min elemente."
+  },
+  not_in: ":attribute përzgjedhur është i/e pasaktë.",
+  not_regex: "The :attribute format is invalid.",
+  numeric: ":attribute duhet të jetë një numër.",
+  present: "The :attribute field must be present.",
+  regex: "Formati i :attribute është i pasaktë.",
+  required: "Fusha :attribute është e kërkuar.",
+  required_if: "Fusha :attribute është e kërkuar kur :other është :value.",
+  required_unless: "The :attribute field is required unless :other is in :values.",
+  required_with: "Fusha :attribute është e kërkuar kur :values ekziston.",
+  required_with_all: "Fusha :attribute është e kërkuar kur :values ekziston.",
+  required_without: "Fusha :attribute është e kërkuar kur :values nuk ekziston.",
+  required_without_all: "Fusha :attribute është e kërkuar kur nuk ekziston asnjë nga :values.",
+  same: ":attribute dhe :other duhet të përputhen.",
+  size: {
+    numeric: ":attribute duhet të jetë :size.",
+    file: ":attribute duhet të jetë :size kilobajtë.",
+    string: ":attribute duhet të jetë :size karaktere.",
+    array: ":attribute duhet të ketë :size elemente."
+  },
+  string: ":attribute duhet të jetë varg.",
+  timezone: ":attribute duhet të jetë zonë e saktë.",
+  unique: ":attribute është marrë tashmë.",
+  uploaded: "The :attribute failed to upload.",
+  url: "Formati i :attribute është i pasaktë."
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/sr.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/sr.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: "Polje :attribute mora biti prihvaćeno.",
+  active_url: "Polje :attribute nije validan URL.",
+  after: "Polje :attribute mora biti datum posle :date.",
+  after_or_equal: "The :attribute must be a date after or equal to :date.",
+  alpha: "Polje :attribute može sadržati samo slova.",
+  alpha_dash: "Polje :attribute može sadržati samo slova, brojeve i povlake.",
+  alpha_num: "Polje :attribute može sadržati samo slova i brojeve.",
+  attributes: {},
+  array: "Polje :attribute mora sadržati nekih niz stavki.",
+  before: "Polje :attribute mora biti datum pre :date.",
+  before_or_equal: "The :attribute must be a date before or equal to :date.",
+  between: {
+    numeric: "Polje :attribute mora biti između :min - :max.",
+    file: "Fajl :attribute mora biti između :min - :max kilobajta.",
+    string: "Polje :attribute mora biti između :min - :max karaktera.",
+    array: "Polje :attribute mora biti između :min - :max stavki."
+  },
+  boolean: "Polje :attribute mora biti tačno ili netačno",
+  confirmed: "Potvrda polja :attribute se ne poklapa.",
+  date: "Polje :attribute nije važeći datum.",
+  date_format: "Polje :attribute ne odgovora prema formatu :format.",
+  different: "Polja :attribute i :other moraju biti različita.",
+  digits: "Polje :attribute mora sadržati :digits šifri.",
+  digits_between: "Polje :attribute mora biti izemđu :min i :max šifri.",
+  dimensions: "The :attribute has invalid image dimensions.",
+  distinct: "The :attribute field has a duplicate value.",
+  email: "Format polja :attribute nije validan.",
+  exists: "Odabrano polje :attribute nije validno.",
+  file: "The :attribute must be a file.",
+  filled: "Polje :attribute je obavezno.",
+  gt: {
+    numeric: "The :attribute must be greater than :value.",
+    file: "The :attribute must be greater than :value kilobytes.",
+    string: "The :attribute must be greater than :value characters.",
+    array: "The :attribute must have more than :value items."
+  },
+  gte: {
+    numeric: "The :attribute must be greater than or equal :value.",
+    file: "The :attribute must be greater than or equal :value kilobytes.",
+    string: "The :attribute must be greater than or equal :value characters.",
+    array: "The :attribute must have :value items or more."
+  },
+  hex: "The :attribute field should have hexadecimal format",
+  image: "Polje :attribute mora biti slika.",
+  in: "Odabrano polje :attribute nije validno.",
+  in_array: "The :attribute field does not exist in :other.",
+  integer: "Polje :attribute mora biti broj.",
+  ip: "Polje :attribute mora biti validna IP adresa.",
+  ipv4: "The :attribute must be a valid IPv4 address.",
+  ipv6: "The :attribute must be a valid IPv6 address.",
+  json: "The :attribute must be a valid JSON string.",
+  lt: {
+    numeric: "The :attribute must be less than :value.",
+    file: "The :attribute must be less than :value kilobytes.",
+    string: "The :attribute must be less than :value characters.",
+    array: "The :attribute must have less than :value items."
+  },
+  lte: {
+    numeric: "The :attribute must be less than or equal :value.",
+    file: "The :attribute must be less than or equal :value kilobytes.",
+    string: "The :attribute must be less than or equal :value characters.",
+    array: "The :attribute must not have more than :value items."
+  },
+  max: {
+    numeric: "Polje :attribute mora biti manje od :max.",
+    file: "Polje :attribute mora biti manje od :max kilobajta.",
+    string: "Polje :attribute mora sadržati manje od :max karaktera.",
+    array: "Polje :attribute ne smije da image više od :max stavki."
+  },
+  mimes: "Polje :attribute mora biti fajl tipa: :values.",
+  mimetypes: "Polje :attribute mora biti fajl tipa: :values.",
+  min: {
+    numeric: "Polje :attribute mora biti najmanje :min.",
+    file: "Fajl :attribute mora biti najmanje :min kilobajta.",
+    string: "Polje :attribute mora sadržati najmanje :min karaktera.",
+    array: "Polje :attribute mora sadrzati najmanje :min stavku."
+  },
+  not_in: "Odabrani element polja :attribute nije validan.",
+  not_regex: "The :attribute format is invalid.",
+  numeric: "Polje :attribute mora biti broj.",
+  present: "The :attribute field must be present.",
+  regex: "Format polja :attribute nije validan.",
+  required: "Polje :attribute je obavezno.",
+  required_if: "Polje :attribute je potrebno kada polje :other sadrži :value.",
+  required_unless: "The :attribute field is required unless :other is in :values.",
+  required_with: "Polje :attribute je potrebno kada polje :values je prisutan.",
+  required_with_all: "Polje :attribute je obavezno kada je :values prikazano.",
+  required_without: "Polje :attribute je potrebno kada polje :values nije prisutan.",
+  required_without_all: "Polje :attribute je potrebno kada nijedan od sledeći polja :values nisu prisutni.",
+  same: "Polja :attribute i :other se moraju poklapati.",
+  size: {
+    numeric: "Polje :attribute mora biti :size.",
+    file: "Fajl :attribute mora biti :size kilobajta.",
+    string: "Polje :attribute mora biti :size karaktera.",
+    array: "Polje :attribute mora sadržati :size stavki."
+  },
+  string: "Polje :attribute mora sadržati slova.",
+  timezone: "Polje :attribute mora biti ispravna vremenska zona.",
+  unique: "Polje :attribute već postoji.",
+  uploaded: "The :attribute failed to upload.",
+  url: "Format polja :attribute ne važi."
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/sv.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/sv.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: ":attribute måste accepteras.",
+  active_url: ":attribute är inte en giltig webbadress.",
+  after: ":attribute måste vara ett datum efter den :date.",
+  after_or_equal: ":attribute måste vara ett datum senare eller samma dag som :date.",
+  alpha: ":attribute får endast innehålla bokstäver.",
+  alpha_dash: ":attribute får endast innehålla bokstäver, siffror och bindestreck.",
+  alpha_num: ":attribute får endast innehålla bokstäver och siffror.",
+  array: ":attribute måste vara en array.",
+  before: ":attribute måste vara ett datum innan den :date.",
+  before_or_equal: ":attribute måste vara ett datum före eller samma dag som :date.",
+  between: {
+    numeric: ":attribute måste vara en siffra mellan :min och :max.",
+    file: ":attribute måste vara mellan :min till :max kilobyte stor.",
+    string: ":attribute måste innehålla :min till :max tecken.",
+    array: ":attribute måste innehålla mellan :min - :max objekt."
+  },
+  boolean: ":attribute måste vara sant eller falskt.",
+  confirmed: ":attribute bekräftelsen matchar inte.",
+  date: ":attribute är inte ett giltigt datum.",
+  date_format: ":attribute matchar inte formatet :format.",
+  different: ":attribute och :other får inte vara lika.",
+  digits: ":attribute måste vara :digits tecken.",
+  digits_between: ":attribute måste vara mellan :min och :max tecken.",
+  dimensions: ":attribute har felaktiga bilddimensioner.",
+  distinct: ":attribute innehåller fler än en repetition av samma element.",
+  email: ":attribute måste innehålla en korrekt e-postadress.",
+  exists: ":attribute är ogiltigt.",
+  file: ":attribute måste vara en fil.",
+  filled: ":attribute är obligatoriskt.",
+  gt: {
+    numeric: ":attribute måste vara större än :value.",
+    file: ":attribute måste vara större än :value kilobyte stor.",
+    string: ":attribute måste vara längre än :value tecken.",
+    array: ":attribute måste innehålla fler än :value objekt."
+  },
+  gte: {
+    numeric: ":attribute måste vara lika med eller större än :value.",
+    file: ":attribute måste vara lika med eller större än :value kilobyte stor.",
+    string: ":attribute måste vara lika med eller längre än :value tecken.",
+    array: ":attribute måste innehålla lika många eller fler än :value objekt."
+  },
+  hex: "The :attribute field should have hexadecimal format",
+  image: ":attribute måste vara en bild.",
+  in: ":attribute är ogiltigt.",
+  in_array: ":attribute finns inte i :other.",
+  integer: ":attribute måste vara en siffra.",
+  ip: ":attribute måste vara en giltig IP-adress.",
+  ipv4: ":attribute måste vara en giltig IPv4-adress.",
+  ipv6: ":attribute måste vara en giltig IPv6-adress.",
+  json: ":attribute måste vara en giltig JSON-sträng.",
+  lt: {
+    numeric: ":attribute måste vara mindre än :value.",
+    file: ":attribute måste vara mindre än :value kilobyte stor.",
+    string: ":attribute måste vara kortare än :value tecken.",
+    array: ":attribute måste innehålla färre än :value objekt."
+  },
+  lte: {
+    numeric: ":attribute måste vara lika med eller mindre än :value.",
+    file: ":attribute måste vara lika med eller mindre än :value kilobyte stor.",
+    string: ":attribute måste vara lika med eller kortare än :value tecken.",
+    array: ":attribute måste innehålla lika många eller färre än :value objekt."
+  },
+  max: {
+    numeric: ":attribute får inte vara större än :max.",
+    file: ":attribute får max vara :max kilobyte stor.",
+    string: ":attribute får max innehålla :max tecken.",
+    array: ":attribute får inte innehålla mer än :max objekt."
+  },
+  mimes: ":attribute måste vara en fil av typen: :values.",
+  mimetypes: ":attribute måste vara en fil av typen: :values.",
+  min: {
+    numeric: ":attribute måste vara större än :min.",
+    file: ":attribute måste vara minst :min kilobyte stor.",
+    string: ":attribute måste innehålla minst :min tecken.",
+    array: ":attribute måste innehålla minst :min objekt."
+  },
+  not_in: ":attribute är ogiltigt.",
+  not_regex: "Formatet för :attribute är ogiltigt.",
+  numeric: ":attribute måste vara en siffra.",
+  present: ":attribute måste finnas med.",
+  regex: ":attribute har ogiltigt format.",
+  required: ":attribute är obligatoriskt.",
+  required_if: ":attribute är obligatoriskt när :other är :value.",
+  required_unless: ":attribute är obligatoriskt när inte :other finns bland :values.",
+  required_with: ":attribute är obligatoriskt när :values är ifyllt.",
+  required_with_all: ":attribute är obligatoriskt när :values är ifyllt.",
+  required_without: ":attribute är obligatoriskt när :values ej är ifyllt.",
+  required_without_all: ":attribute är obligatoriskt när ingen av :values är ifyllt.",
+  same: ":attribute och :other måste vara lika.",
+  size: {
+    numeric: ":attribute måste vara :size.",
+    file: ":attribute får endast vara :size kilobyte stor.",
+    string: ":attribute måste innehålla :size tecken.",
+    array: ":attribute måste innehålla :size objekt."
+  },
+  string: ":attribute måste vara en sträng.",
+  timezone: ":attribute måste vara en giltig tidszon.",
+  unique: ":attribute används redan.",
+  uploaded: ":attribute kunde inte laddas upp.",
+  url: ":attribute har ett ogiltigt format."
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/tr.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/tr.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: ':attribute kabul edilmeli.',
+  after: ':attribute alanı :after alanından sonra olmalıdır.',
+  after_or_equal: ':attribute alanı :after_or_equal alanına eşit veya sonra olmalıdır.',
+  alpha: ':attribute alanı sadece harflerden oluşabilir.',
+  alpha_dash: ':attribute alanı sadece alfa-nümerik, tire ve alt çizgi karakterlerden oluşabilir.',
+  alpha_num: ':attribute alanı alfa-nümerik olmalıdır.',
+  before: ':attribute alanı :before alanından önce olmalıdır.',
+  before_or_equal: ':attribute alanı :before_or_equal alanına eşit veya önce olmalıdır.',
+  between: ':attribute alanı :min ile :max arasında olabilir.',
+  confirmed: ':attribute uyuşmuyor.',
+  email: ':attribute formatı geçersiz.',
+  date: ':attribute geöerli bir tarih alanı değil.',
+  def: ':attribute hatalar içeriyor.',
+  digits: ':attribute sadece rakamlardan oluşabilir.',
+  digits_between: ':attribute :min ile :max arasında rakam olmalıdır.',
+  different: ':attribute ve :different farklı olmalı.',
+  in: 'Seçilen :attribute geçerli değil.',
+  integer: ':attribute tam sayı olmalı.',
+  hex: ':attribute onaltılık formatta olmalı.',
+  min: {
+    numeric: ':attribute en az :min olmalı.',
+    string: ':attribute en az :min karakter uzunluğunda olmalı.'
+  },
+  max: {
+    numeric: ':attribute en çok :max olabilir.',
+    string: ':attribute uzunluğu en çok :max karakter uzunluğunda olabilir.'
+  },
+  not_in: 'Seçilen :attribute geçerli değil.',
+  numeric: ':attribute sayı olmalı.',
+  present: ':attribute alanı bulunmalıdır (ancak boş olabilir).',
+  required: ':attribute alanı gerekli.',
+  required_if: ':attribute alanı :other alanı :value olduğunda gerekli.',
+  required_unless: ':attribute alanı :other alanı :value değilse gereklidir.',
+  required_with: ':attribute alanı :field boş değilse gereklidir.',
+  required_with_all: ':attribute alanı :fields alanları boş değilse gereklidir.',
+  required_without: ':attribute alanı :field alanı boşsa gereklidir.',
+  required_without_all: ':attribute alanı :fields alanları boşsa gereklidir.',
+  same: ':attribute ve :same aynı olmalı.',
+  size: {
+    numeric: ':attribute :size olmalı.',
+    string: ':attribute :size karakter uzunluğunda olmalı.'
+  },
+  string: ':attribute alfa-numerik olmalı.',
+  url: ':attribute formatı geçersiz.',
+  regex: ':attribute formatı geçersiz.',
+  attributes: {}
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/ua.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/ua.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: ':attribute повиннен бути прийнятий.',
+  alpha: 'Поле :attribute може складатись тільки з літер.',
+  alpha_dash: 'Поле :attribute може складатись тільки з літер, чисел, дефісів та символів підкреслення.',
+  alpha_num: 'Поле :attribute може складатись тільки з літер та чисел.',
+  between: 'Значення поля :attribute повинно знаходитись між :min і :max.',
+  confirmed: 'Поле :attribute не співпадає з підтвердженням.',
+  email: 'Значення поля :attribute повинно бути існуючою електронною адресою.',
+  def: 'Поле :attribute містить помилки.',
+  digits: 'Довжина числового поля :attribute повинна бути :digits.',
+  digits_between: 'Довжина цифрового поля :attribute повинна бути від :min до :max.',
+  different: 'Поля :attribute і :different повинні відрізнятись.',
+  in: 'Обране значення для :attribute помилкове.',
+  integer: 'Значення поля :attribute повинно бути цілим числом.',
+  hex: 'Значення поля :attribute повинно бути шістнадцяткового формату',
+  min: {
+    numeric: 'Значення поля :attribute повинно бути більшим або рівним :min.',
+    string: 'Кількість символів в полі :attribute повинна бути не менше :min.'
+  },
+  max: {
+    numeric: 'Значення поля :attribute повинно бути менше або рівне :max.',
+    string: 'Кількість символів в полі :attribute не може превищувати :max.'
+  },
+  not_in: 'Обране значення для :attribute помилкове.',
+  numeric: 'Значення поля :attribute повинно бути числом.',
+  present: 'Поле :attribute повинно бути присутнім (але може бути пустим).',
+  required: 'Поле :attribute обов\'язкове для заповнення.',
+  required_if: 'Поле :attribute потрібне у випадку коли значення поля :other рівне :value.',
+  same: 'Значеня поля :attribute повинно співпадати з :same.',
+  size: {
+    numeric: 'Значення поля :attribute повинно бути рівним :size.',
+    string: 'Кількість символів в полі :attribute повинна бути рівною :size.'
+  },
+  url: 'Поле :attribute повинне містити валідний URL.',
+  regex: 'Неправильний формат значення :attribute.',
+  attributes: {}
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/uk.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/uk.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: "Ви повинні прийняти :attribute.",
+  active_url: "Поле :attribute не є правильним URL.",
+  after: "Поле :attribute має містити дату не раніше :date.",
+  after_or_equal: "Поле :attribute має містити дату не раніше або дорівнюватися :date.",
+  alpha: "Поле :attribute має містити лише літери.",
+  alpha_dash: "Поле :attribute має містити лише літери, цифри та підкреслення.",
+  alpha_num: "Поле :attribute має містити лише літери та цифри.",
+  attributes: {},
+  array: "Поле :attribute має бути масивом.",
+  before: "Поле :attribute має містити дату не пізніше :date.",
+  before_or_equal: "Поле :attribute має містити дату не пізніше або дорівнюватися :date.",
+  between: {
+    numeric: "Поле :attribute має бути між :min та :max.",
+    file: "Розмір файлу в полі :attribute має бути не менше :min та не більше :max кілобайт.",
+    string: "Текст в полі :attribute має бути не менше :min та не більше :max символів.",
+    array: "Поле :attribute має містити від :min до :max елементів."
+  },
+  boolean: "Поле :attribute повинне містити логічний тип.",
+  confirmed: "Поле :attribute не збігається з підтвердженням.",
+  date: "Поле :attribute не є датою.",
+  date_format: "Поле :attribute не відповідає формату :format.",
+  different: "Поля :attribute та :other повинні бути різними.",
+  digits: "Довжина цифрового поля :attribute повинна дорівнювати :digits.",
+  digits_between: "Довжина цифрового поля :attribute повинна бути від :min до :max.",
+  dimensions: "Поле :attribute містіть неприпустимі розміри зображення.",
+  distinct: "Поле :attribute містить значення, яке дублюється.",
+  email: "Поле :attribute повинне містити коректну електронну адресу.",
+  file: "Поле :attribute має містити файл.",
+  filled: "Поле :attribute є обов'язковим для заповнення.",
+  exists: "Вибране для :attribute значення не коректне.",
+  gt: {
+    numeric: "The :attribute must be greater than :value.",
+    file: "The :attribute must be greater than :value kilobytes.",
+    string: "The :attribute must be greater than :value characters.",
+    array: "The :attribute must have more than :value items."
+  },
+  gte: {
+    numeric: "The :attribute must be greater than or equal :value.",
+    file: "The :attribute must be greater than or equal :value kilobytes.",
+    string: "The :attribute must be greater than or equal :value characters.",
+    array: "The :attribute must have :value items or more."
+  },
+  hex: "The :attribute field should have hexadecimal format",
+  image: "Поле :attribute має містити зображення.",
+  in: "Вибране для :attribute значення не коректне.",
+  in_array: "Значення поля :attribute не міститься в :other.",
+  integer: "Поле :attribute має містити ціле число.",
+  ip: "Поле :attribute має містити IP адресу.",
+  ipv4: "Поле :attribute має містити IPv4 адресу.",
+  ipv6: "Поле :attribute має містити IPv6 адресу.",
+  json: "Дані поля :attribute мають бути в форматі JSON.",
+  lt: {
+    numeric: "The :attribute must be less than :value.",
+    file: "The :attribute must be less than :value kilobytes.",
+    string: "The :attribute must be less than :value characters.",
+    array: "The :attribute must have less than :value items."
+  },
+  lte: {
+    numeric: "The :attribute must be less than or equal :value.",
+    file: "The :attribute must be less than or equal :value kilobytes.",
+    string: "The :attribute must be less than or equal :value characters.",
+    array: "The :attribute must not have more than :value items."
+  },
+  max: {
+    numeric: "Поле :attribute має бути не більше :max.",
+    file: "Файл в полі :attribute має бути не більше :max кілобайт.",
+    string: "Текст в полі :attribute повинен мати довжину не більшу за :max.",
+    array: "Поле :attribute повинне містити не більше :max елементів."
+  },
+  mimes: "Поле :attribute повинне містити файл одного з типів: :values.",
+  mimetypes: "Поле :attribute повинне містити файл одного з типів: :values.",
+  min: {
+    numeric: "Поле :attribute повинне бути не менше :min.",
+    file: "Розмір файлу в полі :attribute має бути не меншим :min кілобайт.",
+    string: "Текст в полі :attribute повинен містити не менше :min символів.",
+    array: "Поле :attribute повинне містити не менше :min елементів."
+  },
+  not_in: "Вибране для :attribute значення не коректне.",
+  not_regex: "The :attribute format is invalid.",
+  numeric: "Поле :attribute повинно містити число.",
+  present: "Поле :attribute повинне бути присутнє.",
+  regex: "Поле :attribute має хибний формат.",
+  required: "Поле :attribute є обов'язковим для заповнення.",
+  required_if: "Поле :attribute є обов'язковим для заповнення, коли :other є рівним :value.",
+  required_unless: "Поле :attribute є обов'язковим для заповнення, коли :other відрізняється від :values",
+  required_with: "Поле :attribute є обов'язковим для заповнення, коли :values вказано.",
+  required_with_all: "Поле :attribute є обов'язковим для заповнення, коли :values вказано.",
+  required_without: "Поле :attribute є обов'язковим для заповнення, коли :values не вказано.",
+  required_without_all: "Поле :attribute є обов'язковим для заповнення, коли :values не вказано.",
+  same: "Поля :attribute та :other мають співпадати.",
+  size: {
+    numeric: "Поле :attribute має бути довжини :size.",
+    file: "Файл в полі :attribute має бути розміром :size кілобайт.",
+    string: "Текст в полі :attribute повинен містити :size символів.",
+    array: "Поле :attribute повинне містити :size елементів."
+  },
+  string: "Поле :attribute повинне містити текст.",
+  timezone: "Поле :attribute повинне містити коректну часову зону.",
+  unique: "Таке значення поля :attribute вже існує.",
+  uploaded: "Завантаження поля :attribute не вдалося.",
+  url: "Формат поля :attribute неправильний."
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/vi.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/vi.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: ':attribute phải được chấp nhận.',
+  alpha: 'Trường :attribute phải là ký tự',
+  alpha_dash: ':attribute chỉ chấp nhận ký tự chữ cái, số, dấu gạch chéo và gạch dưới.',
+  alpha_num: ':attribute phải là ký tự chữ cái hoặc chữ số.',
+  between: ':attribute phải nằm trong khoảng :min và :max.',
+  confirmed: ':attribute xác nhận không trùng khớp.',
+  email: ':attribute không phải là email.',
+  date: ':attribute không phải là ngày hợp lệ',
+  def: 'Thuộc tính :attribute có lỗi.',
+  digits: ':attribute phải là số và có chiều dài bằng :digits.',
+  digits_between: 'Độ dài của trường :attribute phải nằm trong khoảng :min and :max chữ số.',
+  different: 'Giá trị của hai trường :attribute và :different phải khác nhau.',
+  in: 'Giá trị được chọn của :attribute không hợp lệ.',
+  integer: ':attribute phải là số nguyên.',
+  hex: 'The :attribute should have hexadecimal format',
+  min: {
+    numeric: ':attribute phải lớn hơn hoặc bằng :min.',
+    string: ':attribute phải có ít nhất :min ký tự.'
+  },
+  max: {
+    numeric: ':attribute phải nhỏ hơn hoặc bằng :max.',
+    string: ':attribute phải có ít hơn :max ký tự.'
+  },
+  not_in: 'Giá trị được chọn của trường :attribute không hợp lệ.',
+  numeric: ':attribute phải là số.',
+  present: 'Trường :attribute phải có mặt (nhưng có thể để trống).',
+  required: ':attribute bắt buộc nhập.',
+  required_if: ':attribute là bắt buộc khi :other có giá trị :value.',
+  same: 'Giá trị của :attribute và :same phải như nhau.',
+  size: {
+    numeric: ':attribute phải có chiều dài của bằng :size.',
+    string: 'Số ký tự của :attribute phải là :size ký tự.'
+  },
+  string: ':attribute không phải là một chuỗi',
+  url: ':attribute không phải là một Url hợp lệ.',
+  regex: ':attribute không đúng định dạng',
+  attributes: {}
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/zh.js":
+/*!*************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/zh.js ***!
+  \*************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: ':attribute必须是可接受的.',
+  alpha: ':attribute只能包含字母.',
+  alpha_dash: ':attribute只能包含字母,连字符和下划线.',
+  alpha_num: ':attribute只能包含字母和数字.',
+  between: ':attribute的(大小,长度等)只能在:min和:max之间.',
+  confirmed: ':attribute确认不一致.',
+  email: ':attribute格式不正确.',
+  date: ':attribute日期格式错误.',
+  def: ':attribute属性错误.',
+  digits: ':attribute必须是:digits位小数.',
+  digits_between: ':attribute 必须是介于 :min 和 :max 位的数字。',
+  different: ':attribute和:different必须不同.',
+  in: '选择的:attribute无效',
+  integer: ':attribute必须是一个整数.',
+  hex: 'The :attribute should have hexadecimal format',
+  min: {
+    numeric: ':attribute不能小于:min.',
+    string: ':attribute长度不能小于:min.'
+  },
+  max: {
+    numeric: ':attribute不能大于:max.',
+    string: ':attribute长度不能大于:max.'
+  },
+  not_in: '所选的:attribute无效.',
+  numeric: ':attribute必须是一个数字.',
+  present: 'The :attribute field must be present (but can be empty).',
+  required: ':attribute不能为空.',
+  required_if: '当:other是:value时,:attribute不能为空.',
+  same: ':attribute和:same必须一致.',
+  size: {
+    numeric: ':attribute必须等于:size.',
+    string: ':attribute的长度必须等于:size.'
+  },
+  string: ':attribute必须是一个字符串.',
+  url: ':attribute格式不正确.',
+  regex: ':attribute格式不正确.',
+  attributes: {}
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang/zh_TW.js":
+/*!****************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/zh_TW.js ***!
+  \****************************************************/
+/***/ ((module) => {
+
+module.exports = {
+  accepted: ':attribute必須接受。',
+  alpha: ':attribute只能包含字母。',
+  alpha_dash: ':attribute只能包含字母，連字符和下划線。',
+  alpha_num: ':attribute只能包含字母和數字。',
+  between: ':attribute的值只能在:min和:max之間。',
+  confirmed: ':attribute與確認輸入不一致。',
+  email: ':attribute的格式錯誤。',
+  date: ':attribute的日期格式錯誤。',
+  def: ':attribute屬性錯誤。',
+  digits: ':attribute必須是:digits位小數。',
+  digits_between: ':attribute 必須介於 :min 至 :max 位數字。',
+  different: ':attribute和:different必須不同。',
+  in: '選擇的:attribute無效',
+  integer: ':attribute必須是一個整數。',
+  hex: ':attribute 必須是十六進位格式',
+  min: {
+    numeric: ':attribute不能小於:min。',
+    string: ':attribute的長度不能小於:min.'
+  },
+  max: {
+    numeric: ':attribute不能大於:max。',
+    string: ':attribute的長度不能大於:max.'
+  },
+  not_in: '所選的:attribute無效。',
+  numeric: ':attribute必須是一個數字。',
+  present: ':attribute 一定要有值 (可以是空值)。',
+  required: ':attribute不能空白。',
+  required_if: '當:other是:value時,:attribute不能空白。',
+  same: ':attribute和:same必須一致。',
+  size: {
+    numeric: ':attribute必須等於:size。',
+    string: ':attribute的長度必須等於:size.'
+  },
+  string: ':attribute必須是一個字串。',
+  url: ':attribute格式不正確。',
+  regex: ':attribute格式不正確。',
+  attributes: {}
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/lang sync recursive ^\\.\\/.*$":
+/*!**********************************************************!*\
+  !*** ./node_modules/validatorjs/src/lang/ sync ^\.\/.*$ ***!
+  \**********************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var map = {
+	"./ar": "./node_modules/validatorjs/src/lang/ar.js",
+	"./ar.js": "./node_modules/validatorjs/src/lang/ar.js",
+	"./az": "./node_modules/validatorjs/src/lang/az.js",
+	"./az.js": "./node_modules/validatorjs/src/lang/az.js",
+	"./be": "./node_modules/validatorjs/src/lang/be.js",
+	"./be.js": "./node_modules/validatorjs/src/lang/be.js",
+	"./bg": "./node_modules/validatorjs/src/lang/bg.js",
+	"./bg.js": "./node_modules/validatorjs/src/lang/bg.js",
+	"./bs": "./node_modules/validatorjs/src/lang/bs.js",
+	"./bs.js": "./node_modules/validatorjs/src/lang/bs.js",
+	"./ca": "./node_modules/validatorjs/src/lang/ca.js",
+	"./ca.js": "./node_modules/validatorjs/src/lang/ca.js",
+	"./cs": "./node_modules/validatorjs/src/lang/cs.js",
+	"./cs.js": "./node_modules/validatorjs/src/lang/cs.js",
+	"./cy": "./node_modules/validatorjs/src/lang/cy.js",
+	"./cy.js": "./node_modules/validatorjs/src/lang/cy.js",
+	"./da": "./node_modules/validatorjs/src/lang/da.js",
+	"./da.js": "./node_modules/validatorjs/src/lang/da.js",
+	"./de": "./node_modules/validatorjs/src/lang/de.js",
+	"./de.js": "./node_modules/validatorjs/src/lang/de.js",
+	"./el": "./node_modules/validatorjs/src/lang/el.js",
+	"./el.js": "./node_modules/validatorjs/src/lang/el.js",
+	"./en": "./node_modules/validatorjs/src/lang/en.js",
+	"./en.js": "./node_modules/validatorjs/src/lang/en.js",
+	"./es": "./node_modules/validatorjs/src/lang/es.js",
+	"./es.js": "./node_modules/validatorjs/src/lang/es.js",
+	"./et": "./node_modules/validatorjs/src/lang/et.js",
+	"./et.js": "./node_modules/validatorjs/src/lang/et.js",
+	"./eu": "./node_modules/validatorjs/src/lang/eu.js",
+	"./eu.js": "./node_modules/validatorjs/src/lang/eu.js",
+	"./fa": "./node_modules/validatorjs/src/lang/fa.js",
+	"./fa.js": "./node_modules/validatorjs/src/lang/fa.js",
+	"./fi": "./node_modules/validatorjs/src/lang/fi.js",
+	"./fi.js": "./node_modules/validatorjs/src/lang/fi.js",
+	"./fr": "./node_modules/validatorjs/src/lang/fr.js",
+	"./fr.js": "./node_modules/validatorjs/src/lang/fr.js",
+	"./hr": "./node_modules/validatorjs/src/lang/hr.js",
+	"./hr.js": "./node_modules/validatorjs/src/lang/hr.js",
+	"./hu": "./node_modules/validatorjs/src/lang/hu.js",
+	"./hu.js": "./node_modules/validatorjs/src/lang/hu.js",
+	"./id": "./node_modules/validatorjs/src/lang/id.js",
+	"./id.js": "./node_modules/validatorjs/src/lang/id.js",
+	"./it": "./node_modules/validatorjs/src/lang/it.js",
+	"./it.js": "./node_modules/validatorjs/src/lang/it.js",
+	"./ja": "./node_modules/validatorjs/src/lang/ja.js",
+	"./ja.js": "./node_modules/validatorjs/src/lang/ja.js",
+	"./ka": "./node_modules/validatorjs/src/lang/ka.js",
+	"./ka.js": "./node_modules/validatorjs/src/lang/ka.js",
+	"./ko": "./node_modules/validatorjs/src/lang/ko.js",
+	"./ko.js": "./node_modules/validatorjs/src/lang/ko.js",
+	"./lt": "./node_modules/validatorjs/src/lang/lt.js",
+	"./lt.js": "./node_modules/validatorjs/src/lang/lt.js",
+	"./lv": "./node_modules/validatorjs/src/lang/lv.js",
+	"./lv.js": "./node_modules/validatorjs/src/lang/lv.js",
+	"./mk": "./node_modules/validatorjs/src/lang/mk.js",
+	"./mk.js": "./node_modules/validatorjs/src/lang/mk.js",
+	"./mn": "./node_modules/validatorjs/src/lang/mn.js",
+	"./mn.js": "./node_modules/validatorjs/src/lang/mn.js",
+	"./ms": "./node_modules/validatorjs/src/lang/ms.js",
+	"./ms.js": "./node_modules/validatorjs/src/lang/ms.js",
+	"./nb_NO": "./node_modules/validatorjs/src/lang/nb_NO.js",
+	"./nb_NO.js": "./node_modules/validatorjs/src/lang/nb_NO.js",
+	"./nl": "./node_modules/validatorjs/src/lang/nl.js",
+	"./nl.js": "./node_modules/validatorjs/src/lang/nl.js",
+	"./pl": "./node_modules/validatorjs/src/lang/pl.js",
+	"./pl.js": "./node_modules/validatorjs/src/lang/pl.js",
+	"./pt": "./node_modules/validatorjs/src/lang/pt.js",
+	"./pt.js": "./node_modules/validatorjs/src/lang/pt.js",
+	"./pt_BR": "./node_modules/validatorjs/src/lang/pt_BR.js",
+	"./pt_BR.js": "./node_modules/validatorjs/src/lang/pt_BR.js",
+	"./ro": "./node_modules/validatorjs/src/lang/ro.js",
+	"./ro.js": "./node_modules/validatorjs/src/lang/ro.js",
+	"./ru": "./node_modules/validatorjs/src/lang/ru.js",
+	"./ru.js": "./node_modules/validatorjs/src/lang/ru.js",
+	"./se": "./node_modules/validatorjs/src/lang/se.js",
+	"./se.js": "./node_modules/validatorjs/src/lang/se.js",
+	"./sl": "./node_modules/validatorjs/src/lang/sl.js",
+	"./sl.js": "./node_modules/validatorjs/src/lang/sl.js",
+	"./sq": "./node_modules/validatorjs/src/lang/sq.js",
+	"./sq.js": "./node_modules/validatorjs/src/lang/sq.js",
+	"./sr": "./node_modules/validatorjs/src/lang/sr.js",
+	"./sr.js": "./node_modules/validatorjs/src/lang/sr.js",
+	"./sv": "./node_modules/validatorjs/src/lang/sv.js",
+	"./sv.js": "./node_modules/validatorjs/src/lang/sv.js",
+	"./tr": "./node_modules/validatorjs/src/lang/tr.js",
+	"./tr.js": "./node_modules/validatorjs/src/lang/tr.js",
+	"./ua": "./node_modules/validatorjs/src/lang/ua.js",
+	"./ua.js": "./node_modules/validatorjs/src/lang/ua.js",
+	"./uk": "./node_modules/validatorjs/src/lang/uk.js",
+	"./uk.js": "./node_modules/validatorjs/src/lang/uk.js",
+	"./vi": "./node_modules/validatorjs/src/lang/vi.js",
+	"./vi.js": "./node_modules/validatorjs/src/lang/vi.js",
+	"./zh": "./node_modules/validatorjs/src/lang/zh.js",
+	"./zh.js": "./node_modules/validatorjs/src/lang/zh.js",
+	"./zh_TW": "./node_modules/validatorjs/src/lang/zh_TW.js",
+	"./zh_TW.js": "./node_modules/validatorjs/src/lang/zh_TW.js"
+};
+
+
+function webpackContext(req) {
+	var id = webpackContextResolve(req);
+	return __webpack_require__(id);
+}
+function webpackContextResolve(req) {
+	if(!__webpack_require__.o(map, req)) {
+		var e = new Error("Cannot find module '" + req + "'");
+		e.code = 'MODULE_NOT_FOUND';
+		throw e;
+	}
+	return map[req];
+}
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = "./node_modules/validatorjs/src/lang sync recursive ^\\.\\/.*$";
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/messages.js":
+/*!**************************************************!*\
+  !*** ./node_modules/validatorjs/src/messages.js ***!
+  \**************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var Attributes = __webpack_require__(/*! ./attributes */ "./node_modules/validatorjs/src/attributes.js");
+
+var Messages = function(lang, messages) {
+  this.lang = lang;
+  this.messages = messages;
+  this.customMessages = {};
+  this.attributeNames = {};
+};
+
+Messages.prototype = {
+  constructor: Messages,
+
+  /**
+   * Set custom messages
+   *
+   * @param {object} customMessages
+   * @return {void}
+   */
+  _setCustom: function(customMessages) {
+    this.customMessages = customMessages || {};
+  },
+
+  /**
+   * Set custom attribute names.
+   *
+   * @param {object} attributes
+   */
+  _setAttributeNames: function(attributes) {
+    this.attributeNames = attributes;
+  },
+
+  /**
+   * Set the attribute formatter.
+   *
+   * @param {fuction} func
+   * @return {void}
+   */
+  _setAttributeFormatter: function(func) {
+    this.attributeFormatter = func;
+  },
+
+  /**
+   * Get attribute name to display.
+   *
+   * @param  {string} attribute
+   * @return {string}
+   */
+  _getAttributeName: function(attribute) {
+    var name = attribute;
+    if (this.attributeNames.hasOwnProperty(attribute)) {
+      return this.attributeNames[attribute];
+    } else if (this.messages.attributes.hasOwnProperty(attribute)) {
+      name = this.messages.attributes[attribute];
+    }
+
+    if (this.attributeFormatter) {
+      name = this.attributeFormatter(name);
+    }
+
+    return name;
+  },
+
+  /**
+   * Get all messages
+   *
+   * @return {object}
+   */
+  all: function() {
+    return this.messages;
+  },
+
+  /**
+   * Render message
+   *
+   * @param  {Rule} rule
+   * @return {string}
+   */
+  render: function(rule) {
+    if (rule.customMessage) {
+      return rule.customMessage;
+    }
+    var template = this._getTemplate(rule);
+
+    var message;
+    if (Attributes.replacements[rule.name]) {
+      message = Attributes.replacements[rule.name].apply(this, [template, rule]);
+    } else {
+      message = this._replacePlaceholders(rule, template, {});
+    }
+
+    return message;
+  },
+
+  /**
+   * Get the template to use for given rule
+   *
+   * @param  {Rule} rule
+   * @return {string}
+   */
+  _getTemplate: function(rule) {
+
+    var messages = this.messages;
+    var template = messages.def;
+    var customMessages = this.customMessages;
+    var formats = [rule.name + '.' + rule.attribute, rule.name];
+
+    for (var i = 0, format; i < formats.length; i++) {
+      format = formats[i];
+      if (customMessages.hasOwnProperty(format)) {
+        template = customMessages[format];
+        break;
+      } else if (messages.hasOwnProperty(format)) {
+        template = messages[format];
+        break;
+      }
+    }
+
+    if (typeof template === 'object') {
+      template = template[rule._getValueType()];
+    }
+
+    return template;
+  },
+
+  /**
+   * Replace placeholders in the template using the data object
+   *
+   * @param  {Rule} rule
+   * @param  {string} template
+   * @param  {object} data
+   * @return {string}
+   */
+  _replacePlaceholders: function(rule, template, data) {
+    var message, attribute;
+
+    data.attribute = this._getAttributeName(rule.attribute);
+    data[rule.name] = data[rule.name] || rule.getParameters().join(',');
+
+    if (typeof template === 'string' && typeof data === 'object') {
+      message = template;
+
+      for (attribute in data) {
+        message = message.replace(new RegExp(':' + attribute, 'g'), data[attribute]);
+      }
+    }
+
+    return message;
+  }
+
+};
+
+module.exports = Messages;
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/rules.js":
+/*!***********************************************!*\
+  !*** ./node_modules/validatorjs/src/rules.js ***!
+  \***********************************************/
+/***/ ((module) => {
+
+
+// https://docs.microsoft.com/en-us/office/troubleshoot/excel/determine-a-leap-year
+function leapYear(year) {
+  return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
 }
 
-module.exports = v4;
+function checkFalsePositiveDates(dateString = '') {
+
+  if (dateString.length === 10) {
+
+    // massage input to use yyyy-mm-dd format
+    // we support yyyy/mm/dd or yyyy.mm.dd
+    let normalizedDate = dateString.replace('.', '-').replace('/', '-');
+    let parts = normalizedDate.split('-');
+    if (parts.length === 3) {
+      if (parts[0].length === 4) {
+        // yyyy-mm-dd format
+        let y = parseInt(parts[0]);
+        let m = parseInt(parts[1]);
+        let d = parseInt(parts[2]);
+        if (m === 2) {
+          // return leapYear(y) ? d <= 29 : d <= 28;
+          if (leapYear(y)) {
+            if (d > 29) {
+              return false;
+            }
+          } else {
+            if (d > 28) {
+              return false;
+            }
+          }
+        }
+        if (m === 4 || m === 6 || m === 9 || m === 11) {
+          if (d > 30) {
+            return false;
+          }
+        }
+      }
+    }
+    return true; // we are not in feburary, proceed
+  }
+  return true; // we are not testing formatted date, proceed to rest of validation
+}
+
+function isValidDate(dateString) {
+  let testDate;
+  if (typeof dateString === 'number') {
+    testDate = new Date(dateString);
+    if (typeof testDate === 'object') {
+      return true;
+    }
+  }
+  // first convert incoming string to date object and see if it correct date and format
+  testDate = new Date(dateString);
+  if (typeof testDate === 'object') {
+    if (testDate.toString() === 'Invalid Date') {
+      return false;
+    }
+
+    /**
+     * Check for false positive dates
+     * perform special check on february as JS `new Date` incorrectly returns valid date
+     * Eg.  let newDate = new Date('2020-02-29')  // returns as March 02 2020
+     * Eg.  let newDate = new Date('2019-02-29')  // returns as March 01 2020
+     * Eg.  let newDate = new Date('2019-04-31')  // returns as April 30 2020
+     */
+    if (!checkFalsePositiveDates(dateString)) {
+      return false;
+    }
+
+    // valid date object and not a february date
+    return true;
+  }
+
+  // First check for the pattern
+  var regex_date = /^\d{4}\-\d{1,2}\-\d{1,2}$/;
+
+  if (!regex_date.test(dateString)) {
+    return false;
+  }
+
+  // Parse the date parts to integers
+  var parts = dateString.split("-");
+  var day = parseInt(parts[2], 10);
+  var month = parseInt(parts[1], 10);
+  var year = parseInt(parts[0], 10);
+
+  // Check the ranges of month and year
+  if (year < 1000 || year > 3000 || month == 0 || month > 12) {
+    return false;
+  }
+
+  var monthLength = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+  // Adjust for leap years
+  if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0)) {
+    monthLength[1] = 29;
+  }
+
+  // Check the range of the day
+  return day > 0 && day <= monthLength[month - 1];
+}
+
+var rules = {
+  required: function (val) {
+    var str;
+
+    if (val === undefined || val === null) {
+      return false;
+    }
+
+    str = String(val).replace(/\s/g, "");
+    return str.length > 0 ? true : false;
+  },
+
+  required_if: function (val, req, attribute) {
+    req = this.getParameters();
+    if (this.validator._objectPath(this.validator.input, req[0]) === req[1]) {
+      return this.validator.getRule("required").validate(val);
+    }
+
+    return true;
+  },
+
+  required_unless: function (val, req, attribute) {
+    req = this.getParameters();
+    if (this.validator._objectPath(this.validator.input, req[0]) !== req[1]) {
+      return this.validator.getRule("required").validate(val);
+    }
+
+    return true;
+  },
+
+  required_with: function (val, req, attribute) {
+    if (this.validator._objectPath(this.validator.input, req)) {
+      return this.validator.getRule("required").validate(val);
+    }
+
+    return true;
+  },
+
+  required_with_all: function (val, req, attribute) {
+    req = this.getParameters();
+
+    for (var i = 0; i < req.length; i++) {
+      if (!this.validator._objectPath(this.validator.input, req[i])) {
+        return true;
+      }
+    }
+
+    return this.validator.getRule("required").validate(val);
+  },
+
+  required_without: function (val, req, attribute) {
+    if (this.validator._objectPath(this.validator.input, req)) {
+      return true;
+    }
+
+    return this.validator.getRule("required").validate(val);
+  },
+
+  required_without_all: function (val, req, attribute) {
+    req = this.getParameters();
+
+    for (var i = 0; i < req.length; i++) {
+      if (this.validator._objectPath(this.validator.input, req[i])) {
+        return true;
+      }
+    }
+
+    return this.validator.getRule("required").validate(val);
+  },
+
+  boolean: function (val) {
+    return (
+      val === true ||
+      val === false ||
+      val === 0 ||
+      val === 1 ||
+      val === "0" ||
+      val === "1" ||
+      val === "true" ||
+      val === "false"
+    );
+  },
+
+  // compares the size of strings
+  // with numbers, compares the value
+  size: function (val, req, attribute) {
+    if (val) {
+      req = parseFloat(req);
+
+      var size = this.getSize();
+
+      return size === req;
+    }
+
+    return true;
+  },
+
+  string: function (val, req, attribute) {
+    return typeof val === "string";
+  },
+
+  sometimes: function (val) {
+    return true;
+  },
+
+  /**
+   * Compares the size of strings or the value of numbers if there is a truthy value
+   */
+  min: function (val, req, attribute) {
+    var size = this.getSize();
+    return size >= req;
+  },
+
+  /**
+   * Compares the size of strings or the value of numbers if there is a truthy value
+   */
+  max: function (val, req, attribute) {
+    var size = this.getSize();
+    return size <= req;
+  },
+
+  between: function (val, req, attribute) {
+    req = this.getParameters();
+    var size = this.getSize();
+    var min = parseFloat(req[0], 10);
+    var max = parseFloat(req[1], 10);
+    return size >= min && size <= max;
+  },
+
+  email: function (val) {
+    // Added umlaut support https://github.com/skaterdav85/validatorjs/issues/308
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!re.test(val)) {
+      // added support domain 3-n level https://github.com/skaterdav85/validatorjs/issues/384
+      re = /^((?:[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]|[^\u0000-\u007F])+@(?:[a-zA-Z0-9]|[^\u0000-\u007F])(?:(?:[a-zA-Z0-9-]|[^\u0000-\u007F]){0,61}(?:[a-zA-Z0-9]|[^\u0000-\u007F]))?(?:\.(?:[a-zA-Z0-9]|[^\u0000-\u007F])(?:(?:[a-zA-Z0-9-]|[^\u0000-\u007F]){0,61}(?:[a-zA-Z0-9]|[^\u0000-\u007F]))?)+)*$/;
+    }
+    return re.test(val);
+  },
+
+  numeric: function (val) {
+    var num;
+
+    num = Number(val); // tries to convert value to a number. useful if value is coming from form element
+
+    if (typeof num === "number" && !isNaN(num) && typeof val !== "boolean") {
+      return true;
+    } else {
+      return false;
+    }
+  },
+
+  array: function (val) {
+    return val instanceof Array;
+  },
+
+  url: function (url) {
+    return /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-z]{2,63}\b([-a-zA-Z0-9@:%_\+.~#?&/=]*)/i.test(url);
+  },
+
+  alpha: function (val) {
+    return /^[a-zA-Z]+$/.test(val);
+  },
+
+  alpha_dash: function (val) {
+    return /^[a-zA-Z0-9_\-]+$/.test(val);
+  },
+
+  alpha_num: function (val) {
+    return /^[a-zA-Z0-9]+$/.test(val);
+  },
+
+  same: function (val, req) {
+    var val1 = this.validator._flattenObject(this.validator.input)[req];
+    var val2 = val;
+
+    if (val1 === val2) {
+      return true;
+    }
+
+    return false;
+  },
+
+  different: function (val, req) {
+    var val1 = this.validator._flattenObject(this.validator.input)[req];
+    var val2 = val;
+
+    if (val1 !== val2) {
+      return true;
+    }
+
+    return false;
+  },
+
+  in: function (val, req) {
+    var list, i;
+
+    if (val) {
+      list = this.getParameters();
+    }
+
+    if (val && !(val instanceof Array)) {
+      var localValue = val;
+
+      for (i = 0; i < list.length; i++) {
+        if (typeof list[i] === "string") {
+          localValue = String(val);
+        }
+
+        if (localValue === list[i]) {
+          return true;
+        }
+      }
+
+      return false;
+    }
+
+    if (val && val instanceof Array) {
+      for (i = 0; i < val.length; i++) {
+        if (list.indexOf(val[i]) < 0) {
+          return false;
+        }
+      }
+    }
+
+    return true;
+  },
+
+  not_in: function (val, req) {
+    var list = this.getParameters();
+    var len = list.length;
+    var returnVal = true;
+
+    for (var i = 0; i < len; i++) {
+      var localValue = val;
+
+      if (typeof list[i] === "string") {
+        localValue = String(val);
+      }
+
+      if (localValue === list[i]) {
+        returnVal = false;
+        break;
+      }
+    }
+
+    return returnVal;
+  },
+
+  accepted: function (val) {
+    if (val === "on" || val === "yes" || val === 1 || val === "1" || val === true) {
+      return true;
+    }
+
+    return false;
+  },
+
+  confirmed: function (val, req, key) {
+    var confirmedKey = key + "_confirmation";
+
+    if (this.validator.input[confirmedKey] === val) {
+      return true;
+    }
+
+    return false;
+  },
+
+  integer: function (val) {
+    return String(parseInt(val, 10)) === String(val);
+  },
+
+  digits: function (val, req) {
+    var numericRule = this.validator.getRule('numeric');
+    if (numericRule.validate(val) && String(val.trim()).length === parseInt(req)) {
+      return true;
+    }
+
+    return false;
+  },
+
+  digits_between: function (val) {
+    var numericRule = this.validator.getRule("numeric");
+    var req = this.getParameters();
+    var valueDigitsCount = String(val).length;
+    var min = parseFloat(req[0], 10);
+    var max = parseFloat(req[1], 10);
+
+    if (numericRule.validate(val) && valueDigitsCount >= min && valueDigitsCount <= max) {
+      return true;
+    }
+
+    return false;
+  },
+
+  regex: function (val, req) {
+    let reqPattern = req;
+    var mod = /[g|i|m]{1,3}$/;
+    var flag = req.match(mod);
+    flag = flag ? flag[0] : "";
+
+    req = req.replace(mod, "").slice(1, -1);
+    req = new RegExp(req, flag);
+    return !!req.test(val);
+  },
+
+  date: function (val, format) {
+    return isValidDate(val);
+  },
+
+  present: function (val) {
+    return typeof val !== "undefined";
+  },
+
+  after: function (val, req) {
+    var val1 = this.validator.input[req];
+    var val2 = val;
+
+    if (!isValidDate(val1)) {
+      return false;
+    }
+    if (!isValidDate(val2)) {
+      return false;
+    }
+
+    if (new Date(val1).getTime() < new Date(val2).getTime()) {
+      return true;
+    }
+
+    return false;
+  },
+
+  after_or_equal: function (val, req) {
+    var val1 = this.validator.input[req];
+    var val2 = val;
+
+    if (!isValidDate(val1)) {
+      return false;
+    }
+    if (!isValidDate(val2)) {
+      return false;
+    }
+
+    if (new Date(val1).getTime() <= new Date(val2).getTime()) {
+      return true;
+    }
+
+    return false;
+  },
+
+  before: function (val, req) {
+    var val1 = this.validator.input[req];
+    var val2 = val;
+
+    if (!isValidDate(val1)) {
+      return false;
+    }
+    if (!isValidDate(val2)) {
+      return false;
+    }
+
+    if (new Date(val1).getTime() > new Date(val2).getTime()) {
+      return true;
+    }
+
+    return false;
+  },
+
+  before_or_equal: function (val, req) {
+    var val1 = this.validator.input[req];
+    var val2 = val;
+
+    if (!isValidDate(val1)) {
+      return false;
+    }
+    if (!isValidDate(val2)) {
+      return false;
+    }
+
+    if (new Date(val1).getTime() >= new Date(val2).getTime()) {
+      return true;
+    }
+
+    return false;
+  },
+
+  hex: function (val) {
+    return /^[0-9a-f]+$/i.test(val);
+  },
+
+  ipv4: function (val, req, attribute) {
+    if (typeof val != 'string')
+      return false;
+
+    // regex to check that each octet is valid
+    var er = /^[0-9]+$/;
+    // ipv4 octets are delimited by dot
+    octets = val.split('.');
+    // check 1: ipv4 address should contains 4 octets
+    if (octets.length != 4)
+      return false;
+
+    for (let i = 0; i < octets.length; i++) {
+      const element = octets[i];
+      // check 2: each octet should be integer bigger than 0
+      if (!er.test(element))
+        return false;
+
+      // check 3: each octet value should be less than 256
+      var octetValue = parseInt(element);
+      if (octetValue >= 256)
+        return false;
+    }
+
+    // if all checks passed, we know it's valid IPv4 address!
+    return true;
+  },
+
+  ipv6: function (val, req, attribute) {
+    if (typeof val != 'string')
+      return false;
+
+    // regex to check that each hextet is valid
+    var er = /^[0-9a-f]+$/;
+    // ipv6 hextets are delimited by colon
+    hextets = val.split(':');
+
+    // check 1: ipv6 should contain only one consecutive colons
+    colons = val.match(/::/);
+    if (colons != null && val.match(/::/g).length > 1)
+      return false;
+
+    // check 2: ipv6 should not be ending or starting with colon
+    //          edge case: not with consecutive colons
+    if (val[0] == ':' && (colons == null || (colons != null && colons.index != 0)))
+      return false;
+    if (val[val.length - 1] == ':' && (colons == null || (colons != null && colons.index != val.length - 2)))
+      return false;
+
+    // check 3: ipv6 should contain no less than 3 sector
+    //         minimum ipv6 addres - ::1
+    if (3 > hextets.length)
+      return false;
+
+    // check 4: ipv6 should contain no more than 8 sectors
+    //         only 1 edge case: when first or last sector is ommited
+    var isEdgeCase = (hextets.length == 9 && colons != null && (colons.index == 0 || colons.index == val.length - 2));
+    if (hextets.length > 8 && !isEdgeCase)
+      return false;
+
+    // check 5: ipv6 should contain exactly one consecutive colons if it has less than 8 sectors
+    if (hextets.length != 8 && colons == null)
+      return false;
+
+    for (let i = 0; i < hextets.length; i++) {
+      const element = hextets[i];
+
+      if (element.length == 0)
+        continue;
+
+      // check 6: all of hextets should contain numbers from 0 to f (in hexadecimal)
+      if (!er.test(element))
+        return false;
+
+      // check 7: all of hextet values should be less then ffff (in hexadeimal)
+      //          checking using length of hextet. lowest invalid value's length is 5.
+      //          so all valid hextets are length of 4 or less
+      if (element.length > 4)
+        return false;
+    }
+    return true;
+  },
+
+  ip: function (val, req, attribute) {
+    return rules['ipv4'](val, req, attribute) || rules['ipv6'](val, req, attribute);
+  }
+
+};
+
+var missedRuleValidator = function () {
+  throw new Error("Validator `" + this.name + "` is not defined!");
+};
+var missedRuleMessage;
+
+function Rule(name, fn, async) {
+  this.name = name;
+  this.fn = fn;
+  this.passes = null;
+  this._customMessage = undefined;
+  this.async = async;
+}
+
+Rule.prototype = {
+  /**
+   * Validate rule
+   *
+   * @param  {mixed} inputValue
+   * @param  {mixed} ruleValue
+   * @param  {string} attribute
+   * @param  {function} callback
+   * @return {boolean|undefined}
+   */
+  validate: function (inputValue, ruleValue, attribute, callback) {
+    var _this = this;
+    this._setValidatingData(attribute, inputValue, ruleValue);
+    if (typeof callback === "function") {
+      this.callback = callback;
+      var handleResponse = function (passes, message) {
+        _this.response(passes, message);
+      };
+
+      if (this.async) {
+        return this._apply(inputValue, ruleValue, attribute, handleResponse);
+      } else {
+        return handleResponse(this._apply(inputValue, ruleValue, attribute));
+      }
+    }
+    return this._apply(inputValue, ruleValue, attribute);
+  },
+
+  /**
+   * Apply validation function
+   *
+   * @param  {mixed} inputValue
+   * @param  {mixed} ruleValue
+   * @param  {string} attribute
+   * @param  {function} callback
+   * @return {boolean|undefined}
+   */
+  _apply: function (inputValue, ruleValue, attribute, callback) {
+    var fn = this.isMissed() ? missedRuleValidator : this.fn;
+
+    return fn.apply(this, [inputValue, ruleValue, attribute, callback]);
+  },
+
+  /**
+   * Set validating data
+   *
+   * @param {string} attribute
+   * @param {mixed} inputValue
+   * @param {mixed} ruleValue
+   * @return {void}
+   */
+  _setValidatingData: function (attribute, inputValue, ruleValue) {
+    this.attribute = attribute;
+    this.inputValue = inputValue;
+    this.ruleValue = ruleValue;
+  },
+
+  /**
+   * Get parameters
+   *
+   * @return {array}
+   */
+  getParameters: function () {
+    var value = [];
+
+    if (typeof this.ruleValue === "string") {
+      value = this.ruleValue.split(",");
+    }
+
+    if (typeof this.ruleValue === "number") {
+      value.push(this.ruleValue);
+    }
+
+    if (this.ruleValue instanceof Array) {
+      value = this.ruleValue;
+    }
+
+    return value;
+  },
+
+  /**
+   * Get true size of value
+   *
+   * @return {integer|float}
+   */
+  getSize: function () {
+    var value = this.inputValue;
+
+    if (value instanceof Array) {
+      return value.length;
+    }
+
+    if (typeof value === "number") {
+      return value;
+    }
+
+    if (this.validator._hasNumericRule(this.attribute)) {
+      return parseFloat(value, 10);
+    }
+
+    return value.length;
+  },
+
+  /**
+   * Get the type of value being checked; numeric or string.
+   *
+   * @return {string}
+   */
+  _getValueType: function () {
+    if (typeof this.inputValue === "number" || this.validator._hasNumericRule(this.attribute)) {
+      return "numeric";
+    }
+
+    return "string";
+  },
+
+  /**
+   * Set the async callback response
+   *
+   * @param  {boolean|undefined} passes  Whether validation passed
+   * @param  {string|undefined} message Custom error message
+   * @return {void}
+   */
+  response: function (passes, message) {
+    this.passes = passes === undefined || passes === true;
+    this._customMessage = message;
+    this.callback(this.passes, message);
+  },
+
+  /**
+   * Set validator instance
+   *
+   * @param {Validator} validator
+   * @return {void}
+   */
+  setValidator: function (validator) {
+    this.validator = validator;
+  },
+
+  /**
+   * Check if rule is missed
+   *
+   * @return {boolean}
+   */
+  isMissed: function () {
+    return typeof this.fn !== "function";
+  },
+
+  get customMessage() {
+    return this.isMissed() ? missedRuleMessage : this._customMessage;
+  }
+};
+
+var manager = {
+  /**
+   * List of async rule names
+   *
+   * @type {Array}
+   */
+  asyncRules: [],
+
+  /**
+   * Implicit rules (rules to always validate)
+   *
+   * @type {Array}
+   */
+  implicitRules: [
+    "required",
+    "required_if",
+    "required_unless",
+    "required_with",
+    "required_with_all",
+    "required_without",
+    "required_without_all",
+    "accepted",
+    "present"
+  ],
+
+  /**
+   * Get rule by name
+   *
+   * @param  {string} name
+   * @param {Validator}
+   * @return {Rule}
+   */
+  make: function (name, validator) {
+    var async = this.isAsync(name);
+    var rule = new Rule(name, rules[name], async);
+    rule.setValidator(validator);
+    return rule;
+  },
+
+  /**
+   * Determine if given rule is async
+   *
+   * @param  {string}  name
+   * @return {boolean}
+   */
+  isAsync: function (name) {
+    for (var i = 0, len = this.asyncRules.length; i < len; i++) {
+      if (this.asyncRules[i] === name) {
+        return true;
+      }
+    }
+    return false;
+  },
+
+  /**
+   * Determine if rule is implicit (should always validate)
+   *
+   * @param {string} name
+   * @return {boolean}
+   */
+  isImplicit: function (name) {
+    return this.implicitRules.indexOf(name) > -1;
+  },
+
+  /**
+   * Register new rule
+   *
+   * @param  {string}   name
+   * @param  {function} fn
+   * @return {void}
+   */
+  register: function (name, fn) {
+    rules[name] = fn;
+  },
+
+  /**
+   * Register new implicit rule
+   *
+   * @param  {string}   name
+   * @param  {function} fn
+   * @return {void}
+   */
+  registerImplicit: function (name, fn) {
+    this.register(name, fn);
+    this.implicitRules.push(name);
+  },
+
+  /**
+   * Register async rule
+   *
+   * @param  {string}   name
+   * @param  {function} fn
+   * @return {void}
+   */
+  registerAsync: function (name, fn) {
+    this.register(name, fn);
+    this.asyncRules.push(name);
+  },
+
+  /**
+   * Register implicit async rule
+   *
+   * @param  {string}   name
+   * @param  {function} fn
+   * @return {void}
+   */
+  registerAsyncImplicit: function (name, fn) {
+    this.registerImplicit(name, fn);
+    this.asyncRules.push(name);
+  },
+
+  registerMissedRuleValidator: function (fn, message) {
+    missedRuleValidator = fn;
+    missedRuleMessage = message;
+  }
+};
+
+module.exports = manager;
+
+
+/***/ }),
+
+/***/ "./node_modules/validatorjs/src/validator.js":
+/*!***************************************************!*\
+  !*** ./node_modules/validatorjs/src/validator.js ***!
+  \***************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var Rules = __webpack_require__(/*! ./rules */ "./node_modules/validatorjs/src/rules.js");
+var Lang = __webpack_require__(/*! ./lang */ "./node_modules/validatorjs/src/lang.js");
+var Errors = __webpack_require__(/*! ./errors */ "./node_modules/validatorjs/src/errors.js");
+var Attributes = __webpack_require__(/*! ./attributes */ "./node_modules/validatorjs/src/attributes.js");
+var AsyncResolvers = __webpack_require__(/*! ./async */ "./node_modules/validatorjs/src/async.js");
+
+var Validator = function (input, rules, customMessages) {
+  var lang = Validator.getDefaultLang();
+  this.input = input || {};
+
+  this.messages = Lang._make(lang);
+  this.messages._setCustom(customMessages);
+  this.setAttributeFormatter(Validator.prototype.attributeFormatter);
+
+  this.errors = new Errors();
+  this.errorCount = 0;
+
+  this.hasAsync = false;
+  this.rules = this._parseRules(rules);
+};
+
+Validator.prototype = {
+
+  constructor: Validator,
+
+  /**
+   * Default language
+   *
+   * @type {string}
+   */
+  lang: 'en',
+
+  /**
+   * Numeric based rules
+   *
+   * @type {array}
+   */
+  numericRules: ['integer', 'numeric'],
+
+  /**
+   * Attribute formatter.
+   *
+   * @type {function}
+   */
+  attributeFormatter: Attributes.formatter,
+
+  /**
+   * Run validator
+   *
+   * @return {boolean} Whether it passes; true = passes, false = fails
+   */
+  check: function () {
+    var self = this;
+
+    for (var attribute in this.rules) {
+      var attributeRules = this.rules[attribute];
+      var inputValue = this._objectPath(this.input, attribute);
+
+      if (this._hasRule(attribute, ['sometimes']) && !this._suppliedWithData(attribute)) {
+        continue;
+      }
+
+      for (var i = 0, len = attributeRules.length, rule, ruleOptions, rulePassed; i < len; i++) {
+        ruleOptions = attributeRules[i];
+        rule = this.getRule(ruleOptions.name);
+
+        if (!this._isValidatable(rule, inputValue)) {
+          continue;
+        }
+
+        rulePassed = rule.validate(inputValue, ruleOptions.value, attribute);
+        if (!rulePassed) {
+          this._addFailure(rule);
+        }
+
+        if (this._shouldStopValidating(attribute, rulePassed)) {
+          break;
+        }
+      }
+    }
+
+    return this.errorCount === 0;
+  },
+
+  /**
+   * Run async validator
+   *
+   * @param {function} passes
+   * @param {function} fails
+   * @return {void}
+   */
+  checkAsync: function (passes, fails) {
+    var _this = this;
+    passes = passes || function () {};
+    fails = fails || function () {};
+
+    var failsOne = function (rule, message) {
+      _this._addFailure(rule, message);
+    };
+
+    var resolvedAll = function (allPassed) {
+      if (allPassed) {
+        passes();
+      } else {
+        fails();
+      }
+    };
+
+    var asyncResolvers = new AsyncResolvers(failsOne, resolvedAll);
+
+    var validateRule = function (inputValue, ruleOptions, attribute, rule) {
+      return function () {
+        var resolverIndex = asyncResolvers.add(rule);
+        rule.validate(inputValue, ruleOptions.value, attribute, function () {
+          asyncResolvers.resolve(resolverIndex);
+        });
+      };
+    };
+
+    for (var attribute in this.rules) {
+      var attributeRules = this.rules[attribute];
+      var inputValue = this._objectPath(this.input, attribute);
+
+      if (this._hasRule(attribute, ['sometimes']) && !this._suppliedWithData(attribute)) {
+        continue;
+      }
+
+      for (var i = 0, len = attributeRules.length, rule, ruleOptions; i < len; i++) {
+        ruleOptions = attributeRules[i];
+
+        rule = this.getRule(ruleOptions.name);
+
+        if (!this._isValidatable(rule, inputValue)) {
+          continue;
+        }
+
+        validateRule(inputValue, ruleOptions, attribute, rule)();
+      }
+    }
+
+    asyncResolvers.enableFiring();
+    asyncResolvers.fire();
+  },
+
+  /**
+   * Add failure and error message for given rule
+   *
+   * @param {Rule} rule
+   */
+  _addFailure: function (rule) {
+    var msg = this.messages.render(rule);
+    this.errors.add(rule.attribute, msg);
+    this.errorCount++;
+  },
+
+  /**
+   * Flatten nested object, normalizing { foo: { bar: 1 } } into: { 'foo.bar': 1 }
+   *
+   * @param  {object} nested object
+   * @return {object} flattened object
+   */
+  _flattenObject: function (obj) {
+    var flattened = {};
+
+    function recurse(current, property) {
+      if (!property && Object.getOwnPropertyNames(current).length === 0) {
+        return;
+      }
+      if (Object(current) !== current || Array.isArray(current)) {
+        flattened[property] = current;
+      } else {
+        var isEmpty = true;
+        for (var p in current) {
+          isEmpty = false;
+          recurse(current[p], property ? property + '.' + p : p);
+        }
+        if (isEmpty) {
+          flattened[property] = {};
+        }
+      }
+    }
+    if (obj) {
+      recurse(obj);
+    }
+    return flattened;
+  },
+
+  /**
+   * Extract value from nested object using string path with dot notation
+   *
+   * @param  {object} object to search in
+   * @param  {string} path inside object
+   * @return {any|void} value under the path
+   */
+  _objectPath: function (obj, path) {
+    if (Object.prototype.hasOwnProperty.call(obj, path)) {
+      return obj[path];
+    }
+
+    var keys = path.replace(/\[(\w+)\]/g, '.$1').replace(/^\./, '').split('.');
+    var copy = {};
+    for (var attr in obj) {
+      if (Object.prototype.hasOwnProperty.call(obj, attr)) {
+        copy[attr] = obj[attr];
+      }
+    }
+
+    for (var i = 0, l = keys.length; i < l; i++) {
+      if (typeof copy === 'object' && copy !== null && Object.hasOwnProperty.call(copy, keys[i])) {
+        copy = copy[keys[i]];
+      } else {
+        return;
+      }
+    }
+    return copy;
+  },
+
+  /**
+   * Parse rules, normalizing format into: { attribute: [{ name: 'age', value: 3 }] }
+   *
+   * @param  {object} rules
+   * @return {object}
+   */
+  _parseRules: function (rules) {
+
+    var parsedRules = {};
+    rules = this._flattenObject(rules);
+
+    for (var attribute in rules) {
+
+      var rulesArray = rules[attribute];
+
+      this._parseRulesCheck(attribute, rulesArray, parsedRules);
+    }
+    return parsedRules;
+
+
+  },
+
+  _parseRulesCheck: function (attribute, rulesArray, parsedRules, wildCardValues) {
+    if (attribute.indexOf('*') > -1) {
+      this._parsedRulesRecurse(attribute, rulesArray, parsedRules, wildCardValues);
+    } else {
+      this._parseRulesDefault(attribute, rulesArray, parsedRules, wildCardValues);
+    }
+  },
+
+  _parsedRulesRecurse: function (attribute, rulesArray, parsedRules, wildCardValues) {
+    var parentPath = attribute.substr(0, attribute.indexOf('*') - 1);
+    var propertyValue = this._objectPath(this.input, parentPath);
+
+    if (propertyValue) {
+      for (var propertyNumber = 0; propertyNumber < propertyValue.length; propertyNumber++) {
+        var workingValues = wildCardValues ? wildCardValues.slice() : [];
+        workingValues.push(propertyNumber);
+        this._parseRulesCheck(attribute.replace('*', propertyNumber), rulesArray, parsedRules, workingValues);
+      }
+    }
+  },
+
+  _parseRulesDefault: function (attribute, rulesArray, parsedRules, wildCardValues) {
+    var attributeRules = [];
+
+    if (rulesArray instanceof Array) {
+      rulesArray = this._prepareRulesArray(rulesArray);
+    }
+
+    if (typeof rulesArray === 'string') {
+      rulesArray = rulesArray.split('|');
+    }
+
+    for (var i = 0, len = rulesArray.length, rule; i < len; i++) {
+      rule = typeof rulesArray[i] === 'string' ? this._extractRuleAndRuleValue(rulesArray[i]) : rulesArray[i];
+      if (rule.value) {
+        rule.value = this._replaceWildCards(rule.value, wildCardValues);
+        this._replaceWildCardsMessages(wildCardValues);
+      }
+
+      if (Rules.isAsync(rule.name)) {
+        this.hasAsync = true;
+      }
+      attributeRules.push(rule);
+    }
+
+    parsedRules[attribute] = attributeRules;
+  },
+
+  _replaceWildCards: function (path, nums) {
+
+    if (!nums) {
+      return path;
+    }
+
+    var path2 = path;
+    nums.forEach(function (value) {
+      if(Array.isArray(path2)){
+        path2 = path2[0];
+      }
+      const pos = path2.indexOf('*');
+      if (pos === -1) {
+        return path2;
+      }
+      path2 = path2.substr(0, pos) + value + path2.substr(pos + 1);
+    });
+    if(Array.isArray(path)){
+      path[0] = path2;
+      path2 = path;
+    }
+    return path2;
+  },
+
+  _replaceWildCardsMessages: function (nums) {
+    var customMessages = this.messages.customMessages;
+    var self = this;
+    Object.keys(customMessages).forEach(function (key) {
+      if (nums) {
+        var newKey = self._replaceWildCards(key, nums);
+        customMessages[newKey] = customMessages[key];
+      }
+    });
+
+    this.messages._setCustom(customMessages);
+  },
+  /**
+   * Prepare rules if it comes in Array. Check for objects. Need for type validation.
+   *
+   * @param  {array} rulesArray
+   * @return {array}
+   */
+  _prepareRulesArray: function (rulesArray) {
+    var rules = [];
+
+    for (var i = 0, len = rulesArray.length; i < len; i++) {
+      if (typeof rulesArray[i] === 'object') {
+        for (var rule in rulesArray[i]) {
+          rules.push({
+            name: rule,
+            value: rulesArray[i][rule]
+          });
+        }
+      } else {
+        rules.push(rulesArray[i]);
+      }
+    }
+
+    return rules;
+  },
+
+  /**
+   * Determines if the attribute is supplied with the original data object.
+   *
+   * @param  {array} attribute
+   * @return {boolean}
+   */
+  _suppliedWithData: function (attribute) {
+    return this.input.hasOwnProperty(attribute);
+  },
+
+  /**
+   * Extract a rule and a value from a ruleString (i.e. min:3), rule = min, value = 3
+   *
+   * @param  {string} ruleString min:3
+   * @return {object} object containing the name of the rule and value
+   */
+  _extractRuleAndRuleValue: function (ruleString) {
+    var rule = {},
+      ruleArray;
+
+    rule.name = ruleString;
+
+    if (ruleString.indexOf(':') >= 0) {
+      ruleArray = ruleString.split(':');
+      rule.name = ruleArray[0];
+      rule.value = ruleArray.slice(1).join(':');
+    }
+
+    return rule;
+  },
+
+  /**
+   * Determine if attribute has any of the given rules
+   *
+   * @param  {string}  attribute
+   * @param  {array}   findRules
+   * @return {boolean}
+   */
+  _hasRule: function (attribute, findRules) {
+    var rules = this.rules[attribute] || [];
+    for (var i = 0, len = rules.length; i < len; i++) {
+      if (findRules.indexOf(rules[i].name) > -1) {
+        return true;
+      }
+    }
+    return false;
+  },
+
+  /**
+   * Determine if attribute has any numeric-based rules.
+   *
+   * @param  {string}  attribute
+   * @return {Boolean}
+   */
+  _hasNumericRule: function (attribute) {
+    return this._hasRule(attribute, this.numericRules);
+  },
+
+  /**
+   * Determine if rule is validatable
+   *
+   * @param  {Rule}   rule
+   * @param  {mixed}  value
+   * @return {boolean}
+   */
+  _isValidatable: function (rule, value) {
+    if (Array.isArray(value)) {
+      return true;
+    }
+    if (Rules.isImplicit(rule.name)) {
+      return true;
+    }
+
+    return this.getRule('required').validate(value);
+  },
+
+  /**
+   * Determine if we should stop validating.
+   *
+   * @param  {string} attribute
+   * @param  {boolean} rulePassed
+   * @return {boolean}
+   */
+  _shouldStopValidating: function (attribute, rulePassed) {
+
+    var stopOnAttributes = this.stopOnAttributes;
+    if (typeof stopOnAttributes === 'undefined' || stopOnAttributes === false || rulePassed === true) {
+      return false;
+    }
+
+    if (stopOnAttributes instanceof Array) {
+      return stopOnAttributes.indexOf(attribute) > -1;
+    }
+
+    return true;
+  },
+
+  /**
+   * Set custom attribute names.
+   *
+   * @param {object} attributes
+   * @return {void}
+   */
+  setAttributeNames: function (attributes) {
+    this.messages._setAttributeNames(attributes);
+  },
+
+  /**
+   * Set the attribute formatter.
+   *
+   * @param {fuction} func
+   * @return {void}
+   */
+  setAttributeFormatter: function (func) {
+    this.messages._setAttributeFormatter(func);
+  },
+
+  /**
+   * Get validation rule
+   *
+   * @param  {string} name
+   * @return {Rule}
+   */
+  getRule: function (name) {
+    return Rules.make(name, this);
+  },
+
+  /**
+   * Stop on first error.
+   *
+   * @param  {boolean|array} An array of attributes or boolean true/false for all attributes.
+   * @return {void}
+   */
+  stopOnError: function (attributes) {
+    this.stopOnAttributes = attributes;
+  },
+
+  /**
+   * Determine if validation passes
+   *
+   * @param {function} passes
+   * @return {boolean|undefined}
+   */
+  passes: function (passes) {
+    var async = this._checkAsync('passes', passes);
+    if (async) {
+      return this.checkAsync(passes);
+    }
+    return this.check();
+  },
+
+  /**
+   * Determine if validation fails
+   *
+   * @param {function} fails
+   * @return {boolean|undefined}
+   */
+  fails: function (fails) {
+    var async = this._checkAsync('fails', fails);
+    if (async) {
+      return this.checkAsync(function () {}, fails);
+    }
+    return !this.check();
+  },
+
+  /**
+   * Check if validation should be called asynchronously
+   *
+   * @param  {string}   funcName Name of the caller
+   * @param  {function} callback
+   * @return {boolean}
+   */
+  _checkAsync: function (funcName, callback) {
+    var hasCallback = typeof callback === 'function';
+    if (this.hasAsync && !hasCallback) {
+      throw funcName + ' expects a callback when async rules are being tested.';
+    }
+
+    return this.hasAsync || hasCallback;
+  }
+
+};
+
+/**
+ * Set messages for language
+ *
+ * @param {string} lang
+ * @param {object} messages
+ * @return {this}
+ */
+Validator.setMessages = function (lang, messages) {
+  Lang._set(lang, messages);
+  return this;
+};
+
+/**
+ * Get messages for given language
+ *
+ * @param  {string} lang
+ * @return {Messages}
+ */
+Validator.getMessages = function (lang) {
+  return Lang._get(lang);
+};
+
+/**
+ * Set default language to use
+ *
+ * @param {string} lang
+ * @return {void}
+ */
+Validator.useLang = function (lang) {
+  this.prototype.lang = lang;
+};
+
+/**
+ * Get default language
+ *
+ * @return {string}
+ */
+Validator.getDefaultLang = function () {
+  return this.prototype.lang;
+};
+
+/**
+ * Set the attribute formatter.
+ *
+ * @param {fuction} func
+ * @return {void}
+ */
+Validator.setAttributeFormatter = function (func) {
+  this.prototype.attributeFormatter = func;
+};
+
+/**
+ * Stop on first error.
+ *
+ * @param  {boolean|array} An array of attributes or boolean true/false for all attributes.
+ * @return {void}
+ */
+Validator.stopOnError = function (attributes) {
+  this.prototype.stopOnAttributes = attributes;
+};
+
+/**
+ * Register custom validation rule
+ *
+ * @param  {string}   name
+ * @param  {function} fn
+ * @param  {string}   message
+ * @return {void}
+ */
+Validator.register = function (name, fn, message, fnReplacement) {
+  var lang = Validator.getDefaultLang();
+  Rules.register(name, fn);
+  Lang._setRuleMessage(lang, name, message);
+};
+
+/**
+ * Register custom validation rule
+ *
+ * @param  {string}   name
+ * @param  {function} fn
+ * @param  {string}   message
+ * @param  {function} fnReplacement
+ * @return {void}
+ */
+Validator.registerImplicit = function (name, fn, message, fnReplacement) {
+  var lang = Validator.getDefaultLang();
+  Rules.registerImplicit(name, fn);
+  Lang._setRuleMessage(lang, name, message);
+};
+
+/**
+ * Register asynchronous validation rule
+ *
+ * @param  {string}   name
+ * @param  {function} fn
+ * @param  {string}   message
+ * @return {void}
+ */
+Validator.registerAsync = function (name, fn, message, fnReplacement) {
+  var lang = Validator.getDefaultLang();
+  Rules.registerAsync(name, fn);
+  Lang._setRuleMessage(lang, name, message);
+};
+
+/**
+ * Register asynchronous validation rule
+ *
+ * @param  {string}   name
+ * @param  {function} fn
+ * @param  {string}   message
+ * @return {void}
+ */
+Validator.registerAsyncImplicit = function (name, fn, message) {
+  var lang = Validator.getDefaultLang();
+  Rules.registerAsyncImplicit(name, fn);
+  Lang._setRuleMessage(lang, name, message);
+};
+
+/**
+ * Register validator for missed validation rule
+ *
+ * @param  {string}   name
+ * @param  {function} fn
+ * @param  {string}   message
+ * @return {void}
+ */
+Validator.registerMissedRuleValidator = function(fn, message) {
+  Rules.registerMissedRuleValidator(fn, message);
+};
+
+module.exports = Validator;
 
 
 /***/ }),
@@ -48925,7386 +51584,6 @@ function valueEqual(a, b) {
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (valueEqual);
 
-
-/***/ }),
-
-/***/ "../node_modules/validator/index.js":
-/*!******************************************!*\
-  !*** ../node_modules/validator/index.js ***!
-  \******************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = void 0;
-
-var _toDate = _interopRequireDefault(__webpack_require__(/*! ./lib/toDate */ "../node_modules/validator/lib/toDate.js"));
-
-var _toFloat = _interopRequireDefault(__webpack_require__(/*! ./lib/toFloat */ "../node_modules/validator/lib/toFloat.js"));
-
-var _toInt = _interopRequireDefault(__webpack_require__(/*! ./lib/toInt */ "../node_modules/validator/lib/toInt.js"));
-
-var _toBoolean = _interopRequireDefault(__webpack_require__(/*! ./lib/toBoolean */ "../node_modules/validator/lib/toBoolean.js"));
-
-var _equals = _interopRequireDefault(__webpack_require__(/*! ./lib/equals */ "../node_modules/validator/lib/equals.js"));
-
-var _contains = _interopRequireDefault(__webpack_require__(/*! ./lib/contains */ "../node_modules/validator/lib/contains.js"));
-
-var _matches = _interopRequireDefault(__webpack_require__(/*! ./lib/matches */ "../node_modules/validator/lib/matches.js"));
-
-var _isEmail = _interopRequireDefault(__webpack_require__(/*! ./lib/isEmail */ "../node_modules/validator/lib/isEmail.js"));
-
-var _isURL = _interopRequireDefault(__webpack_require__(/*! ./lib/isURL */ "../node_modules/validator/lib/isURL.js"));
-
-var _isMACAddress = _interopRequireDefault(__webpack_require__(/*! ./lib/isMACAddress */ "../node_modules/validator/lib/isMACAddress.js"));
-
-var _isIP = _interopRequireDefault(__webpack_require__(/*! ./lib/isIP */ "../node_modules/validator/lib/isIP.js"));
-
-var _isIPRange = _interopRequireDefault(__webpack_require__(/*! ./lib/isIPRange */ "../node_modules/validator/lib/isIPRange.js"));
-
-var _isFQDN = _interopRequireDefault(__webpack_require__(/*! ./lib/isFQDN */ "../node_modules/validator/lib/isFQDN.js"));
-
-var _isDate = _interopRequireDefault(__webpack_require__(/*! ./lib/isDate */ "../node_modules/validator/lib/isDate.js"));
-
-var _isBoolean = _interopRequireDefault(__webpack_require__(/*! ./lib/isBoolean */ "../node_modules/validator/lib/isBoolean.js"));
-
-var _isLocale = _interopRequireDefault(__webpack_require__(/*! ./lib/isLocale */ "../node_modules/validator/lib/isLocale.js"));
-
-var _isAlpha = _interopRequireWildcard(__webpack_require__(/*! ./lib/isAlpha */ "../node_modules/validator/lib/isAlpha.js"));
-
-var _isAlphanumeric = _interopRequireWildcard(__webpack_require__(/*! ./lib/isAlphanumeric */ "../node_modules/validator/lib/isAlphanumeric.js"));
-
-var _isNumeric = _interopRequireDefault(__webpack_require__(/*! ./lib/isNumeric */ "../node_modules/validator/lib/isNumeric.js"));
-
-var _isPassportNumber = _interopRequireDefault(__webpack_require__(/*! ./lib/isPassportNumber */ "../node_modules/validator/lib/isPassportNumber.js"));
-
-var _isPort = _interopRequireDefault(__webpack_require__(/*! ./lib/isPort */ "../node_modules/validator/lib/isPort.js"));
-
-var _isLowercase = _interopRequireDefault(__webpack_require__(/*! ./lib/isLowercase */ "../node_modules/validator/lib/isLowercase.js"));
-
-var _isUppercase = _interopRequireDefault(__webpack_require__(/*! ./lib/isUppercase */ "../node_modules/validator/lib/isUppercase.js"));
-
-var _isIMEI = _interopRequireDefault(__webpack_require__(/*! ./lib/isIMEI */ "../node_modules/validator/lib/isIMEI.js"));
-
-var _isAscii = _interopRequireDefault(__webpack_require__(/*! ./lib/isAscii */ "../node_modules/validator/lib/isAscii.js"));
-
-var _isFullWidth = _interopRequireDefault(__webpack_require__(/*! ./lib/isFullWidth */ "../node_modules/validator/lib/isFullWidth.js"));
-
-var _isHalfWidth = _interopRequireDefault(__webpack_require__(/*! ./lib/isHalfWidth */ "../node_modules/validator/lib/isHalfWidth.js"));
-
-var _isVariableWidth = _interopRequireDefault(__webpack_require__(/*! ./lib/isVariableWidth */ "../node_modules/validator/lib/isVariableWidth.js"));
-
-var _isMultibyte = _interopRequireDefault(__webpack_require__(/*! ./lib/isMultibyte */ "../node_modules/validator/lib/isMultibyte.js"));
-
-var _isSemVer = _interopRequireDefault(__webpack_require__(/*! ./lib/isSemVer */ "../node_modules/validator/lib/isSemVer.js"));
-
-var _isSurrogatePair = _interopRequireDefault(__webpack_require__(/*! ./lib/isSurrogatePair */ "../node_modules/validator/lib/isSurrogatePair.js"));
-
-var _isInt = _interopRequireDefault(__webpack_require__(/*! ./lib/isInt */ "../node_modules/validator/lib/isInt.js"));
-
-var _isFloat = _interopRequireWildcard(__webpack_require__(/*! ./lib/isFloat */ "../node_modules/validator/lib/isFloat.js"));
-
-var _isDecimal = _interopRequireDefault(__webpack_require__(/*! ./lib/isDecimal */ "../node_modules/validator/lib/isDecimal.js"));
-
-var _isHexadecimal = _interopRequireDefault(__webpack_require__(/*! ./lib/isHexadecimal */ "../node_modules/validator/lib/isHexadecimal.js"));
-
-var _isOctal = _interopRequireDefault(__webpack_require__(/*! ./lib/isOctal */ "../node_modules/validator/lib/isOctal.js"));
-
-var _isDivisibleBy = _interopRequireDefault(__webpack_require__(/*! ./lib/isDivisibleBy */ "../node_modules/validator/lib/isDivisibleBy.js"));
-
-var _isHexColor = _interopRequireDefault(__webpack_require__(/*! ./lib/isHexColor */ "../node_modules/validator/lib/isHexColor.js"));
-
-var _isRgbColor = _interopRequireDefault(__webpack_require__(/*! ./lib/isRgbColor */ "../node_modules/validator/lib/isRgbColor.js"));
-
-var _isHSL = _interopRequireDefault(__webpack_require__(/*! ./lib/isHSL */ "../node_modules/validator/lib/isHSL.js"));
-
-var _isISRC = _interopRequireDefault(__webpack_require__(/*! ./lib/isISRC */ "../node_modules/validator/lib/isISRC.js"));
-
-var _isIBAN = _interopRequireDefault(__webpack_require__(/*! ./lib/isIBAN */ "../node_modules/validator/lib/isIBAN.js"));
-
-var _isBIC = _interopRequireDefault(__webpack_require__(/*! ./lib/isBIC */ "../node_modules/validator/lib/isBIC.js"));
-
-var _isMD = _interopRequireDefault(__webpack_require__(/*! ./lib/isMD5 */ "../node_modules/validator/lib/isMD5.js"));
-
-var _isHash = _interopRequireDefault(__webpack_require__(/*! ./lib/isHash */ "../node_modules/validator/lib/isHash.js"));
-
-var _isJWT = _interopRequireDefault(__webpack_require__(/*! ./lib/isJWT */ "../node_modules/validator/lib/isJWT.js"));
-
-var _isJSON = _interopRequireDefault(__webpack_require__(/*! ./lib/isJSON */ "../node_modules/validator/lib/isJSON.js"));
-
-var _isEmpty = _interopRequireDefault(__webpack_require__(/*! ./lib/isEmpty */ "../node_modules/validator/lib/isEmpty.js"));
-
-var _isLength = _interopRequireDefault(__webpack_require__(/*! ./lib/isLength */ "../node_modules/validator/lib/isLength.js"));
-
-var _isByteLength = _interopRequireDefault(__webpack_require__(/*! ./lib/isByteLength */ "../node_modules/validator/lib/isByteLength.js"));
-
-var _isUUID = _interopRequireDefault(__webpack_require__(/*! ./lib/isUUID */ "../node_modules/validator/lib/isUUID.js"));
-
-var _isMongoId = _interopRequireDefault(__webpack_require__(/*! ./lib/isMongoId */ "../node_modules/validator/lib/isMongoId.js"));
-
-var _isAfter = _interopRequireDefault(__webpack_require__(/*! ./lib/isAfter */ "../node_modules/validator/lib/isAfter.js"));
-
-var _isBefore = _interopRequireDefault(__webpack_require__(/*! ./lib/isBefore */ "../node_modules/validator/lib/isBefore.js"));
-
-var _isIn = _interopRequireDefault(__webpack_require__(/*! ./lib/isIn */ "../node_modules/validator/lib/isIn.js"));
-
-var _isCreditCard = _interopRequireDefault(__webpack_require__(/*! ./lib/isCreditCard */ "../node_modules/validator/lib/isCreditCard.js"));
-
-var _isIdentityCard = _interopRequireDefault(__webpack_require__(/*! ./lib/isIdentityCard */ "../node_modules/validator/lib/isIdentityCard.js"));
-
-var _isEAN = _interopRequireDefault(__webpack_require__(/*! ./lib/isEAN */ "../node_modules/validator/lib/isEAN.js"));
-
-var _isISIN = _interopRequireDefault(__webpack_require__(/*! ./lib/isISIN */ "../node_modules/validator/lib/isISIN.js"));
-
-var _isISBN = _interopRequireDefault(__webpack_require__(/*! ./lib/isISBN */ "../node_modules/validator/lib/isISBN.js"));
-
-var _isISSN = _interopRequireDefault(__webpack_require__(/*! ./lib/isISSN */ "../node_modules/validator/lib/isISSN.js"));
-
-var _isTaxID = _interopRequireDefault(__webpack_require__(/*! ./lib/isTaxID */ "../node_modules/validator/lib/isTaxID.js"));
-
-var _isMobilePhone = _interopRequireWildcard(__webpack_require__(/*! ./lib/isMobilePhone */ "../node_modules/validator/lib/isMobilePhone.js"));
-
-var _isEthereumAddress = _interopRequireDefault(__webpack_require__(/*! ./lib/isEthereumAddress */ "../node_modules/validator/lib/isEthereumAddress.js"));
-
-var _isCurrency = _interopRequireDefault(__webpack_require__(/*! ./lib/isCurrency */ "../node_modules/validator/lib/isCurrency.js"));
-
-var _isBtcAddress = _interopRequireDefault(__webpack_require__(/*! ./lib/isBtcAddress */ "../node_modules/validator/lib/isBtcAddress.js"));
-
-var _isISO = _interopRequireDefault(__webpack_require__(/*! ./lib/isISO8601 */ "../node_modules/validator/lib/isISO8601.js"));
-
-var _isRFC = _interopRequireDefault(__webpack_require__(/*! ./lib/isRFC3339 */ "../node_modules/validator/lib/isRFC3339.js"));
-
-var _isISO31661Alpha = _interopRequireDefault(__webpack_require__(/*! ./lib/isISO31661Alpha2 */ "../node_modules/validator/lib/isISO31661Alpha2.js"));
-
-var _isISO31661Alpha2 = _interopRequireDefault(__webpack_require__(/*! ./lib/isISO31661Alpha3 */ "../node_modules/validator/lib/isISO31661Alpha3.js"));
-
-var _isBase = _interopRequireDefault(__webpack_require__(/*! ./lib/isBase32 */ "../node_modules/validator/lib/isBase32.js"));
-
-var _isBase2 = _interopRequireDefault(__webpack_require__(/*! ./lib/isBase58 */ "../node_modules/validator/lib/isBase58.js"));
-
-var _isBase3 = _interopRequireDefault(__webpack_require__(/*! ./lib/isBase64 */ "../node_modules/validator/lib/isBase64.js"));
-
-var _isDataURI = _interopRequireDefault(__webpack_require__(/*! ./lib/isDataURI */ "../node_modules/validator/lib/isDataURI.js"));
-
-var _isMagnetURI = _interopRequireDefault(__webpack_require__(/*! ./lib/isMagnetURI */ "../node_modules/validator/lib/isMagnetURI.js"));
-
-var _isMimeType = _interopRequireDefault(__webpack_require__(/*! ./lib/isMimeType */ "../node_modules/validator/lib/isMimeType.js"));
-
-var _isLatLong = _interopRequireDefault(__webpack_require__(/*! ./lib/isLatLong */ "../node_modules/validator/lib/isLatLong.js"));
-
-var _isPostalCode = _interopRequireWildcard(__webpack_require__(/*! ./lib/isPostalCode */ "../node_modules/validator/lib/isPostalCode.js"));
-
-var _ltrim = _interopRequireDefault(__webpack_require__(/*! ./lib/ltrim */ "../node_modules/validator/lib/ltrim.js"));
-
-var _rtrim = _interopRequireDefault(__webpack_require__(/*! ./lib/rtrim */ "../node_modules/validator/lib/rtrim.js"));
-
-var _trim = _interopRequireDefault(__webpack_require__(/*! ./lib/trim */ "../node_modules/validator/lib/trim.js"));
-
-var _escape = _interopRequireDefault(__webpack_require__(/*! ./lib/escape */ "../node_modules/validator/lib/escape.js"));
-
-var _unescape = _interopRequireDefault(__webpack_require__(/*! ./lib/unescape */ "../node_modules/validator/lib/unescape.js"));
-
-var _stripLow = _interopRequireDefault(__webpack_require__(/*! ./lib/stripLow */ "../node_modules/validator/lib/stripLow.js"));
-
-var _whitelist = _interopRequireDefault(__webpack_require__(/*! ./lib/whitelist */ "../node_modules/validator/lib/whitelist.js"));
-
-var _blacklist = _interopRequireDefault(__webpack_require__(/*! ./lib/blacklist */ "../node_modules/validator/lib/blacklist.js"));
-
-var _isWhitelisted = _interopRequireDefault(__webpack_require__(/*! ./lib/isWhitelisted */ "../node_modules/validator/lib/isWhitelisted.js"));
-
-var _normalizeEmail = _interopRequireDefault(__webpack_require__(/*! ./lib/normalizeEmail */ "../node_modules/validator/lib/normalizeEmail.js"));
-
-var _isSlug = _interopRequireDefault(__webpack_require__(/*! ./lib/isSlug */ "../node_modules/validator/lib/isSlug.js"));
-
-var _isLicensePlate = _interopRequireDefault(__webpack_require__(/*! ./lib/isLicensePlate */ "../node_modules/validator/lib/isLicensePlate.js"));
-
-var _isStrongPassword = _interopRequireDefault(__webpack_require__(/*! ./lib/isStrongPassword */ "../node_modules/validator/lib/isStrongPassword.js"));
-
-var _isVAT = _interopRequireDefault(__webpack_require__(/*! ./lib/isVAT */ "../node_modules/validator/lib/isVAT.js"));
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var version = '13.6.0';
-var validator = {
-  version: version,
-  toDate: _toDate.default,
-  toFloat: _toFloat.default,
-  toInt: _toInt.default,
-  toBoolean: _toBoolean.default,
-  equals: _equals.default,
-  contains: _contains.default,
-  matches: _matches.default,
-  isEmail: _isEmail.default,
-  isURL: _isURL.default,
-  isMACAddress: _isMACAddress.default,
-  isIP: _isIP.default,
-  isIPRange: _isIPRange.default,
-  isFQDN: _isFQDN.default,
-  isBoolean: _isBoolean.default,
-  isIBAN: _isIBAN.default,
-  isBIC: _isBIC.default,
-  isAlpha: _isAlpha.default,
-  isAlphaLocales: _isAlpha.locales,
-  isAlphanumeric: _isAlphanumeric.default,
-  isAlphanumericLocales: _isAlphanumeric.locales,
-  isNumeric: _isNumeric.default,
-  isPassportNumber: _isPassportNumber.default,
-  isPort: _isPort.default,
-  isLowercase: _isLowercase.default,
-  isUppercase: _isUppercase.default,
-  isAscii: _isAscii.default,
-  isFullWidth: _isFullWidth.default,
-  isHalfWidth: _isHalfWidth.default,
-  isVariableWidth: _isVariableWidth.default,
-  isMultibyte: _isMultibyte.default,
-  isSemVer: _isSemVer.default,
-  isSurrogatePair: _isSurrogatePair.default,
-  isInt: _isInt.default,
-  isIMEI: _isIMEI.default,
-  isFloat: _isFloat.default,
-  isFloatLocales: _isFloat.locales,
-  isDecimal: _isDecimal.default,
-  isHexadecimal: _isHexadecimal.default,
-  isOctal: _isOctal.default,
-  isDivisibleBy: _isDivisibleBy.default,
-  isHexColor: _isHexColor.default,
-  isRgbColor: _isRgbColor.default,
-  isHSL: _isHSL.default,
-  isISRC: _isISRC.default,
-  isMD5: _isMD.default,
-  isHash: _isHash.default,
-  isJWT: _isJWT.default,
-  isJSON: _isJSON.default,
-  isEmpty: _isEmpty.default,
-  isLength: _isLength.default,
-  isLocale: _isLocale.default,
-  isByteLength: _isByteLength.default,
-  isUUID: _isUUID.default,
-  isMongoId: _isMongoId.default,
-  isAfter: _isAfter.default,
-  isBefore: _isBefore.default,
-  isIn: _isIn.default,
-  isCreditCard: _isCreditCard.default,
-  isIdentityCard: _isIdentityCard.default,
-  isEAN: _isEAN.default,
-  isISIN: _isISIN.default,
-  isISBN: _isISBN.default,
-  isISSN: _isISSN.default,
-  isMobilePhone: _isMobilePhone.default,
-  isMobilePhoneLocales: _isMobilePhone.locales,
-  isPostalCode: _isPostalCode.default,
-  isPostalCodeLocales: _isPostalCode.locales,
-  isEthereumAddress: _isEthereumAddress.default,
-  isCurrency: _isCurrency.default,
-  isBtcAddress: _isBtcAddress.default,
-  isISO8601: _isISO.default,
-  isRFC3339: _isRFC.default,
-  isISO31661Alpha2: _isISO31661Alpha.default,
-  isISO31661Alpha3: _isISO31661Alpha2.default,
-  isBase32: _isBase.default,
-  isBase58: _isBase2.default,
-  isBase64: _isBase3.default,
-  isDataURI: _isDataURI.default,
-  isMagnetURI: _isMagnetURI.default,
-  isMimeType: _isMimeType.default,
-  isLatLong: _isLatLong.default,
-  ltrim: _ltrim.default,
-  rtrim: _rtrim.default,
-  trim: _trim.default,
-  escape: _escape.default,
-  unescape: _unescape.default,
-  stripLow: _stripLow.default,
-  whitelist: _whitelist.default,
-  blacklist: _blacklist.default,
-  isWhitelisted: _isWhitelisted.default,
-  normalizeEmail: _normalizeEmail.default,
-  toString: toString,
-  isSlug: _isSlug.default,
-  isStrongPassword: _isStrongPassword.default,
-  isTaxID: _isTaxID.default,
-  isDate: _isDate.default,
-  isLicensePlate: _isLicensePlate.default,
-  isVAT: _isVAT.default
-};
-var _default = validator;
-exports.default = _default;
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/alpha.js":
-/*!**********************************************!*\
-  !*** ../node_modules/validator/lib/alpha.js ***!
-  \**********************************************/
-/***/ ((__unused_webpack_module, exports) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.commaDecimal = exports.dotDecimal = exports.farsiLocales = exports.arabicLocales = exports.englishLocales = exports.decimal = exports.alphanumeric = exports.alpha = void 0;
-var alpha = {
-  'en-US': /^[A-Z]+$/i,
-  'az-AZ': /^[A-VXYZÇƏĞİıÖŞÜ]+$/i,
-  'bg-BG': /^[А-Я]+$/i,
-  'cs-CZ': /^[A-ZÁČĎÉĚÍŇÓŘŠŤÚŮÝŽ]+$/i,
-  'da-DK': /^[A-ZÆØÅ]+$/i,
-  'de-DE': /^[A-ZÄÖÜß]+$/i,
-  'el-GR': /^[Α-ώ]+$/i,
-  'es-ES': /^[A-ZÁÉÍÑÓÚÜ]+$/i,
-  'fa-IR': /^[ابپتثجچحخدذرزژسشصضطظعغفقکگلمنوهی]+$/i,
-  'fr-FR': /^[A-ZÀÂÆÇÉÈÊËÏÎÔŒÙÛÜŸ]+$/i,
-  'it-IT': /^[A-ZÀÉÈÌÎÓÒÙ]+$/i,
-  'nb-NO': /^[A-ZÆØÅ]+$/i,
-  'nl-NL': /^[A-ZÁÉËÏÓÖÜÚ]+$/i,
-  'nn-NO': /^[A-ZÆØÅ]+$/i,
-  'hu-HU': /^[A-ZÁÉÍÓÖŐÚÜŰ]+$/i,
-  'pl-PL': /^[A-ZĄĆĘŚŁŃÓŻŹ]+$/i,
-  'pt-PT': /^[A-ZÃÁÀÂÄÇÉÊËÍÏÕÓÔÖÚÜ]+$/i,
-  'ru-RU': /^[А-ЯЁ]+$/i,
-  'sl-SI': /^[A-ZČĆĐŠŽ]+$/i,
-  'sk-SK': /^[A-ZÁČĎÉÍŇÓŠŤÚÝŽĹŔĽÄÔ]+$/i,
-  'sr-RS@latin': /^[A-ZČĆŽŠĐ]+$/i,
-  'sr-RS': /^[А-ЯЂЈЉЊЋЏ]+$/i,
-  'sv-SE': /^[A-ZÅÄÖ]+$/i,
-  'th-TH': /^[ก-๐\s]+$/i,
-  'tr-TR': /^[A-ZÇĞİıÖŞÜ]+$/i,
-  'uk-UA': /^[А-ЩЬЮЯЄIЇҐі]+$/i,
-  'vi-VN': /^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴĐÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸ]+$/i,
-  'ku-IQ': /^[ئابپتجچحخدرڕزژسشعغفڤقکگلڵمنوۆھەیێيطؤثآإأكضصةظذ]+$/i,
-  ar: /^[ءآأؤإئابةتثجحخدذرزسشصضطظعغفقكلمنهوىيًٌٍَُِّْٰ]+$/,
-  he: /^[א-ת]+$/,
-  fa: /^['آاءأؤئبپتثجچحخدذرزژسشصضطظعغفقکگلمنوهةی']+$/i
-};
-exports.alpha = alpha;
-var alphanumeric = {
-  'en-US': /^[0-9A-Z]+$/i,
-  'az-AZ': /^[0-9A-VXYZÇƏĞİıÖŞÜ]+$/i,
-  'bg-BG': /^[0-9А-Я]+$/i,
-  'cs-CZ': /^[0-9A-ZÁČĎÉĚÍŇÓŘŠŤÚŮÝŽ]+$/i,
-  'da-DK': /^[0-9A-ZÆØÅ]+$/i,
-  'de-DE': /^[0-9A-ZÄÖÜß]+$/i,
-  'el-GR': /^[0-9Α-ω]+$/i,
-  'es-ES': /^[0-9A-ZÁÉÍÑÓÚÜ]+$/i,
-  'fr-FR': /^[0-9A-ZÀÂÆÇÉÈÊËÏÎÔŒÙÛÜŸ]+$/i,
-  'it-IT': /^[0-9A-ZÀÉÈÌÎÓÒÙ]+$/i,
-  'hu-HU': /^[0-9A-ZÁÉÍÓÖŐÚÜŰ]+$/i,
-  'nb-NO': /^[0-9A-ZÆØÅ]+$/i,
-  'nl-NL': /^[0-9A-ZÁÉËÏÓÖÜÚ]+$/i,
-  'nn-NO': /^[0-9A-ZÆØÅ]+$/i,
-  'pl-PL': /^[0-9A-ZĄĆĘŚŁŃÓŻŹ]+$/i,
-  'pt-PT': /^[0-9A-ZÃÁÀÂÄÇÉÊËÍÏÕÓÔÖÚÜ]+$/i,
-  'ru-RU': /^[0-9А-ЯЁ]+$/i,
-  'sl-SI': /^[0-9A-ZČĆĐŠŽ]+$/i,
-  'sk-SK': /^[0-9A-ZÁČĎÉÍŇÓŠŤÚÝŽĹŔĽÄÔ]+$/i,
-  'sr-RS@latin': /^[0-9A-ZČĆŽŠĐ]+$/i,
-  'sr-RS': /^[0-9А-ЯЂЈЉЊЋЏ]+$/i,
-  'sv-SE': /^[0-9A-ZÅÄÖ]+$/i,
-  'th-TH': /^[ก-๙\s]+$/i,
-  'tr-TR': /^[0-9A-ZÇĞİıÖŞÜ]+$/i,
-  'uk-UA': /^[0-9А-ЩЬЮЯЄIЇҐі]+$/i,
-  'ku-IQ': /^[٠١٢٣٤٥٦٧٨٩0-9ئابپتجچحخدرڕزژسشعغفڤقکگلڵمنوۆھەیێيطؤثآإأكضصةظذ]+$/i,
-  'vi-VN': /^[0-9A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴĐÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸ]+$/i,
-  ar: /^[٠١٢٣٤٥٦٧٨٩0-9ءآأؤإئابةتثجحخدذرزسشصضطظعغفقكلمنهوىيًٌٍَُِّْٰ]+$/,
-  he: /^[0-9א-ת]+$/,
-  fa: /^['0-9آاءأؤئبپتثجچحخدذرزژسشصضطظعغفقکگلمنوهةی۱۲۳۴۵۶۷۸۹۰']+$/i
-};
-exports.alphanumeric = alphanumeric;
-var decimal = {
-  'en-US': '.',
-  ar: '٫'
-};
-exports.decimal = decimal;
-var englishLocales = ['AU', 'GB', 'HK', 'IN', 'NZ', 'ZA', 'ZM'];
-exports.englishLocales = englishLocales;
-
-for (var locale, i = 0; i < englishLocales.length; i++) {
-  locale = "en-".concat(englishLocales[i]);
-  alpha[locale] = alpha['en-US'];
-  alphanumeric[locale] = alphanumeric['en-US'];
-  decimal[locale] = decimal['en-US'];
-} // Source: http://www.localeplanet.com/java/
-
-
-var arabicLocales = ['AE', 'BH', 'DZ', 'EG', 'IQ', 'JO', 'KW', 'LB', 'LY', 'MA', 'QM', 'QA', 'SA', 'SD', 'SY', 'TN', 'YE'];
-exports.arabicLocales = arabicLocales;
-
-for (var _locale, _i = 0; _i < arabicLocales.length; _i++) {
-  _locale = "ar-".concat(arabicLocales[_i]);
-  alpha[_locale] = alpha.ar;
-  alphanumeric[_locale] = alphanumeric.ar;
-  decimal[_locale] = decimal.ar;
-}
-
-var farsiLocales = ['IR', 'AF'];
-exports.farsiLocales = farsiLocales;
-
-for (var _locale2, _i2 = 0; _i2 < farsiLocales.length; _i2++) {
-  _locale2 = "fa-".concat(farsiLocales[_i2]);
-  alphanumeric[_locale2] = alphanumeric.fa;
-  decimal[_locale2] = decimal.ar;
-} // Source: https://en.wikipedia.org/wiki/Decimal_mark
-
-
-var dotDecimal = ['ar-EG', 'ar-LB', 'ar-LY'];
-exports.dotDecimal = dotDecimal;
-var commaDecimal = ['bg-BG', 'cs-CZ', 'da-DK', 'de-DE', 'el-GR', 'en-ZM', 'es-ES', 'fr-CA', 'fr-FR', 'id-ID', 'it-IT', 'ku-IQ', 'hu-HU', 'nb-NO', 'nn-NO', 'nl-NL', 'pl-PL', 'pt-PT', 'ru-RU', 'sl-SI', 'sr-RS@latin', 'sr-RS', 'sv-SE', 'tr-TR', 'uk-UA', 'vi-VN'];
-exports.commaDecimal = commaDecimal;
-
-for (var _i3 = 0; _i3 < dotDecimal.length; _i3++) {
-  decimal[dotDecimal[_i3]] = decimal['en-US'];
-}
-
-for (var _i4 = 0; _i4 < commaDecimal.length; _i4++) {
-  decimal[commaDecimal[_i4]] = ',';
-}
-
-alpha['fr-CA'] = alpha['fr-FR'];
-alphanumeric['fr-CA'] = alphanumeric['fr-FR'];
-alpha['pt-BR'] = alpha['pt-PT'];
-alphanumeric['pt-BR'] = alphanumeric['pt-PT'];
-decimal['pt-BR'] = decimal['pt-PT']; // see #862
-
-alpha['pl-Pl'] = alpha['pl-PL'];
-alphanumeric['pl-Pl'] = alphanumeric['pl-PL'];
-decimal['pl-Pl'] = decimal['pl-PL']; // see #1455
-
-alpha['fa-AF'] = alpha.fa;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/blacklist.js":
-/*!**************************************************!*\
-  !*** ../node_modules/validator/lib/blacklist.js ***!
-  \**************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = blacklist;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function blacklist(str, chars) {
-  (0, _assertString.default)(str);
-  return str.replace(new RegExp("[".concat(chars, "]+"), 'g'), '');
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/contains.js":
-/*!*************************************************!*\
-  !*** ../node_modules/validator/lib/contains.js ***!
-  \*************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = contains;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-var _toString = _interopRequireDefault(__webpack_require__(/*! ./util/toString */ "../node_modules/validator/lib/util/toString.js"));
-
-var _merge = _interopRequireDefault(__webpack_require__(/*! ./util/merge */ "../node_modules/validator/lib/util/merge.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var defaulContainsOptions = {
-  ignoreCase: false
-};
-
-function contains(str, elem, options) {
-  (0, _assertString.default)(str);
-  options = (0, _merge.default)(options, defaulContainsOptions);
-  return options.ignoreCase ? str.toLowerCase().indexOf((0, _toString.default)(elem).toLowerCase()) >= 0 : str.indexOf((0, _toString.default)(elem)) >= 0;
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/equals.js":
-/*!***********************************************!*\
-  !*** ../node_modules/validator/lib/equals.js ***!
-  \***********************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = equals;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function equals(str, comparison) {
-  (0, _assertString.default)(str);
-  return str === comparison;
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/escape.js":
-/*!***********************************************!*\
-  !*** ../node_modules/validator/lib/escape.js ***!
-  \***********************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = escape;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function escape(str) {
-  (0, _assertString.default)(str);
-  return str.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#x27;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\//g, '&#x2F;').replace(/\\/g, '&#x5C;').replace(/`/g, '&#96;');
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isAfter.js":
-/*!************************************************!*\
-  !*** ../node_modules/validator/lib/isAfter.js ***!
-  \************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isAfter;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-var _toDate = _interopRequireDefault(__webpack_require__(/*! ./toDate */ "../node_modules/validator/lib/toDate.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function isAfter(str) {
-  var date = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : String(new Date());
-  (0, _assertString.default)(str);
-  var comparison = (0, _toDate.default)(date);
-  var original = (0, _toDate.default)(str);
-  return !!(original && comparison && original > comparison);
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isAlpha.js":
-/*!************************************************!*\
-  !*** ../node_modules/validator/lib/isAlpha.js ***!
-  \************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isAlpha;
-exports.locales = void 0;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-var _alpha = __webpack_require__(/*! ./alpha */ "../node_modules/validator/lib/alpha.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function isAlpha(_str) {
-  var locale = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'en-US';
-  var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-  (0, _assertString.default)(_str);
-  var str = _str;
-  var ignore = options.ignore;
-
-  if (ignore) {
-    if (ignore instanceof RegExp) {
-      str = str.replace(ignore, '');
-    } else if (typeof ignore === 'string') {
-      str = str.replace(new RegExp("[".concat(ignore.replace(/[-[\]{}()*+?.,\\^$|#\\s]/g, '\\$&'), "]"), 'g'), ''); // escape regex for ignore
-    } else {
-      throw new Error('ignore should be instance of a String or RegExp');
-    }
-  }
-
-  if (locale in _alpha.alpha) {
-    return _alpha.alpha[locale].test(str);
-  }
-
-  throw new Error("Invalid locale '".concat(locale, "'"));
-}
-
-var locales = Object.keys(_alpha.alpha);
-exports.locales = locales;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isAlphanumeric.js":
-/*!*******************************************************!*\
-  !*** ../node_modules/validator/lib/isAlphanumeric.js ***!
-  \*******************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isAlphanumeric;
-exports.locales = void 0;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-var _alpha = __webpack_require__(/*! ./alpha */ "../node_modules/validator/lib/alpha.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function isAlphanumeric(_str) {
-  var locale = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'en-US';
-  var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-  (0, _assertString.default)(_str);
-  var str = _str;
-  var ignore = options.ignore;
-
-  if (ignore) {
-    if (ignore instanceof RegExp) {
-      str = str.replace(ignore, '');
-    } else if (typeof ignore === 'string') {
-      str = str.replace(new RegExp("[".concat(ignore.replace(/[-[\]{}()*+?.,\\^$|#\\s]/g, '\\$&'), "]"), 'g'), ''); // escape regex for ignore
-    } else {
-      throw new Error('ignore should be instance of a String or RegExp');
-    }
-  }
-
-  if (locale in _alpha.alphanumeric) {
-    return _alpha.alphanumeric[locale].test(str);
-  }
-
-  throw new Error("Invalid locale '".concat(locale, "'"));
-}
-
-var locales = Object.keys(_alpha.alphanumeric);
-exports.locales = locales;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isAscii.js":
-/*!************************************************!*\
-  !*** ../node_modules/validator/lib/isAscii.js ***!
-  \************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isAscii;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/* eslint-disable no-control-regex */
-var ascii = /^[\x00-\x7F]+$/;
-/* eslint-enable no-control-regex */
-
-function isAscii(str) {
-  (0, _assertString.default)(str);
-  return ascii.test(str);
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isBIC.js":
-/*!**********************************************!*\
-  !*** ../node_modules/validator/lib/isBIC.js ***!
-  \**********************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isBIC;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-var _isISO31661Alpha = __webpack_require__(/*! ./isISO31661Alpha2 */ "../node_modules/validator/lib/isISO31661Alpha2.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// https://en.wikipedia.org/wiki/ISO_9362
-var isBICReg = /^[A-Za-z]{6}[A-Za-z0-9]{2}([A-Za-z0-9]{3})?$/;
-
-function isBIC(str) {
-  (0, _assertString.default)(str); // toUpperCase() should be removed when a new major version goes out that changes
-  // the regex to [A-Z] (per the spec).
-
-  if (_isISO31661Alpha.CountryCodes.indexOf(str.slice(4, 6).toUpperCase()) < 0) {
-    return false;
-  }
-
-  return isBICReg.test(str);
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isBase32.js":
-/*!*************************************************!*\
-  !*** ../node_modules/validator/lib/isBase32.js ***!
-  \*************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isBase32;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var base32 = /^[A-Z2-7]+=*$/;
-
-function isBase32(str) {
-  (0, _assertString.default)(str);
-  var len = str.length;
-
-  if (len % 8 === 0 && base32.test(str)) {
-    return true;
-  }
-
-  return false;
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isBase58.js":
-/*!*************************************************!*\
-  !*** ../node_modules/validator/lib/isBase58.js ***!
-  \*************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isBase58;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// Accepted chars - 123456789ABCDEFGH JKLMN PQRSTUVWXYZabcdefghijk mnopqrstuvwxyz
-var base58Reg = /^[A-HJ-NP-Za-km-z1-9]*$/;
-
-function isBase58(str) {
-  (0, _assertString.default)(str);
-
-  if (base58Reg.test(str)) {
-    return true;
-  }
-
-  return false;
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isBase64.js":
-/*!*************************************************!*\
-  !*** ../node_modules/validator/lib/isBase64.js ***!
-  \*************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isBase64;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-var _merge = _interopRequireDefault(__webpack_require__(/*! ./util/merge */ "../node_modules/validator/lib/util/merge.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var notBase64 = /[^A-Z0-9+\/=]/i;
-var urlSafeBase64 = /^[A-Z0-9_\-]*$/i;
-var defaultBase64Options = {
-  urlSafe: false
-};
-
-function isBase64(str, options) {
-  (0, _assertString.default)(str);
-  options = (0, _merge.default)(options, defaultBase64Options);
-  var len = str.length;
-
-  if (options.urlSafe) {
-    return urlSafeBase64.test(str);
-  }
-
-  if (len % 4 !== 0 || notBase64.test(str)) {
-    return false;
-  }
-
-  var firstPaddingChar = str.indexOf('=');
-  return firstPaddingChar === -1 || firstPaddingChar === len - 1 || firstPaddingChar === len - 2 && str[len - 1] === '=';
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isBefore.js":
-/*!*************************************************!*\
-  !*** ../node_modules/validator/lib/isBefore.js ***!
-  \*************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isBefore;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-var _toDate = _interopRequireDefault(__webpack_require__(/*! ./toDate */ "../node_modules/validator/lib/toDate.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function isBefore(str) {
-  var date = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : String(new Date());
-  (0, _assertString.default)(str);
-  var comparison = (0, _toDate.default)(date);
-  var original = (0, _toDate.default)(str);
-  return !!(original && comparison && original < comparison);
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isBoolean.js":
-/*!**************************************************!*\
-  !*** ../node_modules/validator/lib/isBoolean.js ***!
-  \**************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isBoolean;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function isBoolean(str) {
-  (0, _assertString.default)(str);
-  return ['true', 'false', '1', '0'].indexOf(str) >= 0;
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isBtcAddress.js":
-/*!*****************************************************!*\
-  !*** ../node_modules/validator/lib/isBtcAddress.js ***!
-  \*****************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isBtcAddress;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// supports Bech32 addresses
-var bech32 = /^(bc1)[a-z0-9]{25,39}$/;
-var base58 = /^(1|3)[A-HJ-NP-Za-km-z1-9]{25,39}$/;
-
-function isBtcAddress(str) {
-  (0, _assertString.default)(str); // check for bech32
-
-  if (str.startsWith('bc1')) {
-    return bech32.test(str);
-  }
-
-  return base58.test(str);
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isByteLength.js":
-/*!*****************************************************!*\
-  !*** ../node_modules/validator/lib/isByteLength.js ***!
-  \*****************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isByteLength;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-/* eslint-disable prefer-rest-params */
-function isByteLength(str, options) {
-  (0, _assertString.default)(str);
-  var min;
-  var max;
-
-  if (_typeof(options) === 'object') {
-    min = options.min || 0;
-    max = options.max;
-  } else {
-    // backwards compatibility: isByteLength(str, min [, max])
-    min = arguments[1];
-    max = arguments[2];
-  }
-
-  var len = encodeURI(str).split(/%..|./).length - 1;
-  return len >= min && (typeof max === 'undefined' || len <= max);
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isCreditCard.js":
-/*!*****************************************************!*\
-  !*** ../node_modules/validator/lib/isCreditCard.js ***!
-  \*****************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isCreditCard;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/* eslint-disable max-len */
-var creditCard = /^(?:4[0-9]{12}(?:[0-9]{3,6})?|5[1-5][0-9]{14}|(222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}|6(?:011|5[0-9][0-9])[0-9]{12,15}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11}|6[27][0-9]{14})$/;
-/* eslint-enable max-len */
-
-function isCreditCard(str) {
-  (0, _assertString.default)(str);
-  var sanitized = str.replace(/[- ]+/g, '');
-
-  if (!creditCard.test(sanitized)) {
-    return false;
-  }
-
-  var sum = 0;
-  var digit;
-  var tmpNum;
-  var shouldDouble;
-
-  for (var i = sanitized.length - 1; i >= 0; i--) {
-    digit = sanitized.substring(i, i + 1);
-    tmpNum = parseInt(digit, 10);
-
-    if (shouldDouble) {
-      tmpNum *= 2;
-
-      if (tmpNum >= 10) {
-        sum += tmpNum % 10 + 1;
-      } else {
-        sum += tmpNum;
-      }
-    } else {
-      sum += tmpNum;
-    }
-
-    shouldDouble = !shouldDouble;
-  }
-
-  return !!(sum % 10 === 0 ? sanitized : false);
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isCurrency.js":
-/*!***************************************************!*\
-  !*** ../node_modules/validator/lib/isCurrency.js ***!
-  \***************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isCurrency;
-
-var _merge = _interopRequireDefault(__webpack_require__(/*! ./util/merge */ "../node_modules/validator/lib/util/merge.js"));
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function currencyRegex(options) {
-  var decimal_digits = "\\d{".concat(options.digits_after_decimal[0], "}");
-  options.digits_after_decimal.forEach(function (digit, index) {
-    if (index !== 0) decimal_digits = "".concat(decimal_digits, "|\\d{").concat(digit, "}");
-  });
-  var symbol = "(".concat(options.symbol.replace(/\W/, function (m) {
-    return "\\".concat(m);
-  }), ")").concat(options.require_symbol ? '' : '?'),
-      negative = '-?',
-      whole_dollar_amount_without_sep = '[1-9]\\d*',
-      whole_dollar_amount_with_sep = "[1-9]\\d{0,2}(\\".concat(options.thousands_separator, "\\d{3})*"),
-      valid_whole_dollar_amounts = ['0', whole_dollar_amount_without_sep, whole_dollar_amount_with_sep],
-      whole_dollar_amount = "(".concat(valid_whole_dollar_amounts.join('|'), ")?"),
-      decimal_amount = "(\\".concat(options.decimal_separator, "(").concat(decimal_digits, "))").concat(options.require_decimal ? '' : '?');
-  var pattern = whole_dollar_amount + (options.allow_decimal || options.require_decimal ? decimal_amount : ''); // default is negative sign before symbol, but there are two other options (besides parens)
-
-  if (options.allow_negatives && !options.parens_for_negatives) {
-    if (options.negative_sign_after_digits) {
-      pattern += negative;
-    } else if (options.negative_sign_before_digits) {
-      pattern = negative + pattern;
-    }
-  } // South African Rand, for example, uses R 123 (space) and R-123 (no space)
-
-
-  if (options.allow_negative_sign_placeholder) {
-    pattern = "( (?!\\-))?".concat(pattern);
-  } else if (options.allow_space_after_symbol) {
-    pattern = " ?".concat(pattern);
-  } else if (options.allow_space_after_digits) {
-    pattern += '( (?!$))?';
-  }
-
-  if (options.symbol_after_digits) {
-    pattern += symbol;
-  } else {
-    pattern = symbol + pattern;
-  }
-
-  if (options.allow_negatives) {
-    if (options.parens_for_negatives) {
-      pattern = "(\\(".concat(pattern, "\\)|").concat(pattern, ")");
-    } else if (!(options.negative_sign_before_digits || options.negative_sign_after_digits)) {
-      pattern = negative + pattern;
-    }
-  } // ensure there's a dollar and/or decimal amount, and that
-  // it doesn't start with a space or a negative sign followed by a space
-
-
-  return new RegExp("^(?!-? )(?=.*\\d)".concat(pattern, "$"));
-}
-
-var default_currency_options = {
-  symbol: '$',
-  require_symbol: false,
-  allow_space_after_symbol: false,
-  symbol_after_digits: false,
-  allow_negatives: true,
-  parens_for_negatives: false,
-  negative_sign_before_digits: false,
-  negative_sign_after_digits: false,
-  allow_negative_sign_placeholder: false,
-  thousands_separator: ',',
-  decimal_separator: '.',
-  allow_decimal: true,
-  require_decimal: false,
-  digits_after_decimal: [2],
-  allow_space_after_digits: false
-};
-
-function isCurrency(str, options) {
-  (0, _assertString.default)(str);
-  options = (0, _merge.default)(options, default_currency_options);
-  return currencyRegex(options).test(str);
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isDataURI.js":
-/*!**************************************************!*\
-  !*** ../node_modules/validator/lib/isDataURI.js ***!
-  \**************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isDataURI;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var validMediaType = /^[a-z]+\/[a-z0-9\-\+]+$/i;
-var validAttribute = /^[a-z\-]+=[a-z0-9\-]+$/i;
-var validData = /^[a-z0-9!\$&'\(\)\*\+,;=\-\._~:@\/\?%\s]*$/i;
-
-function isDataURI(str) {
-  (0, _assertString.default)(str);
-  var data = str.split(',');
-
-  if (data.length < 2) {
-    return false;
-  }
-
-  var attributes = data.shift().trim().split(';');
-  var schemeAndMediaType = attributes.shift();
-
-  if (schemeAndMediaType.substr(0, 5) !== 'data:') {
-    return false;
-  }
-
-  var mediaType = schemeAndMediaType.substr(5);
-
-  if (mediaType !== '' && !validMediaType.test(mediaType)) {
-    return false;
-  }
-
-  for (var i = 0; i < attributes.length; i++) {
-    if (!(i === attributes.length - 1 && attributes[i].toLowerCase() === 'base64') && !validAttribute.test(attributes[i])) {
-      return false;
-    }
-  }
-
-  for (var _i = 0; _i < data.length; _i++) {
-    if (!validData.test(data[_i])) {
-      return false;
-    }
-  }
-
-  return true;
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isDate.js":
-/*!***********************************************!*\
-  !*** ../node_modules/validator/lib/isDate.js ***!
-  \***********************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isDate;
-
-var _merge = _interopRequireDefault(__webpack_require__(/*! ./util/merge */ "../node_modules/validator/lib/util/merge.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-var default_date_options = {
-  format: 'YYYY/MM/DD',
-  delimiters: ['/', '-'],
-  strictMode: false
-};
-
-function isValidFormat(format) {
-  return /(^(y{4}|y{2})[\/-](m{1,2})[\/-](d{1,2})$)|(^(m{1,2})[\/-](d{1,2})[\/-]((y{4}|y{2})$))|(^(d{1,2})[\/-](m{1,2})[\/-]((y{4}|y{2})$))/gi.test(format);
-}
-
-function zip(date, format) {
-  var zippedArr = [],
-      len = Math.min(date.length, format.length);
-
-  for (var i = 0; i < len; i++) {
-    zippedArr.push([date[i], format[i]]);
-  }
-
-  return zippedArr;
-}
-
-function isDate(input, options) {
-  if (typeof options === 'string') {
-    // Allow backward compatbility for old format isDate(input [, format])
-    options = (0, _merge.default)({
-      format: options
-    }, default_date_options);
-  } else {
-    options = (0, _merge.default)(options, default_date_options);
-  }
-
-  if (typeof input === 'string' && isValidFormat(options.format)) {
-    var formatDelimiter = options.delimiters.find(function (delimiter) {
-      return options.format.indexOf(delimiter) !== -1;
-    });
-    var dateDelimiter = options.strictMode ? formatDelimiter : options.delimiters.find(function (delimiter) {
-      return input.indexOf(delimiter) !== -1;
-    });
-    var dateAndFormat = zip(input.split(dateDelimiter), options.format.toLowerCase().split(formatDelimiter));
-    var dateObj = {};
-
-    var _iterator = _createForOfIteratorHelper(dateAndFormat),
-        _step;
-
-    try {
-      for (_iterator.s(); !(_step = _iterator.n()).done;) {
-        var _step$value = _slicedToArray(_step.value, 2),
-            dateWord = _step$value[0],
-            formatWord = _step$value[1];
-
-        if (dateWord.length !== formatWord.length) {
-          return false;
-        }
-
-        dateObj[formatWord.charAt(0)] = dateWord;
-      }
-    } catch (err) {
-      _iterator.e(err);
-    } finally {
-      _iterator.f();
-    }
-
-    return new Date("".concat(dateObj.m, "/").concat(dateObj.d, "/").concat(dateObj.y)).getDate() === +dateObj.d;
-  }
-
-  if (!options.strictMode) {
-    return Object.prototype.toString.call(input) === '[object Date]' && isFinite(input);
-  }
-
-  return false;
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isDecimal.js":
-/*!**************************************************!*\
-  !*** ../node_modules/validator/lib/isDecimal.js ***!
-  \**************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isDecimal;
-
-var _merge = _interopRequireDefault(__webpack_require__(/*! ./util/merge */ "../node_modules/validator/lib/util/merge.js"));
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-var _includes = _interopRequireDefault(__webpack_require__(/*! ./util/includes */ "../node_modules/validator/lib/util/includes.js"));
-
-var _alpha = __webpack_require__(/*! ./alpha */ "../node_modules/validator/lib/alpha.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function decimalRegExp(options) {
-  var regExp = new RegExp("^[-+]?([0-9]+)?(\\".concat(_alpha.decimal[options.locale], "[0-9]{").concat(options.decimal_digits, "})").concat(options.force_decimal ? '' : '?', "$"));
-  return regExp;
-}
-
-var default_decimal_options = {
-  force_decimal: false,
-  decimal_digits: '1,',
-  locale: 'en-US'
-};
-var blacklist = ['', '-', '+'];
-
-function isDecimal(str, options) {
-  (0, _assertString.default)(str);
-  options = (0, _merge.default)(options, default_decimal_options);
-
-  if (options.locale in _alpha.decimal) {
-    return !(0, _includes.default)(blacklist, str.replace(/ /g, '')) && decimalRegExp(options).test(str);
-  }
-
-  throw new Error("Invalid locale '".concat(options.locale, "'"));
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isDivisibleBy.js":
-/*!******************************************************!*\
-  !*** ../node_modules/validator/lib/isDivisibleBy.js ***!
-  \******************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isDivisibleBy;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-var _toFloat = _interopRequireDefault(__webpack_require__(/*! ./toFloat */ "../node_modules/validator/lib/toFloat.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function isDivisibleBy(str, num) {
-  (0, _assertString.default)(str);
-  return (0, _toFloat.default)(str) % parseInt(num, 10) === 0;
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isEAN.js":
-/*!**********************************************!*\
-  !*** ../node_modules/validator/lib/isEAN.js ***!
-  \**********************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isEAN;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * The most commonly used EAN standard is
- * the thirteen-digit EAN-13, while the
- * less commonly used 8-digit EAN-8 barcode was
- * introduced for use on small packages.
- * Also EAN/UCC-14 is used for Grouping of individual
- * trade items above unit level(Intermediate, Carton or Pallet).
- * For more info about EAN-14 checkout: https://www.gtin.info/itf-14-barcodes/
- * EAN consists of:
- * GS1 prefix, manufacturer code, product code and check digit
- * Reference: https://en.wikipedia.org/wiki/International_Article_Number
- * Reference: https://www.gtin.info/
- */
-
-/**
- * Define EAN Lenghts; 8 for EAN-8; 13 for EAN-13; 14 for EAN-14
- * and Regular Expression for valid EANs (EAN-8, EAN-13, EAN-14),
- * with exact numberic matching of 8 or 13 or 14 digits [0-9]
- */
-var LENGTH_EAN_8 = 8;
-var LENGTH_EAN_14 = 14;
-var validEanRegex = /^(\d{8}|\d{13}|\d{14})$/;
-/**
- * Get position weight given:
- * EAN length and digit index/position
- *
- * @param {number} length
- * @param {number} index
- * @return {number}
- */
-
-function getPositionWeightThroughLengthAndIndex(length, index) {
-  if (length === LENGTH_EAN_8 || length === LENGTH_EAN_14) {
-    return index % 2 === 0 ? 3 : 1;
-  }
-
-  return index % 2 === 0 ? 1 : 3;
-}
-/**
- * Calculate EAN Check Digit
- * Reference: https://en.wikipedia.org/wiki/International_Article_Number#Calculation_of_checksum_digit
- *
- * @param {string} ean
- * @return {number}
- */
-
-
-function calculateCheckDigit(ean) {
-  var checksum = ean.slice(0, -1).split('').map(function (char, index) {
-    return Number(char) * getPositionWeightThroughLengthAndIndex(ean.length, index);
-  }).reduce(function (acc, partialSum) {
-    return acc + partialSum;
-  }, 0);
-  var remainder = 10 - checksum % 10;
-  return remainder < 10 ? remainder : 0;
-}
-/**
- * Check if string is valid EAN:
- * Matches EAN-8/EAN-13/EAN-14 regex
- * Has valid check digit.
- *
- * @param {string} str
- * @return {boolean}
- */
-
-
-function isEAN(str) {
-  (0, _assertString.default)(str);
-  var actualCheckDigit = Number(str.slice(-1));
-  return validEanRegex.test(str) && actualCheckDigit === calculateCheckDigit(str);
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isEmail.js":
-/*!************************************************!*\
-  !*** ../node_modules/validator/lib/isEmail.js ***!
-  \************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isEmail;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-var _merge = _interopRequireDefault(__webpack_require__(/*! ./util/merge */ "../node_modules/validator/lib/util/merge.js"));
-
-var _isByteLength = _interopRequireDefault(__webpack_require__(/*! ./isByteLength */ "../node_modules/validator/lib/isByteLength.js"));
-
-var _isFQDN = _interopRequireDefault(__webpack_require__(/*! ./isFQDN */ "../node_modules/validator/lib/isFQDN.js"));
-
-var _isIP = _interopRequireDefault(__webpack_require__(/*! ./isIP */ "../node_modules/validator/lib/isIP.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var default_email_options = {
-  allow_display_name: false,
-  require_display_name: false,
-  allow_utf8_local_part: true,
-  require_tld: true,
-  blacklisted_chars: '',
-  ignore_max_length: false
-};
-/* eslint-disable max-len */
-
-/* eslint-disable no-control-regex */
-
-var splitNameAddress = /^([^\x00-\x1F\x7F-\x9F\cX]+)</i;
-var emailUserPart = /^[a-z\d!#\$%&'\*\+\-\/=\?\^_`{\|}~]+$/i;
-var gmailUserPart = /^[a-z\d]+$/;
-var quotedEmailUser = /^([\s\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e]|(\\[\x01-\x09\x0b\x0c\x0d-\x7f]))*$/i;
-var emailUserUtf8Part = /^[a-z\d!#\$%&'\*\+\-\/=\?\^_`{\|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+$/i;
-var quotedEmailUserUtf8 = /^([\s\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|(\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*$/i;
-var defaultMaxEmailLength = 254;
-/* eslint-enable max-len */
-
-/* eslint-enable no-control-regex */
-
-/**
- * Validate display name according to the RFC2822: https://tools.ietf.org/html/rfc2822#appendix-A.1.2
- * @param {String} display_name
- */
-
-function validateDisplayName(display_name) {
-  var display_name_without_quotes = display_name.replace(/^"(.+)"$/, '$1'); // display name with only spaces is not valid
-
-  if (!display_name_without_quotes.trim()) {
-    return false;
-  } // check whether display name contains illegal character
-
-
-  var contains_illegal = /[\.";<>]/.test(display_name_without_quotes);
-
-  if (contains_illegal) {
-    // if contains illegal characters,
-    // must to be enclosed in double-quotes, otherwise it's not a valid display name
-    if (display_name_without_quotes === display_name) {
-      return false;
-    } // the quotes in display name must start with character symbol \
-
-
-    var all_start_with_back_slash = display_name_without_quotes.split('"').length === display_name_without_quotes.split('\\"').length;
-
-    if (!all_start_with_back_slash) {
-      return false;
-    }
-  }
-
-  return true;
-}
-
-function isEmail(str, options) {
-  (0, _assertString.default)(str);
-  options = (0, _merge.default)(options, default_email_options);
-
-  if (options.require_display_name || options.allow_display_name) {
-    var display_email = str.match(splitNameAddress);
-
-    if (display_email) {
-      var display_name = display_email[1]; // Remove display name and angle brackets to get email address
-      // Can be done in the regex but will introduce a ReDOS (See  #1597 for more info)
-
-      str = str.replace(display_name, '').replace(/(^<|>$)/g, ''); // sometimes need to trim the last space to get the display name
-      // because there may be a space between display name and email address
-      // eg. myname <address@gmail.com>
-      // the display name is `myname` instead of `myname `, so need to trim the last space
-
-      if (display_name.endsWith(' ')) {
-        display_name = display_name.substr(0, display_name.length - 1);
-      }
-
-      if (!validateDisplayName(display_name)) {
-        return false;
-      }
-    } else if (options.require_display_name) {
-      return false;
-    }
-  }
-
-  if (!options.ignore_max_length && str.length > defaultMaxEmailLength) {
-    return false;
-  }
-
-  var parts = str.split('@');
-  var domain = parts.pop();
-  var user = parts.join('@');
-  var lower_domain = domain.toLowerCase();
-
-  if (options.domain_specific_validation && (lower_domain === 'gmail.com' || lower_domain === 'googlemail.com')) {
-    /*
-      Previously we removed dots for gmail addresses before validating.
-      This was removed because it allows `multiple..dots@gmail.com`
-      to be reported as valid, but it is not.
-      Gmail only normalizes single dots, removing them from here is pointless,
-      should be done in normalizeEmail
-    */
-    user = user.toLowerCase(); // Removing sub-address from username before gmail validation
-
-    var username = user.split('+')[0]; // Dots are not included in gmail length restriction
-
-    if (!(0, _isByteLength.default)(username.replace('.', ''), {
-      min: 6,
-      max: 30
-    })) {
-      return false;
-    }
-
-    var _user_parts = username.split('.');
-
-    for (var i = 0; i < _user_parts.length; i++) {
-      if (!gmailUserPart.test(_user_parts[i])) {
-        return false;
-      }
-    }
-  }
-
-  if (options.ignore_max_length === false && (!(0, _isByteLength.default)(user, {
-    max: 64
-  }) || !(0, _isByteLength.default)(domain, {
-    max: 254
-  }))) {
-    return false;
-  }
-
-  if (!(0, _isFQDN.default)(domain, {
-    require_tld: options.require_tld
-  })) {
-    if (!options.allow_ip_domain) {
-      return false;
-    }
-
-    if (!(0, _isIP.default)(domain)) {
-      if (!domain.startsWith('[') || !domain.endsWith(']')) {
-        return false;
-      }
-
-      var noBracketdomain = domain.substr(1, domain.length - 2);
-
-      if (noBracketdomain.length === 0 || !(0, _isIP.default)(noBracketdomain)) {
-        return false;
-      }
-    }
-  }
-
-  if (user[0] === '"') {
-    user = user.slice(1, user.length - 1);
-    return options.allow_utf8_local_part ? quotedEmailUserUtf8.test(user) : quotedEmailUser.test(user);
-  }
-
-  var pattern = options.allow_utf8_local_part ? emailUserUtf8Part : emailUserPart;
-  var user_parts = user.split('.');
-
-  for (var _i = 0; _i < user_parts.length; _i++) {
-    if (!pattern.test(user_parts[_i])) {
-      return false;
-    }
-  }
-
-  if (options.blacklisted_chars) {
-    if (user.search(new RegExp("[".concat(options.blacklisted_chars, "]+"), 'g')) !== -1) return false;
-  }
-
-  return true;
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isEmpty.js":
-/*!************************************************!*\
-  !*** ../node_modules/validator/lib/isEmpty.js ***!
-  \************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isEmpty;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-var _merge = _interopRequireDefault(__webpack_require__(/*! ./util/merge */ "../node_modules/validator/lib/util/merge.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var default_is_empty_options = {
-  ignore_whitespace: false
-};
-
-function isEmpty(str, options) {
-  (0, _assertString.default)(str);
-  options = (0, _merge.default)(options, default_is_empty_options);
-  return (options.ignore_whitespace ? str.trim().length : str.length) === 0;
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isEthereumAddress.js":
-/*!**********************************************************!*\
-  !*** ../node_modules/validator/lib/isEthereumAddress.js ***!
-  \**********************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isEthereumAddress;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var eth = /^(0x)[0-9a-f]{40}$/i;
-
-function isEthereumAddress(str) {
-  (0, _assertString.default)(str);
-  return eth.test(str);
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isFQDN.js":
-/*!***********************************************!*\
-  !*** ../node_modules/validator/lib/isFQDN.js ***!
-  \***********************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isFQDN;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-var _merge = _interopRequireDefault(__webpack_require__(/*! ./util/merge */ "../node_modules/validator/lib/util/merge.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var default_fqdn_options = {
-  require_tld: true,
-  allow_underscores: false,
-  allow_trailing_dot: false,
-  allow_numeric_tld: false
-};
-
-function isFQDN(str, options) {
-  (0, _assertString.default)(str);
-  options = (0, _merge.default)(options, default_fqdn_options);
-  /* Remove the optional trailing dot before checking validity */
-
-  if (options.allow_trailing_dot && str[str.length - 1] === '.') {
-    str = str.substring(0, str.length - 1);
-  }
-
-  var parts = str.split('.');
-  var tld = parts[parts.length - 1];
-
-  if (options.require_tld) {
-    // disallow fqdns without tld
-    if (parts.length < 2) {
-      return false;
-    }
-
-    if (!/^([a-z\u00a1-\uffff]{2,}|xn[a-z0-9-]{2,})$/i.test(tld)) {
-      return false;
-    } // disallow spaces && special characers
-
-
-    if (/[\s\u2002-\u200B\u202F\u205F\u3000\uFEFF\uDB40\uDC20\u00A9\uFFFD]/.test(tld)) {
-      return false;
-    }
-  } // reject numeric TLDs
-
-
-  if (!options.allow_numeric_tld && /^\d+$/.test(tld)) {
-    return false;
-  }
-
-  return parts.every(function (part) {
-    if (part.length > 63) {
-      return false;
-    }
-
-    if (!/^[a-z_\u00a1-\uffff0-9-]+$/i.test(part)) {
-      return false;
-    } // disallow full-width chars
-
-
-    if (/[\uff01-\uff5e]/.test(part)) {
-      return false;
-    } // disallow parts starting or ending with hyphen
-
-
-    if (/^-|-$/.test(part)) {
-      return false;
-    }
-
-    if (!options.allow_underscores && /_/.test(part)) {
-      return false;
-    }
-
-    return true;
-  });
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isFloat.js":
-/*!************************************************!*\
-  !*** ../node_modules/validator/lib/isFloat.js ***!
-  \************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isFloat;
-exports.locales = void 0;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-var _alpha = __webpack_require__(/*! ./alpha */ "../node_modules/validator/lib/alpha.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function isFloat(str, options) {
-  (0, _assertString.default)(str);
-  options = options || {};
-  var float = new RegExp("^(?:[-+])?(?:[0-9]+)?(?:\\".concat(options.locale ? _alpha.decimal[options.locale] : '.', "[0-9]*)?(?:[eE][\\+\\-]?(?:[0-9]+))?$"));
-
-  if (str === '' || str === '.' || str === '-' || str === '+') {
-    return false;
-  }
-
-  var value = parseFloat(str.replace(',', '.'));
-  return float.test(str) && (!options.hasOwnProperty('min') || value >= options.min) && (!options.hasOwnProperty('max') || value <= options.max) && (!options.hasOwnProperty('lt') || value < options.lt) && (!options.hasOwnProperty('gt') || value > options.gt);
-}
-
-var locales = Object.keys(_alpha.decimal);
-exports.locales = locales;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isFullWidth.js":
-/*!****************************************************!*\
-  !*** ../node_modules/validator/lib/isFullWidth.js ***!
-  \****************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isFullWidth;
-exports.fullWidth = void 0;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var fullWidth = /[^\u0020-\u007E\uFF61-\uFF9F\uFFA0-\uFFDC\uFFE8-\uFFEE0-9a-zA-Z]/;
-exports.fullWidth = fullWidth;
-
-function isFullWidth(str) {
-  (0, _assertString.default)(str);
-  return fullWidth.test(str);
-}
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isHSL.js":
-/*!**********************************************!*\
-  !*** ../node_modules/validator/lib/isHSL.js ***!
-  \**********************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isHSL;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var hslComma = /^hsla?\(((\+|\-)?([0-9]+(\.[0-9]+)?(e(\+|\-)?[0-9]+)?|\.[0-9]+(e(\+|\-)?[0-9]+)?))(deg|grad|rad|turn)?(,(\+|\-)?([0-9]+(\.[0-9]+)?(e(\+|\-)?[0-9]+)?|\.[0-9]+(e(\+|\-)?[0-9]+)?)%){2}(,((\+|\-)?([0-9]+(\.[0-9]+)?(e(\+|\-)?[0-9]+)?|\.[0-9]+(e(\+|\-)?[0-9]+)?)%?))?\)$/i;
-var hslSpace = /^hsla?\(((\+|\-)?([0-9]+(\.[0-9]+)?(e(\+|\-)?[0-9]+)?|\.[0-9]+(e(\+|\-)?[0-9]+)?))(deg|grad|rad|turn)?(\s(\+|\-)?([0-9]+(\.[0-9]+)?(e(\+|\-)?[0-9]+)?|\.[0-9]+(e(\+|\-)?[0-9]+)?)%){2}\s?(\/\s((\+|\-)?([0-9]+(\.[0-9]+)?(e(\+|\-)?[0-9]+)?|\.[0-9]+(e(\+|\-)?[0-9]+)?)%?)\s?)?\)$/i;
-
-function isHSL(str) {
-  (0, _assertString.default)(str); // Strip duplicate spaces before calling the validation regex (See  #1598 for more info)
-
-  var strippedStr = str.replace(/\s+/g, ' ').replace(/\s?(hsla?\(|\)|,)\s?/ig, '$1');
-
-  if (strippedStr.indexOf(',') !== -1) {
-    return hslComma.test(strippedStr);
-  }
-
-  return hslSpace.test(strippedStr);
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isHalfWidth.js":
-/*!****************************************************!*\
-  !*** ../node_modules/validator/lib/isHalfWidth.js ***!
-  \****************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isHalfWidth;
-exports.halfWidth = void 0;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var halfWidth = /[\u0020-\u007E\uFF61-\uFF9F\uFFA0-\uFFDC\uFFE8-\uFFEE0-9a-zA-Z]/;
-exports.halfWidth = halfWidth;
-
-function isHalfWidth(str) {
-  (0, _assertString.default)(str);
-  return halfWidth.test(str);
-}
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isHash.js":
-/*!***********************************************!*\
-  !*** ../node_modules/validator/lib/isHash.js ***!
-  \***********************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isHash;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var lengths = {
-  md5: 32,
-  md4: 32,
-  sha1: 40,
-  sha256: 64,
-  sha384: 96,
-  sha512: 128,
-  ripemd128: 32,
-  ripemd160: 40,
-  tiger128: 32,
-  tiger160: 40,
-  tiger192: 48,
-  crc32: 8,
-  crc32b: 8
-};
-
-function isHash(str, algorithm) {
-  (0, _assertString.default)(str);
-  var hash = new RegExp("^[a-fA-F0-9]{".concat(lengths[algorithm], "}$"));
-  return hash.test(str);
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isHexColor.js":
-/*!***************************************************!*\
-  !*** ../node_modules/validator/lib/isHexColor.js ***!
-  \***************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isHexColor;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var hexcolor = /^#?([0-9A-F]{3}|[0-9A-F]{4}|[0-9A-F]{6}|[0-9A-F]{8})$/i;
-
-function isHexColor(str) {
-  (0, _assertString.default)(str);
-  return hexcolor.test(str);
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isHexadecimal.js":
-/*!******************************************************!*\
-  !*** ../node_modules/validator/lib/isHexadecimal.js ***!
-  \******************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isHexadecimal;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var hexadecimal = /^(0x|0h)?[0-9A-F]+$/i;
-
-function isHexadecimal(str) {
-  (0, _assertString.default)(str);
-  return hexadecimal.test(str);
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isIBAN.js":
-/*!***********************************************!*\
-  !*** ../node_modules/validator/lib/isIBAN.js ***!
-  \***********************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isIBAN;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * List of country codes with
- * corresponding IBAN regular expression
- * Reference: https://en.wikipedia.org/wiki/International_Bank_Account_Number
- */
-var ibanRegexThroughCountryCode = {
-  AD: /^(AD[0-9]{2})\d{8}[A-Z0-9]{12}$/,
-  AE: /^(AE[0-9]{2})\d{3}\d{16}$/,
-  AL: /^(AL[0-9]{2})\d{8}[A-Z0-9]{16}$/,
-  AT: /^(AT[0-9]{2})\d{16}$/,
-  AZ: /^(AZ[0-9]{2})[A-Z0-9]{4}\d{20}$/,
-  BA: /^(BA[0-9]{2})\d{16}$/,
-  BE: /^(BE[0-9]{2})\d{12}$/,
-  BG: /^(BG[0-9]{2})[A-Z]{4}\d{6}[A-Z0-9]{8}$/,
-  BH: /^(BH[0-9]{2})[A-Z]{4}[A-Z0-9]{14}$/,
-  BR: /^(BR[0-9]{2})\d{23}[A-Z]{1}[A-Z0-9]{1}$/,
-  BY: /^(BY[0-9]{2})[A-Z0-9]{4}\d{20}$/,
-  CH: /^(CH[0-9]{2})\d{5}[A-Z0-9]{12}$/,
-  CR: /^(CR[0-9]{2})\d{18}$/,
-  CY: /^(CY[0-9]{2})\d{8}[A-Z0-9]{16}$/,
-  CZ: /^(CZ[0-9]{2})\d{20}$/,
-  DE: /^(DE[0-9]{2})\d{18}$/,
-  DK: /^(DK[0-9]{2})\d{14}$/,
-  DO: /^(DO[0-9]{2})[A-Z]{4}\d{20}$/,
-  EE: /^(EE[0-9]{2})\d{16}$/,
-  EG: /^(EG[0-9]{2})\d{25}$/,
-  ES: /^(ES[0-9]{2})\d{20}$/,
-  FI: /^(FI[0-9]{2})\d{14}$/,
-  FO: /^(FO[0-9]{2})\d{14}$/,
-  FR: /^(FR[0-9]{2})\d{10}[A-Z0-9]{11}\d{2}$/,
-  GB: /^(GB[0-9]{2})[A-Z]{4}\d{14}$/,
-  GE: /^(GE[0-9]{2})[A-Z0-9]{2}\d{16}$/,
-  GI: /^(GI[0-9]{2})[A-Z]{4}[A-Z0-9]{15}$/,
-  GL: /^(GL[0-9]{2})\d{14}$/,
-  GR: /^(GR[0-9]{2})\d{7}[A-Z0-9]{16}$/,
-  GT: /^(GT[0-9]{2})[A-Z0-9]{4}[A-Z0-9]{20}$/,
-  HR: /^(HR[0-9]{2})\d{17}$/,
-  HU: /^(HU[0-9]{2})\d{24}$/,
-  IE: /^(IE[0-9]{2})[A-Z0-9]{4}\d{14}$/,
-  IL: /^(IL[0-9]{2})\d{19}$/,
-  IQ: /^(IQ[0-9]{2})[A-Z]{4}\d{15}$/,
-  IR: /^(IR[0-9]{2})0\d{2}0\d{18}$/,
-  IS: /^(IS[0-9]{2})\d{22}$/,
-  IT: /^(IT[0-9]{2})[A-Z]{1}\d{10}[A-Z0-9]{12}$/,
-  JO: /^(JO[0-9]{2})[A-Z]{4}\d{22}$/,
-  KW: /^(KW[0-9]{2})[A-Z]{4}[A-Z0-9]{22}$/,
-  KZ: /^(KZ[0-9]{2})\d{3}[A-Z0-9]{13}$/,
-  LB: /^(LB[0-9]{2})\d{4}[A-Z0-9]{20}$/,
-  LC: /^(LC[0-9]{2})[A-Z]{4}[A-Z0-9]{24}$/,
-  LI: /^(LI[0-9]{2})\d{5}[A-Z0-9]{12}$/,
-  LT: /^(LT[0-9]{2})\d{16}$/,
-  LU: /^(LU[0-9]{2})\d{3}[A-Z0-9]{13}$/,
-  LV: /^(LV[0-9]{2})[A-Z]{4}[A-Z0-9]{13}$/,
-  MC: /^(MC[0-9]{2})\d{10}[A-Z0-9]{11}\d{2}$/,
-  MD: /^(MD[0-9]{2})[A-Z0-9]{20}$/,
-  ME: /^(ME[0-9]{2})\d{18}$/,
-  MK: /^(MK[0-9]{2})\d{3}[A-Z0-9]{10}\d{2}$/,
-  MR: /^(MR[0-9]{2})\d{23}$/,
-  MT: /^(MT[0-9]{2})[A-Z]{4}\d{5}[A-Z0-9]{18}$/,
-  MU: /^(MU[0-9]{2})[A-Z]{4}\d{19}[A-Z]{3}$/,
-  MZ: /^(MZ[0-9]{2})\d{21}$/,
-  NL: /^(NL[0-9]{2})[A-Z]{4}\d{10}$/,
-  NO: /^(NO[0-9]{2})\d{11}$/,
-  PK: /^(PK[0-9]{2})[A-Z0-9]{4}\d{16}$/,
-  PL: /^(PL[0-9]{2})\d{24}$/,
-  PS: /^(PS[0-9]{2})[A-Z0-9]{4}\d{21}$/,
-  PT: /^(PT[0-9]{2})\d{21}$/,
-  QA: /^(QA[0-9]{2})[A-Z]{4}[A-Z0-9]{21}$/,
-  RO: /^(RO[0-9]{2})[A-Z]{4}[A-Z0-9]{16}$/,
-  RS: /^(RS[0-9]{2})\d{18}$/,
-  SA: /^(SA[0-9]{2})\d{2}[A-Z0-9]{18}$/,
-  SC: /^(SC[0-9]{2})[A-Z]{4}\d{20}[A-Z]{3}$/,
-  SE: /^(SE[0-9]{2})\d{20}$/,
-  SI: /^(SI[0-9]{2})\d{15}$/,
-  SK: /^(SK[0-9]{2})\d{20}$/,
-  SM: /^(SM[0-9]{2})[A-Z]{1}\d{10}[A-Z0-9]{12}$/,
-  SV: /^(SV[0-9]{2})[A-Z0-9]{4}\d{20}$/,
-  TL: /^(TL[0-9]{2})\d{19}$/,
-  TN: /^(TN[0-9]{2})\d{20}$/,
-  TR: /^(TR[0-9]{2})\d{5}[A-Z0-9]{17}$/,
-  UA: /^(UA[0-9]{2})\d{6}[A-Z0-9]{19}$/,
-  VA: /^(VA[0-9]{2})\d{18}$/,
-  VG: /^(VG[0-9]{2})[A-Z0-9]{4}\d{16}$/,
-  XK: /^(XK[0-9]{2})\d{16}$/
-};
-/**
- * Check whether string has correct universal IBAN format
- * The IBAN consists of up to 34 alphanumeric characters, as follows:
- * Country Code using ISO 3166-1 alpha-2, two letters
- * check digits, two digits and
- * Basic Bank Account Number (BBAN), up to 30 alphanumeric characters.
- * NOTE: Permitted IBAN characters are: digits [0-9] and the 26 latin alphabetic [A-Z]
- *
- * @param {string} str - string under validation
- * @return {boolean}
- */
-
-function hasValidIbanFormat(str) {
-  // Strip white spaces and hyphens
-  var strippedStr = str.replace(/[\s\-]+/gi, '').toUpperCase();
-  var isoCountryCode = strippedStr.slice(0, 2).toUpperCase();
-  return isoCountryCode in ibanRegexThroughCountryCode && ibanRegexThroughCountryCode[isoCountryCode].test(strippedStr);
-}
-/**
-   * Check whether string has valid IBAN Checksum
-   * by performing basic mod-97 operation and
-   * the remainder should equal 1
-   * -- Start by rearranging the IBAN by moving the four initial characters to the end of the string
-   * -- Replace each letter in the string with two digits, A -> 10, B = 11, Z = 35
-   * -- Interpret the string as a decimal integer and
-   * -- compute the remainder on division by 97 (mod 97)
-   * Reference: https://en.wikipedia.org/wiki/International_Bank_Account_Number
-   *
-   * @param {string} str
-   * @return {boolean}
-   */
-
-
-function hasValidIbanChecksum(str) {
-  var strippedStr = str.replace(/[^A-Z0-9]+/gi, '').toUpperCase(); // Keep only digits and A-Z latin alphabetic
-
-  var rearranged = strippedStr.slice(4) + strippedStr.slice(0, 4);
-  var alphaCapsReplacedWithDigits = rearranged.replace(/[A-Z]/g, function (char) {
-    return char.charCodeAt(0) - 55;
-  });
-  var remainder = alphaCapsReplacedWithDigits.match(/\d{1,7}/g).reduce(function (acc, value) {
-    return Number(acc + value) % 97;
-  }, '');
-  return remainder === 1;
-}
-
-function isIBAN(str) {
-  (0, _assertString.default)(str);
-  return hasValidIbanFormat(str) && hasValidIbanChecksum(str);
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isIMEI.js":
-/*!***********************************************!*\
-  !*** ../node_modules/validator/lib/isIMEI.js ***!
-  \***********************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isIMEI;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var imeiRegexWithoutHypens = /^[0-9]{15}$/;
-var imeiRegexWithHypens = /^\d{2}-\d{6}-\d{6}-\d{1}$/;
-
-function isIMEI(str, options) {
-  (0, _assertString.default)(str);
-  options = options || {}; // default regex for checking imei is the one without hyphens
-
-  var imeiRegex = imeiRegexWithoutHypens;
-
-  if (options.allow_hyphens) {
-    imeiRegex = imeiRegexWithHypens;
-  }
-
-  if (!imeiRegex.test(str)) {
-    return false;
-  }
-
-  str = str.replace(/-/g, '');
-  var sum = 0,
-      mul = 2,
-      l = 14;
-
-  for (var i = 0; i < l; i++) {
-    var digit = str.substring(l - i - 1, l - i);
-    var tp = parseInt(digit, 10) * mul;
-
-    if (tp >= 10) {
-      sum += tp % 10 + 1;
-    } else {
-      sum += tp;
-    }
-
-    if (mul === 1) {
-      mul += 1;
-    } else {
-      mul -= 1;
-    }
-  }
-
-  var chk = (10 - sum % 10) % 10;
-
-  if (chk !== parseInt(str.substring(14, 15), 10)) {
-    return false;
-  }
-
-  return true;
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isIP.js":
-/*!*********************************************!*\
-  !*** ../node_modules/validator/lib/isIP.js ***!
-  \*********************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isIP;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
-11.3.  Examples
-
-   The following addresses
-
-             fe80::1234 (on the 1st link of the node)
-             ff02::5678 (on the 5th link of the node)
-             ff08::9abc (on the 10th organization of the node)
-
-   would be represented as follows:
-
-             fe80::1234%1
-             ff02::5678%5
-             ff08::9abc%10
-
-   (Here we assume a natural translation from a zone index to the
-   <zone_id> part, where the Nth zone of any scope is translated into
-   "N".)
-
-   If we use interface names as <zone_id>, those addresses could also be
-   represented as follows:
-
-            fe80::1234%ne0
-            ff02::5678%pvc1.3
-            ff08::9abc%interface10
-
-   where the interface "ne0" belongs to the 1st link, "pvc1.3" belongs
-   to the 5th link, and "interface10" belongs to the 10th organization.
- * * */
-var IPv4SegmentFormat = '(?:[0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])';
-var IPv4AddressFormat = "(".concat(IPv4SegmentFormat, "[.]){3}").concat(IPv4SegmentFormat);
-var IPv4AddressRegExp = new RegExp("^".concat(IPv4AddressFormat, "$"));
-var IPv6SegmentFormat = '(?:[0-9a-fA-F]{1,4})';
-var IPv6AddressRegExp = new RegExp('^(' + "(?:".concat(IPv6SegmentFormat, ":){7}(?:").concat(IPv6SegmentFormat, "|:)|") + "(?:".concat(IPv6SegmentFormat, ":){6}(?:").concat(IPv4AddressFormat, "|:").concat(IPv6SegmentFormat, "|:)|") + "(?:".concat(IPv6SegmentFormat, ":){5}(?::").concat(IPv4AddressFormat, "|(:").concat(IPv6SegmentFormat, "){1,2}|:)|") + "(?:".concat(IPv6SegmentFormat, ":){4}(?:(:").concat(IPv6SegmentFormat, "){0,1}:").concat(IPv4AddressFormat, "|(:").concat(IPv6SegmentFormat, "){1,3}|:)|") + "(?:".concat(IPv6SegmentFormat, ":){3}(?:(:").concat(IPv6SegmentFormat, "){0,2}:").concat(IPv4AddressFormat, "|(:").concat(IPv6SegmentFormat, "){1,4}|:)|") + "(?:".concat(IPv6SegmentFormat, ":){2}(?:(:").concat(IPv6SegmentFormat, "){0,3}:").concat(IPv4AddressFormat, "|(:").concat(IPv6SegmentFormat, "){1,5}|:)|") + "(?:".concat(IPv6SegmentFormat, ":){1}(?:(:").concat(IPv6SegmentFormat, "){0,4}:").concat(IPv4AddressFormat, "|(:").concat(IPv6SegmentFormat, "){1,6}|:)|") + "(?::((?::".concat(IPv6SegmentFormat, "){0,5}:").concat(IPv4AddressFormat, "|(?::").concat(IPv6SegmentFormat, "){1,7}|:))") + ')(%[0-9a-zA-Z-.:]{1,})?$');
-
-function isIP(str) {
-  var version = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-  (0, _assertString.default)(str);
-  version = String(version);
-
-  if (!version) {
-    return isIP(str, 4) || isIP(str, 6);
-  }
-
-  if (version === '4') {
-    if (!IPv4AddressRegExp.test(str)) {
-      return false;
-    }
-
-    var parts = str.split('.').sort(function (a, b) {
-      return a - b;
-    });
-    return parts[3] <= 255;
-  }
-
-  if (version === '6') {
-    return !!IPv6AddressRegExp.test(str);
-  }
-
-  return false;
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isIPRange.js":
-/*!**************************************************!*\
-  !*** ../node_modules/validator/lib/isIPRange.js ***!
-  \**************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isIPRange;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-var _isIP = _interopRequireDefault(__webpack_require__(/*! ./isIP */ "../node_modules/validator/lib/isIP.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var subnetMaybe = /^\d{1,3}$/;
-var v4Subnet = 32;
-var v6Subnet = 128;
-
-function isIPRange(str) {
-  var version = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-  (0, _assertString.default)(str);
-  var parts = str.split('/'); // parts[0] -> ip, parts[1] -> subnet
-
-  if (parts.length !== 2) {
-    return false;
-  }
-
-  if (!subnetMaybe.test(parts[1])) {
-    return false;
-  } // Disallow preceding 0 i.e. 01, 02, ...
-
-
-  if (parts[1].length > 1 && parts[1].startsWith('0')) {
-    return false;
-  }
-
-  var isValidIP = (0, _isIP.default)(parts[0], version);
-
-  if (!isValidIP) {
-    return false;
-  } // Define valid subnet according to IP's version
-
-
-  var expectedSubnet = null;
-
-  switch (String(version)) {
-    case '4':
-      expectedSubnet = v4Subnet;
-      break;
-
-    case '6':
-      expectedSubnet = v6Subnet;
-      break;
-
-    default:
-      expectedSubnet = (0, _isIP.default)(parts[0], '6') ? v6Subnet : v4Subnet;
-  }
-
-  return parts[1] <= expectedSubnet && parts[1] >= 0;
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isISBN.js":
-/*!***********************************************!*\
-  !*** ../node_modules/validator/lib/isISBN.js ***!
-  \***********************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isISBN;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var isbn10Maybe = /^(?:[0-9]{9}X|[0-9]{10})$/;
-var isbn13Maybe = /^(?:[0-9]{13})$/;
-var factor = [1, 3];
-
-function isISBN(str) {
-  var version = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-  (0, _assertString.default)(str);
-  version = String(version);
-
-  if (!version) {
-    return isISBN(str, 10) || isISBN(str, 13);
-  }
-
-  var sanitized = str.replace(/[\s-]+/g, '');
-  var checksum = 0;
-  var i;
-
-  if (version === '10') {
-    if (!isbn10Maybe.test(sanitized)) {
-      return false;
-    }
-
-    for (i = 0; i < 9; i++) {
-      checksum += (i + 1) * sanitized.charAt(i);
-    }
-
-    if (sanitized.charAt(9) === 'X') {
-      checksum += 10 * 10;
-    } else {
-      checksum += 10 * sanitized.charAt(9);
-    }
-
-    if (checksum % 11 === 0) {
-      return !!sanitized;
-    }
-  } else if (version === '13') {
-    if (!isbn13Maybe.test(sanitized)) {
-      return false;
-    }
-
-    for (i = 0; i < 12; i++) {
-      checksum += factor[i % 2] * sanitized.charAt(i);
-    }
-
-    if (sanitized.charAt(12) - (10 - checksum % 10) % 10 === 0) {
-      return !!sanitized;
-    }
-  }
-
-  return false;
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isISIN.js":
-/*!***********************************************!*\
-  !*** ../node_modules/validator/lib/isISIN.js ***!
-  \***********************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isISIN;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var isin = /^[A-Z]{2}[0-9A-Z]{9}[0-9]$/; // this link details how the check digit is calculated:
-// https://www.isin.org/isin-format/. it is a little bit
-// odd in that it works with digits, not numbers. in order
-// to make only one pass through the ISIN characters, the
-// each alpha character is handled as 2 characters within
-// the loop.
-
-function isISIN(str) {
-  (0, _assertString.default)(str);
-
-  if (!isin.test(str)) {
-    return false;
-  }
-
-  var double = true;
-  var sum = 0; // convert values
-
-  for (var i = str.length - 2; i >= 0; i--) {
-    if (str[i] >= 'A' && str[i] <= 'Z') {
-      var value = str[i].charCodeAt(0) - 55;
-      var lo = value % 10;
-      var hi = Math.trunc(value / 10); // letters have two digits, so handle the low order
-      // and high order digits separately.
-
-      for (var _i = 0, _arr = [lo, hi]; _i < _arr.length; _i++) {
-        var digit = _arr[_i];
-
-        if (double) {
-          if (digit >= 5) {
-            sum += 1 + (digit - 5) * 2;
-          } else {
-            sum += digit * 2;
-          }
-        } else {
-          sum += digit;
-        }
-
-        double = !double;
-      }
-    } else {
-      var _digit = str[i].charCodeAt(0) - '0'.charCodeAt(0);
-
-      if (double) {
-        if (_digit >= 5) {
-          sum += 1 + (_digit - 5) * 2;
-        } else {
-          sum += _digit * 2;
-        }
-      } else {
-        sum += _digit;
-      }
-
-      double = !double;
-    }
-  }
-
-  var check = Math.trunc((sum + 9) / 10) * 10 - sum;
-  return +str[str.length - 1] === check;
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isISO31661Alpha2.js":
-/*!*********************************************************!*\
-  !*** ../node_modules/validator/lib/isISO31661Alpha2.js ***!
-  \*********************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isISO31661Alpha2;
-exports.CountryCodes = void 0;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// from https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
-var validISO31661Alpha2CountriesCodes = ['AD', 'AE', 'AF', 'AG', 'AI', 'AL', 'AM', 'AO', 'AQ', 'AR', 'AS', 'AT', 'AU', 'AW', 'AX', 'AZ', 'BA', 'BB', 'BD', 'BE', 'BF', 'BG', 'BH', 'BI', 'BJ', 'BL', 'BM', 'BN', 'BO', 'BQ', 'BR', 'BS', 'BT', 'BV', 'BW', 'BY', 'BZ', 'CA', 'CC', 'CD', 'CF', 'CG', 'CH', 'CI', 'CK', 'CL', 'CM', 'CN', 'CO', 'CR', 'CU', 'CV', 'CW', 'CX', 'CY', 'CZ', 'DE', 'DJ', 'DK', 'DM', 'DO', 'DZ', 'EC', 'EE', 'EG', 'EH', 'ER', 'ES', 'ET', 'FI', 'FJ', 'FK', 'FM', 'FO', 'FR', 'GA', 'GB', 'GD', 'GE', 'GF', 'GG', 'GH', 'GI', 'GL', 'GM', 'GN', 'GP', 'GQ', 'GR', 'GS', 'GT', 'GU', 'GW', 'GY', 'HK', 'HM', 'HN', 'HR', 'HT', 'HU', 'ID', 'IE', 'IL', 'IM', 'IN', 'IO', 'IQ', 'IR', 'IS', 'IT', 'JE', 'JM', 'JO', 'JP', 'KE', 'KG', 'KH', 'KI', 'KM', 'KN', 'KP', 'KR', 'KW', 'KY', 'KZ', 'LA', 'LB', 'LC', 'LI', 'LK', 'LR', 'LS', 'LT', 'LU', 'LV', 'LY', 'MA', 'MC', 'MD', 'ME', 'MF', 'MG', 'MH', 'MK', 'ML', 'MM', 'MN', 'MO', 'MP', 'MQ', 'MR', 'MS', 'MT', 'MU', 'MV', 'MW', 'MX', 'MY', 'MZ', 'NA', 'NC', 'NE', 'NF', 'NG', 'NI', 'NL', 'NO', 'NP', 'NR', 'NU', 'NZ', 'OM', 'PA', 'PE', 'PF', 'PG', 'PH', 'PK', 'PL', 'PM', 'PN', 'PR', 'PS', 'PT', 'PW', 'PY', 'QA', 'RE', 'RO', 'RS', 'RU', 'RW', 'SA', 'SB', 'SC', 'SD', 'SE', 'SG', 'SH', 'SI', 'SJ', 'SK', 'SL', 'SM', 'SN', 'SO', 'SR', 'SS', 'ST', 'SV', 'SX', 'SY', 'SZ', 'TC', 'TD', 'TF', 'TG', 'TH', 'TJ', 'TK', 'TL', 'TM', 'TN', 'TO', 'TR', 'TT', 'TV', 'TW', 'TZ', 'UA', 'UG', 'UM', 'US', 'UY', 'UZ', 'VA', 'VC', 'VE', 'VG', 'VI', 'VN', 'VU', 'WF', 'WS', 'YE', 'YT', 'ZA', 'ZM', 'ZW'];
-
-function isISO31661Alpha2(str) {
-  (0, _assertString.default)(str);
-  return validISO31661Alpha2CountriesCodes.indexOf(str.toUpperCase()) >= 0;
-}
-
-var CountryCodes = validISO31661Alpha2CountriesCodes;
-exports.CountryCodes = CountryCodes;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isISO31661Alpha3.js":
-/*!*********************************************************!*\
-  !*** ../node_modules/validator/lib/isISO31661Alpha3.js ***!
-  \*********************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isISO31661Alpha3;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-var _includes = _interopRequireDefault(__webpack_require__(/*! ./util/includes */ "../node_modules/validator/lib/util/includes.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// from https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3
-var validISO31661Alpha3CountriesCodes = ['AFG', 'ALA', 'ALB', 'DZA', 'ASM', 'AND', 'AGO', 'AIA', 'ATA', 'ATG', 'ARG', 'ARM', 'ABW', 'AUS', 'AUT', 'AZE', 'BHS', 'BHR', 'BGD', 'BRB', 'BLR', 'BEL', 'BLZ', 'BEN', 'BMU', 'BTN', 'BOL', 'BES', 'BIH', 'BWA', 'BVT', 'BRA', 'IOT', 'BRN', 'BGR', 'BFA', 'BDI', 'KHM', 'CMR', 'CAN', 'CPV', 'CYM', 'CAF', 'TCD', 'CHL', 'CHN', 'CXR', 'CCK', 'COL', 'COM', 'COG', 'COD', 'COK', 'CRI', 'CIV', 'HRV', 'CUB', 'CUW', 'CYP', 'CZE', 'DNK', 'DJI', 'DMA', 'DOM', 'ECU', 'EGY', 'SLV', 'GNQ', 'ERI', 'EST', 'ETH', 'FLK', 'FRO', 'FJI', 'FIN', 'FRA', 'GUF', 'PYF', 'ATF', 'GAB', 'GMB', 'GEO', 'DEU', 'GHA', 'GIB', 'GRC', 'GRL', 'GRD', 'GLP', 'GUM', 'GTM', 'GGY', 'GIN', 'GNB', 'GUY', 'HTI', 'HMD', 'VAT', 'HND', 'HKG', 'HUN', 'ISL', 'IND', 'IDN', 'IRN', 'IRQ', 'IRL', 'IMN', 'ISR', 'ITA', 'JAM', 'JPN', 'JEY', 'JOR', 'KAZ', 'KEN', 'KIR', 'PRK', 'KOR', 'KWT', 'KGZ', 'LAO', 'LVA', 'LBN', 'LSO', 'LBR', 'LBY', 'LIE', 'LTU', 'LUX', 'MAC', 'MKD', 'MDG', 'MWI', 'MYS', 'MDV', 'MLI', 'MLT', 'MHL', 'MTQ', 'MRT', 'MUS', 'MYT', 'MEX', 'FSM', 'MDA', 'MCO', 'MNG', 'MNE', 'MSR', 'MAR', 'MOZ', 'MMR', 'NAM', 'NRU', 'NPL', 'NLD', 'NCL', 'NZL', 'NIC', 'NER', 'NGA', 'NIU', 'NFK', 'MNP', 'NOR', 'OMN', 'PAK', 'PLW', 'PSE', 'PAN', 'PNG', 'PRY', 'PER', 'PHL', 'PCN', 'POL', 'PRT', 'PRI', 'QAT', 'REU', 'ROU', 'RUS', 'RWA', 'BLM', 'SHN', 'KNA', 'LCA', 'MAF', 'SPM', 'VCT', 'WSM', 'SMR', 'STP', 'SAU', 'SEN', 'SRB', 'SYC', 'SLE', 'SGP', 'SXM', 'SVK', 'SVN', 'SLB', 'SOM', 'ZAF', 'SGS', 'SSD', 'ESP', 'LKA', 'SDN', 'SUR', 'SJM', 'SWZ', 'SWE', 'CHE', 'SYR', 'TWN', 'TJK', 'TZA', 'THA', 'TLS', 'TGO', 'TKL', 'TON', 'TTO', 'TUN', 'TUR', 'TKM', 'TCA', 'TUV', 'UGA', 'UKR', 'ARE', 'GBR', 'USA', 'UMI', 'URY', 'UZB', 'VUT', 'VEN', 'VNM', 'VGB', 'VIR', 'WLF', 'ESH', 'YEM', 'ZMB', 'ZWE'];
-
-function isISO31661Alpha3(str) {
-  (0, _assertString.default)(str);
-  return (0, _includes.default)(validISO31661Alpha3CountriesCodes, str.toUpperCase());
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isISO8601.js":
-/*!**************************************************!*\
-  !*** ../node_modules/validator/lib/isISO8601.js ***!
-  \**************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isISO8601;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/* eslint-disable max-len */
-// from http://goo.gl/0ejHHW
-var iso8601 = /^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-3])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])((:?)[0-5]\d)?|24:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$/; // same as above, except with a strict 'T' separator between date and time
-
-var iso8601StrictSeparator = /^([\+-]?\d{4}(?!\d{2}\b))((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?|W([0-4]\d|5[0-3])(-?[1-7])?|(00[1-9]|0[1-9]\d|[12]\d{2}|3([0-5]\d|6[1-6])))([T]((([01]\d|2[0-3])((:?)[0-5]\d)?|24:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$/;
-/* eslint-enable max-len */
-
-var isValidDate = function isValidDate(str) {
-  // str must have passed the ISO8601 check
-  // this check is meant to catch invalid dates
-  // like 2009-02-31
-  // first check for ordinal dates
-  var ordinalMatch = str.match(/^(\d{4})-?(\d{3})([ T]{1}\.*|$)/);
-
-  if (ordinalMatch) {
-    var oYear = Number(ordinalMatch[1]);
-    var oDay = Number(ordinalMatch[2]); // if is leap year
-
-    if (oYear % 4 === 0 && oYear % 100 !== 0 || oYear % 400 === 0) return oDay <= 366;
-    return oDay <= 365;
-  }
-
-  var match = str.match(/(\d{4})-?(\d{0,2})-?(\d*)/).map(Number);
-  var year = match[1];
-  var month = match[2];
-  var day = match[3];
-  var monthString = month ? "0".concat(month).slice(-2) : month;
-  var dayString = day ? "0".concat(day).slice(-2) : day; // create a date object and compare
-
-  var d = new Date("".concat(year, "-").concat(monthString || '01', "-").concat(dayString || '01'));
-
-  if (month && day) {
-    return d.getUTCFullYear() === year && d.getUTCMonth() + 1 === month && d.getUTCDate() === day;
-  }
-
-  return true;
-};
-
-function isISO8601(str) {
-  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  (0, _assertString.default)(str);
-  var check = options.strictSeparator ? iso8601StrictSeparator.test(str) : iso8601.test(str);
-  if (check && options.strict) return isValidDate(str);
-  return check;
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isISRC.js":
-/*!***********************************************!*\
-  !*** ../node_modules/validator/lib/isISRC.js ***!
-  \***********************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isISRC;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// see http://isrc.ifpi.org/en/isrc-standard/code-syntax
-var isrc = /^[A-Z]{2}[0-9A-Z]{3}\d{2}\d{5}$/;
-
-function isISRC(str) {
-  (0, _assertString.default)(str);
-  return isrc.test(str);
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isISSN.js":
-/*!***********************************************!*\
-  !*** ../node_modules/validator/lib/isISSN.js ***!
-  \***********************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isISSN;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var issn = '^\\d{4}-?\\d{3}[\\dX]$';
-
-function isISSN(str) {
-  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  (0, _assertString.default)(str);
-  var testIssn = issn;
-  testIssn = options.require_hyphen ? testIssn.replace('?', '') : testIssn;
-  testIssn = options.case_sensitive ? new RegExp(testIssn) : new RegExp(testIssn, 'i');
-
-  if (!testIssn.test(str)) {
-    return false;
-  }
-
-  var digits = str.replace('-', '').toUpperCase();
-  var checksum = 0;
-
-  for (var i = 0; i < digits.length; i++) {
-    var digit = digits[i];
-    checksum += (digit === 'X' ? 10 : +digit) * (8 - i);
-  }
-
-  return checksum % 11 === 0;
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isIdentityCard.js":
-/*!*******************************************************!*\
-  !*** ../node_modules/validator/lib/isIdentityCard.js ***!
-  \*******************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isIdentityCard;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var validators = {
-  ES: function ES(str) {
-    (0, _assertString.default)(str);
-    var DNI = /^[0-9X-Z][0-9]{7}[TRWAGMYFPDXBNJZSQVHLCKE]$/;
-    var charsValue = {
-      X: 0,
-      Y: 1,
-      Z: 2
-    };
-    var controlDigits = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E']; // sanitize user input
-
-    var sanitized = str.trim().toUpperCase(); // validate the data structure
-
-    if (!DNI.test(sanitized)) {
-      return false;
-    } // validate the control digit
-
-
-    var number = sanitized.slice(0, -1).replace(/[X,Y,Z]/g, function (char) {
-      return charsValue[char];
-    });
-    return sanitized.endsWith(controlDigits[number % 23]);
-  },
-  IN: function IN(str) {
-    var DNI = /^[1-9]\d{3}\s?\d{4}\s?\d{4}$/; // multiplication table
-
-    var d = [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 0, 6, 7, 8, 9, 5], [2, 3, 4, 0, 1, 7, 8, 9, 5, 6], [3, 4, 0, 1, 2, 8, 9, 5, 6, 7], [4, 0, 1, 2, 3, 9, 5, 6, 7, 8], [5, 9, 8, 7, 6, 0, 4, 3, 2, 1], [6, 5, 9, 8, 7, 1, 0, 4, 3, 2], [7, 6, 5, 9, 8, 2, 1, 0, 4, 3], [8, 7, 6, 5, 9, 3, 2, 1, 0, 4], [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]]; // permutation table
-
-    var p = [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 5, 7, 6, 2, 8, 3, 0, 9, 4], [5, 8, 0, 3, 7, 9, 6, 1, 4, 2], [8, 9, 1, 6, 0, 4, 3, 5, 2, 7], [9, 4, 5, 3, 1, 2, 6, 8, 7, 0], [4, 2, 8, 6, 5, 7, 3, 9, 0, 1], [2, 7, 9, 3, 8, 0, 6, 4, 1, 5], [7, 0, 4, 6, 9, 1, 3, 2, 5, 8]]; // sanitize user input
-
-    var sanitized = str.trim(); // validate the data structure
-
-    if (!DNI.test(sanitized)) {
-      return false;
-    }
-
-    var c = 0;
-    var invertedArray = sanitized.replace(/\s/g, '').split('').map(Number).reverse();
-    invertedArray.forEach(function (val, i) {
-      c = d[c][p[i % 8][val]];
-    });
-    return c === 0;
-  },
-  IR: function IR(str) {
-    if (!str.match(/^\d{10}$/)) return false;
-    str = "0000".concat(str).substr(str.length - 6);
-    if (parseInt(str.substr(3, 6), 10) === 0) return false;
-    var lastNumber = parseInt(str.substr(9, 1), 10);
-    var sum = 0;
-
-    for (var i = 0; i < 9; i++) {
-      sum += parseInt(str.substr(i, 1), 10) * (10 - i);
-    }
-
-    sum %= 11;
-    return sum < 2 && lastNumber === sum || sum >= 2 && lastNumber === 11 - sum;
-  },
-  IT: function IT(str) {
-    if (str.length !== 9) return false;
-    if (str === 'CA00000AA') return false; // https://it.wikipedia.org/wiki/Carta_d%27identit%C3%A0_elettronica_italiana
-
-    return str.search(/C[A-Z][0-9]{5}[A-Z]{2}/i) > -1;
-  },
-  NO: function NO(str) {
-    var sanitized = str.trim();
-    if (isNaN(Number(sanitized))) return false;
-    if (sanitized.length !== 11) return false;
-    if (sanitized === '00000000000') return false; // https://no.wikipedia.org/wiki/F%C3%B8dselsnummer
-
-    var f = sanitized.split('').map(Number);
-    var k1 = (11 - (3 * f[0] + 7 * f[1] + 6 * f[2] + 1 * f[3] + 8 * f[4] + 9 * f[5] + 4 * f[6] + 5 * f[7] + 2 * f[8]) % 11) % 11;
-    var k2 = (11 - (5 * f[0] + 4 * f[1] + 3 * f[2] + 2 * f[3] + 7 * f[4] + 6 * f[5] + 5 * f[6] + 4 * f[7] + 3 * f[8] + 2 * k1) % 11) % 11;
-    if (k1 !== f[9] || k2 !== f[10]) return false;
-    return true;
-  },
-  'he-IL': function heIL(str) {
-    var DNI = /^\d{9}$/; // sanitize user input
-
-    var sanitized = str.trim(); // validate the data structure
-
-    if (!DNI.test(sanitized)) {
-      return false;
-    }
-
-    var id = sanitized;
-    var sum = 0,
-        incNum;
-
-    for (var i = 0; i < id.length; i++) {
-      incNum = Number(id[i]) * (i % 2 + 1); // Multiply number by 1 or 2
-
-      sum += incNum > 9 ? incNum - 9 : incNum; // Sum the digits up and add to total
-    }
-
-    return sum % 10 === 0;
-  },
-  'ar-LY': function arLY(str) {
-    // Libya National Identity Number NIN is 12 digits, the first digit is either 1 or 2
-    var NIN = /^(1|2)\d{11}$/; // sanitize user input
-
-    var sanitized = str.trim(); // validate the data structure
-
-    if (!NIN.test(sanitized)) {
-      return false;
-    }
-
-    return true;
-  },
-  'ar-TN': function arTN(str) {
-    var DNI = /^\d{8}$/; // sanitize user input
-
-    var sanitized = str.trim(); // validate the data structure
-
-    if (!DNI.test(sanitized)) {
-      return false;
-    }
-
-    return true;
-  },
-  'zh-CN': function zhCN(str) {
-    var provincesAndCities = ['11', // 北京
-    '12', // 天津
-    '13', // 河北
-    '14', // 山西
-    '15', // 内蒙古
-    '21', // 辽宁
-    '22', // 吉林
-    '23', // 黑龙江
-    '31', // 上海
-    '32', // 江苏
-    '33', // 浙江
-    '34', // 安徽
-    '35', // 福建
-    '36', // 江西
-    '37', // 山东
-    '41', // 河南
-    '42', // 湖北
-    '43', // 湖南
-    '44', // 广东
-    '45', // 广西
-    '46', // 海南
-    '50', // 重庆
-    '51', // 四川
-    '52', // 贵州
-    '53', // 云南
-    '54', // 西藏
-    '61', // 陕西
-    '62', // 甘肃
-    '63', // 青海
-    '64', // 宁夏
-    '65', // 新疆
-    '71', // 台湾
-    '81', // 香港
-    '82', // 澳门
-    '91' // 国外
-    ];
-    var powers = ['7', '9', '10', '5', '8', '4', '2', '1', '6', '3', '7', '9', '10', '5', '8', '4', '2'];
-    var parityBit = ['1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2'];
-
-    var checkAddressCode = function checkAddressCode(addressCode) {
-      return provincesAndCities.includes(addressCode);
-    };
-
-    var checkBirthDayCode = function checkBirthDayCode(birDayCode) {
-      var yyyy = parseInt(birDayCode.substring(0, 4), 10);
-      var mm = parseInt(birDayCode.substring(4, 6), 10);
-      var dd = parseInt(birDayCode.substring(6), 10);
-      var xdata = new Date(yyyy, mm - 1, dd);
-
-      if (xdata > new Date()) {
-        return false; // eslint-disable-next-line max-len
-      } else if (xdata.getFullYear() === yyyy && xdata.getMonth() === mm - 1 && xdata.getDate() === dd) {
-        return true;
-      }
-
-      return false;
-    };
-
-    var getParityBit = function getParityBit(idCardNo) {
-      var id17 = idCardNo.substring(0, 17);
-      var power = 0;
-
-      for (var i = 0; i < 17; i++) {
-        power += parseInt(id17.charAt(i), 10) * parseInt(powers[i], 10);
-      }
-
-      var mod = power % 11;
-      return parityBit[mod];
-    };
-
-    var checkParityBit = function checkParityBit(idCardNo) {
-      return getParityBit(idCardNo) === idCardNo.charAt(17).toUpperCase();
-    };
-
-    var check15IdCardNo = function check15IdCardNo(idCardNo) {
-      var check = /^[1-9]\d{7}((0[1-9])|(1[0-2]))((0[1-9])|([1-2][0-9])|(3[0-1]))\d{3}$/.test(idCardNo);
-      if (!check) return false;
-      var addressCode = idCardNo.substring(0, 2);
-      check = checkAddressCode(addressCode);
-      if (!check) return false;
-      var birDayCode = "19".concat(idCardNo.substring(6, 12));
-      check = checkBirthDayCode(birDayCode);
-      if (!check) return false;
-      return true;
-    };
-
-    var check18IdCardNo = function check18IdCardNo(idCardNo) {
-      var check = /^[1-9]\d{5}[1-9]\d{3}((0[1-9])|(1[0-2]))((0[1-9])|([1-2][0-9])|(3[0-1]))\d{3}(\d|x|X)$/.test(idCardNo);
-      if (!check) return false;
-      var addressCode = idCardNo.substring(0, 2);
-      check = checkAddressCode(addressCode);
-      if (!check) return false;
-      var birDayCode = idCardNo.substring(6, 14);
-      check = checkBirthDayCode(birDayCode);
-      if (!check) return false;
-      return checkParityBit(idCardNo);
-    };
-
-    var checkIdCardNo = function checkIdCardNo(idCardNo) {
-      var check = /^\d{15}|(\d{17}(\d|x|X))$/.test(idCardNo);
-      if (!check) return false;
-
-      if (idCardNo.length === 15) {
-        return check15IdCardNo(idCardNo);
-      }
-
-      return check18IdCardNo(idCardNo);
-    };
-
-    return checkIdCardNo(str);
-  },
-  'zh-TW': function zhTW(str) {
-    var ALPHABET_CODES = {
-      A: 10,
-      B: 11,
-      C: 12,
-      D: 13,
-      E: 14,
-      F: 15,
-      G: 16,
-      H: 17,
-      I: 34,
-      J: 18,
-      K: 19,
-      L: 20,
-      M: 21,
-      N: 22,
-      O: 35,
-      P: 23,
-      Q: 24,
-      R: 25,
-      S: 26,
-      T: 27,
-      U: 28,
-      V: 29,
-      W: 32,
-      X: 30,
-      Y: 31,
-      Z: 33
-    };
-    var sanitized = str.trim().toUpperCase();
-    if (!/^[A-Z][0-9]{9}$/.test(sanitized)) return false;
-    return Array.from(sanitized).reduce(function (sum, number, index) {
-      if (index === 0) {
-        var code = ALPHABET_CODES[number];
-        return code % 10 * 9 + Math.floor(code / 10);
-      }
-
-      if (index === 9) {
-        return (10 - sum % 10 - Number(number)) % 10 === 0;
-      }
-
-      return sum + Number(number) * (9 - index);
-    }, 0);
-  }
-};
-
-function isIdentityCard(str, locale) {
-  (0, _assertString.default)(str);
-
-  if (locale in validators) {
-    return validators[locale](str);
-  } else if (locale === 'any') {
-    for (var key in validators) {
-      // https://github.com/gotwarlost/istanbul/blob/master/ignoring-code-for-coverage.md#ignoring-code-for-coverage-purposes
-      // istanbul ignore else
-      if (validators.hasOwnProperty(key)) {
-        var validator = validators[key];
-
-        if (validator(str)) {
-          return true;
-        }
-      }
-    }
-
-    return false;
-  }
-
-  throw new Error("Invalid locale '".concat(locale, "'"));
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isIn.js":
-/*!*********************************************!*\
-  !*** ../node_modules/validator/lib/isIn.js ***!
-  \*********************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isIn;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-var _toString = _interopRequireDefault(__webpack_require__(/*! ./util/toString */ "../node_modules/validator/lib/util/toString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function isIn(str, options) {
-  (0, _assertString.default)(str);
-  var i;
-
-  if (Object.prototype.toString.call(options) === '[object Array]') {
-    var array = [];
-
-    for (i in options) {
-      // https://github.com/gotwarlost/istanbul/blob/master/ignoring-code-for-coverage.md#ignoring-code-for-coverage-purposes
-      // istanbul ignore else
-      if ({}.hasOwnProperty.call(options, i)) {
-        array[i] = (0, _toString.default)(options[i]);
-      }
-    }
-
-    return array.indexOf(str) >= 0;
-  } else if (_typeof(options) === 'object') {
-    return options.hasOwnProperty(str);
-  } else if (options && typeof options.indexOf === 'function') {
-    return options.indexOf(str) >= 0;
-  }
-
-  return false;
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isInt.js":
-/*!**********************************************!*\
-  !*** ../node_modules/validator/lib/isInt.js ***!
-  \**********************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isInt;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var int = /^(?:[-+]?(?:0|[1-9][0-9]*))$/;
-var intLeadingZeroes = /^[-+]?[0-9]+$/;
-
-function isInt(str, options) {
-  (0, _assertString.default)(str);
-  options = options || {}; // Get the regex to use for testing, based on whether
-  // leading zeroes are allowed or not.
-
-  var regex = options.hasOwnProperty('allow_leading_zeroes') && !options.allow_leading_zeroes ? int : intLeadingZeroes; // Check min/max/lt/gt
-
-  var minCheckPassed = !options.hasOwnProperty('min') || str >= options.min;
-  var maxCheckPassed = !options.hasOwnProperty('max') || str <= options.max;
-  var ltCheckPassed = !options.hasOwnProperty('lt') || str < options.lt;
-  var gtCheckPassed = !options.hasOwnProperty('gt') || str > options.gt;
-  return regex.test(str) && minCheckPassed && maxCheckPassed && ltCheckPassed && gtCheckPassed;
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isJSON.js":
-/*!***********************************************!*\
-  !*** ../node_modules/validator/lib/isJSON.js ***!
-  \***********************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isJSON;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-var _merge = _interopRequireDefault(__webpack_require__(/*! ./util/merge */ "../node_modules/validator/lib/util/merge.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-var default_json_options = {
-  allow_primitives: false
-};
-
-function isJSON(str, options) {
-  (0, _assertString.default)(str);
-
-  try {
-    options = (0, _merge.default)(options, default_json_options);
-    var primitives = [];
-
-    if (options.allow_primitives) {
-      primitives = [null, false, true];
-    }
-
-    var obj = JSON.parse(str);
-    return primitives.includes(obj) || !!obj && _typeof(obj) === 'object';
-  } catch (e) {
-    /* ignore */
-  }
-
-  return false;
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isJWT.js":
-/*!**********************************************!*\
-  !*** ../node_modules/validator/lib/isJWT.js ***!
-  \**********************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isJWT;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-var _isBase = _interopRequireDefault(__webpack_require__(/*! ./isBase64 */ "../node_modules/validator/lib/isBase64.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function isJWT(str) {
-  (0, _assertString.default)(str);
-  var dotSplit = str.split('.');
-  var len = dotSplit.length;
-
-  if (len > 3 || len < 2) {
-    return false;
-  }
-
-  return dotSplit.reduce(function (acc, currElem) {
-    return acc && (0, _isBase.default)(currElem, {
-      urlSafe: true
-    });
-  }, true);
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isLatLong.js":
-/*!**************************************************!*\
-  !*** ../node_modules/validator/lib/isLatLong.js ***!
-  \**************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isLatLong;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-var _merge = _interopRequireDefault(__webpack_require__(/*! ./util/merge */ "../node_modules/validator/lib/util/merge.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var lat = /^\(?[+-]?(90(\.0+)?|[1-8]?\d(\.\d+)?)$/;
-var long = /^\s?[+-]?(180(\.0+)?|1[0-7]\d(\.\d+)?|\d{1,2}(\.\d+)?)\)?$/;
-var latDMS = /^(([1-8]?\d)\D+([1-5]?\d|60)\D+([1-5]?\d|60)(\.\d+)?|90\D+0\D+0)\D+[NSns]?$/i;
-var longDMS = /^\s*([1-7]?\d{1,2}\D+([1-5]?\d|60)\D+([1-5]?\d|60)(\.\d+)?|180\D+0\D+0)\D+[EWew]?$/i;
-var defaultLatLongOptions = {
-  checkDMS: false
-};
-
-function isLatLong(str, options) {
-  (0, _assertString.default)(str);
-  options = (0, _merge.default)(options, defaultLatLongOptions);
-  if (!str.includes(',')) return false;
-  var pair = str.split(',');
-  if (pair[0].startsWith('(') && !pair[1].endsWith(')') || pair[1].endsWith(')') && !pair[0].startsWith('(')) return false;
-
-  if (options.checkDMS) {
-    return latDMS.test(pair[0]) && longDMS.test(pair[1]);
-  }
-
-  return lat.test(pair[0]) && long.test(pair[1]);
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isLength.js":
-/*!*************************************************!*\
-  !*** ../node_modules/validator/lib/isLength.js ***!
-  \*************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isLength;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-/* eslint-disable prefer-rest-params */
-function isLength(str, options) {
-  (0, _assertString.default)(str);
-  var min;
-  var max;
-
-  if (_typeof(options) === 'object') {
-    min = options.min || 0;
-    max = options.max;
-  } else {
-    // backwards compatibility: isLength(str, min [, max])
-    min = arguments[1] || 0;
-    max = arguments[2];
-  }
-
-  var surrogatePairs = str.match(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g) || [];
-  var len = str.length - surrogatePairs.length;
-  return len >= min && (typeof max === 'undefined' || len <= max);
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isLicensePlate.js":
-/*!*******************************************************!*\
-  !*** ../node_modules/validator/lib/isLicensePlate.js ***!
-  \*******************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isLicensePlate;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var validators = {
-  'de-DE': function deDE(str) {
-    return /^((AW|UL|AK|GA|AÖ|LF|AZ|AM|AS|ZE|AN|AB|A|KG|KH|BA|EW|BZ|HY|KM|BT|HP|B|BC|BI|BO|FN|TT|ÜB|BN|AH|BS|FR|HB|ZZ|BB|BK|BÖ|OC|OK|CW|CE|C|CO|LH|CB|KW|LC|LN|DA|DI|DE|DH|SY|NÖ|DO|DD|DU|DN|D|EI|EA|EE|FI|EM|EL|EN|PF|ED|EF|ER|AU|ZP|E|ES|NT|EU|FL|FO|FT|FF|F|FS|FD|FÜ|GE|G|GI|GF|GS|ZR|GG|GP|GR|NY|ZI|GÖ|GZ|GT|HA|HH|HM|HU|WL|HZ|WR|RN|HK|HD|HN|HS|GK|HE|HF|RZ|HI|HG|HO|HX|IK|IL|IN|J|JL|KL|KA|KS|KF|KE|KI|KT|KO|KN|KR|KC|KU|K|LD|LL|LA|L|OP|LM|LI|LB|LU|LÖ|HL|LG|MD|GN|MZ|MA|ML|MR|MY|AT|DM|MC|NZ|RM|RG|MM|ME|MB|MI|FG|DL|HC|MW|RL|MK|MG|MÜ|WS|MH|M|MS|NU|NB|ND|NM|NK|NW|NR|NI|NF|DZ|EB|OZ|TG|TO|N|OA|GM|OB|CA|EH|FW|OF|OL|OE|OG|BH|LR|OS|AA|GD|OH|KY|NP|WK|PB|PA|PE|PI|PS|P|PM|PR|RA|RV|RE|R|H|SB|WN|RS|RD|RT|BM|NE|GV|RP|SU|GL|RO|GÜ|RH|EG|RW|PN|SK|MQ|RU|SZ|RI|SL|SM|SC|HR|FZ|VS|SW|SN|CR|SE|SI|SO|LP|SG|NH|SP|IZ|ST|BF|TE|HV|OD|SR|S|AC|DW|ZW|TF|TS|TR|TÜ|UM|PZ|TP|UE|UN|UH|MN|KK|VB|V|AE|PL|RC|VG|GW|PW|VR|VK|KB|WA|WT|BE|WM|WE|AP|MO|WW|FB|WZ|WI|WB|JE|WF|WO|W|WÜ|BL|Z|GC)[- ]?[A-Z]{1,2}[- ]?\d{1,4}|(AIC|FDB|ABG|SLN|SAW|KLZ|BUL|ESB|NAB|SUL|WST|ABI|AZE|BTF|KÖT|DKB|FEU|ROT|ALZ|SMÜ|WER|AUR|NOR|DÜW|BRK|HAB|TÖL|WOR|BAD|BAR|BER|BIW|EBS|KEM|MÜB|PEG|BGL|BGD|REI|WIL|BKS|BIR|WAT|BOR|BOH|BOT|BRB|BLK|HHM|NEB|NMB|WSF|LEO|HDL|WMS|WZL|BÜS|CHA|KÖZ|ROD|WÜM|CLP|NEC|COC|ZEL|COE|CUX|DAH|LDS|DEG|DEL|RSL|DLG|DGF|LAN|HEI|MED|DON|KIB|ROK|JÜL|MON|SLE|EBE|EIC|HIG|WBS|BIT|PRÜ|LIB|EMD|WIT|ERH|HÖS|ERZ|ANA|ASZ|MAB|MEK|STL|SZB|FDS|HCH|HOR|WOL|FRG|GRA|WOS|FRI|FFB|GAP|GER|BRL|CLZ|GTH|NOH|HGW|GRZ|LÖB|NOL|WSW|DUD|HMÜ|OHA|KRU|HAL|HAM|HBS|QLB|HVL|NAU|HAS|EBN|GEO|HOH|HDH|ERK|HER|WAN|HEF|ROF|HBN|ALF|HSK|USI|NAI|REH|SAN|KÜN|ÖHR|HOL|WAR|ARN|BRG|GNT|HOG|WOH|KEH|MAI|PAR|RID|ROL|KLE|GEL|KUS|KYF|ART|SDH|LDK|DIL|MAL|VIB|LER|BNA|GHA|GRM|MTL|WUR|LEV|LIF|STE|WEL|LIP|VAI|LUP|HGN|LBZ|LWL|PCH|STB|DAN|MKK|SLÜ|MSP|TBB|MGH|MTK|BIN|MSH|EIL|HET|SGH|BID|MYK|MSE|MST|MÜR|WRN|MEI|GRH|RIE|MZG|MIL|OBB|BED|FLÖ|MOL|FRW|SEE|SRB|AIB|MOS|BCH|ILL|SOB|NMS|NEA|SEF|UFF|NEW|VOH|NDH|TDO|NWM|GDB|GVM|WIS|NOM|EIN|GAN|LAU|HEB|OHV|OSL|SFB|ERB|LOS|BSK|KEL|BSB|MEL|WTL|OAL|FÜS|MOD|OHZ|OPR|BÜR|PAF|PLÖ|CAS|GLA|REG|VIT|ECK|SIM|GOA|EMS|DIZ|GOH|RÜD|SWA|NES|KÖN|MET|LRO|BÜZ|DBR|ROS|TET|HRO|ROW|BRV|HIP|PAN|GRI|SHK|EIS|SRO|SOK|LBS|SCZ|MER|QFT|SLF|SLS|HOM|SLK|ASL|BBG|SBK|SFT|SHG|MGN|MEG|ZIG|SAD|NEN|OVI|SHA|BLB|SIG|SON|SPN|FOR|GUB|SPB|IGB|WND|STD|STA|SDL|OBG|HST|BOG|SHL|PIR|FTL|SEB|SÖM|SÜW|TIR|SAB|TUT|ANG|SDT|LÜN|LSZ|MHL|VEC|VER|VIE|OVL|ANK|OVP|SBG|UEM|UER|WLG|GMN|NVP|RDG|RÜG|DAU|FKB|WAF|WAK|SLZ|WEN|SOG|APD|WUG|GUN|ESW|WIZ|WES|DIN|BRA|BÜD|WHV|HWI|GHC|WTM|WOB|WUN|MAK|SEL|OCH|HOT|WDA)[- ]?(([A-Z][- ]?\d{1,4})|([A-Z]{2}[- ]?\d{1,3})))[- ]?(E|H)?$/.test(str);
-  },
-  'de-LI': function deLI(str) {
-    return /^FL[- ]?\d{1,5}[UZ]?$/.test(str);
-  },
-  'pt-PT': function ptPT(str) {
-    return /^([A-Z]{2}|[0-9]{2})[ -·]?([A-Z]{2}|[0-9]{2})[ -·]?([A-Z]{2}|[0-9]{2})$/.test(str);
-  },
-  'sq-AL': function sqAL(str) {
-    return /^[A-Z]{2}[- ]?((\d{3}[- ]?(([A-Z]{2})|T))|(R[- ]?\d{3}))$/.test(str);
-  },
-  'pt-BR': function ptBR(str) {
-    return /^[A-Z]{3}[ -]?[0-9][A-Z][0-9]{2}|[A-Z]{3}[ -]?[0-9]{4}$/.test(str);
-  }
-};
-
-function isLicensePlate(str, locale) {
-  (0, _assertString.default)(str);
-
-  if (locale in validators) {
-    return validators[locale](str);
-  } else if (locale === 'any') {
-    for (var key in validators) {
-      /* eslint guard-for-in: 0 */
-      var validator = validators[key];
-
-      if (validator(str)) {
-        return true;
-      }
-    }
-
-    return false;
-  }
-
-  throw new Error("Invalid locale '".concat(locale, "'"));
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isLocale.js":
-/*!*************************************************!*\
-  !*** ../node_modules/validator/lib/isLocale.js ***!
-  \*************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isLocale;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var localeReg = /^[A-Za-z]{2,4}([_-]([A-Za-z]{4}|[\d]{3}))?([_-]([A-Za-z]{2}|[\d]{3}))?$/;
-
-function isLocale(str) {
-  (0, _assertString.default)(str);
-
-  if (str === 'en_US_POSIX' || str === 'ca_ES_VALENCIA') {
-    return true;
-  }
-
-  return localeReg.test(str);
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isLowercase.js":
-/*!****************************************************!*\
-  !*** ../node_modules/validator/lib/isLowercase.js ***!
-  \****************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isLowercase;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function isLowercase(str) {
-  (0, _assertString.default)(str);
-  return str === str.toLowerCase();
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isMACAddress.js":
-/*!*****************************************************!*\
-  !*** ../node_modules/validator/lib/isMACAddress.js ***!
-  \*****************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isMACAddress;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var macAddress = /^(?:[0-9a-fA-F]{2}([-:\s]))([0-9a-fA-F]{2}\1){4}([0-9a-fA-F]{2})$/;
-var macAddressNoSeparators = /^([0-9a-fA-F]){12}$/;
-var macAddressWithDots = /^([0-9a-fA-F]{4}\.){2}([0-9a-fA-F]{4})$/;
-
-function isMACAddress(str, options) {
-  (0, _assertString.default)(str);
-  /**
-   * @deprecated `no_colons` TODO: remove it in the next major
-  */
-
-  if (options && (options.no_colons || options.no_separators)) {
-    return macAddressNoSeparators.test(str);
-  }
-
-  return macAddress.test(str) || macAddressWithDots.test(str);
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isMD5.js":
-/*!**********************************************!*\
-  !*** ../node_modules/validator/lib/isMD5.js ***!
-  \**********************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isMD5;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var md5 = /^[a-f0-9]{32}$/;
-
-function isMD5(str) {
-  (0, _assertString.default)(str);
-  return md5.test(str);
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isMagnetURI.js":
-/*!****************************************************!*\
-  !*** ../node_modules/validator/lib/isMagnetURI.js ***!
-  \****************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isMagnetURI;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var magnetURI = /^magnet:\?xt=urn:[a-z0-9]+:[a-z0-9]{32,40}&dn=.+&tr=.+$/i;
-
-function isMagnetURI(url) {
-  (0, _assertString.default)(url);
-  return magnetURI.test(url.trim());
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isMimeType.js":
-/*!***************************************************!*\
-  !*** ../node_modules/validator/lib/isMimeType.js ***!
-  \***************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isMimeType;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/*
-  Checks if the provided string matches to a correct Media type format (MIME type)
-
-  This function only checks is the string format follows the
-  etablished rules by the according RFC specifications.
-  This function supports 'charset' in textual media types
-  (https://tools.ietf.org/html/rfc6657).
-
-  This function does not check against all the media types listed
-  by the IANA (https://www.iana.org/assignments/media-types/media-types.xhtml)
-  because of lightness purposes : it would require to include
-  all these MIME types in this librairy, which would weigh it
-  significantly. This kind of effort maybe is not worth for the use that
-  this function has in this entire librairy.
-
-  More informations in the RFC specifications :
-  - https://tools.ietf.org/html/rfc2045
-  - https://tools.ietf.org/html/rfc2046
-  - https://tools.ietf.org/html/rfc7231#section-3.1.1.1
-  - https://tools.ietf.org/html/rfc7231#section-3.1.1.5
-*/
-// Match simple MIME types
-// NB :
-//   Subtype length must not exceed 100 characters.
-//   This rule does not comply to the RFC specs (what is the max length ?).
-var mimeTypeSimple = /^(application|audio|font|image|message|model|multipart|text|video)\/[a-zA-Z0-9\.\-\+]{1,100}$/i; // eslint-disable-line max-len
-// Handle "charset" in "text/*"
-
-var mimeTypeText = /^text\/[a-zA-Z0-9\.\-\+]{1,100};\s?charset=("[a-zA-Z0-9\.\-\+\s]{0,70}"|[a-zA-Z0-9\.\-\+]{0,70})(\s?\([a-zA-Z0-9\.\-\+\s]{1,20}\))?$/i; // eslint-disable-line max-len
-// Handle "boundary" in "multipart/*"
-
-var mimeTypeMultipart = /^multipart\/[a-zA-Z0-9\.\-\+]{1,100}(;\s?(boundary|charset)=("[a-zA-Z0-9\.\-\+\s]{0,70}"|[a-zA-Z0-9\.\-\+]{0,70})(\s?\([a-zA-Z0-9\.\-\+\s]{1,20}\))?){0,2}$/i; // eslint-disable-line max-len
-
-function isMimeType(str) {
-  (0, _assertString.default)(str);
-  return mimeTypeSimple.test(str) || mimeTypeText.test(str) || mimeTypeMultipart.test(str);
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isMobilePhone.js":
-/*!******************************************************!*\
-  !*** ../node_modules/validator/lib/isMobilePhone.js ***!
-  \******************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isMobilePhone;
-exports.locales = void 0;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/* eslint-disable max-len */
-var phones = {
-  'am-AM': /^(\+?374|0)((10|[9|7][0-9])\d{6}$|[2-4]\d{7}$)/,
-  'ar-AE': /^((\+?971)|0)?5[024568]\d{7}$/,
-  'ar-BH': /^(\+?973)?(3|6)\d{7}$/,
-  'ar-DZ': /^(\+?213|0)(5|6|7)\d{8}$/,
-  'ar-LB': /^(\+?961)?((3|81)\d{6}|7\d{7})$/,
-  'ar-EG': /^((\+?20)|0)?1[0125]\d{8}$/,
-  'ar-IQ': /^(\+?964|0)?7[0-9]\d{8}$/,
-  'ar-JO': /^(\+?962|0)?7[789]\d{7}$/,
-  'ar-KW': /^(\+?965)[569]\d{7}$/,
-  'ar-LY': /^((\+?218)|0)?(9[1-6]\d{7}|[1-8]\d{7,9})$/,
-  'ar-MA': /^(?:(?:\+|00)212|0)[5-7]\d{8}$/,
-  'ar-OM': /^((\+|00)968)?(9[1-9])\d{6}$/,
-  'ar-SA': /^(!?(\+?966)|0)?5\d{8}$/,
-  'ar-SY': /^(!?(\+?963)|0)?9\d{8}$/,
-  'ar-TN': /^(\+?216)?[2459]\d{7}$/,
-  'az-AZ': /^(\+994|0)(5[015]|7[07]|99)\d{7}$/,
-  'bs-BA': /^((((\+|00)3876)|06))((([0-3]|[5-6])\d{6})|(4\d{7}))$/,
-  'be-BY': /^(\+?375)?(24|25|29|33|44)\d{7}$/,
-  'bg-BG': /^(\+?359|0)?8[789]\d{7}$/,
-  'bn-BD': /^(\+?880|0)1[13456789][0-9]{8}$/,
-  'ca-AD': /^(\+376)?[346]\d{5}$/,
-  'cs-CZ': /^(\+?420)? ?[1-9][0-9]{2} ?[0-9]{3} ?[0-9]{3}$/,
-  'da-DK': /^(\+?45)?\s?\d{2}\s?\d{2}\s?\d{2}\s?\d{2}$/,
-  'de-DE': /^(\+49)?0?[1|3]([0|5][0-45-9]\d|6([23]|0\d?)|7([0-57-9]|6\d))\d{7}$/,
-  'de-AT': /^(\+43|0)\d{1,4}\d{3,12}$/,
-  'de-CH': /^(\+41|0)([1-9])\d{1,9}$/,
-  'de-LU': /^(\+352)?((6\d1)\d{6})$/,
-  'el-GR': /^(\+?30|0)?(69\d{8})$/,
-  'en-AU': /^(\+?61|0)4\d{8}$/,
-  'en-GB': /^(\+?44|0)7\d{9}$/,
-  'en-GG': /^(\+?44|0)1481\d{6}$/,
-  'en-GH': /^(\+233|0)(20|50|24|54|27|57|26|56|23|28|55|59)\d{7}$/,
-  'en-HK': /^(\+?852[-\s]?)?[456789]\d{3}[-\s]?\d{4}$/,
-  'en-MO': /^(\+?853[-\s]?)?[6]\d{3}[-\s]?\d{4}$/,
-  'en-IE': /^(\+?353|0)8[356789]\d{7}$/,
-  'en-IN': /^(\+?91|0)?[6789]\d{9}$/,
-  'en-KE': /^(\+?254|0)(7|1)\d{8}$/,
-  'en-MT': /^(\+?356|0)?(99|79|77|21|27|22|25)[0-9]{6}$/,
-  'en-MU': /^(\+?230|0)?\d{8}$/,
-  'en-NG': /^(\+?234|0)?[789]\d{9}$/,
-  'en-NZ': /^(\+?64|0)[28]\d{7,9}$/,
-  'en-PK': /^((\+92)|(0092))-{0,1}\d{3}-{0,1}\d{7}$|^\d{11}$|^\d{4}-\d{7}$/,
-  'en-PH': /^(09|\+639)\d{9}$/,
-  'en-RW': /^(\+?250|0)?[7]\d{8}$/,
-  'en-SG': /^(\+65)?[3689]\d{7}$/,
-  'en-SL': /^(\+?232|0)\d{8}$/,
-  'en-TZ': /^(\+?255|0)?[67]\d{8}$/,
-  'en-UG': /^(\+?256|0)?[7]\d{8}$/,
-  'en-US': /^((\+1|1)?( |-)?)?(\([2-9][0-9]{2}\)|[2-9][0-9]{2})( |-)?([2-9][0-9]{2}( |-)?[0-9]{4})$/,
-  'en-ZA': /^(\+?27|0)\d{9}$/,
-  'en-ZM': /^(\+?26)?09[567]\d{7}$/,
-  'en-ZW': /^(\+263)[0-9]{9}$/,
-  'es-AR': /^\+?549(11|[2368]\d)\d{8}$/,
-  'es-BO': /^(\+?591)?(6|7)\d{7}$/,
-  'es-CO': /^(\+?57)?3(0(0|1|2|4|5)|1\d|2[0-4]|5(0|1))\d{7}$/,
-  'es-CL': /^(\+?56|0)[2-9]\d{1}\d{7}$/,
-  'es-CR': /^(\+506)?[2-8]\d{7}$/,
-  'es-DO': /^(\+?1)?8[024]9\d{7}$/,
-  'es-HN': /^(\+?504)?[9|8]\d{7}$/,
-  'es-EC': /^(\+?593|0)([2-7]|9[2-9])\d{7}$/,
-  'es-ES': /^(\+?34)?[6|7]\d{8}$/,
-  'es-PE': /^(\+?51)?9\d{8}$/,
-  'es-MX': /^(\+?52)?(1|01)?\d{10,11}$/,
-  'es-PA': /^(\+?507)\d{7,8}$/,
-  'es-PY': /^(\+?595|0)9[9876]\d{7}$/,
-  'es-UY': /^(\+598|0)9[1-9][\d]{6}$/,
-  'et-EE': /^(\+?372)?\s?(5|8[1-4])\s?([0-9]\s?){6,7}$/,
-  'fa-IR': /^(\+?98[\-\s]?|0)9[0-39]\d[\-\s]?\d{3}[\-\s]?\d{4}$/,
-  'fi-FI': /^(\+?358|0)\s?(4(0|1|2|4|5|6)?|50)\s?(\d\s?){4,8}\d$/,
-  'fj-FJ': /^(\+?679)?\s?\d{3}\s?\d{4}$/,
-  'fo-FO': /^(\+?298)?\s?\d{2}\s?\d{2}\s?\d{2}$/,
-  'fr-FR': /^(\+?33|0)[67]\d{8}$/,
-  'fr-GF': /^(\+?594|0|00594)[67]\d{8}$/,
-  'fr-GP': /^(\+?590|0|00590)[67]\d{8}$/,
-  'fr-MQ': /^(\+?596|0|00596)[67]\d{8}$/,
-  'fr-RE': /^(\+?262|0|00262)[67]\d{8}$/,
-  'he-IL': /^(\+972|0)([23489]|5[012345689]|77)[1-9]\d{6}$/,
-  'hu-HU': /^(\+?36)(20|30|70)\d{7}$/,
-  'id-ID': /^(\+?62|0)8(1[123456789]|2[1238]|3[1238]|5[12356789]|7[78]|9[56789]|8[123456789])([\s?|\d]{5,11})$/,
-  'it-IT': /^(\+?39)?\s?3\d{2} ?\d{6,7}$/,
-  'it-SM': /^((\+378)|(0549)|(\+390549)|(\+3780549))?6\d{5,9}$/,
-  'ja-JP': /^(\+81[ \-]?(\(0\))?|0)[6789]0[ \-]?\d{4}[ \-]?\d{4}$/,
-  'ka-GE': /^(\+?995)?(5|79)\d{7}$/,
-  'kk-KZ': /^(\+?7|8)?7\d{9}$/,
-  'kl-GL': /^(\+?299)?\s?\d{2}\s?\d{2}\s?\d{2}$/,
-  'ko-KR': /^((\+?82)[ \-]?)?0?1([0|1|6|7|8|9]{1})[ \-]?\d{3,4}[ \-]?\d{4}$/,
-  'lt-LT': /^(\+370|8)\d{8}$/,
-  'lv-LV': /^(\+?371)2\d{7}$/,
-  'ms-MY': /^(\+?6?01){1}(([0145]{1}(\-|\s)?\d{7,8})|([236789]{1}(\s|\-)?\d{7}))$/,
-  'mz-MZ': /^(\+?258)?8[234567]\d{7}$/,
-  'nb-NO': /^(\+?47)?[49]\d{7}$/,
-  'ne-NP': /^(\+?977)?9[78]\d{8}$/,
-  'nl-BE': /^(\+?32|0)4?\d{8}$/,
-  'nl-NL': /^(((\+|00)?31\(0\))|((\+|00)?31)|0)6{1}\d{8}$/,
-  'nn-NO': /^(\+?47)?[49]\d{7}$/,
-  'pl-PL': /^(\+?48)? ?[5-8]\d ?\d{3} ?\d{2} ?\d{2}$/,
-  'pt-BR': /^((\+?55\ ?[1-9]{2}\ ?)|(\+?55\ ?\([1-9]{2}\)\ ?)|(0[1-9]{2}\ ?)|(\([1-9]{2}\)\ ?)|([1-9]{2}\ ?))((\d{4}\-?\d{4})|(9[2-9]{1}\d{3}\-?\d{4}))$/,
-  'pt-PT': /^(\+?351)?9[1236]\d{7}$/,
-  'pt-AO': /^(\+244)\d{9}$/,
-  'ro-RO': /^(\+?4?0)\s?7\d{2}(\/|\s|\.|\-)?\d{3}(\s|\.|\-)?\d{3}$/,
-  'ru-RU': /^(\+?7|8)?9\d{9}$/,
-  'si-LK': /^(?:0|94|\+94)?(7(0|1|2|5|6|7|8)( |-)?\d)\d{6}$/,
-  'sl-SI': /^(\+386\s?|0)(\d{1}\s?\d{3}\s?\d{2}\s?\d{2}|\d{2}\s?\d{3}\s?\d{3})$/,
-  'sk-SK': /^(\+?421)? ?[1-9][0-9]{2} ?[0-9]{3} ?[0-9]{3}$/,
-  'sq-AL': /^(\+355|0)6[789]\d{6}$/,
-  'sr-RS': /^(\+3816|06)[- \d]{5,9}$/,
-  'sv-SE': /^(\+?46|0)[\s\-]?7[\s\-]?[02369]([\s\-]?\d){7}$/,
-  'th-TH': /^(\+66|66|0)\d{9}$/,
-  'tr-TR': /^(\+?90|0)?5\d{9}$/,
-  'uk-UA': /^(\+?38|8)?0\d{9}$/,
-  'uz-UZ': /^(\+?998)?(6[125-79]|7[1-69]|88|9\d)\d{7}$/,
-  'vi-VN': /^(\+?84|0)((3([2-9]))|(5([2689]))|(7([0|6-9]))|(8([1-9]))|(9([0-9])))([0-9]{7})$/,
-  'zh-CN': /^((\+|00)86)?1([3456789][0-9]|4[579]|6[67]|7[01235678]|9[012356789])[0-9]{8}$/,
-  'zh-TW': /^(\+?886\-?|0)?9\d{8}$/
-};
-/* eslint-enable max-len */
-// aliases
-
-phones['en-CA'] = phones['en-US'];
-phones['fr-CA'] = phones['en-CA'];
-phones['fr-BE'] = phones['nl-BE'];
-phones['zh-HK'] = phones['en-HK'];
-phones['zh-MO'] = phones['en-MO'];
-phones['ga-IE'] = phones['en-IE'];
-phones['fr-CH'] = phones['de-CH'];
-phones['it-CH'] = phones['fr-CH'];
-
-function isMobilePhone(str, locale, options) {
-  (0, _assertString.default)(str);
-
-  if (options && options.strictMode && !str.startsWith('+')) {
-    return false;
-  }
-
-  if (Array.isArray(locale)) {
-    return locale.some(function (key) {
-      // https://github.com/gotwarlost/istanbul/blob/master/ignoring-code-for-coverage.md#ignoring-code-for-coverage-purposes
-      // istanbul ignore else
-      if (phones.hasOwnProperty(key)) {
-        var phone = phones[key];
-
-        if (phone.test(str)) {
-          return true;
-        }
-      }
-
-      return false;
-    });
-  } else if (locale in phones) {
-    return phones[locale].test(str); // alias falsey locale as 'any'
-  } else if (!locale || locale === 'any') {
-    for (var key in phones) {
-      // istanbul ignore else
-      if (phones.hasOwnProperty(key)) {
-        var phone = phones[key];
-
-        if (phone.test(str)) {
-          return true;
-        }
-      }
-    }
-
-    return false;
-  }
-
-  throw new Error("Invalid locale '".concat(locale, "'"));
-}
-
-var locales = Object.keys(phones);
-exports.locales = locales;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isMongoId.js":
-/*!**************************************************!*\
-  !*** ../node_modules/validator/lib/isMongoId.js ***!
-  \**************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isMongoId;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-var _isHexadecimal = _interopRequireDefault(__webpack_require__(/*! ./isHexadecimal */ "../node_modules/validator/lib/isHexadecimal.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function isMongoId(str) {
-  (0, _assertString.default)(str);
-  return (0, _isHexadecimal.default)(str) && str.length === 24;
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isMultibyte.js":
-/*!****************************************************!*\
-  !*** ../node_modules/validator/lib/isMultibyte.js ***!
-  \****************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isMultibyte;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/* eslint-disable no-control-regex */
-var multibyte = /[^\x00-\x7F]/;
-/* eslint-enable no-control-regex */
-
-function isMultibyte(str) {
-  (0, _assertString.default)(str);
-  return multibyte.test(str);
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isNumeric.js":
-/*!**************************************************!*\
-  !*** ../node_modules/validator/lib/isNumeric.js ***!
-  \**************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isNumeric;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-var _alpha = __webpack_require__(/*! ./alpha */ "../node_modules/validator/lib/alpha.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var numericNoSymbols = /^[0-9]+$/;
-
-function isNumeric(str, options) {
-  (0, _assertString.default)(str);
-
-  if (options && options.no_symbols) {
-    return numericNoSymbols.test(str);
-  }
-
-  return new RegExp("^[+-]?([0-9]*[".concat((options || {}).locale ? _alpha.decimal[options.locale] : '.', "])?[0-9]+$")).test(str);
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isOctal.js":
-/*!************************************************!*\
-  !*** ../node_modules/validator/lib/isOctal.js ***!
-  \************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isOctal;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var octal = /^(0o)?[0-7]+$/i;
-
-function isOctal(str) {
-  (0, _assertString.default)(str);
-  return octal.test(str);
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isPassportNumber.js":
-/*!*********************************************************!*\
-  !*** ../node_modules/validator/lib/isPassportNumber.js ***!
-  \*********************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isPassportNumber;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * Reference:
- * https://en.wikipedia.org/ -- Wikipedia
- * https://docs.microsoft.com/en-us/microsoft-365/compliance/eu-passport-number -- EU Passport Number
- * https://countrycode.org/ -- Country Codes
- */
-var passportRegexByCountryCode = {
-  AM: /^[A-Z]{2}\d{7}$/,
-  // ARMENIA
-  AR: /^[A-Z]{3}\d{6}$/,
-  // ARGENTINA
-  AT: /^[A-Z]\d{7}$/,
-  // AUSTRIA
-  AU: /^[A-Z]\d{7}$/,
-  // AUSTRALIA
-  BE: /^[A-Z]{2}\d{6}$/,
-  // BELGIUM
-  BG: /^\d{9}$/,
-  // BULGARIA
-  BR: /^[A-Z]{2}\d{6}$/,
-  // BRAZIL
-  BY: /^[A-Z]{2}\d{7}$/,
-  // BELARUS
-  CA: /^[A-Z]{2}\d{6}$/,
-  // CANADA
-  CH: /^[A-Z]\d{7}$/,
-  // SWITZERLAND
-  CN: /^[GE]\d{8}$/,
-  // CHINA [G=Ordinary, E=Electronic] followed by 8-digits
-  CY: /^[A-Z](\d{6}|\d{8})$/,
-  // CYPRUS
-  CZ: /^\d{8}$/,
-  // CZECH REPUBLIC
-  DE: /^[CFGHJKLMNPRTVWXYZ0-9]{9}$/,
-  // GERMANY
-  DK: /^\d{9}$/,
-  // DENMARK
-  DZ: /^\d{9}$/,
-  // ALGERIA
-  EE: /^([A-Z]\d{7}|[A-Z]{2}\d{7})$/,
-  // ESTONIA (K followed by 7-digits), e-passports have 2 UPPERCASE followed by 7 digits
-  ES: /^[A-Z0-9]{2}([A-Z0-9]?)\d{6}$/,
-  // SPAIN
-  FI: /^[A-Z]{2}\d{7}$/,
-  // FINLAND
-  FR: /^\d{2}[A-Z]{2}\d{5}$/,
-  // FRANCE
-  GB: /^\d{9}$/,
-  // UNITED KINGDOM
-  GR: /^[A-Z]{2}\d{7}$/,
-  // GREECE
-  HR: /^\d{9}$/,
-  // CROATIA
-  HU: /^[A-Z]{2}(\d{6}|\d{7})$/,
-  // HUNGARY
-  IE: /^[A-Z0-9]{2}\d{7}$/,
-  // IRELAND
-  IN: /^[A-Z]{1}-?\d{7}$/,
-  // INDIA
-  IR: /^[A-Z]\d{8}$/,
-  // IRAN
-  IS: /^(A)\d{7}$/,
-  // ICELAND
-  IT: /^[A-Z0-9]{2}\d{7}$/,
-  // ITALY
-  JP: /^[A-Z]{2}\d{7}$/,
-  // JAPAN
-  KR: /^[MS]\d{8}$/,
-  // SOUTH KOREA, REPUBLIC OF KOREA, [S=PS Passports, M=PM Passports]
-  LT: /^[A-Z0-9]{8}$/,
-  // LITHUANIA
-  LU: /^[A-Z0-9]{8}$/,
-  // LUXEMBURG
-  LV: /^[A-Z0-9]{2}\d{7}$/,
-  // LATVIA
-  LY: /^[A-Z0-9]{8}$/,
-  // LIBYA
-  MT: /^\d{7}$/,
-  // MALTA
-  MZ: /^([A-Z]{2}\d{7})|(\d{2}[A-Z]{2}\d{5})$/,
-  // MOZAMBIQUE
-  MY: /^[AHK]\d{8}$/,
-  // MALAYSIA
-  NL: /^[A-Z]{2}[A-Z0-9]{6}\d$/,
-  // NETHERLANDS
-  PO: /^[A-Z]{2}\d{7}$/,
-  // POLAND
-  PT: /^[A-Z]\d{6}$/,
-  // PORTUGAL
-  RO: /^\d{8,9}$/,
-  // ROMANIA
-  RU: /^\d{2}\d{2}\d{6}$/,
-  // RUSSIAN FEDERATION
-  SE: /^\d{8}$/,
-  // SWEDEN
-  SL: /^(P)[A-Z]\d{7}$/,
-  // SLOVANIA
-  SK: /^[0-9A-Z]\d{7}$/,
-  // SLOVAKIA
-  TR: /^[A-Z]\d{8}$/,
-  // TURKEY
-  UA: /^[A-Z]{2}\d{6}$/,
-  // UKRAINE
-  US: /^\d{9}$/ // UNITED STATES
-
-};
-/**
- * Check if str is a valid passport number
- * relative to provided ISO Country Code.
- *
- * @param {string} str
- * @param {string} countryCode
- * @return {boolean}
- */
-
-function isPassportNumber(str, countryCode) {
-  (0, _assertString.default)(str);
-  /** Remove All Whitespaces, Convert to UPPERCASE */
-
-  var normalizedStr = str.replace(/\s/g, '').toUpperCase();
-  return countryCode.toUpperCase() in passportRegexByCountryCode && passportRegexByCountryCode[countryCode].test(normalizedStr);
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isPort.js":
-/*!***********************************************!*\
-  !*** ../node_modules/validator/lib/isPort.js ***!
-  \***********************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isPort;
-
-var _isInt = _interopRequireDefault(__webpack_require__(/*! ./isInt */ "../node_modules/validator/lib/isInt.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function isPort(str) {
-  return (0, _isInt.default)(str, {
-    min: 0,
-    max: 65535
-  });
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isPostalCode.js":
-/*!*****************************************************!*\
-  !*** ../node_modules/validator/lib/isPostalCode.js ***!
-  \*****************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isPostalCode;
-exports.locales = void 0;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// common patterns
-var threeDigit = /^\d{3}$/;
-var fourDigit = /^\d{4}$/;
-var fiveDigit = /^\d{5}$/;
-var sixDigit = /^\d{6}$/;
-var patterns = {
-  AD: /^AD\d{3}$/,
-  AT: fourDigit,
-  AU: fourDigit,
-  AZ: /^AZ\d{4}$/,
-  BE: fourDigit,
-  BG: fourDigit,
-  BR: /^\d{5}-\d{3}$/,
-  BY: /2[1-4]{1}\d{4}$/,
-  CA: /^[ABCEGHJKLMNPRSTVXY]\d[ABCEGHJ-NPRSTV-Z][\s\-]?\d[ABCEGHJ-NPRSTV-Z]\d$/i,
-  CH: fourDigit,
-  CN: /^(0[1-7]|1[012356]|2[0-7]|3[0-6]|4[0-7]|5[1-7]|6[1-7]|7[1-5]|8[1345]|9[09])\d{4}$/,
-  CZ: /^\d{3}\s?\d{2}$/,
-  DE: fiveDigit,
-  DK: fourDigit,
-  DO: fiveDigit,
-  DZ: fiveDigit,
-  EE: fiveDigit,
-  ES: /^(5[0-2]{1}|[0-4]{1}\d{1})\d{3}$/,
-  FI: fiveDigit,
-  FR: /^\d{2}\s?\d{3}$/,
-  GB: /^(gir\s?0aa|[a-z]{1,2}\d[\da-z]?\s?(\d[a-z]{2})?)$/i,
-  GR: /^\d{3}\s?\d{2}$/,
-  HR: /^([1-5]\d{4}$)/,
-  HT: /^HT\d{4}$/,
-  HU: fourDigit,
-  ID: fiveDigit,
-  IE: /^(?!.*(?:o))[A-Za-z]\d[\dw]\s\w{4}$/i,
-  IL: /^(\d{5}|\d{7})$/,
-  IN: /^((?!10|29|35|54|55|65|66|86|87|88|89)[1-9][0-9]{5})$/,
-  IR: /\b(?!(\d)\1{3})[13-9]{4}[1346-9][013-9]{5}\b/,
-  IS: threeDigit,
-  IT: fiveDigit,
-  JP: /^\d{3}\-\d{4}$/,
-  KE: fiveDigit,
-  KR: /^(\d{5}|\d{6})$/,
-  LI: /^(948[5-9]|949[0-7])$/,
-  LT: /^LT\-\d{5}$/,
-  LU: fourDigit,
-  LV: /^LV\-\d{4}$/,
-  MX: fiveDigit,
-  MT: /^[A-Za-z]{3}\s{0,1}\d{4}$/,
-  MY: fiveDigit,
-  NL: /^\d{4}\s?[a-z]{2}$/i,
-  NO: fourDigit,
-  NP: /^(10|21|22|32|33|34|44|45|56|57)\d{3}$|^(977)$/i,
-  NZ: fourDigit,
-  PL: /^\d{2}\-\d{3}$/,
-  PR: /^00[679]\d{2}([ -]\d{4})?$/,
-  PT: /^\d{4}\-\d{3}?$/,
-  RO: sixDigit,
-  RU: sixDigit,
-  SA: fiveDigit,
-  SE: /^[1-9]\d{2}\s?\d{2}$/,
-  SG: sixDigit,
-  SI: fourDigit,
-  SK: /^\d{3}\s?\d{2}$/,
-  TH: fiveDigit,
-  TN: fourDigit,
-  TW: /^\d{3}(\d{2})?$/,
-  UA: fiveDigit,
-  US: /^\d{5}(-\d{4})?$/,
-  ZA: fourDigit,
-  ZM: fiveDigit
-};
-var locales = Object.keys(patterns);
-exports.locales = locales;
-
-function isPostalCode(str, locale) {
-  (0, _assertString.default)(str);
-
-  if (locale in patterns) {
-    return patterns[locale].test(str);
-  } else if (locale === 'any') {
-    for (var key in patterns) {
-      // https://github.com/gotwarlost/istanbul/blob/master/ignoring-code-for-coverage.md#ignoring-code-for-coverage-purposes
-      // istanbul ignore else
-      if (patterns.hasOwnProperty(key)) {
-        var pattern = patterns[key];
-
-        if (pattern.test(str)) {
-          return true;
-        }
-      }
-    }
-
-    return false;
-  }
-
-  throw new Error("Invalid locale '".concat(locale, "'"));
-}
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isRFC3339.js":
-/*!**************************************************!*\
-  !*** ../node_modules/validator/lib/isRFC3339.js ***!
-  \**************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isRFC3339;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/* Based on https://tools.ietf.org/html/rfc3339#section-5.6 */
-var dateFullYear = /[0-9]{4}/;
-var dateMonth = /(0[1-9]|1[0-2])/;
-var dateMDay = /([12]\d|0[1-9]|3[01])/;
-var timeHour = /([01][0-9]|2[0-3])/;
-var timeMinute = /[0-5][0-9]/;
-var timeSecond = /([0-5][0-9]|60)/;
-var timeSecFrac = /(\.[0-9]+)?/;
-var timeNumOffset = new RegExp("[-+]".concat(timeHour.source, ":").concat(timeMinute.source));
-var timeOffset = new RegExp("([zZ]|".concat(timeNumOffset.source, ")"));
-var partialTime = new RegExp("".concat(timeHour.source, ":").concat(timeMinute.source, ":").concat(timeSecond.source).concat(timeSecFrac.source));
-var fullDate = new RegExp("".concat(dateFullYear.source, "-").concat(dateMonth.source, "-").concat(dateMDay.source));
-var fullTime = new RegExp("".concat(partialTime.source).concat(timeOffset.source));
-var rfc3339 = new RegExp("".concat(fullDate.source, "[ tT]").concat(fullTime.source));
-
-function isRFC3339(str) {
-  (0, _assertString.default)(str);
-  return rfc3339.test(str);
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isRgbColor.js":
-/*!***************************************************!*\
-  !*** ../node_modules/validator/lib/isRgbColor.js ***!
-  \***************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isRgbColor;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var rgbColor = /^rgb\((([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]),){2}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\)$/;
-var rgbaColor = /^rgba\((([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]),){3}(0?\.\d|1(\.0)?|0(\.0)?)\)$/;
-var rgbColorPercent = /^rgb\((([0-9]%|[1-9][0-9]%|100%),){2}([0-9]%|[1-9][0-9]%|100%)\)/;
-var rgbaColorPercent = /^rgba\((([0-9]%|[1-9][0-9]%|100%),){3}(0?\.\d|1(\.0)?|0(\.0)?)\)/;
-
-function isRgbColor(str) {
-  var includePercentValues = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-  (0, _assertString.default)(str);
-
-  if (!includePercentValues) {
-    return rgbColor.test(str) || rgbaColor.test(str);
-  }
-
-  return rgbColor.test(str) || rgbaColor.test(str) || rgbColorPercent.test(str) || rgbaColorPercent.test(str);
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isSemVer.js":
-/*!*************************************************!*\
-  !*** ../node_modules/validator/lib/isSemVer.js ***!
-  \*************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isSemVer;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-var _multilineRegex = _interopRequireDefault(__webpack_require__(/*! ./util/multilineRegex */ "../node_modules/validator/lib/util/multilineRegex.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * Regular Expression to match
- * semantic versioning (SemVer)
- * built from multi-line, multi-parts regexp
- * Reference: https://semver.org/
- */
-var semanticVersioningRegex = (0, _multilineRegex.default)(['^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)', '(?:-((?:0|[1-9]\\d*|\\d*[a-z-][0-9a-z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-z-][0-9a-z-]*))*))', '?(?:\\+([0-9a-z-]+(?:\\.[0-9a-z-]+)*))?$'], 'i');
-
-function isSemVer(str) {
-  (0, _assertString.default)(str);
-  return semanticVersioningRegex.test(str);
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isSlug.js":
-/*!***********************************************!*\
-  !*** ../node_modules/validator/lib/isSlug.js ***!
-  \***********************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isSlug;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var charsetRegex = /^[^\s-_](?!.*?[-_]{2,})[a-z0-9-\\][^\s]*[^-_\s]$/;
-
-function isSlug(str) {
-  (0, _assertString.default)(str);
-  return charsetRegex.test(str);
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isStrongPassword.js":
-/*!*********************************************************!*\
-  !*** ../node_modules/validator/lib/isStrongPassword.js ***!
-  \*********************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isStrongPassword;
-
-var _merge = _interopRequireDefault(__webpack_require__(/*! ./util/merge */ "../node_modules/validator/lib/util/merge.js"));
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var upperCaseRegex = /^[A-Z]$/;
-var lowerCaseRegex = /^[a-z]$/;
-var numberRegex = /^[0-9]$/;
-var symbolRegex = /^[-#!$@%^&*()_+|~=`{}\[\]:";'<>?,.\/ ]$/;
-var defaultOptions = {
-  minLength: 8,
-  minLowercase: 1,
-  minUppercase: 1,
-  minNumbers: 1,
-  minSymbols: 1,
-  returnScore: false,
-  pointsPerUnique: 1,
-  pointsPerRepeat: 0.5,
-  pointsForContainingLower: 10,
-  pointsForContainingUpper: 10,
-  pointsForContainingNumber: 10,
-  pointsForContainingSymbol: 10
-};
-/* Counts number of occurrences of each char in a string
- * could be moved to util/ ?
-*/
-
-function countChars(str) {
-  var result = {};
-  Array.from(str).forEach(function (char) {
-    var curVal = result[char];
-
-    if (curVal) {
-      result[char] += 1;
-    } else {
-      result[char] = 1;
-    }
-  });
-  return result;
-}
-/* Return information about a password */
-
-
-function analyzePassword(password) {
-  var charMap = countChars(password);
-  var analysis = {
-    length: password.length,
-    uniqueChars: Object.keys(charMap).length,
-    uppercaseCount: 0,
-    lowercaseCount: 0,
-    numberCount: 0,
-    symbolCount: 0
-  };
-  Object.keys(charMap).forEach(function (char) {
-    /* istanbul ignore else */
-    if (upperCaseRegex.test(char)) {
-      analysis.uppercaseCount += charMap[char];
-    } else if (lowerCaseRegex.test(char)) {
-      analysis.lowercaseCount += charMap[char];
-    } else if (numberRegex.test(char)) {
-      analysis.numberCount += charMap[char];
-    } else if (symbolRegex.test(char)) {
-      analysis.symbolCount += charMap[char];
-    }
-  });
-  return analysis;
-}
-
-function scorePassword(analysis, scoringOptions) {
-  var points = 0;
-  points += analysis.uniqueChars * scoringOptions.pointsPerUnique;
-  points += (analysis.length - analysis.uniqueChars) * scoringOptions.pointsPerRepeat;
-
-  if (analysis.lowercaseCount > 0) {
-    points += scoringOptions.pointsForContainingLower;
-  }
-
-  if (analysis.uppercaseCount > 0) {
-    points += scoringOptions.pointsForContainingUpper;
-  }
-
-  if (analysis.numberCount > 0) {
-    points += scoringOptions.pointsForContainingNumber;
-  }
-
-  if (analysis.symbolCount > 0) {
-    points += scoringOptions.pointsForContainingSymbol;
-  }
-
-  return points;
-}
-
-function isStrongPassword(str) {
-  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-  (0, _assertString.default)(str);
-  var analysis = analyzePassword(str);
-  options = (0, _merge.default)(options || {}, defaultOptions);
-
-  if (options.returnScore) {
-    return scorePassword(analysis, options);
-  }
-
-  return analysis.length >= options.minLength && analysis.lowercaseCount >= options.minLowercase && analysis.uppercaseCount >= options.minUppercase && analysis.numberCount >= options.minNumbers && analysis.symbolCount >= options.minSymbols;
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isSurrogatePair.js":
-/*!********************************************************!*\
-  !*** ../node_modules/validator/lib/isSurrogatePair.js ***!
-  \********************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isSurrogatePair;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var surrogatePair = /[\uD800-\uDBFF][\uDC00-\uDFFF]/;
-
-function isSurrogatePair(str) {
-  (0, _assertString.default)(str);
-  return surrogatePair.test(str);
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isTaxID.js":
-/*!************************************************!*\
-  !*** ../node_modules/validator/lib/isTaxID.js ***!
-  \************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isTaxID;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-var algorithms = _interopRequireWildcard(__webpack_require__(/*! ./util/algorithms */ "../node_modules/validator/lib/util/algorithms.js"));
-
-var _isDate = _interopRequireDefault(__webpack_require__(/*! ./isDate */ "../node_modules/validator/lib/isDate.js"));
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-/**
- * TIN Validation
- * Validates Tax Identification Numbers (TINs) from the US, EU member states and the United Kingdom.
- *
- * EU-UK:
- * National TIN validity is calculated using public algorithms as made available by DG TAXUD.
- *
- * See `https://ec.europa.eu/taxation_customs/tin/specs/FS-TIN%20Algorithms-Public.docx` for more information.
- *
- * US:
- * An Employer Identification Number (EIN), also known as a Federal Tax Identification Number,
- *  is used to identify a business entity.
- *
- * NOTES:
- *  - Prefix 47 is being reserved for future use
- *  - Prefixes 26, 27, 45, 46 and 47 were previously assigned by the Philadelphia campus.
- *
- * See `http://www.irs.gov/Businesses/Small-Businesses-&-Self-Employed/How-EINs-are-Assigned-and-Valid-EIN-Prefixes`
- * for more information.
- */
-// Locale functions
-
-/*
- * bg-BG validation function
- * (Edinen graždanski nomer (EGN/ЕГН), persons only)
- * Checks if birth date (first six digits) is valid and calculates check (last) digit
- */
-function bgBgCheck(tin) {
-  // Extract full year, normalize month and check birth date validity
-  var century_year = tin.slice(0, 2);
-  var month = parseInt(tin.slice(2, 4), 10);
-
-  if (month > 40) {
-    month -= 40;
-    century_year = "20".concat(century_year);
-  } else if (month > 20) {
-    month -= 20;
-    century_year = "18".concat(century_year);
-  } else {
-    century_year = "19".concat(century_year);
-  }
-
-  if (month < 10) {
-    month = "0".concat(month);
-  }
-
-  var date = "".concat(century_year, "/").concat(month, "/").concat(tin.slice(4, 6));
-
-  if (!(0, _isDate.default)(date, 'YYYY/MM/DD')) {
-    return false;
-  } // split digits into an array for further processing
-
-
-  var digits = tin.split('').map(function (a) {
-    return parseInt(a, 10);
-  }); // Calculate checksum by multiplying digits with fixed values
-
-  var multip_lookup = [2, 4, 8, 5, 10, 9, 7, 3, 6];
-  var checksum = 0;
-
-  for (var i = 0; i < multip_lookup.length; i++) {
-    checksum += digits[i] * multip_lookup[i];
-  }
-
-  checksum = checksum % 11 === 10 ? 0 : checksum % 11;
-  return checksum === digits[9];
-}
-/*
- * cs-CZ validation function
- * (Rodné číslo (RČ), persons only)
- * Checks if birth date (first six digits) is valid and divisibility by 11
- * Material not in DG TAXUD document sourced from:
- * -`https://lorenc.info/3MA381/overeni-spravnosti-rodneho-cisla.htm`
- * -`https://www.mvcr.cz/clanek/rady-a-sluzby-dokumenty-rodne-cislo.aspx`
- */
-
-
-function csCzCheck(tin) {
-  tin = tin.replace(/\W/, ''); // Extract full year from TIN length
-
-  var full_year = parseInt(tin.slice(0, 2), 10);
-
-  if (tin.length === 10) {
-    if (full_year < 54) {
-      full_year = "20".concat(full_year);
-    } else {
-      full_year = "19".concat(full_year);
-    }
-  } else {
-    if (tin.slice(6) === '000') {
-      return false;
-    } // Three-zero serial not assigned before 1954
-
-
-    if (full_year < 54) {
-      full_year = "19".concat(full_year);
-    } else {
-      return false; // No 18XX years seen in any of the resources
-    }
-  } // Add missing zero if needed
-
-
-  if (full_year.length === 3) {
-    full_year = [full_year.slice(0, 2), '0', full_year.slice(2)].join('');
-  } // Extract month from TIN and normalize
-
-
-  var month = parseInt(tin.slice(2, 4), 10);
-
-  if (month > 50) {
-    month -= 50;
-  }
-
-  if (month > 20) {
-    // Month-plus-twenty was only introduced in 2004
-    if (parseInt(full_year, 10) < 2004) {
-      return false;
-    }
-
-    month -= 20;
-  }
-
-  if (month < 10) {
-    month = "0".concat(month);
-  } // Check date validity
-
-
-  var date = "".concat(full_year, "/").concat(month, "/").concat(tin.slice(4, 6));
-
-  if (!(0, _isDate.default)(date, 'YYYY/MM/DD')) {
-    return false;
-  } // Verify divisibility by 11
-
-
-  if (tin.length === 10) {
-    if (parseInt(tin, 10) % 11 !== 0) {
-      // Some numbers up to and including 1985 are still valid if
-      // check (last) digit equals 0 and modulo of first 9 digits equals 10
-      var checkdigit = parseInt(tin.slice(0, 9), 10) % 11;
-
-      if (parseInt(full_year, 10) < 1986 && checkdigit === 10) {
-        if (parseInt(tin.slice(9), 10) !== 0) {
-          return false;
-        }
-      } else {
-        return false;
-      }
-    }
-  }
-
-  return true;
-}
-/*
- * de-AT validation function
- * (Abgabenkontonummer, persons/entities)
- * Verify TIN validity by calling luhnCheck()
- */
-
-
-function deAtCheck(tin) {
-  return algorithms.luhnCheck(tin);
-}
-/*
- * de-DE validation function
- * (Steueridentifikationsnummer (Steuer-IdNr.), persons only)
- * Tests for single duplicate/triplicate value, then calculates ISO 7064 check (last) digit
- * Partial implementation of spec (same result with both algorithms always)
- */
-
-
-function deDeCheck(tin) {
-  // Split digits into an array for further processing
-  var digits = tin.split('').map(function (a) {
-    return parseInt(a, 10);
-  }); // Fill array with strings of number positions
-
-  var occurences = [];
-
-  for (var i = 0; i < digits.length - 1; i++) {
-    occurences.push('');
-
-    for (var j = 0; j < digits.length - 1; j++) {
-      if (digits[i] === digits[j]) {
-        occurences[i] += j;
-      }
-    }
-  } // Remove digits with one occurence and test for only one duplicate/triplicate
-
-
-  occurences = occurences.filter(function (a) {
-    return a.length > 1;
-  });
-
-  if (occurences.length !== 2 && occurences.length !== 3) {
-    return false;
-  } // In case of triplicate value only two digits are allowed next to each other
-
-
-  if (occurences[0].length === 3) {
-    var trip_locations = occurences[0].split('').map(function (a) {
-      return parseInt(a, 10);
-    });
-    var recurrent = 0; // Amount of neighbour occurences
-
-    for (var _i = 0; _i < trip_locations.length - 1; _i++) {
-      if (trip_locations[_i] + 1 === trip_locations[_i + 1]) {
-        recurrent += 1;
-      }
-    }
-
-    if (recurrent === 2) {
-      return false;
-    }
-  }
-
-  return algorithms.iso7064Check(tin);
-}
-/*
- * dk-DK validation function
- * (CPR-nummer (personnummer), persons only)
- * Checks if birth date (first six digits) is valid and assigned to century (seventh) digit,
- * and calculates check (last) digit
- */
-
-
-function dkDkCheck(tin) {
-  tin = tin.replace(/\W/, ''); // Extract year, check if valid for given century digit and add century
-
-  var year = parseInt(tin.slice(4, 6), 10);
-  var century_digit = tin.slice(6, 7);
-
-  switch (century_digit) {
-    case '0':
-    case '1':
-    case '2':
-    case '3':
-      year = "19".concat(year);
-      break;
-
-    case '4':
-    case '9':
-      if (year < 37) {
-        year = "20".concat(year);
-      } else {
-        year = "19".concat(year);
-      }
-
-      break;
-
-    default:
-      if (year < 37) {
-        year = "20".concat(year);
-      } else if (year > 58) {
-        year = "18".concat(year);
-      } else {
-        return false;
-      }
-
-      break;
-  } // Add missing zero if needed
-
-
-  if (year.length === 3) {
-    year = [year.slice(0, 2), '0', year.slice(2)].join('');
-  } // Check date validity
-
-
-  var date = "".concat(year, "/").concat(tin.slice(2, 4), "/").concat(tin.slice(0, 2));
-
-  if (!(0, _isDate.default)(date, 'YYYY/MM/DD')) {
-    return false;
-  } // Split digits into an array for further processing
-
-
-  var digits = tin.split('').map(function (a) {
-    return parseInt(a, 10);
-  });
-  var checksum = 0;
-  var weight = 4; // Multiply by weight and add to checksum
-
-  for (var i = 0; i < 9; i++) {
-    checksum += digits[i] * weight;
-    weight -= 1;
-
-    if (weight === 1) {
-      weight = 7;
-    }
-  }
-
-  checksum %= 11;
-
-  if (checksum === 1) {
-    return false;
-  }
-
-  return checksum === 0 ? digits[9] === 0 : digits[9] === 11 - checksum;
-}
-/*
- * el-CY validation function
- * (Arithmos Forologikou Mitroou (AFM/ΑΦΜ), persons only)
- * Verify TIN validity by calculating ASCII value of check (last) character
- */
-
-
-function elCyCheck(tin) {
-  // split digits into an array for further processing
-  var digits = tin.slice(0, 8).split('').map(function (a) {
-    return parseInt(a, 10);
-  });
-  var checksum = 0; // add digits in even places
-
-  for (var i = 1; i < digits.length; i += 2) {
-    checksum += digits[i];
-  } // add digits in odd places
-
-
-  for (var _i2 = 0; _i2 < digits.length; _i2 += 2) {
-    if (digits[_i2] < 2) {
-      checksum += 1 - digits[_i2];
-    } else {
-      checksum += 2 * (digits[_i2] - 2) + 5;
-
-      if (digits[_i2] > 4) {
-        checksum += 2;
-      }
-    }
-  }
-
-  return String.fromCharCode(checksum % 26 + 65) === tin.charAt(8);
-}
-/*
- * el-GR validation function
- * (Arithmos Forologikou Mitroou (AFM/ΑΦΜ), persons/entities)
- * Verify TIN validity by calculating check (last) digit
- * Algorithm not in DG TAXUD document- sourced from:
- * - `http://epixeirisi.gr/%CE%9A%CE%A1%CE%99%CE%A3%CE%99%CE%9C%CE%91-%CE%98%CE%95%CE%9C%CE%91%CE%A4%CE%91-%CE%A6%CE%9F%CE%A1%CE%9F%CE%9B%CE%9F%CE%93%CE%99%CE%91%CE%A3-%CE%9A%CE%91%CE%99-%CE%9B%CE%9F%CE%93%CE%99%CE%A3%CE%A4%CE%99%CE%9A%CE%97%CE%A3/23791/%CE%91%CF%81%CE%B9%CE%B8%CE%BC%CF%8C%CF%82-%CE%A6%CE%BF%CF%81%CE%BF%CE%BB%CE%BF%CE%B3%CE%B9%CE%BA%CE%BF%CF%8D-%CE%9C%CE%B7%CF%84%CF%81%CF%8E%CE%BF%CF%85`
- */
-
-
-function elGrCheck(tin) {
-  // split digits into an array for further processing
-  var digits = tin.split('').map(function (a) {
-    return parseInt(a, 10);
-  });
-  var checksum = 0;
-
-  for (var i = 0; i < 8; i++) {
-    checksum += digits[i] * Math.pow(2, 8 - i);
-  }
-
-  return checksum % 11 % 10 === digits[8];
-}
-/*
- * en-GB validation function (should go here if needed)
- * (National Insurance Number (NINO) or Unique Taxpayer Reference (UTR),
- * persons/entities respectively)
- */
-
-/*
- * en-IE validation function
- * (Personal Public Service Number (PPS No), persons only)
- * Verify TIN validity by calculating check (second to last) character
- */
-
-
-function enIeCheck(tin) {
-  var checksum = algorithms.reverseMultiplyAndSum(tin.split('').slice(0, 7).map(function (a) {
-    return parseInt(a, 10);
-  }), 8);
-
-  if (tin.length === 9 && tin[8] !== 'W') {
-    checksum += (tin[8].charCodeAt(0) - 64) * 9;
-  }
-
-  checksum %= 23;
-
-  if (checksum === 0) {
-    return tin[7].toUpperCase() === 'W';
-  }
-
-  return tin[7].toUpperCase() === String.fromCharCode(64 + checksum);
-} // Valid US IRS campus prefixes
-
-
-var enUsCampusPrefix = {
-  andover: ['10', '12'],
-  atlanta: ['60', '67'],
-  austin: ['50', '53'],
-  brookhaven: ['01', '02', '03', '04', '05', '06', '11', '13', '14', '16', '21', '22', '23', '25', '34', '51', '52', '54', '55', '56', '57', '58', '59', '65'],
-  cincinnati: ['30', '32', '35', '36', '37', '38', '61'],
-  fresno: ['15', '24'],
-  internet: ['20', '26', '27', '45', '46', '47'],
-  kansas: ['40', '44'],
-  memphis: ['94', '95'],
-  ogden: ['80', '90'],
-  philadelphia: ['33', '39', '41', '42', '43', '46', '48', '62', '63', '64', '66', '68', '71', '72', '73', '74', '75', '76', '77', '81', '82', '83', '84', '85', '86', '87', '88', '91', '92', '93', '98', '99'],
-  sba: ['31']
-}; // Return an array of all US IRS campus prefixes
-
-function enUsGetPrefixes() {
-  var prefixes = [];
-
-  for (var location in enUsCampusPrefix) {
-    // https://github.com/gotwarlost/istanbul/blob/master/ignoring-code-for-coverage.md#ignoring-code-for-coverage-purposes
-    // istanbul ignore else
-    if (enUsCampusPrefix.hasOwnProperty(location)) {
-      prefixes.push.apply(prefixes, _toConsumableArray(enUsCampusPrefix[location]));
-    }
-  }
-
-  return prefixes;
-}
-/*
- * en-US validation function
- * Verify that the TIN starts with a valid IRS campus prefix
- */
-
-
-function enUsCheck(tin) {
-  return enUsGetPrefixes().indexOf(tin.substr(0, 2)) !== -1;
-}
-/*
- * es-ES validation function
- * (Documento Nacional de Identidad (DNI)
- * or Número de Identificación de Extranjero (NIE), persons only)
- * Verify TIN validity by calculating check (last) character
- */
-
-
-function esEsCheck(tin) {
-  // Split characters into an array for further processing
-  var chars = tin.toUpperCase().split(''); // Replace initial letter if needed
-
-  if (isNaN(parseInt(chars[0], 10)) && chars.length > 1) {
-    var lead_replace = 0;
-
-    switch (chars[0]) {
-      case 'Y':
-        lead_replace = 1;
-        break;
-
-      case 'Z':
-        lead_replace = 2;
-        break;
-
-      default:
-    }
-
-    chars.splice(0, 1, lead_replace); // Fill with zeros if smaller than proper
-  } else {
-    while (chars.length < 9) {
-      chars.unshift(0);
-    }
-  } // Calculate checksum and check according to lookup
-
-
-  var lookup = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E'];
-  chars = chars.join('');
-  var checksum = parseInt(chars.slice(0, 8), 10) % 23;
-  return chars[8] === lookup[checksum];
-}
-/*
- * et-EE validation function
- * (Isikukood (IK), persons only)
- * Checks if birth date (century digit and six following) is valid and calculates check (last) digit
- * Material not in DG TAXUD document sourced from:
- * - `https://www.oecd.org/tax/automatic-exchange/crs-implementation-and-assistance/tax-identification-numbers/Estonia-TIN.pdf`
- */
-
-
-function etEeCheck(tin) {
-  // Extract year and add century
-  var full_year = tin.slice(1, 3);
-  var century_digit = tin.slice(0, 1);
-
-  switch (century_digit) {
-    case '1':
-    case '2':
-      full_year = "18".concat(full_year);
-      break;
-
-    case '3':
-    case '4':
-      full_year = "19".concat(full_year);
-      break;
-
-    default:
-      full_year = "20".concat(full_year);
-      break;
-  } // Check date validity
-
-
-  var date = "".concat(full_year, "/").concat(tin.slice(3, 5), "/").concat(tin.slice(5, 7));
-
-  if (!(0, _isDate.default)(date, 'YYYY/MM/DD')) {
-    return false;
-  } // Split digits into an array for further processing
-
-
-  var digits = tin.split('').map(function (a) {
-    return parseInt(a, 10);
-  });
-  var checksum = 0;
-  var weight = 1; // Multiply by weight and add to checksum
-
-  for (var i = 0; i < 10; i++) {
-    checksum += digits[i] * weight;
-    weight += 1;
-
-    if (weight === 10) {
-      weight = 1;
-    }
-  } // Do again if modulo 11 of checksum is 10
-
-
-  if (checksum % 11 === 10) {
-    checksum = 0;
-    weight = 3;
-
-    for (var _i3 = 0; _i3 < 10; _i3++) {
-      checksum += digits[_i3] * weight;
-      weight += 1;
-
-      if (weight === 10) {
-        weight = 1;
-      }
-    }
-
-    if (checksum % 11 === 10) {
-      return digits[10] === 0;
-    }
-  }
-
-  return checksum % 11 === digits[10];
-}
-/*
- * fi-FI validation function
- * (Henkilötunnus (HETU), persons only)
- * Checks if birth date (first six digits plus century symbol) is valid
- * and calculates check (last) digit
- */
-
-
-function fiFiCheck(tin) {
-  // Extract year and add century
-  var full_year = tin.slice(4, 6);
-  var century_symbol = tin.slice(6, 7);
-
-  switch (century_symbol) {
-    case '+':
-      full_year = "18".concat(full_year);
-      break;
-
-    case '-':
-      full_year = "19".concat(full_year);
-      break;
-
-    default:
-      full_year = "20".concat(full_year);
-      break;
-  } // Check date validity
-
-
-  var date = "".concat(full_year, "/").concat(tin.slice(2, 4), "/").concat(tin.slice(0, 2));
-
-  if (!(0, _isDate.default)(date, 'YYYY/MM/DD')) {
-    return false;
-  } // Calculate check character
-
-
-  var checksum = parseInt(tin.slice(0, 6) + tin.slice(7, 10), 10) % 31;
-
-  if (checksum < 10) {
-    return checksum === parseInt(tin.slice(10), 10);
-  }
-
-  checksum -= 10;
-  var letters_lookup = ['A', 'B', 'C', 'D', 'E', 'F', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y'];
-  return letters_lookup[checksum] === tin.slice(10);
-}
-/*
- * fr/nl-BE validation function
- * (Numéro national (N.N.), persons only)
- * Checks if birth date (first six digits) is valid and calculates check (last two) digits
- */
-
-
-function frBeCheck(tin) {
-  // Zero month/day value is acceptable
-  if (tin.slice(2, 4) !== '00' || tin.slice(4, 6) !== '00') {
-    // Extract date from first six digits of TIN
-    var date = "".concat(tin.slice(0, 2), "/").concat(tin.slice(2, 4), "/").concat(tin.slice(4, 6));
-
-    if (!(0, _isDate.default)(date, 'YY/MM/DD')) {
-      return false;
-    }
-  }
-
-  var checksum = 97 - parseInt(tin.slice(0, 9), 10) % 97;
-  var checkdigits = parseInt(tin.slice(9, 11), 10);
-
-  if (checksum !== checkdigits) {
-    checksum = 97 - parseInt("2".concat(tin.slice(0, 9)), 10) % 97;
-
-    if (checksum !== checkdigits) {
-      return false;
-    }
-  }
-
-  return true;
-}
-/*
- * fr-FR validation function
- * (Numéro fiscal de référence (numéro SPI), persons only)
- * Verify TIN validity by calculating check (last three) digits
- */
-
-
-function frFrCheck(tin) {
-  tin = tin.replace(/\s/g, '');
-  var checksum = parseInt(tin.slice(0, 10), 10) % 511;
-  var checkdigits = parseInt(tin.slice(10, 13), 10);
-  return checksum === checkdigits;
-}
-/*
- * fr/lb-LU validation function
- * (numéro d’identification personnelle, persons only)
- * Verify birth date validity and run Luhn and Verhoeff checks
- */
-
-
-function frLuCheck(tin) {
-  // Extract date and check validity
-  var date = "".concat(tin.slice(0, 4), "/").concat(tin.slice(4, 6), "/").concat(tin.slice(6, 8));
-
-  if (!(0, _isDate.default)(date, 'YYYY/MM/DD')) {
-    return false;
-  } // Run Luhn check
-
-
-  if (!algorithms.luhnCheck(tin.slice(0, 12))) {
-    return false;
-  } // Remove Luhn check digit and run Verhoeff check
-
-
-  return algorithms.verhoeffCheck("".concat(tin.slice(0, 11)).concat(tin[12]));
-}
-/*
- * hr-HR validation function
- * (Osobni identifikacijski broj (OIB), persons/entities)
- * Verify TIN validity by calling iso7064Check(digits)
- */
-
-
-function hrHrCheck(tin) {
-  return algorithms.iso7064Check(tin);
-}
-/*
- * hu-HU validation function
- * (Adóazonosító jel, persons only)
- * Verify TIN validity by calculating check (last) digit
- */
-
-
-function huHuCheck(tin) {
-  // split digits into an array for further processing
-  var digits = tin.split('').map(function (a) {
-    return parseInt(a, 10);
-  });
-  var checksum = 8;
-
-  for (var i = 1; i < 9; i++) {
-    checksum += digits[i] * (i + 1);
-  }
-
-  return checksum % 11 === digits[9];
-}
-/*
- * lt-LT validation function (should go here if needed)
- * (Asmens kodas, persons/entities respectively)
- * Current validation check is alias of etEeCheck- same format applies
- */
-
-/*
- * it-IT first/last name validity check
- * Accepts it-IT TIN-encoded names as a three-element character array and checks their validity
- * Due to lack of clarity between resources ("Are only Italian consonants used?
- * What happens if a person has X in their name?" etc.) only two test conditions
- * have been implemented:
- * Vowels may only be followed by other vowels or an X character
- * and X characters after vowels may only be followed by other X characters.
- */
-
-
-function itItNameCheck(name) {
-  // true at the first occurence of a vowel
-  var vowelflag = false; // true at the first occurence of an X AFTER vowel
-  // (to properly handle last names with X as consonant)
-
-  var xflag = false;
-
-  for (var i = 0; i < 3; i++) {
-    if (!vowelflag && /[AEIOU]/.test(name[i])) {
-      vowelflag = true;
-    } else if (!xflag && vowelflag && name[i] === 'X') {
-      xflag = true;
-    } else if (i > 0) {
-      if (vowelflag && !xflag) {
-        if (!/[AEIOU]/.test(name[i])) {
-          return false;
-        }
-      }
-
-      if (xflag) {
-        if (!/X/.test(name[i])) {
-          return false;
-        }
-      }
-    }
-  }
-
-  return true;
-}
-/*
- * it-IT validation function
- * (Codice fiscale (TIN-IT), persons only)
- * Verify name, birth date and codice catastale validity
- * and calculate check character.
- * Material not in DG-TAXUD document sourced from:
- * `https://en.wikipedia.org/wiki/Italian_fiscal_code`
- */
-
-
-function itItCheck(tin) {
-  // Capitalize and split characters into an array for further processing
-  var chars = tin.toUpperCase().split(''); // Check first and last name validity calling itItNameCheck()
-
-  if (!itItNameCheck(chars.slice(0, 3))) {
-    return false;
-  }
-
-  if (!itItNameCheck(chars.slice(3, 6))) {
-    return false;
-  } // Convert letters in number spaces back to numbers if any
-
-
-  var number_locations = [6, 7, 9, 10, 12, 13, 14];
-  var number_replace = {
-    L: '0',
-    M: '1',
-    N: '2',
-    P: '3',
-    Q: '4',
-    R: '5',
-    S: '6',
-    T: '7',
-    U: '8',
-    V: '9'
-  };
-
-  for (var _i4 = 0, _number_locations = number_locations; _i4 < _number_locations.length; _i4++) {
-    var i = _number_locations[_i4];
-
-    if (chars[i] in number_replace) {
-      chars.splice(i, 1, number_replace[chars[i]]);
-    }
-  } // Extract month and day, and check date validity
-
-
-  var month_replace = {
-    A: '01',
-    B: '02',
-    C: '03',
-    D: '04',
-    E: '05',
-    H: '06',
-    L: '07',
-    M: '08',
-    P: '09',
-    R: '10',
-    S: '11',
-    T: '12'
-  };
-  var month = month_replace[chars[8]];
-  var day = parseInt(chars[9] + chars[10], 10);
-
-  if (day > 40) {
-    day -= 40;
-  }
-
-  if (day < 10) {
-    day = "0".concat(day);
-  }
-
-  var date = "".concat(chars[6]).concat(chars[7], "/").concat(month, "/").concat(day);
-
-  if (!(0, _isDate.default)(date, 'YY/MM/DD')) {
-    return false;
-  } // Calculate check character by adding up even and odd characters as numbers
-
-
-  var checksum = 0;
-
-  for (var _i5 = 1; _i5 < chars.length - 1; _i5 += 2) {
-    var char_to_int = parseInt(chars[_i5], 10);
-
-    if (isNaN(char_to_int)) {
-      char_to_int = chars[_i5].charCodeAt(0) - 65;
-    }
-
-    checksum += char_to_int;
-  }
-
-  var odd_convert = {
-    // Maps of characters at odd places
-    A: 1,
-    B: 0,
-    C: 5,
-    D: 7,
-    E: 9,
-    F: 13,
-    G: 15,
-    H: 17,
-    I: 19,
-    J: 21,
-    K: 2,
-    L: 4,
-    M: 18,
-    N: 20,
-    O: 11,
-    P: 3,
-    Q: 6,
-    R: 8,
-    S: 12,
-    T: 14,
-    U: 16,
-    V: 10,
-    W: 22,
-    X: 25,
-    Y: 24,
-    Z: 23,
-    0: 1,
-    1: 0
-  };
-
-  for (var _i6 = 0; _i6 < chars.length - 1; _i6 += 2) {
-    var _char_to_int = 0;
-
-    if (chars[_i6] in odd_convert) {
-      _char_to_int = odd_convert[chars[_i6]];
-    } else {
-      var multiplier = parseInt(chars[_i6], 10);
-      _char_to_int = 2 * multiplier + 1;
-
-      if (multiplier > 4) {
-        _char_to_int += 2;
-      }
-    }
-
-    checksum += _char_to_int;
-  }
-
-  if (String.fromCharCode(65 + checksum % 26) !== chars[15]) {
-    return false;
-  }
-
-  return true;
-}
-/*
- * lv-LV validation function
- * (Personas kods (PK), persons only)
- * Check validity of birth date and calculate check (last) digit
- * Support only for old format numbers (not starting with '32', issued before 2017/07/01)
- * Material not in DG TAXUD document sourced from:
- * `https://boot.ritakafija.lv/forums/index.php?/topic/88314-personas-koda-algoritms-%C4%8Deksumma/`
- */
-
-
-function lvLvCheck(tin) {
-  tin = tin.replace(/\W/, ''); // Extract date from TIN
-
-  var day = tin.slice(0, 2);
-
-  if (day !== '32') {
-    // No date/checksum check if new format
-    var month = tin.slice(2, 4);
-
-    if (month !== '00') {
-      // No date check if unknown month
-      var full_year = tin.slice(4, 6);
-
-      switch (tin[6]) {
-        case '0':
-          full_year = "18".concat(full_year);
-          break;
-
-        case '1':
-          full_year = "19".concat(full_year);
-          break;
-
-        default:
-          full_year = "20".concat(full_year);
-          break;
-      } // Check date validity
-
-
-      var date = "".concat(full_year, "/").concat(tin.slice(2, 4), "/").concat(day);
-
-      if (!(0, _isDate.default)(date, 'YYYY/MM/DD')) {
-        return false;
-      }
-    } // Calculate check digit
-
-
-    var checksum = 1101;
-    var multip_lookup = [1, 6, 3, 7, 9, 10, 5, 8, 4, 2];
-
-    for (var i = 0; i < tin.length - 1; i++) {
-      checksum -= parseInt(tin[i], 10) * multip_lookup[i];
-    }
-
-    return parseInt(tin[10], 10) === checksum % 11;
-  }
-
-  return true;
-}
-/*
- * mt-MT validation function
- * (Identity Card Number or Unique Taxpayer Reference, persons/entities)
- * Verify Identity Card Number structure (no other tests found)
- */
-
-
-function mtMtCheck(tin) {
-  if (tin.length !== 9) {
-    // No tests for UTR
-    var chars = tin.toUpperCase().split(''); // Fill with zeros if smaller than proper
-
-    while (chars.length < 8) {
-      chars.unshift(0);
-    } // Validate format according to last character
-
-
-    switch (tin[7]) {
-      case 'A':
-      case 'P':
-        if (parseInt(chars[6], 10) === 0) {
-          return false;
-        }
-
-        break;
-
-      default:
-        {
-          var first_part = parseInt(chars.join('').slice(0, 5), 10);
-
-          if (first_part > 32000) {
-            return false;
-          }
-
-          var second_part = parseInt(chars.join('').slice(5, 7), 10);
-
-          if (first_part === second_part) {
-            return false;
-          }
-        }
-    }
-  }
-
-  return true;
-}
-/*
- * nl-NL validation function
- * (Burgerservicenummer (BSN) or Rechtspersonen Samenwerkingsverbanden Informatie Nummer (RSIN),
- * persons/entities respectively)
- * Verify TIN validity by calculating check (last) digit (variant of MOD 11)
- */
-
-
-function nlNlCheck(tin) {
-  return algorithms.reverseMultiplyAndSum(tin.split('').slice(0, 8).map(function (a) {
-    return parseInt(a, 10);
-  }), 9) % 11 === parseInt(tin[8], 10);
-}
-/*
- * pl-PL validation function
- * (Powszechny Elektroniczny System Ewidencji Ludności (PESEL)
- * or Numer identyfikacji podatkowej (NIP), persons/entities)
- * Verify TIN validity by validating birth date (PESEL) and calculating check (last) digit
- */
-
-
-function plPlCheck(tin) {
-  // NIP
-  if (tin.length === 10) {
-    // Calculate last digit by multiplying with lookup
-    var lookup = [6, 5, 7, 2, 3, 4, 5, 6, 7];
-    var _checksum = 0;
-
-    for (var i = 0; i < lookup.length; i++) {
-      _checksum += parseInt(tin[i], 10) * lookup[i];
-    }
-
-    _checksum %= 11;
-
-    if (_checksum === 10) {
-      return false;
-    }
-
-    return _checksum === parseInt(tin[9], 10);
-  } // PESEL
-  // Extract full year using month
-
-
-  var full_year = tin.slice(0, 2);
-  var month = parseInt(tin.slice(2, 4), 10);
-
-  if (month > 80) {
-    full_year = "18".concat(full_year);
-    month -= 80;
-  } else if (month > 60) {
-    full_year = "22".concat(full_year);
-    month -= 60;
-  } else if (month > 40) {
-    full_year = "21".concat(full_year);
-    month -= 40;
-  } else if (month > 20) {
-    full_year = "20".concat(full_year);
-    month -= 20;
-  } else {
-    full_year = "19".concat(full_year);
-  } // Add leading zero to month if needed
-
-
-  if (month < 10) {
-    month = "0".concat(month);
-  } // Check date validity
-
-
-  var date = "".concat(full_year, "/").concat(month, "/").concat(tin.slice(4, 6));
-
-  if (!(0, _isDate.default)(date, 'YYYY/MM/DD')) {
-    return false;
-  } // Calculate last digit by mulitplying with odd one-digit numbers except 5
-
-
-  var checksum = 0;
-  var multiplier = 1;
-
-  for (var _i7 = 0; _i7 < tin.length - 1; _i7++) {
-    checksum += parseInt(tin[_i7], 10) * multiplier % 10;
-    multiplier += 2;
-
-    if (multiplier > 10) {
-      multiplier = 1;
-    } else if (multiplier === 5) {
-      multiplier += 2;
-    }
-  }
-
-  checksum = 10 - checksum % 10;
-  return checksum === parseInt(tin[10], 10);
-}
-/*
-* pt-BR validation function
-* (Cadastro de Pessoas Físicas (CPF, persons)
-* Cadastro Nacional de Pessoas Jurídicas (CNPJ, entities)
-* Both inputs will be validated
-*/
-
-
-function ptBrCheck(tin) {
-  tin = tin.replace(/[^\d]+/g, '');
-  if (tin === '') return false;
-
-  if (tin.length === 11) {
-    var _sum;
-
-    var ramainder;
-    _sum = 0;
-    tin = tin.replace(/[^\d]+/g, '');
-    if ( // Reject known invalid CPFs
-    tin === '11111111111' || tin === '22222222222' || tin === '33333333333' || tin === '44444444444' || tin === '55555555555' || tin === '66666666666' || tin === '77777777777' || tin === '88888888888' || tin === '99999999999' || tin === '00000000000') return false;
-
-    for (var i = 1; i <= 9; i++) {
-      _sum += parseInt(tin.substring(i - 1, i), 10) * (11 - i);
-    }
-
-    ramainder = _sum * 10 % 11;
-    if (ramainder === 10 || ramainder === 11) ramainder = 0;
-    if (ramainder !== parseInt(tin.substring(9, 10), 10)) return false;
-    _sum = 0;
-
-    for (var _i8 = 1; _i8 <= 10; _i8++) {
-      _sum += parseInt(tin.substring(_i8 - 1, _i8), 10) * (12 - _i8);
-    }
-
-    ramainder = _sum * 10 % 11;
-    if (ramainder === 10 || ramainder === 11) ramainder = 0;
-    if (ramainder !== parseInt(tin.substring(10, 11), 10)) return false;
-    return true;
-  }
-
-  if (tin.length !== 14) {
-    return false;
-  }
-
-  if ( // Reject know invalid CNPJs
-  tin === '00000000000000' || tin === '11111111111111' || tin === '22222222222222' || tin === '33333333333333' || tin === '44444444444444' || tin === '55555555555555' || tin === '66666666666666' || tin === '77777777777777' || tin === '88888888888888' || tin === '99999999999999') {
-    return false;
-  }
-
-  var length = tin.length - 2;
-  var identifiers = tin.substring(0, length);
-  var verificators = tin.substring(length);
-  var sum = 0;
-  var pos = length - 7;
-
-  for (var _i9 = length; _i9 >= 1; _i9--) {
-    sum += identifiers.charAt(length - _i9) * pos;
-    pos -= 1;
-
-    if (pos < 2) {
-      pos = 9;
-    }
-  }
-
-  var result = sum % 11 < 2 ? 0 : 11 - sum % 11;
-
-  if (result !== parseInt(verificators.charAt(0), 10)) {
-    return false;
-  }
-
-  length += 1;
-  identifiers = tin.substring(0, length);
-  sum = 0;
-  pos = length - 7;
-
-  for (var _i10 = length; _i10 >= 1; _i10--) {
-    sum += identifiers.charAt(length - _i10) * pos;
-    pos -= 1;
-
-    if (pos < 2) {
-      pos = 9;
-    }
-  }
-
-  result = sum % 11 < 2 ? 0 : 11 - sum % 11;
-
-  if (result !== parseInt(verificators.charAt(1), 10)) {
-    return false;
-  }
-
-  return true;
-}
-/*
- * pt-PT validation function
- * (Número de identificação fiscal (NIF), persons/entities)
- * Verify TIN validity by calculating check (last) digit (variant of MOD 11)
- */
-
-
-function ptPtCheck(tin) {
-  var checksum = 11 - algorithms.reverseMultiplyAndSum(tin.split('').slice(0, 8).map(function (a) {
-    return parseInt(a, 10);
-  }), 9) % 11;
-
-  if (checksum > 9) {
-    return parseInt(tin[8], 10) === 0;
-  }
-
-  return checksum === parseInt(tin[8], 10);
-}
-/*
- * ro-RO validation function
- * (Cod Numeric Personal (CNP) or Cod de înregistrare fiscală (CIF),
- * persons only)
- * Verify CNP validity by calculating check (last) digit (test not found for CIF)
- * Material not in DG TAXUD document sourced from:
- * `https://en.wikipedia.org/wiki/National_identification_number#Romania`
- */
-
-
-function roRoCheck(tin) {
-  if (tin.slice(0, 4) !== '9000') {
-    // No test found for this format
-    // Extract full year using century digit if possible
-    var full_year = tin.slice(1, 3);
-
-    switch (tin[0]) {
-      case '1':
-      case '2':
-        full_year = "19".concat(full_year);
-        break;
-
-      case '3':
-      case '4':
-        full_year = "18".concat(full_year);
-        break;
-
-      case '5':
-      case '6':
-        full_year = "20".concat(full_year);
-        break;
-
-      default:
-    } // Check date validity
-
-
-    var date = "".concat(full_year, "/").concat(tin.slice(3, 5), "/").concat(tin.slice(5, 7));
-
-    if (date.length === 8) {
-      if (!(0, _isDate.default)(date, 'YY/MM/DD')) {
-        return false;
-      }
-    } else if (!(0, _isDate.default)(date, 'YYYY/MM/DD')) {
-      return false;
-    } // Calculate check digit
-
-
-    var digits = tin.split('').map(function (a) {
-      return parseInt(a, 10);
-    });
-    var multipliers = [2, 7, 9, 1, 4, 6, 3, 5, 8, 2, 7, 9];
-    var checksum = 0;
-
-    for (var i = 0; i < multipliers.length; i++) {
-      checksum += digits[i] * multipliers[i];
-    }
-
-    if (checksum % 11 === 10) {
-      return digits[12] === 1;
-    }
-
-    return digits[12] === checksum % 11;
-  }
-
-  return true;
-}
-/*
- * sk-SK validation function
- * (Rodné číslo (RČ) or bezvýznamové identifikačné číslo (BIČ), persons only)
- * Checks validity of pre-1954 birth numbers (rodné číslo) only
- * Due to the introduction of the pseudo-random BIČ it is not possible to test
- * post-1954 birth numbers without knowing whether they are BIČ or RČ beforehand
- */
-
-
-function skSkCheck(tin) {
-  if (tin.length === 9) {
-    tin = tin.replace(/\W/, '');
-
-    if (tin.slice(6) === '000') {
-      return false;
-    } // Three-zero serial not assigned before 1954
-    // Extract full year from TIN length
-
-
-    var full_year = parseInt(tin.slice(0, 2), 10);
-
-    if (full_year > 53) {
-      return false;
-    }
-
-    if (full_year < 10) {
-      full_year = "190".concat(full_year);
-    } else {
-      full_year = "19".concat(full_year);
-    } // Extract month from TIN and normalize
-
-
-    var month = parseInt(tin.slice(2, 4), 10);
-
-    if (month > 50) {
-      month -= 50;
-    }
-
-    if (month < 10) {
-      month = "0".concat(month);
-    } // Check date validity
-
-
-    var date = "".concat(full_year, "/").concat(month, "/").concat(tin.slice(4, 6));
-
-    if (!(0, _isDate.default)(date, 'YYYY/MM/DD')) {
-      return false;
-    }
-  }
-
-  return true;
-}
-/*
- * sl-SI validation function
- * (Davčna številka, persons/entities)
- * Verify TIN validity by calculating check (last) digit (variant of MOD 11)
- */
-
-
-function slSiCheck(tin) {
-  var checksum = 11 - algorithms.reverseMultiplyAndSum(tin.split('').slice(0, 7).map(function (a) {
-    return parseInt(a, 10);
-  }), 8) % 11;
-
-  if (checksum === 10) {
-    return parseInt(tin[7], 10) === 0;
-  }
-
-  return checksum === parseInt(tin[7], 10);
-}
-/*
- * sv-SE validation function
- * (Personnummer or samordningsnummer, persons only)
- * Checks validity of birth date and calls luhnCheck() to validate check (last) digit
- */
-
-
-function svSeCheck(tin) {
-  // Make copy of TIN and normalize to two-digit year form
-  var tin_copy = tin.slice(0);
-
-  if (tin.length > 11) {
-    tin_copy = tin_copy.slice(2);
-  } // Extract date of birth
-
-
-  var full_year = '';
-  var month = tin_copy.slice(2, 4);
-  var day = parseInt(tin_copy.slice(4, 6), 10);
-
-  if (tin.length > 11) {
-    full_year = tin.slice(0, 4);
-  } else {
-    full_year = tin.slice(0, 2);
-
-    if (tin.length === 11 && day < 60) {
-      // Extract full year from centenarian symbol
-      // Should work just fine until year 10000 or so
-      var current_year = new Date().getFullYear().toString();
-      var current_century = parseInt(current_year.slice(0, 2), 10);
-      current_year = parseInt(current_year, 10);
-
-      if (tin[6] === '-') {
-        if (parseInt("".concat(current_century).concat(full_year), 10) > current_year) {
-          full_year = "".concat(current_century - 1).concat(full_year);
-        } else {
-          full_year = "".concat(current_century).concat(full_year);
-        }
-      } else {
-        full_year = "".concat(current_century - 1).concat(full_year);
-
-        if (current_year - parseInt(full_year, 10) < 100) {
-          return false;
-        }
-      }
-    }
-  } // Normalize day and check date validity
-
-
-  if (day > 60) {
-    day -= 60;
-  }
-
-  if (day < 10) {
-    day = "0".concat(day);
-  }
-
-  var date = "".concat(full_year, "/").concat(month, "/").concat(day);
-
-  if (date.length === 8) {
-    if (!(0, _isDate.default)(date, 'YY/MM/DD')) {
-      return false;
-    }
-  } else if (!(0, _isDate.default)(date, 'YYYY/MM/DD')) {
-    return false;
-  }
-
-  return algorithms.luhnCheck(tin.replace(/\W/, ''));
-} // Locale lookup objects
-
-/*
- * Tax id regex formats for various locales
- *
- * Where not explicitly specified in DG-TAXUD document both
- * uppercase and lowercase letters are acceptable.
- */
-
-
-var taxIdFormat = {
-  'bg-BG': /^\d{10}$/,
-  'cs-CZ': /^\d{6}\/{0,1}\d{3,4}$/,
-  'de-AT': /^\d{9}$/,
-  'de-DE': /^[1-9]\d{10}$/,
-  'dk-DK': /^\d{6}-{0,1}\d{4}$/,
-  'el-CY': /^[09]\d{7}[A-Z]$/,
-  'el-GR': /^([0-4]|[7-9])\d{8}$/,
-  'en-GB': /^\d{10}$|^(?!GB|NK|TN|ZZ)(?![DFIQUV])[A-Z](?![DFIQUVO])[A-Z]\d{6}[ABCD ]$/i,
-  'en-IE': /^\d{7}[A-W][A-IW]{0,1}$/i,
-  'en-US': /^\d{2}[- ]{0,1}\d{7}$/,
-  'es-ES': /^(\d{0,8}|[XYZKLM]\d{7})[A-HJ-NP-TV-Z]$/i,
-  'et-EE': /^[1-6]\d{6}(00[1-9]|0[1-9][0-9]|[1-6][0-9]{2}|70[0-9]|710)\d$/,
-  'fi-FI': /^\d{6}[-+A]\d{3}[0-9A-FHJ-NPR-Y]$/i,
-  'fr-BE': /^\d{11}$/,
-  'fr-FR': /^[0-3]\d{12}$|^[0-3]\d\s\d{2}(\s\d{3}){3}$/,
-  // Conforms both to official spec and provided example
-  'fr-LU': /^\d{13}$/,
-  'hr-HR': /^\d{11}$/,
-  'hu-HU': /^8\d{9}$/,
-  'it-IT': /^[A-Z]{6}[L-NP-V0-9]{2}[A-EHLMPRST][L-NP-V0-9]{2}[A-ILMZ][L-NP-V0-9]{3}[A-Z]$/i,
-  'lv-LV': /^\d{6}-{0,1}\d{5}$/,
-  // Conforms both to DG TAXUD spec and original research
-  'mt-MT': /^\d{3,7}[APMGLHBZ]$|^([1-8])\1\d{7}$/i,
-  'nl-NL': /^\d{9}$/,
-  'pl-PL': /^\d{10,11}$/,
-  'pt-BR': /^\d{11,14}$/,
-  'pt-PT': /^\d{9}$/,
-  'ro-RO': /^\d{13}$/,
-  'sk-SK': /^\d{6}\/{0,1}\d{3,4}$/,
-  'sl-SI': /^[1-9]\d{7}$/,
-  'sv-SE': /^(\d{6}[-+]{0,1}\d{4}|(18|19|20)\d{6}[-+]{0,1}\d{4})$/
-}; // taxIdFormat locale aliases
-
-taxIdFormat['lb-LU'] = taxIdFormat['fr-LU'];
-taxIdFormat['lt-LT'] = taxIdFormat['et-EE'];
-taxIdFormat['nl-BE'] = taxIdFormat['fr-BE']; // Algorithmic tax id check functions for various locales
-
-var taxIdCheck = {
-  'bg-BG': bgBgCheck,
-  'cs-CZ': csCzCheck,
-  'de-AT': deAtCheck,
-  'de-DE': deDeCheck,
-  'dk-DK': dkDkCheck,
-  'el-CY': elCyCheck,
-  'el-GR': elGrCheck,
-  'en-IE': enIeCheck,
-  'en-US': enUsCheck,
-  'es-ES': esEsCheck,
-  'et-EE': etEeCheck,
-  'fi-FI': fiFiCheck,
-  'fr-BE': frBeCheck,
-  'fr-FR': frFrCheck,
-  'fr-LU': frLuCheck,
-  'hr-HR': hrHrCheck,
-  'hu-HU': huHuCheck,
-  'it-IT': itItCheck,
-  'lv-LV': lvLvCheck,
-  'mt-MT': mtMtCheck,
-  'nl-NL': nlNlCheck,
-  'pl-PL': plPlCheck,
-  'pt-BR': ptBrCheck,
-  'pt-PT': ptPtCheck,
-  'ro-RO': roRoCheck,
-  'sk-SK': skSkCheck,
-  'sl-SI': slSiCheck,
-  'sv-SE': svSeCheck
-}; // taxIdCheck locale aliases
-
-taxIdCheck['lb-LU'] = taxIdCheck['fr-LU'];
-taxIdCheck['lt-LT'] = taxIdCheck['et-EE'];
-taxIdCheck['nl-BE'] = taxIdCheck['fr-BE']; // Regexes for locales where characters should be omitted before checking format
-
-var allsymbols = /[-\\\/!@#$%\^&\*\(\)\+\=\[\]]+/g;
-var sanitizeRegexes = {
-  'de-AT': allsymbols,
-  'de-DE': /[\/\\]/g,
-  'fr-BE': allsymbols
-}; // sanitizeRegexes locale aliases
-
-sanitizeRegexes['nl-BE'] = sanitizeRegexes['fr-BE'];
-/*
- * Validator function
- * Return true if the passed string is a valid tax identification number
- * for the specified locale.
- * Throw an error exception if the locale is not supported.
- */
-
-function isTaxID(str) {
-  var locale = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'en-US';
-  (0, _assertString.default)(str); // Copy TIN to avoid replacement if sanitized
-
-  var strcopy = str.slice(0);
-
-  if (locale in taxIdFormat) {
-    if (locale in sanitizeRegexes) {
-      strcopy = strcopy.replace(sanitizeRegexes[locale], '');
-    }
-
-    if (!taxIdFormat[locale].test(strcopy)) {
-      return false;
-    }
-
-    if (locale in taxIdCheck) {
-      return taxIdCheck[locale](strcopy);
-    } // Fallthrough; not all locales have algorithmic checks
-
-
-    return true;
-  }
-
-  throw new Error("Invalid locale '".concat(locale, "'"));
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isURL.js":
-/*!**********************************************!*\
-  !*** ../node_modules/validator/lib/isURL.js ***!
-  \**********************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isURL;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-var _isFQDN = _interopRequireDefault(__webpack_require__(/*! ./isFQDN */ "../node_modules/validator/lib/isFQDN.js"));
-
-var _isIP = _interopRequireDefault(__webpack_require__(/*! ./isIP */ "../node_modules/validator/lib/isIP.js"));
-
-var _merge = _interopRequireDefault(__webpack_require__(/*! ./util/merge */ "../node_modules/validator/lib/util/merge.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/*
-options for isURL method
-
-require_protocol - if set as true isURL will return false if protocol is not present in the URL
-require_valid_protocol - isURL will check if the URL's protocol is present in the protocols option
-protocols - valid protocols can be modified with this option
-require_host - if set as false isURL will not check if host is present in the URL
-require_port - if set as true isURL will check if port is present in the URL
-allow_protocol_relative_urls - if set as true protocol relative URLs will be allowed
-validate_length - if set as false isURL will skip string length validation (IE maximum is 2083)
-
-*/
-var default_url_options = {
-  protocols: ['http', 'https', 'ftp'],
-  require_tld: true,
-  require_protocol: false,
-  require_host: true,
-  require_port: false,
-  require_valid_protocol: true,
-  allow_underscores: false,
-  allow_trailing_dot: false,
-  allow_protocol_relative_urls: false,
-  validate_length: true
-};
-var wrapped_ipv6 = /^\[([^\]]+)\](?::([0-9]+))?$/;
-
-function isRegExp(obj) {
-  return Object.prototype.toString.call(obj) === '[object RegExp]';
-}
-
-function checkHost(host, matches) {
-  for (var i = 0; i < matches.length; i++) {
-    var match = matches[i];
-
-    if (host === match || isRegExp(match) && match.test(host)) {
-      return true;
-    }
-  }
-
-  return false;
-}
-
-function isURL(url, options) {
-  (0, _assertString.default)(url);
-
-  if (!url || /[\s<>]/.test(url)) {
-    return false;
-  }
-
-  if (url.indexOf('mailto:') === 0) {
-    return false;
-  }
-
-  options = (0, _merge.default)(options, default_url_options);
-
-  if (options.validate_length && url.length >= 2083) {
-    return false;
-  }
-
-  var protocol, auth, host, hostname, port, port_str, split, ipv6;
-  split = url.split('#');
-  url = split.shift();
-  split = url.split('?');
-  url = split.shift();
-  split = url.split('://');
-
-  if (split.length > 1) {
-    protocol = split.shift().toLowerCase();
-
-    if (options.require_valid_protocol && options.protocols.indexOf(protocol) === -1) {
-      return false;
-    }
-  } else if (options.require_protocol) {
-    return false;
-  } else if (url.substr(0, 2) === '//') {
-    if (!options.allow_protocol_relative_urls) {
-      return false;
-    }
-
-    split[0] = url.substr(2);
-  }
-
-  url = split.join('://');
-
-  if (url === '') {
-    return false;
-  }
-
-  split = url.split('/');
-  url = split.shift();
-
-  if (url === '' && !options.require_host) {
-    return true;
-  }
-
-  split = url.split('@');
-
-  if (split.length > 1) {
-    if (options.disallow_auth) {
-      return false;
-    }
-
-    if (split[0] === '' || split[0].substr(0, 1) === ':') {
-      return false;
-    }
-
-    auth = split.shift();
-
-    if (auth.indexOf(':') >= 0 && auth.split(':').length > 2) {
-      return false;
-    }
-  }
-
-  hostname = split.join('@');
-  port_str = null;
-  ipv6 = null;
-  var ipv6_match = hostname.match(wrapped_ipv6);
-
-  if (ipv6_match) {
-    host = '';
-    ipv6 = ipv6_match[1];
-    port_str = ipv6_match[2] || null;
-  } else {
-    split = hostname.split(':');
-    host = split.shift();
-
-    if (split.length) {
-      port_str = split.join(':');
-    }
-  }
-
-  if (port_str !== null) {
-    port = parseInt(port_str, 10);
-
-    if (!/^[0-9]+$/.test(port_str) || port <= 0 || port > 65535) {
-      return false;
-    }
-  } else if (options.require_port) {
-    return false;
-  }
-
-  if (!(0, _isIP.default)(host) && !(0, _isFQDN.default)(host, options) && (!ipv6 || !(0, _isIP.default)(ipv6, 6))) {
-    return false;
-  }
-
-  host = host || ipv6;
-
-  if (options.host_whitelist && !checkHost(host, options.host_whitelist)) {
-    return false;
-  }
-
-  if (options.host_blacklist && checkHost(host, options.host_blacklist)) {
-    return false;
-  }
-
-  return true;
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isUUID.js":
-/*!***********************************************!*\
-  !*** ../node_modules/validator/lib/isUUID.js ***!
-  \***********************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isUUID;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var uuid = {
-  3: /^[0-9A-F]{8}-[0-9A-F]{4}-3[0-9A-F]{3}-[0-9A-F]{4}-[0-9A-F]{12}$/i,
-  4: /^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i,
-  5: /^[0-9A-F]{8}-[0-9A-F]{4}-5[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i,
-  all: /^[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}$/i
-};
-
-function isUUID(str) {
-  var version = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'all';
-  (0, _assertString.default)(str);
-  var pattern = uuid[version];
-  return pattern && pattern.test(str);
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isUppercase.js":
-/*!****************************************************!*\
-  !*** ../node_modules/validator/lib/isUppercase.js ***!
-  \****************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isUppercase;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function isUppercase(str) {
-  (0, _assertString.default)(str);
-  return str === str.toUpperCase();
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isVAT.js":
-/*!**********************************************!*\
-  !*** ../node_modules/validator/lib/isVAT.js ***!
-  \**********************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isVAT;
-exports.vatMatchers = void 0;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var vatMatchers = {
-  GB: /^GB((\d{3} \d{4} ([0-8][0-9]|9[0-6]))|(\d{9} \d{3})|(((GD[0-4])|(HA[5-9]))[0-9]{2}))$/,
-  IT: /^(IT)?[0-9]{11}$/
-};
-exports.vatMatchers = vatMatchers;
-
-function isVAT(str, countryCode) {
-  (0, _assertString.default)(str);
-  (0, _assertString.default)(countryCode);
-
-  if (countryCode in vatMatchers) {
-    return vatMatchers[countryCode].test(str);
-  }
-
-  throw new Error("Invalid country code: '".concat(countryCode, "'"));
-}
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isVariableWidth.js":
-/*!********************************************************!*\
-  !*** ../node_modules/validator/lib/isVariableWidth.js ***!
-  \********************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isVariableWidth;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-var _isFullWidth = __webpack_require__(/*! ./isFullWidth */ "../node_modules/validator/lib/isFullWidth.js");
-
-var _isHalfWidth = __webpack_require__(/*! ./isHalfWidth */ "../node_modules/validator/lib/isHalfWidth.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function isVariableWidth(str) {
-  (0, _assertString.default)(str);
-  return _isFullWidth.fullWidth.test(str) && _isHalfWidth.halfWidth.test(str);
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/isWhitelisted.js":
-/*!******************************************************!*\
-  !*** ../node_modules/validator/lib/isWhitelisted.js ***!
-  \******************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = isWhitelisted;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function isWhitelisted(str, chars) {
-  (0, _assertString.default)(str);
-
-  for (var i = str.length - 1; i >= 0; i--) {
-    if (chars.indexOf(str[i]) === -1) {
-      return false;
-    }
-  }
-
-  return true;
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/ltrim.js":
-/*!**********************************************!*\
-  !*** ../node_modules/validator/lib/ltrim.js ***!
-  \**********************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = ltrim;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function ltrim(str, chars) {
-  (0, _assertString.default)(str); // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#Escaping
-
-  var pattern = chars ? new RegExp("^[".concat(chars.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), "]+"), 'g') : /^\s+/g;
-  return str.replace(pattern, '');
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/matches.js":
-/*!************************************************!*\
-  !*** ../node_modules/validator/lib/matches.js ***!
-  \************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = matches;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function matches(str, pattern, modifiers) {
-  (0, _assertString.default)(str);
-
-  if (Object.prototype.toString.call(pattern) !== '[object RegExp]') {
-    pattern = new RegExp(pattern, modifiers);
-  }
-
-  return pattern.test(str);
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/normalizeEmail.js":
-/*!*******************************************************!*\
-  !*** ../node_modules/validator/lib/normalizeEmail.js ***!
-  \*******************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = normalizeEmail;
-
-var _merge = _interopRequireDefault(__webpack_require__(/*! ./util/merge */ "../node_modules/validator/lib/util/merge.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var default_normalize_email_options = {
-  // The following options apply to all email addresses
-  // Lowercases the local part of the email address.
-  // Please note this may violate RFC 5321 as per http://stackoverflow.com/a/9808332/192024).
-  // The domain is always lowercased, as per RFC 1035
-  all_lowercase: true,
-  // The following conversions are specific to GMail
-  // Lowercases the local part of the GMail address (known to be case-insensitive)
-  gmail_lowercase: true,
-  // Removes dots from the local part of the email address, as that's ignored by GMail
-  gmail_remove_dots: true,
-  // Removes the subaddress (e.g. "+foo") from the email address
-  gmail_remove_subaddress: true,
-  // Conversts the googlemail.com domain to gmail.com
-  gmail_convert_googlemaildotcom: true,
-  // The following conversions are specific to Outlook.com / Windows Live / Hotmail
-  // Lowercases the local part of the Outlook.com address (known to be case-insensitive)
-  outlookdotcom_lowercase: true,
-  // Removes the subaddress (e.g. "+foo") from the email address
-  outlookdotcom_remove_subaddress: true,
-  // The following conversions are specific to Yahoo
-  // Lowercases the local part of the Yahoo address (known to be case-insensitive)
-  yahoo_lowercase: true,
-  // Removes the subaddress (e.g. "-foo") from the email address
-  yahoo_remove_subaddress: true,
-  // The following conversions are specific to Yandex
-  // Lowercases the local part of the Yandex address (known to be case-insensitive)
-  yandex_lowercase: true,
-  // The following conversions are specific to iCloud
-  // Lowercases the local part of the iCloud address (known to be case-insensitive)
-  icloud_lowercase: true,
-  // Removes the subaddress (e.g. "+foo") from the email address
-  icloud_remove_subaddress: true
-}; // List of domains used by iCloud
-
-var icloud_domains = ['icloud.com', 'me.com']; // List of domains used by Outlook.com and its predecessors
-// This list is likely incomplete.
-// Partial reference:
-// https://blogs.office.com/2013/04/17/outlook-com-gets-two-step-verification-sign-in-by-alias-and-new-international-domains/
-
-var outlookdotcom_domains = ['hotmail.at', 'hotmail.be', 'hotmail.ca', 'hotmail.cl', 'hotmail.co.il', 'hotmail.co.nz', 'hotmail.co.th', 'hotmail.co.uk', 'hotmail.com', 'hotmail.com.ar', 'hotmail.com.au', 'hotmail.com.br', 'hotmail.com.gr', 'hotmail.com.mx', 'hotmail.com.pe', 'hotmail.com.tr', 'hotmail.com.vn', 'hotmail.cz', 'hotmail.de', 'hotmail.dk', 'hotmail.es', 'hotmail.fr', 'hotmail.hu', 'hotmail.id', 'hotmail.ie', 'hotmail.in', 'hotmail.it', 'hotmail.jp', 'hotmail.kr', 'hotmail.lv', 'hotmail.my', 'hotmail.ph', 'hotmail.pt', 'hotmail.sa', 'hotmail.sg', 'hotmail.sk', 'live.be', 'live.co.uk', 'live.com', 'live.com.ar', 'live.com.mx', 'live.de', 'live.es', 'live.eu', 'live.fr', 'live.it', 'live.nl', 'msn.com', 'outlook.at', 'outlook.be', 'outlook.cl', 'outlook.co.il', 'outlook.co.nz', 'outlook.co.th', 'outlook.com', 'outlook.com.ar', 'outlook.com.au', 'outlook.com.br', 'outlook.com.gr', 'outlook.com.pe', 'outlook.com.tr', 'outlook.com.vn', 'outlook.cz', 'outlook.de', 'outlook.dk', 'outlook.es', 'outlook.fr', 'outlook.hu', 'outlook.id', 'outlook.ie', 'outlook.in', 'outlook.it', 'outlook.jp', 'outlook.kr', 'outlook.lv', 'outlook.my', 'outlook.ph', 'outlook.pt', 'outlook.sa', 'outlook.sg', 'outlook.sk', 'passport.com']; // List of domains used by Yahoo Mail
-// This list is likely incomplete
-
-var yahoo_domains = ['rocketmail.com', 'yahoo.ca', 'yahoo.co.uk', 'yahoo.com', 'yahoo.de', 'yahoo.fr', 'yahoo.in', 'yahoo.it', 'ymail.com']; // List of domains used by yandex.ru
-
-var yandex_domains = ['yandex.ru', 'yandex.ua', 'yandex.kz', 'yandex.com', 'yandex.by', 'ya.ru']; // replace single dots, but not multiple consecutive dots
-
-function dotsReplacer(match) {
-  if (match.length > 1) {
-    return match;
-  }
-
-  return '';
-}
-
-function normalizeEmail(email, options) {
-  options = (0, _merge.default)(options, default_normalize_email_options);
-  var raw_parts = email.split('@');
-  var domain = raw_parts.pop();
-  var user = raw_parts.join('@');
-  var parts = [user, domain]; // The domain is always lowercased, as it's case-insensitive per RFC 1035
-
-  parts[1] = parts[1].toLowerCase();
-
-  if (parts[1] === 'gmail.com' || parts[1] === 'googlemail.com') {
-    // Address is GMail
-    if (options.gmail_remove_subaddress) {
-      parts[0] = parts[0].split('+')[0];
-    }
-
-    if (options.gmail_remove_dots) {
-      // this does not replace consecutive dots like example..email@gmail.com
-      parts[0] = parts[0].replace(/\.+/g, dotsReplacer);
-    }
-
-    if (!parts[0].length) {
-      return false;
-    }
-
-    if (options.all_lowercase || options.gmail_lowercase) {
-      parts[0] = parts[0].toLowerCase();
-    }
-
-    parts[1] = options.gmail_convert_googlemaildotcom ? 'gmail.com' : parts[1];
-  } else if (icloud_domains.indexOf(parts[1]) >= 0) {
-    // Address is iCloud
-    if (options.icloud_remove_subaddress) {
-      parts[0] = parts[0].split('+')[0];
-    }
-
-    if (!parts[0].length) {
-      return false;
-    }
-
-    if (options.all_lowercase || options.icloud_lowercase) {
-      parts[0] = parts[0].toLowerCase();
-    }
-  } else if (outlookdotcom_domains.indexOf(parts[1]) >= 0) {
-    // Address is Outlook.com
-    if (options.outlookdotcom_remove_subaddress) {
-      parts[0] = parts[0].split('+')[0];
-    }
-
-    if (!parts[0].length) {
-      return false;
-    }
-
-    if (options.all_lowercase || options.outlookdotcom_lowercase) {
-      parts[0] = parts[0].toLowerCase();
-    }
-  } else if (yahoo_domains.indexOf(parts[1]) >= 0) {
-    // Address is Yahoo
-    if (options.yahoo_remove_subaddress) {
-      var components = parts[0].split('-');
-      parts[0] = components.length > 1 ? components.slice(0, -1).join('-') : components[0];
-    }
-
-    if (!parts[0].length) {
-      return false;
-    }
-
-    if (options.all_lowercase || options.yahoo_lowercase) {
-      parts[0] = parts[0].toLowerCase();
-    }
-  } else if (yandex_domains.indexOf(parts[1]) >= 0) {
-    if (options.all_lowercase || options.yandex_lowercase) {
-      parts[0] = parts[0].toLowerCase();
-    }
-
-    parts[1] = 'yandex.ru'; // all yandex domains are equal, 1st preferred
-  } else if (options.all_lowercase) {
-    // Any other address
-    parts[0] = parts[0].toLowerCase();
-  }
-
-  return parts.join('@');
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/rtrim.js":
-/*!**********************************************!*\
-  !*** ../node_modules/validator/lib/rtrim.js ***!
-  \**********************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = rtrim;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function rtrim(str, chars) {
-  (0, _assertString.default)(str); // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#Escaping
-
-  var pattern = chars ? new RegExp("[".concat(chars.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), "]+$"), 'g') : /(\s)+$/g;
-  return str.replace(pattern, '');
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/stripLow.js":
-/*!*************************************************!*\
-  !*** ../node_modules/validator/lib/stripLow.js ***!
-  \*************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = stripLow;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-var _blacklist = _interopRequireDefault(__webpack_require__(/*! ./blacklist */ "../node_modules/validator/lib/blacklist.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function stripLow(str, keep_new_lines) {
-  (0, _assertString.default)(str);
-  var chars = keep_new_lines ? '\\x00-\\x09\\x0B\\x0C\\x0E-\\x1F\\x7F' : '\\x00-\\x1F\\x7F';
-  return (0, _blacklist.default)(str, chars);
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/toBoolean.js":
-/*!**************************************************!*\
-  !*** ../node_modules/validator/lib/toBoolean.js ***!
-  \**************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = toBoolean;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function toBoolean(str, strict) {
-  (0, _assertString.default)(str);
-
-  if (strict) {
-    return str === '1' || /^true$/i.test(str);
-  }
-
-  return str !== '0' && !/^false$/i.test(str) && str !== '';
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/toDate.js":
-/*!***********************************************!*\
-  !*** ../node_modules/validator/lib/toDate.js ***!
-  \***********************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = toDate;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function toDate(date) {
-  (0, _assertString.default)(date);
-  date = Date.parse(date);
-  return !isNaN(date) ? new Date(date) : null;
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/toFloat.js":
-/*!************************************************!*\
-  !*** ../node_modules/validator/lib/toFloat.js ***!
-  \************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = toFloat;
-
-var _isFloat = _interopRequireDefault(__webpack_require__(/*! ./isFloat */ "../node_modules/validator/lib/isFloat.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function toFloat(str) {
-  if (!(0, _isFloat.default)(str)) return NaN;
-  return parseFloat(str);
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/toInt.js":
-/*!**********************************************!*\
-  !*** ../node_modules/validator/lib/toInt.js ***!
-  \**********************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = toInt;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function toInt(str, radix) {
-  (0, _assertString.default)(str);
-  return parseInt(str, radix || 10);
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/trim.js":
-/*!*********************************************!*\
-  !*** ../node_modules/validator/lib/trim.js ***!
-  \*********************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = trim;
-
-var _rtrim = _interopRequireDefault(__webpack_require__(/*! ./rtrim */ "../node_modules/validator/lib/rtrim.js"));
-
-var _ltrim = _interopRequireDefault(__webpack_require__(/*! ./ltrim */ "../node_modules/validator/lib/ltrim.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function trim(str, chars) {
-  return (0, _rtrim.default)((0, _ltrim.default)(str, chars), chars);
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/unescape.js":
-/*!*************************************************!*\
-  !*** ../node_modules/validator/lib/unescape.js ***!
-  \*************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = unescape;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function unescape(str) {
-  (0, _assertString.default)(str);
-  return str.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#x27;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&#x2F;/g, '/').replace(/&#x5C;/g, '\\').replace(/&#96;/g, '`');
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/util/algorithms.js":
-/*!********************************************************!*\
-  !*** ../node_modules/validator/lib/util/algorithms.js ***!
-  \********************************************************/
-/***/ ((__unused_webpack_module, exports) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.iso7064Check = iso7064Check;
-exports.luhnCheck = luhnCheck;
-exports.reverseMultiplyAndSum = reverseMultiplyAndSum;
-exports.verhoeffCheck = verhoeffCheck;
-
-/**
- * Algorithmic validation functions
- * May be used as is or implemented in the workflow of other validators.
- */
-
-/*
- * ISO 7064 validation function
- * Called with a string of numbers (incl. check digit)
- * to validate according to ISO 7064 (MOD 11, 10).
- */
-function iso7064Check(str) {
-  var checkvalue = 10;
-
-  for (var i = 0; i < str.length - 1; i++) {
-    checkvalue = (parseInt(str[i], 10) + checkvalue) % 10 === 0 ? 10 * 2 % 11 : (parseInt(str[i], 10) + checkvalue) % 10 * 2 % 11;
-  }
-
-  checkvalue = checkvalue === 1 ? 0 : 11 - checkvalue;
-  return checkvalue === parseInt(str[10], 10);
-}
-/*
- * Luhn (mod 10) validation function
- * Called with a string of numbers (incl. check digit)
- * to validate according to the Luhn algorithm.
- */
-
-
-function luhnCheck(str) {
-  var checksum = 0;
-  var second = false;
-
-  for (var i = str.length - 1; i >= 0; i--) {
-    if (second) {
-      var product = parseInt(str[i], 10) * 2;
-
-      if (product > 9) {
-        // sum digits of product and add to checksum
-        checksum += product.toString().split('').map(function (a) {
-          return parseInt(a, 10);
-        }).reduce(function (a, b) {
-          return a + b;
-        }, 0);
-      } else {
-        checksum += product;
-      }
-    } else {
-      checksum += parseInt(str[i], 10);
-    }
-
-    second = !second;
-  }
-
-  return checksum % 10 === 0;
-}
-/*
- * Reverse TIN multiplication and summation helper function
- * Called with an array of single-digit integers and a base multiplier
- * to calculate the sum of the digits multiplied in reverse.
- * Normally used in variations of MOD 11 algorithmic checks.
- */
-
-
-function reverseMultiplyAndSum(digits, base) {
-  var total = 0;
-
-  for (var i = 0; i < digits.length; i++) {
-    total += digits[i] * (base - i);
-  }
-
-  return total;
-}
-/*
- * Verhoeff validation helper function
- * Called with a string of numbers
- * to validate according to the Verhoeff algorithm.
- */
-
-
-function verhoeffCheck(str) {
-  var d_table = [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 0, 6, 7, 8, 9, 5], [2, 3, 4, 0, 1, 7, 8, 9, 5, 6], [3, 4, 0, 1, 2, 8, 9, 5, 6, 7], [4, 0, 1, 2, 3, 9, 5, 6, 7, 8], [5, 9, 8, 7, 6, 0, 4, 3, 2, 1], [6, 5, 9, 8, 7, 1, 0, 4, 3, 2], [7, 6, 5, 9, 8, 2, 1, 0, 4, 3], [8, 7, 6, 5, 9, 3, 2, 1, 0, 4], [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]];
-  var p_table = [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 5, 7, 6, 2, 8, 3, 0, 9, 4], [5, 8, 0, 3, 7, 9, 6, 1, 4, 2], [8, 9, 1, 6, 0, 4, 3, 5, 2, 7], [9, 4, 5, 3, 1, 2, 6, 8, 7, 0], [4, 2, 8, 6, 5, 7, 3, 9, 0, 1], [2, 7, 9, 3, 8, 0, 6, 4, 1, 5], [7, 0, 4, 6, 9, 1, 3, 2, 5, 8]]; // Copy (to prevent replacement) and reverse
-
-  var str_copy = str.split('').reverse().join('');
-  var checksum = 0;
-
-  for (var i = 0; i < str_copy.length; i++) {
-    checksum = d_table[checksum][p_table[i % 8][parseInt(str_copy[i], 10)]];
-  }
-
-  return checksum === 0;
-}
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/util/assertString.js":
-/*!**********************************************************!*\
-  !*** ../node_modules/validator/lib/util/assertString.js ***!
-  \**********************************************************/
-/***/ ((module, exports) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = assertString;
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function assertString(input) {
-  var isString = typeof input === 'string' || input instanceof String;
-
-  if (!isString) {
-    var invalidType = _typeof(input);
-
-    if (input === null) invalidType = 'null';else if (invalidType === 'object') invalidType = input.constructor.name;
-    throw new TypeError("Expected a string but received a ".concat(invalidType));
-  }
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/util/includes.js":
-/*!******************************************************!*\
-  !*** ../node_modules/validator/lib/util/includes.js ***!
-  \******************************************************/
-/***/ ((module, exports) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = void 0;
-
-var includes = function includes(arr, val) {
-  return arr.some(function (arrVal) {
-    return val === arrVal;
-  });
-};
-
-var _default = includes;
-exports.default = _default;
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/util/merge.js":
-/*!***************************************************!*\
-  !*** ../node_modules/validator/lib/util/merge.js ***!
-  \***************************************************/
-/***/ ((module, exports) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = merge;
-
-function merge() {
-  var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var defaults = arguments.length > 1 ? arguments[1] : undefined;
-
-  for (var key in defaults) {
-    if (typeof obj[key] === 'undefined') {
-      obj[key] = defaults[key];
-    }
-  }
-
-  return obj;
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/util/multilineRegex.js":
-/*!************************************************************!*\
-  !*** ../node_modules/validator/lib/util/multilineRegex.js ***!
-  \************************************************************/
-/***/ ((module, exports) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = multilineRegexp;
-
-/**
- * Build RegExp object from an array
- * of multiple/multi-line regexp parts
- *
- * @param {string[]} parts
- * @param {string} flags
- * @return {object} - RegExp object
- */
-function multilineRegexp(parts, flags) {
-  var regexpAsStringLiteral = parts.join('');
-  return new RegExp(regexpAsStringLiteral, flags);
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/util/toString.js":
-/*!******************************************************!*\
-  !*** ../node_modules/validator/lib/util/toString.js ***!
-  \******************************************************/
-/***/ ((module, exports) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = toString;
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function toString(input) {
-  if (_typeof(input) === 'object' && input !== null) {
-    if (typeof input.toString === 'function') {
-      input = input.toString();
-    } else {
-      input = '[object Object]';
-    }
-  } else if (input === null || typeof input === 'undefined' || isNaN(input) && !input.length) {
-    input = '';
-  }
-
-  return String(input);
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
-
-/***/ }),
-
-/***/ "../node_modules/validator/lib/whitelist.js":
-/*!**************************************************!*\
-  !*** ../node_modules/validator/lib/whitelist.js ***!
-  \**************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.default = whitelist;
-
-var _assertString = _interopRequireDefault(__webpack_require__(/*! ./util/assertString */ "../node_modules/validator/lib/util/assertString.js"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function whitelist(str, chars) {
-  (0, _assertString.default)(str);
-  return str.replace(new RegExp("[^".concat(chars, "]+"), 'g'), '');
-}
-
-module.exports = exports.default;
-module.exports.default = exports.default;
 
 /***/ })
 
