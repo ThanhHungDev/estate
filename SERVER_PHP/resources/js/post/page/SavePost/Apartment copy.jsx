@@ -10,28 +10,26 @@ import RolePost from "./Partial/RolePost"
 /// lưu căn hộ chung cư
 function Apartment( props ){
 
-    const [ form, setForm ] = useState({})
     const [state, updateState] = useState({})
     let refRolePost = React.createRef()
 
     /// khi component con gọi lên cha để update dữ liệu
-    const updateForm = (fields, propsChild) => {
+    const updateForm = fields => {
 
-        setForm({
-            ...form,
+        console.log(this.state, {
+            ...state,
             ...fields,
         })
-        console.log({
-            ...form,
+
+        updateState({
+            ...state,
             ...fields,
         })
-        propsChild.nextStep()
     };
 
     // Do something on step change
     const onStepChange = (stats) => {
         console.log(state, stats);
-        console.log(form, "onStepChange");
         updateState( {
             ...stats,
             ...state,

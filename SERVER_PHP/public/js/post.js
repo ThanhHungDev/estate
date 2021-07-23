@@ -6605,8 +6605,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_step_wizard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-step-wizard */ "./node_modules/react-step-wizard/dist/react-step-wizard.min.js");
 /* harmony import */ var react_step_wizard__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_step_wizard__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _Apartment_HeaderApartment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Apartment/HeaderApartment */ "./resources/js/post/page/SavePost/Apartment/HeaderApartment.jsx");
-/* harmony import */ var _Partial_RolePost__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Partial/RolePost */ "./resources/js/post/page/SavePost/Partial/RolePost.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _Apartment_FooterApartment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Apartment/FooterApartment */ "./resources/js/post/page/SavePost/Apartment/FooterApartment.jsx");
+/* harmony import */ var _Partial_RolePost__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Partial/RolePost */ "./resources/js/post/page/SavePost/Partial/RolePost.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -6629,6 +6630,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
  /// lưu căn hộ chung cư
 
 
@@ -6637,24 +6639,28 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function Apartment(props) {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
       _useState2 = _slicedToArray(_useState, 2),
-      state = _useState2[0],
-      updateState = _useState2[1]; // const transitions = {}
-  // https://github.com/jcmcneal/react-step-wizard/blob/master/app/components/transitions.less
-  // Do something on step change
-  // const onStepChange = (stats) => {
-  //     console.log(stats);
-  // };
-  // https://github.com/jcmcneal/react-step-wizard
-  // <h2>Step {this.props.currentStep}</h2>
-  // <p>Total Steps: {this.props.totalSteps}</p>
-  // <p>Is Active: {this.props.isActive}</p>
-  // <!-- Functions -->
-  // <p><button onClick={this.props.previousStep}>Previous Step</button></p>
-  // <p><button onClick={this.props.nextStep}>Next Step</button></p>
-  // <p><button onClick={()=>this.props.goToStep(2)}>Step 2</button></p>
-  // <p><button onClick={this.props.firstStep}>First Step</button></p>
-  // <p><button onClick={this.props.lastStep}>Last Step</button></p>
+      form = _useState2[0],
+      setForm = _useState2[1];
 
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+      _useState4 = _slicedToArray(_useState3, 2),
+      state = _useState4[0],
+      updateState = _useState4[1];
+
+  var refRolePost = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createRef(); /// khi component con gọi lên cha để update dữ liệu
+
+  var updateForm = function updateForm(fields, propsChild) {
+    setForm(_objectSpread(_objectSpread({}, form), fields));
+    console.log(_objectSpread(_objectSpread({}, form), fields));
+    propsChild.nextStep();
+  }; // Do something on step change
+
+
+  var onStepChange = function onStepChange(stats) {
+    console.log(state, stats);
+    console.log(form, "onStepChange");
+    updateState(_objectSpread(_objectSpread({}, stats), state));
+  };
 
   var setInstance = function setInstance(SW) {
     return updateState(_objectSpread(_objectSpread({}, state), {}, {
@@ -6662,62 +6668,76 @@ function Apartment(props) {
     }));
   };
 
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    console.log(state, "mới chạy");
-  }); /// ban đầu state là {} => SW là undefine
+  var continueStep = function continueStep(childData) {
+    console.log("vào continueStep");
+    refRolePost.submitStepRolePost(); // SW.nextStep()
+  }; /// ban đầu state là {} => SW là undefine
+
 
   var SW = state.SW;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-    children: [SW && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Apartment_HeaderApartment__WEBPACK_IMPORTED_MODULE_3__.default, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+    className: "apartment",
+    children: [SW && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Apartment_HeaderApartment__WEBPACK_IMPORTED_MODULE_3__.default, {
       SW: SW
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)((react_step_wizard__WEBPACK_IMPORTED_MODULE_2___default()) // onStepChange={onStepChange}
-    , {
-      instance: setInstance,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Partial_RolePost__WEBPACK_IMPORTED_MODULE_4__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(Step1, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(Step2, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(Step3, {})]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+      className: "apartment__wrapper",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)((react_step_wizard__WEBPACK_IMPORTED_MODULE_2___default()), {
+        isHashEnabled: true,
+        onStepChange: onStepChange,
+        instance: setInstance,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Partial_RolePost__WEBPACK_IMPORTED_MODULE_5__.default, {
+          ref: function ref(ins) {
+            refRolePost = ins;
+          },
+          saveFieldsToParent: updateForm
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Step1, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Step2, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Step3, {})]
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Apartment_FooterApartment__WEBPACK_IMPORTED_MODULE_4__.default, {
+      parentCallback: continueStep
     })]
   });
 }
 
 function Step1(props) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("p", {
-      children: ["step 1", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("p", {
+      children: ["step 1", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
         onClick: props.nextStep,
         children: "Next Step"
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("h2", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("h2", {
       children: ["Step ", props.currentStep]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("p", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("p", {
       children: ["Total Steps: ", props.totalSteps]
     })]
   });
 }
 
 function Step2(props) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("p", {
-      children: ["step 2", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("p", {
+      children: ["step 2", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
         onClick: props.nextStep,
         children: "Next Step"
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("h2", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("h2", {
       children: ["Step ", props.currentStep]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("p", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("p", {
       children: ["Total Steps: ", props.totalSteps]
     })]
   });
 }
 
 function Step3(props) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("p", {
-      children: ["step 3", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("p", {
+      children: ["step 3", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
         onClick: props.nextStep,
         children: "Next Step"
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("h2", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("h2", {
       children: ["Step ", props.currentStep]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("p", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("p", {
       children: ["Total Steps: ", props.totalSteps]
     })]
   });
@@ -6731,6 +6751,39 @@ var mapStateToProps = function mapStateToProps(state) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps)(Apartment));
+
+/***/ }),
+
+/***/ "./resources/js/post/page/SavePost/Apartment/FooterApartment.jsx":
+/*!***********************************************************************!*\
+  !*** ./resources/js/post/page/SavePost/Apartment/FooterApartment.jsx ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+var FooterApartment = function FooterApartment(props) {
+  var continu = function continu() {
+    console.log("vào continu");
+    props.parentCallback();
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+    className: "btn apartment__footer",
+    onClick: continu,
+    children: "B\u1EA5m \u0111\u1EC3 Ti\u1EBFp T\u1EE5c"
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FooterApartment);
 
 /***/ }),
 
@@ -6751,30 +6804,61 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var renderTitleHeaderApartment = function renderTitleHeaderApartment(currentStep) {
+  switch (currentStep) {
+    case 1:
+      return 'bar';
+
+    default:
+      return 'foo';
+  }
+};
+
 var HeaderApartment = function HeaderApartment(_ref) {
   var SW = _ref.SW;
+  var width = Math.floor(SW.currentStep * 100 / SW.totalSteps) + '%';
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h4", {
-      children: "Control from outside component"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-      className: 'btn btn-secondary',
-      onClick: SW.previousStep,
-      children: "Previous Step"
-    }), "\xA0", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-      className: 'btn btn-secondary',
-      onClick: SW.nextStep,
-      children: "Next Step"
-    }), "\xA0", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-      className: 'btn btn-secondary',
-      onClick: function onClick() {
-        return SW.goToNamedStep('progress');
-      },
-      children: "Go to 'progress'"
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      className: "apartment__header",
+      children: [SW.currentStep == 1 ? null : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+        className: "btn apartment__btn-prev",
+        onClick: SW.previousStep,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
+          className: "fas fa-chevron-left"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+        className: "apartment__title",
+        children: renderTitleHeaderApartment(SW.currentStep)
+      }), SW.currentStep == SW.totalSteps ? null : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+        className: "btn apartment__btn-next",
+        onClick: SW.nextStep,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
+          className: "fas fa-chevron-right"
+        })
+      }) // onClick={() => SW.goToNamedStep('progress')}
+      ]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: "apartment__header-progress progress progress-success bg-color-indeterminate",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        className: "progress-bar",
+        style: {
+          width: width
+        }
+      })
     })]
   });
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HeaderApartment);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HeaderApartment); // https://github.com/jcmcneal/react-step-wizard
+// <h2>Step {this.props.currentStep}</h2>
+// <p>Total Steps: {this.props.totalSteps}</p>
+// <p>Is Active: {this.props.isActive}</p>
+// <!-- Functions -->
+// <p><button onClick={this.props.previousStep}>Previous Step</button></p>
+// <p><button onClick={this.props.nextStep}>Next Step</button></p>
+// <p><button onClick={()=>this.props.goToStep(2)}>Step 2</button></p>
+// <p><button onClick={this.props.firstStep}>First Step</button></p>
+// <p><button onClick={this.props.lastStep}>Last Step</button></p>
 
 /***/ }),
 
@@ -6815,6 +6899,8 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -6831,6 +6917,15 @@ var RolePost = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, RolePost);
 
     _this = _super.call(this, props);
+
+    _defineProperty(_assertThisInitialized(_this), "submitStepRolePost", function () {
+      _this.btnRef.click(); // this.form
+      // this.form.formsubmit()
+
+
+      console.log("hàm submitStepRolePost đã được gọi");
+    });
+
     _this.state = {
       fields: {
         name: "",
@@ -6839,7 +6934,9 @@ var RolePost = /*#__PURE__*/function (_React$Component) {
       },
       errors: {}
     };
-    _this.form = new (react_form_input_validation__WEBPACK_IMPORTED_MODULE_1___default())(_assertThisInitialized(_this));
+    _this.form = new (react_form_input_validation__WEBPACK_IMPORTED_MODULE_1___default())(_assertThisInitialized(_this), {
+      locale: 'vi'
+    });
 
     _this.form.useRules({
       name: "required",
@@ -6847,62 +6944,75 @@ var RolePost = /*#__PURE__*/function (_React$Component) {
       phone_number: "required|numeric|digits_between:10,12"
     });
 
-    _this.form.onformsubmit = function (fields) {// Do you ajax calls here.
+    _this.form.onformsubmit = function (fields) {
+      // Do you ajax calls here.
+      console.log(fields, "form validate success => calls here."); /// truyền dữ liệu từ con lên cha nếu nhảy vào sự kiện này
+
+      props.saveFieldsToParent(fields, props);
     };
 
     return _this;
-  }
+  } /// call validate step RolePost /// component cha gọi action xuống component con thông qua hàm tạo này
+
 
   _createClass(RolePost, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
-        onSubmit: this.form.handleSubmit,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
-            children: ["Name", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-              type: "text",
-              name: "name",
-              onBlur: this.form.handleBlurEvent,
-              onChange: this.form.handleChangeEvent,
-              value: this.state.fields.name
+      var _this2 = this;
+
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "mystep",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
+          onSubmit: this.form.handleSubmit,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
+              children: ["Name", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+                type: "text",
+                name: "name",
+                onBlur: this.form.handleBlurEvent,
+                onChange: this.form.handleChangeEvent,
+                value: this.state.fields.name
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+              className: "error",
+              children: this.state.errors.name ? this.state.errors.name : ""
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
-            className: "error",
-            children: this.state.errors.name ? this.state.errors.name : ""
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
-            children: ["Email", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-              type: "text",
-              name: "email",
-              onBlur: this.form.handleBlurEvent,
-              onChange: this.form.handleChangeEvent,
-              value: this.state.fields.email
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
+              children: ["Email", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+                type: "text",
+                name: "email",
+                onBlur: this.form.handleBlurEvent,
+                onChange: this.form.handleChangeEvent,
+                value: this.state.fields.email
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+              className: "error",
+              children: this.state.errors.email ? this.state.errors.email : ""
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
-            className: "error",
-            children: this.state.errors.email ? this.state.errors.email : ""
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
-            children: ["Phone", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-              type: "tel",
-              name: "phone_number",
-              onBlur: this.form.handleBlurEvent,
-              onChange: this.form.handleChangeEvent,
-              value: this.state.fields.phone_number
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
+              children: ["Phone", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+                type: "tel",
+                name: "phone_number",
+                onBlur: this.form.handleBlurEvent,
+                onChange: this.form.handleChangeEvent,
+                value: this.state.fields.phone_number
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+              className: "error",
+              children: this.state.errors.phone_number ? this.state.errors.phone_number : ""
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
-            className: "error",
-            children: this.state.errors.phone_number ? this.state.errors.phone_number : ""
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+              ref: function ref(ins) {
+                _this2.btnRef = ins;
+              },
+              type: "submit",
+              children: "Submit"
+            })
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-            type: "submit",
-            children: "Submit"
-          })
-        })]
+        })
       });
     }
   }]);

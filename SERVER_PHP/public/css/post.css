@@ -232,3 +232,76 @@
   font-weight: bold;
   font-size: 13px;
 }
+
+.apartment {
+  max-width: 900px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.apartment__header {
+  text-align: center;
+  padding: 0 5px 10px 5px;
+  text-transform: capitalize;
+  line-height: 1.3;
+  font-size: 16px;
+  font-weight: bold;
+  padding-top: 15px;
+  position: relative;
+}
+.apartment__header-progress {
+  margin: 0;
+  border-radius: 0;
+  height: 2px;
+}
+.apartment__header-progress.progress .progress-bar {
+  background-color: #0d3617;
+}
+.apartment__title {
+  text-align: center;
+  display: block;
+  width: 100%;
+}
+.apartment__btn-prev {
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  color: #0d3617;
+  transform: translateY(-50%);
+}
+.apartment__btn-prev:hover {
+  color: #5a7661;
+}
+.apartment__btn-next {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  color: #0d3617;
+  transform: translateY(-50%);
+}
+.apartment__btn-next:hover {
+  color: #5a7661;
+}
+.apartment__wrapper {
+  padding: 1rem 0;
+}
+.apartment__footer {
+  text-transform: capitalize;
+  width: 100%;
+  background-color: #4caf50;
+  color: #fff;
+  border: 2px solid #4caf50;
+}
+.apartment__footer:hover {
+  background-color: #fff;
+  border: 2px solid #bfe2c0;
+  color: #4caf50;
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+}
+.apartment__footer:focus, .apartment__footer.focus {
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+  outline: 0;
+}
+.apartment__footer:disabled, .apartment__footer.disabled, fieldset:disabled .apartment__footer {
+  pointer-events: none;
+  opacity: 0.65;
+}
