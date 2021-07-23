@@ -1,5 +1,5 @@
 const io = require( "socket.io" )();
-const authMiddleware = require("./middleware/jwt.middleware")
+const authMiddleware = require("./middlewares/jwt.middleware")
 const eventIO = {
     io: io
 };

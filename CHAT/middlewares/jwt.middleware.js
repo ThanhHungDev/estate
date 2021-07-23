@@ -35,7 +35,7 @@ let isAuth = async (req, res, next) => {
         // Nếu giải mã gặp lỗi: Không đúng, hết hạn...etc:
         response.code             = code || 401
         response.message          = error.message || 'Unauthorized.'
-        response.internal_message = error.message || 'Unauthorized.'
+        response.internal_message = error.message || 'Unauthorized!'
 
         return res.status(response.code).json(response)
     }

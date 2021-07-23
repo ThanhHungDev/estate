@@ -12,6 +12,6 @@ GET /api/users HTTP/1.1
 Host: localhost:3000
 User-Agent: rest-client
 Accept-Language: en-GB,en-US;q=0.8,en;q=0.6,zh-CN;q=0.4
-Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE2MjYxODY0OTIsImV4cCI6MTYyNjE5MDA5MiwibmJmIjoxNjI2MTg2NDkyLCJqdGkiOiJrejFMeWJWYmRRd0w3Wmg2Iiwic3ViIjoyLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3IiwiYWhpaGkiOiJcdTAxMTFcdTFlZDMgbmdcdTFlZDFjIEN1c3RvbUNsYWltcyJ9.pjnAE7KABIw3a2t5adBG2Ss-kwNHwL-PoUJlC4-HykM
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGZhZjZmMDVkNTM4Zjg2OWVhMTdiZjQiLCJ1c2VybmFtZSI6InRhbyB0ZXN0IHRo4butIGPDoWkgbsOgeSIsImVtYWlsIjoiamJ0cnVvbmd0aGFuaGh1bmdAZ21haWwuY29tIiwiY3JlYXRlZEF0IjoiMjAyMS0wNy0yM1QxNzowNTo1Mi45NzFaIiwidXBkYXRlZEF0IjoiMjAyMS0wNy0yM1QxNzowNTo1Mi45NzFaIiwiaWF0IjoxNjI3MDYwMzUyLCJleHAiOjE2MjcwNjIxNTJ9.lNQhTrHgtnab0IyWaLrKGmduZc_wNUsQW-_yFWAmGlw
 content-type: application/json
 ################################
