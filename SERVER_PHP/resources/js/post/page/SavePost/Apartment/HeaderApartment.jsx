@@ -4,9 +4,9 @@ const renderTitleHeaderApartment = currentStep => {
 
     switch(currentStep) {
         case 1:
-            return 'bar';
+            return 'Chọn kiểu đăng';
         default:
-            return 'foo';
+            return 'Nhập thông tin liên hệ';
     }
 }
 const HeaderApartment = ({ SW }) => {

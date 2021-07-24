@@ -4,7 +4,7 @@ import StepWizard from "react-step-wizard"
 
 import HeaderApartment from "./Apartment/HeaderApartment"
 import FooterApartment from "./Apartment/FooterApartment"
-import RolePost from "./Partial/RolePost"
+import UserPostInfomation from "./Partial/UserPostInfomation"
 import TypePost from "./Partial/TypePost"
 
 
@@ -63,7 +63,7 @@ function Apartment( props ){
                     instance={setInstance}
                 >
                     <TypePost ref={ refType } CONFIG={CONFIG}/>
-                    <RolePost />
+                    <UserPostInfomation />
                     
                     <Step2 />
                     <Step3 />
