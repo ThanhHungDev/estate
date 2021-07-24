@@ -1,70 +1,70 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, forwardRef, useRef, useImperativeHandle } from "react"
 import { connect } from "react-redux"
 import StepWizard from "react-step-wizard"
 
 import HeaderApartment from "./Apartment/HeaderApartment"
 import FooterApartment from "./Apartment/FooterApartment"
 import RolePost from "./Partial/RolePost"
+import TypePost from "./Partial/TypePost"
 
 
 /// lưu căn hộ chung cư
 function Apartment( props ){
 
     const [ form, setForm ] = useState({})
-    const [state, updateState] = useState({})
-    let refRolePost = React.createRef()
+    const [ state, updateState] = useState({})
 
-    /// khi component con gọi lên cha để update dữ liệu
-    const updateForm = (fields, propsChild) => {
-
-        setForm({
-            ...form,
-            ...fields,
-        })
-        console.log({
-            ...form,
-            ...fields,
-        })
-        propsChild.nextStep()
-    };
+    // let refRolePost = React.createRef()
+    const refType = useRef()
 
     // Do something on step change
     const onStepChange = (stats) => {
-        console.log(state, stats);
-        console.log(form, "onStepChange");
+
+        console.log(form, "onStepChange đã cập nhật dữ liệu mới");
         updateState( {
             ...stats,
             ...state,
+            ...form
         } )
     }
 
     const setInstance = SW => updateState({
+        ...form,
         ...state,
         SW,
     })
 
     const continueStep = (childData) => {
-        console.log("vào continueStep")
+        
 
-        refRolePost.submitStepRolePost()
-        // SW.nextStep()
+        // const type = refType.validateFromStep()
+        console.log( "vào continueStep ==> nhảy vào thằng con validate nếu thành công thì cho next step")
+        refType.current.validateFromStep()
+        // if( SW.currentStep == 2 ){
+        //     /// validate đúng thì mới đc next step
+        //     // refRolePost.submitStepRolePost()
+        // }else{
+        //     SW.nextStep()
+        // }
+        
     }
     
     /// ban đầu state là {} => SW là undefine
     const { SW } = state
-    
+    const { CONFIG } = props
     return (
         <div className="apartment">
             { SW && <HeaderApartment SW={SW} /> }
             
             <div className="apartment__wrapper">
                 <StepWizard
-                    isHashEnabled
+                    // isHashEnabled
                     onStepChange={onStepChange}
                     instance={setInstance}
                 >
-                    <RolePost ref={ins => { refRolePost = ins }}  saveFieldsToParent={updateForm}/>
-                    <Step1 />
+                    <TypePost ref={ refType } CONFIG={CONFIG}/>
+                    <RolePost />
+                    
                     <Step2 />
                     <Step3 />
                 </StepWizard>

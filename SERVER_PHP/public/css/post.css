@@ -1,3 +1,62 @@
+/* The container__radio */
+.container__radio {
+  text-align: left;
+  display: inline-block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 15px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  padding-right: 20px;
+  /* Hide the browser's default radio button */
+  /* Create a custom radio button */
+  /* On mouse-over, add a grey background color */
+}
+.container__radio input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  /* When the radio button is checked, add a blue background */
+}
+.container__radio input:checked ~ .checkmark {
+  background-color: #10772f;
+}
+.container__radio input:checked ~ .checkmark:after {
+  display: block;
+}
+.container__radio .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 24px;
+  width: 24px;
+  background-color: #eee;
+  border-radius: 50%;
+  border: 1px solid #647e6c;
+  /* Create the indicator (the dot/circle - hidden when not checked) */
+}
+.container__radio .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+  top: 7px;
+  left: 7px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+}
+.container__radio:hover input ~ .checkmark {
+  background-color: #b6f0c7;
+}
+.container__radio:active input ~ .checkmark {
+  background-color: #10772f !important;
+}
+
 .post__root-react {
   max-width: 1100px;
   margin: 0 auto;

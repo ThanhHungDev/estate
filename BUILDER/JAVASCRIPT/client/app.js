@@ -76,7 +76,7 @@ $(document).ready(function () {
 
     window.addEventListener('error', (event) => {
         
-        alert(`có lỗi cần send mail ${event.type}: ${event.message}\n`)
+        console.log(`có lỗi cần send mail ${event.type}: ${event.message}\n`)
     });
 
 

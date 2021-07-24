@@ -24,6 +24,7 @@ function VerifyPhone( props ){
     const [ invalidPhone, setInvalidPhone ] = useState(null)
     const [ isvalidRecaptcha, setIsvalidRecaptcha ] = useState(null)
     const [ alert, setAlert ] = useState(null)
+    const [ isProgress, setIsProgress ] = useState(null)
 
     const [ backupPhone, setBackupPhone ] = useState('')
 
@@ -52,7 +53,8 @@ function VerifyPhone( props ){
         }
         //// hàm chạy 1 lần duy nhất gọi đến api update
         if( !props.AUTH.phone_verify &&  AUTH_PHONE_FIREBASE){
-            
+            /// ẩn button send đồng thời show progress bar loading
+            setIsProgress(true)
             userAPI.verifyPhone({ phone_verify: `${AUTH_PHONE_FIREBASE.phoneNumber}` })
             .then( response => {
                 console.log(response)
@@ -63,6 +65,7 @@ function VerifyPhone( props ){
                 //     // An error happened.
                 // });
                 location.reload()
+                setIsProgress(null)
                 /// thành công thì refresh trang
                 // const { user, phone, jwt } = response.data
                 // /// lưu jwt vào localStorage
@@ -115,6 +118,8 @@ function VerifyPhone( props ){
             refPhone.current.value = ''
             //// cho recaptcha tạo mới lại
             recapchaVerifier.render()
+            /// set hidden button 
+            setIsProgress(true)
             /// gửi reqquest lên firebase
             firebase
             .auth()
@@ -124,6 +129,7 @@ function VerifyPhone( props ){
                 console.log(confirmationResult)
                 setAlert(null)
                 setScreenCode(true)
+                setIsProgress(null)
             })
             .catch(function (error) {
                 console.log(error)
@@ -183,7 +189,7 @@ function VerifyPhone( props ){
                     <div className="notification form-group">
                         {
                             alert && 
-                            <div className="alert alert-error" role="alert"> { alert } </div>
+                            <div className="alert alert-danger" role="alert"> { alert } </div>
                         }
                         <div className={ "input-group " + (invalidCode && 'input-group-error' )}>
                             <i className="icon fad fa-shield"></i>
@@ -195,12 +201,18 @@ function VerifyPhone( props ){
                         </div>
                         <div className="error">{ invalidCode }</div>
                         {
-                            !invalidCode && 
+                            ( !invalidCode && !isProgress) &&
                             <button type="submit" 
                             onClick={ sendVerifyCode }
                             className="btn btn-login aqua-gradient-rgba">
                                 Xác Thực Mã Code
                             </button>
+                        }
+                        {
+                            isProgress &&
+                            <div className="progress progress-success bg-color-indeterminate">
+                                <div className="progress-loadding"></div>
+                            </div>
                         }
                     </div>
                 </div>
@@ -232,12 +244,18 @@ function VerifyPhone( props ){
                     <div className="error">{ invalidPhone }</div>
                     <div id="recaptcha-container"></div>
                     {
-                        !invalidPhone && 
+                        (!invalidPhone && !isProgress) &&
                         <button type="submit" 
                         onClick={ sendSignInPhone }
                         className="btn btn-login aqua-gradient-rgba">
                             Xác Thực
                         </button>
+                    }
+                    {
+                        isProgress &&
+                        <div className="progress progress-success bg-color-indeterminate">
+                            <div className="progress-loadding"></div>
+                        </div>
                     }
                 </div>
             </div>
