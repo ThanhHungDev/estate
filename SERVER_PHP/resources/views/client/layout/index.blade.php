@@ -92,7 +92,10 @@
     $configApp['providers'] = [];
     $configApp['aliases'] = [];
     $configApp['API'] = [
-        'UPDATE_VERIFY_PHONE' => Route('API.USER.PATCH_VERIFY_PHONE')
+        'UPDATE_VERIFY_PHONE' => Route('API.USER.PATCH_VERIFY_PHONE'),
+        'DISTRICTS' => Route('DISTRICTS'),
+        'COMMUNES' => Route('COMMUNES'),
+        'PROVINCES' => Route('PROVINCES')
     ];
     $configApp['WEB'] = [
         'PATCH_VERIFY_PHONE' => Route('PATCH_VERIFY_PHONE'),

@@ -22,9 +22,10 @@ const TypePost = forwardRef((props, ref) => {
                 if( !type ){
                     /// có lỗi
                     setIsValid( 1 )
+                    return false
                 }else{
                     setIsValid( null )
-                    props.nextStep()
+                    return type
                 }
             }
         }),

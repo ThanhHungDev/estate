@@ -343,6 +343,19 @@
 
     &__wrapper{
         padding: 1rem 0;
+
+        .user-information{
+            padding: 3px;
+
+            .form-group.required label:after {
+                content:"*";
+                color:red;
+            }
+
+            // .form-control{
+            //     border-radius: 4px;
+            // }
+        }
     }
 
     &__footer{

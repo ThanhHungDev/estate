@@ -3,7 +3,7 @@ import React from "react"
 const FooterApartment = props => {
 
     const continu = () => {
-        console.log("vào continu")
+        console.log("vào continu of FooterApartment")
         props.parentCallback()
     }
 

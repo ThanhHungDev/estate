@@ -16,6 +16,7 @@ function Apartment( props ){
 
     // let refRolePost = React.createRef()
     const refType = useRef()
+    const refUserPostInfor = useRef()
 
     // Do something on step change
     const onStepChange = (stats) => {
@@ -36,34 +37,35 @@ function Apartment( props ){
 
     const continueStep = (childData) => {
         
+        if( SW.currentStep == 1 ){
+            /// validate đúng thì mới đc next step
+            const type = refType.current.validateFromStep()
+            if( type ){
+                setForm({ ...form, type })
+                SW.nextStep()
+            }
+        }else if(SW.currentStep == 2){
 
-        // const type = refType.validateFromStep()
-        console.log( "vào continueStep ==> nhảy vào thằng con validate nếu thành công thì cho next step")
-        refType.current.validateFromStep()
-        // if( SW.currentStep == 2 ){
-        //     /// validate đúng thì mới đc next step
-        //     // refRolePost.submitStepRolePost()
-        // }else{
-        //     SW.nextStep()
-        // }
+            refUserPostInfor.current.validateFromStep()
+        }
         
     }
     
     /// ban đầu state là {} => SW là undefine
     const { SW } = state
-    const { CONFIG } = props
+    const { CONFIG, AUTH } = props
     return (
         <div className="apartment">
             { SW && <HeaderApartment SW={SW} /> }
             
             <div className="apartment__wrapper">
                 <StepWizard
-                    // isHashEnabled
+                    isHashEnabled
                     onStepChange={onStepChange}
                     instance={setInstance}
                 >
                     <TypePost ref={ refType } CONFIG={CONFIG}/>
-                    <UserPostInfomation />
+                    <UserPostInfomation ref={ refUserPostInfor } CONFIG={CONFIG} AUTH={AUTH}/>
                     
                     <Step2 />
                     <Step3 />
@@ -104,7 +106,8 @@ function Step3(props){
 let mapStateToProps = (state) => {
     return {
         CATEGORIES: state.categories,
-        CONFIG: state.config
+        CONFIG: state.config,
+        AUTH: state.auth,
     }
 }
 export default connect(mapStateToProps)(Apartment)

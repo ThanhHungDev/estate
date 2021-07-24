@@ -30,10 +30,9 @@
         lightGallery(document.getElementById('photos__responsive-images')); 
     </script>
     <script>
-        const jwt = "{{ Cookie::get(Config::get('constant.TOKEN_COOKIE_NAME')) }}";
-        const KEY_CAPTCHA = "{{ env('GOOGLE_RECAPTCHA_KEY')  }}";
+        // const KEY_CAPTCHA = "{{ env('GOOGLE_RECAPTCHA_KEY')  }}";
         if (typeof localStorage !== 'undefined') {
-            localStorage.setItem('jwt', jwt);
+            localStorage.setItem('jwt', "{{ Cookie::get(Config::get('constant.TOKEN_COOKIE_NAME')) }}");
         }
     </script>
     <script src="{{ asset('js/post.js'. Config::get('app.version')) }}"></script>

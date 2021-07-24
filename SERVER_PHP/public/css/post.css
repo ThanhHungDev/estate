@@ -343,6 +343,13 @@
 .apartment__wrapper {
   padding: 1rem 0;
 }
+.apartment__wrapper .user-information {
+  padding: 3px;
+}
+.apartment__wrapper .user-information .form-group.required label:after {
+  content: "*";
+  color: red;
+}
 .apartment__footer {
   text-transform: capitalize;
   width: 100%;

@@ -6671,7 +6671,8 @@ function Apartment(props) {
       updateState = _useState4[1]; // let refRolePost = React.createRef()
 
 
-  var refType = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(); // Do something on step change
+  var refType = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
+  var refUserPostInfor = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(); // Do something on step change
 
   var onStepChange = function onStepChange(stats) {
     console.log(form, "onStepChange đã cập nhật dữ liệu mới");
@@ -6685,33 +6686,43 @@ function Apartment(props) {
   };
 
   var continueStep = function continueStep(childData) {
-    // const type = refType.validateFromStep()
-    console.log("vào continueStep ==> nhảy vào thằng con validate nếu thành công thì cho next step");
-    refType.current.validateFromStep(); // if( SW.currentStep == 2 ){
-    //     /// validate đúng thì mới đc next step
-    //     // refRolePost.submitStepRolePost()
-    // }else{
-    //     SW.nextStep()
-    // }
+    if (SW.currentStep == 1) {
+      /// validate đúng thì mới đc next step
+      var type = refType.current.validateFromStep();
+
+      if (type) {
+        setForm(_objectSpread(_objectSpread({}, form), {}, {
+          type: type
+        }));
+        SW.nextStep();
+      }
+    } else if (SW.currentStep == 2) {
+      refUserPostInfor.current.validateFromStep();
+    }
   }; /// ban đầu state là {} => SW là undefine
 
 
   var SW = state.SW;
-  var CONFIG = props.CONFIG;
+  var CONFIG = props.CONFIG,
+      AUTH = props.AUTH;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
     className: "apartment",
     children: [SW && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Apartment_HeaderApartment__WEBPACK_IMPORTED_MODULE_3__.default, {
       SW: SW
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
       className: "apartment__wrapper",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)((react_step_wizard__WEBPACK_IMPORTED_MODULE_2___default()) // isHashEnabled
-      , {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)((react_step_wizard__WEBPACK_IMPORTED_MODULE_2___default()), {
+        isHashEnabled: true,
         onStepChange: onStepChange,
         instance: setInstance,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Partial_TypePost__WEBPACK_IMPORTED_MODULE_6__.default, {
           ref: refType,
           CONFIG: CONFIG
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Partial_UserPostInfomation__WEBPACK_IMPORTED_MODULE_5__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(Step2, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(Step3, {})]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Partial_UserPostInfomation__WEBPACK_IMPORTED_MODULE_5__.default, {
+          ref: refUserPostInfor,
+          CONFIG: CONFIG,
+          AUTH: AUTH
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(Step2, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(Step3, {})]
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Apartment_FooterApartment__WEBPACK_IMPORTED_MODULE_4__.default, {
       parentCallback: continueStep
@@ -6767,7 +6778,8 @@ function Step3(props) {
 var mapStateToProps = function mapStateToProps(state) {
   return {
     CATEGORIES: state.categories,
-    CONFIG: state.config
+    CONFIG: state.config,
+    AUTH: state.auth
   };
 };
 
@@ -6793,7 +6805,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var FooterApartment = function FooterApartment(props) {
   var continu = function continu() {
-    console.log("vào continu");
+    console.log("vào continu of FooterApartment");
     props.parentCallback();
   };
 
@@ -6936,9 +6948,10 @@ var TypePost = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(fu
         if (!type) {
           /// có lỗi
           setIsValid(1);
+          return false;
         } else {
           setIsValid(null);
-          props.nextStep();
+          return type;
         }
       }
     };
@@ -7011,26 +7024,346 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var max_validator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! max-validator */ "./node_modules/max-validator/dist/max-validator.es.js");
+/* harmony import */ var _service_location_api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../service/location.api */ "./resources/js/service/location.api.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
+
+
+
+
+var userPostInfomationScheme = {
+  home_number: "required|string|min:2|max:50",
+  street: "required|string|min:2|max:200"
+};
 var UserPostInfomation = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(function (props, ref) {
-  /// init state
+  var AUTH = props.AUTH;
+  var PROVINCE_NULL = [{
+    id: 0,
+    text: 'Chọn Tỉnh Thành'
+  }];
+  var DISTRICT_NULL = [{
+    id: 0,
+    text: 'Chọn Quận / Huyện'
+  }];
+  var COMMUNE_NULL = [{
+    id: 0,
+    text: 'Chọn Phường, xã, thị trấn'
+  }]; /// init state
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(PROVINCE_NULL),
+      _useState2 = _slicedToArray(_useState, 2),
+      provinces = _useState2[0],
+      setProvinces = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(DISTRICT_NULL),
+      _useState4 = _slicedToArray(_useState3, 2),
+      districts = _useState4[0],
+      setDistricts = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(COMMUNE_NULL),
+      _useState6 = _slicedToArray(_useState5, 2),
+      communes = _useState6[0],
+      setCommunes = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    isValid: false,
+    values: {
+      province: 0,
+      district: 0,
+      commune: 0,
+      home_number: '',
+      street: '',
+      submit: 1
+    },
+    touched: {
+      province: false,
+      district: false,
+      commune: false,
+      home_number: false,
+      street: false,
+      submit: false
+    },
+    errors: max_validator__WEBPACK_IMPORTED_MODULE_1__.default.getEmpty()
+  }),
+      _useState8 = _slicedToArray(_useState7, 2),
+      formState = _useState8[0],
+      setFormState = _useState8[1];
+
+  var handleChange = function handleChange(event) {
+    event.persist();
+    setFormState(function (formState) {
+      return _objectSpread(_objectSpread({}, formState), {}, {
+        values: _objectSpread(_objectSpread({}, formState.values), {}, _defineProperty({}, event.target.name, event.target.type === "checkbox" ? event.target.checked : event.target.value)),
+        touched: _objectSpread(_objectSpread({}, formState.touched), {}, _defineProperty({}, event.target.name, true))
+      });
+    });
+  };
+
+  var hasErr = function hasErr(name) {
+    return formState.touched[name] && formState.errors.isError(name);
+  };
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (provinces.length <= 1) {
+      /// call api get province
+      _service_location_api__WEBPACK_IMPORTED_MODULE_2__.default.getProvinces().then(function (response) {
+        var data = response.data;
+        setProvinces([].concat(_toConsumableArray(provinces), _toConsumableArray(data)));
+      })["catch"](function (error) {
+        console.log("ERROR:: ", error);
+      });
+    }
+
+    console.log("formState useEffect", formState);
+    var errors = max_validator__WEBPACK_IMPORTED_MODULE_1__.default.validate(formState.values, userPostInfomationScheme);
+
+    var newState = _objectSpread(_objectSpread({}, formState), {}, {
+      isValid: errors.hasError,
+      errors: errors
+    });
+
+    setFormState(newState);
+  }, [formState.values]);
+
+  function onProvinceChange(e) {
+    var provinceValue = e.currentTarget.value;
+
+    if (provinceValue == 0) {
+      /// set cho cái district về mặc định như ban đầu
+      setDistricts(DISTRICT_NULL);
+      setCommunes(COMMUNE_NULL);
+    } else {
+      var loadding = DISTRICT_NULL.map(function (d) {
+        d.text = 'Vui lòng chờ tải dữ liệu ...'; // <b class="spinner"><i></i><i></i><i></i><i></i></b>
+
+        return d;
+      }); /// reset select 2 district to none loading
+
+      setDistricts(loadding); /// fetch api DISTRICT all
+
+      if (districts.length <= 1) {
+        /// chưa fetch api bao giờ thì fetch thôi
+        _service_location_api__WEBPACK_IMPORTED_MODULE_2__.default.getDistricts().then(function (response) {
+          var data = response.data; ///
+
+          setDistricts([].concat(_toConsumableArray(districts), _toConsumableArray(data)));
+        })["catch"](function (error) {
+          console.log("ERROR:: locationAPI.getDistricts-- ", error);
+        });
+      }
+    }
+  }
+
+  function onDistrictChange(e) {
+    var districtValue = e.currentTarget.value;
+
+    if (districtValue == 0) {
+      /// set cho cái communes về mặc định như ban đầu
+      setCommunes(COMMUNE_NULL);
+    } else {
+      var loadding = COMMUNE_NULL.map(function (c) {
+        c.text = 'Vui lòng chờ tải dữ liệu ...'; // <b class="spinner"><i></i><i></i><i></i><i></i></b>
+
+        return c;
+      }); /// reset select 2 district to none loading
+
+      setCommunes(loadding); /// fetch api COMMUNE all
+
+      if (communes.length <= 1) {
+        /// chưa fetch api bao giờ thì fetch thôi
+        _service_location_api__WEBPACK_IMPORTED_MODULE_2__.default.getCommunes().then(function (response) {
+          var data = response.data; ///
+
+          setCommunes([].concat(_toConsumableArray(communes), _toConsumableArray(data)));
+        })["catch"](function (error) {
+          console.log("ERROR:: locationAPI.getCommunes-- ", error);
+        });
+      }
+    }
+  }
+
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useImperativeHandle)(ref, function () {
     return {
-      validateFromStep: function validateFromStep() {// if( !type ){
-        //     /// có lỗi
-        //     setIsValid( 1 )
-        // }else{
-        //     setIsValid( null )
-        //     props.nextStep()
-        // }
+      validateFromStep: function validateFromStep() {
+        var errors = max_validator__WEBPACK_IMPORTED_MODULE_1__.default.validate(formState.values, userPostInfomationScheme);
+
+        if (errors.hasError) {
+          var touched = formState.touched;
+          Object.keys(touched).map(function (key, index) {
+            touched[key] = true;
+          });
+          setFormState(_objectSpread({}, formState));
+        } else {/// lưu lại và next step
+        }
       }
     };
   });
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-    className: "user-type position-relative",
-    children: "nh\u1EADp th\xF4ng tin user UserPostInfomation"
+  console.log("có render html nè");
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+    className: "user-information position-relative",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      className: "row",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "col-6",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          className: "form-group",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+            htmlFor: "name",
+            children: "H\u1ECD t\xEAn: "
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+            type: "text",
+            className: "form-control",
+            id: "name",
+            defaultValue: AUTH.name,
+            readOnly: true
+          })]
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "col-6",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          className: "form-group",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+            htmlFor: "phone",
+            children: "S\u1ED1 \u0111i\u1EB9n tho\u1EA1i: "
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+            type: "text",
+            className: "form-control",
+            id: "phone",
+            defaultValue: AUTH.phone_verify,
+            readOnly: true
+          })]
+        })
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      className: "row",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "col-12 col-sm-4",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          className: "form-group required",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+            htmlFor: "province",
+            children: "Ch\u1ECDn T\u1EC9nh th\xE0nh"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("select", {
+            className: "custom-select mr-sm-2",
+            id: "province",
+            onChange: onProvinceChange,
+            children: provinces.map(function (p) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("option", {
+                value: p.id,
+                children: [" ", p.text, " "]
+              }, p.id);
+            })
+          })]
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "col-12 col-sm-4",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          className: "form-group required",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+            htmlFor: "district",
+            children: "Ch\u1ECDn Qu\u1EADn / Huy\u1EC7n"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("select", {
+            className: "custom-select mr-sm-2",
+            id: "district",
+            onChange: onDistrictChange,
+            children: districts.map(function (d) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("option", {
+                value: d.id,
+                children: [" ", d.text, " "]
+              }, d.id);
+            })
+          })]
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "col-12 col-sm-4",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          className: "form-group required",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+            htmlFor: "commune",
+            children: "Ph\u01B0\u1EDDng, x\xE3, th\u1ECB tr\u1EA5n"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("select", {
+            className: "custom-select mr-sm-2",
+            id: "commune",
+            children: communes.map(function (c) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("option", {
+                value: c.id,
+                children: [" ", c.text, " "]
+              }, c.id);
+            })
+          })]
+        })
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      className: "row",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "col-12 col-sm-4",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          className: "form-group required",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+            htmlFor: "home_number",
+            children: "S\u1ED1 Nh\xE0 "
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+            type: "text",
+            id: "home_number",
+            placeholder: "0674",
+            className: hasErr("home_number") ? "is-invalid form-control" : "form-control",
+            name: "home_number",
+            value: formState.values.home_number,
+            onChange: handleChange
+          }), formState.errors.getError('home_number') && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "invalid-feedback",
+            children: [" ", formState.errors.getError('home_number'), " "]
+          })]
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "col-12 col-sm-8",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          className: "form-group required",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+            htmlFor: "street",
+            children: "T\xEAn \u0111\u01B0\u1EDDng "
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+            type: "text",
+            id: "street",
+            placeholder: "H\xE0ng 5 - \u1EA4p L\u1ED9c Ho\xE0",
+            className: hasErr("street") ? "is-invalid form-control" : "form-control",
+            name: "street",
+            value: formState.values.street,
+            onChange: handleChange
+          }), formState.errors.getError('street') && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "invalid-feedback",
+            children: [" ", formState.errors.getError('street'), " "]
+          })]
+        })
+      })]
+    })]
   });
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (UserPostInfomation);
@@ -7248,6 +7581,60 @@ var jwt = localStorage.getItem('jwt');
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   AUTH: (0,jwt_decode__WEBPACK_IMPORTED_MODULE_0__.default)(jwt),
   jwt: jwt
+});
+
+/***/ }),
+
+/***/ "./resources/js/service/location.api.js":
+/*!**********************************************!*\
+  !*** ./resources/js/service/location.api.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+var CONFIG = {};
+
+if (typeof CONFIG_APP != 'undefined') {
+  /// thì sao? 
+  CONFIG = JSON.parse(CONFIG_APP);
+}
+
+var Api = axios__WEBPACK_IMPORTED_MODULE_0___default().create({
+  baseURL: window.location.origin,
+  withCredentials: false,
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json'
+  },
+  timeout: 10000 // request timeout/ là thời gian lớn nhất để chờ là 10s 
+
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  getProvinces: function getProvinces() {
+    console.log("vào getProvinces");
+    return Api.get(CONFIG.API.PROVINCES).then(function (res) {
+      return res.data;
+    });
+  },
+  getDistricts: function getDistricts() {
+    console.log("vào getDistricts");
+    return Api.get(CONFIG.API.DISTRICTS).then(function (res) {
+      return res.data;
+    });
+  },
+  getCommunes: function getCommunes() {
+    console.log("vào getCommunes");
+    return Api.get(CONFIG.API.COMMUNES).then(function (res) {
+      return res.data;
+    });
+  }
 });
 
 /***/ }),
@@ -8427,6 +8814,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 function e(e){this.message=e}e.prototype=new Error,e.prototype.name="InvalidCharacterError";var r="undefined"!=typeof window&&window.atob&&window.atob.bind(window)||function(r){var t=String(r).replace(/=+$/,"");if(t.length%4==1)throw new e("'atob' failed: The string to be decoded is not correctly encoded.");for(var n,o,a=0,i=0,c="";o=t.charAt(i++);~o&&(n=a%4?64*n+o:o,a++%4)?c+=String.fromCharCode(255&n>>(-2*a&6)):0)o="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".indexOf(o);return c};function t(e){var t=e.replace(/-/g,"+").replace(/_/g,"/");switch(t.length%4){case 0:break;case 2:t+="==";break;case 3:t+="=";break;default:throw"Illegal base64url string!"}try{return function(e){return decodeURIComponent(r(e).replace(/(.)/g,(function(e,r){var t=r.charCodeAt(0).toString(16).toUpperCase();return t.length<2&&(t="0"+t),"%"+t})))}(t)}catch(e){return r(t)}}function n(e){this.message=e}function o(e,r){if("string"!=typeof e)throw new n("Invalid token specified");var o=!0===(r=r||{}).header?0:1;try{return JSON.parse(t(e.split(".")[o]))}catch(e){throw new n("Invalid token specified: "+e.message)}}n.prototype=new Error,n.prototype.name="InvalidTokenError";/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (o);
 //# sourceMappingURL=jwt-decode.esm.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/max-validator/dist/max-validator.es.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/max-validator/dist/max-validator.es.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+let e="Incorrect Value",t={required:":name is required",min:":name cant be less than :min",max:":name cant be greater than :max",between:":name must be between :from and :to",checked:":name must be checked",array:":name must be array",object:":name must be object",boolean:":name must be boolean",numeric:":name can only contain digits",alpha_numeric:":name can only contain digits and letters",alpha_dash:":name can only contain letters and dashes",alpha:":name can only contain leters",email:":name must be correct mail",phone:":name must be a correct phone number",in_array:":name is invalid",not_in:":name can't be :value",json:":name must be valid json",ip:":name must be valid ip adress",url:":name must be valid url",equals:":name must equal to :value",not_equals:":name can't be :value",contains_one:':name must contain ":value_to_contain"',contains_all:':name must contain ":value_to_contain"',starts_with:":name must start with :prefix",ends_with:":name must end with :suffix",date:":name must valid date"};const n=/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,r=/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;let a={alpha:e=>/^[a-zA-Z]+$/.test(e)||{value:e},alpha_dash:e=>/^[A-Za-z\-]+$/.test(e)||{value:e},alpha_numeric:e=>/^[A-Za-z0-9]+$/.test(e)||{value:e},array:e=>Array.isArray(e)||{},between(e,t,n){if("string"==typeof e){if(e.length>=t&&e.length<=n)return!0}else if(e>=t&&e<=n)return!0;return{from:t,to:n,value:e}},boolean:e=>"boolean"==typeof e||{},checked:e=>1===e||"on"===e||!0===e||"true"===e||{},contains_all(e,...t){Array.isArray(e)||(e=String(e));for(let n=0,r=t.length;n<r;n++)if(-1===e.indexOf(t[n]))return{value_to_contain:t[n]};return!0},contains_one(e,...t){Array.isArray(e)||(e=String(e));for(let n=0,r=t.length;n<r;n++)if(e.indexOf(t[n])>-1)return!0;return{value_to_contain:t.join(",")}},date:e=>!isNaN(Date.parse(e))||{},email:e=>n.test(e)||{value:e},phone:e=>/^\d{7,}$/.test(e.replace(/[\s()+\-\.]|ext/gi,"")),ends_with:(e,t)=>(t=String(t),-1!==(e=String(e)).indexOf(t,e.length-t.length)||{suffix:t}),equals:(e,t)=>String(e)===t||{value:t},in_array:(e,...t)=>t.indexOf(String(e))>-1||{value:t.join(",")},ip:e=>r.test(e)||{value:e},json(e){try{return JSON.parse(String(e)),!0}catch(e){return{}}},max(e,t){if("string"==typeof e){if(e.length<=t)return!0}else if(void 0!==typeof e&&e<=t)return!0;return{max:t}},min(e,t){if("string"==typeof e){if(e.length>=t)return!0}else if(void 0!==typeof e&&e>=t)return!0;return{min:t}},not_equals:(e,t)=>String(e)!==t||{value:t},not_in:(e,...t)=>-1===t.indexOf(String(e))||{value:e},numeric:e=>/^\d+$/.test(e)||{value:e},object:e=>"object"==typeof e||{value:e},starts_with:(e,t)=>(t=String(t),(e=String(e)).indexOf(t)>0||{prefix:t}),url(e){try{return new URL(e),!0}catch(t){return{value:e}}}};const i=["required","string","nullable","number"];let o="|",s=":",l=",";class u{constructor(e){"string"==typeof e?(this.name=e,this.isInlineFunction=!1,-1===i.indexOf(e)&&(this.validator=function(e){if(!1===a.hasOwnProperty(e))throw`The validation method "${e}" does not exist`;return a[e]}(this.name))):"function"==typeof e&&(this.name=e.name||"default",this.isInlineFunction=!0,this.validator=e),this.params=[]}validate(e,t,n){if(null==t||""===t){if(e.isRequired)return{rule:"required"};if(e.isNullable)return!0}return e.isNumber?t=parseFloat(t):e.isString&&(t=String(t)),this.isInlineFunction?this.validator(t,n):this.validator(t,...this.params)}setParams(e=[]){return this.params=e,this}}function f(e){let t={},n=100;return e.map((function(e){if(null!=e&&""!==e)if("string"==typeof e){let n=c(e);Object.assign(t,n)}else if("function"==typeof e){let r=e.name.length>0?e.name:n++;t[r]=new u(e)}})),t}function m(e){let t={},n=100;return Object.keys(e).map((function(r){let a=e[r];if("function"==typeof a){let e=a.name.length>0?a.name:n++;t[e]=new u(a)}else{let e=Array.isArray(a)?a:[a];t[r]=new u(r).setParams(e)}})),t}function c(e){let t={};return e.split(o).filter((function(e){return""!==e})).map((function(e){let n=e.split(s),r=n[0].trim(),a=new u(r),i=n[1],o=void 0!==i?i.split(l):[];a.setParams(o),t[r]=a})),t}function h(n,r,a){if("object"!=typeof r&&(r={}),r.name=n,void 0===t[a])return e;let i=t[a];return Object.keys(r).map((function(e){i=i.replace(":"+e,r[e])})),i}function d(e,t){return{hasError:Object.keys(e).length>0,errors:e,isError:function(n,r){return void 0===r?void 0!==e[n]:void 0!==t[n]&&-1!==t[n].indexOf(r)},getError:function(t,n=!0){return Array.isArray(e[t])&&0!==e[t].length?n?e[t].join(","):e[t][0]:""}}}function p(e,t,n){let r={},a={};if("object"!=typeof e||"object"!=typeof t)throw"Both data and scheme must be object";let o=function(e){const t={};for(let n in e){let r=e[n],a={};if("string"==typeof r)a=c(r);else if(Array.isArray(r))a=f(r);else{if("object"!=typeof r)throw`Invalid rules for ${n}`;a=m(r)}let o=void 0!==a.required,s=void 0!==a.string,l=void 0!==a.number,u=void 0!==a.nullable;for(let e=0;e<i.length;e++)delete a[i[e]];t[n]={rules:Object.values(a),isRequired:o,isString:s,isNumber:l,isNullable:u}}return t}(t);for(let t in o){a[t]=[];for(let n=0,i=o[t].rules.length;n<i;n++){let i,s=o[t].rules[n],l=s.validate(o[t],e[t],e),u=l.rule?l.rule:s.name;!0!==l&&(i="string"==typeof l?l:h(t,l,u),void 0===r[t]?r[t]=[i]:-1===r[t].indexOf(i)&&r[t].push(i),a[t].push(u))}}const s=d(r,a);return"function"==typeof n&&n(s),s}var g=Object.freeze({__proto__:null,extend:function(e,n,r=null){if(a.hasOwnProperty(e))throw`The validation method "${e}" already exists`;if("function"!=typeof n)throw"The validation method must be function";a[e]=n,r&&(t[e]=r)},formatMessage:h,formatErrors:d,getEmpty:function(){return p({},{})},validate:p,setMessages:function(e){if("object"!=typeof e)throw"Messages must be object";t={...t,...e}},setDefaultMessage:function(t){if("string"!=typeof t)throw"Default message must be a string";e=t},setRuleSeparator:function(e){if("string"!=typeof e)throw"Separator must be string";o=e},setRuleParamSeparator:function(e){if("string"!=typeof e)throw"Separator must be string";s=e},setParamsSeparator:function(e){if("string"!=typeof e)throw"Separator must be string";l=e}});/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (g);
+//# sourceMappingURL=max-validator.es.js.map
 
 
 /***/ }),
