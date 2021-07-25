@@ -7408,7 +7408,7 @@ var UserPostInfomation = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forw
     });
 
     setFormState(newState);
-  }, [formState.values]);
+  }, [formState.values, districts, provinces, communes]);
 
   function onProvinceChange(e) {
     var provinceValue = e.currentTarget.value;

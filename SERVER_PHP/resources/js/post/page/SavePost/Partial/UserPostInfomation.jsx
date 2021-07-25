@@ -98,7 +98,7 @@ const UserPostInfomation = forwardRef((props, ref) => {
         }
         setFormState(newState)
 
-    }, [ formState.values ] )
+    }, [ formState.values, districts, provinces, communes ] )
 
     function onProvinceChange(e){
 
