@@ -4,8 +4,11 @@ import V from "max-validator"
 import locationAPI from "../../../../service/location.api"
 
 const userPostInfomationScheme = {
+    province   : "required|numeric|min:1|max:100000",
+    district   : "required|numeric|min:1|max:100000",
+    commune    : "required|numeric|min:1|max:100000",
     home_number: "required|string|min:2|max:50",
-    street: "required|string|min:2|max:200",
+    street     : "required|string|min:2|max:200",
 }
 
 const UserPostInfomation = forwardRef((props, ref) => {
@@ -28,7 +31,6 @@ const UserPostInfomation = forwardRef((props, ref) => {
 			commune : 0,
             home_number: '',
             street: '',
-            submit: 1
 		},
         touched: {
             province: false,
@@ -36,7 +38,6 @@ const UserPostInfomation = forwardRef((props, ref) => {
 			commune : false,
             home_number: false,
             street: false,
-            submit: false
         },
         errors : V.getEmpty(),
     })
@@ -58,6 +59,16 @@ const UserPostInfomation = forwardRef((props, ref) => {
                 [event.target.name]: true,
             },
         }))
+
+        /// check nếu là province change thì gọi riêng
+        if( event.target.name == 'province' ){
+            onProvinceChange(event)
+        }
+        /// check nếu là district change thì gọi riêng 
+        if( event.target.name == 'district' ){
+            onDistrictChange(event)
+        }
+        /// check nếu là commune change thì gọi riêng
     }
 
     const hasErr = (name) => {
@@ -164,24 +175,23 @@ const UserPostInfomation = forwardRef((props, ref) => {
                     setFormState({ ... formState })
                 }else{
                     /// lưu lại và next step
+                    console.log("lưu ra cha", formState.values)
                 }
             }
         }),
     )
-
-    console.log("có render html nè")
     return(
         <div className="user-information position-relative">
             <div className="row">
                 <div className="col-6">
                     <div className="form-group">
-                        <label htmlFor="name">Họ tên: </label>
+                        <label htmlFor="name">Họ Tên </label>
                         <input type="text" className="form-control" id="name" defaultValue={AUTH.name} readOnly />
                     </div>
                 </div>
                 <div className="col-6">
                     <div className="form-group">
-                        <label htmlFor="phone">Số điẹn thoại: </label>
+                        <label htmlFor="phone">Số Điện Thoại </label>
                         <input type="text" className="form-control" id="phone" defaultValue={AUTH.phone_verify} readOnly />
                     </div>
                 </div>
@@ -189,26 +199,58 @@ const UserPostInfomation = forwardRef((props, ref) => {
             <div className="row">
                 <div className="col-12 col-sm-4">
                     <div className="form-group required">
-                        <label htmlFor="province">Chọn Tỉnh thành</label>
-                        <select className="custom-select mr-sm-2" id="province" onChange={onProvinceChange}>
+                        <label htmlFor="province">Chọn Tỉnh Thành</label>
+                        <select id="province" 
+                            name='province'
+                            className={ "custom-select mr-sm-2 " + ( hasErr('province') && 'is-invalid' ) }
+                            value={formState.values.gender}
+                            onChange={handleChange}>
                             { provinces.map( p => <option key={p.id} value={p.id} > { p.text } </option> ) }
                         </select>
+                        {
+                            formState.errors.getError('province') && 
+                            <div className="invalid-feedback"> { formState.errors.getError('province') } </div>
+                        }
                     </div>
                 </div>
                 <div className="col-12 col-sm-4">
                     <div className="form-group required">
                         <label htmlFor="district">Chọn Quận / Huyện</label>
-                        <select className="custom-select mr-sm-2" id="district" onChange={onDistrictChange}>
-                            { districts.map( d => <option key={d.id} value={d.id} > { d.text } </option> ) }
+                        <select id="district" 
+                            name='district'
+                            className={ "custom-select mr-sm-2 " + ( hasErr('district') && 'is-invalid' ) }
+                            value={formState.values.gender}
+                            onChange={handleChange}>
+                            { 
+                                districts
+                                .filter( d => !d.province || d.province ==  formState.values.province )
+                                .map( d => <option key={d.id} value={d.id} > { d.text } </option> ) 
+                            }
                         </select>
+                        {
+                            formState.errors.getError('district') && 
+                            <div className="invalid-feedback"> { formState.errors.getError('district') } </div>
+                        }
                     </div>
                 </div>
                 <div className="col-12 col-sm-4">
                     <div className="form-group required">
-                        <label htmlFor="commune">Phường, xã, thị trấn</label>
-                        <select className="custom-select mr-sm-2" id="commune">
-                            { communes.map( c => <option key={c.id} value={c.id} > { c.text } </option> ) }
+                        <label htmlFor="commune">Phường, Xã, Thị Trấn</label>
+                        <select id="commune" 
+                            name='commune'
+                            className={ "custom-select mr-sm-2 " + ( hasErr('commune') && 'is-invalid' ) }
+                            value={formState.values.gender}
+                            onChange={handleChange}>
+                            { 
+                                communes
+                                .filter( c => !c.district || c.district ==  formState.values.district )
+                                .map( c => <option key={c.id} value={c.id} > { c.text } </option> ) 
+                            }
                         </select>
+                        {
+                            formState.errors.getError('commune') && 
+                            <div className="invalid-feedback"> { formState.errors.getError('commune') } </div>
+                        }
                     </div>
                 </div>
             </div>
@@ -230,7 +272,7 @@ const UserPostInfomation = forwardRef((props, ref) => {
                 </div>
                 <div className="col-12 col-sm-8">
                     <div className="form-group required">
-                        <label htmlFor="street">Tên đường </label>
+                        <label htmlFor="street">Tên Đường </label>
                         <input type="text" id="street" placeholder="Hàng 5 - Ấp Lộc Hoà"
                             className={hasErr("street") ? "is-invalid form-control" : "form-control"}
                             name="street"

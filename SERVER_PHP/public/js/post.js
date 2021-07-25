@@ -7059,6 +7059,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var userPostInfomationScheme = {
+  province: "required|numeric|min:1|max:100000",
+  district: "required|numeric|min:1|max:100000",
+  commune: "required|numeric|min:1|max:100000",
   home_number: "required|string|min:2|max:50",
   street: "required|string|min:2|max:200"
 };
@@ -7099,16 +7102,14 @@ var UserPostInfomation = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forw
       district: 0,
       commune: 0,
       home_number: '',
-      street: '',
-      submit: 1
+      street: ''
     },
     touched: {
       province: false,
       district: false,
       commune: false,
       home_number: false,
-      street: false,
-      submit: false
+      street: false
     },
     errors: max_validator__WEBPACK_IMPORTED_MODULE_1__.default.getEmpty()
   }),
@@ -7123,7 +7124,17 @@ var UserPostInfomation = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forw
         values: _objectSpread(_objectSpread({}, formState.values), {}, _defineProperty({}, event.target.name, event.target.type === "checkbox" ? event.target.checked : event.target.value)),
         touched: _objectSpread(_objectSpread({}, formState.touched), {}, _defineProperty({}, event.target.name, true))
       });
-    });
+    }); /// check nếu là province change thì gọi riêng
+
+    if (event.target.name == 'province') {
+      onProvinceChange(event);
+    } /// check nếu là district change thì gọi riêng 
+
+
+    if (event.target.name == 'district') {
+      onDistrictChange(event);
+    } /// check nếu là commune change thì gọi riêng
+
   };
 
   var hasErr = function hasErr(name) {
@@ -7220,12 +7231,13 @@ var UserPostInfomation = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forw
             touched[key] = true;
           });
           setFormState(_objectSpread({}, formState));
-        } else {/// lưu lại và next step
+        } else {
+          /// lưu lại và next step
+          console.log("lưu ra cha", formState.values);
         }
       }
     };
   });
-  console.log("có render html nè");
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
     className: "user-information position-relative",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
@@ -7236,7 +7248,7 @@ var UserPostInfomation = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forw
           className: "form-group",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
             htmlFor: "name",
-            children: "H\u1ECD t\xEAn: "
+            children: "H\u1ECD T\xEAn "
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
             type: "text",
             className: "form-control",
@@ -7251,7 +7263,7 @@ var UserPostInfomation = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forw
           className: "form-group",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
             htmlFor: "phone",
-            children: "S\u1ED1 \u0111i\u1EB9n tho\u1EA1i: "
+            children: "S\u1ED1 \u0110i\u1EC7n Tho\u1EA1i "
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
             type: "text",
             className: "form-control",
@@ -7269,17 +7281,22 @@ var UserPostInfomation = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forw
           className: "form-group required",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
             htmlFor: "province",
-            children: "Ch\u1ECDn T\u1EC9nh th\xE0nh"
+            children: "Ch\u1ECDn T\u1EC9nh Th\xE0nh"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("select", {
-            className: "custom-select mr-sm-2",
             id: "province",
-            onChange: onProvinceChange,
+            name: "province",
+            className: "custom-select mr-sm-2 " + (hasErr('province') && 'is-invalid'),
+            value: formState.values.gender,
+            onChange: handleChange,
             children: provinces.map(function (p) {
               return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("option", {
                 value: p.id,
                 children: [" ", p.text, " "]
               }, p.id);
             })
+          }), formState.errors.getError('province') && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "invalid-feedback",
+            children: [" ", formState.errors.getError('province'), " "]
           })]
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
@@ -7290,15 +7307,22 @@ var UserPostInfomation = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forw
             htmlFor: "district",
             children: "Ch\u1ECDn Qu\u1EADn / Huy\u1EC7n"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("select", {
-            className: "custom-select mr-sm-2",
             id: "district",
-            onChange: onDistrictChange,
-            children: districts.map(function (d) {
+            name: "district",
+            className: "custom-select mr-sm-2 " + (hasErr('district') && 'is-invalid'),
+            value: formState.values.gender,
+            onChange: handleChange,
+            children: districts.filter(function (d) {
+              return !d.province || d.province == formState.values.province;
+            }).map(function (d) {
               return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("option", {
                 value: d.id,
                 children: [" ", d.text, " "]
               }, d.id);
             })
+          }), formState.errors.getError('district') && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "invalid-feedback",
+            children: [" ", formState.errors.getError('district'), " "]
           })]
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
@@ -7307,16 +7331,24 @@ var UserPostInfomation = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forw
           className: "form-group required",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
             htmlFor: "commune",
-            children: "Ph\u01B0\u1EDDng, x\xE3, th\u1ECB tr\u1EA5n"
+            children: "Ph\u01B0\u1EDDng, X\xE3, Th\u1ECB Tr\u1EA5n"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("select", {
-            className: "custom-select mr-sm-2",
             id: "commune",
-            children: communes.map(function (c) {
+            name: "commune",
+            className: "custom-select mr-sm-2 " + (hasErr('commune') && 'is-invalid'),
+            value: formState.values.gender,
+            onChange: handleChange,
+            children: communes.filter(function (c) {
+              return !c.district || c.district == formState.values.district;
+            }).map(function (c) {
               return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("option", {
                 value: c.id,
                 children: [" ", c.text, " "]
               }, c.id);
             })
+          }), formState.errors.getError('commune') && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "invalid-feedback",
+            children: [" ", formState.errors.getError('commune'), " "]
           })]
         })
       })]
@@ -7348,7 +7380,7 @@ var UserPostInfomation = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forw
           className: "form-group required",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
             htmlFor: "street",
-            children: "T\xEAn \u0111\u01B0\u1EDDng "
+            children: "T\xEAn \u0110\u01B0\u1EDDng "
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
             type: "text",
             id: "street",
