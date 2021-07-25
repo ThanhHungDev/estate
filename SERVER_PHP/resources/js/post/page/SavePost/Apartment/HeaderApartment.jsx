@@ -4,12 +4,23 @@ const renderTitleHeaderApartment = currentStep => {
 
     switch(currentStep) {
         case 1:
-            return 'Chọn kiểu đăng';
+            return 'Chọn kiểu đăng'
+        case 2: 
+            return 'Nhập thông tin liên hệ'
+        case 3: 
+            return 'Bạn Là Cá Nhân Hay Môi giới'
         default:
             return 'Nhập thông tin liên hệ';
     }
 }
-const HeaderApartment = ({ SW }) => {
+const HeaderApartment = (props) => {
+    let { SW } = props
+
+    const continueStepInHeader = () => {
+        console.log("vào continueStepInHeader of HeaderApartment")
+        props.parentCallback()
+    }
+
 
     const width = Math.floor(SW.currentStep * 100 / SW.totalSteps) + '%'
     return (
@@ -26,7 +37,7 @@ const HeaderApartment = ({ SW }) => {
                 {
                     SW.currentStep == SW.totalSteps
                     ? null
-                    : <button className='btn apartment__btn-next' onClick={SW.nextStep}><i className="fas fa-chevron-right"></i></button> 
+                    : <button className='btn apartment__btn-next' onClick={ continueStepInHeader }><i className="fas fa-chevron-right"></i></button> 
                     // onClick={() => SW.goToNamedStep('progress')}
                 }
             </div>

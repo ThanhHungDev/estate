@@ -6,6 +6,8 @@ import HeaderApartment from "./Apartment/HeaderApartment"
 import FooterApartment from "./Apartment/FooterApartment"
 import UserPostInfomation from "./Partial/UserPostInfomation"
 import TypePost from "./Partial/TypePost"
+import RoleUser from "./Partial/RoleUser"
+import GalleryPost from "./Partial/GalleryPost"
 
 
 /// lưu căn hộ chung cư
@@ -17,6 +19,8 @@ function Apartment( props ){
     // let refRolePost = React.createRef()
     const refType = useRef()
     const refUserPostInfor = useRef()
+    const refRoleUser = useRef()
+    const refGalleryUser = useRef()
 
     // Do something on step change
     const onStepChange = (stats) => {
@@ -46,7 +50,18 @@ function Apartment( props ){
             }
         }else if(SW.currentStep == 2){
 
-            refUserPostInfor.current.validateFromStep()
+            const infor = refUserPostInfor.current.validateFromStep()
+            if( infor ){
+                setForm({ ...form, ... infor })
+                SW.nextStep()
+            }
+        }else if(SW.currentStep == 3){
+
+            const role = refRoleUser.current.validateFromStep()
+            if( role ){
+                setForm({ ...form, role })
+                SW.nextStep()
+            }
         }
         
     }
@@ -56,7 +71,7 @@ function Apartment( props ){
     const { CONFIG, AUTH } = props
     return (
         <div className="apartment">
-            { SW && <HeaderApartment SW={SW} /> }
+            { SW && <HeaderApartment SW={SW} parentCallback={continueStep} /> }
             
             <div className="apartment__wrapper">
                 <StepWizard
@@ -66,7 +81,8 @@ function Apartment( props ){
                 >
                     <TypePost ref={ refType } CONFIG={CONFIG}/>
                     <UserPostInfomation ref={ refUserPostInfor } CONFIG={CONFIG} AUTH={AUTH}/>
-                    
+                    <RoleUser ref={ refRoleUser}  CONFIG={CONFIG}/>
+                    <GalleryPost ref={ refGalleryUser}  CONFIG={CONFIG}/>
                     <Step2 />
                     <Step3 />
                 </StepWizard>

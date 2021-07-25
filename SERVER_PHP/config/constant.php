@@ -22,6 +22,10 @@ return [
         'ADMIN'    => 1,
         'USER'     => 2,
     ],
+    'USER_TYPE' => [
+        'PERSON'  => 1,
+        'COMPANY' => 2,
+    ],
     'POST_TYPE' => [
         'BUY'   => 1,
         'SALE'  => 2,

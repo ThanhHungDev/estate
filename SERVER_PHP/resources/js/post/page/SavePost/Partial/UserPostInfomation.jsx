@@ -173,9 +173,10 @@ const UserPostInfomation = forwardRef((props, ref) => {
                         touched[key] = true
                     })
                     setFormState({ ... formState })
+                    return false
                 }else{
                     /// lưu lại và next step
-                    console.log("lưu ra cha", formState.values)
+                    return formState.values
                 }
             }
         }),

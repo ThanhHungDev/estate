@@ -6629,7 +6629,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Apartment_FooterApartment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Apartment/FooterApartment */ "./resources/js/post/page/SavePost/Apartment/FooterApartment.jsx");
 /* harmony import */ var _Partial_UserPostInfomation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Partial/UserPostInfomation */ "./resources/js/post/page/SavePost/Partial/UserPostInfomation.jsx");
 /* harmony import */ var _Partial_TypePost__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Partial/TypePost */ "./resources/js/post/page/SavePost/Partial/TypePost.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _Partial_RoleUser__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Partial/RoleUser */ "./resources/js/post/page/SavePost/Partial/RoleUser.jsx");
+/* harmony import */ var _Partial_GalleryPost__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Partial/GalleryPost */ "./resources/js/post/page/SavePost/Partial/GalleryPost.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -6647,6 +6649,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
@@ -6672,7 +6676,9 @@ function Apartment(props) {
 
 
   var refType = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
-  var refUserPostInfor = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(); // Do something on step change
+  var refUserPostInfor = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
+  var refRoleUser = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
+  var refGalleryUser = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(); // Do something on step change
 
   var onStepChange = function onStepChange(stats) {
     console.log(form, "onStepChange đã cập nhật dữ liệu mới");
@@ -6697,7 +6703,21 @@ function Apartment(props) {
         SW.nextStep();
       }
     } else if (SW.currentStep == 2) {
-      refUserPostInfor.current.validateFromStep();
+      var infor = refUserPostInfor.current.validateFromStep();
+
+      if (infor) {
+        setForm(_objectSpread(_objectSpread({}, form), infor));
+        SW.nextStep();
+      }
+    } else if (SW.currentStep == 3) {
+      var role = refRoleUser.current.validateFromStep();
+
+      if (role) {
+        setForm(_objectSpread(_objectSpread({}, form), {}, {
+          role: role
+        }));
+        SW.nextStep();
+      }
     }
   }; /// ban đầu state là {} => SW là undefine
 
@@ -6705,71 +6725,78 @@ function Apartment(props) {
   var SW = state.SW;
   var CONFIG = props.CONFIG,
       AUTH = props.AUTH;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
     className: "apartment",
-    children: [SW && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Apartment_HeaderApartment__WEBPACK_IMPORTED_MODULE_3__.default, {
-      SW: SW
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+    children: [SW && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Apartment_HeaderApartment__WEBPACK_IMPORTED_MODULE_3__.default, {
+      SW: SW,
+      parentCallback: continueStep
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
       className: "apartment__wrapper",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)((react_step_wizard__WEBPACK_IMPORTED_MODULE_2___default()), {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)((react_step_wizard__WEBPACK_IMPORTED_MODULE_2___default()), {
         isHashEnabled: true,
         onStepChange: onStepChange,
         instance: setInstance,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Partial_TypePost__WEBPACK_IMPORTED_MODULE_6__.default, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Partial_TypePost__WEBPACK_IMPORTED_MODULE_6__.default, {
           ref: refType,
           CONFIG: CONFIG
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Partial_UserPostInfomation__WEBPACK_IMPORTED_MODULE_5__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Partial_UserPostInfomation__WEBPACK_IMPORTED_MODULE_5__.default, {
           ref: refUserPostInfor,
           CONFIG: CONFIG,
           AUTH: AUTH
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(Step2, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(Step3, {})]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Partial_RoleUser__WEBPACK_IMPORTED_MODULE_7__.default, {
+          ref: refRoleUser,
+          CONFIG: CONFIG
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Partial_GalleryPost__WEBPACK_IMPORTED_MODULE_8__.default, {
+          ref: refGalleryUser,
+          CONFIG: CONFIG
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(Step2, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(Step3, {})]
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Apartment_FooterApartment__WEBPACK_IMPORTED_MODULE_4__.default, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Apartment_FooterApartment__WEBPACK_IMPORTED_MODULE_4__.default, {
       parentCallback: continueStep
     })]
   });
 }
 
 function Step1(props) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("p", {
-      children: ["step 1", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("p", {
+      children: ["step 1", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("button", {
         onClick: props.nextStep,
         children: "Next Step"
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("h2", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("h2", {
       children: ["Step ", props.currentStep]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("p", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("p", {
       children: ["Total Steps: ", props.totalSteps]
     })]
   });
 }
 
 function Step2(props) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("p", {
-      children: ["step 2", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("p", {
+      children: ["step 2", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("button", {
         onClick: props.nextStep,
         children: "Next Step"
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("h2", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("h2", {
       children: ["Step ", props.currentStep]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("p", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("p", {
       children: ["Total Steps: ", props.totalSteps]
     })]
   });
 }
 
 function Step3(props) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("p", {
-      children: ["step 3", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("p", {
+      children: ["step 3", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("button", {
         onClick: props.nextStep,
         children: "Next Step"
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("h2", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("h2", {
       children: ["Step ", props.currentStep]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("p", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("p", {
       children: ["Total Steps: ", props.totalSteps]
     })]
   });
@@ -6804,14 +6831,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var FooterApartment = function FooterApartment(props) {
-  var continu = function continu() {
-    console.log("vào continu of FooterApartment");
+  var continueStepInFooter = function continueStepInFooter() {
+    console.log("vào continueStepInFooter of FooterApartment");
     props.parentCallback();
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
     className: "btn apartment__footer",
-    onClick: continu,
+    onClick: continueStepInFooter,
     children: "B\u1EA5m \u0111\u1EC3 Ti\u1EBFp T\u1EE5c"
   });
 };
@@ -6842,13 +6869,25 @@ var renderTitleHeaderApartment = function renderTitleHeaderApartment(currentStep
     case 1:
       return 'Chọn kiểu đăng';
 
+    case 2:
+      return 'Nhập thông tin liên hệ';
+
+    case 3:
+      return 'Bạn Là Cá Nhân Hay Môi giới';
+
     default:
       return 'Nhập thông tin liên hệ';
   }
 };
 
-var HeaderApartment = function HeaderApartment(_ref) {
-  var SW = _ref.SW;
+var HeaderApartment = function HeaderApartment(props) {
+  var SW = props.SW;
+
+  var continueStepInHeader = function continueStepInHeader() {
+    console.log("vào continueStepInHeader of HeaderApartment");
+    props.parentCallback();
+  };
+
   var width = Math.floor(SW.currentStep * 100 / SW.totalSteps) + '%';
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
@@ -6864,7 +6903,7 @@ var HeaderApartment = function HeaderApartment(_ref) {
         children: renderTitleHeaderApartment(SW.currentStep)
       }), SW.currentStep == SW.totalSteps ? null : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
         className: "btn apartment__btn-next",
-        onClick: SW.nextStep,
+        onClick: continueStepInHeader,
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
           className: "fas fa-chevron-right"
         })
@@ -6892,6 +6931,214 @@ var HeaderApartment = function HeaderApartment(_ref) {
 // <p><button onClick={()=>this.props.goToStep(2)}>Step 2</button></p>
 // <p><button onClick={this.props.firstStep}>First Step</button></p>
 // <p><button onClick={this.props.lastStep}>Last Step</button></p>
+
+/***/ }),
+
+/***/ "./resources/js/post/page/SavePost/Partial/GalleryPost.jsx":
+/*!*****************************************************************!*\
+  !*** ./resources/js/post/page/SavePost/Partial/GalleryPost.jsx ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+var GalleryPost = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(function (props, ref) {
+  var CONFIG = props.CONFIG; /// init state
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(CONFIG.CONSTANT.USER_TYPE.PERSON),
+      _useState2 = _slicedToArray(_useState, 2),
+      role = _useState2[0],
+      setRole = _useState2[1];
+
+  function onChangeRadio(e) {
+    setRole(e.currentTarget.value);
+  }
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useImperativeHandle)(ref, function () {
+    return {
+      validateFromStep: function validateFromStep() {
+        return role;
+      }
+    };
+  });
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    className: "user-type position-relative",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h5", {
+      className: "user-type__title pt-2 pb-4",
+      children: "B\u1EA1n C\u1EA7n \u0111\u0103ng \xEDt nh\u1EA5t 3 \u1EA3nh: "
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      className: "alert alert-info",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("b", {
+          children: "Y\xEAu c\u1EA7u cho video:"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("ul", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
+          children: "\u0110\u1ED9 d\xE0i video kh\xF4ng v\u01B0\u1EE3t qu\xE1 3 ph\xFAt"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
+          children: "Gi\u1EDBi h\u1EA1n 1 video/tin \u0111\u0103ng v\xE0 10 tin \u0111\u0103ng c\xF3 video/ th\xE1ng"
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("b", {
+          children: "\u0110\u1EC3 cho thu\xEA nhanh h\u01A1n:"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("ul", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
+          children: "Ch\u1EE5p h\xECnh kh\u1ED5 ngang: ph\xF2ng ng\u1EE7, ph\xF2ng kh\xE1ch, b\u1EBFp, ban c\xF4ng"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("b", {
+          children: "Kh\xF4ng:"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("ul", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
+          children: "S\u1EED d\u1EE5ng h\xECnh \u1EA3nh tr\xF9ng l\u1EB7p ho\u1EB7c l\u1EA5y t\u1EEB Internet"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
+          children: "Ch\xE8n s\u1ED1 \u0111i\u1EC7n tho\u1EA1i/email/logo v\xE0o h\xECnh"
+        })]
+      })]
+    })]
+  });
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (GalleryPost);
+
+/***/ }),
+
+/***/ "./resources/js/post/page/SavePost/Partial/RoleUser.jsx":
+/*!**************************************************************!*\
+  !*** ./resources/js/post/page/SavePost/Partial/RoleUser.jsx ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+var RoleUser = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(function (props, ref) {
+  var CONFIG = props.CONFIG; /// init state
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(CONFIG.CONSTANT.USER_TYPE.PERSON),
+      _useState2 = _slicedToArray(_useState, 2),
+      role = _useState2[0],
+      setRole = _useState2[1];
+
+  function onChangeRadio(e) {
+    setRole(e.currentTarget.value);
+  }
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useImperativeHandle)(ref, function () {
+    return {
+      validateFromStep: function validateFromStep() {
+        return role;
+      }
+    };
+  });
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    className: "user-type position-relative",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h5", {
+      className: "user-type__title pt-2 pb-4",
+      children: "B\u1EA1n L\xE0 C\xE1 Nh\xE2n Hay M\xF4i gi\u1EDBi: "
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      className: "mycustom-form-group-radio",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("label", {
+        className: "container__radio d-block",
+        children: [" C\xE1 Nh\xE2n", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+          name: "type",
+          type: "radio",
+          value: CONFIG.CONSTANT.USER_TYPE.PERSON,
+          defaultChecked: true,
+          onChange: onChangeRadio
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+          className: "checkmark"
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("label", {
+        className: "container__radio d-block",
+        children: [" M\xF4i Gi\u1EDBi", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+          name: "type",
+          type: "radio",
+          value: CONFIG.CONSTANT.USER_TYPE.COMPANY,
+          onChange: onChangeRadio
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+          className: "checkmark"
+        })]
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: "alert alert-info mt-2",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        className: "row",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          className: "col-xs-12 col-sm-12",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("b", {
+              children: "Quy \u0111\u1ECBnh d\xE0nh cho \"C\xE1 nh\xE2n\":"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("ul", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("li", {
+              children: ["Khi c\xE1 nh\xE2n \u0111\u0103ng b\xE1n, B\xE0i vi\u1EBFt c\u1EE7a b\u1EA1n s\u1EBD l\xEAn trang ch\u1EE7 nh\u01B0ng ch\u1EC9 \u0111\u01B0\u1EE3c \u0111\u0103ng ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("strong", {
+                className: "text-danger",
+                children: "1 b\xE0i vi\u1EBFt"
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
+              children: "N\u1EBFu b\u1EA1n \u0111\u0103ng nhi\u1EC1u b\xE0i h\xE3y li\xEAn h\u1EC7 qu\u1EA3n tr\u1ECB vi\xEAn \u0111\u1EC3 ch\u1EE9ng th\u1EF1c b\u1EA1n c\xF3 nhi\u1EC1u t\xE0i s\u1EA3n c\xE1 nh\xE2n"
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("b", {
+              children: "Quy \u0111\u1ECBnh d\xE0nh cho \"M\xF4i gi\u1EDBi\":"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("ul", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("li", {
+              children: ["B\xE0i vi\u1EBFt c\u1EE7a b\u1EA1n s\u1EBD \u0111\u01B0\u1EE3c hi\u1EC7n th\u1ECB trong trang t\xECm ki\u1EBFm ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("strong", {
+                className: "text-danger",
+                children: "kh\xF4ng v\xE0o khung gi\u1EDD v\xE0ng"
+              }), " "]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
+              children: "L\xE0 C\xF4ng ty/C\xE1 nh\xE2n kinh doanh b\u1EA5t \u0111\u1ED9ng s\u1EA3n"
+            })]
+          })]
+        })
+      })
+    })]
+  });
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RoleUser);
 
 /***/ }),
 
@@ -7231,9 +7478,10 @@ var UserPostInfomation = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forw
             touched[key] = true;
           });
           setFormState(_objectSpread({}, formState));
+          return false;
         } else {
           /// lưu lại và next step
-          console.log("lưu ra cha", formState.values);
+          return formState.values;
         }
       }
     };
