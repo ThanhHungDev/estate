@@ -6732,8 +6732,8 @@ function Apartment(props) {
       parentCallback: continueStep
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
       className: "apartment__wrapper",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)((react_step_wizard__WEBPACK_IMPORTED_MODULE_2___default()), {
-        isHashEnabled: true,
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)((react_step_wizard__WEBPACK_IMPORTED_MODULE_2___default()) // isHashEnabled
+      , {
         onStepChange: onStepChange,
         instance: setInstance,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Partial_TypePost__WEBPACK_IMPORTED_MODULE_6__.default, {
