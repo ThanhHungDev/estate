@@ -1,5 +1,5 @@
 import React, { useState, useEffect, forwardRef, useRef, useImperativeHandle } from 'react'
-import V from "max-validator"
+import Validator from "hero-validate"
 
 import locationAPI from "../../../../service/location.api"
 
@@ -10,13 +10,20 @@ const userPostInfomationScheme = {
     home_number: "required|string|min:2|max:50",
     street     : "required|string|min:2|max:200",
 }
+Validator.setLocale(Validator.languages.vi)
+/// custom message for your form
+Validator.setMessages({
+    province: "Bạn chưa chọn Tỉnh Thành",
+    district: "Bạn chưa chọn Quận Huyện",
+    commune: "Bạn chưa chọn Phường xã thị trấn",
+});
 
 const UserPostInfomation = forwardRef((props, ref) => {
     const { AUTH } = props
 
     const PROVINCE_NULL = [ {id: 0, text: 'Chọn Tỉnh Thành'} ]
     const DISTRICT_NULL = [ {id: 0, text: 'Chọn Quận / Huyện'} ]
-    const COMMUNE_NULL = [ {id: 0, text: 'Chọn Phường, xã, thị trấn'} ]
+    const COMMUNE_NULL  = [ {id: 0, text: 'Chọn Phường, xã, thị trấn'} ]
     /// init state
     const [ provinces, setProvinces ] = useState(PROVINCE_NULL)
     const [ districts, setDistricts ] = useState(DISTRICT_NULL)
@@ -39,7 +46,7 @@ const UserPostInfomation = forwardRef((props, ref) => {
             home_number: false,
             street: false,
         },
-        errors : V.getEmpty(),
+        errors : Validator.getEmpty(),
     })
 
     const handleChange = (event) => {
@@ -69,6 +76,9 @@ const UserPostInfomation = forwardRef((props, ref) => {
             onDistrictChange(event)
         }
         /// check nếu là commune change thì gọi riêng
+        if( event.target.name == 'district' ){
+            onCommuneChange(event)
+        }
     }
 
     const hasErr = (name) => {
@@ -88,9 +98,7 @@ const UserPostInfomation = forwardRef((props, ref) => {
                 console.log("ERROR:: ",error)
             });
         }
-
-        console.log( "formState useEffect", formState)
-        const errors = V.validate(formState.values, userPostInfomationScheme)
+        const errors = Validator.validate(formState.values, userPostInfomationScheme)
 		const newState = {
             ...formState,
             isValid: errors.hasError,
@@ -108,6 +116,15 @@ const UserPostInfomation = forwardRef((props, ref) => {
             /// set cho cái district về mặc định như ban đầu
             setDistricts(DISTRICT_NULL)
             setCommunes(COMMUNE_NULL)
+            setFormState({
+                ...formState,
+                values: {
+                    ...formState.values,
+                    ["province"]: 0,
+                    ["district"]: 0,
+                    ["commune"]: 0,
+                },
+            })
         }else {
             const loadding = DISTRICT_NULL.map( d => {
                 d.text = 'Vui lòng chờ tải dữ liệu ...' // <b class="spinner"><i></i><i></i><i></i><i></i></b>
@@ -138,6 +155,14 @@ const UserPostInfomation = forwardRef((props, ref) => {
         if( districtValue == 0 ){
             /// set cho cái communes về mặc định như ban đầu
             setCommunes(COMMUNE_NULL)
+            setFormState({
+                ...formState,
+                values: {
+                    ...formState.values,
+                    ["district"]: 0,
+                    ["commune"]: 0,
+                },
+            })
         }else {
             const loadding = COMMUNE_NULL.map( c => {
                 c.text = 'Vui lòng chờ tải dữ liệu ...' // <b class="spinner"><i></i><i></i><i></i><i></i></b>
@@ -161,12 +186,28 @@ const UserPostInfomation = forwardRef((props, ref) => {
             }
         }
     }
+    function onCommuneChange(e){
+
+        const communeValue   = e.currentTarget.value
+
+        if( communeValue == 0 ){
+            /// set cho cái communes về mặc định như ban đầu
+            setCommunes(COMMUNE_NULL)
+            setFormState({
+                ...formState,
+                values: {
+                    ...formState.values,
+                    ["commune"]: 0,
+                }, 
+            })
+        }
+    }
 
     useImperativeHandle(
         ref,
         () => ({
             validateFromStep(){
-                const errors = V.validate(formState.values, userPostInfomationScheme)
+                const errors = Validator.validate(formState.values, userPostInfomationScheme)
                 if( errors.hasError ){
                     const { touched } = formState
                     Object.keys(touched).map(function(key, index) {
@@ -181,6 +222,7 @@ const UserPostInfomation = forwardRef((props, ref) => {
             }
         }),
     )
+    console.log("trước khi render ra html", formState)
     return(
         <div className="user-information position-relative">
             <div className="row">
