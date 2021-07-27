@@ -25,7 +25,7 @@ class FileController extends Controller
         /// input data 
         $type = $request->input('type');
         /// check người dùng đẩy lên upload có phải image hông
-        if(in_array($type, array_keys($TYPE_IMAGE))){
+        if(in_array($type, array_values($TYPE_IMAGE))){
             /// đang upload image
             return true;
         }
@@ -34,18 +34,44 @@ class FileController extends Controller
     public function store(UPLOAD_FILE_REQUEST $request){
 
         /// đang mặc định là upload file
-        $rules = array( 'file' => 'mimes:doc,docx' );
-        $message = array( 'file.mimes' => 'lỗi file upload không đúng định dạng' );
+        // $rules = array( 'file' => 'mimes:doc,docx' );
+        // $message = array( 'file.mimes' => 'lỗi file upload không đúng định dạng' );
+
+        $rules = array( 
+            'file' => [ "required", "array", "min:1", "max:4" ],
+            'file.*' => 'required|mimes:doc,docx|max:2048'
+        );
+        $message = array( 
+            'file.required' => 'lỗi không tìm thấy file',
+            'file.array' => 'lỗi file không phải array',
+            'file.min' => 'array ít nhất là 1',
+            'file.max' => 'array nhiều nhất là 4',
+            'file.*.mimes' => 'Không đúng định dạng cần thiết',
+            'file.*.max' => 'file không được vượt quá 2048Byte',
+        );
         /// check người dùng đẩy lên upload có phải image hông
         if(FileController::isUploadImage($request)){
             /// đang upload image
-            $rules = [
-                'file' => 'required|mimes:jpeg,png,jpg,gif,svg'
-            ];
-            $message = [
-                'file.mimes' => 'lỗi image upload không đúng định dạng',
-                'file.required' => 'lỗi image required'
-            ];
+            // $rules = [
+            //     'file' => 'required|mimes:jpeg,png,jpg,gif,svg'
+            // ];
+            // $message = [
+            //     'file.mimes' => 'lỗi image upload không đúng định dạng',
+            //     'file.required' => 'lỗi image required'
+            // ];
+            $rules = array( 
+                'file' => [ "required" ], // , "array", "min:1", "max:6"
+                'file.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            );
+            $message = array( 
+                'file.required' => 'lỗi không tìm thấy file',
+                'file.array' => 'lỗi file không phải array',
+                'file.min' => 'array ít nhất là 1',
+                'file.max' => 'array nhiều nhất là 4',
+                'file.*.mimes' => 'Không đúng định dạng cần thiết',
+                'file.*.image' => 'Không đúng định dạng ảnh',
+                'file.*.max' => 'file không được vượt quá 2048Byte',
+            );
         }
         // validator Rules
         $validator = Validator::make($request->all(), $rules, $message);
@@ -79,8 +105,7 @@ class FileController extends Controller
 
         $ROOT_IMAGE = "/images/";
 
-        /// input data 
-        $file = $request->file('file');
+        /// input data
         $type = $request->input('type');
 
         if(!$type){
@@ -90,16 +115,23 @@ class FileController extends Controller
         
         $urlStorage = FileController::$ROOT_UPLOAD . $ROOT_IMAGE . strtolower($type) . "/";
         $savedDir   = public_path($urlStorage);
-        $fileName   = time().$file->getClientOriginalName();       /// $image->getClientOriginalExtension()
 
         if(!File::isDirectory($savedDir)){
 
             File::makeDirectory($savedDir, 0664, true, true);
         }
-        
-        $file->move($savedDir, $fileName);
 
-        return $urlStorage . $fileName;
+        $urls = [];
+
+        if($request->has('file')) {
+            foreach($request->file('file') as $file) {
+                $fileName   = time().$file->getClientOriginalName();       /// $image->getClientOriginalExtension()
+                $file->move($savedDir, $fileName);
+                $urls[] = $urlStorage . $fileName;
+            }
+        }
+
+        return $urls;
     }
 
     public static function storeFile(Request $request){
@@ -107,8 +139,7 @@ class FileController extends Controller
         $ROOT_FILE = "/files/";
 
 
-        /// input data 
-        $file = $request->file('file');
+        /// input data
         $type = $request->input('type');
 
         if(!$type){
@@ -118,15 +149,21 @@ class FileController extends Controller
         
         $urlStorage = FileController::$ROOT_UPLOAD . $ROOT_FILE . strtolower($type) . "/";
         $savedDir   = public_path($urlStorage);
-        $fileName   = time().$file->getClientOriginalName();       /// $image->getClientOriginalExtension()
-
+        
         if(!File::isDirectory($savedDir)){
 
             File::makeDirectory($savedDir, 0664, true, true);
         }
-        
-        $file->move($savedDir, $fileName);
 
-        return $urlStorage . $fileName;
+        $urls = [];
+        if($request->has('file')) {
+            foreach($request->file('file') as $file) {
+                $fileName   = time().$file->getClientOriginalName();       /// $image->getClientOriginalExtension()
+                $file->move($savedDir, $fileName);
+                $urls[] = $urlStorage . $fileName;
+            }
+        }
+
+        return $urls;
     }
 }

@@ -95,7 +95,8 @@
         'UPDATE_VERIFY_PHONE' => Route('API.USER.PATCH_VERIFY_PHONE'),
         'DISTRICTS' => Route('DISTRICTS'),
         'COMMUNES' => Route('COMMUNES'),
-        'PROVINCES' => Route('PROVINCES')
+        'PROVINCES' => Route('PROVINCES'),
+        'API_UPLOAD_FILE' => Route('API_UPLOAD_FILE')
     ];
     $configApp['WEB'] = [
         'PATCH_VERIFY_PHONE' => Route('PATCH_VERIFY_PHONE'),
@@ -103,6 +104,7 @@
         'USER_POST' =>  Route('USER_POST', ['path' => null ], false ),
     ];
     $configApp['CONSTANT'] = Config::get('constant');
+    $configApp['IMAGE'] = Config::get('image.UPLOAD');
     @endphp
     <script>
         const CONFIG_APP = `{!! json_encode($configApp) !!}`;

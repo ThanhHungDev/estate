@@ -1,5 +1,7 @@
 import React, { useState, forwardRef, useRef, useImperativeHandle } from 'react'
 
+import MainUpload from './UploadImage/MainUpload'
+
 
 const GalleryPost = forwardRef((props, ref) => {
     const { CONFIG } = props
@@ -26,6 +28,9 @@ const GalleryPost = forwardRef((props, ref) => {
         <div className="user-type position-relative">
             <h5 className="user-type__title pt-2 pb-4">Bạn Cần đăng ít nhất 3 ảnh: </h5>
 
+            <div className="upload-image">
+                <MainUpload CONFIG={CONFIG} />
+            </div>
             
             
 

@@ -25,9 +25,9 @@ class UPLOAD_FILE_REQUEST extends FormRequest
     public function rules()
     {
         $TYPE = Config::get('image.UPLOAD');
-        $RULE_TYPE = join(",",array_keys($TYPE));
+        $RULE_TYPE = join(",",array_values($TYPE));
         return [
-            'file' => 'required|max:2048',
+            'file' => 'required',
             'type' => "in:$RULE_TYPE",
         ];
     }

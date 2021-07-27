@@ -76,7 +76,7 @@ const UserPostInfomation = forwardRef((props, ref) => {
             onDistrictChange(event)
         }
         /// check nếu là commune change thì gọi riêng
-        if( event.target.name == 'district' ){
+        if( event.target.name == 'commune' ){
             onCommuneChange(event)
         }
     }
@@ -85,7 +85,7 @@ const UserPostInfomation = forwardRef((props, ref) => {
         return formState.touched[name] && formState.errors.isError(name)
     }
 
-    useEffect( ()=> {
+    useEffect( () => {
 
         if(provinces.length <= 1 ){
             /// call api get province
