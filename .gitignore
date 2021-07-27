@@ -2,6 +2,7 @@
 /SERVER_PHP/public/hot
 /SERVER_PHP/public/storage
 /SERVER_PHP/public/upload
+/SERVER_PHP/public/uploads
 /SERVER_PHP/storage/*.key
 /SERVER_PHP/vendor
 /SERVER_PHP/.env

@@ -75,7 +75,7 @@ function Apartment( props ){
             
             <div className="apartment__wrapper">
                 <StepWizard
-                    // isHashEnabled
+                    isHashEnabled
                     onStepChange={onStepChange}
                     instance={setInstance}
                 >
