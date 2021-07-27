@@ -1,69 +1,64 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
+import md5 from "js-md5"
+
 import Spinner from './Spinner'
 import Images from './Images'
 import Buttons from './Buttons'
-// import { API_URL } from './config'
-// import './App.css'
+import fileAPI from "../../../../../service/file.api"
 
-export default class MainUpload extends Component {
+export default props => {
+    const { CONFIG } = props
 
-    state = {
-        uploading: false,
-        images: []
-    }
+    const [ uploading, setUploading ] = useState(null)
+    const [ images, setImages ] = useState([])
 
-    onChange = e => {
-        const { CONFIG } = this.props
-        // const files = 
-        this.setState({ uploading: true })
+    function onChange(e){
+        setUploading(true)
 
         const formData = new FormData()
+        // const images = []
+        for (let i = 0; i < e.target.files.length; i++) {
 
-        // files.forEach((file, i) => {
-        //     formData.append(i, file)
-        // })
-        formData.append("file", e.target.files[0])
-        formData.append("type", CONFIG.IMAGE.POST)
-
-        fetch(`${CONFIG.API.API_UPLOAD_FILE}`, {
-            method: 'POST',
-            body: formData
-        })
-            .then(res => res.json())
-            .then(images => {
-                this.setState({
-                    uploading: false,
-                    images
-                })
-            })
-    }
-
-    removeImage = id => {
-        this.setState({
-            images: this.state.images.filter(image => image.public_id !== id)
-        })
-    }
-
-    render() {
-        const { uploading, images } = this.state
-
-        const content = () => {
-            switch (true) {
-                case uploading:
-                    return <Spinner />
-                case images.length > 0:
-                    return <Images images={images} removeImage={this.removeImage} />
-                default:
-                    return <Buttons onChange={this.onChange} />
-            }
+            formData.append("file[]", e.target.files[i])
+            // images.push(e.target.files[i])
         }
+        formData.append("type", CONFIG.IMAGE.POST)
+        /// set Image
 
-        return (
-            <div>
-                <div className='buttons'>
-                    {content()}
-                </div>
-            </div>
-        )
+        fileAPI.uploadFile(formData)
+        .then( response => {
+            setUploading(null)
+            const { data } = response
+            if( data.length ){
+                const imgs = data.map( d => d.IMAGE_RESIZE )
+                setImages( imgs )
+            }
+        })
+        .catch(error => {
+            console.log("ERROR:: ",error)
+            setUploading(null)
+        })
     }
+    function removeImage(src) {
+        setImages( images.filter(image => md5(image) != md5(src)) )
+    }
+
+    useEffect( () => {
+        console.log("vào eff")
+    })
+    return (
+        <div className="main-upload">
+            {
+                uploading && <div className="progress progress-success bg-color-indeterminate">
+                    <div className="progress-bar"></div>
+                </div>
+            }
+            <Buttons onChange={ onChange } />
+            {
+                images.length
+                ? <Images images={ images } removeImage={ removeImage } />
+                : null
+            }
+        </div>
+    )
 }

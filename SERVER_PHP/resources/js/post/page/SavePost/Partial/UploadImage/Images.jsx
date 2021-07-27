@@ -1,16 +1,15 @@
 import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTimesCircle } from '@fortawesome/free-solid-svg-icons'
+import md5 from "js-md5"
 
 export default props =>
-    props.images.map((image, i) =>
-        <div key={i} className='fadein'>
+    props.images.map( url =>
+        <div key={ md5(url) } className='fadein'>
             <div
-                onClick={() => props.removeImage(image.public_id)}
+                onClick={() => props.removeImage( url )}
                 className='delete'
             >
-                <FontAwesomeIcon icon={faTimesCircle} size='2x' />
+                <i className="fal fa-times-circle"></i>
             </div>
-            <img src={image.secure_url} alt='' />
+            <img src={ url } alt='' />
         </div>
     )

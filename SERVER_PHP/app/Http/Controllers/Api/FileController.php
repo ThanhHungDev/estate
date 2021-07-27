@@ -91,12 +91,20 @@ class FileController extends Controller
         if(FileController::isUploadImage($request)){
             /// đang upload image
             // cho upload image
-            $url = $this->storeImage($request);
+            $urls = $this->storeImage($request);
+            $links = array_map(function($item){
+                return [
+                    "root" => $item,
+                    'IMAGE_COMPRESS' => Route('IMAGE_COMPRESS', ['quality' => '50', 'imagePath' => $item ]),
+                    'IMAGE_RESIZE' => Route('IMAGE_RESIZE', [ "size" => 'small', "type" => 'fit', 'imagePath' => $item ]),
+                ];
+            }, $urls );
         }else{
-            $url = $this->storeFile($request);
+            $url = $this->storeFile($request); /// path file
+            $links = $url;
         }
         return response()
-                ->success('lưu trữ thành công', $url)
+                ->success('lưu trữ thành công', $links)
                 ->setStatusCode(Response::HTTP_OK);
     }
 
@@ -118,7 +126,7 @@ class FileController extends Controller
 
         if(!File::isDirectory($savedDir)){
 
-            File::makeDirectory($savedDir, 0664, true, true);
+            File::makeDirectory($savedDir, 0755, true, true);
         }
 
         $urls = [];
@@ -152,7 +160,7 @@ class FileController extends Controller
         
         if(!File::isDirectory($savedDir)){
 
-            File::makeDirectory($savedDir, 0664, true, true);
+            File::makeDirectory($savedDir, 0755, true, true);
         }
 
         $urls = [];

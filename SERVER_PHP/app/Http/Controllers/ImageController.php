@@ -18,6 +18,7 @@ class ImageController extends Controller
  
     public function resize($size, $type = self::TYPE__FIT, $imagePath)
     {
+        $imagePath = trim($imagePath, "/");
         /// http://land.vn/resizes/icon/fit/images/commun.jpg?v=12345678
 
         $imageFullPath = public_path($imagePath);
@@ -67,6 +68,7 @@ class ImageController extends Controller
 
     public function encode($quality = self::QUALITY, $imagePath)
     {
+        $imagePath = trim($imagePath, "/");
         $imageFullPath = public_path($imagePath);
         
         /// check file exist
@@ -112,6 +114,7 @@ class ImageController extends Controller
 
     public function resize_compress($size, $type = self::TYPE__FIT, $quality = 70, $ext = 'jpg',$imagePath)
     {
+        $imagePath = trim($imagePath, "/");
         /// http://thietkewebsite.com.vn/resize-compress/icon/fit/70/jpg/images/gift.png
 
         $imageFullPath = public_path($imagePath);

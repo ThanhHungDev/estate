@@ -1,20 +1,20 @@
 import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faImages, faImage } from '@fortawesome/free-solid-svg-icons'
 
 export default props =>
-    <div className='buttons fadein'>
-        <div className='button'>
-            <label htmlFor='single'>
-                <FontAwesomeIcon icon={faImage} color='#3B5998' size='10x' />
-            </label>
-            <input type='file' id='single' onChange={props.onChange} />
-        </div>
-
-        <div className='button'>
-            <label htmlFor='multi'>
-                <FontAwesomeIcon icon={faImages} color='#6d84b4' size='10x' />
-            </label>
-            <input type='file' id='multi' onChange={props.onChange} multiple />
-        </div>
+    <div className="uploads">
+        <label className="uploads__photo"  htmlFor='photo'>
+            <i className="fad fa-images"></i>
+            <i className="plus fad fa-plus"></i>
+            <input id="photo" className="d-none" multiple type='file' onChange={props.onChange} accept="image/*" />
+        </label>
+        {/* <label className="uploads__360" htmlFor='img360'>
+            <i className="fad fa-video"></i>
+            <i className="plus fad fa-plus"></i>
+            <input id="video" className="d-none" type='file' onChange={props.onChange} accept="video/*" />
+        </label> */}
+        <label className="uploads__video" htmlFor='video'>
+            <i className="fad fa-video"></i>
+            <i className="plus fad fa-plus"></i>
+            <input id="video" className="d-none" type='file' onChange={props.onChange} accept="video/*" />
+        </label>
     </div>

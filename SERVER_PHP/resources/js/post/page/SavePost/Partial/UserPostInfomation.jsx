@@ -222,7 +222,7 @@ const UserPostInfomation = forwardRef((props, ref) => {
             }
         }),
     )
-    console.log("trước khi render ra html", formState)
+    
     return(
         <div className="user-information position-relative">
             <div className="row">
