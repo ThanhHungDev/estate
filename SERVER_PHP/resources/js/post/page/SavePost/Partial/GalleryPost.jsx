@@ -1,7 +1,17 @@
 import React, { useState, forwardRef, useRef, useImperativeHandle } from 'react'
+import Lightbox from "react-image-lightbox"
+import "react-image-lightbox/style.css"
 
 import MainUpload from './UploadImage/MainUpload'
 
+
+
+const images = [
+    "//placekitten.com/1500/500",
+    "//placekitten.com/4000/3000",
+    "//placekitten.com/800/1200",
+    "//placekitten.com/1500/1500"
+]
 
 const GalleryPost = forwardRef((props, ref) => {
     const { CONFIG } = props
@@ -34,7 +44,7 @@ const GalleryPost = forwardRef((props, ref) => {
             
             
 
-            <div className="alert alert-info">
+            <div className="alert alert-info mt-3">
                 <p><b>Yêu cầu cho video:</b></p>
                 <ul>
                     <li>Độ dài video không vượt quá 3 phút</li>
