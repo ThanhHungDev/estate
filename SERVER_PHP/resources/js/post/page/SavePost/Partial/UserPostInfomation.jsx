@@ -1,5 +1,6 @@
 import React, { useState, useEffect, forwardRef, useRef, useImperativeHandle } from 'react'
 import Validator from "hero-validate"
+import Select from 'react-select'
 
 import locationAPI from "../../../../service/location.api"
 
@@ -50,9 +51,12 @@ const UserPostInfomation = forwardRef((props, ref) => {
     })
 
     const handleChange = (event) => {
-        event.persist()
+        
+        if(event.persist){
+            event.persist()
+        }
 
-        setFormState((formState) => ({
+        const newState = {
             ...formState,
             values: {
                 ...formState.values,
@@ -65,20 +69,26 @@ const UserPostInfomation = forwardRef((props, ref) => {
                 ...formState.touched,
                 [event.target.name]: true,
             },
-        }))
+        }
+        
+        
 
         /// check nếu là province change thì gọi riêng
         if( event.target.name == 'province' ){
+            newState.values.district = 0
+            newState.values.commune = 0
             onProvinceChange(event)
         }
         /// check nếu là district change thì gọi riêng 
         if( event.target.name == 'district' ){
+            newState.values.commune = 0
             onDistrictChange(event)
         }
         /// check nếu là commune change thì gọi riêng
         if( event.target.name == 'commune' ){
             onCommuneChange(event)
         }
+        setFormState(newState)
     }
 
     const hasErr = (name) => {
@@ -86,6 +96,7 @@ const UserPostInfomation = forwardRef((props, ref) => {
     }
 
     useEffect( () => {
+        console.log(formState , "formStateformStateformStateformStateformState" )
 
         if(provinces.length <= 1 ){
             /// call api get province
@@ -125,7 +136,9 @@ const UserPostInfomation = forwardRef((props, ref) => {
                     ["commune"]: 0,
                 },
             })
-        }else {
+        }else 
+        /// fetch api DISTRICT all
+        if( provinceValue != 0 && districts.length <= 1  ){
             const loadding = DISTRICT_NULL.map( d => {
                 d.text = 'Vui lòng chờ tải dữ liệu ...' // <b class="spinner"><i></i><i></i><i></i><i></i></b>
                 return d
@@ -133,20 +146,22 @@ const UserPostInfomation = forwardRef((props, ref) => {
             /// reset select 2 district to none loading
             setDistricts(loadding)
 
-            /// fetch api DISTRICT all
-            if( districts.length <= 1  ){
-                /// chưa fetch api bao giờ thì fetch thôi
-                locationAPI.getDistricts()
-                .then( response => {
-                    const { data } = response
-                    ///
-                    setDistricts( [ ...districts, ... data ])
-                })
-                .catch(error => {
-                    console.log("ERROR:: locationAPI.getDistricts-- ",error)
-                })
-            }
-        }
+            /// chưa fetch api bao giờ thì fetch thôi
+            locationAPI.getDistricts()
+            .then( response => {
+                const { data } = response
+                ///
+                setDistricts( [ ...districts, ... data ])
+            })
+            .catch(error => {
+                console.log("ERROR:: locationAPI.getDistricts-- ",error)
+            })
+        } else
+        /// có dữ liệu sẵn
+        {
+            /// khỏi làm gì cả tự render lại là chạy đúng rồi
+            console.log("khỏi làm gì cả tự render lại là chạy đúng rồi")
+        } 
     }
     function onDistrictChange(e){
 
@@ -163,27 +178,25 @@ const UserPostInfomation = forwardRef((props, ref) => {
                     ["commune"]: 0,
                 },
             })
-        }else {
+        }else 
+        /// fetch api COMMUNE all
+        if( districtValue != 0 && communes.length <= 1  ){
             const loadding = COMMUNE_NULL.map( c => {
                 c.text = 'Vui lòng chờ tải dữ liệu ...' // <b class="spinner"><i></i><i></i><i></i><i></i></b>
                 return c
             })
             /// reset select 2 district to none loading
             setCommunes(loadding)
-
-            /// fetch api COMMUNE all
-            if( communes.length <= 1  ){
-                /// chưa fetch api bao giờ thì fetch thôi
-                locationAPI.getCommunes()
-                .then( response => {
-                    const { data } = response
-                    ///
-                    setCommunes( [ ...communes, ... data ])
-                })
-                .catch(error => {
-                    console.log("ERROR:: locationAPI.getCommunes-- ",error)
-                })
-            }
+            /// chưa fetch api bao giờ thì fetch thôi
+            locationAPI.getCommunes()
+            .then( response => {
+                const { data } = response
+                ///
+                setCommunes( [ ...communes, ... data ])
+            })
+            .catch(error => {
+                console.log("ERROR:: locationAPI.getCommunes-- ",error)
+            })
         }
     }
     function onCommuneChange(e){
@@ -222,7 +235,7 @@ const UserPostInfomation = forwardRef((props, ref) => {
             }
         }),
     )
-    
+
     return(
         <div className="user-information position-relative">
             <div className="row">
@@ -243,13 +256,20 @@ const UserPostInfomation = forwardRef((props, ref) => {
                 <div className="col-12 col-sm-4">
                     <div className="form-group required">
                         <label htmlFor="province">Chọn Tỉnh Thành</label>
-                        <select id="province" 
+                        {/* <select id="province" 
                             name='province'
                             className={ "custom-select mr-sm-2 " + ( hasErr('province') && 'is-invalid' ) }
                             value={formState.values.gender}
                             onChange={handleChange}>
                             { provinces.map( p => <option key={p.id} value={p.id} > { p.text } </option> ) }
-                        </select>
+                        </select> */}
+                        <Select 
+                            id="province" 
+                            name='province'
+                            className={ " " + ( hasErr('province') && 'is-invalid' ) }
+                            value={formState.values.gender}
+                            onChange={handleChange}
+                            options={ provinces.map( p => {return { value: p.id, label: p.text, currentTarget: { value: p.id }, target: { name: 'province', value: p.id } }} ) } />
                         {
                             formState.errors.getError('province') && 
                             <div className="invalid-feedback"> { formState.errors.getError('province') } </div>
