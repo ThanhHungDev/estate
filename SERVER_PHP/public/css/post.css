@@ -57,17 +57,17 @@
   background-color: #10772f !important;
 }
 
-.uploads {
+.main-upload .uploads {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 @media (min-width: 576px) {
-  .uploads {
+  .main-upload .uploads {
     justify-content: left;
   }
 }
-.uploads__photo, .uploads__video {
+.main-upload .uploads__photo, .main-upload .uploads__video {
   padding: 10px;
   display: block;
   text-align: center;
@@ -82,11 +82,53 @@
   cursor: pointer;
   position: relative;
 }
-.uploads .plus {
+.main-upload .uploads__photo.hidden__color, .main-upload .uploads__video.hidden__color {
+  color: #495057;
+  border: 1px solid #495057;
+}
+.main-upload .uploads .limit__image {
+  display: block;
+  color: #4caf50;
+  font-size: 9px;
+}
+.main-upload .uploads .limit__image.error {
+  color: #d63384;
+}
+.main-upload .uploads .plus {
   position: absolute;
   top: 10px;
   right: 10px;
   font-size: 14px;
+}
+.main-upload .galleries {
+  margin-top: 30px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  flex-flow: wrap;
+}
+.main-upload .galleries .image__block-item {
+  width: 33.33%;
+  padding: 2px;
+  max-width: 300px;
+}
+@media (min-width: 576px) {
+  .main-upload .galleries .image__block-item {
+    width: 20%;
+  }
+}
+.main-upload .galleries .image__block-item img {
+  width: 100%;
+  height: auto;
+  border: 1px solid #f8f9fa;
+  border-radius: 4px;
+}
+.main-upload .galleries .image__block-item .btn__delete-image {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 22px;
+  color: #495057;
 }
 
 .post__root-react {

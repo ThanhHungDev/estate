@@ -96,7 +96,6 @@ const UserPostInfomation = forwardRef((props, ref) => {
     }
 
     useEffect( () => {
-        console.log(formState , "formStateformStateformStateformStateformState" )
 
         if(provinces.length <= 1 ){
             /// call api get province

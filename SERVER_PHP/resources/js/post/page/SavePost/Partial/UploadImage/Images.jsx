@@ -3,13 +3,11 @@ import md5 from "js-md5"
 
 export default props =>
     props.images.map( url =>
-        <div key={ md5(url) } className='fadein'>
-            <div
-                onClick={() => props.removeImage( url )}
-                className='delete'
-            >
-                <i className="fal fa-times-circle"></i>
+        <div key={ md5(url) } className='animated fadeIn image__block-item'>
+            <div className="position-relative">
+                
+                <i onClick={() => props.removeImage( url )} className="btn__delete-image fal fa-times-circle"></i>
+                <img src={ url } alt='' />
             </div>
-            <img src={ url } alt='' />
         </div>
     )

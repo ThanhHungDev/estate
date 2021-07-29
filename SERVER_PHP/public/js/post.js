@@ -9256,17 +9256,27 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var MAX_IMAGE = 7;
+var MAX_VIDEO = 2;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function (props) {
+  var images = props.images,
+      videos = props.videos;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
     className: "uploads",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("label", {
-      className: "uploads__photo",
+      className: "uploads__photo " + (images.length > MAX_IMAGE ? 'hidden__color' : ''),
       htmlFor: "photo",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
         className: "fad fa-images"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
+      }), images.length > MAX_IMAGE ? null : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
         className: "plus fad fa-plus"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+      }), images.length > MAX_IMAGE ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
+        className: "limit__image error",
+        children: "kh\xF4ng th\u1EC3 th\xEAm \u1EA3nh"
+      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
+        className: "limit__image",
+        children: "b\u1EA5m \u0111\u1EC3 th\u1EC3 th\xEAm \u1EA3nh"
+      }), images.length > MAX_IMAGE ? null : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
         id: "photo",
         className: "d-none",
         multiple: true,
@@ -9275,15 +9285,22 @@ __webpack_require__.r(__webpack_exports__);
         accept: "image/*"
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("label", {
-      className: "uploads__video",
+      className: "uploads__video " + (videos.length > MAX_VIDEO ? 'hidden__color' : ''),
       htmlFor: "video",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
         className: "fad fa-video"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
+      }), videos.length > MAX_VIDEO ? null : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
         className: "plus fad fa-plus"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+      }), videos.length > MAX_VIDEO ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
+        className: "limit__image error",
+        children: "kh\xF4ng th\u1EC3 th\xEAm video"
+      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
+        className: "limit__image",
+        children: "b\u1EA5m \u0111\u1EC3 th\u1EC3 th\xEAm video"
+      }), videos.length > MAX_VIDEO ? null : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
         id: "video",
         className: "d-none",
+        multiple: true,
         type: "file",
         onChange: props.onChange,
         accept: "video/*"
@@ -9315,20 +9332,20 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function (props) {
   return props.images.map(function (url) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      className: "fadein",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-        onClick: function onClick() {
-          return props.removeImage(url);
-        },
-        className: "delete",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
-          className: "fal fa-times-circle"
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
-        src: url,
-        alt: ""
-      })]
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "animated fadeIn image__block-item",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "position-relative",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
+          onClick: function onClick() {
+            return props.removeImage(url);
+          },
+          className: "btn__delete-image fal fa-times-circle"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+          src: url,
+          alt: ""
+        })]
+      })
     }, js_md5__WEBPACK_IMPORTED_MODULE_1___default()(url));
   });
 });
@@ -9354,6 +9371,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Buttons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Buttons */ "./resources/js/post/page/SavePost/Partial/UploadImage/Buttons.jsx");
 /* harmony import */ var _service_file_api__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../../service/file.api */ "./resources/js/service/file.api.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -9387,12 +9412,17 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       images = _useState4[0],
       setImages = _useState4[1];
 
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+      _useState6 = _slicedToArray(_useState5, 2),
+      videos = _useState6[0],
+      setVideos = _useState6[1];
+
   function onChange(e) {
     setUploading(true);
-    var formData = new FormData(); // const images = []
+    var formData = new FormData();
 
     for (var i = 0; i < e.target.files.length; i++) {
-      formData.append("file[]", e.target.files[i]); // images.push(e.target.files[i])
+      formData.append("file[]", e.target.files[i]);
     }
 
     formData.append("type", CONFIG.IMAGE.POST); /// set Image
@@ -9405,7 +9435,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         var imgs = data.map(function (d) {
           return d.IMAGE_RESIZE;
         });
-        setImages(imgs);
+        setImages([].concat(_toConsumableArray(images), _toConsumableArray(imgs)).sort().filter(function (item, pos, ary) {
+          return !pos || item != ary[pos - 1];
+        }));
       }
     })["catch"](function (error) {
       console.log("ERROR:: ", error);
@@ -9424,17 +9456,22 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
     className: "main-upload",
-    children: [uploading && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Buttons__WEBPACK_IMPORTED_MODULE_4__.default, {
+      images: images,
+      videos: videos,
+      onChange: onChange
+    }), uploading && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
       className: "progress progress-success bg-color-indeterminate",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
         className: "progress-bar"
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Buttons__WEBPACK_IMPORTED_MODULE_4__.default, {
-      onChange: onChange
-    }), images.length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Images__WEBPACK_IMPORTED_MODULE_3__.default, {
-      images: images,
-      removeImage: removeImage
-    }) : null]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+      className: "galleries",
+      children: images.length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Images__WEBPACK_IMPORTED_MODULE_3__.default, {
+        images: images,
+        removeImage: removeImage
+      }) : null
+    })]
   });
 });
 
@@ -9616,8 +9653,6 @@ var UserPostInfomation = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forw
   };
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    console.log(formState, "formStateformStateformStateformStateformState");
-
     if (provinces.length <= 1) {
       /// call api get province
       _service_location_api__WEBPACK_IMPORTED_MODULE_2__.default.getProvinces().then(function (response) {
@@ -11331,6 +11366,45 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _Validator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Validator */ "./node_modules/hero-validate/src/Validator.js");
 
+
+
+
+
+// var V = require('./Validator');
+
+
+
+// const message = {
+//     password: ":name failure...",
+//     mycustom: "try turn off mycustom"
+// }
+
+// V.setMessages(message);
+// V.setLocale(V.languages.vi)
+
+// const data = {
+//     password: 'hungfff',
+//     confirm_password: "fdsfds",
+    
+// }
+
+// /// create rule for your form
+// const rules = {
+//     password     : "required|min:7|max:100",
+//     confirm_password : {
+//         required: true,
+//         mycustom: function (value) {
+//             if (value !== data.password) {
+//                 return {}; /// try return {} or string 
+//                 // return "Password confirm is incorrect"
+//             }
+//             return true;
+//         },
+//     },
+// };
+
+// let result = V.validate(data,  rules)
+// console.log( JSON.stringify(result)  ) 
 
 
 
