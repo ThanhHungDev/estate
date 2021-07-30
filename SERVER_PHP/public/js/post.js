@@ -8692,6 +8692,19 @@ function Apartment(props) {
         }));
         SW.nextStep();
       }
+    } else if (SW.currentStep == 4) {
+      var _refGalleryUser$curre = refGalleryUser.current.validateFromStep(),
+          images = _refGalleryUser$curre.images,
+          videos = _refGalleryUser$curre.videos;
+
+      if (images && images.length) {
+        console.log(images, "imagesimagesimagesimagesimagesimagesimagesimagesimagesimagesimagesimagesimagesimagesimages");
+        setForm(_objectSpread(_objectSpread({}, form), {}, {
+          images: images,
+          videos: videos
+        }));
+        SW.nextStep();
+      }
     }
   }; /// ban đầu state là {} => SW là undefine
 
@@ -8941,19 +8954,34 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var GalleryPost = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(function (props, ref) {
   var CONFIG = props.CONFIG; /// init state
 
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(CONFIG.CONSTANT.USER_TYPE.PERSON),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
-      role = _useState2[0],
-      setRole = _useState2[1];
+      images = _useState2[0],
+      setImages = _useState2[1];
 
-  function onChangeRadio(e) {
-    setRole(e.currentTarget.value);
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      videos = _useState4[0],
+      setVideos = _useState4[1]; // function onChangeRadio(e){
+  //     setRole(e.currentTarget.value)
+  // }
+
+
+  function childChangeImagesParent(images) {
+    setImages(images);
+  }
+
+  function childChangeVideosParent(videos) {
+    setVideos(videos);
   }
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useImperativeHandle)(ref, function () {
     return {
       validateFromStep: function validateFromStep() {
-        return role;
+        return {
+          images: images,
+          videos: videos
+        };
       }
     };
   });
@@ -8965,7 +8993,9 @@ var GalleryPost = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
       className: "upload-image",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_UploadImage_MainUpload__WEBPACK_IMPORTED_MODULE_1__.default, {
-        CONFIG: CONFIG
+        CONFIG: CONFIG,
+        childChangeImagesParent: childChangeImagesParent,
+        childChangeVideosParent: childChangeVideosParent
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
       className: "alert alert-info mt-3",
@@ -9432,12 +9462,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       var data = response.data;
 
       if (data.length) {
-        var imgs = data.map(function (d) {
-          return d.IMAGE_RESIZE;
+        var imgs = [].concat(_toConsumableArray(images), _toConsumableArray(data)).sort().filter(function (item, pos, ary) {
+          return !pos.IMAGE_RESIZE || item.IMAGE_RESIZE != ary[pos - 1].IMAGE_RESIZE;
         });
-        setImages([].concat(_toConsumableArray(images), _toConsumableArray(imgs)).sort().filter(function (item, pos, ary) {
-          return !pos || item != ary[pos - 1];
-        }));
+        setImages(imgs);
       }
     })["catch"](function (error) {
       console.log("ERROR:: ", error);
@@ -9447,28 +9475,32 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
   function removeImage(src) {
     setImages(images.filter(function (image) {
-      return js_md5__WEBPACK_IMPORTED_MODULE_1___default()(image) != js_md5__WEBPACK_IMPORTED_MODULE_1___default()(src);
+      return js_md5__WEBPACK_IMPORTED_MODULE_1___default()(image.IMAGE_RESIZE) != js_md5__WEBPACK_IMPORTED_MODULE_1___default()(src);
     }));
   }
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    console.log("vào eff");
+    props.childChangeImagesParent(images);
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
     className: "main-upload",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Buttons__WEBPACK_IMPORTED_MODULE_4__.default, {
-      images: images,
+      images: images.map(function (img) {
+        return img.IMAGE_RESIZE;
+      }),
       videos: videos,
       onChange: onChange
-    }), uploading && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-      className: "progress progress-success bg-color-indeterminate",
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+      className: "progress progress-success bg-color-indeterminate " + (uploading ? '' : 'reset__background-color'),
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-        className: "progress-bar"
+        className: "progress-loadding"
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
       className: "galleries",
       children: images.length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Images__WEBPACK_IMPORTED_MODULE_3__.default, {
-        images: images,
+        images: images.map(function (img) {
+          return img.IMAGE_RESIZE;
+        }),
         removeImage: removeImage
       }) : null
     })]
@@ -11366,45 +11398,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _Validator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Validator */ "./node_modules/hero-validate/src/Validator.js");
 
-
-
-
-
-// var V = require('./Validator');
-
-
-
-// const message = {
-//     password: ":name failure...",
-//     mycustom: "try turn off mycustom"
-// }
-
-// V.setMessages(message);
-// V.setLocale(V.languages.vi)
-
-// const data = {
-//     password: 'hungfff',
-//     confirm_password: "fdsfds",
-    
-// }
-
-// /// create rule for your form
-// const rules = {
-//     password     : "required|min:7|max:100",
-//     confirm_password : {
-//         required: true,
-//         mycustom: function (value) {
-//             if (value !== data.password) {
-//                 return {}; /// try return {} or string 
-//                 // return "Password confirm is incorrect"
-//             }
-//             return true;
-//         },
-//     },
-// };
-
-// let result = V.validate(data,  rules)
-// console.log( JSON.stringify(result)  ) 
 
 
 

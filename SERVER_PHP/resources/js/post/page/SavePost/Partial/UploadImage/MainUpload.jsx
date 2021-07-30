@@ -28,10 +28,10 @@ export default props => {
             setUploading(null)
             const { data } = response
             if( data.length ){
-                const imgs = data.map( d => d.IMAGE_RESIZE )
-                setImages( [...images, ...imgs ].sort().filter(function(item, pos, ary) {
-                    return !pos || item != ary[pos - 1];
-                }) )
+                const imgs = [...images, ...data ].sort().filter(function(item, pos, ary) {
+                    return !pos.IMAGE_RESIZE || item.IMAGE_RESIZE != ary[pos - 1].IMAGE_RESIZE;
+                })
+                setImages( imgs )
             }
         })
         .catch(error => {
@@ -40,26 +40,26 @@ export default props => {
         })
     }
     function removeImage(src) {
-        setImages( images.filter(image => md5(image) != md5(src)) )
+        setImages( images.filter(image => md5(image.IMAGE_RESIZE) != md5(src)) )
     }
 
     useEffect( () => {
-        console.log("vào eff")
+        
+        props.childChangeImagesParent(images)
     })
 
     return (
         <div className="main-upload">
             
-            <Buttons images={images} videos={videos} onChange={ onChange } />
-            {
-                uploading && <div className="progress progress-success bg-color-indeterminate">
-                    <div className="progress-bar"></div>
-                </div>
-            }
+            <Buttons images={images.map( img => img.IMAGE_RESIZE )} videos={videos} onChange={ onChange } />
+
+            <div className={ "progress progress-success bg-color-indeterminate " + ( uploading ? '' : 'reset__background-color' ) }>
+                <div className="progress-loadding"></div>
+            </div>
             <div className="galleries">
             {
                 images.length
-                ? <Images images={ images } removeImage={ removeImage } />
+                ? <Images images={ images.map( img => img.IMAGE_RESIZE ) } removeImage={ removeImage } />
                 : null
             }
             </div>

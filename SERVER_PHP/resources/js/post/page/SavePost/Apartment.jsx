@@ -62,6 +62,14 @@ function Apartment( props ){
                 setForm({ ...form, role })
                 SW.nextStep()
             }
+        }else if(SW.currentStep == 4){
+
+            const { images, videos } = refGalleryUser.current.validateFromStep()
+            if( images && images.length ){
+                console.log(images, "imagesimagesimagesimagesimagesimagesimagesimagesimagesimagesimagesimagesimagesimagesimages")
+                setForm({ ...form, images, videos })
+                SW.nextStep()
+            }
         }
         
     }

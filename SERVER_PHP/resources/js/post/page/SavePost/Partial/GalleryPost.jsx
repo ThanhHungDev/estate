@@ -6,12 +6,20 @@ import MainUpload from './UploadImage/MainUpload'
 const GalleryPost = forwardRef((props, ref) => {
     const { CONFIG } = props
     /// init state
-    const [ role, setRole ] = useState(CONFIG.CONSTANT.USER_TYPE.PERSON)
+    const [ images, setImages ] = useState( [] )
+    const [ videos, setVideos ] = useState( [] )
     
 
-    function onChangeRadio(e){
+    // function onChangeRadio(e){
 
-        setRole(e.currentTarget.value)
+    //     setRole(e.currentTarget.value)
+    // }
+    function childChangeImagesParent(images){
+        
+        setImages(images)
+    }
+    function childChangeVideosParent(videos){
+        setVideos(videos)
     }
     
 
@@ -20,7 +28,7 @@ const GalleryPost = forwardRef((props, ref) => {
         () => ({
             validateFromStep(){
 
-                return role
+                return { images, videos }
             }
         }),
     )
@@ -29,7 +37,7 @@ const GalleryPost = forwardRef((props, ref) => {
             <h5 className="user-type__title pt-2 pb-4">Bạn Cần đăng ít nhất 3 ảnh: </h5>
 
             <div className="upload-image">
-                <MainUpload CONFIG={CONFIG} />
+                <MainUpload CONFIG={CONFIG} childChangeImagesParent={childChangeImagesParent} childChangeVideosParent={childChangeVideosParent}/>
             </div>
             
             

@@ -57,6 +57,12 @@
   background-color: #10772f !important;
 }
 
+.main-upload .reset__background-color {
+  background-color: transparent !important;
+}
+.main-upload .reset__background-color .progress-loadding {
+  background-color: transparent !important;
+}
 .main-upload .uploads {
   display: flex;
   justify-content: center;

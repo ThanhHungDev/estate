@@ -1,4 +1,8 @@
 .main-upload{
+  .reset__background-color{
+    background-color: transparent!important; 
+    .progress-loadding{ background-color: transparent!important;  }
+  }
   .uploads{
     display: flex;
     justify-content: center;
