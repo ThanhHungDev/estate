@@ -24,7 +24,9 @@ class UPLOAD_FILE_REQUEST extends FormRequest
      */
     public function rules()
     {
-        $TYPE = Config::get('image.UPLOAD');
+        $TYPE_IMAGE = Config::get('image.UPLOAD');
+        $TYPE_VIDEO = Config::get('video.UPLOAD');
+        $TYPE = array_merge( $TYPE_IMAGE, $TYPE_VIDEO );
         $RULE_TYPE = join(",",array_values($TYPE));
         return [
             'file' => 'required',

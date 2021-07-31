@@ -31,6 +31,26 @@ class FileController extends Controller
         }
         return false;
     }
+
+    /**
+     * isUploadVideo kiểm tra xem cái upload có phải là upload video không
+     *
+     * @param  mixed $request
+     * @return boolean
+     */
+    public static function isUploadVideo(Request $request){
+        /// type video
+        $TYPE_VIDEO = Config::get('video.UPLOAD');
+        /// input data 
+        $type = $request->input('type');
+        /// check người dùng đẩy lên upload có phải video hông
+        if(in_array($type, array_values($TYPE_VIDEO))){
+            /// đang upload image
+            return true;
+        }
+        return false;
+    }
+
     public function store(UPLOAD_FILE_REQUEST $request){
 
         /// đang mặc định là upload file
@@ -38,16 +58,16 @@ class FileController extends Controller
         // $message = array( 'file.mimes' => 'lỗi file upload không đúng định dạng' );
 
         $rules = array( 
-            'file' => [ "required", "array", "min:1", "max:4" ],
+            'file'   => [ "required", "array", "min:1", "max:4" ],
             'file.*' => 'required|mimes:doc,docx|max:2048'
         );
         $message = array( 
             'file.required' => 'lỗi không tìm thấy file',
-            'file.array' => 'lỗi file không phải array',
-            'file.min' => 'array ít nhất là 1',
-            'file.max' => 'array nhiều nhất là 4',
-            'file.*.mimes' => 'Không đúng định dạng cần thiết',
-            'file.*.max' => 'file không được vượt quá 2048Byte',
+            'file.array'    => 'lỗi file không phải array',
+            'file.min'      => 'array ít nhất là 1',
+            'file.max'      => 'array nhiều nhất là 4',
+            'file.*.mimes'  => 'Không đúng định dạng cần thiết',
+            'file.*.max'    => 'file không được vượt quá 2048Byte',
         );
         /// check người dùng đẩy lên upload có phải image hông
         if(FileController::isUploadImage($request)){
@@ -60,17 +80,32 @@ class FileController extends Controller
             //     'file.required' => 'lỗi image required'
             // ];
             $rules = array( 
-                'file' => [ "required" ], // , "array", "min:1", "max:6"
+                'file'   => [ "required" ],                                       // , "array", "min:1", "max:6"
                 'file.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
             );
             $message = array( 
                 'file.required' => 'lỗi không tìm thấy file',
-                'file.array' => 'lỗi file không phải array',
-                'file.min' => 'array ít nhất là 1',
-                'file.max' => 'array nhiều nhất là 4',
-                'file.*.mimes' => 'Không đúng định dạng cần thiết',
-                'file.*.image' => 'Không đúng định dạng ảnh',
-                'file.*.max' => 'file không được vượt quá 2048Byte',
+                'file.array'    => 'lỗi file không phải array',
+                'file.min'      => 'array ít nhất là 1',
+                'file.max'      => 'array nhiều nhất là 4',
+                'file.*.mimes'  => 'Không đúng định dạng cần thiết',
+                'file.*.image'  => 'Không đúng định dạng ảnh',
+                'file.*.max'    => 'file không được vượt quá 2048Byte',
+            );
+        }else if( FileController::isUploadVideo($request)){
+            
+            $rules = array( 
+                'file'   => [ "required" ],                                       // , "array", "min:1", "max:6"
+                'file.*' => 'required'
+            );
+            $message = array( 
+                'file.required' => 'lỗi không tìm thấy file',
+                'file.array'    => 'lỗi file không phải array',
+                'file.min'      => 'array ít nhất là 1',
+                'file.max'      => 'array nhiều nhất là 4',
+                'file.*.mimes'  => 'Không đúng định dạng cần thiết',
+                'file.*.image'  => 'Không đúng định dạng ảnh',
+                'file.*.max'    => 'file không được vượt quá 2048Byte',
             );
         }
         // validator Rules
@@ -94,9 +129,18 @@ class FileController extends Controller
             $urls = $this->storeImage($request);
             $links = array_map(function($item){
                 return [
-                    "root" => $item,
+                    "root"           => $item,
                     'IMAGE_COMPRESS' => Route('IMAGE_COMPRESS', ['quality' => '50', 'imagePath' => $item ]),
-                    'IMAGE_RESIZE' => Route('IMAGE_RESIZE', [ "size" => 'small', "type" => 'fit', 'imagePath' => $item ]),
+                    'IMAGE_RESIZE'   => Route('IMAGE_RESIZE', [ "size" => 'small', "type" => 'fit', 'imagePath' => $item ]),
+                ];
+            }, $urls );
+        }else if(FileController::isUploadVideo($request)){
+            /// đang upload Video
+            // cho upload Video
+            $urls = $this->storeVideo($request);
+            $links = array_map(function($item){
+                return [
+                    "root" => $item,
                 ];
             }, $urls );
         }else{
@@ -119,6 +163,40 @@ class FileController extends Controller
         if(!$type){
             /// set default type 
             $type = Config::get('image.UPLOAD.MIXED');
+        }
+        
+        $urlStorage = FileController::$ROOT_UPLOAD . $ROOT_IMAGE . strtolower($type) . "/";
+        $savedDir   = public_path($urlStorage);
+
+        if(!File::isDirectory($savedDir)){
+
+            File::makeDirectory($savedDir, 0755, true, true);
+        }
+
+        $urls = [];
+
+        if($request->has('file')) {
+            foreach($request->file('file') as $file) {
+                $fileName   = time().$file->getClientOriginalName();       /// $image->getClientOriginalExtension()
+                $file->move($savedDir, $fileName);
+                $urls[] = $urlStorage . $fileName;
+            }
+        }
+
+        return $urls;
+    }
+
+
+    public static function storeVideo(Request $request){
+
+        $ROOT_IMAGE = "/videos/";
+
+        /// input data
+        $type = $request->input('type');
+
+        if(!$type){
+            /// set default type 
+            $type = Config::get('VIDEO.UPLOAD.MIXED');
         }
         
         $urlStorage = FileController::$ROOT_UPLOAD . $ROOT_IMAGE . strtolower($type) . "/";

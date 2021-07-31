@@ -73,7 +73,7 @@ const UserPostInfomation = forwardRef((props, ref) => {
         
         
 
-        /// check nếu là province change thì gọi riêng
+        // /// check nếu là province change thì gọi riêng
         if( event.target.name == 'province' ){
             newState.values.district = 0
             newState.values.commune = 0
@@ -116,6 +116,7 @@ const UserPostInfomation = forwardRef((props, ref) => {
         }
         setFormState(newState)
 
+        // console.log(newState)
     }, [ formState.values, districts, provinces, communes ] )
 
     function onProvinceChange(e){
@@ -150,6 +151,7 @@ const UserPostInfomation = forwardRef((props, ref) => {
             .then( response => {
                 const { data } = response
                 ///
+                // console.log("cáo set lại distring ", [ ...districts, ... data ])
                 setDistricts( [ ...districts, ... data ])
             })
             .catch(error => {
@@ -196,7 +198,12 @@ const UserPostInfomation = forwardRef((props, ref) => {
             .catch(error => {
                 console.log("ERROR:: locationAPI.getCommunes-- ",error)
             })
-        }
+        } else
+        /// có dữ liệu sẵn
+        {
+            /// khỏi làm gì cả tự render lại là chạy đúng rồi
+            console.log("khỏi làm gì cả cái districts tự render lại là chạy đúng rồi")
+        } 
     }
     function onCommuneChange(e){
 
@@ -266,9 +273,26 @@ const UserPostInfomation = forwardRef((props, ref) => {
                             id="province" 
                             name='province'
                             className={ " " + ( hasErr('province') && 'is-invalid' ) }
-                            value={formState.values.gender}
-                            onChange={handleChange}
-                            options={ provinces.map( p => {return { value: p.id, label: p.text, currentTarget: { value: p.id }, target: { name: 'province', value: p.id } }} ) } />
+                            value={ 
+                                !formState.values.province
+                                ? 0
+                                : provinces
+                                .find( p => {
+                                    return p.value == formState.values.province
+                                }) 
+                            }
+                            onChange={ handleChange }
+                            options={ 
+                                provinces
+                                .map( p => {
+                                    return { 
+                                        value: p.id, 
+                                        label: p.text, 
+                                        currentTarget: { value: p.id }, 
+                                        target: { name: 'province', value: p.id } 
+                                    }
+                                }) 
+                            } />
                         {
                             formState.errors.getError('province') && 
                             <div className="invalid-feedback"> { formState.errors.getError('province') } </div>
@@ -278,7 +302,7 @@ const UserPostInfomation = forwardRef((props, ref) => {
                 <div className="col-12 col-sm-4">
                     <div className="form-group required">
                         <label htmlFor="district">Chọn Quận / Huyện</label>
-                        <select id="district" 
+                        {/* <select id="district" 
                             name='district'
                             className={ "custom-select mr-sm-2 " + ( hasErr('district') && 'is-invalid' ) }
                             value={formState.values.gender}
@@ -288,7 +312,33 @@ const UserPostInfomation = forwardRef((props, ref) => {
                                 .filter( d => !d.province || d.province ==  formState.values.province )
                                 .map( d => <option key={d.id} value={d.id} > { d.text } </option> ) 
                             }
-                        </select>
+                        </select> */}
+                        <Select 
+                            id="district" 
+                            name='district'
+                            className={ " " + ( hasErr('district') && 'is-invalid' ) }
+                            // value={ formState.values.district }
+                            value={ 
+                                ! formState.values.district
+                                ? 0
+                                : districts
+                                .find( d => {
+                                    return d.value == formState.values.district
+                                }) 
+                            }
+                            onChange={ handleChange }
+                            options={ 
+                                districts
+                                .filter( d => !d.province || d.province ==  formState.values.province )
+                                .map( p => {
+                                    return { 
+                                        value: p.id, 
+                                        label: p.text, 
+                                        currentTarget: { value: p.id }, 
+                                        target: { name: 'district', value: p.id } 
+                                    }
+                                })
+                            } />
                         {
                             formState.errors.getError('district') && 
                             <div className="invalid-feedback"> { formState.errors.getError('district') } </div>
@@ -298,7 +348,7 @@ const UserPostInfomation = forwardRef((props, ref) => {
                 <div className="col-12 col-sm-4">
                     <div className="form-group required">
                         <label htmlFor="commune">Phường, Xã, Thị Trấn</label>
-                        <select id="commune" 
+                        {/* <select id="commune" 
                             name='commune'
                             className={ "custom-select mr-sm-2 " + ( hasErr('commune') && 'is-invalid' ) }
                             value={formState.values.gender}
@@ -308,7 +358,33 @@ const UserPostInfomation = forwardRef((props, ref) => {
                                 .filter( c => !c.district || c.district ==  formState.values.district )
                                 .map( c => <option key={c.id} value={c.id} > { c.text } </option> ) 
                             }
-                        </select>
+                        </select> */}
+                        <Select 
+                            id="commune" 
+                            name='commune'
+                            className={ " " + ( hasErr('commune') && 'is-invalid' ) }
+                            // value={ formState.values.commune }
+                            value={
+                                ! formState.values.commune
+                                ? 0
+                                : communes
+                                .find( c => {
+                                    return c.value == formState.values.commune
+                                }) 
+                            }
+                            onChange={ handleChange }
+                            options={ 
+                                communes
+                                .filter( c => !c.district || c.district ==  formState.values.district )
+                                .map( p => {
+                                    return { 
+                                        value: p.id, 
+                                        label: p.text, 
+                                        currentTarget: { value: p.id }, 
+                                        target: { name: 'commune', value: p.id } 
+                                    }
+                                })
+                            } />
                         {
                             formState.errors.getError('commune') && 
                             <div className="invalid-feedback"> { formState.errors.getError('commune') } </div>

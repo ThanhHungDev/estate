@@ -46,7 +46,7 @@ export default props => {
                 {
                     videos.length > MAX_VIDEO
                     ? null
-                    : <input id="video" className="d-none" multiple type='file' onChange={props.onChange} accept="video/*" />
+                    : <input id="video" className="d-none" multiple type='file' onChange={ e => props.onChange(e, true) } accept="video/*" />
                 }
             </label>
         </div>

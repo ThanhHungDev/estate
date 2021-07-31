@@ -126,15 +126,17 @@
 .main-upload .galleries .image__block-item img {
   width: 100%;
   height: auto;
-  border: 1px solid #f8f9fa;
+  border: 1px solid #e9ecef;
   border-radius: 4px;
 }
 .main-upload .galleries .image__block-item .btn__delete-image {
   position: absolute;
   right: 10px;
   top: 10px;
+  z-index: 1111;
   font-size: 22px;
   color: #495057;
+  cursor: pointer;
 }
 
 .post__root-react {

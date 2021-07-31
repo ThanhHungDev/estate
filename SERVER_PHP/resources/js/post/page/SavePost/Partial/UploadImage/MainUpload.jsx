@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import md5 from "js-md5"
 
-import Spinner from './Spinner'
 import Images from './Images'
 import Buttons from './Buttons'
+import ShowLightbox from "./ShowLightbox"
 import fileAPI from "../../../../../service/file.api"
 
 export default props => {
@@ -13,14 +13,20 @@ export default props => {
     const [ images, setImages ] = useState([])
     const [ videos, setVideos ] = useState([])
 
-    function onChange(e){
+    function onChange(e, isVideo = false ){
         setUploading(true)
 
         const formData = new FormData()
         for (let i = 0; i < e.target.files.length; i++) {
             formData.append("file[]", e.target.files[i])
         }
-        formData.append("type", CONFIG.IMAGE.POST)
+        if(!isVideo){
+            /// là lưu ảnh 
+            formData.append("type", CONFIG.IMAGE.POST)
+        }else{
+            formData.append("type", CONFIG.VIDEO.POST)
+        }
+        
         /// set Image
 
         fileAPI.uploadFile(formData)
@@ -28,10 +34,20 @@ export default props => {
             setUploading(null)
             const { data } = response
             if( data.length ){
-                const imgs = [...images, ...data ].sort().filter(function(item, pos, ary) {
-                    return !pos.IMAGE_RESIZE || item.IMAGE_RESIZE != ary[pos - 1].IMAGE_RESIZE;
-                })
-                setImages( imgs )
+                if(!isVideo){
+                    /// là lưu ảnh không trùng
+                    const imgs = [...images, ...data ].sort().filter(function(item, pos, ary) {
+                        return !pos.IMAGE_RESIZE || item.IMAGE_RESIZE != ary[pos - 1].IMAGE_RESIZE;
+                    })
+                    setImages( imgs )
+                }else{
+                    console.log(data, "video đã về")
+                    const vids = [...videos, ...data ].sort().filter(function(item, pos, ary) {
+                        return !pos.root || item.root != ary[pos - 1].root;
+                    })
+                    setVideos( vids )
+                }
+                
             }
         })
         .catch(error => {
@@ -63,6 +79,7 @@ export default props => {
                 : null
             }
             </div>
+            {/* <ShowLightbox images={ images.map( img => img.root ) } /> */}
         </div>
     )
 }

@@ -105,6 +105,7 @@
     ];
     $configApp['CONSTANT'] = Config::get('constant');
     $configApp['IMAGE'] = Config::get('image.UPLOAD');
+    $configApp['VIDEO'] = Config::get('video.UPLOAD');
     @endphp
     <script>
         const CONFIG_APP = `{!! json_encode($configApp) !!}`;

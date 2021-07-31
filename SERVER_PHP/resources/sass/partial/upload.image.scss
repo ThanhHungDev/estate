@@ -60,7 +60,7 @@
       img{
         width: 100%;
         height: auto;
-        border: 1px solid $gray-100;
+        border: 1px solid $gray-200;
         border-radius: 4px;
       }
 
@@ -68,8 +68,10 @@
         position: absolute;
         right: 10px;
         top: 10px;
+        z-index: 1111;
         font-size: 22px;
         color: $gray-700;
+        cursor: pointer;
       }
     }
     
