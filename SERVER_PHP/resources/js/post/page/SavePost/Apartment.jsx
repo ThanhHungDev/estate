@@ -8,6 +8,7 @@ import UserPostInfomation from "./Partial/UserPostInfomation"
 import TypePost from "./Partial/TypePost"
 import RoleUser from "./Partial/RoleUser"
 import GalleryPost from "./Partial/GalleryPost"
+import AreaPrice from "./Partial/AreaPrice"
 
 
 /// lưu căn hộ chung cư
@@ -21,6 +22,7 @@ function Apartment( props ){
     const refUserPostInfor = useRef()
     const refRoleUser = useRef()
     const refGalleryUser = useRef()
+    const refAreaPrice = useRef()
 
     // Do something on step change
     const onStepChange = (stats) => {
@@ -66,8 +68,14 @@ function Apartment( props ){
 
             const { images, videos } = refGalleryUser.current.validateFromStep()
             if( images && images.length ){
-                console.log(images, "imagesimagesimagesimagesimagesimagesimagesimagesimagesimagesimagesimagesimagesimagesimages")
                 setForm({ ...form, images, videos })
+                SW.nextStep()
+            }
+        }else if(SW.currentStep == 5){
+
+            const areaPrice = refAreaPrice.current.validateFromStep()
+            if( areaPrice ){
+                setForm({ ...form, ... areaPrice })
                 SW.nextStep()
             }
         }
@@ -91,6 +99,7 @@ function Apartment( props ){
                     <UserPostInfomation ref={ refUserPostInfor } CONFIG={CONFIG} AUTH={AUTH}/>
                     <RoleUser ref={ refRoleUser}  CONFIG={CONFIG}/>
                     <GalleryPost ref={ refGalleryUser}  CONFIG={CONFIG}/>
+                    <AreaPrice ref={ refAreaPrice } CONFIG={CONFIG}/>
                     <Step2 />
                     <Step3 />
                 </StepWizard>

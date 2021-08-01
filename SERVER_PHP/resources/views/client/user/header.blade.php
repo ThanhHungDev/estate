@@ -10,6 +10,10 @@
                         <img src="{{ $profile->avatar }}" alt="" class="avatar">
                         <h3 class="name">{{ $profile->name }}</h3>
                         <p class="email">{{ $profile->email }}</p>
+                        <a href="{{ Route('USER_POST') }}" class="btn user__link-post">
+                            <i class="fal fa-money-check-edit-alt"></i>
+                            <span class="title">Bấm Để Đăng Tin</span>
+                        </a>
                     </div>
                     <div class="navi__page">
                         <div class="row">

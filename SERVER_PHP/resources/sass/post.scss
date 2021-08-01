@@ -356,6 +356,44 @@
             // .form-control{
             //     border-radius: 4px;
             // }
+            .unit__area{
+                position: relative;
+                &:after{
+                    content: "m²";
+                    position: absolute;
+                    right: .75em;
+                    z-index: 1111;
+                    top: .7em;
+                    color: $custom-green;
+                }
+                .form-control{
+                    padding-right: calc(1.5em + .75rem);
+                    background-image: none;
+                    background-repeat: no-repeat;
+                    background-position: right calc(.375em + .1875rem) center;
+                    background-size: calc(.75em + .375rem) calc(.75em + .375rem);
+                }
+                
+            }
+            .unit__price{
+                position: relative;
+                &:after{
+                    content: "vnd";
+                    position: absolute;
+                    right: .75em;
+                    z-index: 1111;
+                    top: .7em;
+                    color: $custom-green;
+                }
+                .form-control{
+                    padding-right: calc(1.5em + .75rem);
+                    background-image: none;
+                    background-repeat: no-repeat;
+                    background-position: right calc(.375em + .1875rem) center;
+                    background-size: calc(.75em + .375rem) calc(.75em + .375rem);
+                }
+                
+            }
             
         }
         .mycustom-form-group-radio{

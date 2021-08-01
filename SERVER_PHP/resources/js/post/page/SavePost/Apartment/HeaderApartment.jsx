@@ -4,13 +4,19 @@ const renderTitleHeaderApartment = currentStep => {
 
     switch(currentStep) {
         case 1:
-            return 'Chọn kiểu đăng'
+            return 'Chọn Kiểu Đăng'
         case 2: 
-            return 'Nhập thông tin liên hệ'
+            return 'Thông Tin Liên Hệ'
         case 3: 
-            return 'Bạn Là Cá Nhân Hay Môi giới'
+            return 'Cá Nhân Hay Môi Giới'
+        case 4: 
+            return 'Thêm Hình Ảnh/Video'
+        case 5: 
+            return 'Thêm Diện Tích/Giá'
+        case 6: 
+            return 'Thông tin bds'
         default:
-            return 'Nhập thông tin liên hệ';
+            return 'Nhập Thông Tin Liên Hệ';
     }
 }
 const HeaderApartment = (props) => {

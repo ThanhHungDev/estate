@@ -978,6 +978,7 @@ body.video-react-full-window .video-react-fullscreen {
 .video-react video::-webkit-media-text-track-container {
   transform: translateY(-30px);
 }
+@charset "UTF-8";
 /* The container__radio */
 .container__radio {
   text-align: left;
@@ -1429,6 +1430,42 @@ body.video-react-full-window .video-react-fullscreen {
 .apartment__wrapper .user-information .form-group.required label:after {
   content: "*";
   color: red;
+}
+.apartment__wrapper .user-information .unit__area {
+  position: relative;
+}
+.apartment__wrapper .user-information .unit__area:after {
+  content: "m²";
+  position: absolute;
+  right: 0.75em;
+  z-index: 1111;
+  top: 0.7em;
+  color: #4caf50;
+}
+.apartment__wrapper .user-information .unit__area .form-control {
+  padding-right: calc(1.5em + .75rem);
+  background-image: none;
+  background-repeat: no-repeat;
+  background-position: right calc(.375em + .1875rem) center;
+  background-size: calc(.75em + .375rem) calc(.75em + .375rem);
+}
+.apartment__wrapper .user-information .unit__price {
+  position: relative;
+}
+.apartment__wrapper .user-information .unit__price:after {
+  content: "vnd";
+  position: absolute;
+  right: 0.75em;
+  z-index: 1111;
+  top: 0.7em;
+  color: #4caf50;
+}
+.apartment__wrapper .user-information .unit__price .form-control {
+  padding-right: calc(1.5em + .75rem);
+  background-image: none;
+  background-repeat: no-repeat;
+  background-position: right calc(.375em + .1875rem) center;
+  background-size: calc(.75em + .375rem) calc(.75em + .375rem);
 }
 .apartment__wrapper .mycustom-form-group-radio {
   border: 1px solid #ddd;

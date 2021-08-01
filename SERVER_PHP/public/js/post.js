@@ -9129,7 +9129,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Partial_TypePost__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Partial/TypePost */ "./resources/js/post/page/SavePost/Partial/TypePost.jsx");
 /* harmony import */ var _Partial_RoleUser__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Partial/RoleUser */ "./resources/js/post/page/SavePost/Partial/RoleUser.jsx");
 /* harmony import */ var _Partial_GalleryPost__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Partial/GalleryPost */ "./resources/js/post/page/SavePost/Partial/GalleryPost.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _Partial_AreaPrice__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Partial/AreaPrice */ "./resources/js/post/page/SavePost/Partial/AreaPrice.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -9147,6 +9148,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -9176,7 +9178,8 @@ function Apartment(props) {
   var refType = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   var refUserPostInfor = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   var refRoleUser = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
-  var refGalleryUser = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(); // Do something on step change
+  var refGalleryUser = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
+  var refAreaPrice = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(); // Do something on step change
 
   var onStepChange = function onStepChange(stats) {
     console.log(form, "onStepChange đã cập nhật dữ liệu mới");
@@ -9222,11 +9225,17 @@ function Apartment(props) {
           videos = _refGalleryUser$curre.videos;
 
       if (images && images.length) {
-        console.log(images, "imagesimagesimagesimagesimagesimagesimagesimagesimagesimagesimagesimagesimagesimagesimages");
         setForm(_objectSpread(_objectSpread({}, form), {}, {
           images: images,
           videos: videos
         }));
+        SW.nextStep();
+      }
+    } else if (SW.currentStep == 5) {
+      var areaPrice = refAreaPrice.current.validateFromStep();
+
+      if (areaPrice) {
+        setForm(_objectSpread(_objectSpread({}, form), areaPrice));
         SW.nextStep();
       }
     }
@@ -9236,78 +9245,81 @@ function Apartment(props) {
   var SW = state.SW;
   var CONFIG = props.CONFIG,
       AUTH = props.AUTH;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
     className: "apartment",
-    children: [SW && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Apartment_HeaderApartment__WEBPACK_IMPORTED_MODULE_3__.default, {
+    children: [SW && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Apartment_HeaderApartment__WEBPACK_IMPORTED_MODULE_3__.default, {
       SW: SW,
       parentCallback: continueStep
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
       className: "apartment__wrapper",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)((react_step_wizard__WEBPACK_IMPORTED_MODULE_2___default()), {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)((react_step_wizard__WEBPACK_IMPORTED_MODULE_2___default()), {
         isHashEnabled: true,
         onStepChange: onStepChange,
         instance: setInstance,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Partial_TypePost__WEBPACK_IMPORTED_MODULE_6__.default, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Partial_TypePost__WEBPACK_IMPORTED_MODULE_6__.default, {
           ref: refType,
           CONFIG: CONFIG
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Partial_UserPostInfomation__WEBPACK_IMPORTED_MODULE_5__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Partial_UserPostInfomation__WEBPACK_IMPORTED_MODULE_5__.default, {
           ref: refUserPostInfor,
           CONFIG: CONFIG,
           AUTH: AUTH
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Partial_RoleUser__WEBPACK_IMPORTED_MODULE_7__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Partial_RoleUser__WEBPACK_IMPORTED_MODULE_7__.default, {
           ref: refRoleUser,
           CONFIG: CONFIG
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Partial_GalleryPost__WEBPACK_IMPORTED_MODULE_8__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Partial_GalleryPost__WEBPACK_IMPORTED_MODULE_8__.default, {
           ref: refGalleryUser,
           CONFIG: CONFIG
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(Step2, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(Step3, {})]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Partial_AreaPrice__WEBPACK_IMPORTED_MODULE_9__.default, {
+          ref: refAreaPrice,
+          CONFIG: CONFIG
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(Step2, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(Step3, {})]
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Apartment_FooterApartment__WEBPACK_IMPORTED_MODULE_4__.default, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Apartment_FooterApartment__WEBPACK_IMPORTED_MODULE_4__.default, {
       parentCallback: continueStep
     })]
   });
 }
 
 function Step1(props) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("p", {
-      children: ["step 1", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("button", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("p", {
+      children: ["step 1", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("button", {
         onClick: props.nextStep,
         children: "Next Step"
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("h2", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("h2", {
       children: ["Step ", props.currentStep]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("p", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("p", {
       children: ["Total Steps: ", props.totalSteps]
     })]
   });
 }
 
 function Step2(props) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("p", {
-      children: ["step 2", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("button", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("p", {
+      children: ["step 2", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("button", {
         onClick: props.nextStep,
         children: "Next Step"
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("h2", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("h2", {
       children: ["Step ", props.currentStep]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("p", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("p", {
       children: ["Total Steps: ", props.totalSteps]
     })]
   });
 }
 
 function Step3(props) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("p", {
-      children: ["step 3", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("button", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("p", {
+      children: ["step 3", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("button", {
         onClick: props.nextStep,
         children: "Next Step"
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("h2", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("h2", {
       children: ["Step ", props.currentStep]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("p", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("p", {
       children: ["Total Steps: ", props.totalSteps]
     })]
   });
@@ -9378,16 +9390,25 @@ __webpack_require__.r(__webpack_exports__);
 var renderTitleHeaderApartment = function renderTitleHeaderApartment(currentStep) {
   switch (currentStep) {
     case 1:
-      return 'Chọn kiểu đăng';
+      return 'Chọn Kiểu Đăng';
 
     case 2:
-      return 'Nhập thông tin liên hệ';
+      return 'Thông Tin Liên Hệ';
 
     case 3:
-      return 'Bạn Là Cá Nhân Hay Môi giới';
+      return 'Cá Nhân Hay Môi Giới';
+
+    case 4:
+      return 'Thêm Hình Ảnh/Video';
+
+    case 5:
+      return 'Thêm Diện Tích/Giá';
+
+    case 6:
+      return 'Thông tin bds';
 
     default:
-      return 'Nhập thông tin liên hệ';
+      return 'Nhập Thông Tin Liên Hệ';
   }
 };
 
@@ -9442,6 +9463,195 @@ var HeaderApartment = function HeaderApartment(props) {
 // <p><button onClick={()=>this.props.goToStep(2)}>Step 2</button></p>
 // <p><button onClick={this.props.firstStep}>First Step</button></p>
 // <p><button onClick={this.props.lastStep}>Last Step</button></p>
+
+/***/ }),
+
+/***/ "./resources/js/post/page/SavePost/Partial/AreaPrice.jsx":
+/*!***************************************************************!*\
+  !*** ./resources/js/post/page/SavePost/Partial/AreaPrice.jsx ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var hero_validate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! hero-validate */ "./node_modules/hero-validate/src/index.js");
+/* harmony import */ var _service_convert_number_stringvnd__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../service/convert.number.stringvnd */ "./resources/js/service/convert.number.stringvnd.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+ /// create rule for your form
+
+
+
+var rules = {
+  area: "required|min:2|max:20",
+  price: {
+    required: true,
+    max: 16,
+    mycustom: function mycustom(value) {
+      var number = parseInt(value.replace(/[^0-9]/g, "")) || 0;
+
+      if (number % 1000 != 0) {
+        return "tiền phải là bội số của 1000vnd";
+      }
+
+      return true;
+    }
+  }
+};
+hero_validate__WEBPACK_IMPORTED_MODULE_1__.default.setLocale(hero_validate__WEBPACK_IMPORTED_MODULE_1__.default.languages.vi); /// custom message for your form
+// Validator.setMessages({
+//     area: "Diện tí",
+//     password: {
+//         min: "sdfsdf password min"
+//     }
+// })
+
+var AreaPrice = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(function (props, ref) {
+  var CONFIG = props.CONFIG;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    area: "",
+    price: ""
+  }),
+      _useState2 = _slicedToArray(_useState, 2),
+      values = _useState2[0],
+      setValues = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    area: false,
+    price: false
+  }),
+      _useState4 = _slicedToArray(_useState3, 2),
+      touched = _useState4[0],
+      setTouched = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(hero_validate__WEBPACK_IMPORTED_MODULE_1__.default.getEmpty()),
+      _useState6 = _slicedToArray(_useState5, 2),
+      errors = _useState6[0],
+      setErrors = _useState6[1]; /// add function error custom
+
+
+  var hasErr = function hasErr(name) {
+    return touched[name] && errors.isError(name);
+  }; /// add function when value change
+
+
+  var handleChange = function handleChange(event) {
+    event.persist();
+    setTouched(_objectSpread(_objectSpread({}, touched), {}, _defineProperty({}, event.target.name, true)));
+    setValues(_objectSpread(_objectSpread({}, values), {}, _defineProperty({}, event.target.name, event.target.value)));
+  }; /// hook react
+
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    setErrors(hero_validate__WEBPACK_IMPORTED_MODULE_1__.default.validate(values, rules));
+    console.log("values1", touched);
+  }, [values]);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useImperativeHandle)(ref, function () {
+    return {
+      validateFromStep: function validateFromStep() {
+        var errors = hero_validate__WEBPACK_IMPORTED_MODULE_1__.default.validate(values, rules);
+
+        if (errors.hasError) {
+          Object.keys(touched).map(function (key, index) {
+            touched[key] = true;
+          });
+          console.log("values---", touched);
+          setTouched(touched);
+          setValues(_objectSpread({}, values));
+          return false;
+        } else {
+          /// lưu lại và next step
+          return values;
+        }
+      }
+    };
+  });
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+    className: "user-information position-relative",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h5", {
+      className: "user-type__title pt-2 pb-4",
+      children: "B\u1EA1n c\u1EA7n cung c\u1EA5p di\u1EC7n t\xEDch v\xE0 gi\xE1:"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      className: "mycustom-form-group-radio",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        className: "row",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          className: "col-6",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "form-group required",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+              htmlFor: "area",
+              children: "T\u1ED5ng Di\u1EC7n t\xEDch "
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+              className: "unit__area",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                id: "area",
+                type: "number",
+                className: touched["area"] ? errors.isError("area") ? "is-invalid form-control" : "is-valid form-control" : "form-control",
+                name: "area",
+                value: values.area,
+                onChange: handleChange
+              })
+            }), hasErr("area") && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+              className: "d-block invalid-feedback",
+              children: errors.getError("area")
+            })]
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          className: "col-6",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "form-group required",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+              htmlFor: "price",
+              children: "Gi\xE1 "
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+              className: "unit__price",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                id: "price",
+                type: "number",
+                className: touched["price"] ? errors.isError("price") ? "is-invalid form-control" : "is-valid form-control" : "form-control",
+                name: "price",
+                value: values.price,
+                onChange: handleChange
+              })
+            }), hasErr("price") && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+              className: "d-block invalid-feedback",
+              children: errors.getError("price")
+            }), values.price ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+              className: "d-block valid-feedback",
+              children: ["S\u1ED1 ti\u1EC1n:", " ".concat(_service_convert_number_stringvnd__WEBPACK_IMPORTED_MODULE_2__.default.formatNumberToDotStringVND(parseInt(values.price) || 0, "VND"), " ( ").concat(_service_convert_number_stringvnd__WEBPACK_IMPORTED_MODULE_2__.default.convertNumber2StringVND(values.price), ")")]
+            }) : null]
+          })
+        })]
+      })
+    })]
+  });
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AreaPrice);
 
 /***/ }),
 
@@ -10790,6 +11000,200 @@ function checkToken(instance) {
   setup: setup,
   checkToken: checkToken
 });
+
+/***/ }),
+
+/***/ "./resources/js/service/convert.number.stringvnd.js":
+/*!**********************************************************!*\
+  !*** ./resources/js/service/convert.number.stringvnd.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var ChuSo = new Array(" không ", " một ", " hai ", " ba ", " bốn ", " năm ", " sáu ", " bảy ", " tám ", " chín ");
+var Tien = new Array("", " nghìn", " triệu", " tỷ", " nghìn tỷ", " triệu tỷ"); //1. Hàm đọc số có ba chữ số;
+
+function DocSo3ChuSo(baso) {
+  var tram;
+  var chuc;
+  var donvi;
+  var KetQua = "";
+  tram = parseInt(baso / 100);
+  chuc = parseInt(baso % 100 / 10);
+  donvi = baso % 10;
+  if (tram == 0 && chuc == 0 && donvi == 0) return "";
+
+  if (tram != 0) {
+    KetQua += ChuSo[tram] + " trăm ";
+    if (chuc == 0 && donvi != 0) KetQua += " linh ";
+  }
+
+  if (chuc != 0 && chuc != 1) {
+    KetQua += ChuSo[chuc] + " mươi";
+    if (chuc == 0 && donvi != 0) KetQua = KetQua + " linh ";
+  }
+
+  if (chuc == 1) KetQua += " mười ";
+
+  switch (donvi) {
+    case 1:
+      if (chuc != 0 && chuc != 1) {
+        KetQua += " mốt ";
+      } else {
+        KetQua += ChuSo[donvi];
+      }
+
+      break;
+
+    case 5:
+      if (chuc == 0) {
+        KetQua += ChuSo[donvi];
+      } else {
+        KetQua += " lăm ";
+      }
+
+      break;
+
+    default:
+      if (donvi != 0) {
+        KetQua += ChuSo[donvi];
+      }
+
+      break;
+  }
+
+  return KetQua;
+} //2. Hàm đọc số thành chữ (Sử dụng hàm đọc số có ba chữ số)
+
+
+function DocTienBangChu(SoTien) {
+  var lan = 0;
+  var i = 0;
+  var so = 0;
+  var KetQua = "";
+  var tmp = "";
+  var ViTri = new Array();
+  if (SoTien < 0) return "Số tiền âm !";
+  if (SoTien == 0) return "Không đồng !";
+
+  if (SoTien > 0) {
+    so = SoTien;
+  } else {
+    so = -SoTien;
+  }
+
+  if (SoTien > 8999999999999999) {
+    //SoTien = 0;
+    return "Số quá lớn!";
+  }
+
+  ViTri[5] = Math.floor(so / 1000000000000000);
+  if (isNaN(ViTri[5])) ViTri[5] = "0";
+  so = so - parseFloat(ViTri[5].toString()) * 1000000000000000;
+  ViTri[4] = Math.floor(so / 1000000000000);
+  if (isNaN(ViTri[4])) ViTri[4] = "0";
+  so = so - parseFloat(ViTri[4].toString()) * 1000000000000;
+  ViTri[3] = Math.floor(so / 1000000000);
+  if (isNaN(ViTri[3])) ViTri[3] = "0";
+  so = so - parseFloat(ViTri[3].toString()) * 1000000000;
+  ViTri[2] = parseInt(so / 1000000);
+  if (isNaN(ViTri[2])) ViTri[2] = "0";
+  ViTri[1] = parseInt(so % 1000000 / 1000);
+  if (isNaN(ViTri[1])) ViTri[1] = "0";
+  ViTri[0] = parseInt(so % 1000);
+  if (isNaN(ViTri[0])) ViTri[0] = "0";
+
+  if (ViTri[5] > 0) {
+    lan = 5;
+  } else if (ViTri[4] > 0) {
+    lan = 4;
+  } else if (ViTri[3] > 0) {
+    lan = 3;
+  } else if (ViTri[2] > 0) {
+    lan = 2;
+  } else if (ViTri[1] > 0) {
+    lan = 1;
+  } else {
+    lan = 0;
+  }
+
+  for (i = lan; i >= 0; i--) {
+    tmp = DocSo3ChuSo(ViTri[i]);
+    KetQua += tmp;
+    if (ViTri[i] > 0) KetQua += Tien[i];
+    if (i > 0 && tmp.length > 0) KetQua += ','; //&& (!string.IsNullOrEmpty(tmp))
+  }
+
+  if (KetQua.substring(KetQua.length - 1) == ',') {
+    KetQua = KetQua.substring(0, KetQua.length - 1);
+  }
+
+  KetQua = KetQua.substring(1, 2).toUpperCase() + KetQua.substring(2);
+  return KetQua; //.substring(0, 1);//.toUpperCase();// + KetQua.substring(1);
+}
+
+function formatNumberToDot(price, currency) {
+  return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') + currency; // .replace(/(\d)(?=(\d{3})+\.)/g, '$1.');
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  convertNumber2StringVND: DocTienBangChu,
+  formatNumberToDotStringVND: formatNumberToDot
+}); // php
+// function VndText($amount)
+// {
+//     $LABEL_TEXT_NUMBER = array("không", "một", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín");
+//     $LABEL_TEXT_UNIT = array("","nghìn", "triệu", "tỷ", "ngàn tỷ", "triệu tỷ", "tỷ tỷ");
+//     if( $amount <= 0 ){
+//         return "Tiền phải là số nguyên dương lớn hơn số 0";
+//     }
+//     $textnumber = "";
+//     $length = strlen($amount);
+//     for ($i = 0; $i < $length; $i++)
+//     $unread[$i] = 0;
+//     for ($i = 0; $i < $length; $i++)
+//     {              
+//         $so = substr($amount, $length - $i -1 , 1);               
+//         if ( ($so == 0) && ($i % 3 == 0) && ($unread[$i] == 0)){
+//             for ($j = $i+1 ; $j < $length ; $j ++)
+//             {
+//                 $so1 = substr($amount,$length - $j -1, 1);
+//                 if ($so1 != 0)
+//                     break;
+//             }                      
+//             if (intval(($j - $i )/3) > 0){
+//                 for ($k = $i ; $k <intval(($j-$i)/3)*3 + $i; $k++)
+//                     $unread[$k] =1;
+//             }
+//         }
+//     }
+//     for ($i = 0; $i < $length; $i++)
+//     {       
+//         $so = substr($amount,$length - $i -1, 1);      
+//         if ($unread[$i] ==1)
+//         continue;
+//         if ( ($i% 3 == 0) && ($i > 0))
+//         $textnumber = $LABEL_TEXT_UNIT[$i/3] ." ". $textnumber;    
+//         if ($i % 3 == 2 )
+//         $textnumber = 'trăm ' . $textnumber;
+//         if ($i % 3 == 1)
+//         $textnumber = 'mươi ' . $textnumber;
+//         $textnumber = $LABEL_TEXT_NUMBER[$so] ." ". $textnumber;
+//     }
+//     //Phai de cac ham replace theo dung thu tu nhu the nay
+//     $textnumber = str_replace("không mươi", "lẻ", $textnumber);
+//     $textnumber = str_replace("lẻ không", "", $textnumber);
+//     $textnumber = str_replace("mươi không", "mươi", $textnumber);
+//     $textnumber = str_replace("một mươi", "mười", $textnumber);
+//     $textnumber = str_replace("mươi năm", "mươi lăm", $textnumber);
+//     $textnumber = str_replace("mươi một", "mươi mốt", $textnumber);
+//     $textnumber = str_replace("mười năm", "mười lăm", $textnumber);
+//     return ucfirst( $textnumber. " đồng chẵn" )
+// }
 
 /***/ }),
 

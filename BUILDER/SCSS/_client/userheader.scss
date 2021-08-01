@@ -57,6 +57,22 @@
         .email {
             font-size: 16px;
         }
+        .user__link-post{
+
+            @extend .btn-hero;
+            // background-color: $custom-green;
+            // color: $white;
+            // border: 2px solid $custom-green;
+
+            // @include btn-interaction($white, color-level($custom-green, -8), $custom-green)
+
+            background-color: $white;
+            color: $custom-pink;
+            border: 2px solid $custom-pink;
+        
+            @include btn-interaction($custom-pink, color-level($custom-pink, -8), $white )
+        }
+
         .navi__page{
             margin-top: 15px;
             padding-top: 15px;
