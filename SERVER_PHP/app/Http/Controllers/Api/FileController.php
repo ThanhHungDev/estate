@@ -196,7 +196,7 @@ class FileController extends Controller
 
         if(!$type){
             /// set default type 
-            $type = Config::get('VIDEO.UPLOAD.MIXED');
+            $type = Config::get('VIDEO.UPLOAD.VMIXED');
         }
         
         $urlStorage = FileController::$ROOT_UPLOAD . $ROOT_IMAGE . strtolower($type) . "/";

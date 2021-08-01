@@ -2,8 +2,8 @@
 
 return [
     'UPLOAD' => [
-        'POST'       => 'video-post',
-        'MIXED'      => 'video-mixed'
+        'VPOST'       => 'video-post',
+        'VMIXED'      => 'video-mixed'
     ]
 ];
 

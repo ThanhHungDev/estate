@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react'
 import md5 from "js-md5"
 
 import Images from './Images'
+import Videos from './Videos'
 import Buttons from './Buttons'
-import ShowLightbox from "./ShowLightbox"
+// import ShowLightbox from "./ShowLightbox"
 import fileAPI from "../../../../../service/file.api"
 
 export default props => {
@@ -24,7 +25,7 @@ export default props => {
             /// là lưu ảnh 
             formData.append("type", CONFIG.IMAGE.POST)
         }else{
-            formData.append("type", CONFIG.VIDEO.POST)
+            formData.append("type", CONFIG.VIDEO.VPOST)
         }
         
         /// set Image
@@ -58,10 +59,14 @@ export default props => {
     function removeImage(src) {
         setImages( images.filter(image => md5(image.IMAGE_RESIZE) != md5(src)) )
     }
+    function removeVideo(src) {
+        setVideos( videos.filter(video => md5(video.root) != md5(src)) )
+    }
 
     useEffect( () => {
         
         props.childChangeImagesParent(images)
+        props.childChangeVideosParent(videos)
     })
 
     return (
@@ -80,6 +85,13 @@ export default props => {
             }
             </div>
             {/* <ShowLightbox images={ images.map( img => img.root ) } /> */}
+            <div className="galleries">
+            {
+                videos.length
+                ? <Videos videos={videos.map( img => img.root )} removeVideo={ removeVideo } />
+                : null
+            }
+            </div>            
         </div>
     )
 }

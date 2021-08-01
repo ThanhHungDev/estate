@@ -35,12 +35,14 @@ class UPLOAD_FILE_REQUEST extends FormRequest
     }
 
     public function messages(){
-        $TYPE = Config::get('image.UPLOAD');
-
+        $TYPE_IMAGE = Config::get('image.UPLOAD');
+        $TYPE_VIDEO = Config::get('video.UPLOAD');
+        $TYPE = array_merge( $TYPE_IMAGE, $TYPE_VIDEO );
+        $RULE_TYPE = join(",",array_values($TYPE));
         return [
             'file.required' => 'Tệp tải lên phải được nhập',
             'file.max'      => 'Tệp tải lên không được vượt quá 2MB',
-            'type.in'       => 'Kiểu lưu trữ phải trong các định dạng sau : ' . join(", ",array_keys($TYPE))
+            'type.in'       => 'Kiểu lưu trữ phải trong các định dạng sau : ' . $RULE_TYPE
         ];
     }
 }

@@ -1,10 +1,14 @@
-import React, { useState, forwardRef, useRef, useImperativeHandle } from 'react'
+import React, { useState, forwardRef, useRef, useImperativeHandle, useEffect } from 'react'
 
 import MainUpload from './UploadImage/MainUpload'
+
+const MIN_GALLERY = 3;
 
 
 const GalleryPost = forwardRef((props, ref) => {
     const { CONFIG } = props
+
+    const [ error, setError ] = useState(null)
     /// init state
     const [ images, setImages ] = useState( [] )
     const [ videos, setVideos ] = useState( [] )
@@ -21,6 +25,14 @@ const GalleryPost = forwardRef((props, ref) => {
     function childChangeVideosParent(videos){
         setVideos(videos)
     }
+
+    useEffect( () => {
+        if( (images.length + videos.length ) < MIN_GALLERY ){
+            setError("Bạn chưa đăng đủ số lượng ảnh hoặc video")
+        }else{
+            setError(null)
+        }
+    })
     
 
     useImperativeHandle(
@@ -28,14 +40,23 @@ const GalleryPost = forwardRef((props, ref) => {
         () => ({
             validateFromStep(){
 
+                if( (images.length + videos.length ) < MIN_GALLERY ){
+                    setError("Bạn chưa đăng đủ số lượng ảnh hoặc video")
+                    return false
+                }
+                setError(null)
                 return { images, videos }
             }
         }),
     )
     return(
         <div className="user-type position-relative">
-            <h5 className="user-type__title pt-2 pb-4">Bạn Cần đăng ít nhất 3 ảnh: </h5>
+            <h5 className={ "user-type__title pt-2 pb-4 " + (error ? 'text-color-red' : '') }>Bạn Cần đăng ít nhất 3 ảnh: </h5>
 
+            {
+                error && 
+                <div className="text-color-red">{ error }</div>
+            }
             <div className="upload-image">
                 <MainUpload CONFIG={CONFIG} childChangeImagesParent={childChangeImagesParent} childChangeVideosParent={childChangeVideosParent}/>
             </div>

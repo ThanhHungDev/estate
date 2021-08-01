@@ -1,6 +1,6 @@
 import React from 'react'
 const MAX_IMAGE = 7
-const MAX_VIDEO = 2
+const MAX_VIDEO = 1
 
 export default props => {
     const { images, videos } = props
@@ -46,7 +46,7 @@ export default props => {
                 {
                     videos.length > MAX_VIDEO
                     ? null
-                    : <input id="video" className="d-none" multiple type='file' onChange={ e => props.onChange(e, true) } accept="video/*" />
+                    : <input id="video" className="d-none" type='file' onChange={ e => props.onChange(e, true) } accept="video/*" />
                 }
             </label>
         </div>

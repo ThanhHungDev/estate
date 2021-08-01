@@ -1,3 +1,5 @@
+@import '~video-react/dist/video-react.css';
+
 .main-upload{
   .reset__background-color{
     background-color: transparent!important; 
@@ -63,6 +65,21 @@
         border: 1px solid $gray-200;
         border-radius: 4px;
       }
+
+      .btn__delete-image{
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        z-index: 1111;
+        font-size: 22px;
+        color: $gray-700;
+        cursor: pointer;
+      }
+    }
+    .video__block-item{
+      width: 50%;
+      @include Screen(SM){ width: 33.33%; }
+      padding: 2px;
 
       .btn__delete-image{
         position: absolute;
