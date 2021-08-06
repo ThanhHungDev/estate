@@ -10029,7 +10029,10 @@ var TypePost = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(fu
       children: " B\u1EA1n c\u1EA7n ch\u1ECDn ki\u1EC3u \u0111\u0103ng b\xE0i "
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("label", {
       className: "container__radio d-block",
-      children: [" B\u1EA1n \u0111\u0103ng b\xE0i \u0111\u1EC3 b\xE1n", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+      children: [" B\u1EA1n \u0111\u0103ng b\xE0i ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+        className: "text-color-pink",
+        children: " \u0111\u1EC3 b\xE1n "
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
         name: "type",
         type: "radio",
         value: CONFIG.CONSTANT.POST_TYPE.SALE,
@@ -10039,7 +10042,10 @@ var TypePost = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(fu
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("label", {
       className: "container__radio d-block",
-      children: [" B\u1EA1n \u0111\u0103ng b\xE0i \u0111\u1EC3 mua", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+      children: [" B\u1EA1n \u0111\u0103ng b\xE0i ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+        className: "text-color-blue-grey",
+        children: " \u0111\u1EC3 mua "
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
         name: "type",
         type: "radio",
         value: CONFIG.CONSTANT.POST_TYPE.BUY,
@@ -10049,7 +10055,10 @@ var TypePost = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(fu
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("label", {
       className: "container__radio d-block",
-      children: [" B\u1EA1n \u0111\u0103ng b\xE0i cho thu\xEA", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+      children: [" B\u1EA1n \u0111\u0103ng b\xE0i ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+        className: "text-color-pink",
+        children: " cho thu\xEA "
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
         name: "type",
         type: "radio",
         value: CONFIG.CONSTANT.POST_TYPE.LEASE,
@@ -10059,7 +10068,10 @@ var TypePost = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(fu
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("label", {
       className: "container__radio d-block",
-      children: [" B\u1EA1n \u0111\u0103ng b\xE0i t\xECm n\u01A1i thu\xEA", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+      children: [" B\u1EA1n \u0111\u0103ng b\xE0i ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+        className: "text-color-blue-grey",
+        children: " t\xECm n\u01A1i thu\xEA "
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
         name: "type",
         type: "radio",
         value: CONFIG.CONSTANT.POST_TYPE.RENT,

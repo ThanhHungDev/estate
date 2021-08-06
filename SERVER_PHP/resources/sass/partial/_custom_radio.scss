@@ -23,7 +23,7 @@
 
         /* When the radio button is checked, add a blue background */
         &:checked ~ .checkmark {
-            background-color:  #10772f;
+            background-color:  #10772f!important;
             
 
             &:after {

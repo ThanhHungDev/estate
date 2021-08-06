@@ -1004,7 +1004,7 @@ body.video-react-full-window .video-react-fullscreen {
   /* When the radio button is checked, add a blue background */
 }
 .container__radio input:checked ~ .checkmark {
-  background-color: #10772f;
+  background-color: #10772f !important;
 }
 .container__radio input:checked ~ .checkmark:after {
   display: block;
