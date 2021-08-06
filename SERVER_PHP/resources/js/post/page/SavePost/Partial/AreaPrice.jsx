@@ -14,7 +14,9 @@ const rules = {
             }
             return true
         },
-    }
+    },
+    horizontal: "required|min:1|max:20",
+    vertical: "required|min:1|max:20"
 }
 Validator.setLocale(Validator.languages.vi)
 /// custom message for your form
@@ -26,10 +28,9 @@ Validator.setLocale(Validator.languages.vi)
 // })
 
 const AreaPrice = forwardRef((props, ref) => {
-    const { CONFIG } = props
 
-    const [values, setValues] = useState({ area: "", price: "" })
-    const [touched, setTouched] = useState({area: false, price: false})
+    const [values, setValues] = useState({ area: "", price: "", horizontal: "", vertical: "" })
+    const [touched, setTouched] = useState({area: false, price: false, horizontal: false, vertical: false })
     const [errors, setErrors] = useState(Validator.getEmpty())
 
     /// add function error custom
@@ -63,7 +64,6 @@ const AreaPrice = forwardRef((props, ref) => {
                     Object.keys(touched).map(function(key, index) {
                         touched[key] = true
                     })
-                    console.log( "values---", touched )
                     setTouched(touched)
                     setValues({ ...values })
                     return false
@@ -83,7 +83,7 @@ const AreaPrice = forwardRef((props, ref) => {
                     <div className="col-6">
                         <div className="form-group required">
                             <label htmlFor="area">Tổng Diện tích </label>
-                            <div className="unit__area">
+                            <div className="unit_field unit__area">
                                 <input
                                     id="area"
                                     type="number"
@@ -104,7 +104,7 @@ const AreaPrice = forwardRef((props, ref) => {
                     <div className="col-6">
                         <div className="form-group required">
                             <label htmlFor="price">Giá </label>
-                            <div className="unit__price">
+                            <div className="unit_field unit__price">
                                 <input
                                     id="price"
                                     type="number"
@@ -129,6 +129,48 @@ const AreaPrice = forwardRef((props, ref) => {
                                     }</div>
                                 : null
                             }
+                        </div>
+                    </div>
+                    <div className="col-6">
+                        <div className="form-group required">
+                            <label htmlFor="price">Chiều ngang </label>
+                            <div className="unit_field unit__horizontal">
+                                <input
+                                    id="horizontal"
+                                    type="number"
+                                    className={ 
+                                        touched["horizontal"]
+                                        ? errors.isError("horizontal") ? "is-invalid form-control" : "is-valid form-control"
+                                        : "form-control"}
+                                    name="horizontal"
+                                    value={ values.horizontal }
+                                    onChange={ handleChange }
+                                />
+                            </div>
+                            { hasErr("horizontal") && (
+                                <div className="d-block invalid-feedback">{ errors.getError("horizontal") }</div>
+                            )}
+                        </div>
+                    </div>
+                    <div className="col-6">
+                        <div className="form-group required">
+                            <label htmlFor="price">Chiều dài </label>
+                            <div className="unit_field unit__vetical">
+                                <input
+                                    id="vertical"
+                                    type="number"
+                                    className={ 
+                                        touched["vertical"]
+                                        ? errors.isError("vertical") ? "is-invalid form-control" : "is-valid form-control"
+                                        : "form-control"}
+                                    name="vertical"
+                                    value={ values.vertical }
+                                    onChange={ handleChange }
+                                />
+                            </div>
+                            { hasErr("vertical") && (
+                                <div className="d-block invalid-feedback">{ errors.getError("vertical") }</div>
+                            )}
                         </div>
                     </div>
                 </div>

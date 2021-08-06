@@ -1431,10 +1431,10 @@ body.video-react-full-window .video-react-fullscreen {
   content: "*";
   color: red;
 }
-.apartment__wrapper .user-information .unit__area {
+.apartment__wrapper .user-information .unit_field {
   position: relative;
 }
-.apartment__wrapper .user-information .unit__area:after {
+.apartment__wrapper .user-information .unit_field:after {
   content: "m²";
   position: absolute;
   right: 0.75em;
@@ -1442,30 +1442,24 @@ body.video-react-full-window .video-react-fullscreen {
   top: 0.7em;
   color: #4caf50;
 }
-.apartment__wrapper .user-information .unit__area .form-control {
+.apartment__wrapper .user-information .unit_field .form-control {
   padding-right: calc(1.5em + .75rem);
   background-image: none;
   background-repeat: no-repeat;
   background-position: right calc(.375em + .1875rem) center;
   background-size: calc(.75em + .375rem) calc(.75em + .375rem);
 }
-.apartment__wrapper .user-information .unit__price {
-  position: relative;
+.apartment__wrapper .user-information .unit__area:after {
+  content: "m²";
 }
 .apartment__wrapper .user-information .unit__price:after {
   content: "vnd";
-  position: absolute;
-  right: 0.75em;
-  z-index: 1111;
-  top: 0.7em;
-  color: #4caf50;
 }
-.apartment__wrapper .user-information .unit__price .form-control {
-  padding-right: calc(1.5em + .75rem);
-  background-image: none;
-  background-repeat: no-repeat;
-  background-position: right calc(.375em + .1875rem) center;
-  background-size: calc(.75em + .375rem) calc(.75em + .375rem);
+.apartment__wrapper .user-information .unit__horizontal:after {
+  content: "m";
+}
+.apartment__wrapper .user-information .unit__vertical:after {
+  content: "m";
 }
 .apartment__wrapper .mycustom-form-group-radio {
   border: 1px solid #ddd;

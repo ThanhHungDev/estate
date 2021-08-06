@@ -9519,7 +9519,9 @@ var rules = {
 
       return true;
     }
-  }
+  },
+  horizontal: "required|min:1|max:20",
+  vertical: "required|min:1|max:20"
 };
 hero_validate__WEBPACK_IMPORTED_MODULE_1__.default.setLocale(hero_validate__WEBPACK_IMPORTED_MODULE_1__.default.languages.vi); /// custom message for your form
 // Validator.setMessages({
@@ -9530,11 +9532,11 @@ hero_validate__WEBPACK_IMPORTED_MODULE_1__.default.setLocale(hero_validate__WEBP
 // })
 
 var AreaPrice = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(function (props, ref) {
-  var CONFIG = props.CONFIG;
-
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
     area: "",
-    price: ""
+    price: "",
+    horizontal: "",
+    vertical: ""
   }),
       _useState2 = _slicedToArray(_useState, 2),
       values = _useState2[0],
@@ -9542,7 +9544,9 @@ var AreaPrice = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(f
 
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
     area: false,
-    price: false
+    price: false,
+    horizontal: false,
+    vertical: false
   }),
       _useState4 = _slicedToArray(_useState3, 2),
       touched = _useState4[0],
@@ -9579,7 +9583,6 @@ var AreaPrice = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(f
           Object.keys(touched).map(function (key, index) {
             touched[key] = true;
           });
-          console.log("values---", touched);
           setTouched(touched);
           setValues(_objectSpread({}, values));
           return false;
@@ -9607,7 +9610,7 @@ var AreaPrice = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(f
               htmlFor: "area",
               children: "T\u1ED5ng Di\u1EC7n t\xEDch "
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-              className: "unit__area",
+              className: "unit_field unit__area",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
                 id: "area",
                 type: "number",
@@ -9629,7 +9632,7 @@ var AreaPrice = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(f
               htmlFor: "price",
               children: "Gi\xE1 "
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-              className: "unit__price",
+              className: "unit_field unit__price",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
                 id: "price",
                 type: "number",
@@ -9645,6 +9648,50 @@ var AreaPrice = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(f
               className: "d-block valid-feedback",
               children: ["S\u1ED1 ti\u1EC1n:", " ".concat(_service_convert_number_stringvnd__WEBPACK_IMPORTED_MODULE_2__.default.formatNumberToDotStringVND(parseInt(values.price) || 0, "VND"), " ( ").concat(_service_convert_number_stringvnd__WEBPACK_IMPORTED_MODULE_2__.default.convertNumber2StringVND(values.price), ")")]
             }) : null]
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          className: "col-6",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "form-group required",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+              htmlFor: "price",
+              children: "Chi\u1EC1u ngang "
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+              className: "unit_field unit__horizontal",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                id: "horizontal",
+                type: "number",
+                className: touched["horizontal"] ? errors.isError("horizontal") ? "is-invalid form-control" : "is-valid form-control" : "form-control",
+                name: "horizontal",
+                value: values.horizontal,
+                onChange: handleChange
+              })
+            }), hasErr("horizontal") && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+              className: "d-block invalid-feedback",
+              children: errors.getError("horizontal")
+            })]
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          className: "col-6",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "form-group required",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+              htmlFor: "price",
+              children: "Chi\u1EC1u d\xE0i "
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+              className: "unit_field unit__vetical",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                id: "vertical",
+                type: "number",
+                className: touched["vertical"] ? errors.isError("vertical") ? "is-invalid form-control" : "is-valid form-control" : "form-control",
+                name: "vertical",
+                value: values.vertical,
+                onChange: handleChange
+              })
+            }), hasErr("vertical") && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+              className: "d-block invalid-feedback",
+              children: errors.getError("vertical")
+            })]
           })
         })]
       })
@@ -11503,6 +11550,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lang_en__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_lang_en__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _lang_vi__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./lang/vi */ "./node_modules/hero-validate/src/lang/vi.js");
 /* harmony import */ var _lang_vi__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_lang_vi__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _lang_ja__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./lang/ja */ "./node_modules/hero-validate/src/lang/ja.js");
+/* harmony import */ var _lang_ja__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_lang_ja__WEBPACK_IMPORTED_MODULE_2__);
 
 let languages  = {
     // /**
@@ -11596,7 +11645,7 @@ let languages  = {
     // /**
     //  * lang for Japanese.
     //  */
-    // ja : "ja",
+    ja : "ja",
     // /**
     //  * lang for Georgian.
     //  */
@@ -11703,9 +11752,11 @@ let defaultLocale = 'en';
 
 
 
+
 let LANG_MESS = []
 LANG_MESS[`${languages.en}`] = (_lang_en__WEBPACK_IMPORTED_MODULE_0___default())
 LANG_MESS[`${languages.vi}`] = (_lang_vi__WEBPACK_IMPORTED_MODULE_1___default())
+LANG_MESS[`${languages.ja}`] = (_lang_ja__WEBPACK_IMPORTED_MODULE_2___default())
 
 let messages = LANG_MESS[`${languages.en}`]
 
@@ -11973,6 +12024,30 @@ let methods = {
             if (value.length >= min) return true;
         } else if (typeof value !== undefined) {
             if (value >= min) return true;
+        }
+        return { min };
+    },
+
+    /**
+     * @param value
+     * @param max
+     * @return {{max}|boolean}
+     */
+    max_length(value, max) {
+        if (typeof value === 'string') {
+            if (value.length <= max) return true;
+        }
+        return { max };
+    },
+
+    /**
+     * @param value
+     * @param min
+     * @return {{min}|boolean}
+     */
+    min_length(value, min) {
+        if (typeof value === 'string') {
+            if (value.length >= min) return true;
         }
         return { min };
     },
@@ -12511,14 +12586,13 @@ __webpack_require__.r(__webpack_exports__);
 // V.setLocale(V.languages.vi)
 
 // const data = {
-//     password: 'hungfff',
-//     confirm_password: "fdsfds",
-    
+//     password: 'hungff',
+//     confirm_password: "fdsfd",
 // }
 
 // /// create rule for your form
 // const rules = {
-//     password     : "required|min:7|max:100",
+//     password     : "required|min_length:7|max_length:100",
 //     confirm_password : {
 //         required: true,
 //         mycustom: function (value) {
@@ -12548,6 +12622,8 @@ module.exports = {
     required     : ":name is required",
     min          : ":name cant be less than :min",
     max          : ":name cant be greater than :max",
+    min_length    : ":name cant be less than :min character.",
+    max_length    : ":name cant be greater than :max character.",
     between      : ":name must be between :from and :to",
     checked      : ":name must be checked",
     array        : ":name must be array",
@@ -12575,6 +12651,92 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/hero-validate/src/lang/ja.js":
+/*!***************************************************!*\
+  !*** ./node_modules/hero-validate/src/lang/ja.js ***!
+  \***************************************************/
+/***/ ((module) => {
+
+module.exports = {
+    required     : ":nameは必須です。",
+    min          : ":nameは:min以上で入力してください。",
+    max          : ":nameは:max以下で入力してください。",
+    min_length    : ":nameは:min文字以上で入力してください。",
+    max_length    : ":nameは:max文字以下で入力してください。",
+    between      : ":nameは:from〜:toの間で指定してください。",
+    checked      : ":nameをチェックする必要があります",
+    array        : ":nameは配列である必要があります",
+    object       : ":nameはオブジェクトである必要があります",
+    boolean      : ":nameはブール値である必要があります",
+    numeric      : ":nameは数値で入力してください。",
+    alpha_numeric: ":nameは英数字のみで入力してください。",
+    alpha_dash   : ":nameは英字とダッシュと下線のみで入力してください。",
+    alpha        : ":nameは英字のみで入力してください。",
+    email        : ":nameは正しいメールアドレスを入力してください。",
+    phone        : ":nameは有効な電話番号である必要があります。",
+    in_array     : "選択された:nameは無効です。",
+    not_in       : "選択された:nameは無効です。",
+    json         : ":nameはjsonである必要があります",
+    ip           : ":nameはIPアドレス形式である必要があります。",
+    url          : ":nameは正しいURIを入力してください。",
+    equals       : ":nameと:valueは同じでなければなりません。",
+    not_equals   : ":nameは:valueと等しくてはなりません",
+    // contains_one : ":name phải chứa \":value_to_contain\"",
+    // contains_all : ":name phải chứa \":value_to_contain\"",
+    starts_with  : ":nameは:prefixで始まる必要があります",
+    ends_with    : ":nameは:suffixで終わる必要があります",
+    date         : ":nameは正しい日付形式を入力してください",
+};
+
+
+// module.exports = {
+//     accepted: ':nameを確認してください。',
+//     after: ':nameは:afterより後の日付を入力してください。',
+//     after_or_equal: ':nameは:after_or_equal以降の日付を入力してください。',
+//     alpha: '',
+//     alpha_dash: '',
+//     alpha_num: '',
+//     before: ':nameは:beforeより前の日付を入力してください。',
+//     before_or_equal: ':nameは:before_or_equal以前の日付を入力してください。',
+//     between: {
+//       numeric: '',
+//       string: ':nameは:min〜:max文字を入力してください'
+//     },
+//     confirmed: ':nameは確認が一致しません。',
+//     email: '',
+//     date: '',
+//     def: ':nameは検証エラーが含まれています。',
+//     digits: ':nameは:digitsの数字のみで入力してください。',
+//     digits_between: ':nameは、:min桁から:max桁にしてください。',
+//     different: ':nameと:differentは同じであってはなりません。',
+//     in: '選択された:nameは無効です。',
+//     integer: ':nameは整数で入力してください。',
+//     hex: ':nameは16進数で入力してください。',
+//     min: {
+//       numeric: '',
+//       string: ''
+//     },
+//     max: {
+//       numeric: '',
+//       string: ''
+//     },
+//     not_in: '',
+//     numeric: '',
+//     present: ':nameを入力してください（空欄も可能です）。',
+
+//     same: ':nameと:sameは同じでなければなりません。',
+//     size: {
+//       numeric: ':nameは:sizeを入力してください。',
+//       string: ':nameは:size文字で入力してください。'
+//     },
+//     string: ':nameは文字のみで入力してください。',
+//     url: '',
+//     regex: ':nameの値はパターンにマッチする必要があります。',
+//     attributes: {}
+//   };
+
+/***/ }),
+
 /***/ "./node_modules/hero-validate/src/lang/vi.js":
 /*!***************************************************!*\
   !*** ./node_modules/hero-validate/src/lang/vi.js ***!
@@ -12585,6 +12747,8 @@ module.exports = {
     required     : ":name bắt buộc nhập.",
     min          : ":name phải lớn hơn hoặc bằng :min.",
     max          : ":name phải nhỏ hơn hoặc bằng :max.",
+    min_length    : ":name phải lớn hơn hoặc bằng :min Ký tự.",
+    max_length    : ":name phải nhỏ hơn hoặc bằng :max ký tự.",
     between      : ":name phải nằm trong khoảng :from và :to.",
     checked      : ":name phải được checked",
     array        : ":name phải là mảng",
