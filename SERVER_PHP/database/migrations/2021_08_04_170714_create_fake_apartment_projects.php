@@ -2,9 +2,10 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProjectChoTot extends Migration
+class CreateFakeApartmentProjects extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +14,12 @@ class CreateProjectChoTot extends Migration
      */
     public function up()
     {
-        Schema::create('project_cho_tot', function (Blueprint $table) {
+        Schema::create('fake_apartment_projects', function (Blueprint $table) {
             $table->id();
+            $table->string('string');
+            $table->integer('request')->default(0);
+            $table->integer('parser')->default(0);
+            $table->text('json')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +31,6 @@ class CreateProjectChoTot extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('project_cho_tot');
+        Schema::dropIfExists('fake_apartment_projects');
     }
 }

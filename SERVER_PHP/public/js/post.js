@@ -8413,7 +8413,7 @@ __webpack_require__.r(__webpack_exports__);
   \******************************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-__webpack_require__(/*! ./post/index */ "./resources/js/post/index.js");
+__webpack_require__(/*! ./post/index */ "./resources/js/post/index.js"); // console.log("vào ")
 
 /***/ }),
 
@@ -8468,7 +8468,11 @@ function App(props) {
   if (!auth) {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
       className: "guest",
-      children: ["t\xE0i kho\u1EA3n x\xE1c th\u1EF1c kh\xF4ng th\xE0nh c\xF4ng! ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "b\xE1o v\u1EDBi admin h\u1EC7 th\u1ED1ng n\u1EBFu b\u1EA1n c\u1EA3m th\u1EA5y c\xF3 b\u1EA5t th\u01B0\u1EDDng"]
+      children: ["t\xE0i kho\u1EA3n x\xE1c th\u1EF1c kh\xF4ng th\xE0nh c\xF4ng! ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "b\xE1o v\u1EDBi admin h\u1EC7 th\u1ED1ng n\u1EBFu b\u1EA1n c\u1EA3m th\u1EA5y c\xF3 b\u1EA5t th\u01B0\u1EDDng", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
+        href: CONFIG.WEB.LOGOUT,
+        className: "btn btn-logout-and-report-admin",
+        children: "logout v\xE0 v\xE1o v\u1EDBi admin v\u1EC1 hi\u1EC7n t\u01B0\u1EE3ng"
+      })]
     });
   }
 
@@ -8530,13 +8534,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var jwt_decode__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jwt-decode */ "./node_modules/jwt-decode/build/jwt-decode.esm.js");
-/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! firebase/app */ "./node_modules/firebase/app/dist/index.esm.js");
-/* harmony import */ var firebase_auth__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! firebase/auth */ "./node_modules/firebase/auth/dist/index.esm.js");
-/* harmony import */ var _firebase_config__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../firebase.config */ "./resources/js/firebase.config.js");
-/* harmony import */ var _service_user_api__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../service/user.api */ "./resources/js/service/user.api.js");
-/* harmony import */ var _action_index__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../action/index */ "./resources/js/action/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! firebase/app */ "./node_modules/firebase/app/dist/index.esm.js");
+/* harmony import */ var firebase_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! firebase/auth */ "./node_modules/firebase/auth/dist/index.esm.js");
+/* harmony import */ var _firebase_config__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../firebase.config */ "./resources/js/firebase.config.js");
+/* harmony import */ var _service_user_api__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../service/user.api */ "./resources/js/service/user.api.js");
+/* harmony import */ var _action_index__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../action/index */ "./resources/js/action/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -8550,8 +8553,8 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
-
- // Firebase App (the core Firebase SDK) is always required and must be listed first
+ // import jwt_decode from "jwt-decode"
+// Firebase App (the core Firebase SDK) is always required and must be listed first
 
 
  // If you are using v7 or any earlier version of the JS SDK, you should import firebase using namespace import
@@ -8565,7 +8568,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-firebase_app__WEBPACK_IMPORTED_MODULE_3__.default.initializeApp(_firebase_config__WEBPACK_IMPORTED_MODULE_5__.default);
+firebase_app__WEBPACK_IMPORTED_MODULE_2__.default.initializeApp(_firebase_config__WEBPACK_IMPORTED_MODULE_4__.default);
 
 function VerifyPhone(props) {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
@@ -8609,7 +8612,7 @@ function VerifyPhone(props) {
   // Tương tự như componentDidMount và componentDidUpdate:
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    window.recapchaVerifier = new firebase_app__WEBPACK_IMPORTED_MODULE_3__.default.auth.RecaptchaVerifier("recaptcha-container", {
+    window.recapchaVerifier = new firebase_app__WEBPACK_IMPORTED_MODULE_2__.default.auth.RecaptchaVerifier("recaptcha-container", {
       callback: function callback(response) {
         console.log("có thể bấm");
         setIsvalidRecaptcha(true);
@@ -8626,11 +8629,11 @@ function VerifyPhone(props) {
     if (!props.AUTH.phone_verify && AUTH_PHONE_FIREBASE) {
       /// ẩn button send đồng thời show progress bar loading
       setIsProgress(true);
-      _service_user_api__WEBPACK_IMPORTED_MODULE_6__.default.verifyPhone({
+      _service_user_api__WEBPACK_IMPORTED_MODULE_5__.default.verifyPhone({
         phone_verify: "".concat(AUTH_PHONE_FIREBASE.phoneNumber)
       }).then(function (response) {
         console.log(response);
-        firebase_app__WEBPACK_IMPORTED_MODULE_3__.default.auth().signOut(); // .then(() => {
+        firebase_app__WEBPACK_IMPORTED_MODULE_2__.default.auth().signOut(); // .then(() => {
         //     // Sign-out successful.
         // }).catch((error) => {
         //     // An error happened.
@@ -8698,7 +8701,7 @@ function VerifyPhone(props) {
 
       setIsProgress(true); /// gửi reqquest lên firebase
 
-      firebase_app__WEBPACK_IMPORTED_MODULE_3__.default.auth().signInWithPhoneNumber(number, window.recapchaVerifier).then(function (confirmationResult) {
+      firebase_app__WEBPACK_IMPORTED_MODULE_2__.default.auth().signInWithPhoneNumber(number, window.recapchaVerifier).then(function (confirmationResult) {
         window.confirmationResult = confirmationResult;
         console.log(confirmationResult);
         setAlert(null);
@@ -8721,11 +8724,11 @@ function VerifyPhone(props) {
 
       localStorage.setItem('AUTH_PHONE_FIREBASE', JSON.stringify(user)); /// send axios cập nhật tài khoản đã được update
 
-      _service_user_api__WEBPACK_IMPORTED_MODULE_6__.default.verifyPhone({
+      _service_user_api__WEBPACK_IMPORTED_MODULE_5__.default.verifyPhone({
         phone_verify: "".concat(backupPhone)
       }).then(function (response) {
         console.log(response);
-        firebase_app__WEBPACK_IMPORTED_MODULE_3__.default.auth().signOut(); // .then(() => {
+        firebase_app__WEBPACK_IMPORTED_MODULE_2__.default.auth().signOut(); // .then(() => {
         //     // Sign-out successful.
         // }).catch((error) => {
         //     // An error happened.
@@ -8747,31 +8750,31 @@ function VerifyPhone(props) {
 
   if (screenCode) {
     /// screen code là đúng thì đưa ra màn hình nhập mã code
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
       className: "wrapper-verify",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
         className: "verify verify__notification",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
           className: "verify__header",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("i", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("i", {
             className: "icon fad fa-sms"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("span", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
             className: "title",
             children: "Nh\u1EADp m\xE3 code! "
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
           className: "verify__body",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
             className: "notification form-group",
-            children: [alert && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+            children: [alert && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
               className: "alert alert-danger",
               role: "alert",
               children: [" ", alert, " "]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
               className: "input-group " + (invalidCode && 'input-group-error'),
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("i", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("i", {
                 className: "icon fad fa-shield"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("input", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
                 type: "text",
                 autoCorrect: "off",
                 autoCapitalize: "none",
@@ -8780,17 +8783,17 @@ function VerifyPhone(props) {
                 className: "input-control",
                 placeholder: "nh\u1EADp m\xE3 code v\u1EEBa \u0111\u01B0\u1EE3c g\u1EEDi qua \u0111i\u1EC7n tho\u1EA1i"
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
               className: "error",
               children: invalidCode
-            }), !invalidCode && !isProgress && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("button", {
+            }), !invalidCode && !isProgress && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
               type: "submit",
               onClick: sendVerifyCode,
               className: "btn btn-login aqua-gradient-rgba",
               children: "X\xE1c Th\u1EF1c M\xE3 Code"
-            }), isProgress && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+            }), isProgress && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
               className: "progress progress-success bg-color-indeterminate",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
                 className: "progress-loadding"
               })
             })]
@@ -8800,31 +8803,31 @@ function VerifyPhone(props) {
     });
   }
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
     className: "wrapper-verify",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
       className: "verify verify__notification",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
         className: "verify__header",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("i", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("i", {
           className: "icon fad fa-sms"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("span", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
           className: "title",
           children: "X\xE1c Th\u1EF1c S\u1ED1 \u0110i\u1EC7n Tho\u1EA1i! "
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
         className: "verify__body",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
           className: "notification form-group",
-          children: [alert && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+          children: [alert && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
             className: "alert alert-warning",
             role: "alert",
             children: [" ", alert, " "]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
             className: "input-group " + (invalidPhone && 'input-group-error'),
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("i", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("i", {
               className: "icon fad fa-phone-alt"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("input", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
               type: "text",
               autoCorrect: "off",
               autoCapitalize: "none",
@@ -8833,19 +8836,19 @@ function VerifyPhone(props) {
               className: "input-control",
               placeholder: "+81 ... Nh\u1EADp s\u1ED1 \u0111i\u1EC7n tho\u1EA1i"
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
             className: "error",
             children: invalidPhone
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
             id: "recaptcha-container"
-          }), !invalidPhone && !isProgress && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("button", {
+          }), !invalidPhone && !isProgress && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
             type: "submit",
             onClick: sendSignInPhone,
             className: "btn btn-login aqua-gradient-rgba",
             children: "X\xE1c Th\u1EF1c"
-          }), isProgress && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+          }), isProgress && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
             className: "progress progress-success bg-color-indeterminate",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
               className: "progress-loadding"
             })
           })]
@@ -9130,7 +9133,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Partial_RoleUser__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Partial/RoleUser */ "./resources/js/post/page/SavePost/Partial/RoleUser.jsx");
 /* harmony import */ var _Partial_GalleryPost__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Partial/GalleryPost */ "./resources/js/post/page/SavePost/Partial/GalleryPost.jsx");
 /* harmony import */ var _Partial_AreaPrice__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Partial/AreaPrice */ "./resources/js/post/page/SavePost/Partial/AreaPrice.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _Partial_ApartmentInfo__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Partial/ApartmentInfo */ "./resources/js/post/page/SavePost/Partial/ApartmentInfo.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -9148,6 +9152,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -9179,7 +9184,8 @@ function Apartment(props) {
   var refUserPostInfor = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   var refRoleUser = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   var refGalleryUser = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
-  var refAreaPrice = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(); // Do something on step change
+  var refAreaPrice = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
+  var refApartmentInfo = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(); // Do something on step change
 
   var onStepChange = function onStepChange(stats) {
     console.log(form, "onStepChange đã cập nhật dữ liệu mới");
@@ -9220,6 +9226,13 @@ function Apartment(props) {
         SW.nextStep();
       }
     } else if (SW.currentStep == 4) {
+      var apartmentInfo = refApartmentInfo.current.validateFromStep();
+
+      if (apartmentInfo) {
+        setForm(_objectSpread(_objectSpread({}, form), apartmentInfo));
+        SW.nextStep();
+      }
+    } else if (SW.currentStep == 5) {
       var _refGalleryUser$curre = refGalleryUser.current.validateFromStep(),
           images = _refGalleryUser$curre.images,
           videos = _refGalleryUser$curre.videos;
@@ -9231,7 +9244,7 @@ function Apartment(props) {
         }));
         SW.nextStep();
       }
-    } else if (SW.currentStep == 5) {
+    } else if (SW.currentStep == 6) {
       var areaPrice = refAreaPrice.current.validateFromStep();
 
       if (areaPrice) {
@@ -9245,81 +9258,85 @@ function Apartment(props) {
   var SW = state.SW;
   var CONFIG = props.CONFIG,
       AUTH = props.AUTH;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
     className: "apartment",
-    children: [SW && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Apartment_HeaderApartment__WEBPACK_IMPORTED_MODULE_3__.default, {
+    children: [SW && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Apartment_HeaderApartment__WEBPACK_IMPORTED_MODULE_3__.default, {
       SW: SW,
       parentCallback: continueStep
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
       className: "apartment__wrapper",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)((react_step_wizard__WEBPACK_IMPORTED_MODULE_2___default()), {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)((react_step_wizard__WEBPACK_IMPORTED_MODULE_2___default()), {
         isHashEnabled: true,
         onStepChange: onStepChange,
         instance: setInstance,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Partial_TypePost__WEBPACK_IMPORTED_MODULE_6__.default, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Partial_TypePost__WEBPACK_IMPORTED_MODULE_6__.default, {
           ref: refType,
           CONFIG: CONFIG
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Partial_UserPostInfomation__WEBPACK_IMPORTED_MODULE_5__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Partial_UserPostInfomation__WEBPACK_IMPORTED_MODULE_5__.default, {
           ref: refUserPostInfor,
           CONFIG: CONFIG,
           AUTH: AUTH
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Partial_RoleUser__WEBPACK_IMPORTED_MODULE_7__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Partial_RoleUser__WEBPACK_IMPORTED_MODULE_7__.default, {
           ref: refRoleUser,
           CONFIG: CONFIG
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Partial_GalleryPost__WEBPACK_IMPORTED_MODULE_8__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Partial_ApartmentInfo__WEBPACK_IMPORTED_MODULE_10__.default, {
+          ref: refApartmentInfo,
+          CONFIG: CONFIG,
+          AUTH: AUTH
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Partial_GalleryPost__WEBPACK_IMPORTED_MODULE_8__.default, {
           ref: refGalleryUser,
           CONFIG: CONFIG
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Partial_AreaPrice__WEBPACK_IMPORTED_MODULE_9__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Partial_AreaPrice__WEBPACK_IMPORTED_MODULE_9__.default, {
           ref: refAreaPrice,
           CONFIG: CONFIG
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(Step2, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(Step3, {})]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(Step2, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(Step3, {})]
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_Apartment_FooterApartment__WEBPACK_IMPORTED_MODULE_4__.default, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Apartment_FooterApartment__WEBPACK_IMPORTED_MODULE_4__.default, {
       parentCallback: continueStep
     })]
   });
 }
 
 function Step1(props) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("p", {
-      children: ["step 1", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("button", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("p", {
+      children: ["step 1", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("button", {
         onClick: props.nextStep,
         children: "Next Step"
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("h2", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("h2", {
       children: ["Step ", props.currentStep]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("p", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("p", {
       children: ["Total Steps: ", props.totalSteps]
     })]
   });
 }
 
 function Step2(props) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("p", {
-      children: ["step 2", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("button", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("p", {
+      children: ["step 2", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("button", {
         onClick: props.nextStep,
         children: "Next Step"
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("h2", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("h2", {
       children: ["Step ", props.currentStep]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("p", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("p", {
       children: ["Total Steps: ", props.totalSteps]
     })]
   });
 }
 
 function Step3(props) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("p", {
-      children: ["step 3", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("button", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("p", {
+      children: ["step 3", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("button", {
         onClick: props.nextStep,
         children: "Next Step"
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("h2", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("h2", {
       children: ["Step ", props.currentStep]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("p", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("p", {
       children: ["Total Steps: ", props.totalSteps]
     })]
   });
@@ -9359,10 +9376,13 @@ var FooterApartment = function FooterApartment(props) {
     props.parentCallback();
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-    className: "btn apartment__footer",
-    onClick: continueStepInFooter,
-    children: "B\u1EA5m \u0111\u1EC3 Ti\u1EBFp T\u1EE5c"
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+    className: "footer__fixed-step",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+      className: "btn apartment__footer",
+      onClick: continueStepInFooter,
+      children: "B\u1EA5m \u0111\u1EC3 Ti\u1EBFp T\u1EE5c"
+    })
   });
 };
 
@@ -9399,12 +9419,15 @@ var renderTitleHeaderApartment = function renderTitleHeaderApartment(currentStep
       return 'Cá Nhân Hay Môi Giới';
 
     case 4:
-      return 'Thêm Hình Ảnh/Video';
+      return 'Thông tin bds';
 
     case 5:
-      return 'Thêm Diện Tích/Giá';
+      return 'Thêm Hình Ảnh/Video';
 
     case 6:
+      return 'Thêm Diện Tích/Giá';
+
+    case 7:
       return 'Thông tin bds';
 
     default:
@@ -9463,6 +9486,107 @@ var HeaderApartment = function HeaderApartment(props) {
 // <p><button onClick={()=>this.props.goToStep(2)}>Step 2</button></p>
 // <p><button onClick={this.props.firstStep}>First Step</button></p>
 // <p><button onClick={this.props.lastStep}>Last Step</button></p>
+
+/***/ }),
+
+/***/ "./resources/js/post/page/SavePost/Partial/ApartmentInfo.jsx":
+/*!*******************************************************************!*\
+  !*** ./resources/js/post/page/SavePost/Partial/ApartmentInfo.jsx ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var hero_validate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! hero-validate */ "./node_modules/hero-validate/src/index.js");
+/* harmony import */ var _service_location_api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../service/location.api */ "./resources/js/service/location.api.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+var userPostInfomationScheme = {
+  province: "required|numeric|min:1|max:100000",
+  district: "required|numeric|min:1|max:100000",
+  commune: "required|numeric|min:1|max:100000",
+  home_number: "required|string|min:2|max:50",
+  street: "required|string|min:2|max:200"
+};
+hero_validate__WEBPACK_IMPORTED_MODULE_1__.default.setLocale(hero_validate__WEBPACK_IMPORTED_MODULE_1__.default.languages.vi); /// custom message for your form
+
+hero_validate__WEBPACK_IMPORTED_MODULE_1__.default.setMessages({
+  province: "Bạn chưa chọn Tỉnh Thành",
+  district: "Bạn chưa chọn Quận Huyện",
+  commune: "Bạn chưa chọn Phường xã thị trấn"
+});
+var ApartmentInfo = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(function (props, ref) {
+  var AUTH = props.AUTH;
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useImperativeHandle)(ref, function () {
+    return {
+      validateFromStep: function validateFromStep() {
+        var errors = hero_validate__WEBPACK_IMPORTED_MODULE_1__.default.validate(formState.values, userPostInfomationScheme);
+
+        if (errors.hasError) {
+          var _formState = formState,
+              touched = _formState.touched;
+          Object.keys(touched).map(function (key, index) {
+            touched[key] = true;
+          });
+          setFormState(_objectSpread({}, formState));
+          return false;
+        } else {
+          /// lưu lại và next step
+          return formState.values;
+        }
+      }
+    };
+  });
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+    className: "user-information position-relative",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      className: "row",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "col-6",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          className: "form-group",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+            htmlFor: "project",
+            children: "T\xEAn khu d\xE2n c\u01B0 / d\u1EF1 \xE1n "
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+            type: "text",
+            className: "form-control",
+            id: "project"
+          })]
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "col-6",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          className: "form-group required",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+            htmlFor: "province",
+            children: "Ch\u1ECDn T\u1EC9nh Th\xE0nh"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+            type: "text",
+            className: "form-control",
+            id: "province"
+          })]
+        })
+      })]
+    })
+  });
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ApartmentInfo);
 
 /***/ }),
 
@@ -11311,8 +11435,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jwt_decode__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jwt-decode */ "./node_modules/jwt-decode/build/jwt-decode.esm.js");
 
 var jwt = localStorage.getItem('jwt');
+var auth = null;
+
+try {
+  auth = (0,jwt_decode__WEBPACK_IMPORTED_MODULE_0__.default)(jwt);
+} catch (error) {
+  console.log(error.message);
+}
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  AUTH: (0,jwt_decode__WEBPACK_IMPORTED_MODULE_0__.default)(jwt),
+  AUTH: auth,
   jwt: jwt
 });
 

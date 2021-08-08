@@ -10,10 +10,12 @@ const renderTitleHeaderApartment = currentStep => {
         case 3: 
             return 'Cá Nhân Hay Môi Giới'
         case 4: 
-            return 'Thêm Hình Ảnh/Video'
+            return 'Thông tin bds'
         case 5: 
-            return 'Thêm Diện Tích/Giá'
+            return 'Thêm Hình Ảnh/Video'
         case 6: 
+            return 'Thêm Diện Tích/Giá'
+        case 7: 
             return 'Thông tin bds'
         default:
             return 'Nhập Thông Tin Liên Hệ';

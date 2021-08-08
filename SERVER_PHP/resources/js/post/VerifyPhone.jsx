@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { connect } from "react-redux"
-import jwt_decode from "jwt-decode"
+// import jwt_decode from "jwt-decode"
 // Firebase App (the core Firebase SDK) is always required and must be listed first
 import firebase from "firebase/app"
 import 'firebase/auth';

@@ -294,6 +294,7 @@
     max-width: 900px;
     margin: 0 auto;
     overflow: hidden;
+    min-height: 65vh;
 
     &__header{
         text-align: center; 
@@ -404,7 +405,18 @@
         }
     }
 
+    .footer__fixed-step{
+        position: fixed;
+        z-index: 1000;
+        padding: 10px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        // background-color: $background-profile;
+        text-align: center;
+    }
     &__footer{
+        max-width: 900px;
         text-transform: capitalize;
         width: 100%;
         background-color: $custom-green;

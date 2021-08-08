@@ -8,9 +8,11 @@ const FooterApartment = props => {
     }
 
     return (
-        <button className="btn apartment__footer" onClick={continueStepInFooter}>
-            Bấm để Tiếp Tục
-        </button>
+        <div className="footer__fixed-step">
+            <button className="btn apartment__footer" onClick={continueStepInFooter}>
+                Bấm để Tiếp Tục
+            </button>
+        </div>
     )
 }
 

@@ -27,7 +27,8 @@ function App( props ){
         return (
             <div className='guest'>
                 tài khoản xác thực không thành công! <br />
-                báo với admin hệ thống nếu bạn cảm thấy có bất thường
+                báo với admin hệ thống nếu bạn cảm thấy có bất thường<br />
+                <a href={ CONFIG.WEB.LOGOUT } className="btn btn-logout-and-report-admin">logout và váo với admin về hiện tượng</a>
             </div>
         )
     }

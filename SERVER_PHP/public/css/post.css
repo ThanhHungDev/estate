@@ -1377,6 +1377,7 @@ body.video-react-full-window .video-react-fullscreen {
   max-width: 900px;
   margin: 0 auto;
   overflow: hidden;
+  min-height: 65vh;
 }
 .apartment__header {
   text-align: center;
@@ -1467,7 +1468,17 @@ body.video-react-full-window .video-react-fullscreen {
   margin-bottom: 5px;
   padding: 15px;
 }
+.apartment .footer__fixed-step {
+  position: fixed;
+  z-index: 1000;
+  padding: 10px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+}
 .apartment__footer {
+  max-width: 900px;
   text-transform: capitalize;
   width: 100%;
   background-color: #4caf50;
