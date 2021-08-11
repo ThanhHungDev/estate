@@ -24,6 +24,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group([ 'prefix'=>'/v1' ], function () {
 
+    
+    Route::group(['prefix' => 'apartment'], function () {
+
+        Route::get('projects', [ App\Http\Controllers\Api\ApartmentController::class, 'projects' ])
+        ->name('APARTMENT_PROJECTS');
+    });
+
     // Lấy danh sách provinces
     Route::get('provinces', [ App\Http\Controllers\Api\ProvinceController::class, 'provinces' ])
     ->name('PROVINCES');

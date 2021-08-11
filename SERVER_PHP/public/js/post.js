@@ -9502,7 +9502,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var hero_validate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! hero-validate */ "./node_modules/hero-validate/src/index.js");
-/* harmony import */ var _service_location_api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../service/location.api */ "./resources/js/service/location.api.js");
+/* harmony import */ var _service_apartment_project_api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../service/apartment.project.api */ "./resources/js/service/apartment.project.api.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
@@ -9510,28 +9510,51 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
 
 
 
-var userPostInfomationScheme = {
-  province: "required|numeric|min:1|max:100000",
-  district: "required|numeric|min:1|max:100000",
-  commune: "required|numeric|min:1|max:100000",
-  home_number: "required|string|min:2|max:50",
-  street: "required|string|min:2|max:200"
-};
-hero_validate__WEBPACK_IMPORTED_MODULE_1__.default.setLocale(hero_validate__WEBPACK_IMPORTED_MODULE_1__.default.languages.vi); /// custom message for your form
-
-hero_validate__WEBPACK_IMPORTED_MODULE_1__.default.setMessages({
-  province: "Bạn chưa chọn Tỉnh Thành",
-  district: "Bạn chưa chọn Quận Huyện",
-  commune: "Bạn chưa chọn Phường xã thị trấn"
-});
 var ApartmentInfo = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(function (props, ref) {
-  var AUTH = props.AUTH;
+  var AUTH = props.AUTH,
+      CONFIG = props.CONFIG;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      projects = _useState2[0],
+      setProjects = _useState2[1];
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (projects.length <= 1) {
+      /// call api get province
+      _service_apartment_project_api__WEBPACK_IMPORTED_MODULE_2__.default.getProjects().then(function (response) {
+        var data = response.data;
+        setProjects([].concat(_toConsumableArray(projects), _toConsumableArray(data)));
+      })["catch"](function (error) {
+        console.log("ERROR:: ", error);
+      });
+    }
+  });
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useImperativeHandle)(ref, function () {
     return {
       validateFromStep: function validateFromStep() {
@@ -11127,6 +11150,48 @@ var Reducer = (0,redux__WEBPACK_IMPORTED_MODULE_3__.combineReducers)({
   categories: _category__WEBPACK_IMPORTED_MODULE_2__.default
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Reducer);
+
+/***/ }),
+
+/***/ "./resources/js/service/apartment.project.api.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/service/apartment.project.api.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+var CONFIG = {};
+
+if (typeof CONFIG_APP != 'undefined') {
+  /// thì sao? 
+  CONFIG = JSON.parse(CONFIG_APP);
+}
+
+var Api = axios__WEBPACK_IMPORTED_MODULE_0___default().create({
+  baseURL: window.location.origin,
+  withCredentials: false,
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json'
+  },
+  timeout: 10000 // request timeout/ là thời gian lớn nhất để chờ là 10s 
+
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  getProjects: function getProjects() {
+    console.log("vào getProjects");
+    return Api.get(CONFIG.API.APARTMENT_PROJECTS).then(function (res) {
+      return res.data;
+    });
+  }
+});
 
 /***/ }),
 

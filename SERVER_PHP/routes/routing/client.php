@@ -5,9 +5,6 @@ Route::get('/404', function(){
     echo 'không tìm thấy trang';
 })->name('CLIENT_404');
 
-Route::get('/spa/{any}', function () {
-    return view('index'); // or wherever your React app is bootstrapped.
-})->where('any', '.*');
 
 Route::group(['prefix' => '/','middleware' => [ 'HTML_MINIFIER']], function () { ///'READ_CACHE',
 

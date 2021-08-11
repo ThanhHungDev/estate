@@ -96,7 +96,8 @@
         'DISTRICTS' => Route('DISTRICTS'),
         'COMMUNES' => Route('COMMUNES'),
         'PROVINCES' => Route('PROVINCES'),
-        'API_UPLOAD_FILE' => Route('API_UPLOAD_FILE')
+        'API_UPLOAD_FILE' => Route('API_UPLOAD_FILE'),
+        'APARTMENT_PROJECTS' => Route('APARTMENT_PROJECTS'),
     ];
     $configApp['WEB'] = [
         'PATCH_VERIFY_PHONE' => Route('PATCH_VERIFY_PHONE'),

@@ -1,26 +1,25 @@
 import React, { useState, useEffect, forwardRef, useRef, useImperativeHandle } from 'react'
 import Validator from "hero-validate"
-import Select from 'react-select'
+import projectApi from "../../../../service/apartment.project.api"
 
-import locationAPI from "../../../../service/location.api"
-
-const userPostInfomationScheme = {
-    province   : "required|numeric|min:1|max:100000",
-    district   : "required|numeric|min:1|max:100000",
-    commune    : "required|numeric|min:1|max:100000",
-    home_number: "required|string|min:2|max:50",
-    street     : "required|string|min:2|max:200",
-}
-Validator.setLocale(Validator.languages.vi)
-/// custom message for your form
-Validator.setMessages({
-    province: "Bạn chưa chọn Tỉnh Thành",
-    district: "Bạn chưa chọn Quận Huyện",
-    commune: "Bạn chưa chọn Phường xã thị trấn",
-});
 
 const ApartmentInfo = forwardRef((props, ref) => {
-    const { AUTH } = props
+    const { AUTH, CONFIG } = props
+    const [ projects, setProjects ] = useState([])
+
+    useEffect( ()=> {
+        if(projects.length <= 1 ){
+            /// call api get province
+            projectApi.getProjects()
+            .then( response => {
+                const { data } = response
+                setProjects( [ ...projects, ... data ])
+            })
+            .catch(error => {
+                console.log("ERROR:: ",error)
+            });
+        }
+    })
 
 
     useImperativeHandle(
