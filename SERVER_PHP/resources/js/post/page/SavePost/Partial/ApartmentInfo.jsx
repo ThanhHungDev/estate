@@ -8,7 +8,18 @@ import projectApi from "../../../../service/apartment.project.api"
 const rules = {
     project: {
         required: true,
-        min: 1
+        validateProject: function (project) {
+            console.log("đang là hàm validate project", project)
+            if( project.id ){
+                /// đã có trong hệ thống 
+                return true
+            }
+            if( project.label.length <= 1 || project.value == 0 ){
+                /// thêm mới mà không có text 
+                return "Bạn cần nhập project"
+            }
+            return true;
+        },
     }
 }
 Validator.setLocale(Validator.languages.vi)
@@ -24,7 +35,6 @@ const ApartmentInfo = forwardRef((props, ref) => {
     const [errors, setErrors] = useState(Validator.getEmpty())
     /// add function error custom
     const hasErr = name => {
-        console.log("touched[name] && errors.isError(name)" + name,  errors.isError(name) )
         return touched[name] && errors.isError(name)
     }
     // const [ inputValue, setInputValue ] = useState('')
@@ -45,7 +55,7 @@ const ApartmentInfo = forwardRef((props, ref) => {
                     return false
                 }else{
                     /// lưu lại và next step
-                    return formState.values
+                    return values
                 }
             }
         }),
@@ -79,15 +89,22 @@ const ApartmentInfo = forwardRef((props, ref) => {
     //     setInputValue( newValue.replace(/\W/g, '') )
     //     console.log(newValue.replace(/\W/g, ''), "data nhận được")
     // }
-    const handleChange = (event) => {
+    // const handleChange = (event) => {
         
-        if(event.persist){
-            event.persist()
-        }
-        setTouched({ ...touched, [event.target.name]: true })
-        const newValues = { ...values, [event.target.name]: event.target.value }
+    //     if(event.persist){
+    //         event.persist()
+    //     }
+    //     setTouched({ ...touched, [event.target.name]: true })
+    //     const newValues = { ...values, [event.target.name]: event }
+    //     setValues(newValues)
+    //     setErrors(Validator.validate(newValues, rules));
+    // }
+    const handleChangeProject = (event) => {
+
+        setTouched({ ...touched, ['project']: true })
+        const newValues = { ...values, ['project']: event }
         setValues(newValues)
-        setErrors(Validator.validate(newValues, rules));
+        setErrors(Validator.validate(newValues, rules))
     }
 
     return(
@@ -105,7 +122,7 @@ const ApartmentInfo = forwardRef((props, ref) => {
                             defaultOptions={ [{ value: "0", label: "nhập dự án bạn muốn tìm" }] }
                             loadOptions={ loadOptions }
                             // onInputChange={ handleInputChange }
-                            onChange={ handleChange }
+                            onChange={ handleChangeProject }
                         />
                         {
                             hasErr("project") && (
@@ -114,6 +131,21 @@ const ApartmentInfo = forwardRef((props, ref) => {
                         }
                     </div>
                 </div>
+                {
+                    values.project == "" && (
+                        <div>đây là trường hợp không có nhập gì</div>
+                    )
+                }
+                {
+                    values.project.id && (
+                        <div dangerouslySetInnerHTML={{__html: values.project.process }} />
+                    )
+                }
+                {
+                    !values.project.id && values.project.label && (
+                        <div> {values.project.label } </div>
+                    )
+                }
             </div>
             
         </div>

@@ -9540,7 +9540,21 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var rules = {
   project: {
     required: true,
-    min: 1
+    validateProject: function validateProject(project) {
+      console.log("đang là hàm validate project", project);
+
+      if (project.id) {
+        /// đã có trong hệ thống 
+        return true;
+      }
+
+      if (project.label.length <= 1 || project.value == 0) {
+        /// thêm mới mà không có text 
+        return "Bạn cần nhập project";
+      }
+
+      return true;
+    }
   }
 };
 hero_validate__WEBPACK_IMPORTED_MODULE_1__.default.setLocale(hero_validate__WEBPACK_IMPORTED_MODULE_1__.default.languages.vi);
@@ -9574,7 +9588,6 @@ var ApartmentInfo = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRe
 
 
   var hasErr = function hasErr(name) {
-    console.log("touched[name] && errors.isError(name)" + name, errors.isError(name));
     return touched[name] && errors.isError(name);
   }; // const [ inputValue, setInputValue ] = useState('')
 
@@ -9594,7 +9607,7 @@ var ApartmentInfo = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRe
           return false;
         } else {
           /// lưu lại và next step
-          return formState.values;
+          return values;
         }
       }
     };
@@ -9630,16 +9643,21 @@ var ApartmentInfo = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRe
   //     setInputValue( newValue.replace(/\W/g, '') )
   //     console.log(newValue.replace(/\W/g, ''), "data nhận được")
   // }
+  // const handleChange = (event) => {
+  //     if(event.persist){
+  //         event.persist()
+  //     }
+  //     setTouched({ ...touched, [event.target.name]: true })
+  //     const newValues = { ...values, [event.target.name]: event }
+  //     setValues(newValues)
+  //     setErrors(Validator.validate(newValues, rules));
+  // }
 
 
-  var handleChange = function handleChange(event) {
-    if (event.persist) {
-      event.persist();
-    }
+  var handleChangeProject = function handleChangeProject(event) {
+    setTouched(_objectSpread(_objectSpread({}, touched), {}, _defineProperty({}, 'project', true)));
 
-    setTouched(_objectSpread(_objectSpread({}, touched), {}, _defineProperty({}, event.target.name, true)));
-
-    var newValues = _objectSpread(_objectSpread({}, values), {}, _defineProperty({}, event.target.name, event.target.value));
+    var newValues = _objectSpread(_objectSpread({}, values), {}, _defineProperty({}, 'project', event));
 
     setValues(newValues);
     setErrors(hero_validate__WEBPACK_IMPORTED_MODULE_1__.default.validate(newValues, rules));
@@ -9647,9 +9665,9 @@ var ApartmentInfo = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRe
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
     className: "user-information position-relative",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
       className: "row",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
         className: "col-6",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
           className: "form-group",
@@ -9667,13 +9685,21 @@ var ApartmentInfo = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRe
             }],
             loadOptions: loadOptions // onInputChange={ handleInputChange }
             ,
-            onChange: handleChange
+            onChange: handleChangeProject
           }), hasErr("project") && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
             className: "invalid-feedback",
             children: [" ", errors.getError("project"), " "]
           })]
         })
-      })
+      }), values.project == "" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        children: "\u0111\xE2y l\xE0 tr\u01B0\u1EDDng h\u1EE3p kh\xF4ng c\xF3 nh\u1EADp g\xEC"
+      }), values.project.id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        dangerouslySetInnerHTML: {
+          __html: values.project.process
+        }
+      }), !values.project.id && values.project.label && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+        children: [" ", values.project.label, " "]
+      })]
     })
   });
 });
