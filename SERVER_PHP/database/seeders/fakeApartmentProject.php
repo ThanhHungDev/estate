@@ -47,7 +47,20 @@ class fakeApartmentProject extends Seeder
                 }
             }
         }
+        //// for kết hợp 4 chữ
+        foreach( $characters as $ch ){
+            foreach( $characters as $ch2 ){
+                foreach( $characters as $ch3 ){
+                    foreach( $characters as $ch4 ){
+                        $FAKES[] = [
+                            'string' => $ch.$ch2.$ch3.$ch4,
+                            'request' => 0,
+                        ];
+                    }
+                }
+            }
+        }
         
-        DB::table('fake_apartment_projects')->insert( $FAKES );
+        DB::connection('crawler')->table('fake_apartment_projects')->insert( $FAKES );
     }
 }

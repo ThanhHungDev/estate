@@ -17,7 +17,7 @@ class CrawlerController extends Controller
         
         ini_set('max_execution_time', 60 * 60 ); //60 minutes
 
-        $stringsQuerys = DB::table('fake_apartment_projects')->where('parser', "=", 0)->take(100)->get();
+        $stringsQuerys = DB::connection('crawler')->table('fake_apartment_projects')->where('parser', "=", 0)->take(100)->get();
         $projects = [];
 
         foreach( $stringsQuerys as $item ){
@@ -42,50 +42,64 @@ class CrawlerController extends Controller
                     'slug'        => SupportString::createSlug($project['project_name']),
                     'public'      => isset($project['is_active']) && $project['is_active'] ? 1 : 0,
                     'images'      => isset($project['project_images']) && $project['project_images'] ? json_encode($project['project_images']) : json_encode([]),
-                    'bakup'       => json_encode($project),
                 ];
                 if( isset($project['type_name']) ){
                     $item['type'] = $project['type_name'];
+                    unset($project['type_name']);
                 }
                 if( isset($project['type_id']) ){
                     $item['type_id'] = $project['type_id'];
+                    unset($project['type_id']);
                 }
                 if( isset($project['introduction']) ){
                     $item['introduction'] = $project['introduction'];
+                    unset($project['introduction']);
                 }
                 if( isset($project['area_total']) ){
                     $item['area_total'] = $project['area_total'];
+                    unset($project['area_total']);
                 }
                 if( isset($project['geo']) ){
                     $item['geo'] = $project['geo'];
+                    unset($project['geo']);
                 }
                 if( isset($project['process']) ){
                     $item['process'] = $project['process'];
+                    unset($project['process']);
                 }
                 if( isset($project['street_id']) ){
                     $item['street_id'] = $project['street_id'];
+                    unset($project['street_id']);
                 }
                 if( isset($project['short_introduction']) ){
                     $item['short_introduction'] = $project['short_introduction'];
+                    unset($project['short_introduction']);
                 }
                 if( isset($project['address']) ){
                     $item['address'] = $project['address'];
+                    unset($project['address']);
                 }
                 if( isset($project['address2']) ){
                     $item['address2'] = $project['address2'];
+                    unset($project['address2']);
                 }
                 if( isset($project['district_id']) ){
                     $item['district_id'] = $project['district_id'];
+                    unset($project['district_id']);
                 }
                 if( isset($project['region_v2']) ){
                     $item['region_id'] = $project['region_v2'];
+                    unset($project['region_v2']);
                 }
                 if( isset($project['area_v2']) ){
                     $item['area_id'] = $project['area_v2'];
+                    unset($project['area_v2']);
                 }
                 if( isset($project['ward']) ){
                     $item['ward_id'] = $project['ward'];
+                    unset($project['ward']);
                 }
+                $item['bakup'] = json_encode($project);
                 
                 try {
                     ApartmentProject::insert($item);
@@ -97,7 +111,7 @@ class CrawlerController extends Controller
         }
 
         $idUpdate = $stringsQuerys->pluck('id')->toArray();
-        DB::table('fake_apartment_projects')->whereIn('id', $idUpdate )->update([ 'parser' => 1 ]);
+        DB::connection('crawler')->table('fake_apartment_projects')->whereIn('id', $idUpdate )->update([ 'parser' => 1 ]);
 
 
         // // https://gateway.chotot.com/v1/public/xproperty/projects/_search?project_name=g&status=active&limit=20
@@ -184,7 +198,7 @@ class CrawlerController extends Controller
 
     function updateData(){
 
-        $stringsQuerys = DB::table('fake_apartment_projects')->where('request', "=", 0)->take(100)->get();
+        $stringsQuerys = DB::connection('crawler')->table('fake_apartment_projects')->where('request', "=", 0)->take(100)->get();
         foreach( $stringsQuerys as $item ){
 
             $string = $item->string;
@@ -194,13 +208,13 @@ class CrawlerController extends Controller
             $json_data = json_decode($json, true);
             if( $json_data['total'] < 100 ){
                 /// update tất cả đứa nào dạng like '%$string%
-                DB::table('fake_apartment_projects')
+                DB::connection('crawler')->table('fake_apartment_projects')
                 ->where('string', 'like', "%$string%")
                 ->update([ 'request' => 1 ]);
                 echo "có update $string";
             }
             //// update id
-            DB::table('fake_apartment_projects')
+            DB::connection('crawler')->table('fake_apartment_projects')
                 ->where('id', '=', $item->id )
                 ->update([ 'request' => 1, 'json' => $json ]);
         }

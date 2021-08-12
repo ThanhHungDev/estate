@@ -13,10 +13,12 @@ use Jenssegers\Agent\Agent;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('crawler/projects', [ App\Http\Controllers\CrawlerController::class, 'projects' ]);
-/// http://estate.com/crawler/updateData
-Route::get('crawler/updateData', [ App\Http\Controllers\CrawlerController::class, 'updateData' ]);
-
+Route::group(['prefix' => 'crawler'], function () {
+        
+    Route::get('projects', [ App\Http\Controllers\CrawlerController::class, 'projects' ]);
+    /// http://estate.com/crawler/updateData
+    Route::get('updateData', [ App\Http\Controllers\CrawlerController::class, 'updateData' ]);
+});
 
 Route::get('resizes/{size}/{type}/{imagePath?}', [ App\Http\Controllers\ImageController::class, 'resize' ])
 ->where('imagePath', '(.*)')

@@ -14,7 +14,7 @@ class CreateFakeApartmentProjects extends Migration
      */
     public function up()
     {
-        Schema::create('fake_apartment_projects', function (Blueprint $table) {
+        Schema::connection('crawler')->create('fake_apartment_projects', function (Blueprint $table) {
             $table->id();
             $table->string('string');
             $table->integer('request')->default(0);
@@ -31,6 +31,6 @@ class CreateFakeApartmentProjects extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fake_apartment_projects');
+        Schema::connection('crawler')->dropIfExists('fake_apartment_projects');
     }
 }

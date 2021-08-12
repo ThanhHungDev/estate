@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(communes::class);
         $this->call(categories::class);
         $this->call(pictures::class);
+        $this->call(fakeApartmentProject::class);
     }
 }
