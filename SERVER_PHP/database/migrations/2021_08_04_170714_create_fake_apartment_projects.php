@@ -20,6 +20,7 @@ class CreateFakeApartmentProjects extends Migration
             $table->integer('request')->default(0);
             $table->integer('parser')->default(0);
             $table->text('json')->nullable();
+            $table->integer('limit_100')->default(0);
             $table->timestamps();
         });
     }

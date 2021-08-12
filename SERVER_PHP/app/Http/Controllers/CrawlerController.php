@@ -196,7 +196,7 @@ class CrawlerController extends Controller
 
 
 
-    function updateData(){
+    function getJsonFromApiChoTot(){
 
         $stringsQuerys = DB::connection('crawler')->table('fake_apartment_projects')->where('request', "=", 0)->take(100)->get();
         foreach( $stringsQuerys as $item ){

@@ -26,7 +26,7 @@ class ApartmentController extends Controller
         $data = ApartmentProject::orderBy('id','DESC')
                                     ->limit($limit)
                                     ->offset(($page - 1) * $limit);
-        if( !$query ){
+        if( $query ){
             $data = $data->where('name','LIKE',"%$query%");
         }
         $data = $data->get([

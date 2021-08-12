@@ -16,8 +16,8 @@ use Jenssegers\Agent\Agent;
 Route::group(['prefix' => 'crawler'], function () {
         
     Route::get('projects', [ App\Http\Controllers\CrawlerController::class, 'projects' ]);
-    /// http://estate.com/crawler/updateData
-    Route::get('updateData', [ App\Http\Controllers\CrawlerController::class, 'updateData' ]);
+    /// http://estate.com/crawler/getJsonFromApiChoTot
+    Route::get('getJsonFromApiChoTot', [ App\Http\Controllers\CrawlerController::class, 'getJsonFromApiChoTot' ]);
 });
 
 Route::get('resizes/{size}/{type}/{imagePath?}', [ App\Http\Controllers\ImageController::class, 'resize' ])

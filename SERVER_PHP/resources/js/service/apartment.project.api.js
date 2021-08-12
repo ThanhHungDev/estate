@@ -18,9 +18,9 @@ const Api =
 
 
 export default {
-    getProjects() {
-        console.log("vào getProjects")
-        return Api.get(CONFIG.API.APARTMENT_PROJECTS)
+    getProjects(query) {
+        console.log("vào getProjects", query)
+        return Api.get(`${CONFIG.API.APARTMENT_PROJECTS}?q=${query}&limit=5`)
         .then(res => res.data )
     },
 }
