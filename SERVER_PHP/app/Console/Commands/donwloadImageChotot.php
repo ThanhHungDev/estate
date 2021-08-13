@@ -46,7 +46,7 @@ class donwloadImageChotot extends Command
             /// download image to storage
             $urls = array_map(function( $item ) { return $item->url; }, $images);
 
-            $savedPath = public_path('apartment/images');
+            $savedPath = public_path('/apartment/images');
             $savedDir  = dirname($savedPath);
 
             if(!File::isDirectory($savedDir)){
