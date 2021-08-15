@@ -80,3 +80,4 @@ package-lock.json
 /storage/*
 .env.*
 CHAT_BAK/*
+db.sql

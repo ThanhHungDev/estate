@@ -17,7 +17,7 @@ use Jenssegers\Agent\Agent;
 */
 
 Route::get("cprojects", function(){
-    // DB::connection('crawler')->table('fake_apartment_projects_bak')->where('parser', "=", 0)->take(100)->get();
+    $data = DB::connection('crawler')->table('fake_apartment_projects')->where('parser', "=", 0)->take(100)->get();
     // $projects = ApartmentProject::all();
     // $table->string('name', 500);
     // $table->string('slug', 500)->nullable();
