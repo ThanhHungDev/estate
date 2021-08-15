@@ -42,7 +42,7 @@ class parserJsonProjectsToRow extends Command
     {
         $description = ' Command Run parser json form api cho tot ';
 
-        $stringsQuerys = DB::connection('crawler')->table('fake_apartment_projects')->where('parser', "=", 0)->take(100)->get();
+        $stringsQuerys = DB::connection('crawler')->table('fake_apartment_projects')->where('parser', "=", 0)->take(500)->get();
         if( $stringsQuerys->isEmpty() ){
             /// hết rồi
             return 0;

@@ -46,7 +46,7 @@ class downloadJsonProjects extends Command
         $description = ' Command Run Download json form api cho tot ';
 
 
-        $stringsQuerys = DB::connection('crawler')->table('fake_apartment_projects')->where('request', "=", 0)->take(100)->get();
+        $stringsQuerys = DB::connection('crawler')->table('fake_apartment_projects')->where('request', "=", 0)->take(5)->get();
 
         if( $stringsQuerys->isEmpty()  ){
             /// send mail thanhf coong
@@ -60,13 +60,13 @@ class downloadJsonProjects extends Command
             $url = "https://gateway.chotot.com/v1/public/xproperty/projects/_search?project_name=$string&status=active&limit=100";
             $json = file_get_contents($url);
             $json_data = json_decode($json, true);
-            if( $json_data['total'] < 100 ){
-                /// update tất cả đứa nào dạng like '%$string%
-                DB::connection('crawler')->table('fake_apartment_projects')
-                ->where('string', 'like', "%$string%")
-                ->update([ 'request' => 1, 'json' => $json, 'limit_100' => 0 ]);
-                echo "có update $string";
-            }
+            // if( $json_data['total'] < 100 ){
+            //     /// update tất cả đứa nào dạng like '%$string%
+            //     DB::connection('crawler')->table('fake_apartment_projects')
+            //     ->where('string', 'like', "%$string%")
+            //     ->update([ 'request' => 1, 'json' => $json, 'limit_100' => 0 ]);
+            //     echo "có update $string";
+            // }
             
             //// update id
             DB::connection('crawler')->table('fake_apartment_projects')
