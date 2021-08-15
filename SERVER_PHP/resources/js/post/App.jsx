@@ -5,17 +5,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom"
 import Categories from './page/Categories'
 import SavePost from "./page/SavePost"
 import VerifyPhone from "./VerifyPhone"
-
-
-
-
-
-
-const About = () => (
-    <div>
-        <h1>không match đúng Component</h1>
-    </div>
-)
+import ApartmentProjectDetail from './page/ApartmentProjectDetail'
 
 
 function App( props ){
@@ -41,11 +31,12 @@ function App( props ){
                 
                 <Switch>
                     <Route exact path="/" component={Categories} />
+                    <Route path="/apartment/project/:id" component={ ApartmentProjectDetail } />
                     {
                         // CATEGORIES.map( cat => <Route key={cat.id} path={ `/${cat.slug}` } component={ SavePost } />  ) cách này bị không lấy được params
                         CATEGORIES.map( cat => <Route key={cat.id} path={ `/${cat.slug}` } render={ props => <SavePost {...props } category={cat} /> }/>   )
                     }
-                    <Route path="/hadd" component={ About } />
+                    
                 </Switch>
             </BrowserRouter>
         </div>

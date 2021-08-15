@@ -37,6 +37,7 @@ class CreateApartmentProjects extends Migration
             $table->integer('ward_id')->nullable();
             $table->integer('street_id')->nullable();
             $table->text('images')->nullable();
+            $table->jsonb('galleries')->nullable(); /// do mình parser từ text qua sau khi download về local
             $table->text('bakup')->nullable();/// nội dung json
             $table->string("project_oid");
             $table->timestamps();

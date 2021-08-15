@@ -98,6 +98,7 @@
         'PROVINCES' => Route('PROVINCES'),
         'API_UPLOAD_FILE' => Route('API_UPLOAD_FILE'),
         'APARTMENT_PROJECTS' => Route('APARTMENT_PROJECTS'),
+        'APARTMENT_PROJECT_DETAIL' => Route('APARTMENT_PROJECT_DETAIL', [ 'id' => null ]),
     ];
     $configApp['WEB'] = [
         'PATCH_VERIFY_PHONE' => Route('PATCH_VERIFY_PHONE'),

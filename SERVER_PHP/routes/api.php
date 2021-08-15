@@ -29,6 +29,8 @@ Route::group([ 'prefix'=>'/v1' ], function () {
 
         Route::get('projects', [ App\Http\Controllers\Api\ApartmentController::class, 'projects' ])
         ->name('APARTMENT_PROJECTS');
+        Route::get('project/{id?}', [ App\Http\Controllers\Api\ApartmentController::class, 'project' ])
+        ->name('APARTMENT_PROJECT_DETAIL');
     });
 
     // Lấy danh sách provinces

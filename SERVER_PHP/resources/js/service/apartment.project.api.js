@@ -23,4 +23,9 @@ export default {
         return Api.get(`${CONFIG.API.APARTMENT_PROJECTS}?q=${query}&limit=5`)
         .then(res => res.data )
     },
+    getProject(id) {
+        console.log("vào getProject", id)
+        return Api.get(`${CONFIG.API.APARTMENT_PROJECT_DETAIL}/${id}`)
+        .then(res => res.data )
+    },
 }

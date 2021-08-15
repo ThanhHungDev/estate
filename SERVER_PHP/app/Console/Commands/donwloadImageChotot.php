@@ -40,21 +40,32 @@ class donwloadImageChotot extends Command
     public function handle()
     {
         $description = ' Command Run Download image cho tot';
-        $item = ApartmentProject::whereNotNull('images')->first();
-        $images = json_decode($item->images);
+        $apartmentProject = ApartmentProject::whereNotNull('images')->first();
+        $images = json_decode($apartmentProject->images);
         if( count($images) > 0 ){
             /// download image to storage
             $urls = array_map(function( $item ) { return $item->url; }, $images);
 
-            $savedPath = public_path('/apartment/images');
-            $savedDir  = dirname($savedPath);
+            $publicPath = '/apartment/';
+            $savedDir = public_path($publicPath);
 
             if(!File::isDirectory($savedDir)){
 
                 File::makeDirectory($savedDir, 0755, true, true);
             }
             
-            $this->multipleDownload($urls, $savedDir);
+            //// add wwrong
+            $filesName = $this->multipleDownload($urls, $savedDir);
+            /// update
+            for ($i=0; $i < count($images); $i++) { 
+                # code...
+                if(getimagesize(public_path($publicPath. '/' . $filesName[$i]))){
+                    $images[$i]->url = $publicPath. '/' . $filesName[$i];
+                    $images[$i]->downloaded = 1;
+                }else{
+                    $images[$i]->downloaded = 0;
+                }
+            }
         }
         
         $this->info( $this->signature . "\n". $description);
@@ -67,17 +78,24 @@ class donwloadImageChotot extends Command
         $file_pointers = [];
         $curl_handles = [];
 
+        $filesName = [];
+
         // Add curl multi handles, one per file we don't already have
         foreach ($urls as $key => $url) {
             $file = $save_path . '/' . basename($url);
-            if(!is_file($file)) {
-                $curl_handles[$key] = curl_init($url);
-                $file_pointers[$key] = fopen($file, "w");
-                curl_setopt($curl_handles[$key], CURLOPT_FILE, $file_pointers[$key]);
-                curl_setopt($curl_handles[$key], CURLOPT_HEADER, 0);
-                curl_setopt($curl_handles[$key], CURLOPT_CONNECTTIMEOUT, 60);
-                curl_multi_add_handle($multi_handle,$curl_handles[$key]);
+            $filesName[$key] = basename($url);
+
+            /// check file exist
+            if(File::isFile($file)){
+                // remove file
+                File::delete($file);
             }
+            $curl_handles[$key] = curl_init($url);
+            $file_pointers[$key] = fopen($file, "w");
+            curl_setopt($curl_handles[$key], CURLOPT_FILE, $file_pointers[$key]);
+            curl_setopt($curl_handles[$key], CURLOPT_HEADER, 0);
+            curl_setopt($curl_handles[$key], CURLOPT_CONNECTTIMEOUT, 60);
+            curl_multi_add_handle($multi_handle,$curl_handles[$key]);
         }
 
         // Download the files
@@ -92,5 +110,6 @@ class donwloadImageChotot extends Command
             fclose ($file_pointers[$key]);
         }
         curl_multi_close($multi_handle);
+        return $filesName;
     }
 }

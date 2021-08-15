@@ -79,14 +79,39 @@ class ApartmentController extends Controller
 
 
     /**
-     * update user is verify code profile resource.
-     *
-     * @return \Illuminate\Http\Response
+     * projects Apartment
      */
-    public function patchVerifyPhone(Request $request){
+    public function project( Request $request, $id ){
 
-        if (! $claim = JWTAuth::getPayload()) {
-            return  response()
+        $id = (int)$id;        
+        if( !$id ){
+            return response()
+                    ->error(
+                        'id phải là 1 số', 
+                        ['error' => 'id phải là 1 số'],
+                        Response::HTTP_BAD_REQUEST
+                    )
+                    ->setStatusCode(Response::HTTP_BAD_REQUEST);
+        }
+        $selector = [
+            'name', 
+            'id', 
+            'slug', 
+            'public', 
+            'type_id', 
+            'type', 
+            'introduction', 
+            'short_introduction', 
+            'process',
+            'area_total',
+            'address',
+            'address2',
+            'images',
+        ];
+
+        $project = ApartmentProject::select($selector)->find($id);
+        if( !$project ){
+            return response()
                     ->error(
                         'Token user not found', 
                         ['error' => 'user_not_found'],
@@ -94,24 +119,10 @@ class ApartmentController extends Controller
                     )
                     ->setStatusCode(Response::HTTP_NOT_FOUND);
         }
-        /// query db find user
-        $user = User::findOrFail($claim['id']);
-        if( !$user ){
-            return  response()
-                    ->error(
-                        'Token user not found', 
-                        ['error' => 'user_not_found'],
-                        Response::HTTP_NOT_FOUND
-                    )
-                    ->setStatusCode(Response::HTTP_NOT_FOUND);
-        }
-        $user->phone_verify = $request->input('phone_verify');
-        $user->save();
-
         return response()
                     ->success(
                         'thành công',
-                        $user->toArray(),
+                        $project,
                         Response::HTTP_OK
                     )
                     ->setStatusCode(Response::HTTP_OK);

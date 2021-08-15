@@ -8430,12 +8430,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _page_Categories__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./page/Categories */ "./resources/js/post/page/Categories.jsx");
 /* harmony import */ var _page_SavePost__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./page/SavePost */ "./resources/js/post/page/SavePost.jsx");
 /* harmony import */ var _VerifyPhone__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./VerifyPhone */ "./resources/js/post/VerifyPhone.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _page_ApartmentProjectDetail__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./page/ApartmentProjectDetail */ "./resources/js/post/page/ApartmentProjectDetail.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -8451,13 +8452,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-var About = function About() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h1", {
-      children: "kh\xF4ng match \u0111\xFAng Component"
-    })
-  });
-};
 
 function App(props) {
   var auth = props.auth,
@@ -8466,9 +8460,9 @@ function App(props) {
   console.log(auth, "authauthauthauth");
 
   if (!auth) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
       className: "guest",
-      children: ["t\xE0i kho\u1EA3n x\xE1c th\u1EF1c kh\xF4ng th\xE0nh c\xF4ng! ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), "b\xE1o v\u1EDBi admin h\u1EC7 th\u1ED1ng n\u1EBFu b\u1EA1n c\u1EA3m th\u1EA5y c\xF3 b\u1EA5t th\u01B0\u1EDDng", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
+      children: ["t\xE0i kho\u1EA3n x\xE1c th\u1EF1c kh\xF4ng th\xE0nh c\xF4ng! ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), "b\xE1o v\u1EDBi admin h\u1EC7 th\u1ED1ng n\u1EBFu b\u1EA1n c\u1EA3m th\u1EA5y c\xF3 b\u1EA5t th\u01B0\u1EDDng", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("a", {
         href: CONFIG.WEB.LOGOUT,
         className: "btn btn-logout-and-report-admin",
         children: "logout v\xE0 v\xE1o v\u1EDBi admin v\u1EC1 hi\u1EC7n t\u01B0\u1EE3ng"
@@ -8477,32 +8471,32 @@ function App(props) {
   }
 
   if (!auth.phone_verify) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_VerifyPhone__WEBPACK_IMPORTED_MODULE_4__.default, {});
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_VerifyPhone__WEBPACK_IMPORTED_MODULE_4__.default, {});
   }
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
     className: "AppComponent post",
     id: "Application",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.BrowserRouter, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.BrowserRouter, {
       basename: CONFIG.WEB.USER_POST,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Switch, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Switch, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
           exact: true,
           path: "/",
           component: _page_Categories__WEBPACK_IMPORTED_MODULE_2__.default
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
+          path: "/apartment/project/:id",
+          component: _page_ApartmentProjectDetail__WEBPACK_IMPORTED_MODULE_5__.default
         }), // CATEGORIES.map( cat => <Route key={cat.id} path={ `/${cat.slug}` } component={ SavePost } />  ) cách này bị không lấy được params
         CATEGORIES.map(function (cat) {
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
             path: "/".concat(cat.slug),
             render: function render(props) {
-              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_page_SavePost__WEBPACK_IMPORTED_MODULE_3__.default, _objectSpread(_objectSpread({}, props), {}, {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_page_SavePost__WEBPACK_IMPORTED_MODULE_3__.default, _objectSpread(_objectSpread({}, props), {}, {
                 category: cat
               }));
             }
           }, cat.id);
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
-          path: "/hadd",
-          component: About
         })]
       })
     })
@@ -8933,6 +8927,91 @@ function Abort404(props) {
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Abort404);
+
+/***/ }),
+
+/***/ "./resources/js/post/page/ApartmentProjectDetail.jsx":
+/*!***********************************************************!*\
+  !*** ./resources/js/post/page/ApartmentProjectDetail.jsx ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var _service_apartment_project_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../service/apartment.project.api */ "./resources/js/service/apartment.project.api.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+function ApartmentProjectDetail(props) {
+  var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useHistory)();
+
+  var _useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useParams)(),
+      id = _useParams.id;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+      _useState2 = _slicedToArray(_useState, 2),
+      project = _useState2[0],
+      setProject = _useState2[1]; /// bình thường
+  // const { match } = props
+  // if( match && match.params && match.params.id ){
+  // }
+
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (!project) {
+      /// fetch api 
+      /// call api get province
+      _service_apartment_project_api__WEBPACK_IMPORTED_MODULE_1__.default.getProject(id).then(function (response) {
+        var data = response.data;
+        setProject(data);
+      })["catch"](function (error) {
+        console.log("ERROR:: ", error);
+      });
+    }
+  });
+
+  if (!project) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      children: " kh\xF4ng t\xECm th\u1EA5y "
+    });
+  }
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    className: "apartment-project-detail",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "galleries",
+      children: project.images.length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Images, {
+        images: images.map(function (img) {
+          return img.IMAGE_RESIZE;
+        })
+      }) : null
+    })
+  });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ApartmentProjectDetail);
 
 /***/ }),
 
@@ -9537,12 +9616,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var rules = {
   project: {
     required: true,
     validateProject: function validateProject(project) {
-      console.log("đang là hàm validate project", project);
-
       if (project.id) {
         /// đã có trong hệ thống 
         return true;
@@ -9693,10 +9771,17 @@ var ApartmentInfo = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRe
         })
       }), values.project == "" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
         children: "\u0111\xE2y l\xE0 tr\u01B0\u1EDDng h\u1EE3p kh\xF4ng c\xF3 nh\u1EADp g\xEC"
-      }), values.project.id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-        dangerouslySetInnerHTML: {
-          __html: values.project.process
-        }
+      }), values.project.id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+        className: "",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
+          target: "_blank",
+          href: "".concat(CONFIG.REACT_ASSET, "/apartment/project/").concat(values.project.id),
+          children: "b\u1EA5m \u0111\u1EC3 xem chi ti\u1EBFt"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          dangerouslySetInnerHTML: {
+            __html: values.project.short_introduction
+          }
+        })]
       }), !values.project.id && values.project.label && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
         children: [" ", values.project.label, " "]
       })]
@@ -11282,6 +11367,12 @@ var Api = axios__WEBPACK_IMPORTED_MODULE_0___default().create({
   getProjects: function getProjects(query) {
     console.log("vào getProjects", query);
     return Api.get("".concat(CONFIG.API.APARTMENT_PROJECTS, "?q=").concat(query, "&limit=5")).then(function (res) {
+      return res.data;
+    });
+  },
+  getProject: function getProject(id) {
+    console.log("vào getProject", id);
+    return Api.get("".concat(CONFIG.API.APARTMENT_PROJECT_DETAIL, "/").concat(id)).then(function (res) {
       return res.data;
     });
   }

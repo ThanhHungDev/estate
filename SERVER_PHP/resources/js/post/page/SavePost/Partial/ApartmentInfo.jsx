@@ -2,6 +2,7 @@ import React, { useState, useEffect, forwardRef, useRef, useImperativeHandle } f
 import Validator from "hero-validate"
 import AsyncCreatableSelect from 'react-select/async-creatable'
 import projectApi from "../../../../service/apartment.project.api"
+import { Link } from 'react-router-dom'
 
 
 
@@ -9,7 +10,6 @@ const rules = {
     project: {
         required: true,
         validateProject: function (project) {
-            console.log("đang là hàm validate project", project)
             if( project.id ){
                 /// đã có trong hệ thống 
                 return true
@@ -138,7 +138,12 @@ const ApartmentInfo = forwardRef((props, ref) => {
                 }
                 {
                     values.project.id && (
-                        <div dangerouslySetInnerHTML={{__html: values.project.process }} />
+                        <div className="">
+                            <a target='_blank' href={ `${CONFIG.REACT_ASSET}/apartment/project/${values.project.id}` }>
+                                bấm để xem chi tiết
+                            </a>
+                            <div dangerouslySetInnerHTML={{__html: values.project.short_introduction }} />
+                        </div>
                     )
                 }
                 {
