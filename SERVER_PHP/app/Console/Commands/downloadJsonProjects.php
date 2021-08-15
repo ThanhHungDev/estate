@@ -47,7 +47,7 @@ class downloadJsonProjects extends Command
 
 
         $stringsQuerys = DB::connection('crawler')->table('fake_apartment_projects')->where('request', "=", 0)->take(100)->get();
-        $this->mailAdminPostSuccess();
+
         if( $stringsQuerys->isEmpty()  ){
             /// send mail thanhf coong
             $this->mailAdminPostSuccess();
