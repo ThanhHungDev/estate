@@ -50,7 +50,7 @@ class downloadJsonProjects extends Command
 
         if( $stringsQuerys->isEmpty()  ){
             /// send mail thanhf coong
-            // $this->mailAdminPostSuccess();
+            $this->mailAdminPostSuccess();
             return 0;
         }
         foreach( $stringsQuerys as $item ){
