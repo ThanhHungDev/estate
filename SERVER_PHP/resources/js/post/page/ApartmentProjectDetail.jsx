@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { useParams } from 'react-router'
 import { useHistory } from "react-router-dom"
+import Images from './SavePost/Partial/UploadImage/Images'
 import projectApi from "../../service/apartment.project.api"
 
 
@@ -24,6 +25,7 @@ function ApartmentProjectDetail( props ){
             projectApi.getProject(id)
             .then( response => {
                 let { data } = response
+                console.log(data)
                 setProject(data)
             })
             .catch(error => {

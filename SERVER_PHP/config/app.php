@@ -210,6 +210,8 @@ return [
         Jenssegers\Mongodb\MongodbServiceProvider::class,
 
         Intervention\Image\ImageServiceProvider::class,
+
+        App\Providers\GoogleDriveServiceProvider::class,
     ],
 
     /*
