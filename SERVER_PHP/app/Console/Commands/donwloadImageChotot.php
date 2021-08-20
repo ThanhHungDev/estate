@@ -41,22 +41,72 @@ class donwloadImageChotot extends Command
     public function handle()
     {
         $description = ' Command Run Download image cho tot';
-        
+
+        // 
+        $fileMetadata = new \Google_Service_Drive_DriveFile([
+            'name' => 'My Report',
+            'mimeType' => \File::mimeType(public_path("apartment/383_facilities_2.jpg"))
+        ]);
+
+        $content = file_get_contents(public_path("apartment/383_facilities_2.jpg"));
+
+        $file = \Storage::disk('google')->files->create($fileMetadata, array(
+            'data' => $content,
+            'mimeType' => \File::mimeType(public_path("apartment/383_facilities_2.jpg")),
+            'uploadType' => 'multipart',
+            'fields' => 'id'));
+        printf("File ID: %s\n", $file->id);
+        dd( $file );
+
+        // $ROOT_GALLERIES = 'apartment';
+        // // Đầu tiên cần lấy ra thông tin của folder 'avatars'
+        // // trên google drive trước đã
+        // $folderinfo = collect(Storage::disk('apartment-project-img')->listContents('/', false))
+        // ->where('type', 'dir')
+        // ->where('name', $ROOT_GALLERIES)
+        // ->first();
+        // if( !$folderinfo ){
+        //     /// tạo mới folder apartment
+             
+        //     Storage::disk('apartment-project-img')->makeDirectory($ROOT_GALLERIES);
+        // }
+        // dd($folderinfo );
  
-        $googleDriveStorage = Storage::disk('google');
+ 
+        // // $this->filesystem = Storage::disk('google')
         
-        // Đường dẫn tới thư mục muốn liệt kê nội dung
-        $dir = '/';
-        // Hoặc có thể liệt kê trong một sub-folders
-        // $dir = '/path-to-sub-folder'
+        // // // convert PPT to presentation by setting the mimetype
+        // // $stream = fopen($this->files[$this->file_id]['tmp_name'], 'r+');
+        // // $response = $this->filesystem->putStream(
+        // //     $this->getNewFilename(),
+        // //     $stream,
+        // //     [
+        // //         'mimetype' => 'application/vnd.google-apps.presentation',
+        // //     ]
+        // // );
+ 
+        // $content = file_get_contents(public_path("apartment/383_facilities_2.jpg"));
+        // $file = Storage::disk('google')->put('383_facilities_2.jpg', $content);
+        // dd( $file );
+        // printf("File ID: %s\n", $file->id);
+
+        // $config =  new \League\Flysystem\Config([]);
+        // // dd( $config );
+        // // $googleDriveStorage = Storage::disk('google');
+        // dd(Storage::disk('google')->write('test.txt', 'Hello World' ));
         
-        // Có đọc nội dung bên trong các sub-folder của $dir hay không?
-        // Nên đặt là false để tránh phải liệt kê qua nhiều khi thư mục có nhiều file & sub-folders
-        $recursive = false;
+        // // Đường dẫn tới thư mục muốn liệt kê nội dung
+        // $dir = '/';
+        // // Hoặc có thể liệt kê trong một sub-folders
+        // // $dir = '/path-to-sub-folder'
         
-        $contents = collect($googleDriveStorage->listContents($dir, $recursive));
+        // // Có đọc nội dung bên trong các sub-folder của $dir hay không?
+        // // Nên đặt là false để tránh phải liệt kê qua nhiều khi thư mục có nhiều file & sub-folders
+        // $recursive = false;
         
-        dd($contents);
+        // $contents = collect($googleDriveStorage->listContents($dir, $recursive));
+        
+        // dd($contents);
 
 
 
