@@ -58,6 +58,9 @@ return [
             'clientSecret' => env('GOOGLE_DRIVE_CLIENT_SECRET'),
             'refreshToken' => env('GOOGLE_DRIVE_REFRESH_TOKEN'),
             'folderId' => env('GOOGLE_DRIVE_FOLDER_ID'),
+            'folderApartmentProjectImage' => env('GOOGLE_DRIVE_FOLDER_IMG_APARTMENT_PROJECT_ID', '1vmpP8CxVXcu1WUfx84BZChwOrb0IhxMV'),
+            // 'folderId' => env('GOOGLE_DRIVE_FOLDER_ID'),
+            // 'folderId' => env('GOOGLE_DRIVE_FOLDER_ID'),
         ],
 
     ],

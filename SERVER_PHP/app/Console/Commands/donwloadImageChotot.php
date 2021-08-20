@@ -43,20 +43,20 @@ class donwloadImageChotot extends Command
         $description = ' Command Run Download image cho tot';
 
         // 
-        $fileMetadata = new \Google_Service_Drive_DriveFile([
-            'name' => 'My Report',
-            'mimeType' => \File::mimeType(public_path("apartment/383_facilities_2.jpg"))
-        ]);
+        // $fileMetadata = new \Google_Service_Drive_DriveFile([
+        //     'name' => 'My Report',
+        //     'mimeType' => \File::mimeType(public_path("apartment/383_facilities_2.jpg"))
+        // ]);
 
-        $content = file_get_contents(public_path("apartment/383_facilities_2.jpg"));
+        // $content = file_get_contents(public_path("apartment/383_facilities_2.jpg"));
 
-        $file = \Storage::disk('google')->files->create($fileMetadata, array(
-            'data' => $content,
-            'mimeType' => \File::mimeType(public_path("apartment/383_facilities_2.jpg")),
-            'uploadType' => 'multipart',
-            'fields' => 'id'));
-        printf("File ID: %s\n", $file->id);
-        dd( $file );
+        // $file = \Storage::disk('google')->files->create($fileMetadata, array(
+        //     'data' => $content,
+        //     'mimeType' => \File::mimeType(public_path("apartment/383_facilities_2.jpg")),
+        //     'uploadType' => 'multipart',
+        //     'fields' => 'id'));
+        // printf("File ID: %s\n", $file->id);
+        // dd( $file );
 
         // $ROOT_GALLERIES = 'apartment';
         // // Đầu tiên cần lấy ra thông tin của folder 'avatars'
@@ -123,6 +123,33 @@ class donwloadImageChotot extends Command
                 # code...
                 if(getimagesize(public_path($images[$i]->url))){
                     $images[$i]->downloaded = 1;
+                    /// download thành công thì upload lên google drive
+                    $img = collect(\Storage::disk('google')->listContents('/', false))
+                        ->where('type', 'file')
+                        ->where('name', $images[$i]->basename)
+                        ->first();
+                    if( !$img ){
+                        // chưa có ảnh
+                        // => upload 
+                        $content = file_get_contents(public_path($images[$i]->url));
+                        $file = \Storage::disk('google')->put($images[$i]->basename, $content);
+                        if( $file ){
+                            /// lưu ảnh thành công 
+                            // => lấy file id
+                            // $img = collect(\Storage::disk('google')->listContents('/', false))
+                            //         ->where('type', 'file')
+                            //         ->where('name', $images[$i]->basename)
+                            //         ->first();
+                            $listContents = \Storage::disk('google')->listContents();
+                            $id = $this->getId($listContents, 'name', $images[$i]->basename);
+                            $description .= "-----" . $id['path'];
+
+                            $images[$i]->url = 'https://docs.google.com/uc?id=' . $id['path'];
+                            if(File::exists(public_path($images[$i]->url))) {
+                                File::delete(public_path($images[$i]->url));
+                            }
+                        }
+                    }
                 }else{
                     $images[$i]->downloaded = 0;
                 }
@@ -132,6 +159,14 @@ class donwloadImageChotot extends Command
         $apartmentProject->save();
         
         $this->info( $this->signature . "\n". $description);
+    }
+
+    function getId(Array $array, $key, $value) {
+        foreach ($array as $subarray) {  
+            if (isset($subarray[$key]) && $subarray[$key] == $value)
+                return $subarray;       
+        } 
+        return null;
     }
 
     
@@ -154,6 +189,7 @@ class donwloadImageChotot extends Command
         foreach ($urls as $key => $url) {
             $file = $savedDir . '/' . basename($url);
             $images[$key]->url = $publicPath . '/' . basename($url);
+            $images[$key]->basename = basename($url);
 
             /// check file exist
             if(File::isFile($file)){
