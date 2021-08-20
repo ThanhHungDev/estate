@@ -124,7 +124,7 @@ class donwloadImageChotot extends Command
                 if(getimagesize(public_path($images[$i]->url))){
                     $images[$i]->downloaded = 1;
                     /// download thành công thì upload lên google drive
-                    $img = collect(\Storage::disk('google')->listContents('/', false))
+                    $img = collect(\Storage::disk('google')->listContents('/apartment/' . $apartmentProject->id, false))
                         ->where('type', 'file')
                         ->where('name', $images[$i]->basename)
                         ->first();
@@ -132,7 +132,7 @@ class donwloadImageChotot extends Command
                         // chưa có ảnh
                         // => upload 
                         $content = file_get_contents(public_path($images[$i]->url));
-                        $file = \Storage::disk('google')->put($images[$i]->basename, $content);
+                        $file = \Storage::disk('google')->put( '/apartment/' . $apartmentProject->id . "/" . $images[$i]->basename, $content);
                         if( $file ){
                             /// lưu ảnh thành công 
                             // => lấy file id
@@ -140,7 +140,7 @@ class donwloadImageChotot extends Command
                             //         ->where('type', 'file')
                             //         ->where('name', $images[$i]->basename)
                             //         ->first();
-                            $listContents = \Storage::disk('google')->listContents();
+                            $listContents = \Storage::disk('google')->listContents('/apartment/' . $apartmentProject->id, false);
                             $id = $this->getId($listContents, 'name', $images[$i]->basename);
                             $description .= "-----" . $id['path'];
 
