@@ -46,7 +46,7 @@ class downloadJsonProjects extends Command
         $description = ' Command Run Download json form api cho tot ';
 
 
-        $stringsQuerys = DB::connection('crawler')->table('fake_apartment_projects')->where('request', "=", 0)->take(10)->get();
+        $stringsQuerys = DB::connection('crawler')->table('fake_apartment_projects')->where('request', "=", 0)->take(50)->get();
 
         if( $stringsQuerys->isEmpty()  ){
             /// send mail thanhf coong
