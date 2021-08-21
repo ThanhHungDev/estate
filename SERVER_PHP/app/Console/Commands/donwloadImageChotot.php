@@ -85,8 +85,8 @@ class donwloadImageChotot extends Command
         // //     ]
         // // );
  
-        // $content = file_get_contents(public_path("apartment/383_facilities_2.jpg"));
-        // $file = Storage::disk('google')->put('383_facilities_2.jpg', $content);
+        // $content = file_get_contents(public_path("apartment/120_facilities_2.jpg"));
+        // $file = \Storage::disk('google')->put('120_facilities_2.jpg', $content);
         // dd( $file );
         // printf("File ID: %s\n", $file->id);
 
@@ -123,30 +123,69 @@ class donwloadImageChotot extends Command
                 # code...
                 if(getimagesize(public_path($images[$i]->url))){
                     $images[$i]->downloaded = 1;
-                    /// download thành công thì upload lên google drive
-                    $img = collect(\Storage::disk('google')->listContents('/apartment/' . $apartmentProject->id, false))
-                        ->where('type', 'file')
-                        ->where('name', $images[$i]->basename)
-                        ->first();
+
+                    // Đầu tiên cần lấy ra thông tin của file 'test.txt'
+                    // trên google drive trước đã
+                    $allFileFolders = collect(\Storage::disk('google')->listContents('/', false));
+                    /// check folder có tồn tại không? 
+                    $folderApart = $allFileFolders
+                    ->where('type', 'dir')
+                    ->where('name', $apartmentProject->id)
+                    ->first();
+
+        
+                    if( !$folderApart ){
+                        /// taoj moi
+                        \Storage::disk('google')->makeDirectory($apartmentProject->id);
+                        /// chắc chắn có file rồi thì lấy lại folder thôi
+                        $allFileFolders = collect(\Storage::disk('google')->listContents('/', false));
+                    }
+                    
+
+                    $pathOfSubfolder = $allFileFolders->where('type', 'dir')
+                    ->where('name', $apartmentProject->id)
+                    ->first()['path'];
+                    // "name" => "2"
+                    // "type" => "dir"
+                    // "path" => "1gWUfjJB7QjlYBjwkXzG08ScXXkRleWoe"
+                    // "filename" => "2"
+                    // "extension" => ""
+                    // "timestamp" => 1629472542
+                    // "size" => 0
+                    // "dirname" => ""
+                    // "basename" => "1gWUfjJB7QjlYBjwkXzG08ScXXkRleWoe"
+
+                    /// bây giờ get list của subfolder vừa có path
+                    $allImageInFolder = collect(\Storage::disk('google')->listContents('/' . $pathOfSubfolder, false));
+
+                    /// check xem img đã có trong subfolder của project id chưa? nếu có rồi thì thôi, chưa có thì thêm mới vô
+                    $img = $allImageInFolder->where('type', 'file')
+                                ->where('name', $images[$i]->basename)
+                                ->first();
+
                     if( !$img ){
                         // chưa có ảnh
                         // => upload 
                         $content = file_get_contents(public_path($images[$i]->url));
-                        $file = \Storage::disk('google')->put( '/apartment/' . $apartmentProject->id . "/" . $images[$i]->basename, $content);
+                        $file = \Storage::disk('google')->put( '/' . $pathOfSubfolder . "/" . $images[$i]->basename, $content);
+                        
                         if( $file ){
                             /// lưu ảnh thành công 
+                            /// bây giờ get list của subfolder vừa có path
+                            $allImageInFolder = collect(\Storage::disk('google')->listContents('/' . $pathOfSubfolder, false));
                             // => lấy file id
-                            // $img = collect(\Storage::disk('google')->listContents('/', false))
-                            //         ->where('type', 'file')
-                            //         ->where('name', $images[$i]->basename)
-                            //         ->first();
-                            $listContents = \Storage::disk('google')->listContents('/apartment/' . $apartmentProject->id, false);
-                            $id = $this->getId($listContents, 'name', $images[$i]->basename);
-                            $description .= "-----" . $id['path'];
-
-                            $images[$i]->url = 'https://docs.google.com/uc?id=' . $id['path'];
-                            if(File::exists(public_path($images[$i]->url))) {
-                                File::delete(public_path($images[$i]->url));
+                            $imgUpload = $allImageInFolder
+                                    ->where('type', 'file')
+                                    ->where('name', $images[$i]->basename)
+                                    ->first();
+                            if( $imgUpload ){
+                                $description .= "-----" . $imgUpload['basename'];
+                                
+                                if(File::exists(public_path($images[$i]->url))) {
+                                    File::delete(public_path($images[$i]->url));
+                                }
+                                $images[$i]->url = 'https://docs.google.com/uc?id=' . $imgUpload['basename'];
+                                $images[$i]->google = $imgUpload;
                             }
                         }
                     }
@@ -159,14 +198,6 @@ class donwloadImageChotot extends Command
         $apartmentProject->save();
         
         $this->info( $this->signature . "\n". $description);
-    }
-
-    function getId(Array $array, $key, $value) {
-        foreach ($array as $subarray) {  
-            if (isset($subarray[$key]) && $subarray[$key] == $value)
-                return $subarray;       
-        } 
-        return null;
     }
 
     
