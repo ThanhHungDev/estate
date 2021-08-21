@@ -8943,9 +8943,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
-/* harmony import */ var _SavePost_Partial_UploadImage_Images__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SavePost/Partial/UploadImage/Images */ "./resources/js/post/page/SavePost/Partial/UploadImage/Images.jsx");
+/* harmony import */ var _SavePost_Partial_UploadImage_ImagesApartment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SavePost/Partial/UploadImage/ImagesApartment */ "./resources/js/post/page/SavePost/Partial/UploadImage/ImagesApartment.jsx");
 /* harmony import */ var _service_apartment_project_api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../service/apartment.project.api */ "./resources/js/service/apartment.project.api.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -8966,6 +8972,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 function ApartmentProjectDetail(props) {
   var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useHistory)();
 
@@ -8975,7 +8982,12 @@ function ApartmentProjectDetail(props) {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
       _useState2 = _slicedToArray(_useState, 2),
       project = _useState2[0],
-      setProject = _useState2[1]; /// bình thường
+      setProject = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      expand = _useState4[0],
+      setExpand = _useState4[1]; /// bình thường
   // const { match } = props
   // if( match && match.params && match.params.id ){
   // }
@@ -8988,6 +9000,9 @@ function ApartmentProjectDetail(props) {
       _service_apartment_project_api__WEBPACK_IMPORTED_MODULE_2__.default.getProject(id).then(function (response) {
         var data = response.data;
         console.log(data);
+        data = _objectSpread(_objectSpread({}, data), {}, {
+          images: JSON.parse(data.images)
+        });
         setProject(data);
       })["catch"](function (error) {
         console.log("ERROR:: ", error);
@@ -8999,18 +9014,35 @@ function ApartmentProjectDetail(props) {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       children: " kh\xF4ng t\xECm th\u1EA5y "
     });
-  }
+  } // const images = project.images.map( img => img.url )
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-    className: "apartment-project-detail",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+    className: "apartment-project-detail main-upload",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h2", {
+      children: project.name
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
       className: "galleries",
-      children: project.images.length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_SavePost_Partial_UploadImage_Images__WEBPACK_IMPORTED_MODULE_1__.default, {
-        images: images.map(function (img) {
-          return img.IMAGE_RESIZE;
+      children: [" ", project.images.length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_SavePost_Partial_UploadImage_ImagesApartment__WEBPACK_IMPORTED_MODULE_1__.default, {
+        images: project.images
+      }) : null, " "]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      className: "expand",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "expand__content " + (expand ? "show" : "hide"),
+        dangerouslySetInnerHTML: {
+          __html: project.introduction
+        }
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "expand__show",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
+          onClick: function onClick() {
+            setExpand(!expand);
+          },
+          children: "toggle"
         })
-      }) : null
-    })
+      })]
+    })]
   });
 }
 
@@ -10523,6 +10555,46 @@ __webpack_require__.r(__webpack_exports__);
         })]
       })
     }, js_md5__WEBPACK_IMPORTED_MODULE_1___default()(url));
+  });
+});
+
+/***/ }),
+
+/***/ "./resources/js/post/page/SavePost/Partial/UploadImage/ImagesApartment.jsx":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/post/page/SavePost/Partial/UploadImage/ImagesApartment.jsx ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var js_md5__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! js-md5 */ "./node_modules/js-md5/src/md5.js");
+/* harmony import */ var js_md5__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(js_md5__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function (props) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    className: "information__photo",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      id: "photos__responsive-images",
+      className: "information__photo-group",
+      children: props.images.map(function (img) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
+          className: "information__photo-item",
+          href: img.url,
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+            src: img.url // onerror="this.onerror=null;this.src=`{{ asset(Config::get('app.image_error')) }}`;" 
+
+          })
+        }, js_md5__WEBPACK_IMPORTED_MODULE_1___default()(img.url));
+      })
+    })
   });
 });
 

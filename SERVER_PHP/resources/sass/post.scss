@@ -426,3 +426,72 @@
         @include btn-interaction($white, color-level($custom-green, -8), $custom-green)
     }
 }
+
+
+.information__photo{
+    // display: none;
+    // BASIC
+    &-group {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0;
+    }
+    
+    &-item {
+        padding: 2px;
+        height: 100px;
+        flex-grow: 1;
+        // ADVANCED
+        // Portrait
+        @media (max-aspect-ratio: 1/1) { height: 150px; }
+        // Short screen
+        @include Screen(SM) { height: 100px; }
+        @include Screen(MD) { height: 100px; }
+
+        &:last-child {
+            // There's no science in using "10" here. In all my testing, this delivered the best results.
+            flex-grow: 10;
+        }
+        img {
+            max-height: 100%;
+            min-width: 100%;
+            object-fit: cover;
+            vertical-align: bottom;
+            border: 1px solid $gray-200;
+            border-radius: 4px;
+        }
+    }
+}
+
+.expand{
+    position: relative;
+    padding: 30px 15px;
+
+    &__content{
+        max-height: 120px;
+        overflow: hidden;
+        &.show{
+            max-height: unset;
+        }
+    }
+
+    &__show{
+        color: $custom-green-dark;
+        font-weight: 900;
+        font-size: medium;
+        text-transform: capitalize;
+        text-decoration: underline;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 30px;
+        cursor: pointer;
+        height: 75px;
+        cursor: pointer;
+        z-index: 100;
+        background: transparent;
+        background: linear-gradient(to bottom,rgba(241,243,251,0) 0%,#f1f3fb 60%);
+        text-align: center;
+    }
+}

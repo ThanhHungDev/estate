@@ -1499,3 +1499,72 @@ body.video-react-full-window .video-react-fullscreen {
   pointer-events: none;
   opacity: 0.65;
 }
+
+.information__photo-group {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+}
+.information__photo-item {
+  padding: 2px;
+  height: 100px;
+  flex-grow: 1;
+}
+@media (max-aspect-ratio: 1/1) {
+  .information__photo-item {
+    height: 150px;
+  }
+}
+@media (min-width: 576px) {
+  .information__photo-item {
+    height: 100px;
+  }
+}
+@media (min-width: 768px) {
+  .information__photo-item {
+    height: 100px;
+  }
+}
+.information__photo-item:last-child {
+  flex-grow: 10;
+}
+.information__photo-item img {
+  max-height: 100%;
+  min-width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  vertical-align: bottom;
+  border: 1px solid #e9ecef;
+  border-radius: 4px;
+}
+
+.expand {
+  position: relative;
+  padding: 30px 15px;
+}
+.expand__content {
+  max-height: 120px;
+  overflow: hidden;
+}
+.expand__content.show {
+  max-height: unset;
+}
+.expand__show {
+  color: #0d3617;
+  font-weight: 900;
+  font-size: medium;
+  text-transform: capitalize;
+  text-decoration: underline;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 30px;
+  cursor: pointer;
+  height: 75px;
+  cursor: pointer;
+  z-index: 100;
+  background: transparent;
+  background: linear-gradient(to bottom, rgba(241, 243, 251, 0) 0%, #f1f3fb 60%);
+  text-align: center;
+}
