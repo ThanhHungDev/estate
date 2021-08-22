@@ -3,9 +3,11 @@
 namespace App\Console\Commands;
 
 use App\Helpers\SupportString;
+use App\Mail\MailCrawler;
 use App\Models\ApartmentProject;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class parserJsonProjectsToRow extends Command
 {
@@ -33,6 +35,17 @@ class parserJsonProjectsToRow extends Command
         parent::__construct();
     }
 
+    private function mailAdminPostSuccess(){
+
+        $messageMail = "Cảnh báo hoàn thành parser dữ liệu!";
+        /// send mail
+        Mail::to(trim(env('MAIL_TO_ADMIN', 'thanhhung.code@gmail.com')))
+            ->send(new MailCrawler([ 'message' => $messageMail ]));
+        if (Mail::failures()) {
+
+            /// chưa biết làm gì
+        }
+    }
     /**
      * Execute the console command.
      *
@@ -42,9 +55,10 @@ class parserJsonProjectsToRow extends Command
     {
         $description = ' Command Run parser json form api cho tot ';
 
-        $stringsQuerys = DB::connection('crawler')->table('fake_apartment_projects')->where('parser', "=", 0)->take(500)->get();
+        $stringsQuerys = DB::connection('crawler')->table('fake_apartment_projects')->where('parser', "=", 0)->take(100)->get();
         if( $stringsQuerys->isEmpty() ){
             /// hết rồi
+            $this->mailAdminPostSuccess();
             return 0;
         }
         $projects = [];
