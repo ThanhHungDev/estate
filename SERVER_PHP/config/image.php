@@ -22,6 +22,7 @@ return [
         'logo'            => [50, 50],
         'post'        => [ 300, 150 ],
         'small'        => [ 120, 80 ],
+        'home-product' => [ 500, 350 ],
     ],
     'AVATAR' => env('AVATAR_DEFAULT', '/images/avatar.jpg'),
     'BACKGROUND' => env('BACKGROUND_DEFAULT', '/images/background/flores-amarillas-wallpaper.jpeg'),
