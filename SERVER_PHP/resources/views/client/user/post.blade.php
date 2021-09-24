@@ -31,9 +31,10 @@
     </script>
     <script>
         console.log( "{{ Cookie::get(Config::get('constant.TOKEN_COOKIE_NAME')) }}" )
+        console.log( typeof localStorage  )
         // const KEY_CAPTCHA = "{{ env('GOOGLE_RECAPTCHA_KEY')  }}";
         if (typeof localStorage !== 'undefined') {
-            
+            console.log( "Có vào set token jwt nè" )
             localStorage.setItem('jwt', "{{ Cookie::get(Config::get('constant.TOKEN_COOKIE_NAME')) }}");
         }
     </script>
