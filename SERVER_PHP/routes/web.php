@@ -56,6 +56,10 @@ Route::get('resizes/{size}/{type}/{imagePath?}', [ App\Http\Controllers\ImageCon
 ->where('imagePath', '(.*)')
 ->name('IMAGE_RESIZE');
 
+Route::get('ratio/{size}/{type}/{imagePath?}', [ App\Http\Controllers\ImageController::class, 'resizeRatio' ])
+->where('imagePath', '(.*)')
+->name('IMAGE_RESIZE_RATIO');
+
 Route::get('compress/{quality}/{imagePath}', [ App\Http\Controllers\ImageController::class, 'encode' ])
 ->where('imagePath', '(.*)')
 ->name('IMAGE_COMPRESS');
