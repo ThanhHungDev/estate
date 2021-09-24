@@ -20,9 +20,9 @@ class users extends Seeder
             [
                 [
                     'name'       => 'Trương Thanh Hùng',
-                    'email'      => 'thanhhung.code@gmail.com',
+                    'email'      => 'admin@gmail.com',
                     'avatar'     => '/images/avatar.jpg',
-                    'password'   => bcrypt('123456'),
+                    'password'   => bcrypt('admin123'),
                     'role_id'    => Config::get("constant.ROLE.ADMIN"),
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s')

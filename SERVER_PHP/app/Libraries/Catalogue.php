@@ -21,10 +21,14 @@ class Catalogue {
      */
 	public static function generate(string $text) {
 
-		$catalogue = self::buildMenuTree(self::parseHeadings($text));
-		$text      = self::addHeadingsIdentifiers($text, $catalogue);
+		$headings = self::parseHeadings($text);
+
+		$catalogue      = self::buildMenuTree($headings);
+		$text_catalogue = self::buildHeaddingTextTree($headings);
+
+		$text = self::addHeadingsIdentifiers($text, $catalogue);
         
-		return (object)compact('catalogue', 'text');
+		return (object)compact('catalogue', 'text', 'text_catalogue');
     }
     
 	private static function parseHeadings(string $text) {
@@ -85,6 +89,20 @@ class Catalogue {
         
 		return $menu_tree;
 	}
+	private static function buildHeaddingTextTree(array $headings) {
+
+		$menu_tree = '';
+		foreach($headings as $heading => $subheadings) {
+			
+			$menu_tree .= ' ' . strip_tags($heading);
+			if(!empty($subheadings)) {
+				$menu_tree .= ' ' . self::buildHeaddingTextTree($subheadings);
+			}
+			$menu_tree .= ' ';
+        }
+        
+		return $menu_tree;
+	}
 	private static function addHeadingsIdentifiers(string $text, string $menu) {
 
 		foreach(self::getHeadings($text) as $heading) {
@@ -116,6 +134,25 @@ class Catalogue {
 		return $headings;
 	}
 	private static function cleanText(string $text) {
-		return trim(strip_tags(str_replace(["\n", "\r", "&nbsp;"], "", $text)));
+
+		$removeBreakLine = str_replace(["\n", "\r", "&nbsp;"], "", $text);
+		$addSpaceTag     = str_replace('<', ' <', $removeBreakLine );
+		$removeHtml      = strip_tags( $addSpaceTag );
+		$removeDupSpace  = str_replace('  ', ' ', $removeHtml );
+
+		return trim($removeDupSpace);
+	}
+
+	
+	/**
+	 * cleanTextSupport là hàm để Support Json kế thừa hàm này
+	 *
+	 * @param  mixed $text
+	 * @return void
+	 */
+	public static function cleanTextSupport(string $text) : string {
+		
+		return html_entity_decode(self::cleanText($text));
 	}
 }
+	
