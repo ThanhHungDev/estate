@@ -16,13 +16,13 @@ const mix = require('laravel-mix');
 //     .sass('resources/sass/app.scss', 'public/css');
 
 
-mix.js('resources/js/post.js', 'public/js')
-    .react()
-    .sass('resources/sass/post.scss', 'public/css');
+// mix.js('resources/js/post.js', 'public/js')
+//     .react()
+//     .sass('resources/sass/post.scss', 'public/css');
 
 
 
-// mix
+mix
 // .js('resources/js/app.js', 'public/js')
 // .js('resources/admin/js/app.js', 'public/js/admin')
 // // .js('resources/admin/js/validate.post.js', 'public/js/admin')
@@ -37,6 +37,7 @@ mix.js('resources/js/post.js', 'public/js')
 // // .js('resources/js/validate.contact.js', 'public/js')
 // // .sass('resources/sass/app.scss', 'public/css')
 // .sass('resources/sass/page/home.scss', 'public/css')
+.sass('resources/sass/page/login.scss', 'public/css')
 // .sass('resources/sass/page/product.detail.scss', 'public/css')
 // // .sass('resources/sass/page/contact.scss', 'public/css')
 // .sass('resources/admin/sass/page/admin.scss', 'public/css')
