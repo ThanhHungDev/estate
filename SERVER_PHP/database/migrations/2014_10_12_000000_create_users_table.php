@@ -27,6 +27,7 @@ class CreateUsersTable extends Migration
             $table->integer('sale_type')->default(Config::get("constant.SALE_TYPE.DEFAULT"));
             $table->string('phone_verify')->nullable();
             $table->timestamp('time_verify')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->string('contact')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
