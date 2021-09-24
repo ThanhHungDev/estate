@@ -4,7 +4,7 @@
 
 @section('javascripts')
     <script src="{{ asset('js/library/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/admin/app.min.js') }}"></script>
+    <script src="{{ asset('js/admin/app.js') }}"></script>
 @endsection
 
 
@@ -31,7 +31,7 @@
             @endforeach
 
             <div class="pagi">
-                {{ $permissions->onEachSide(3)->links() }}
+                {{ $permissions->onEachSide(3)->links("pagination::default") }}
             </div>
 
         </div>

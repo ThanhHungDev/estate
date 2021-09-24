@@ -1,45 +1,32 @@
+@extends('admin._layout')
 
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-@php 
-$datetime = date('Y-m-d') . 'T' . date('H:i:s') .'+00:00';
-@endphp
+@section('title', 'Xem sitemap')
 
-<url>
-  <loc>https://ebudezain.com/</loc>
-  <lastmod>{{ $datetime }}</lastmod>
-  <priority>1.00</priority>
-</url>
-<url>
-  <loc>https://ebudezain.com/contact</loc>
-  <lastmod>{{ $datetime }}</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://ebudezain.com/search</loc>
-  <lastmod>{{ $datetime }}</lastmod>
-  <priority>0.60</priority>
-</url>
-<url>
-  <loc>https://ebudezain.com/search?q=java</loc>
-  <lastmod>{{ $datetime }}</lastmod>
-  <priority>0.55</priority>
-</url>
-<url>
-  <loc>https://ebudezain.com/search?q=google</loc>
-  <lastmod>{{ $datetime }}</lastmod>
-  <priority>0.80</priority>
-</url>
+@section('javascripts')
+    <script src="{{ asset('js/library/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/admin/app.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('css/library/prism.min.css' . Config::get('app.version'))}}">
+    <script type="text/javascript" src="{{ asset('js/library/prism.min.js' . Config::get('app.version')) }}"></script>
+@endsection
 
 
-{!! $sitemap !!}
+@section('page_title', "trang hiện thị sitemap" )
 
+@section('content_admin')
+<div class="page__permission admin-main-content">
 
-</urlset>
-
-
+    <div class="row block-content">
+        <div class="col-12 bg-white shadows-1 px-3 py-3 table-list">
+            <h1>bạn có {{ count($sitemap) }} sitemap</h1>
+            @if ($sitemap)
+            @foreach ($sitemap as $key => $item)
+                <h2>sitemap vị trí {{ $key }}</h2>
+                <div class="language-xml">
+                    <pre><code>{{ $item }}</code></pre>
+                </div>
+            @endforeach
+            @endif
+        </div>
+    </div>
+</div>
+@endsection

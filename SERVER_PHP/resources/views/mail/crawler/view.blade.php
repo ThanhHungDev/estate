@@ -13,7 +13,7 @@ Chào <i>Admin</i>,
     <p>
         <a href="mailto:{{ Config::get('app.company_mail') }}">{{ Config::get('app.company_mail') }}</a>
     </p>
-    <img src="http://ebudezain.com/images/logo-ebu-white.png" alt="ebudezain" />
+    <img src="{{ asset(env('LOGO')) }}" alt="ebudezain" />
 
     <p>
         <b>Website: </b> <span> {{ asset('/') }} </span>        

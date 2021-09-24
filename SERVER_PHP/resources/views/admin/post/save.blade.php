@@ -2,16 +2,26 @@
 
 @section('title', 'Thêm bài viết')
 
+@php 
+$showto = $post->showto ? $post->showto : Config::get('constant.LDJSON.HIDE');
+$howto  = $post->howto ? $post->howto : null;
+@endphp
+
 @section('javascripts')
+<link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css'>
     <script src="{{ asset('js/library/jquery.min.js') }}"></script>
     <script src="{{ asset('js/library/jquery.validate.min.js') }}"></script>
     <script src="{{ asset('js/library/select2.min.js') }}"></script>
-    <script src="{{ asset('js/library/wanakana.min.js') }}"></script>
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <script src="{{ asset('ckfinder/ckfinder.js') }}"></script>
-    <script src="{{ asset('js/admin/validate.post.min.js') }}"></script>
-    <script src="{{ asset('js/admin/app.min.js') }}"></script>
-    
+    <script src="{{ asset('js/admin/validate.post.js') }}"></script>
+    <script src="{{ asset('js/admin/app.js') }}"></script>
+    @if ($howto)
+    <script src="{{ asset('js/library/jsoneditor.min.js') }}"></script>
+    <script>
+        const HOW_TO_DATA = {!! $howto !!};
+    </script>
+    @endif
 @endsection
 @section('page_title', $post->id ? 'chỉnh sửa Post' : 'thêm mới Post')
 
@@ -43,16 +53,24 @@
         <input type="hidden" name="_slug_old" value="{{ $post->slug }}">
         <div class="col-md-8">
             <div class="row block-content">
-                <div class="col-12 bg-color-white shadows-1 px-3 py-3">
+                <div class="js-parent__create-slug col-12 bg-color-white shadows-1 px-3 py-3">
                     <h2 class="title">
                         title post 
-                        <a id="show-url" class="link__post" href="/{{ $post->slug }}">
+                        <a target="_blank" id="show-url" class="link__post" href="/{{ $post->slug }}">
                             hiện thị post
                             <i class="hero-icon hero-shield-link-variant-outline"></i>
                         </a>
                     </h2>
-                    <input name="title" type="text" value="{{ old('title', $post->title ) }}" onblur="isExistSlug(this.value)" />
-                    <input class="mt-2" name="slug" type="text" value="{{ old('slug', $post->slug ) }}" onblur="isExistSlug(this.value)"/>
+                    <div class="input-control-link">
+                        <input class="jquery__append-out" name="title" type="text" value="{{ old('title', $post->title ) }}" onblur="isExistSlug(this.value)" />
+                    </div>
+                    <div class="input-control-link js-input-control">
+                        <input class="mt-2 jquery__append-out" name="slug" type="text" value="{{ old('slug', $post->slug ) }}" readonly onblur="isExistSlug(this.value)"/>
+                        <button type="button" class="btn__edit-slug" onclick="toggleEditSlugLink(this)">
+                            <i id="js-toggle-icon-edit" class="hero-icon hero-shield-link-variant-outline"></i>
+                            <i id="js-toggle-icon-key" class="hero-icon hero-shield-edit-outline d-none"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
             
@@ -78,7 +96,10 @@
                 <div class="col-12 bg-color-white shadows-1 px-3 py-3">
                     <h2 class="title">hình ảnh SEO</h2>
                     <div class="position-relative wrapper__selectImageWithCKFinder type-select-ckfinder__inline">
-                        <input name="image_seo" class="img__outputCKFinder" type="text" value="{{ old('image_seo', $post->image_seo) }}" />
+                        <input name="image_seo" class="img__outputCKFinder jquery__append-out" type="text" 
+                            value="{{ old('image_seo', $post->image_seo) }}" 
+                            onblur="showImage__InputCKFinder( this.value, this )" 
+                            onclick="this.setSelectionRange(0, this.value.length)"/>
                         <button class="btn bg-cyan bd-cyan text-white btn-input-append" 
                         type="button" onclick="selectImageWithCKFinder(this)">chọn ảnh</button>
                     </div>
@@ -86,29 +107,34 @@
             </div>
             <div class="row block-content">
                 <div class="col-12 bg-color-white shadows-1 px-3 py-3">
-                    <h2 class="title">meta description</h2>
+                    <h2 class="title">meta description ( <span class="italic text-xs normal-case">* nếu không nhập sẽ tự động lấy của phần nội dung</span> )</h2>
                     <textarea class="height-80px" name="description_seo" cols="30" rows="10">{{ old('description_seo', $post->description_seo) }}</textarea>
                 </div>
             </div>
             <div class="row block-content">
                 <div class="col-12 bg-color-white shadows-1 px-3 py-3">
                     <h2 class="title">meta css</h2>
-                    <textarea class="height-80px" name="stylesheet" cols="30" rows="10">{{ old('stylesheet', $post->stylesheet) }}</textarea>
+                    <textarea class="min-height-80px" name="stylesheet" cols="30" rows="10">{{ old('stylesheet', $post->stylesheet) }}</textarea>
                 </div>
             </div>
             <div class="row block-content">
                 <div class="col-12 bg-color-white shadows-1 px-3 py-3">
                     <h2 class="title">meta javascript</h2>
-                    <textarea class="height-80px" name="javascript" cols="30" rows="10">{{ old('javascript', $post->javascript) }}</textarea>
+                    <textarea class="min-height-80px" name="javascript" cols="30" rows="10">{{ old('javascript', $post->javascript) }}</textarea>
+                </div>
+            </div>
+            <div class="row block-content">
+                <div class="col-12 bg-color-white shadows-1 px-3 py-3">
+                    <h2 class="title">render howto json</h2>
+                    <select name="showto" class="js__single-select">
+                        <option @if($showto == Config::get('constant.LDJSON.HIDE')) selected @endif value="{{Config::get('constant.LDJSON.HIDE')}}">không tạo howto json trong bài viết</option>
+                        <option @if($showto == Config::get('constant.LDJSON.SHOW')) selected @endif value="{{Config::get('constant.LDJSON.SHOW')}}">tạo howto json trong bài viết</option>
+                    </select>
+                    <textarea id="js__json-how-to" class="min-height-80px mt-2" name="howto" cols="30" >{{ old('howto', $howto ) }}</textarea>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
-            @if(
-                Illuminate\Support\Facades\Gate::allows('insert') || 
-                Illuminate\Support\Facades\Gate::allows('edit') || 
-                Illuminate\Support\Facades\Gate::allows('censor')
-                )
             <div class="row block-content">
                 <div class="col-12 bg-color-white shadows-1 px-3 py-3">
                     <section class="pb-4">
@@ -116,12 +142,10 @@
                         @if($topics)
                         <select name="public" class="js__single-select">
                             <option value="">chọn kiểu lưu</option>
-                            @if(Illuminate\Support\Facades\Gate::allows('censor'))
                             <option @if(old('public', $post->public) == Config::get('constant.TYPE_SAVE.PUBLIC')) {{ 'selected' }} @endif
                             value="{{ Config::get('constant.TYPE_SAVE.PUBLIC') }}">
                                 công khai
                             </option>
-                            @endif
                             <option @if(old('public', $post->public) == Config::get('constant.TYPE_SAVE.ADMIN_READ')) {{ 'selected' }} @endif
                             value="{{ Config::get('constant.TYPE_SAVE.ADMIN_READ') }}">
                                 chỉ admin xem
@@ -137,7 +161,6 @@
                     </section>
                 </div>
             </div>
-            @endif
             <div class="row block-content">
                 <div class="col-12 bg-color-white shadows-1 px-3 py-3">
                     <section class="pb-4">
@@ -196,6 +219,7 @@
                         </select>
                         @endif
                         <input class="mt-2" name="rate_value" value="{{ old('rate_value', $post->rate_value) }}"/>
+                        <input class="mt-2" name="rate_review_body" value="{{ old('rate_review_body', $post->rate_review_body) }}"/>
                     </section>
                 </div>
             </div>
@@ -210,7 +234,9 @@
                             </button>
                         </div>
                         <div class="group-control-img-ckfinder">
-                            <input name="background" class="img__outputCKFinder thumbnail-topic pb-2" 
+                            <input name="background" class="img__outputCKFinder thumbnail-topic mb-2" 
+                                onblur="showImage__InputCKFinder( this.value, this )"
+                                onclick="this.setSelectionRange(0, this.value.length)"
                                 type="text" value="{{ old('background', $post->background) }}" />
                         </div>
                     </section>
@@ -227,7 +253,9 @@
                             </button>
                         </div>
                         <div class="group-control-img-ckfinder">
-                            <input name="thumbnail" class="img__outputCKFinder thumbnail-topic pb-2" 
+                            <input name="thumbnail" class="img__outputCKFinder thumbnail-topic mb-2" 
+                                onblur="showImage__InputCKFinder( this.value, this )"
+                                onclick="this.setSelectionRange(0, this.value.length)"
                                 type="text" value="{{ old('thumbnail', $post->thumbnail) }}" />
                         </div>
                     </section>
@@ -235,6 +263,21 @@
             </div>
         </div>
     </form>
+    @if ($howto)
+    <div class="row block-content">
+                
+        <div class="col-12 bg-color-white shadows-1 px-3 py-3 foundation">
+            <div class='medium-12-columns'>
+                <span id='valid_indicator' class='label'></span>
+                <button type="button" id='js__save-json-textarea' class='tiny'>Lưu Json</button>
+            </div>
+            <div class='row'>
+                <div id='editor_holder' class='medium-12 columns'></div>
+            </div>
+        </div>
+    </div>
+    @endif
 </div>
+
 
 @endsection

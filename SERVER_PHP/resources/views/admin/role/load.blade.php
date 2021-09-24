@@ -4,7 +4,7 @@
 
 @section('javascripts')
     <script src="{{ asset('js/library/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/admin/app.min.js') }}"></script>
+    <script src="{{ asset('js/admin/app.js') }}"></script>
     <script>
         var ADMIN_DELETE_ROLE = "{{ Route('ADMIN_DELETE_ROLE', ['id' => null ])}}";
         function deleteComponent( id, element ){
@@ -73,7 +73,7 @@
             @endforeach
 
             <div class="pagi">
-                {{ $roles->onEachSide(3)->links() }}
+                {{ $roles->onEachSide(3)->links("pagination::default") }}
             </div>
 
         </div>
