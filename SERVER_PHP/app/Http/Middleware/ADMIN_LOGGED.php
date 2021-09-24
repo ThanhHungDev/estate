@@ -32,7 +32,7 @@ class ADMIN_LOGGED
                         "email" => $objectUser->email,
                         "role_id" => $objectUser->role_id
                     );
-                    $_SESSION['user'] = $user;
+                    $_SESSION['admin_ckfinder'] = $user;
                 }
     
                 return $next($request);

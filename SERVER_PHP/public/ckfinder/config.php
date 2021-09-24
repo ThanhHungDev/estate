@@ -28,7 +28,7 @@ $config = array();
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_authentication
 
 $config['authentication'] = function () {
-    $user = $_SESSION['user'];
+    $user = $_SESSION['admin_ckfinder'];
     if($user){
         return true;
     }
@@ -132,7 +132,7 @@ $config['resourceTypes'][] = array(
 $config['roleSessionVar'] = 'CKFinder_UserRole';
 
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_accessControl
-$user = $_SESSION['user'];
+$user = $_SESSION['admin_ckfinder'];
 if($user['role_id'] == 1 ){
     /// supper admin
     $config['accessControl'][] = Array(

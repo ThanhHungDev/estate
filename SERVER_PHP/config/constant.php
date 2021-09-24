@@ -18,6 +18,11 @@ return [
         'HOUSE' => 2,
         'LAND' => 1,
     ],
+    'SALE_TYPE' => [
+        'DEFAULT' => 1,
+        'STAFF'   => 2,
+        'OWNER'   => 3,
+    ],
     'LDJSON' => [
         'HIDE' => 1,
         'SHOW' => 2,

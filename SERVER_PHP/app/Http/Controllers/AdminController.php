@@ -68,8 +68,9 @@ class AdminController extends Controller
         }
         
         $dataLogin = array(
-            'email' => strtolower($request->input('email')), 
-            'password' => $request->input('password') 
+            'email'    => strtolower($request->input('email')),
+            'password' => $request->input('password'),
+            'role_id'  => Config::get('constant.ROLE.ADMIN')
         );
         /// luôn ghi nhớ password trong session
         if (Auth::attempt( $dataLogin, false ))
@@ -109,7 +110,7 @@ class AdminController extends Controller
         if (session_id() == '') {
             @session_start();
         }
-        $_SESSION['user'] = null;
+        $_SESSION['admin_ckfinder'] = null;
         return redirect()->route('ADMIN_LOGIN');
     }
 

@@ -24,6 +24,7 @@ class REQUEST_INFORMATION
      */
     public function handle($request, Closure $next)
     {
+        return $next($request);
         $method = strtoupper($request->method());
         if(!in_array($method, self::METHOD_SAVE )){
             return $next($request);

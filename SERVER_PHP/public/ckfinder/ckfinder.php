@@ -11,7 +11,7 @@
 if (session_id() == '') {
     @session_start();
 }
-$auth = $_SESSION['user'];
+$auth = $_SESSION['admin_ckfinder'];
 ?>
 <!DOCTYPE html>
 <!--
