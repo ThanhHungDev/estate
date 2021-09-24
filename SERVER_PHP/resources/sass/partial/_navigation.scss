@@ -1,0 +1,59 @@
+@import "./search_header";
+
+.navigate{
+    display: flex;
+    justify-content: flex-end;
+    margin: 0;
+    padding: 0;
+
+    &__link{
+        font-size: 15px;
+        font-weight: 500;
+        text-transform: uppercase;
+        list-style-type: none;
+        display: inline-block;
+        padding: 10px 20px 6px 20px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        @include ScreenMax( MD ){
+            padding: 10px 10px 6px 10px;
+            font-size: 13px;
+        }
+        a, span{
+            color: $green-dark;
+
+            &:hover{
+                color: color-level($green-dark, -8)
+            }
+        }
+        &.search{
+            padding: 0;
+        }
+    }
+}
+
+@include ScreenMax( SM ){
+    .menu.show .navigate{ right: 0; }
+    .navigate{
+        position: fixed;
+        z-index: 111111;
+        width: 320px;
+        top: 0;
+        bottom: 0;
+        right: -320px;
+        display: block;
+        overflow: auto;
+        transition: all .5s ease;
+        background-color: $white;
+        padding: 20px;
+        box-shadow: -10px 0 20px -10px rgb(0 0 0 / 10%);
+
+        &__link{
+            display: block;
+            &.search {
+                display: none;
+            }
+        }
+    }
+}

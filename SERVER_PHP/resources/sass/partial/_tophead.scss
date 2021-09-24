@@ -1,0 +1,101 @@
+@import "../library/awesome/awe_reboot";
+@import "../library/awesome/brands";
+@import '../library/awesome/brands';
+@import '../library/awesome/duotone';
+@import '../library/awesome/light';
+@import '../library/awesome/regular';
+@import '../library/awesome/solid';
+
+.tophead{
+    line-height: 1.7;
+    font-family: Roboto,sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    
+    border-top: 3px solid $green_light;
+    background-color: $green_dark;
+    color: $white;
+    @include clearfix();
+}
+.social{
+    display: inline-block;
+    padding: 0 20px;
+
+    svg{
+        width: 16px;
+        vertical-align: middle;
+    }
+
+    &__link{
+        display: inline-block;
+        padding: 0 5px;
+        color: #20c997;
+    }
+}
+
+ul.contact{
+    
+    float: right;
+    padding: 0 25px;
+    margin: 0;
+
+    li{
+        display: inline-block;
+        padding-right: 15px;
+
+        a{
+            display: inline-block;
+
+            &.map{
+                i {
+                    color: #bb868b;
+
+                    
+                }
+                &:hover i{
+                    color: #927c7e;
+                }
+            }
+            &.phone{
+                i {
+                    color: #bba886;
+
+                    
+                }
+                &:hover i{
+                    color: #92907c;
+                }
+            }
+            span{
+                color: $gray-500;
+            }
+        }
+    }
+}
+
+
+@include Responsive(SM){
+
+    .social{
+        padding-top: 2px;
+        text-align: center;
+        line-height: 1;
+    }
+    ul.contact{
+        display: inline-block;
+        float: none;
+        text-align: center;
+        line-height: 1.1;
+        padding: 2px 5px;
+
+        li{
+            padding-right: 5px;
+        }
+    }
+}
+@include Responsive(XS){
+
+    .social{
+        display: none;
+    }
+}
