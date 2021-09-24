@@ -23,6 +23,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // if(!$this->app->runningInConsole()){
+        //     $baseModel  = new BaseModel();
+        //     $topicModel = $baseModel->createTopicModel();
+        //     $tagModel   = $baseModel->createTagModel();
+    
+        //     $allTopic = $topicModel->get(['id', 'slug', 'name']);
+        //     $allTag   = $tagModel->get(['id', 'slug', 'name']);
+            
+        //     View::share('allTopic', $allTopic);
+        //     View::share('allTag', $allTag);
+        // }
     }
 }

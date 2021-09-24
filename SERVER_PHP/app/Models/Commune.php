@@ -8,4 +8,9 @@ class Commune extends Model
 {
     protected $table = 'communes';
     public $timestamps = false;
+
+    public function district(){
+
+        return $this->belongsTo( District::class, 'district_id');
+    }
 }

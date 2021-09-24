@@ -1,49 +1,45 @@
 <div class="wrapper-navigate">
-    <div  class="menu__mobile_close">
-        <i id="js_menu__mobile_close" class="menu__mobile_close__icon fad fa-window-close"></i>
-    </div>
+
+    
     <ul class="navigate">
+        <li class="navigate__link search">
+            @include('client.partial.formsearch')
+        </li>
+        <li class="navigate__link text-right mobile">
+            <i id="js_menu__mobile_close" class="burger active">
+                <span></span>
+            </i>
+        </li>
         <li class="navigate__link {{ SupportRouter::fillClassActive('active', 'HOME_PAGE') }}">
             <a href="{{ Route('HOME_PAGE') }}">
-                <i class="fal fa-home"></i>
                 <span class="title">Trang Chủ</span>
             </a>
         </li>
-        <li class="navigate__link {{ SupportRouter::fillClassActive('active', 'VIEW_POST_NEWS') }}">
-            <a href="{{ Route('VIEW_POST_NEWS') }}">
-                <i class="fal fa-newspaper"></i>
-                <span class="title">Tin Tức</span>
-            </a>
-        </li>
-        <li class="navigate__link {{ SupportRouter::fillClassActive('active', 'FAVOURITES') }}">
-            <a href="{{ Route('FAVOURITES') }}">
-                <i class="fal fa-heart"></i>
-                <span class="title">Đã Thích</span>
+        <li class="navigate__link {{ SupportRouter::fillClassActive('active', 'PTAG_VIEW_SEARCH') }}">
+            <a href="{{ Route('PTAG_VIEW_SEARCH', ['slug' => SupportString::createSlug(SupportDB::getOption('menu-tag-one')) ]) }}">
+                <span class="title">{{ SupportDB::getOption('menu-tag-one') }}</span>
             </a>
         </li>
         <li class="navigate__link {{ SupportRouter::fillClassActive('active', 'USER_POST') }}">
-            <a href="{{ Route('USER_POST') }}">
-                <i class="fal fa-layer-plus"></i>
-                <span class="title">Đăng bài</span>
+            <a href="{{ Route('PTAG_VIEW_SEARCH', ['slug' => SupportString::createSlug(SupportDB::getOption('menu-tag-two')) ]) }}">
+                <span class="title">{{ SupportDB::getOption('menu-tag-two') }}</span>
             </a>
         </li>
-        @auth
-        <li class="navigate__link btn-logout-header">
-            <a href="{{ Route('LOGOUT') }}">
-                <i class="fal fa-sign-out-alt"></i>
-                <span class="title">đăng xuất</span>
+        <li class="navigate__link {{ SupportRouter::fillClassActive('active', 'USER_POST') }}">
+            <a href="{{ Route('PTAG_VIEW_SEARCH', ['slug' => SupportString::createSlug(SupportDB::getOption('menu-tag-three')) ]) }}">
+                <span class="title">{{ SupportDB::getOption('menu-tag-three') }}</span>
             </a>
         </li>
-        @endauth
-        @guest
-        <li class="navigate__link {{ SupportRouter::fillClassActive('active', 'REGISTER') }}">
-            <a href="{{ Route('REGISTER') }}">
-                <i class="fal fa-user-plus"></i>
-                <span class="title">đăng ký</span>
+        <li class="navigate__link {{ SupportRouter::fillClassActive('active', 'NEWS_PAGE') }}">
+            <a href="{{ Route('NEWS_PAGE') }}">
+                <span class="title">Tin Tức</span>
             </a>
         </li>
-        @endguest
+        <li class="navigate__link {{ SupportRouter::fillClassActive('active', 'CONTACT_PAGE') }}">
+            <a href="{{ Route('CONTACT_PAGE') }}">
+                <span class="title">Liên Hệ</span>
+            </a>
+        </li>
     </ul>
-    @include('client.partial.submenu')
 </div>
 

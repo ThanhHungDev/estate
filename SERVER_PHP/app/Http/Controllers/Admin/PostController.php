@@ -2,15 +2,26 @@
 
 namespace App\Http\Controllers\Admin;
 
+
+use App\Helpers\SupportJson;
 use App\Helpers\SupportString;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\ADMIN_VALIDATE_SAVE_POST;
 use App\Libraries\Catalogue;
-use Error;
+use App\Mail\MailPosting;
+use App\Models\Post;
+use App\Models\PostTagActive;
+use App\Models\Rating;
+use App\Models\Tag;
+use App\Models\Topic;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class PostController extends Controller
 {
@@ -22,18 +33,25 @@ class PostController extends Controller
      */
     public function index( $id = 0 ){
 
-        $topics  = $this->model->createTopicModel()->getAll();
-        $tags    = $this->model->createTagModel()->getAll();
-        $rates   = $this->model->createRatingModel()->getAll();
+        $user_id = Auth::user()->id;
+        $topics  = (new Topic())->all();
+        $tags    = (new Tag())->all();
+
+        $rates   = (new Rating())->all();
 
         if( !$id ){
             /// thêm mới
-            $post    = $this->model->createPostModel()->getInstanceEmpty();
+            $post    = new Post();
             $tags_id = 0;
         }else{
             //// edit 
-            $post    = $this->model->createPostModel()->find($id);
-            $tags_id = $this->model->createPostTagActiveModel()->getByPost($id);
+            $post    = (new Post())
+            ->getPostById($id, [
+                DB::raw("ldjson->>'showto' as showto"),
+                DB::raw("ldjson->>'howto' as howto"),
+                '*'
+            ]);
+            $tags_id = (new PostTagActive())->where('post_id', $id)->pluck('tag_id');
             if( !$post ){
                 //// redirect 404
                 return abort(404);
@@ -47,42 +65,54 @@ class PostController extends Controller
     public function save(ADMIN_VALIDATE_SAVE_POST $request, $id = 0){
 
         ///setting data insert table post
-        $postInput = $request->only('topic_id', 'rating_id', 'rate_value', 'title', 'slug', 'excerpt', 
-        'content', 'background', 'thumbnail', 'public', 'site_name', 
+        $postInput = $request->only('topic_id', 'rating_id', 'rate_value', 'rate_review_body', 'title', 'slug', 'excerpt', 
+        'content', 'background', 'thumbnail', 'public', 'site_name', 'howto', 'showto',
         'image_seo', 'description_seo', 'type', 'stylesheet', 'javascript');
 
-
-        /// check permission 
-        if( !Gate::allows('insert') && !Gate::allows('edit') && !Gate::allows('censor') ){
-            
-            abort('403', 'Permission denied');
-        }
-        if( !$id && !Gate::allows('insert') ){
-
-            abort('403', 'Permission denied');
-        }
-        if( $id && !Gate::allows('edit') ){
-            
-            abort('403', 'Permission denied');
-        }
-        if( 
-            $postInput['public'] == Config::get('constant.TYPE_SAVE.PUBLIC') && 
-            !Gate::allows('censor')
-            ){
-                abort('403', 'Permission denied');
-        }
+        $postInput['user_id'] = Auth::user()->id;
+        $postInput['content'] = SupportString::createEmoji($postInput['content']);
 
         /// create catalogue
-                   $catalogue   = Catalogue::generate($postInput['content']);
-        $postInput['content']   = $catalogue->text;
-        $postInput['catalogue'] = $catalogue->catalogue;
+                   $catalogue        = Catalogue::generate($postInput['content']);
+        $postInput['content']        = $catalogue->text;
+        $postInput['text_content']   = SupportString::cleanText($postInput['content']);
+
+        $postInput['catalogue']      = $catalogue->catalogue;
+        $postInput['text_catalogue'] = $catalogue->text_catalogue;
+
+        $postInput['description_seo'] = SupportString::createDescription($postInput['description_seo'], $catalogue->text_catalogue);
+
+        /// if howto-json null => render new 
+        if(!trim($postInput['howto'])){
+
+            $postInput['ldjson'] = [
+                'showto' => $postInput['showto'],
+                'howto' => SupportJson::createJsonHowTo(
+                    Route('POST_VIEW', ['slug' => $postInput['slug']]),
+                    $postInput['title'],
+                    $postInput['description_seo'],
+                    $postInput['content'],
+                    $postInput['image_seo']
+                )
+            ];
+        }else{
+
+            $postInput['ldjson'] = [
+                'showto' => $postInput['showto'],
+                'howto'  => json_decode($postInput['howto'])
+            ];
+        }
+        if( !$postInput['rate_value'] ){
+            unset($postInput['rating_id']);
+            unset($postInput['rate_value']);
+        }
+        unset($postInput['howto']);
+        unset($postInput['showto']);
 
         /// create style
         $postInput['stylesheet'] = SupportString::minimizeCSSsimple($postInput['stylesheet']);
         /// create javascript
         $postInput['javascript'] = SupportString::minimizeJavascriptSimple($postInput['javascript']);
-        /// set id save post 
-        $postInput['id'] = $id;
         
         try{
             if( !$id && $this->checkSlugExist( $postInput['slug'] )){
@@ -90,14 +120,20 @@ class PostController extends Controller
                 throw new Exception('thêm mới nhưng slug đã tồn tại');
             }
             /// create instance Post Model 
-            $post          = $this->model->createPostModel();
-            $postTagActive = $this->model->createPostTagActiveModel();
+            // $post          = new Post();
+            $postTagActive = new PostTagActive();
 
-            $post->save($postInput);
+            $post = Post::find( $id );
+            if( !$post ){
+                $post = Post::create( $postInput );
+            }else{
+                $post->fill($postInput)->save();
+            }
+            
 
-            $postId = $post->getModelInstance()->id;
+            $postId = $post->id;
             /// save tag of post 
-            $postTagActive->removeByPostId($postId);
+            $postTagActive->where('post_id', $postId)->delete();
 
             $tagsInput      = $request->tag_id;
             if( $tagsInput ){
@@ -108,6 +144,41 @@ class PostController extends Controller
                 );
                 $postTagActive->insert($tagsDataInsert);
             }
+            /// đây là user
+            // try {
+            //     $auth       = Auth::user();
+            //     $emailAdmin = env('MAIL_TO_ADMIN', 'thanhhung.code@gmail.com');
+            //     $dataMail   = array(
+            //         'email'        => $auth->email,
+            //         'name'         => $auth->name,
+            //         'message'      => "bạn cần duyệt bài để bài viết được công khai",
+            //         'title'        => $postInput['title'],
+            //         'text_content' => htmlentities(SupportString::limitText($postInput['text_content'], 500))
+            //     );
+            //     Log::channel('posting')->info("QUYỀN USER VỪA ĐĂNG BÀI" . $auth->email . " - " . $auth->name );
+            //     Mail::to(trim($emailAdmin))
+            //     ->send(new MailPosting($dataMail));
+            //     if (Mail::failures()) {
+    
+            //         Log::channel('mail')->info("lỗi post bài $emailAdmin, không thể liên lạc với quản trị viên.");
+            //     }
+            //     $dataMail = array(
+            //         'email'        => $auth->email,
+            //         'name'         => $auth->name,
+            //         'message'      => "Cảm ơn bạn đã đồng hành cùng " . Config::get('app.company_name') . ". Admin sẽ cố gắng duyệt bài sớm nhất có thể",
+            //         'title'        => $postInput['title'],
+            //         'text_content' => htmlentities(SupportString::limitText($postInput['text_content'], 500))
+            //     );
+            //     Log::channel('posting')->info("QUYỀN USER VỪA ĐĂNG BÀI" . $auth->email . " - " . $auth->name );
+            //     Mail::to(trim($auth->contact))
+            //     ->send(new MailPosting($dataMail));
+            //     if (Mail::failures()) {
+    
+            //         Log::channel('mail')->info("lỗi post bài $auth->contact, không thể liên lạc với quản trị viên.");
+            //     }
+            // } catch (\Throwable $th) {
+            //     //throw $th;
+            // }
 
             $request->session()->flash(Config::get('constant.SAVE_SUCCESS'), true);
             return redirect()->route('ADMIN_STORE_POST',  ['id' => $postId]);
@@ -126,14 +197,22 @@ class PostController extends Controller
      */
     public function load(Request $request){
         $limit      = 10;
-        $postModel  = $this->model->createPostModel();
-        $topicModel = $this->model->createTopicModel();
-        $topics     = $topicModel->getAll();
-        $query      = $request->all('topic', 'post');
+        $user_id    = Auth::user()->id;
+        $postModel  = new Post();
+        $topicModel = new Topic();
 
+
+        $user_id    = Auth::user()->id;
+        $conditionTopic = array();
         $condition = [
             'orderby' => [ 'field' => 'id', 'type' => 'DESC' ]
         ];
+
+        $topics     = $topicModel->getTopicByCondition($conditionTopic)->get();
+
+        $query      = $request->all('topic', 'post');
+
+        
 
         if($query['topic']){
             
@@ -168,7 +247,7 @@ class PostController extends Controller
      */
     public function delete($id = 0){
 
-        $this->model->createPostModel()->find($id)->delete();
+        Post::find($id)->delete();
 
         $status = 200;
         $response = array( 'status' => $status, 'message' => 'success' );
@@ -186,7 +265,7 @@ class PostController extends Controller
         $message = 'success';
         $query = $request->all([ 'sort' ]);
         try {
-            $post = $this->model->createPostModel()->find($id);
+            $post = (new Post())->find($id);
             $post->sort = (int)$query['sort'];
             $post->save();
         } catch (\Throwable $th) {

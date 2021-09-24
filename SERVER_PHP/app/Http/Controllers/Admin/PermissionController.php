@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Permission;
 use Illuminate\Http\Request;
 
 class PermissionController extends Controller
@@ -14,7 +15,7 @@ class PermissionController extends Controller
      */
     public function load(){
         $limit = 10;
-        $permissions = $this->model->createPermissionModel()->paginate( $limit );
+        $permissions = Permission::paginate( $limit );
         return view('admin.permission.load', compact(['permissions']));
     }
 }

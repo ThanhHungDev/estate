@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Option;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
 
 class OptionController extends Controller
 {
@@ -15,7 +17,7 @@ class OptionController extends Controller
      */
     public function index(){
 
-        $options  = $this->model->createOptionModel()->getAll();
+        $options  = Option::all();
         return view('admin.option.save', compact([ 'options' ]));
     }
 
@@ -25,32 +27,35 @@ class OptionController extends Controller
         ///setting data insert table post
         $optionInput = $request->only('key', 'type', 'value_text', 'value_html');
         
+        // Start transaction!
+        DB::beginTransaction();
         try{
             /// create instance Post Model 
-            $option = $this->model->createOptionModel();
+            $option = new Option();
             $option->truncate();
 
             $optionInputs = [];
-            if($optionInput && count($optionInput['key'])){
-
-                for ($i=0; $i < count($optionInput['key']); $i++) { 
+            
+            for ($i=0; $i < count($optionInput['key']); $i++) { 
                 
-                    $optionInputs[] = [
-                        'key' => trim($optionInput['key'][$i]),
-                        'type' => $optionInput['type'][$i],
-                        'value_text' => $optionInput['value_text'][$i],
-                        'value_html' => $optionInput['value_html'][$i]
-                    ];
-                }
-                $option->insert($optionInputs);
+                $optionInputs[] = [
+                    'key'        => trim($optionInput['key'][$i]),
+                    'type'       => $optionInput['type'][$i],
+                    'value_text' => $optionInput['value_text'][$i],
+                    'value_html' => $optionInput['value_html'][$i]
+                ];
             }
-            
+            $option->insert($optionInputs);
             
 
+            DB::commit();
             $request->session()->flash(Config::get('constant.SAVE_SUCCESS'), true);
             return redirect()->route('ADMIN_STORE_OPTION');
 
         }catch (\Exception $e){
+            // Rollback db
+            DB::rollback();
+            
             return redirect()->back()
             ->with(Config::get('constant.SAVE_ERROR'), 'đã có lỗi: '.$e->getMessage())
             ->withInput($request->all());

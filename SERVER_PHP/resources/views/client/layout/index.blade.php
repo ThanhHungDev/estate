@@ -13,40 +13,11 @@
 
     <link rel="alternate" type="application/rss+xml" title="{{ Config::get('app.alternate_name') }}" href="" />
 
-
-    {{-- <link rel="preload" href="/font/font-awe/webfonts/fa-brands-400.woff2" as="font" />
-    <link rel="preload" href="/font/font-awe/webfonts/fa-duotone-900.woff2" as="font" />
-    <link rel="preload" href="/font/font-awe/webfonts/fa-light-300.woff2" as="font" />
-    <link rel="preload" href="/font/font-awe/webfonts/fa-regular-400.woff2" as="font" />
-    <link rel="preload" href="/font/font-awe/webfonts/fa-solid-900.woff2" as="font" /> --}}
-    <link rel="preload" as="style" href="{{ asset('css/animate.min.css' . Config::get('app.version')) }}">
-    <link rel="preload" as="style" href="{{ asset('css/awesome.min.css' . Config::get('app.version')) }}">
-    <link rel="preload" as="style" href="{{ asset('css/client.min.css' . Config::get('app.version')) }}">
-    <link rel="preload" as="style" href="{{ asset('css/library.min.css' . Config::get('app.version')) }}">
-    <link rel="preload" as="image" href="{{ asset('logo.png' . Config::get('app.version')) }}">
-    
-    <link rel="preload" as="script" href="{{ asset('js/library/jquery.min.js' . Config::get('app.version')) }}">
-    <link rel="preload" as="script" href="{{ asset('js/library/tipped.min.js' . Config::get('app.version')) }}">
-    <link rel="preload" as="script" href="{{ asset('js/library/modal.jquery.min.js' . Config::get('app.version')) }}">
-    {{-- <link rel="preload" as="script" href="{{ asset('js/library/slick.min.js' . Config::get('app.version')) }}"> --}}
-    <link rel="preload" as="script" href="{{ asset('js/app.min.js' . Config::get('app.version')) }}">
-    
-    {{-- <script rel="preload" as="script" src="{{ asset('js/library/jquery.min.js' . Config::get('app.version')) }}"></script> --}}
-    {{-- <script rel="preload" as="script" src="{{ asset('js/app.min.js' . Config::get('app.version')) }}"></script> --}}
     @yield('preload')
-
-  
     <link rel="stylesheet" href="{{ asset('css/library/bootstrap.min.css' . Config::get('app.version'))}}">
-    {{-- <link rel="stylesheet" href="{{ asset('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' . Config::get('app.version'))}}"> --}}
-    
-
-    <link rel="stylesheet" href="{{ asset('css/animate.min.css' . Config::get('app.version'))}}">
-    <link rel="stylesheet" href="{{ asset('css/awesome.min.css' . Config::get('app.version'))}}">
-    <link rel="stylesheet" href="{{ asset('css/client.min.css' . Config::get('app.version'))}}">
-    <link rel="stylesheet" href="{{ asset('css/library.min.css' . Config::get('app.version'))}}">
-    {{-- <link rel="stylesheet" href="{{ asset('css/material.min.css' . Config::get('app.version'))}}"> --}}
-    
     <link rel="stylesheet" href="{{ asset('css/library/tipped.css' . Config::get('app.version'))}}">
+    
+    @yield('stylesheets')
     
     <script async='async' defer='defer' src="{{ asset('js/library/lazysizes.min.js' . Config::get('app.version')) }}"></script>
     
@@ -87,34 +58,8 @@
         const MAP_LONG = "{{ Config::get('app.map_long') }}";
         const GOOGLE_PLACES_API = `{{ env('GOOGLE_PLACES_API') }}`;
     </script>
-    @php 
-    $configApp = Config::get('app');
-    $configApp['providers'] = [];
-    $configApp['aliases'] = [];
-    $configApp['API'] = [
-        'UPDATE_VERIFY_PHONE' => Route('API.USER.PATCH_VERIFY_PHONE'),
-        'DISTRICTS' => Route('DISTRICTS'),
-        'COMMUNES' => Route('COMMUNES'),
-        'PROVINCES' => Route('PROVINCES'),
-        'API_UPLOAD_FILE' => Route('API_UPLOAD_FILE'),
-        'APARTMENT_PROJECTS' => Route('APARTMENT_PROJECTS'),
-        'APARTMENT_PROJECT_DETAIL' => Route('APARTMENT_PROJECT_DETAIL', [ 'id' => null ]),
-    ];
-    $configApp['WEB'] = [
-        'PATCH_VERIFY_PHONE' => Route('PATCH_VERIFY_PHONE'),
-        'LOGOUT' => Route('LOGOUT'),
-        'USER_POST' =>  Route('USER_POST', ['path' => null ], false ),
-    ];
-    $configApp['CONSTANT'] = Config::get('constant');
-    $configApp['IMAGE'] = Config::get('image.UPLOAD');
-    $configApp['VIDEO'] = Config::get('video.UPLOAD');
-    @endphp
-    <script>
-        const CONFIG_APP = `{!! json_encode($configApp) !!}`;
-        const CATEGORIES = `{!! json_encode($categories ?? []) !!}`;
-    </script>
 
-    {{-- @php $analatic_key = Config::get("app.analatic") @endphp
+    @php $analatic_key = Config::get("app.analatic") @endphp
     @if($analatic_key)
     <script async src="https://www.googletagmanager.com/gtag/js?id={{ $analatic_key }}"></script>
     <script>
@@ -124,9 +69,9 @@
 
         gtag('config', "{{ $analatic_key }}");
     </script>
-    @endif --}}
+    @endif
 
-    @yield('stylesheets')
+    
 </head>
 <body>
     
@@ -141,121 +86,12 @@
 
 
 
-    <!-- Modal HTML embedded directly into document -->
-    <div id="modal__notification" class="modal modal__notification">
-        <div class="modal__header">
-            <i class="icon far @if(Auth::check()) fa-bell-on @else fa-sign-in @endif"></i>
-            <span class="title">Thông báo! </span>
-            <a href="#" rel="modal:close">
-                <i class="close fal fa-times"></i>
-            </a>
-        </div>
-        <div class="modal__body">
-            <div class="notification">
-                @php $NOTIFICATIONS = SupportDBRealtime::getNotifications() @endphp
-                @if (count($NOTIFICATIONS))
-                @foreach ($NOTIFICATIONS as $noti)
-                <a class="notification__content {{ $noti->read? 'read' : null }} {{ $noti->channel_id }}" href="#">
-                    <div class="icon ">
-                        <i class="fad fa-comments-alt"></i>
-                    </div>
-                    <div class="notification__item">
-                        <h4 class="title">{{ $noti->title }}</h4>
-                        <p class="info">{{ $noti->body }}</p>
-                        @if(!$noti->read)
-                            <span class="sticky__none-read"></span>
-                        @endif
-                    </div>
-                </a>
-                @endforeach
-                @else
-                <div class="notification__content-404">
-                    không có thông báo
-                </div>
-                @endif
-            </div>
-        </div>
-        <div class="modal__footer">
-            <a class="btn btn__close" href="#" rel="modal:close">
-                Hiện thị tất cả
-            </a>
-        </div>
-    </div>
-    <!-- Modal HTML embedded directly into document -->
-    <div id="modal__messages" class="modal modal__notification">
-        <div class="modal__header">
-            <i class="icon far @if(Auth::check()) fa-bell-on @else fa-sign-in @endif"></i>
-            <span class="title">Tin nhắn chưa đọc! </span>
-            <a href="#" rel="modal:close">
-                <i class="close fal fa-times"></i>
-            </a>
-        </div>
-        <div class="modal__body">
-            <div class="notification">
-                @php $MESSAGES = SupportDBRealtime::getMessages() @endphp
-                @if (count($MESSAGES))
-                @foreach ($MESSAGES as $mess)
-                <a class="notification__content {{ $mess->read? 'read' : null }}" href="#">
-                    <div class="icon ">
-                        <i class="fad fa-comments-alt"></i>
-                    </div>
-                    <div class="notification__item">
-                        <h4 class="title">{{ $mess->body }}</h4>
-                        <p class="info">{{ $mess->body }}</p>
-                        @if(!$mess->read)
-                            <span class="sticky__none-read"></span>
-                        @endif
-                    </div>
-                </a>
-                @endforeach
-                @else
-                <div class="notification__content-404">
-                    không có tin nhắn mới
-                </div>
-                @endif
-            </div>
-        </div>
-        <div class="modal__footer">
-            <a class="btn btn__close" href="#" rel="modal:close">
-                Hiện thị tất cả
-            </a>
-        </div>
-    </div>
-
-
-
     <script src="{{ asset('js/library/jquery.min.js' . Config::get('app.version')) }}"></script>
     <script src="{{ asset('js/library/tipped.min.js' . Config::get('app.version')) }}"></script>
     <script src="{{ asset('js/library/modal.jquery.min.js' . Config::get('app.version')) }}"></script>
-    {{-- <script src="{{ asset('js/library/slick.min.js' . Config::get('app.version')) }}"></script> --}}
-    <script src="{{ asset('js/app.min.js' . Config::get('app.version')) }}"></script>
+    <script src="{{ asset('js/app.js' . Config::get('app.version')) }}"></script>
     
     @yield('javascripts')
     @yield('make-up-data')
-    {{-- <script type="text/javascript">
-        function generateEmailFormat(){
-            const CHARACTERS = 'abcdefghijklmnopqrstuvwxyz1234567890';
-            var email = '';
-            for( var position = 0; position < 15; position ++ ){
-                string += CHARACTERS[Math.floor(Math.random() * CHARACTERS.length)];
-            }
-            return email + '@' + window.location.hostname + '.gmail'
-        }
-        
-        //// mới vào app luôn check xem cái localStorage tồn tại không? 
-        if(typeof Storage !== "undefined") {
-            // Trình duyệt này hỗ trợ LocalStorage
-            const AUTH = localStorage.getItem('AUTH')
-            if( !AUTH ){
-                /// ngừoi dùng chưa login trình duyệt này
-                /// không biết user này là ai nên phải tạo đại 1 cái user ảo
-                var auth = {
-                    email: generateEmailFormat(),
-                    name : 'free user'
-                }
-                console.log(auth)
-            }
-        }
-    </script> --}}
 </body>
 </html>

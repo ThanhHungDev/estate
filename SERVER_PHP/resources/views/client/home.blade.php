@@ -3,335 +3,511 @@
 @section('title', Config::get("app.name"))
 @section('description', Config::get("app.description"))
 
-@section('meta-seo')
-    <link rel="canonical" href="{{ asset('/') }}" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="{{ Config::get("app.og_name") }}" />
-    <meta property="og:description" content="{{ Config::get("app.og_description") }}" />
-    <meta property="og:url" content="{{ asset('/') }}" />
-    <meta property="og:site_name" content="{{ Config::get("app.og_name") }}" />
-    <meta property="og:image" content="{{ Config::get("app.image") }}" />
-    <meta property="og:image:secure_url" content="{{ Config::get("app.image") }}" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:description" content="{{ Config::get("app.description") }}" />
-    <meta name="twitter:title" content="{{ Config::get("app.og_name") }}" />
-    <meta name="twitter:site" content="{{ Config::get('site_fb') }}" />
-    <meta name="twitter:image" content="{{ Config::get("app.image") }}" />
-@endsection
-
-@section('preload')
-    <link rel="preload" as="script" href="{{ asset('js/library/select2.full.min.js'. Config::get('app.version')) }}">
-@endsection
 
 @section('stylesheets')
-    <link type="text/css" rel="stylesheet" href="{{ asset('css/library/lightgallery.css' . Config::get('app.version')) }}" />
+<link rel="stylesheet" type="text/css" href="{{ asset('css/home.css' . Config::get('app.version'))}}"/>
+<link rel="stylesheet" type="text/css" href="{{ asset('css/library/slick.css' . Config::get('app.version')) }}"/>
+<link rel="stylesheet" type="text/css" href="{{ asset('css/library/slick-theme.css' . Config::get('app.version')) }}"/>
+<link rel="stylesheet" type="text/css" href="{{ asset('css/library/lightgallery.css' . Config::get('app.version')) }}" />
 @endsection
+
 
 @section('javascripts')
-    <script src="{{ asset('/js/library/nouislider.min.js' . Config::get('app.version')) }}"></script>
-    <script>
-        const PROVINCES = JSON.parse(`{!! $provinces ?? [] !!}`);
-        /// để select 2 trong app.js có thể nạp lên thanh search của homepage
-        const ROUTE_DISTRICTS = "{{ Route('DISTRICTS') }}";
-        const ROUTE_COMMUNES  = "{{ Route('COMMUNES') }}";
-    </script>
-    <script src="{{ asset('js/library/select2.full.min.js' . Config::get('app.version')) }}"></script>
-    <script type="text/javascript" src="{{ asset('js/library/lightgallery.min.js' . Config::get('app.version')) }}"></script>
-    <script type="text/javascript">
-        var lightgalleries = document.getElementsByClassName("lightgallery");
-        for (var i = 0; i < lightgalleries.length; i++){
-            lightGallery(lightgalleries[i]);
+
+<script type="text/javascript" src="{{ asset('/js/library/carousel.min.js' . Config::get('app.version')) }}"></script>
+<script type="text/javascript" src="{{ asset('js/library/wow.min.js' . Config::get('app.version')) }}"></script>
+<script type="text/javascript" src="{{ asset('js/library/slick.min.js' . Config::get('app.version')) }}"></script>
+<script type="text/javascript" src="{{ asset('js/library/lightgallery.min.js' . Config::get('app.version')) }}"></script>
+<script>
+    
+    function showLightGaleries(e){
+        console.log("vòa đây nh")
+        $(e).closest('.item').find(".lightgallery img").click()
+    }
+    var lightgalleries = document.getElementsByClassName("lightgallery");
+    for (var i = 0; i < lightgalleries.length; i++){
+        lightGallery(lightgalleries[i]);
+    }
+
+	$(document).ready(function(){
+        $('#slider').slick({
+            dots: true,
+            infinite: true,
+            arrows: false,
+            speed: 300,
+            autoplay: true,
+            autoplaySpeed: 10000,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+        });
+
+
+
+
+        //// home page review custommer
+        var rating__custommer = document.getElementById("rating__custommer")
+        if(rating__custommer){
+            
+            rating__custommer.addEventListener('lazybeforeunveil', function(e){
+                console.log("rating__custommer")
+                /// slider home page
+                $("#rating__comment-owl").owlCarousel({
+                    items : 3,
+                    slideSpeed : 700,
+                    nav: true,
+                    autoplay: true,
+                    autoplayHoverPause: true,
+                    dots: true,
+                    loop: true,
+                    lazyLoad: true,
+                    responsiveRefreshRate : true,
+                    navText: false,/// ["<",">"],
+                    responsive:{
+                        0:{
+                            items: 1
+                        },
+                        320:{
+                            items: 1
+                        },
+                        480:{
+                            items: 2
+                        },
+                        768:{
+                            items: 3
+                        },
+                        992:{
+                            items: 3
+                        }
+                    }
+                
+                })
+            })
         }
-    </script>
+
+    });
+</script>
 @endsection
 @section('content')
-    <div class="content">
-        <div class="homepage__search position-relative">
-            <div class="homepage__search-bg"></div>
-            <div class="homesearch">
-                <h4 class="homesearch__title">Cách tốt nhất để</h4>
-                <h1 class="homesearch__main-title">Tìm Kiếm Bất Động Sản Phù Hợp</h1>
-            </div>
-            <div class="search__form">
-                <form action="" class="form">
-                    <div class="wrapper-head-form">
-                        <div class="wrapper-select">
-                            <select name="" class="form__select-category js__single-select">
-                                <option value="0">chọn loại hình</option>
-                                @if(!$categories->isEmpty())
-                                @foreach ($categories as $category)
-                                <option value="{{ $category->slug }}">{{ $category->title }}</option>
-                                @endforeach
-                                @endif
-                            </select>
-                        </div>
-                        <div class="input-group">
-                            <input class="form__input" type="text"  placeholder="Nhập từ khóa tìm kiếm"/>
-                        </div>
-                        <div class="wrapper-search-btn">
-                            <button class="btn__search">Tìm Kiếm</button>
-                        </div>
-                    </div>
-                    <div class="search__locations">
-                        <div class="wrapper-bottom-form">
-                            <div class="wrapper-select select2__home-bottom">
-                                <select name="" id="js__select-province" class="form__select-category">
-                                    <option value="0">chọn tỉnh</option>
-                                </select>
+<div class="content pb-4">
+    <div class="container-hero">
+        <div class="row-hero">
+            <div class="col-12 homeslider">
+                <div id="slider" class="slider">
+                    @foreach ($sliders as $key => $slider)
+                    <div>
+                        <div class="slider__item">
+                            <div class="slider__item-img">
+                                <img src="{{ $slider->src }}" alt="{{ $slider->alt }}"/>
                             </div>
-                            <div class="wrapper-select select2__home-bottom">
-                                <select name="" id="js__select-district"  class="form__select-category">
-                                    <option value="0">chọn huyện</option>
-                                </select>
-                            </div>
-                            <div class="wrapper-select select2__home-bottom">
-                                <select name="" id="js__select-commune" class="form__select-category">
-                                    <option value="0">chọn xã</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="wrapper__more">
-                            <a id="js__toggle-advanced-search" onclick="toggleAdvancedSearch()" href="javascript:void(0)" class="btn__search-more"> 
-                                Công cụ khác &nbsp; <i class="icon fad fa-chevron-double-right"></i> 
-                            </a>
-                        </div>
-                    </div>
-                    <div id="js__advanced-search" class="wrapper-bottom-form advanced-search d-none">
-                        <div class="wrapper-select select2__home-bottom">
-                            @php
-                            $RANGES_PRICE = Config::get('constant.RANGE-PRICE');
-                            @endphp
-                            <select name="" id="js__select-price" class="form__select-category">
-                                <option value="0">chọn giá</option>
-                                @foreach ($RANGES_PRICE as $key => $range)
-                                <option value="{{ $key }}">{{ $range['text'] }}</option>
-                                @endforeach
-                            </select>
-                            <input type="hidden" id="js__price-range-input">
-                        </div>
-                        <div class="wrapper-select select2__home-bottom">
-                            @php
-                            $RANGE_AREA = Config::get('constant.RANGE-AREA');
-                            @endphp
-                            <select name="" id="js__select-area" class="form__select-category" >
-                                
-                                @foreach ($RANGE_AREA as $key => $range)
-                                <option value="{{ $key }}">{{ $range['text'] }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="wrapper-select select2__home-bottom">
-                            @php
-                            $DIRECTIONS = Config::get('constant.DIRECTION');
-                            @endphp
-                            <select name="" id="js__select-direction" class="form__select-category">
-                                @foreach ($DIRECTIONS as $key => $direction)
-                                <option value="{{ $direction['VALUE'] }}">{{ $direction['TEXT'] }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="wrapper-select select2__home-bottom">
-                            @php
-                            $FACADE = Config::get('constant.FACADE');
-                            @endphp
-                            <select name="" id="js__select-facade" class="form__select-category">
-                                @foreach ($FACADE as $key => $facade)
-                                <option value="{{ $key }}">{{ $facade }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <div class="homeimportant">
-            <h3 class="homeimportant__title">
-                Điều khoản dịch vụ
-            </h3>
-            <div class="homeimportant__content">
-                <a class="homeimportant__content-des" href="{{ asset('/') }}">
-                    Chúng tôi, Công ty TNHH Hùng Thịnh - topbds.vn tạo ra 1 nền tảng tìm kiếm bất động sản phù hợp và hoàn toàn miễn phí.
-                    <span class="hidden-mobile text-color-grey">
-                        Với tiêu chí kết nối bất động sản đến với mọi người. Chúng tôi đã cung cấp các tiện ích để người sử dụng có thể trò chuyện trực tuyến với nhau.
-                    </span>
-                </a>
-                <a class="homeimportant__content-btn hover__push-right" href="{{ asset('/') }}">
-                    <i class="fas fa-long-arrow-alt-right"></i>
-                </a>
-            </div>
-        </div>
-        {{-- <div class="productmain bg-color-grey-x">
-            <h2 class="productmain__title">Bất động sản dành cho bạn</h2>
-            <p >Dựa trên ip truy cập vào website mình sẽ detect ra localtion ở đâu, khi đó chúng ta sẽ query bất động sản theo khu vực</p>
-            <div class="productmain__container">
-                
-                <div class="row">
-                    @for ($i = 0; $i < 10; $i++)
-                    <div class="col-lg-4 col-sm-6 col-xs-12 productmain__container-fixpadding"> 
-                        <div class="productmain__item property-listing">
-                            <div class="media">
-                                <a class="pull-left" href="#">
-                                    <img alt="image" class="img-responsive" 
-                                        src="https://ebudezain.com/resizes/category/fit//upload/images/front-end/thumbnail-gulp.jpg?v=1.1.26">
-                                </a>
-                                <!-- <div class="clearfix visible-sm"></div> -->
-    
-                                <div class="media-body productmain__item-smaller">
-                                    
-                                    <h4 class="media-heading my-0">
-                                        <a class="productmain__item-price" href="#">
-                                            $1,975,000 
-                                            <small class="pull-right">609 W Gravers Ln</small>
-                                        </a>
+                            <div class="slider__item-content">
+                                <div>
+                                    <h4 class="slider__item-topic">
+                                        {{ $slider->topic }}
+                                        <time datetime="2008-02-14 20:00">— {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $slider->updated_at)->diffForHumans() }}</time>
                                     </h4>
-
-                                    <ul class="list-inline productmain__item-property">
-                                        <li>4,820 SqFt</li>
-                                        <li style="list-style: none">|</li>
-                                        <li>5 Beds</li>
-                                        <li style="list-style: none">|</li>
-                                        <li>5 Baths</li>
-                                    </ul>
-                                    <h5 class="productmain__item-title hidden-small-mobile">
-                                        Situated between fairmount
-                                    park and the prestigious philadelphia cricket
-                                    club, this beautiful 2+ acre property is t hùng ox & Roach-Chestnu</h5>
-                                    <span class="productmain__item-moreinfo fnt-smaller fnt-lighter fnt-arial">
-                                        Courtesy of HS Fox & Roach-Chestnut Hill Evergreen
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-                    @endfor
-                </div><!-- End row -->
-            </div>
-        </div> --}}
-        
-
-        {{-- danh sách product --}}
-        <div class="productions">
-            <div class="row-hero productions-fixrow">
-                @for ($i = 0; $i < 12; $i++)
-                <div class="col-hero-xl-3 col-hero-md-4 col-hero-sm-4 productions-fixcol">
-                    <div class="item">
-                        <div class="item__action">
-                            <div class="item__image">
-                                <img class="product-image"
-                                src="{{ Route('IMAGE_RESIZE', [ 'size' => 'post' , 'type' => 'fit', 'imagePath' => "images/productions/multipurpose.jpeg" ]) }}"
-                                    alt="M">
-                                <div class="hover__show-links">
-                                    <button type="button" onclick="showLightGaleries(this)"
-                                    class="btn-hero btn__view-detail px-4 py-1 itext-md">xem ảnh</button>
-                                </div>
-                                <div class="counter__galeries">4 <i class="far fa-image"></i> - 20 <i class="far fa-eye"></i></div>
-                            </div>
-                            <button type="button" class="item__action-react"><i class="far fa-heart"></i></button>
-                        </div>
-                        <div class="lightgallery d-none">
-                            <a class="img__dtl-item" href="{{ asset("/images/productions/multipurpose.jpeg") }}">
-                                <img 
-                                    src="{{ asset("/images/productions/multipurpose.jpeg") }}"
-                                    onerror="this.onerror=null;this.src='{{ asset(Config::get('app.image_error')) }}';" />
-                            </a>
-                            <a class="img__dtl-item" href="{{ asset("/images/productions/multipurpose.jpeg") }}">
-                                <img 
-                                    src="{{ asset("/images/productions/multipurpose.jpeg") }}"
-                                    onerror="this.onerror=null;this.src='{{ asset(Config::get('app.image_error')) }}';" />
-                            </a>
-                        </div>
-                        <div class="detail">
-                            <h4 class="">
-                                <a class="productmain__item-price" href="#">
-                                    <span class="price">$1,975,000 </span>
-                                    <small class="people-time">609 W Gravers Ln6</small>
-                                </a>
-                            </h4>
-                            
-                            <div class="detail__info media">
-                                <a class="detail__info-img" onclick="showLightGaleries(this)">
-                                    <img class="product-image"
-                                        src="{{ Route('IMAGE_RESIZE', [ 'size' => 'small' , 'type' => 'fit', 'imagePath' => "images/productions/multipurpose.jpeg" ]) }}"
-                                        alt="M">
-                                    <div class="counter__galeries">4 <i class="far fa-image"></i> - 20 <i class="far fa-eye"></i></div>
-                                </a>
-                                <div class="clearfix visible-sm"></div>
-                                <div class="media-body">
-                                    <h3 class="detail-name">
-                                        <a href="#" class="detail-name-link" title="">
-                                            Multipurpose Intense - #1 HTML Bootstrap Website Templateose Intense - #1 HTML Bootstrap Website
-                                        </a>
+                                    <h3 class="slider__item-title">
+                                        {{ $slider->title }}
                                     </h3>
-                                    <ul class="list-inline productmain__item-property">
-                                        <li>4,820 SqFt</li>
-                                        <li style="list-style: none">|</li>
-                                        <li>5 Beds</li>
-                                        <li style="list-style: none">|</li>
-                                        <li>5 Baths</li>
-                                    </ul>
                                 </div>
-                            </div>
-                            <div class="tag">
-                                <div class="tag__row">
-                                    <div class="tag__col simple-tooltip" title="Diện tích: {{ "12.4 mét vuông" }}">
-                                        <i class="fal fa-line-height"></i>
-                                        12.4 m²
-                                    </div>
-                                    <div class="tag__col simple-tooltip" title="Đường rộng: {{ "3 ngõ ô tô tránh" }}">
-                                        <i class="fal fa-road"></i>
-                                        3 ngõ ô tô tránh
-                                    </div>
-                                </div>
-                                <div class="tag__row">
-                                    <div class="tag__col simple-tooltip" title="Mặt tiền: {{ "5 mét" }}">
-                                        <i class="fad fa-house-flood"></i>
-                                        5 mét
-                                    </div>
-                                    <div class="tag__col simple-tooltip" title="Hướng: {{ "Đông Bắc" }}">
-                                        <i class="fal fa-compass"></i>
-                                        Đông Bắc
-                                    </div>
-                                </div>
-                                <div class="tag__row">
-                                    <div class="tag__col simple-tooltip" title="Đối tượng rao bán: {{ "Công ty bất động sản" }}">
-                                        <i class="fal fa-user-shield"></i>
-                                        Công ty bất động sản
-                                    </div>
-                                    <div class="tag__col simple-tooltip" title="Loại hình: {{ "Đất nền" }}">
-                                        <i class="fal fa-building"></i>
-                                        Đất nền
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="detail__footer">
-                                <div class="detail__footer-row">
-                                    <strong class="detail__footer-time">
-                                        <i class="fad fa-calendar-alt"></i>
-                                        <span>37 phút trước</span>
-                                    </strong>
-                                    {{-- <span class="detail__footer-divider hidden-hero-decrement-xs">|</span>
-                                    <strong class="detail__footer-time hidden-hero-decrement-xs">
-                                        <i class="fad fa-eye"></i>
-                                        <span>4</span>
-                                    </strong> --}}
-                                    <a class="detail__footer-messager" href="#">
-                                        <i class="fal fa-comment-alt-lines"></i>
-                                        Trò chuyện
+                                <div class="slider__item-des">{{ $slider->excerpt }}</div>
+                                <div class="action py-3">
+                                    <a class="btn-hero btn-hero-light-green itext-sm" href="tel:{{ Config::get('app.phone') }}">
+                                        {{ Config::get('app.phone') }}
                                     </a>
-                                    <a class="detail__footer-messager hidden-hero-increment-md" href="#">
-                                        <i class="fal fa-thumbs-up"></i>
-                                        Thích
+                                    <a class="btn-hero btn-hero-outline-light-green itext-sm" href="{{ Route('CONTACT_PAGE') }}">
+                                        Gửi Yêu Cầu Tư Vấn
                                     </a>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="selectus wow fadeInUp" data-wow-duration="1s">
+        <div class="selectus__wrapper">
+            <h3 id="selectus" class="selectus__title" tabindex="0" title="💥 Vì Sao bạn nên chọn {{ Config::get('app.name') }}" >
+                Vì Sao bạn nên chọn 
+                <span class="text-color-pink">{{ Config::get('app.name') }}</span>
+            </h3>
+            <div class="selectus__row">
+                <div class="selectus__item">
+                    <div class="selectus__item-wrapper">
+                        <i class="fal fa-user-chart"></i>
+                        <h5 class="selectus__item-link-text">
+                            Được khách hàng đánh giá 4.9/5 sao.
+                        </h5>
+                    </div>
+                </div>
+                <div class="selectus__item">
+                    <div class="selectus__item-wrapper">
+                        <i class="fal fa-drafting-compass"></i>
+                        <h5 class="selectus__item-link-text">
+                            Dịch vụ uy tín top 1 tp. Bảo Lộc.
+                        </h5>
+                    </div>
+                </div>
+                <div class="selectus__item">
+                    <div class="selectus__item-wrapper">
+                        <i class="fal fa-people-arrows"></i>
+                        <h5 class="selectus__item-link-text">
+                            Cam kết chính chủ - nói không môi giới.
+                        </h5>
+                    </div>
+                </div>
+                <div class="selectus__item">
+                    <div class="selectus__item-wrapper">
+                        <i class="fal fa-cogs"></i>
+                        <h5 class="selectus__item-link-text">
+                            Hộ trợ chuyên nghiệp, hiệu quả.
+                        </h5>
+                    </div>
+                </div>
+                <div class="selectus__item">
+                    <div class="selectus__item-wrapper">
+                        <i class="fal fa-sack-dollar"></i>
+                        <h5 class="selectus__item-link-text">
+                            Giá cả cạnh tranh nhất trên thị trường.
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="selectus wow fadeInUp" data-wow-duration="1s">
+        <div class="selectus__wrapper">
+            <h3 id="selectus" class="selectus__title" tabindex="0" title="💥 Vì Sao bạn nên chọn {{ Config::get('app.name') }}" >
+                Sản phẩm Mua Bán Nhà Đất Tp Bảo Lộc đang có
+            </h3>
+        </div>
+    </div>
+
+    <div class="productions">
+        <div class="row-hero productions-fixrow">
+            @foreach ($products as $key => $product)
+            <div class="col-hero-xxl-2-4 col-hero-xl-3 col-hero-md-4 col-hero-sm-4 productions-fixcol">
+                <div class="item" itemtype="https://schema.org/Product" itemscope >
+                    <meta class="d-none" itemprop="position" content="{{ $key }}" />
+                    <meta class="d-none" itemprop="url" content="{{ Route('PRODUCT_VIEW', ['slug' => $product->slug ]) }}" />
+                    <meta class="d-none" itemprop="gtin14" content="{{ $product->id }}" />
+                    <meta class="d-none" itemprop="name" content="{{ $product->title }}" />
+                    @php $pics = $product->getImages()->get(); @endphp
+                    @if (!$pics->isEmpty())
+                    @foreach ($pics as $key => $pic)
+                    <link class="d-none" itemprop="image" href="{{ Route('IMAGE_RESIZE_RATIO', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => $product->thumbnail ]) }}" />
+                    @endforeach
+                    @else
+                    <link class="d-none" itemprop="image" href="{{ Route('IMAGE_RESIZE_RATIO', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => env('IMAGE_DEFAULT_PRODUCT') ]) }}" />
+                    @endif
+                    <meta class="d-none" itemprop="description" content="{{ $product->excerpt }}" />
+                    <meta class="d-none" itemprop="sku" content="{{ $product->slug }}" />
+                    <div class="d-none" itemprop="brand" itemtype="https://schema.org/Brand" itemscope>
+                        <meta itemprop="name" content="{{ Config::get('app.company_name') }}" />
+                    </div>
+                    <div class="d-none" itemprop="aggregateRating" itemtype="https://schema.org/AggregateRating" itemscope>
+                        <meta itemprop="reviewCount" content="{{ SupportString::createRateValueByDate($product->id) }}" />
+                        <meta itemprop="ratingValue" content="{{ $product->rate_value }}" />
+                        <meta itemprop="bestRating" content="5" />
+                        <meta itemprop="worstRating" content="1" />
+                    </div>
+                    
+                    <div class="d-none" itemprop="review" itemtype="https://schema.org/Review" itemscope>
+                        <meta itemprop="datePublished" content="{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $product->created_at)->format('Y-m-d') }}" />
+                        <meta itemprop="reviewBody" content="{{ $product->rate_review_body }}" />
+                        <div itemprop="author" itemtype="https://schema.org/Person" itemscope>
+                            <meta itemprop="name" content="{{ $product->rateAuthor ? $product->rateAuthor->name : 'chưa xác định' }}" />
+                        </div>
+                        <div itemprop="reviewRating" itemtype="https://schema.org/Rating" itemscope>
+                            <meta itemprop="ratingCount" content="{{ SupportString::createRateValueByDate($product->id) }}" />
+                            <meta itemprop="bestRating" content="5" />
+                            <meta itemprop="worstRating" content="1" />
+                            <meta itemprop="ratingValue" content="{{ $product->rate_value }}" />
+                        </div>
+                    </div>
+                    <div itemprop="offers" itemtype="https://schema.org/Offer" itemscope>
+                        <meta itemprop="priceValidUntil" content="2022-08-25" />
+                        <meta itemprop="price" content="{{ str_replace([".", "e", ","], "", $product->price ) }}" />
+                        <meta itemprop="offerCount" content="2" />
+                        <meta itemprop="priceCurrency" content="VND" />
+                        <link property="availability" href="https://schema.org/InStock" />
+                    </div>
+                    
+                    {{-- box-shadow: 0 1px 10px 0 rgb(0 0 0 / 12%); --}}
+                    <div class="item__action">
+                        <div class="item__image">
+                            <img class="product-image"
+                                src="{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => $product->thumbnail ]) }}"
+                                onerror="this.onerror=null;this.src='{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => '/images/failed.jpg' ]) }}'"
+                                alt="{{ $product->title }}">
+                            <div class="hover__show-links">
+                                <button type="button" onclick="showLightGaleries(this)"
+                                class="btn-hero btn__view-detail px-4 py-1 itext-md">xem ảnh</button>
+                            </div>
+                            <div class="counter__galeries">{{ $pics->count(); }} <i class="far fa-image"></i> - {{ $product->view }} <i class="far fa-eye"></i></div>
+                        </div>
+                        <button type="button" class="item__action-react d-none"><i class="far fa-heart"></i></button>
+                    </div>
+                    
+                    <div class="lightgallery d-none">
+                        @foreach ($pics as $key => $pic)
+                        <a class="img__dtl-item" href="{{ asset($pic->src) }}">
+                            <img 
+                                src="{{ asset($pic->src) }}"
+                                onerror="this.onerror=null;this.src='{{ asset(Config::get('app.image_error')) }}';" />
+                        </a>
+                        @endforeach
+                    </div>
+                    <div class="detail">
+                        <h4 class="">
+                            <a class="productmain__item-price" href="{{ Route('PRODUCT_VIEW', ['slug' => $product->slug ]) }}">
+                                <span title="Giá : {{ $product->getTooltipPrice() }}" class="price simple-tooltip text-truncate"> {{ $product->getStringPrice() }} &nbsp;</span>
+                                <small title="Vị trí: {{ $product->getLocation() }}" class="people-time simple-tooltip text-truncate">{{ $product->getShortLocation() }}</small>
+                            </a>
+                        </h4>
+                        
+                        <div class="detail__info media">
+                            <a class="detail__info-img" onclick="showLightGaleries(this)">
+                                <img class="product-image"
+                                src="{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => $product->thumbnail ]) }}"
+                                onerror="this.onerror=null;this.src='{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => '/images/failed.jpg' ]) }}'"
+                                alt="{{ $product->title }}"/>
+                                <div class="counter__galeries">{{ $pics->count(); }} <i class="far fa-image"></i> - {{ $product->view }} <i class="far fa-eye"></i></div>
+                            </a>
+                            <div class="clearfix visible-sm"></div>
+                            <div class="media-body">
+                                <h3 class="detail-name">
+                                    <a href="{{ Route('PRODUCT_VIEW', ['slug' => $product->slug ]) }}" class="detail-name-link" title="">{{ $product->getTitleLocateCategory(100)  }}</a>
+                                </h3>
+                                <ul class="list-inline productmain__item-property">
+                                    {!! $product->getListExtensions() !!}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="tag">
+                            <div class="tag__row">
+                                <div class="tag__col simple-tooltip" title="Diện tích: {{ $product->square }} mét vuông">
+                                    <i class="fal fa-line-height"></i>
+                                    {{ $product->square }} m²
+                                </div>
+                                <div class="tag__col simple-tooltip" title="Hướng: {{ $product->getDirection() }}">
+                                    <i class="fal fa-road"></i>
+                                    {{ $product->getDirection() }} &nbsp;
+                                </div>
+                                <div class="tag__col simple-tooltip" title="Mặt tiền: {{ $product->getHorizontal() }}">
+                                    <i class="fal fa-compass"></i>
+                                    {{-- <i class="fad fa-house-flood"></i> --}}
+                                    {{ $product->getHorizontal() }} &nbsp;
+                                </div>
+                                <div class="tag__col simple-tooltip" title="Loại hình: {{ $product->category->name }}">
+                                    <i class="fal fa-building"></i>
+                                    {{ $product->category->name }} &nbsp;
+                                </div>
+                                <div class="tag__col simple-tooltip" title="{{ $product->getNegotiate() }}">
+                                    <i class="fal fa-user-shield"></i>
+                                    {{ $product->getNegotiate() }} &nbsp;
+                                </div>
+                            </div>
+                        </div>
+                        <div class="detail__footer">
+                            <div class="detail__footer-row">
+                                <strong class="detail__footer-time">
+                                    <i class="fad fa-calendar-alt"></i>
+                                    <span> {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $product->updated_at)->diffForHumans() }}</span>
+                                </strong>
+                                {{-- <span class="detail__footer-divider hidden-hero-decrement-xs">|</span>
+                                <strong class="detail__footer-time hidden-hero-decrement-xs">
+                                    <i class="fad fa-eye"></i>
+                                    <span>4</span>
+                                </strong> --}}
+                                <a class="detail__footer-messager" href="tel:{{ Config::get('app.phone') }}">
+                                    <i class="fal fa-comment-alt-lines"></i>
+                                    Tư vấn
+                                </a>
+                                {{-- <a class="detail__footer-messager hidden-hero-increment-md" href="{{ Route('PRODUCT_VIEW', ['slug' => $product->slug ]) }}">
+                                    <i class="fal fa-thumbs-up"></i>
+                                    Thích
+                                </a> --}}
                             </div>
                         </div>
                     </div>
                 </div>
-                @endfor
             </div>
-            
+            @endforeach
         </div>
         
     </div>
+
+
+
+
+
+
+
+
+
+
+    <div class="categories wow fadeInLeft" data-wow-duration="1s">
+        <div class="categories__wrapper">
+            <h3 id="categories" class="categories__title" tabindex="1" title="💥 Mẫu giao diện theo ngành hàng" >
+                <span class="text-color-pink">{{ Config::get('app.name') }}</span>
+                Gồm có các dịch vụ sau
+            </h3>
+            <div class="container">
+                <div class="row categories__row">
+                    @isset($categories)
+                        @if (!$categories->isEmpty())
+                            @foreach ($categories as $cat)
+                            <div class="categories__item">
+                                <a class="categories__item-link-img" href="{{ Route('CATEGORY_VIEW', ['slug' => $cat->slug ]) }}">
+                                    <img class="lazyload"
+                                    src="{{ Config::get('app.lazyload_base64') }}"
+                                    onerror="this.onerror=null;this.src='{{ asset('/images/failed.jpg') }}';"
+                                    data-src="{{ Route('IMAGE_COMPRESS', [ 'quality' => 70, 'imagePath' => trim($cat->thumbnail, '/') ]) }}" 
+                                    alt="{{ $cat->name }}" width="300" height="300"/>
+                                </a>
+                                <a href="{{ Route('CATEGORY_VIEW', ['slug' => $cat->slug ]) }}">
+                                    <h5 class="categories__item-link-text">{{ $cat->name }}</h5>
+                                </a>
+                            </div>
+                            @endforeach
+                        @endif
+                    @endisset
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <div class="workprocess">
+        <h2 id="workprocess" class="workprocess__title" tabindex="3" title="💥 Quy Trình Làm Việc">Quy Trình Làm Việc</h2>
+        @if (!$workprocess->isEmpty())
+            @foreach ($workprocess as $key => $work)
+            <div class="workprocess__step wow fadeInLeft" data-wow-duration="1s">
+                <span class="workprocess__step-number">{{ $key + 1 }}</span>
+                <div class="workprocess__step-content">
+                    <h3 class="workprocess__step-title">{{ $work->title }}</h3>
+                    <p>{!! $work->getExcerpt()  !!}</p>
+                </div>
+            </div>
+            @endforeach
+        @endif
+    </div>
+
+
+
+
+
+
+
+    <div id="rating__custommer" class="rating__comment lazyload">
+        <div class="rating__comment-wrapper">
+            <h3 class="rating__comment-title" id="rating__comment-tab" tabindex="4" title="💥 KHÁCH HÀNG NÓI VỀ CHÚNG TÔI">KHÁCH HÀNG NÓI VỀ CHÚNG TÔI</h3>
+            <div id="rating__comment-owl" class="owl-carousel owl-theme rating__comment-owl mt-5">
+                @foreach ($reviews as $key => $review)
+                <div class="item">
+                    <img class="owl-lazy item__avatar" data-src="{{ $review->avatar }}" alt="{{ $review->topic }}" >
+                    <i class="fad fa-quote-right"></i>
+                    <div class="item__title">{{ $review->topic }}</div>
+                    <div class="item__des">{{ $review->excerpt }}</div>
+                    <div class="item__author">{!! $review->author !!}</div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+    
+
+
+
+
+
+
+    @if (!$posts->isEmpty())
+    <div class="news">
+        <h3 class="news-title" title="💥 Tin tức bất động sản">Tin tức bất động sản</h3>
+        
+        @foreach ($posts as $key => $post)
+        <div class="news__wrapper">
+            <div class="news__item">
+                <div class="news__item-left">
+                    <div class="img__cover" style="background-image: url({{ $post->background }});
+                    background-repeat: no-repeat;
+                    background-size:cover; "></div>
+                </div>
+                <div class="news__item-right">
+                    <h4 class="news__item-topic">
+                        <a href="{{ Route('POST_VIEW', ['slug' => $post->slug ]) }}">
+                            @php $topic = $post->topic;   @endphp
+                            {{ $topic['name'] }}
+                            <time datetime="2008-02-14 20:00">
+                                - 
+                                <i class="d-none">{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $post->created_at)->diffForHumans() }}</i>
+                                <i>{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $post->updated_at)->diffForHumans() }}</i>
+                            </time>
+                        </a>
+                    </h4>
+                    <h3 class="news__item-title">
+                        <a href="{{ Route('POST_VIEW', ['slug' => $post->slug ]) }}">{{ $post->title }}</a>
+                    </h3>
+                    <p class="news__item-des">
+                        <a href="{{ Route('POST_VIEW', ['slug' => $post->slug ]) }}"> {{ $post->excerpt }} </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        @endforeach
+        
+        
+    </div>
+    @endif
+    
+
+
+
+
+    {{-- <div class="FAQPage">
+        <div itemscope="" itemtype="https://schema.org/FAQPage" class="faq_page"> 
+            <p class="faqmain">Những câu hỏi thường gặp</p> 
+                    <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" class="faq_list"> 
+                <h3 itemprop="name" class="faq_title" val_id="914" val_show="0">
+                    ❖ Chi phí lên thổ cư đất trồng cây lâu năm là bao nhiêu?            </h3> 
+                <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" class="answer answer914" style="display: none;"> 
+                    <div itemprop="text"> 
+                        Tiền phải nộp khi chuyển từ đất trồng cây lâu năm sang đất ở sẽ được tính như sau: 50% * (giá đất ở - giá đất nông nghiệp)/m<sup>2</sup>. Tùy vào từng khu vực thì giá thổ cư sẽ qui định khác nhau.&nbsp;                </div> 
+                </div> 
+            </div>
+                    <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" class="faq_list"> 
+                <h3 itemprop="name" class="faq_title" val_id="915" val_show="0">
+                    ❖ Datnenonline.vn có hỗ trợ ký gửi BĐS hay môi giới không?            </h3> 
+                <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" class="answer answer915" style="display: none;"> 
+                    <div itemprop="text"> 
+                        Trang website Datnenonline.vn là một sàn thương mại hỗ trợ khách hàng đăng tin bán sản phẩm bất động sản của mình cũng như tìm kiếm các lô đất giá rẻ, Đầu tư sinh lợi cao.&nbsp;                </div> 
+                </div> 
+            </div>
+             
+        </div>
+    </div> --}}
+
+</div>
 @endsection

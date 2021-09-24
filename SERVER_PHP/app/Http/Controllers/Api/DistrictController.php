@@ -16,8 +16,9 @@ class DistrictController extends Controller
      */
     public function districts(Request $request){
         
-        $districtModel = new District();
-        $districts     = $districtModel ->get(['id', 'name as text', 'province_id as province'])
+        
+        $districts     = District::where('province_id', 68)
+                                            ->get(['id', 'name as text', 'province_id as province'])
                                             ->toArray();
         return response()
                     ->success('Your custom success $districts', $districts)
