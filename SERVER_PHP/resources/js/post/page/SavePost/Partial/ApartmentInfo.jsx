@@ -133,12 +133,12 @@ const ApartmentInfo = forwardRef((props, ref) => {
                 </div>
                 {
                     values.project == "" && (
-                        <div>đây là trường hợp không có nhập gì</div>
+                        <div className='col-12'>đây là trường hợp không có nhập gì</div>
                     )
                 }
                 {
                     values.project.id && (
-                        <div className="">
+                        <div className='col-12'>
                             <a target='_blank' href={ `${CONFIG.REACT_ASSET}/apartment/project/${values.project.id}` }>
                                 bấm để xem chi tiết
                             </a>
@@ -148,7 +148,7 @@ const ApartmentInfo = forwardRef((props, ref) => {
                 }
                 {
                     !values.project.id && values.project.label && (
-                        <div> {values.project.label } </div>
+                        <div className='col-12'> {values.project.label } </div>
                     )
                 }
             </div>

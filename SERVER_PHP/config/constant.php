@@ -23,6 +23,18 @@ return [
         'STAFF'   => 2,
         'OWNER'   => 3,
     ],
+    /// xài trong react
+    'USER_TYPE' => [
+        'PERSON'  => 1,
+        'COMPANY' => 2,
+    ],
+    /// xài trong react
+    'POST_TYPE' => [
+        'BUY'   => 1,
+        'SALE'  => 2,
+        'LEASE' => 3,
+        'RENT'  => 4
+    ],
     'LDJSON' => [
         'HIDE' => 1,
         'SHOW' => 2,

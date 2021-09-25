@@ -52,10 +52,10 @@ class createFontFromBladeViews extends Command
         }
         $text = '';
         $fas = array_flip( $fas );
-        
         $awes = Config::get("awe");
+        
         foreach( $awes as $key => $awe ){
-            if( isset($fas[$key]) ){
+            if( isset($fas[$key]) || env("APP_ENV") == 'local' ){
                 $text .= ",\n ";
                 $text .=  $key .' : "'. utf8_decode($awe) .'"';
             }

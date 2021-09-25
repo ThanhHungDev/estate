@@ -32,7 +32,7 @@ const HeaderApartment = (props) => {
 
     const width = Math.floor(SW.currentStep * 100 / SW.totalSteps) + '%'
     return (
-        <div>
+        <div className="apartment__header--wrapper">
             <div className="apartment__header">
                 {
                     SW.currentStep == 1

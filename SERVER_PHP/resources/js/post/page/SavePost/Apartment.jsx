@@ -93,9 +93,9 @@ function Apartment( props ){
     
     /// ban đầu state là {} => SW là undefine
     const { SW } = state
-    const { CONFIG, AUTH } = props
+    const { CONFIG, AUTH, device } = props
     return (
-        <div className="apartment">
+        <div className="apartment" style={{ minHeight: device.calcHeightSubtractHeight + "px" }}>
             { SW && <HeaderApartment SW={SW} parentCallback={continueStep} /> }
             
             <div className="apartment__wrapper">
@@ -149,8 +149,9 @@ function Step3(props){
 let mapStateToProps = (state) => {
     return {
         CATEGORIES: state.categories,
-        CONFIG: state.config,
-        AUTH: state.auth,
+        CONFIG    : state.config,
+        AUTH      : state.auth,
+        device    : state.device,
     }
 }
 export default connect(mapStateToProps)(Apartment)

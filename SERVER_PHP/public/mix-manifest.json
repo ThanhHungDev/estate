@@ -1,13 +1,12 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/js/admin/app.js": "/js/admin/app.js",
-    "/js/product.detail.js": "/js/product.detail.js",
+    "/js/post.js": "/js/post.js",
+    "/css/user.post.css": "/css/user.post.css",
     "/css/admin.css": "/css/admin.css",
-    "/css/forgot.css": "/css/forgot.css",
     "/css/register.css": "/css/register.css",
     "/css/login.css": "/css/login.css",
     "/css/profile.css": "/css/profile.css",
     "/css/home.css": "/css/home.css",
     "/css/product.detail.css": "/css/product.detail.css",
-    "/css/contact.css": "/css/contact.css"
+    "/css/contact.css": "/css/contact.css",
+    "/css/forgot.css": "/css/forgot.css"
 }

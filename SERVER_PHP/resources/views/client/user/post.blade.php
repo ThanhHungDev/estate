@@ -21,16 +21,44 @@
 
 
 @section('stylesheets')
-    <link type="text/css" rel="stylesheet" href="{{ asset('css/post.css' . Config::get('app.version')) }}" />
-    <link type="text/css" rel="stylesheet" href="{{ asset('css/forgot.css' . Config::get('app.version')) }}" />
+    {{-- cái này là của laravel --}}
+    <link type="text/css" rel="stylesheet" href="{{ asset('css/user.post.css' . Config::get('app.version')) }}" /> 
 @endsection
+@php 
+$configApp = Config::get('app');
+$configApp['providers'] = [];
+$configApp['aliases'] = [];
+$configApp['API'] = [
+    'UPDATE_VERIFY_PHONE' => Route('API.USER.PATCH_VERIFY_PHONE'),
+    'DISTRICTS' => Route('DISTRICTS'),
+    'COMMUNES' => Route('COMMUNES'),
+    'PROVINCES' => Route('PROVINCES'),
+    'API_UPLOAD_FILE' => Route('API_UPLOAD_FILE'),
+    'APARTMENT_PROJECTS' => Route('APARTMENT_PROJECTS'),
+    'APARTMENT_PROJECT_DETAIL' => Route('APARTMENT_PROJECT_DETAIL', [ 'id' => null ]),
+];
+$configApp['WEB'] = [
+    'PATCH_VERIFY_PHONE' => Route('PATCH_VERIFY_PHONE'),
+    'LOGOUT' => Route('LOGOUT'),
+    'USER_POST' =>  Route('USER_POST', ['path' => null ], false ),
+];
+$configApp['CONSTANT'] = Config::get('constant');
+$configApp['IMAGE'] = Config::get('image.UPLOAD');
+$configApp['VIDEO'] = Config::get('video.UPLOAD');
+@endphp
+
 @section('javascripts')
     
     <script type="text/javascript" src="{{ asset('js/library/lightgallery.min.js' . Config::get('app.version')) }}"></script>
     <script type="text/javascript">
+        /// setting show image
         lightGallery(document.getElementById('photos__responsive-images')); 
-    </script>
-    <script>
+
+
+        const CONFIG_APP = `{!! json_encode($configApp) !!}`;
+        const CATEGORIES = `{!! json_encode($categories ?? []) !!}`;
+
+        /// setting jwt
         if(window.localStorage !== undefined){
             localStorage.setItem('jwt', "{{ Cookie::get(Config::get('constant.TOKEN_COOKIE_NAME')) }}");
         }else{

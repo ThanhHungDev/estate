@@ -16,15 +16,12 @@ const mix = require('laravel-mix');
 //     .sass('resources/sass/app.scss', 'public/css');
 
 
-// mix.js('resources/js/post.js', 'public/js')
-//     .react()
-//     .sass('resources/sass/post.scss', 'public/css');
-
 
 
 mix
-.js('resources/js/app.js', 'public/js')
-.js('resources/admin/js/app.js', 'public/js/admin')
+.js('resources/js/post.js', 'public/js').react()
+// .js('resources/js/app.js', 'public/js')
+// .js('resources/admin/js/app.js', 'public/js/admin')
 // .js('resources/admin/js/validate.post.js', 'public/js/admin')
 // .js('resources/admin/js/validate.product.js', 'public/js/admin')
 // .js('resources/admin/js/validate.category.js', 'public/js/admin')
@@ -33,8 +30,15 @@ mix
 // .js('resources/admin/js/validate.topic.js', 'public/js/admin')
 // .js('resources/admin/js/validate.ptag.js', 'public/js/admin')
 // .js('resources/js/contact.js', 'public/js')
-.js('resources/js/product.detail.js', 'public/js')
+// .js('resources/js/product.detail.js', 'public/js')
 // .js('resources/js/validate.contact.js', 'public/js')
+
+/// react trong phần tạp step by step 
+.sass('resources/sass/page/user.post.scss', 'public/css') /// --------------> react create post
+
+
+
+
 // .sass('resources/sass/app.scss', 'public/css')
 .sass('resources/sass/page/home.scss', 'public/css')
 .sass('resources/sass/page/profile.scss', 'public/css')
@@ -49,8 +53,8 @@ mix
 
 
 mix
-// .browserSync({
-//     proxy:'http://estate.com',
-//     notify: false
-// })
+.browserSync({
+    proxy:'http://estate.com',
+    notify: false
+})
 .disableNotifications();
