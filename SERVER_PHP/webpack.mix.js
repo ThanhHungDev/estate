@@ -20,6 +20,8 @@ const mix = require('laravel-mix');
 
 mix
 .js('resources/js/post.js', 'public/js').react()
+.js('resources/js/validate.login.user.js', 'public/js')
+.js('resources/js/validate.register.user.js', 'public/js')
 // .js('resources/js/app.js', 'public/js')
 // .js('resources/admin/js/app.js', 'public/js/admin')
 // .js('resources/admin/js/validate.post.js', 'public/js/admin')

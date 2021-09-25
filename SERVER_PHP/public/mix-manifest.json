@@ -1,5 +1,7 @@
 {
     "/js/post.js": "/js/post.js",
+    "/js/validate.login.user.js": "/js/validate.login.user.js",
+    "/js/validate.register.user.js": "/js/validate.register.user.js",
     "/css/user.post.css": "/css/user.post.css",
     "/css/admin.css": "/css/admin.css",
     "/css/register.css": "/css/register.css",
