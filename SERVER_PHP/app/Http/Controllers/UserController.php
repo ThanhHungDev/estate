@@ -55,8 +55,12 @@ class UserController extends Controller
         $user = User::create($userInput);
         
         // auth()->login($user);
+        $request->session()->flash(Config::get('constant.REGISTER_SUCCESS'), true);
+        return redirect()->route('LOGIN')
         
-        return redirect()->route('LOGIN');
+        
+        
+        ;
     }
 
     /**

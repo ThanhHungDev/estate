@@ -5,11 +5,22 @@
         {{ Session::get(Config::get('constant.LOGIN_ERROR')) }}
     </div>
     @endif
-    @if($errors->any())
-    <div class="alert alert-danger">
-        đã có lỗi, vui lòng kiểm tra lại
+    @if (Session::has(Config::get('constant.REGISTER_SUCCESS')))
+    <div class="alert alert-success">
+        Đăng Ký Thành Công! Vui lòng đăng nhập để sử dụng dịch vụ
     </div>
     @endif
+    @if($errors->any())
+    {{-- <div class="alert alert-danger">
+        đã có lỗi, vui lòng kiểm tra lại
+    </div> --}}
+    @foreach ($errors->all() as $error)
+    <div class="alert alert-warning">
+        {{ $error }}
+    </div>
+    @endforeach
+    @endif
+    
     <h2 class="form__title">đăng nhập</h2>
     
     <div class="form-group">

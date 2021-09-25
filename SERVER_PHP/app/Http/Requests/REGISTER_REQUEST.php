@@ -28,7 +28,6 @@ class REGISTER_REQUEST extends FormRequest
             'email'            => 'required|email|unique:users,email',
             'password'         => 'required|min:6|max:30',
             'confirm_password' => 'required|same:password',
-            'role_id'          => 'required',
             // 'g-recaptcha-response' => ['required', new \App\Rules\ValidRecaptcha]
         ];
     }
@@ -45,7 +44,6 @@ class REGISTER_REQUEST extends FormRequest
             'password.min'          => 'mật khẩu phải chứa ít nhất 6 kí tự',
             'password.max'          => 'mật khẩu không được vượt quá 30 kí tự',
             'confirm_password.same' => 'mật khẩu không trùng khớp',
-            'role_id.required'      => 'bạn phải chọn bạn là người bán hoặc mua',
             // 'g-recaptcha-response.required' => 'chưa xác minh được recapcha',
             
         ];
