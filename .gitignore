@@ -41,25 +41,7 @@ SERVER_PHP/public/resizes/*
 /LARAVEL/public/uploads/*
 
 
-/SERVER_PHP_BAK/node_modules
-/SERVER_PHP_BAK/public/hot
-/SERVER_PHP_BAK/public/storage
-/SERVER_PHP_BAK/public/upload
-/SERVER_PHP_BAK/storage/*.key
-/SERVER_PHP_BAK/vendor
-/SERVER_PHP_BAK/.env
-/SERVER_PHP_BAK/.env.backup
-/SERVER_PHP_BAK/.phpunit.result.cache
-/SERVER_PHP_BAK/Homestead.json
-/SERVER_PHP_BAK/Homestead.yaml
-/SERVER_PHP_BAK/npm-debug.log
-/SERVER_PHP_BAK/yarn-error.log
-
-/SERVER_PHP_BAK/composer.lock
-/SERVER_PHP_BAK/public/sitemap.xml
-/SERVER_PHP_BAK/public/sitemap/*.xml
-/SERVER_PHP_BAK/public/resizes/*
-/SERVER_PHP_BAK/public/uploads/*
+/SERVER_PHP_BAK/*
 
 
 setting.vps.config
