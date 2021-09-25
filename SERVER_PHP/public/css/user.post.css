@@ -24913,13 +24913,6 @@ ul.contact li a span {
   font-size: 13px;
 }
 
-.AppComponent {
-  display: flex;
-  height: 100%;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
 .apartment {
   max-width: 900px;
   margin: 0 auto;
