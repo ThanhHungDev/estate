@@ -14563,17 +14563,7 @@ ul.contact li a span {
   color: #0d47a1;
 }
 
-.page__login .form {
-  background-color: #e5ffea;
-  border-radius: 4px;
-  box-shadow: 0 4px 32px 0 rgba(10, 14, 29, 0.02), 0 8px 64px 0 rgba(10, 14, 29, 0.08);
-  padding: 15px;
-}
-
-.modal__login.modal {
-  background-color: #e5ffea;
-}
-.modal__login.modal .model__form__login {
+.page__forgot {
   display: inline-block;
   width: 100%;
   min-height: 200px;
@@ -14583,123 +14573,7 @@ ul.contact li a span {
   overflow: hidden;
   padding: 16px;
 }
-
-.page__login .form__title, .modal__login .form__title {
-  padding: 0 20px 10px;
-  line-height: 1.4;
-  font-size: 22px;
-  text-transform: capitalize;
-  border-bottom: 1px dashed #e9ecef;
-}
-.page__login .form .description, .modal__login .form .description {
-  font-size: 15px;
-  font-weight: 300;
-  padding: 10px;
-  color: #0d1f06;
-}
-.page__login .form .description .register-inline, .modal__login .form .description .register-inline {
-  color: #28a745;
-}
-.page__login .form .description .register-inline:hover, .modal__login .form .description .register-inline:hover {
-  color: #6bb363;
-}
-.page__login .form .form-group .error, .modal__login .form .form-group .error {
-  display: block;
-  text-align: left;
-  text-transform: capitalize;
-  color: #dc3545;
-  font-size: 12px;
-  font-weight: 100;
-  line-height: 1.2;
-}
-.page__login .form .form-group .input-group, .modal__login .form .form-group .input-group {
-  display: block;
-  margin: 12px 0;
-  position: relative;
-  height: 50px;
-}
-.page__login .form .form-group .input-group:hover .input-control, .modal__login .form .form-group .input-group:hover .input-control {
-  border-bottom: 1px solid #0d1f06;
-}
-.page__login .form .form-group .input-group:hover .icon, .modal__login .form .form-group .input-group:hover .icon {
-  color: #0d1f06;
-}
-.page__login .form .form-group .input-group.input-group-error .input-control, .modal__login .form .form-group .input-group.input-group-error .input-control {
-  border-bottom: 1px solid #dc3545 !important;
-  color: #dc3545 !important;
-}
-.page__login .form .form-group .input-group.input-group-error .icon, .modal__login .form .form-group .input-group.input-group-error .icon {
-  color: #dc3545 !important;
-}
-.page__login .form .form-group .input-group .input-control, .modal__login .form .form-group .input-group .input-control {
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  color: #525666;
-  background-color: transparent;
-  padding-left: 45px;
-  border-radius: 0;
-  font-size: 16px;
-  transition: border 0.3s linear;
-  border: none;
-  border-bottom: 1px solid #ccc;
-}
-@media (min-width: 768px) {
-  .page__login .form .form-group .input-group .input-control, .modal__login .form .form-group .input-group .input-control {
-    font-size: 15px;
-  }
-}
-.page__login .form .form-group .input-group .input-control:focus, .modal__login .form .form-group .input-group .input-control:focus {
-  border-bottom: 1px solid #0d1f06;
-}
-.page__login .form .form-group .input-group .icon, .modal__login .form .form-group .input-group .icon {
-  position: absolute;
-  top: 50%;
-  left: 10px;
-  display: block;
-  font-size: 22px;
-  z-index: 3;
-  color: #6c757d;
-  transform: translateY(-50%);
-}
-.page__login .form .form-group .forgot-password, .modal__login .form .form-group .forgot-password {
-  text-align: right;
-}
-.page__login .form .form-group .forgot-password .forgot-link, .modal__login .form .form-group .forgot-password .forgot-link {
-  color: #28a745;
-}
-.page__login .form .form-group .forgot-password .forgot-link:hover, .modal__login .form .form-group .forgot-password .forgot-link:hover {
-  color: #6bb363;
-}
-.page__login .form .form-group .btn-login, .modal__login .form .form-group .btn-login {
-  margin-top: 30px;
-  color: #fff;
-  background: #1c5732;
-  display: block;
-  width: 100%;
-  font-size: 14px;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 18px 0;
-  border: none;
-}
-
-.page__login {
-  display: inline-block;
-  width: 100%;
-  min-height: 200px;
-  vertical-align: middle;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  padding: 16px;
-}
-.page__login .page__login__bg {
+.page__forgot .page__forgot__bg {
   position: absolute;
   top: 0;
   left: 0;
@@ -14715,7 +14589,7 @@ ul.contact li a span {
   text-align: center;
   opacity: 0.5;
 }
-.page__login img {
+.page__forgot img {
   position: absolute;
   left: 0;
   top: 0;
@@ -14723,10 +14597,92 @@ ul.contact li a span {
   height: auto;
   opacity: 0.4;
 }
-.page__login__form {
+.page__forgot__form {
   display: block;
   max-width: 450px;
   margin: 40px auto;
   position: relative;
   z-index: 2;
+}
+
+.page__forgot .form {
+  background-color: #e5ffea;
+  border-radius: 4px;
+  box-shadow: 0 4px 32px 0 rgba(10, 14, 29, 0.02), 0 8px 64px 0 rgba(10, 14, 29, 0.08);
+  padding: 15px;
+}
+
+.page__forgot .form__title {
+  padding: 0 20px 10px;
+  line-height: 1.4;
+  font-size: 22px;
+  text-transform: capitalize;
+  border-bottom: 1px dashed #e9ecef;
+}
+.page__forgot .form .description {
+  font-size: 15px;
+  font-weight: 300;
+  padding: 10px;
+  color: #0d1f06;
+}
+.page__forgot .form .description .login-inline {
+  color: #28a745;
+}
+.page__forgot .form .description .login-inline:hover {
+  color: #6bb363;
+}
+.page__forgot .form .form-group .input-group {
+  display: block;
+  margin: 12px 0;
+  position: relative;
+  height: 50px;
+}
+.page__forgot .form .form-group .input-group:hover .input-control {
+  border-bottom: 1px solid #0d1f06;
+}
+.page__forgot .form .form-group .input-group:hover .icon {
+  color: #0d1f06;
+}
+.page__forgot .form .form-group .input-group .input-control {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  color: #525666;
+  background-color: transparent;
+  padding-left: 45px;
+  border-radius: 0;
+  font-size: 15px;
+  transition: border 0.3s linear;
+  border: none;
+  border-bottom: 1px solid #ccc;
+}
+.page__forgot .form .form-group .input-group .input-control:focus {
+  border-bottom: 1px solid #0d1f06;
+}
+.page__forgot .form .form-group .input-group .icon {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  display: block;
+  font-size: 22px;
+  z-index: 3;
+  color: #6c757d;
+  transform: translateY(-50%);
+}
+.page__forgot .form .form-group .btn-forgot {
+  margin-top: 30px;
+  color: #fff;
+  background: #1c5732;
+  display: block;
+  width: 100%;
+  font-size: 14px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 18px 0;
+  border: none;
 }

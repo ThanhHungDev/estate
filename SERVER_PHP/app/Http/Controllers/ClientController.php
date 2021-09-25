@@ -329,5 +329,10 @@ class ClientController extends Controller
     }
 
     
+
+    public function forgot(){
+
+        return view('client.forgot');
+    }
     
 }

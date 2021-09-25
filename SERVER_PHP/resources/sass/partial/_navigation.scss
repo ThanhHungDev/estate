@@ -30,6 +30,23 @@
         &.search{
             padding: 0;
         }
+        
+        &.active:not(.btn-hero--fix){
+            position: relative;
+
+            a, span{
+                color: $pink;
+            }
+            &:after{
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 15px;
+                right: 15px;
+                border: 1px solid $pink;
+            }
+            
+        }
         &--btn{
             color: $white;
             text-align: center;
@@ -58,22 +75,7 @@
             }
 
             @include btn-interaction($white, color-level($indigo , -8), $indigo )
-        }
-        &.active{
-            position: relative;
-
-            a, span{
-                color: $pink;
-            }
-            &:after{
-                content: "";
-                position: absolute;
-                bottom: 0;
-                left: 15px;
-                right: 15px;
-                border: 1px solid $pink;
-            }
-        }        
+        }     
     }
 }
 

@@ -25,6 +25,18 @@
                 <span class="title">Liên Hệ</span>
             </a>
         </li>
+        @auth
+        <li class="navigate__link {{ SupportRouter::fillClassActive('active', 'USER_DASHBOARD') }}">
+            <a href="{{ Route('USER_DASHBOARD') }}">
+                <span class="title">Profile</span>
+            </a>
+        </li>
+        <li class="navigate__link {{ SupportRouter::fillClassActive('active', 'LOGOUT') }}">
+            <a href="{{ Route('LOGOUT') }}">
+                <span class="title">logout</span>
+            </a>
+        </li>
+        @else
         <li class="navigate__link {{ SupportRouter::fillClassActive('active', 'REGISTER') }}">
             <a href="{{ Route('REGISTER') }}">
                 <span class="title">Đăng ký</span>
@@ -35,7 +47,9 @@
                 <span class="title">Đăng nhập</span>
             </a>
         </li>
-        <li class="navigate__link--btn navigate__link {{ SupportRouter::fillClassActive('active', 'USER_POST') }}">
+        @endauth
+        
+        <li class="navigate__link--btn btn-hero--fix navigate__link {{ SupportRouter::fillClassActive('active', 'USER_POST') }}">
             <a href="{{ Route('USER_POST') }}">
                 <span class="title">Đăng tin</span>
             </a>

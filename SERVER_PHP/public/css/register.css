@@ -14563,17 +14563,17 @@ ul.contact li a span {
   color: #0d47a1;
 }
 
-.page__login .form {
+.page__register .form {
   background-color: #e5ffea;
   border-radius: 4px;
   box-shadow: 0 4px 32px 0 rgba(10, 14, 29, 0.02), 0 8px 64px 0 rgba(10, 14, 29, 0.08);
   padding: 15px;
 }
 
-.modal__login.modal {
+.modal__register.modal {
   background-color: #e5ffea;
 }
-.modal__login.modal .model__form__login {
+.modal__register.modal .model__form__register {
   display: inline-block;
   width: 100%;
   min-height: 200px;
@@ -14584,26 +14584,43 @@ ul.contact li a span {
   padding: 16px;
 }
 
-.page__login .form__title, .modal__login .form__title {
+.page__register .form__title, .modal__register .form__title {
   padding: 0 20px 10px;
   line-height: 1.4;
   font-size: 22px;
   text-transform: capitalize;
   border-bottom: 1px dashed #e9ecef;
 }
-.page__login .form .description, .modal__login .form .description {
+.page__register .form .description, .modal__register .form .description {
   font-size: 15px;
   font-weight: 300;
   padding: 10px;
   color: #0d1f06;
 }
-.page__login .form .description .register-inline, .modal__login .form .description .register-inline {
+.page__register .form .description .login-inline, .modal__register .form .description .login-inline {
   color: #28a745;
 }
-.page__login .form .description .register-inline:hover, .modal__login .form .description .register-inline:hover {
+.page__register .form .description .login-inline:hover, .modal__register .form .description .login-inline:hover {
   color: #6bb363;
 }
-.page__login .form .form-group .error, .modal__login .form .form-group .error {
+.page__register .form .user-type, .modal__register .form .user-type {
+  text-align: left;
+  text-transform: capitalize;
+  padding-left: 50px;
+}
+.page__register .form .user-type__title, .modal__register .form .user-type__title {
+  font-size: 16px;
+  padding: 10px 0;
+  font-weight: 100;
+}
+.page__register .form .user-type__icon, .modal__register .form .user-type__icon {
+  position: absolute;
+  top: 10px;
+  font-size: 22px;
+  left: 15px;
+  color: #0d1f06;
+}
+.page__register .form .form-group .error, .modal__register .form .form-group .error {
   display: block;
   text-align: left;
   text-transform: capitalize;
@@ -14612,26 +14629,26 @@ ul.contact li a span {
   font-weight: 100;
   line-height: 1.2;
 }
-.page__login .form .form-group .input-group, .modal__login .form .form-group .input-group {
+.page__register .form .form-group .input-group, .modal__register .form .form-group .input-group {
   display: block;
   margin: 12px 0;
   position: relative;
   height: 50px;
 }
-.page__login .form .form-group .input-group:hover .input-control, .modal__login .form .form-group .input-group:hover .input-control {
-  border-bottom: 1px solid #0d1f06;
-}
-.page__login .form .form-group .input-group:hover .icon, .modal__login .form .form-group .input-group:hover .icon {
-  color: #0d1f06;
-}
-.page__login .form .form-group .input-group.input-group-error .input-control, .modal__login .form .form-group .input-group.input-group-error .input-control {
+.page__register .form .form-group .input-group.input-group-error .input-control, .modal__register .form .form-group .input-group.input-group-error .input-control {
   border-bottom: 1px solid #dc3545 !important;
   color: #dc3545 !important;
 }
-.page__login .form .form-group .input-group.input-group-error .icon, .modal__login .form .form-group .input-group.input-group-error .icon {
+.page__register .form .form-group .input-group.input-group-error .icon, .modal__register .form .form-group .input-group.input-group-error .icon {
   color: #dc3545 !important;
 }
-.page__login .form .form-group .input-group .input-control, .modal__login .form .form-group .input-group .input-control {
+.page__register .form .form-group .input-group:hover .input-control, .modal__register .form .form-group .input-group:hover .input-control {
+  border-bottom: 1px solid #0d1f06;
+}
+.page__register .form .form-group .input-group:hover .icon, .modal__register .form .form-group .input-group:hover .icon {
+  color: #0d1f06;
+}
+.page__register .form .form-group .input-group .input-control, .modal__register .form .form-group .input-group .input-control {
   position: absolute;
   top: 0;
   right: 0;
@@ -14643,20 +14660,15 @@ ul.contact li a span {
   background-color: transparent;
   padding-left: 45px;
   border-radius: 0;
-  font-size: 16px;
+  font-size: 15px;
   transition: border 0.3s linear;
   border: none;
   border-bottom: 1px solid #ccc;
 }
-@media (min-width: 768px) {
-  .page__login .form .form-group .input-group .input-control, .modal__login .form .form-group .input-group .input-control {
-    font-size: 15px;
-  }
-}
-.page__login .form .form-group .input-group .input-control:focus, .modal__login .form .form-group .input-group .input-control:focus {
+.page__register .form .form-group .input-group .input-control:focus, .modal__register .form .form-group .input-group .input-control:focus {
   border-bottom: 1px solid #0d1f06;
 }
-.page__login .form .form-group .input-group .icon, .modal__login .form .form-group .input-group .icon {
+.page__register .form .form-group .input-group .icon, .modal__register .form .form-group .input-group .icon {
   position: absolute;
   top: 50%;
   left: 10px;
@@ -14666,16 +14678,7 @@ ul.contact li a span {
   color: #6c757d;
   transform: translateY(-50%);
 }
-.page__login .form .form-group .forgot-password, .modal__login .form .form-group .forgot-password {
-  text-align: right;
-}
-.page__login .form .form-group .forgot-password .forgot-link, .modal__login .form .form-group .forgot-password .forgot-link {
-  color: #28a745;
-}
-.page__login .form .form-group .forgot-password .forgot-link:hover, .modal__login .form .form-group .forgot-password .forgot-link:hover {
-  color: #6bb363;
-}
-.page__login .form .form-group .btn-login, .modal__login .form .form-group .btn-login {
+.page__register .form .form-group .btn-register, .modal__register .form .form-group .btn-register {
   margin-top: 30px;
   color: #fff;
   background: #1c5732;
@@ -14689,7 +14692,7 @@ ul.contact li a span {
   border: none;
 }
 
-.page__login {
+.page__register {
   display: inline-block;
   width: 100%;
   min-height: 200px;
@@ -14699,7 +14702,7 @@ ul.contact li a span {
   overflow: hidden;
   padding: 16px;
 }
-.page__login .page__login__bg {
+.page__register .page__register__bg {
   position: absolute;
   top: 0;
   left: 0;
@@ -14715,7 +14718,7 @@ ul.contact li a span {
   text-align: center;
   opacity: 0.5;
 }
-.page__login img {
+.page__register img {
   position: absolute;
   left: 0;
   top: 0;
@@ -14723,7 +14726,7 @@ ul.contact li a span {
   height: auto;
   opacity: 0.4;
 }
-.page__login__form {
+.page__register__form {
   display: block;
   max-width: 450px;
   margin: 40px auto;

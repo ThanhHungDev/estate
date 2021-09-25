@@ -147,10 +147,10 @@ window.changeDistrict = function (e) {
 
 /***/ }),
 
-/***/ "./resources/sass/page/home.scss":
-/*!***************************************!*\
-  !*** ./resources/sass/page/home.scss ***!
-  \***************************************/
+/***/ "./resources/sass/page/contact.scss":
+/*!******************************************!*\
+  !*** ./resources/sass/page/contact.scss ***!
+  \******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -177,6 +177,71 @@ __webpack_require__.r(__webpack_exports__);
 /*!**********************************************!*\
   !*** ./resources/admin/sass/page/admin.scss ***!
   \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/sass/page/home.scss":
+/*!***************************************!*\
+  !*** ./resources/sass/page/home.scss ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/sass/page/profile.scss":
+/*!******************************************!*\
+  !*** ./resources/sass/page/profile.scss ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/sass/page/login.scss":
+/*!****************************************!*\
+  !*** ./resources/sass/page/login.scss ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/sass/page/register.scss":
+/*!*******************************************!*\
+  !*** ./resources/sass/page/register.scss ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/sass/page/forgot.scss":
+/*!*****************************************!*\
+  !*** ./resources/sass/page/forgot.scss ***!
+  \*****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -273,8 +338,13 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 		var installedChunks = {
 /******/ 			"/js/app": 0,
 /******/ 			"css/admin": 0,
+/******/ 			"css/forgot": 0,
+/******/ 			"css/register": 0,
+/******/ 			"css/login": 0,
+/******/ 			"css/profile": 0,
+/******/ 			"css/home": 0,
 /******/ 			"css/product.detail": 0,
-/******/ 			"css/home": 0
+/******/ 			"css/contact": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -322,10 +392,15 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/admin","css/product.detail","css/home"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/admin","css/product.detail","css/home"], () => (__webpack_require__("./resources/sass/page/home.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/admin","css/product.detail","css/home"], () => (__webpack_require__("./resources/sass/page/product.detail.scss")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/admin","css/product.detail","css/home"], () => (__webpack_require__("./resources/admin/sass/page/admin.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/admin","css/forgot","css/register","css/login","css/profile","css/home","css/product.detail","css/contact"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/admin","css/forgot","css/register","css/login","css/profile","css/home","css/product.detail","css/contact"], () => (__webpack_require__("./resources/sass/page/home.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/admin","css/forgot","css/register","css/login","css/profile","css/home","css/product.detail","css/contact"], () => (__webpack_require__("./resources/sass/page/profile.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/admin","css/forgot","css/register","css/login","css/profile","css/home","css/product.detail","css/contact"], () => (__webpack_require__("./resources/sass/page/login.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/admin","css/forgot","css/register","css/login","css/profile","css/home","css/product.detail","css/contact"], () => (__webpack_require__("./resources/sass/page/register.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/admin","css/forgot","css/register","css/login","css/profile","css/home","css/product.detail","css/contact"], () => (__webpack_require__("./resources/sass/page/forgot.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/admin","css/forgot","css/register","css/login","css/profile","css/home","css/product.detail","css/contact"], () => (__webpack_require__("./resources/sass/page/contact.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/admin","css/forgot","css/register","css/login","css/profile","css/home","css/product.detail","css/contact"], () => (__webpack_require__("./resources/sass/page/product.detail.scss")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/admin","css/forgot","css/register","css/login","css/profile","css/home","css/product.detail","css/contact"], () => (__webpack_require__("./resources/admin/sass/page/admin.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
