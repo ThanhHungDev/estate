@@ -100,8 +100,8 @@ const ApartmentInfo = forwardRef((props, ref) => {
     // }
     const handleChangeProject = (event) => {
 
-        setTouched({ ...touched, ['project']: true })
-        const newValues = { ...values, ['project']: event }
+        setTouched({ ...touched, ['project']: true })  
+        const newValues = { ...values, ['project']: event } 
         setValues(newValues)
         setErrors(Validator.validate(newValues, rules))
     }
