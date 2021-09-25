@@ -20,8 +20,15 @@
 @endsection
 
 @section('preload')
-    <link rel="preload" as="image" href="{{ asset('/images/cityscape.jpg') }}">
+    <link rel="preload" as="image" href="{{ asset('/images/cityscape.jpg' . Config::get('app.version') ) }}" />
 @endsection
+
+
+@section('stylesheets')
+<link rel="stylesheet" type="text/css" href="{{ asset('css/login.css' . Config::get('app.version'))}}"/>
+@endsection
+
+
 
 @section('javascripts')
 <script src="{{ asset('js/library/jquery.validate.min.js' . Config::get('app.version')) }}"></script>

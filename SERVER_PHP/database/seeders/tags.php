@@ -15,14 +15,25 @@ class tags extends Seeder
      */
     public function run()
     {
-        DB::table('tags')->insert(
-            [
-                [ 'title' => "Mặt tiền", 'slug' => SupportString::createSlug("Mặt tiền") ],
-                [ 'title' => "Gần chợ", 'slug' => SupportString::createSlug("Gần chợ") ],
-                [ 'title' => "Gần trường học", 'slug' => SupportString::createSlug("Gần trường học") ],
-                [ 'title' => "Nở hậu", 'slug' => SupportString::createSlug("Nở hậu") ],
-                [ 'title' => "Hẻm xe hơi", 'slug' => SupportString::createSlug("Hẻm xe hơi") ]
-            ]
-        );
+        $nameTags = [
+            'chia sẻ code',
+            'dự án',
+            'facebook',
+        ];
+        foreach ($nameTags as $tag) {
+            DB::table('tags')->insert(
+                [
+                    'name'            => $tag,
+                    'slug'            => SupportString::createSlug($tag),
+                    'excerpt'         => 'excerpt ' . $tag,
+                    'content'         => 'content ' . $tag,
+                    'site_name'       => 'site_name ' . $tag,
+                    'image_seo'       => null,
+                    'description_seo' => 'description_seo ' . $tag,
+                    'created_at'      => date('Y-m-d H:i:s'),
+                    'updated_at'      => date('Y-m-d H:i:s')
+                ],
+            );
+        }
     }
 }

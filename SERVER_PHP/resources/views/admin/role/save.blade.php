@@ -5,7 +5,7 @@
 @section('javascripts')
     <script src="{{ asset('js/library/jquery.min.js') }}"></script>
     <script src="{{ asset('js/library/select2.min.js') }}"></script>
-    <script src="{{ asset('js/admin/app.min.js') }}"></script>
+    <script src="{{ asset('js/admin/app.js') }}"></script>
     
 @endsection
 

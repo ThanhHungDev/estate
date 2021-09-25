@@ -34,6 +34,14 @@ return [
             'driver' => 'local',
             'root' => storage_path('app'),
         ],
+        'views' => [
+            'driver' => 'local',
+            'root' => base_path('resources/views'),
+        ],
+        'sass' => [
+            'driver' => 'local',
+            'root' => base_path('resources/sass'),
+        ],
 
         'public' => [
             'driver' => 'local',

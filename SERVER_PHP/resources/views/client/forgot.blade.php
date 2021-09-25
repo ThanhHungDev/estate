@@ -18,7 +18,9 @@
     <meta name="twitter:site" content="{{ Config::get('site_fb') }}" />
     <meta name="twitter:image" content="{{ Config::get("app.image") }}" />
 @endsection
-
+@section('stylesheets')
+<link rel="stylesheet" type="text/css" href="{{ asset('css/forgot.css' . Config::get('app.version'))}}"/>
+@endsection
 @section('javascripts')
 <script src="https://www.google.com/recaptcha/api.js?hl=vi"></script>
 @endsection

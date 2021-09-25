@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ADMIN_VALIDATE_SAVE_ROLE;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 
@@ -18,10 +19,10 @@ class RoleController extends Controller
 
         if( !$id ){
             /// thêm mới
-            $role    = $this->model->createRoleModel()->getInstanceEmpty();
+            $role    = new Role();
         }else{
             //// edit 
-            $role    = $this->model->createRoleModel()->find($id);
+            $role    = Role::find($id);
             if( !$role ){
                 //// redirect 404
                 return abort(404);
@@ -37,17 +38,11 @@ class RoleController extends Controller
         ///setting data insert table topic
 
         $roleInput = $request->only( 'name', 'type');
-
-        /// set id save role 
-        $roleInput['id'] = $id;
         
         try{
-            /// create instance role Model 
-            $role = $this->model->createRoleModel();
 
-            $role->save($roleInput);
-            $roleModel = $role->getModelInstance();
-            $roleID = $roleModel->id;
+            $role = Role::create($roleInput);
+            $roleID = $role->id;
 
             $request->session()->flash(Config::get('constant.SAVE_SUCCESS'), true);
             return redirect()->route('ADMIN_STORE_ROLE',  ['id' => $roleID ]);
@@ -66,7 +61,7 @@ class RoleController extends Controller
      */
     public function load(){
         $limit = 10;
-        $roles = $this->model->createRoleModel()->paginate( $limit );
+        $roles = Role::paginate( $limit );
         return view('admin.role.load', compact(['roles']));
     }
 
@@ -89,7 +84,7 @@ class RoleController extends Controller
      */
     public function delete($id = 0){
 
-        $this->model->createRoleModel()->find($id)->delete();
+        Role::find($id)->delete();
 
         $status = 200;
         $response = array( 'status' => $status, 'message' => 'success' );

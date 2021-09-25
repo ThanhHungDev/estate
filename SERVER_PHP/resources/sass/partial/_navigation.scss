@@ -1,0 +1,105 @@
+@import "./search_header";
+
+.navigate{
+    display: flex;
+    justify-content: flex-end;
+    margin: 0;
+    padding: 0;
+
+    &__link{
+        font-size: 15px;
+        font-weight: 500;
+        text-transform: uppercase;
+        list-style-type: none;
+        display: inline-block;
+        padding: 9px 20px 7px 20px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        @include ScreenMax( MD ){
+            padding: 10px 10px 6px 10px;
+            font-size: 13px;
+        }
+        a, span{
+            color: $green-dark;
+
+            &:hover{
+                color: color-level($green-dark, -8)
+            }
+        }
+        &.search{
+            padding: 0;
+        }
+        
+        &.active:not(.btn-hero--fix){
+            position: relative;
+
+            a, span{
+                color: $pink;
+            }
+            &:after{
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 15px;
+                right: 15px;
+                border: 1px solid $pink;
+            }
+            
+        }
+        &--btn{
+            color: $white;
+            text-align: center;
+            text-decoration: null;
+            white-space: normal;
+            word-wrap: break-word;
+            vertical-align: middle;
+            cursor: pointer;
+            user-select: none;
+            background-color: transparent;
+            font-size: 0.81rem;
+            -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+            transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+            -o-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+            transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+            transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+            border: 2px solid transparent;
+            -webkit-border-radius: 0.125rem;
+            border-radius: 0.125rem;
+
+            background-color: $indigo ;
+            color: $white;
+            border: 2px solid $indigo ;
+            a, span{
+                color: unset;
+            }
+
+            @include btn-interaction($white, color-level($indigo , -8), $indigo )
+        }     
+    }
+}
+
+@include ScreenMax( SM ){
+    .menu.show .navigate{ right: 0; }
+    .navigate{
+        position: fixed;
+        z-index: 111111;
+        width: 320px;
+        top: 0;
+        bottom: 0;
+        right: -320px;
+        display: block;
+        overflow: auto;
+        transition: all .5s ease;
+        background-color: $white;
+        padding: 20px;
+        box-shadow: -10px 0 20px -10px rgb(0 0 0 / 10%);
+
+        &__link{
+            display: block;
+            &.search {
+                display: none;
+            }
+        }
+    }
+}

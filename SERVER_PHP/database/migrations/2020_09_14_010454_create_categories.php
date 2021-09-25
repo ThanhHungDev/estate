@@ -13,16 +13,24 @@ class CreateCategories extends Migration
      */
     public function up()
     {
-        
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title', 150);
-            $table->string('slug', 150);
+            $table->unsignedInteger('user_id')->unsigned()->nullable();
+            $table->string('name')->nullable();
+            $table->string('slug')->nullable();
+            $table->string('excerpt')->nullable();
             $table->text('content')->nullable();
+            $table->integer('view')->default(1);
+            $table->text('catalogue')->nullable();
             $table->string('background')->nullable();
-            $table->string('description')->nullable();// seo 
+            $table->string('thumbnail')->nullable();
+            $table->string('site_name')->nullable();
+            $table->string('image_seo')->nullable();
+            $table->string('description_seo')->nullable();
+            $table->json('extensions')->default("[]");
             $table->timestamps();
         });
+
     }
 
     /**

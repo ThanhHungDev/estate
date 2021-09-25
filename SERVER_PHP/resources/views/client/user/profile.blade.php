@@ -19,10 +19,11 @@
     <meta name="twitter:image" content="{{ Config::get("app.image") }}" />
 @endsection
 
-
 @section('stylesheets')
-    <link type="text/css" rel="stylesheet" href="{{ asset('css/library/lightgallery.css' . Config::get('app.version')) }}" />
+<link rel="stylesheet" type="text/css" href="{{ asset('css/profile.css' . Config::get('app.version'))}}"/>
+<link rel="stylesheet" type="text/css" href="{{ asset('css/library/lightgallery.css' . Config::get('app.version')) }}" />
 @endsection
+
 @section('javascripts')
     
     <script type="text/javascript" src="{{ asset('js/library/lightgallery.min.js' . Config::get('app.version')) }}"></script>
@@ -33,6 +34,7 @@
         const jwt = "{{ Cookie::get(Config::get('constant.TOKEN_COOKIE_NAME')) }}";
     </script>
 @endsection
+
 @section('content')
     <div class="content custommer">
         @include('client.user.header')

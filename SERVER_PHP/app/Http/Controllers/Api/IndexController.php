@@ -10,76 +10,198 @@ use Illuminate\Support\Facades\File;
 class IndexController extends Controller
 {
     // show all slug
-    public function index(){
+    public function index(Request $request){
 
-        $sitemap = implode("", $this->createSitemap() );
+        $queryToday = null;
+        if($request->has('today')) {
 
-        // return response($content)
-        // ->withHeaders([
-        //     'Content-Type' => 'text/xml'
-        // ]);
-        return response()->view("admin.sitemap", compact('sitemap'))->header('Content-Type', 'text/xml');
+            $queryToday = $request->query('today');
+        }
+
+        $datetime = null;
+        if( $queryToday ){
+
+            $datetime = date('c',time());
+        }
+        $sitemaps      = $this->createSitemap($datetime);
+        //// 1 sitemap limit 10000
+        $sitemapsChunk = array_chunk($sitemaps, 10000);
+        $sitemap = []; // 
+        foreach($sitemapsChunk as $itemChunk ){
+
+            $strSitemaps = implode("",  $itemChunk);
+            $sitemap[]   = $this->createXMLSitemap($strSitemaps);
+        }
+        return response()->view("admin.sitemap", compact('sitemap'));
     }
 
     
-    public function save(){
+    public function save( Request $request ){
 
-        $sitemap = implode("", $this->createSitemap() );
-        $view = view("admin.sitemap", compact('sitemap'))->render();
-        $path = public_path('sitemap/sitemap' . date('Y-m-d') . '.xml');
-        try {
-            File::put( $path, $view );
-        } catch (\Throwable $th) {
-            return 'error 500 ' . $th->getMessage();
+        $queryToday = null;
+        if($request->has('today')) {
+
+            $queryToday = $request->query('today');
         }
-        return $path;
+
+        $datetime = null;
+        if( $queryToday ){
+
+            $datetime = date('c',time());
+        }
+
+
+        $sitemaps      = $this->createSitemap($datetime);
+        //// 1 sitemap limit 10000
+        $sitemapsChunk = array_chunk($sitemaps, 10000);
+
+        $paths = [];
+        $sitemap  = [];  // 
+        foreach($sitemapsChunk as $key => $itemChunk ){
+
+            $strSitemaps = implode("",  $itemChunk);
+            $xml   = $this->createXMLSitemap($strSitemaps);
+
+            $todayPath = '';
+            if( $queryToday ){
+
+                $todayPath = 'today';
+            }
+            $path = "sitemap/sitemap-$todayPath-$key-" . date('Y-m-d') . '.xml';
+            $paths[]     = $path;
+            $fullPath = public_path($path);
+            try {
+                if(File::exists($fullPath)){
+
+                    File::delete($fullPath);
+                }
+                File::put( $fullPath, $xml );
+            } catch (\Throwable $th) {
+                return 'error 500 ' . $th->getMessage();
+            }
+
+        }
+        return view('admin.sitemap-rendering', compact('paths'));
     }
 
-    private function createSitemap(){
+    private function createXMLSitemap(string $site){
 
-        $posts = $this->model->createPostModel()->get(['title', 'slug', 'updated_at']);
-        // $topics = $this->model->createTopicModel()->get(['slug', 'updated_at']);
-        $tags = $this->model->createTagModel()->get(['slug', 'updated_at']);
+        return '<?xml version="1.0" encoding="UTF-8"?>
+        <urlset
+              xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+                    http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+                    
+        '. $site .'
+        </urlset>';
+    }
+
+    private function createSitemapDefault(){
+
+        $ASSET = trim(asset("/"), '/');
+        $datetimeLinkDefault = date('c',time());
 
         /// run sitemap 
         $sitemaps = [];
-        // foreach($topics as $topic ){
+        $sitemaps[] = "
+        <url>
+            <loc>$ASSET</loc>
+            <lastmod>$datetimeLinkDefault</lastmod>
+            <priority>1.00</priority>
+        </url>
+        <url>
+            <loc>$ASSET/contact</loc>
+            <lastmod>$datetimeLinkDefault</lastmod>
+            <priority>0.80</priority>
+        </url>
+        <url>
+            <loc>$ASSET/search</loc>
+            <lastmod>$datetimeLinkDefault</lastmod>
+            <priority>0.60</priority>
+        </url>
+        <url>
+            <loc>$ASSET/search?q=java</loc>
+            <lastmod>$datetimeLinkDefault</lastmod>
+            <priority>0.55</priority>
+        </url>
+        <url>
+            <loc>$ASSET/search?q=google</loc>
+            <lastmod>$datetimeLinkDefault</lastmod>
+            <priority>0.80</priority>
+        </url>
+            ";
+        return $sitemaps;
+    }
 
-        //     $sitemaps[] = "
-        //     <url>
-        //         <loc>https://ebudezain.com/topic/{$topic['slug']}</loc>
-        //         <lastmod>{$topic->updated_at->tz('UTC')->toAtomString()}</lastmod>
-        //         <priority>0.64</priority>
-        //     </url>
-        //     ";
-        // }
-        foreach($tags as $tag ){
-            $link = Route('TAG_VIEW', [ 'slug' => $tag['slug'] ]);
+    private function createSitemap($datetime = null){
+
+        $ASSET = trim(asset("/"), '/');
+
+        $postModel = $this->model->createPostModel();
+        $posts     = $postModel->getPostActiveByCondition()->get(['title', 'slug', 'catalogue', 'updated_at']);
+
+        $topics = $this->model->createTopicModel()->get(['slug', 'updated_at']);
+        $tags   = $this->model->createTagModel()->get(['slug', 'updated_at']);
+
+        /// run sitemap 
+        $sitemaps = $this->createSitemapDefault();
+        foreach($topics as $topic ){
+
+            $timeSitemap = $datetime;
+            if(!$timeSitemap){
+                $timeSitemap = $topic->updated_at->tz('UTC')->toAtomString();
+            }
             $sitemaps[] = "
             <url>
-                <loc>{$link}</loc>
-                <lastmod>{$tag->updated_at->tz('UTC')->toAtomString()}</lastmod>
-                <priority>0.55</priority>
+                <loc>$ASSET/topic/{$topic['slug']}</loc>
+                <lastmod>{$timeSitemap}</lastmod>
+                <priority>0.80</priority>
+            </url>
+            ";
+        }
+        foreach($tags as $tag ){
+
+            $timeSitemap = $datetime;
+            if(!$timeSitemap){
+                $timeSitemap = $tag->updated_at->tz('UTC')->toAtomString();
+            }
+            $sitemaps[] = "
+            <url>
+                <loc>$ASSET/tag/{$tag['slug']}</loc>
+                <lastmod>{$timeSitemap}</lastmod>
+                <priority>0.50</priority>
             </url>
             ";
         }
         foreach($posts as $post ){
 
-            
-            $linkSearch = Route('SEARCH', [ 'q' => $post['title'] ]);
-            $sitemaps[] = "
-                <url>
-                    <loc>{$linkSearch}</loc>
-                    <lastmod>{$post->updated_at->tz('UTC')->toAtomString()}</lastmod>
-                    <priority>0.3</priority>
-                </url>";
 
-            $linkPost = Route('SEARCH', [ 'q' => $post['slug'] ]);
+            if( Carbon::parse($post->updated_at) >= Carbon::parse('2020-10-27 05:21:03')){
+                
+                $timeSitemap = $datetime;
+                if(!$timeSitemap){
+                    $timeSitemap = $post->updated_at->tz('UTC')->toAtomString();
+                }
+                $postTitle = preg_replace("/[^\p{L}\p{N}_]+/u", " ",  $post['title']);
+                $postTitle = trim($postTitle, " ");
+                $sitemaps[] = "
+                    <url>
+                        <loc>$ASSET/search?q={$postTitle}</loc>
+                        <lastmod>{$timeSitemap}</lastmod>
+                        <priority>0.3</priority>
+                    </url>";
+            }
+
+            $timeSitemapPost = $datetime;
+            if(!$timeSitemapPost){
+                $timeSitemapPost = $post->updated_at->tz('UTC')->toAtomString();
+            }
             $sitemaps[] = "
             <url>
-                <loc>{$linkPost}</loc>
-                <lastmod>{$post->updated_at->tz('UTC')->toAtomString()}</lastmod>
-                <priority>0.60</priority>
+                <loc>$ASSET/{$post['slug']}</loc>
+                <lastmod>{$timeSitemapPost}</lastmod>
+                <priority>0.7</priority>
             </url>
             ";
         }

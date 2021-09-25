@@ -4,7 +4,7 @@
 
 @section('javascripts')
     <script src="{{ asset('js/library/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/admin/app.min.js') }}"></script>
+    <script src="{{ asset('js/admin/app.js') }}"></script>
     <script>
         var ADMIN_UPDATE_USER_PERMISSION = "{{ Route('ADMIN_UPDATE_USER_PERMISSION', ['id' => null ])}}";
         function updateComponent( userId, permissionId , element ){
@@ -67,10 +67,7 @@
                     {{ $permission->name }}
                 </div>
                 <div class="col-1">
-                    @if(
-                        $user->role->type != Config::get('constant.TYPE-PERMISSION.SUPPER-ADMIN')
-                        && Illuminate\Support\Facades\Gate::allows('permission')
-                    )
+                    @if($user->role->type == Config::get('constant.TYPE-PERMISSION.USER'))
                     <input type="checkbox" 
                     onchange="updateComponent('{{ $user->id }}', '{{ $permission->id }}', this)"
                     {{ $permissionUsers->contains('name' , $permission->name) ? "checked" : '' }} />

@@ -2,7 +2,6 @@ import React, { useState, useEffect, forwardRef, useRef, useImperativeHandle } f
 import Validator from "hero-validate"
 import AsyncCreatableSelect from 'react-select/async-creatable'
 import projectApi from "../../../../service/apartment.project.api"
-import { Link } from 'react-router-dom'
 
 
 
@@ -117,7 +116,6 @@ const ApartmentInfo = forwardRef((props, ref) => {
                             id="project" 
                             name='project'
                             className={ " " + ( hasErr('project') && 'is-invalid' ) }
-
                             cacheOptions
                             defaultOptions={ [{ value: "0", label: "nhập dự án bạn muốn tìm" }] }
                             loadOptions={ loadOptions }
@@ -133,12 +131,12 @@ const ApartmentInfo = forwardRef((props, ref) => {
                 </div>
                 {
                     values.project == "" && (
-                        <div>đây là trường hợp không có nhập gì</div>
+                        <div className='col-12'>đây là trường hợp không có nhập gì</div>
                     )
                 }
                 {
                     values.project.id && (
-                        <div className="">
+                        <div className='col-12'>
                             <a target='_blank' href={ `${CONFIG.REACT_ASSET}/apartment/project/${values.project.id}` }>
                                 bấm để xem chi tiết
                             </a>
@@ -148,7 +146,7 @@ const ApartmentInfo = forwardRef((props, ref) => {
                 }
                 {
                     !values.project.id && values.project.label && (
-                        <div> {values.project.label } </div>
+                        <div className='col-12'> {values.project.label } </div>
                     )
                 }
             </div>

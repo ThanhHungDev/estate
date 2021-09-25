@@ -4,7 +4,7 @@
 
 @section('javascripts')
     <script src="{{ asset('js/library/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/admin/app.min.js') }}"></script>
+    <script src="{{ asset('js/admin/app.js') }}"></script>
     <script src="{{ asset('js/library/select2.min.js') }}"></script>
     <script>
         var ADMIN_DELETE_POST = "{{ Route('ADMIN_DELETE_POST', ['id' => null ])}}";
@@ -128,28 +128,24 @@
                     </select>
                 </div>
                 <div class="col-1">
-                    @if(Illuminate\Support\Facades\Gate::allows('edit'))
                     <button type="button"
                     onclick="updateComponent('{{ $post->id }}', this)"
                     class="bg-transparent btn-update-row">
                         <i class="hero-icon hero-update"></i>
                     </button>
-                    @endif
                 </div>
                 <div class="col-1">
-                    @if(Illuminate\Support\Facades\Gate::allows('delete'))
                     <button type="button"
                     onclick="deleteComponent('{{ $post->id }}', this)"
                     class="bg-transparent btn-remove-row">
                         <i class="hero-icon hero-delete-variant"></i>
                     </button>
-                    @endif
                 </div>
             </div>
             @endforeach
 
             <div class="pagi">
-                {{ $posts->onEachSide(3)->links() }}
+                {{ $posts->onEachSide(3)->links("pagination::default") }}
             </div>
 
         </div>

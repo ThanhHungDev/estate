@@ -1,0 +1,152 @@
+{
+    "title": "How to - json cách làm",
+	"type": "object",
+    "id": "howto",
+    
+    "properties": {
+        "@context" : {
+			"type": "string",
+			"default": "http:\/\/schema.org",
+			"propertyOrder": 1,
+			"options" : {
+				"hidden":true
+            }
+		},
+		"@type" : {
+			"type": "string",
+			"default": "HowTo",
+			"propertyOrder": 2,
+			"options" : {
+				"hidden":true
+            }
+		},
+		"name": {
+			"type": "string",
+			"maxLength": 100,
+			"propertyOrder": 3,
+			"options":{
+				"grid_columns": 4
+			}
+		},
+		"image": {
+			"propertyOrder": 4,
+			"type": "string",
+			"format":"url",
+			"options":{
+				"grid_columns": 8
+			}
+		},
+		"description": {
+			"propertyOrder": 5,
+			"type": "string",
+      		"maxLength": 160,
+			"options":{
+				"grid_columns": 10
+			}
+		},
+		"totalTime": {
+			"propertyOrder": 6,
+			"type": "string",
+			"default": "PT2M",
+			"options":{
+				"grid_columns": 2
+			}
+		},
+        "step": {
+            "propertyOrder": 100,
+            "type": "array",
+            "format": "table",
+            "title": "step - các bước",
+            "uniqueItems": true,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "@type": {
+                        "type": "string",
+                        "default": "HowToStep",
+                        "propertyOrder": 1,
+                        "options":{
+                            "hidden":true
+                        }
+                    },
+                    "url": {
+                        "type":"string",
+                        "format":"url"
+                    },
+                    "name": {
+                        "type":"string"
+                    },
+                    "image": {
+                        "type":"string",
+                        "format":"url"
+                    },
+                    "text": {
+                        "type":"string"
+                    }
+                }
+            },
+            "options" : {
+                "disable_array_add": true,
+                "disable_array_delete" : true,
+                "disable_array_reorder": true,
+                "format": "grid",
+                "grid_columns": 12,
+                "collapsed": true
+            }
+        },
+        "tool": {
+            "type": "array",
+            "format": "table",
+            "title": "công cụ tool",
+            "uniqueItems": true,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "@type": {
+                        "type": "string",
+                        "default": "HowToTool",
+                        "propertyOrder": 1,
+                        "options":{
+                            "hidden":true
+                        }
+                    },
+                    "name": {
+                        "type":"string"
+                    }
+                }
+            },
+            "options" : {
+                "disable_array_reorder": true,
+                "format": "grid",
+                "grid_columns": 12,
+                "collapsed": true
+            }
+        },
+        "supply": {
+            "type": "array",
+            "title": "nguyên liệu supply",
+            "uniqueItems": true,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "@type": {
+                        "type": "string",
+                        "default": "HowToSupply",
+                        "propertyOrder": 1,
+                        "options":{
+                            "hidden":true
+                        }
+                    },
+                    "name": {
+                        "type":"string"
+                    }
+                }
+            },
+            "options" : {
+                "disable_array_reorder": true,
+                "format": "grid",
+                "collapsed": true
+            }
+        }
+    }
+}

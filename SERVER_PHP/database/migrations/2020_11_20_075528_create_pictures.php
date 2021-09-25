@@ -19,7 +19,7 @@ class CreatePictures extends Migration
             $table->increments('id');
             $table->string('src'); /// đường dẫn đến hình ảnh
             $table->string('alt')->nullable(); /// alt là cái tham số cho seo nên có thể null
-            $table->unsignedInteger('key')->nullable(); /// là id của cái bảng mà nó nắm
+            $table->string('key')->nullable(); /// là id của cái bảng mà nó nắm
             $table->string('title')->nullable(); /// title là cái tham số cho seo nên có thể null
             $table->integer('width')->nullable(); /// tham số chiều rộng để đỡ load img js mới biết
             $table->integer('height')->nullable();/// tham số chiều cao để đỡ load img js mới biết

@@ -40,7 +40,7 @@
                 <div class="information__item information__phone">
                     <i class="information__item__icon fal fa-phone-alt"></i>
                     <h3 class="information__item__des">
-                        <a href="tel:{{ Config::get('app.phone_one') }}">
+                        <a href="tel:{{ Config::get('app.phone') }}">
                             {{ Config::get('app.phone') }}
                         </a>
                     </h3>

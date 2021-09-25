@@ -15,6 +15,71 @@ class ImageController extends Controller
     const FORMAT     = 'jpg';
     const QUALITY    = 75;
     const ALLOWED    = ['image/jpeg' => 'jpg', 'image/png' => 'png', 'image/gif' => 'gif'];
+
+    public function resizeRatio($size, $type = self::TYPE__FIT, $imagePath)
+    {
+        $imagePath = trim($imagePath, "/");
+        /// http://land.vn/resizes/icon/fit/images/commun.jpg?v=12345678
+
+        $imageFullPath = public_path($imagePath);
+        $sizes = Config::get('image.SIZES');
+
+        if(!File::isFile($imageFullPath) || !isset($sizes[$size])){
+
+            abort(404);
+        }
+    
+        $savedPath = public_path('ratio/' . $size . '/' . $type . '/' . $imagePath);
+        $savedDir  = dirname($savedPath);
+
+        if(!File::isDirectory($savedDir)){
+
+            File::makeDirectory($savedDir, 0777, true, true);
+        }
+    
+        list($width, $height) = $sizes[$size];
+        $ratio = $width / $height;
+
+        /// thay đổi $width $height ở đây
+        $imageMaker = Image::make($imageFullPath);
+        $widthImg = $imageMaker->width();
+        $heightImg = $imageMaker->height();
+
+        $ratioImg = $widthImg / $heightImg;
+        if( $ratioImg < $ratio ){
+            $height = round($widthImg / $ratio);
+            $width = $widthImg;
+        }else{
+            $width = round($heightImg * $ratio);
+            $height = $heightImg;
+        }
+    
+        if($type == self::TYPE__FILL){
+
+            // create empty canvas
+            $background = Image::canvas($width, $height);
+            // fill image with color
+            $background->fill('#cccccc');
+
+            $image = Image::make($imageFullPath)->resize($width, $height, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            });
+
+            // insert resized image centered into background
+            $background->insert($image, 'center');
+
+            // save or do whatever you like
+            $background->save($savedPath);
+
+            return $background->response();
+        }
+        
+        $image = Image::make($imageFullPath)->$type($width, $height)->save($savedPath);
+
+        return $image->response();
+    }
+
  
     public function resize($size, $type = self::TYPE__FIT, $imagePath)
     {

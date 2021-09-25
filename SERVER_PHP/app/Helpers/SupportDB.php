@@ -2,6 +2,10 @@
 namespace App\Helpers;
 
 use App\Factory\BaseModel;
+use App\Models\Option;
+use App\Models\Picture;
+use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Support\Facades\Config;
 
 class SupportDB{
@@ -13,9 +17,8 @@ class SupportDB{
 
         if( !static::$OPTIONS ){
 
-            $baseModel   = new BaseModel();
-            $optionModel = $baseModel->createOptionModel();
-            $options     = $optionModel->getAll();
+            $optionModel = new Option();
+            $options     = $optionModel->all();
 
             $DF_OP = [];
             foreach( $options as $option ){
@@ -55,9 +58,8 @@ class SupportDB{
 
         if( !static::$PICTURES ){
 
-            $baseModel    = new BaseModel();
-            $pictureModel = $baseModel->createPictureModel();
-            $pictures     = $pictureModel->getAll();
+            $pictureModel = new Picture();
+            $pictures     = $pictureModel->all();
             
             static::$PICTURES = $pictures;
         }
@@ -85,16 +87,14 @@ class SupportDB{
     
     public static function getTagByCondition($condition){
 
-        $baseModel   = new BaseModel();
-        $tagModel = $baseModel->createTagModel();
+        $tagModel = new Tag();
 
         return $tagModel->getTagByCondition($condition);
     }
 
     public static function getPostByCondition($condition){
 
-        $baseModel   = new BaseModel();
-        $postModel = $baseModel->createPostModel();
+        $postModel = new Post();
 
         return $postModel->getPostByCondition($condition);
     }

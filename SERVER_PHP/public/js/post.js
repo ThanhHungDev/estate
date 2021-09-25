@@ -9165,7 +9165,7 @@ function Category(props) {
         onError: onError,
         "data-src": src,
         "data-sdrc": src,
-        alt: category.title,
+        alt: category.name,
         width: "300",
         height: "300"
       })
@@ -9173,7 +9173,7 @@ function Category(props) {
       to: "/".concat(category.slug),
       children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h5", {
         className: "categories__item-link-text",
-        children: category.title
+        children: category.name
       })]
     })]
   });
@@ -9371,9 +9371,13 @@ function Apartment(props) {
 
   var SW = state.SW;
   var CONFIG = props.CONFIG,
-      AUTH = props.AUTH;
+      AUTH = props.AUTH,
+      device = props.device;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
     className: "apartment",
+    style: {
+      minHeight: device.calcHeightSubtractHeight + "px"
+    },
     children: [SW && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Apartment_HeaderApartment__WEBPACK_IMPORTED_MODULE_3__.default, {
       SW: SW,
       parentCallback: continueStep
@@ -9460,7 +9464,8 @@ var mapStateToProps = function mapStateToProps(state) {
   return {
     CATEGORIES: state.categories,
     CONFIG: state.config,
-    AUTH: state.auth
+    AUTH: state.auth,
+    device: state.device
   };
 };
 
@@ -9559,6 +9564,7 @@ var HeaderApartment = function HeaderApartment(props) {
 
   var width = Math.floor(SW.currentStep * 100 / SW.totalSteps) + '%';
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    className: "apartment__header--wrapper",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
       className: "apartment__header",
       children: [SW.currentStep == 1 ? null : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
@@ -9644,7 +9650,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 
 
 
@@ -9805,9 +9810,10 @@ var ApartmentInfo = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRe
           })]
         })
       }), values.project == "" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        className: "col-12",
         children: "\u0111\xE2y l\xE0 tr\u01B0\u1EDDng h\u1EE3p kh\xF4ng c\xF3 nh\u1EADp g\xEC"
       }), values.project.id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-        className: "",
+        className: "col-12",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
           target: "_blank",
           href: "".concat(CONFIG.REACT_ASSET, "/apartment/project/").concat(values.project.id),
@@ -9818,6 +9824,7 @@ var ApartmentInfo = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRe
           }
         })]
       }), !values.project.id && values.project.label && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+        className: "col-12",
         children: [" ", values.project.label, " "]
       })]
     })
@@ -11377,6 +11384,78 @@ if (typeof CONFIG_APP != 'undefined') {
 
 /***/ }),
 
+/***/ "./resources/js/reducer/device.js":
+/*!****************************************!*\
+  !*** ./resources/js/reducer/device.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* export default binding */ __WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var WIDTH_MOBILE_DEVICE = 768;
+var MIN_HEIGHT_DEVICE = 400;
+
+function isPcDevice() {
+  if (getWidthDevice() <= WIDTH_MOBILE_DEVICE) {
+    return false;
+  }
+
+  return true;
+}
+
+function getWidthDevice() {
+  return window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+}
+
+function getHeightDevice() {
+  var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+  return height < MIN_HEIGHT_DEVICE ? MIN_HEIGHT_DEVICE : height;
+}
+
+function calcHeightSubtractHeight() {
+  var height = getHeightDevice();
+  var tophead = document.getElementsByClassName('tophead');
+
+  if (tophead.length) {
+    tophead = tophead[0];
+  }
+
+  var menuSticky = document.getElementsByClassName('headerpage');
+
+  if (menuSticky.length) {
+    menuSticky = menuSticky[0];
+  }
+
+  var heightMenu = 0;
+
+  try {
+    heightMenu = tophead.offsetHeight + menuSticky.offsetHeight + 50;
+  } catch (error) {}
+
+  return height - heightMenu;
+}
+
+var DEVICE = {
+  isPcDevice: isPcDevice(),
+  widthDevice: getWidthDevice(),
+  heightDevice: getHeightDevice(),
+  calcHeightSubtractHeight: calcHeightSubtractHeight()
+};
+/* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEVICE;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
 /***/ "./resources/js/reducer/post.reducer.js":
 /*!**********************************************!*\
   !*** ./resources/js/reducer/post.reducer.js ***!
@@ -11388,20 +11467,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./config */ "./resources/js/reducer/config.js");
 /* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./auth */ "./resources/js/reducer/auth.js");
 /* harmony import */ var _category__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./category */ "./resources/js/reducer/category.js");
+/* harmony import */ var _device_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./device.js */ "./resources/js/reducer/device.js");
  ///thêm các reducer funtion cần được combine vào đây
+
 
 
 
  //// khởi tạo 1 biến biểu diễn REDUCER ALL 
 
-var Reducer = (0,redux__WEBPACK_IMPORTED_MODULE_3__.combineReducers)({
+var Reducer = (0,redux__WEBPACK_IMPORTED_MODULE_4__.combineReducers)({
   config: _config__WEBPACK_IMPORTED_MODULE_0__.default,
   auth: _auth__WEBPACK_IMPORTED_MODULE_1__.default,
-  categories: _category__WEBPACK_IMPORTED_MODULE_2__.default
+  categories: _category__WEBPACK_IMPORTED_MODULE_2__.default,
+  device: _device_js__WEBPACK_IMPORTED_MODULE_3__.default
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Reducer);
 
@@ -15277,10 +15359,114 @@ var index = react__WEBPACK_IMPORTED_MODULE_0__.createContext || createReactConte
 
 /***/ }),
 
-/***/ "./resources/sass/post.scss":
-/*!**********************************!*\
-  !*** ./resources/sass/post.scss ***!
-  \**********************************/
+/***/ "./resources/sass/page/forgot.scss":
+/*!*****************************************!*\
+  !*** ./resources/sass/page/forgot.scss ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/sass/page/contact.scss":
+/*!******************************************!*\
+  !*** ./resources/sass/page/contact.scss ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/sass/page/product.detail.scss":
+/*!*************************************************!*\
+  !*** ./resources/sass/page/product.detail.scss ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/admin/sass/page/admin.scss":
+/*!**********************************************!*\
+  !*** ./resources/admin/sass/page/admin.scss ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/sass/page/user.post.scss":
+/*!********************************************!*\
+  !*** ./resources/sass/page/user.post.scss ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/sass/page/home.scss":
+/*!***************************************!*\
+  !*** ./resources/sass/page/home.scss ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/sass/page/profile.scss":
+/*!******************************************!*\
+  !*** ./resources/sass/page/profile.scss ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/sass/page/login.scss":
+/*!****************************************!*\
+  !*** ./resources/sass/page/login.scss ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/sass/page/register.scss":
+/*!*******************************************!*\
+  !*** ./resources/sass/page/register.scss ***!
+  \*******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -65086,7 +65272,15 @@ exports.mediaProperties = mediaProperties;
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"/js/post": 0,
-/******/ 			"css/post": 0
+/******/ 			"css/user.post": 0,
+/******/ 			"css/admin": 0,
+/******/ 			"css/register": 0,
+/******/ 			"css/login": 0,
+/******/ 			"css/profile": 0,
+/******/ 			"css/home": 0,
+/******/ 			"css/product.detail": 0,
+/******/ 			"css/contact": 0,
+/******/ 			"css/forgot": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -65134,8 +65328,16 @@ exports.mediaProperties = mediaProperties;
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/post"], () => (__webpack_require__("./resources/js/post.js")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/post"], () => (__webpack_require__("./resources/sass/post.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/user.post","css/admin","css/register","css/login","css/profile","css/home","css/product.detail","css/contact","css/forgot"], () => (__webpack_require__("./resources/js/post.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/user.post","css/admin","css/register","css/login","css/profile","css/home","css/product.detail","css/contact","css/forgot"], () => (__webpack_require__("./resources/sass/page/user.post.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/user.post","css/admin","css/register","css/login","css/profile","css/home","css/product.detail","css/contact","css/forgot"], () => (__webpack_require__("./resources/sass/page/home.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/user.post","css/admin","css/register","css/login","css/profile","css/home","css/product.detail","css/contact","css/forgot"], () => (__webpack_require__("./resources/sass/page/profile.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/user.post","css/admin","css/register","css/login","css/profile","css/home","css/product.detail","css/contact","css/forgot"], () => (__webpack_require__("./resources/sass/page/login.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/user.post","css/admin","css/register","css/login","css/profile","css/home","css/product.detail","css/contact","css/forgot"], () => (__webpack_require__("./resources/sass/page/register.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/user.post","css/admin","css/register","css/login","css/profile","css/home","css/product.detail","css/contact","css/forgot"], () => (__webpack_require__("./resources/sass/page/forgot.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/user.post","css/admin","css/register","css/login","css/profile","css/home","css/product.detail","css/contact","css/forgot"], () => (__webpack_require__("./resources/sass/page/contact.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/user.post","css/admin","css/register","css/login","css/profile","css/home","css/product.detail","css/contact","css/forgot"], () => (__webpack_require__("./resources/sass/page/product.detail.scss")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/user.post","css/admin","css/register","css/login","css/profile","css/home","css/product.detail","css/contact","css/forgot"], () => (__webpack_require__("./resources/admin/sass/page/admin.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\SupportString;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\ADMIN_VALIDATE_SAVE_TAG;
 use App\Libraries\Catalogue;
+use App\Models\Tag;
+use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Gate;
 
 class TagController extends Controller
 {
@@ -17,20 +21,21 @@ class TagController extends Controller
      * @return View
      */
     public function index( $id = 0 ){
-
+        
         if( !$id ){
             /// thêm mới
-            $tag    = $this->model->createTagModel()->getInstanceEmpty();
+            $tag    = new Tag();
         }else{
             //// edit 
-            $tag    = $this->model->createTagModel()->find($id);
+            $tag    = Tag::find($id);
             if( !$tag ){
                 //// redirect 404
                 return abort(404);
             }
         }
+        $users = User::all();
         
-        return view('admin.tag.save', compact([ 'tag' ]));
+        return view('admin.tag.save', compact([ 'tag', 'users' ]));
     }
 
 
@@ -38,28 +43,31 @@ class TagController extends Controller
 
         ///setting data insert table tag
         $tagInput = $request->only( 'name', 'slug', 'excerpt', 
-        'content', 'background', 'thumbnail', 'site_name', 
+        'content', 'background', 'thumbnail', 'site_name', 'user_id',
         'image_seo', 'description_seo');
-
+        
         /// create catalogue
-                   $catalogue   = Catalogue::generate($tagInput['content']);
-        $tagInput['content']   = $catalogue->text;
-        $tagInput['catalogue'] = $catalogue->catalogue;
+        $catalogue = Catalogue::generate($tagInput['content']);
+        
+        $tagInput['content']      = $catalogue->text;
+        $tagInput['catalogue']    = $catalogue->catalogue;
 
-        /// set id save tag 
-        $tagInput['id'] = $id;
+        $tagInput['description_seo'] = SupportString::createDescription($tagInput['description_seo'], $catalogue->text_catalogue);
         
         try{
             if( !$id && $this->checkSlugExist( $tagInput['slug'] )){
                 
                 throw new Exception('thêm mới nhưng slug đã tồn tại');
             }
-            /// create instance Tag Model 
-            $tag = $this->model->createTagModel();
 
-            $tag->save($tagInput);
-            $tagModel = $tag->getModelInstance();
-            $tagID = $tagModel->id;
+            $tag = Tag::find( $id );
+            if( !$tag ){
+                $tag = Tag::create( $tagInput );
+            }else{
+                $tag->fill($tagInput)->save();
+            }
+
+            $tagID = $tag->id;
 
             $request->session()->flash(Config::get('constant.SAVE_SUCCESS'), true);
             return redirect()->route('ADMIN_STORE_TAG',  ['id' => $tagID ]);
@@ -78,7 +86,7 @@ class TagController extends Controller
      */
     public function load(){
         $limit = 10;
-        $tags = $this->model->createTagModel()->paginate( $limit );
+        $tags = Tag::paginate( $limit );
         return view('admin.tag.load', compact(['tags']));
     }
 
@@ -101,7 +109,7 @@ class TagController extends Controller
      */
     public function delete($id = 0){
 
-        $this->model->createTagModel()->find($id)->delete();
+        Tag::find($id)->delete();
 
         $status = 200;
         $response = array( 'status' => $status, 'message' => 'success' );

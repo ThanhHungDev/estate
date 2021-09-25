@@ -50,7 +50,8 @@ class LoginController extends Controller
 
         $dataLogin = array(
             'email'    => strtolower($request->input('email')),
-            'password' => $request->input('password')
+            'password' => $request->input('password'),
+            'role_id'  => Config::get('constant.ROLE.USER')
         );
 
         if (Auth::attempt( $dataLogin, $remember )) {

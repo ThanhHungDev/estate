@@ -1,0 +1,50 @@
+/**
+* 10.0 -  Blog
+* -----------------------------------------------------------------------------
+*/
+.tz-Breadcrumb {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+  }
+  .tz-Breadcrumb .tzOverlayBreadcrumb {
+    padding: 105px 0 120px;
+    position: relative;
+    display: block;
+    text-align: center;
+    background: rgba(52, 67, 85, 0.5);
+  }
+  .tz-Breadcrumb .tzOverlayBreadcrumb h1 {
+    font-size: 36px;
+    color: #fff;
+    font-weight: 800;
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+    margin: 0;
+
+    @include ScreenMax( SM ){ font-size: 20px; }
+  }
+  .tz-Breadcrumb .tzOverlayBreadcrumb .tz-breadcrumb-navxt {
+    font-size: 11px;
+    color: #f0f9fb;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+  .tz-Breadcrumb .tzOverlayBreadcrumb .tz-breadcrumb-navxt > span {
+    padding: 0 10px;
+  }
+  .tz-Breadcrumb .tzOverlayBreadcrumb .tz-breadcrumb-navxt a {
+    font-size: 11px;
+    color: #f0f9fb;
+    font-weight: 400;
+    text-transform: uppercase;
+    -webkit-transition: all 0.2s ease 0s;
+    -moz-transition: all 0.2s ease 0s;
+    -ms-transition: all 0.2s ease 0s;
+    -o-transition: all 0.2s ease 0s;
+    transition: all 0.2s ease 0s;
+  }
+  .tz-Breadcrumb .tzOverlayBreadcrumb .tz-breadcrumb-navxt a:hover {
+    color: #57bb57;
+  }

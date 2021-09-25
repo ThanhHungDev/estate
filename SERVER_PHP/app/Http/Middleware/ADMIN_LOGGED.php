@@ -21,6 +21,20 @@ class ADMIN_LOGGED
             $user = Auth::user();
             if( $user->role_id == Config::get('constant.ROLE.ADMIN')){
 
+                if (session_id() == '') {
+                    @session_start();
+                }
+                if(Auth::check()){
+                    $objectUser = Auth::user();
+                    $user = array(
+                        "id" => $objectUser->id,
+                        "name" => $objectUser->name,
+                        "email" => $objectUser->email,
+                        "role_id" => $objectUser->role_id
+                    );
+                    $_SESSION['admin_ckfinder'] = $user;
+                }
+    
                 return $next($request);
             }else{
                 Auth::logout();

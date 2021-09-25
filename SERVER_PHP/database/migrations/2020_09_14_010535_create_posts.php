@@ -16,27 +16,35 @@ class CreatePosts extends Migration
     public function up()
     {
         Schema::create('posts', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('user_id')->unsigned(); /// do user nào post lên
-            $table->unsignedInteger('category_id')->unsigned();/// phân loại ví dụ : căn hộ chung cư
-
+            $table->id();
+            $table->unsignedInteger('topic_id')->unsigned();
+            $table->unsignedInteger('user_id')->unsigned()->nullable();
+            $table->unsignedInteger('rating_id')->unsigned()->nullable();
             $table->string('title', 150)->nullable();
             $table->string('slug', 150)->nullable();
-            $table->integer('public')->default(0); /// duyệt
-            $table->text('content')->nullable();/// nội dung
-            $table->string('description', 255)->nullable();/// seo
-
-            $table->integer('direction')->default(Config::get("constant.DIRECTION.DEFAULT.VALUE")); /// đông / đông bắc / đông nam / tây / tây bắc / tây nam / nam / bắc
-            $table->integer('direction_balcony')->default(Config::get("constant.BALCONY.DEFAULT.VALUE")); /// hướng ban công
-
-            $table->float('horizontal', 8, 5)->nullable();/// chiều ngang tính theo mét
-            $table->float('vertical', 8, 5)->nullable(); /// chiều dài tính theo mét
-
-            $table->integer('price');
-            $table->integer('unit_price')->default(Config::get("constant.UNIT.PRICE.MILLION"));
-
+            $table->string('excerpt')->nullable();
+            $table->text('catalogue')->nullable();
+            $table->text('text_catalogue')->nullable();
+            $table->text('content')->nullable();
+            $table->text('text_content')->nullable();
+            $table->string('background', 510)->nullable();
+            $table->string('thumbnail', 510)->nullable();
+            $table->integer('like')->default(1);
+            $table->integer('view')->default(1);
+            $table->float('rate_value')->default(3.5);
+            $table->text('rate_review_body')->nullable();
+            $table->text('stylesheet')->nullable();
+            $table->text('javascript')->nullable();
+            $table->json('ldjson')->nullable();
+            $table->integer('type')->default(1);
+            $table->integer('sort')->default(-1);
+            $table->integer('public')->default(1);
+            $table->string('site_name', 150)->nullable();
+            $table->string('image_seo', 510)->nullable();
+            $table->string('description_seo', 255)->nullable();
             $table->timestamps();
         });
+
     }
 
     /**

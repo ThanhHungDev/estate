@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\SupportString;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ADMIN_VALIDATE_SAVE_TOPIC;
 use App\Libraries\Catalogue;
+use App\Models\Topic;
+use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
@@ -17,20 +20,32 @@ class TopicController extends Controller
      * @return View
      */
     public function index( $id = 0 ){
-
+        
+        // if( !$id ){
+        //     /// thêm mới
+        //     $topic    = $this->model->createTopicModel()->getInstanceEmpty();
+        // }else{
+        //     //// edit 
+        //     $topic    = $this->model->createTopicModel()->find($id);
+        //     if( !$topic ){
+        //         //// redirect 404
+        //         return abort(404);
+        //     }
+        // }
         if( !$id ){
             /// thêm mới
-            $topic    = $this->model->createTopicModel()->getInstanceEmpty();
+            $topic    = new Topic();
         }else{
             //// edit 
-            $topic    = $this->model->createTopicModel()->find($id);
+            $topic    = Topic::find($id);
             if( !$topic ){
                 //// redirect 404
                 return abort(404);
             }
         }
+        $users = User::all();
         
-        return view('admin.topic.save', compact([ 'topic' ]));
+        return view('admin.topic.save', compact([ 'topic' , 'users']));
     }
 
 
@@ -39,28 +54,31 @@ class TopicController extends Controller
         ///setting data insert table topic
 
         $topicInput = $request->only( 'name', 'slug', 'excerpt', 
-        'content', 'background', 'thumbnail', 'site_name', 
+        'content', 'background', 'thumbnail', 'site_name', 'user_id',
         'image_seo', 'description_seo');
 
         /// create catalogue
-                   $catalogue   = Catalogue::generate($topicInput['content']);
-        $topicInput['content']   = $catalogue->text;
-        $topicInput['catalogue'] = $catalogue->catalogue;
+                    $catalogue = Catalogue::generate($topicInput['content']);
+        $topicInput['content'] = $catalogue->text;
 
-        /// set id save topic 
-        $topicInput['id'] = $id;
+        $topicInput['catalogue']    = $catalogue->catalogue;
+        
+        $topicInput['description_seo'] = SupportString::createDescription($topicInput['description_seo'], $catalogue->text_catalogue);
         
         try{
             if( !$id && $this->checkSlugExist( $topicInput['slug'] )){
                 
                 throw new Exception('thêm mới nhưng slug đã tồn tại');
             }
-            /// create instance Topic Model 
-            $topic = $this->model->createTopicModel();
 
-            $topic->save($topicInput);
-            $topicModel = $topic->getModelInstance();
-            $topicID = $topicModel->id;
+            $topic = Topic::find( $id );
+            if( !$topic ){
+                $topic = Topic::create( $topicInput );
+            }else{
+                $topic->fill($topicInput)->save();
+            }
+
+            $topicID = $topic->id;
 
             $request->session()->flash(Config::get('constant.SAVE_SUCCESS'), true);
             return redirect()->route('ADMIN_STORE_TOPIC',  ['id' => $topicID ]);
@@ -79,7 +97,7 @@ class TopicController extends Controller
      */
     public function load(){
         $limit = 10;
-        $topics = $this->model->createTopicModel()->paginate( $limit );
+        $topics = Topic::paginate( $limit );
         return view('admin.topic.load', compact(['topics']));
     }
 
@@ -102,7 +120,7 @@ class TopicController extends Controller
      */
     public function delete($id = 0){
 
-        $this->model->createTopicModel()->find($id)->delete();
+        Topic::find($id)->delete();
 
         $status = 200;
         $response = array( 'status' => $status, 'message' => 'success' );

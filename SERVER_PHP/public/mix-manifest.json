@@ -1,4 +1,12 @@
 {
     "/js/post.js": "/js/post.js",
-    "/css/post.css": "/css/post.css"
+    "/css/user.post.css": "/css/user.post.css",
+    "/css/admin.css": "/css/admin.css",
+    "/css/register.css": "/css/register.css",
+    "/css/login.css": "/css/login.css",
+    "/css/profile.css": "/css/profile.css",
+    "/css/home.css": "/css/home.css",
+    "/css/product.detail.css": "/css/product.detail.css",
+    "/css/contact.css": "/css/contact.css",
+    "/css/forgot.css": "/css/forgot.css"
 }

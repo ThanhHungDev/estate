@@ -20,7 +20,9 @@
 @section('preload')
     <link rel="preload" as="image" href="{{ asset('/images/cityscape.jpg') }}">
 @endsection
-    
+@section('stylesheets')
+<link rel="stylesheet" type="text/css" href="{{ asset('css/register.css' . Config::get('app.version'))}}"/>
+@endsection
 @section('javascripts')
 <script src="{{ asset('js/library/jquery.validate.min.js' . Config::get('app.version')) }}"></script>
 <script src="{{ asset('js/validate.register.user.min.js' . Config::get('app.version')) }}"></script>

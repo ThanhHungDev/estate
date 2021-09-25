@@ -39,19 +39,21 @@
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#62854F">
     
-    <link rel="stylesheet" href="{{ asset('css/animate.min.css' . Config::get('app.version'))}}">
+    {{-- <link rel="stylesheet" href="{{ asset('css/animate.min.css' . Config::get('app.version'))}}">
     <link rel="stylesheet" href="{{ asset('css/awesome.min.css' . Config::get('app.version'))}}">
     <link rel="stylesheet" href="{{ asset('css/client.min.css' . Config::get('app.version'))}}">
     <link rel="stylesheet" href="{{ asset('css/library.min.css' . Config::get('app.version'))}}">
-    <link rel="stylesheet" href="{{ asset('css/material.min.css' . Config::get('app.version'))}}">
-    <link rel="stylesheet" href="{{ asset('css/admin.min.css' . Config::get('app.version'))}}">
+    <link rel="stylesheet" href="{{ asset('css/material.min.css' . Config::get('app.version'))}}"> --}}
+    <link rel="stylesheet" href="{{ asset('css/admin.css' . Config::get('app.version'))}}">
 
     <script async='async' defer='defer' src='{{ asset('js/library/lazysizes.min.js' . Config::get('app.version')) }}'></script>
     @yield('stylesheets')
 
     <script>
         const ACTION_CHECK_SLUG = "{{ Route('ADMIN_GET_SLUG', ['slug' => '/'] ) }}";
+        const GOOGLE_PLACES_API = "{{ env('GOOGLE_PLACES_API') }}";
     </script>
+
 </head>
 <body>
     <div class="wrapper-page">

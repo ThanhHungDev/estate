@@ -1,13 +1,250 @@
 /******/ (() => { // webpackBootstrap
-/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./resources/sass/app.scss":
-/*!*********************************!*\
-  !*** ./resources/sass/app.scss ***!
-  \*********************************/
+/***/ "./resources/js/app.js":
+/*!*****************************!*\
+  !*** ./resources/js/app.js ***!
+  \*****************************/
+/***/ (() => {
+
+var menu = $("#header__sticky");
+var lastScrollTop = 0;
+
+function stickyMenu(menu, sticky) {
+  if (typeof sticky === 'undefined' || !jQuery.isNumeric(sticky)) sticky = 0;
+  if (typeof lastScrollTop === 'undefined') lastScrollTop = 0;
+
+  if ($(window).scrollTop() >= sticky) {
+    if ($('#just-for-height').length === 0) {
+      menu.after('<div id="just-for-height" style="height:' + menu.outerHeight() + 'px"></div>');
+    }
+
+    menu.addClass("sticky");
+  } else {
+    menu.removeClass('show');
+    menu.removeClass("sticky");
+    $('#just-for-height').remove();
+  }
+
+  if (menu.hasClass('sticky')) {
+    /// detect case f5 browser
+    if ($(window).scrollTop() > 0 && lastScrollTop == 0 || $(window).scrollTop() < lastScrollTop) {
+      /// is f5 
+      menu.addClass('show');
+    } else {
+      menu.removeClass('show');
+    }
+  }
+
+  lastScrollTop = $(window).scrollTop();
+}
+
+$(document).ready(function () {
+  /// create tooltip 
+  Tipped.create('.simple-tooltip', {
+    skin: 'light',
+    size: 'large'
+  });
+
+  if (menu.length) {
+    var sticky = menu.offset().top + 1; // menu.outerHeight()
+    // console.log(sticky)
+    // if ($(window).width() > 767) {
+
+    stickyMenu(menu, sticky);
+    $(window).on('scroll', function () {
+      stickyMenu(menu, sticky);
+    }); // }
+  } // /***
+  //  * đây là code search header trong trang blog khi bấm nút icon search thì nó toggle cái class để hiện thị search
+  //  * Jquery set menu header click search 
+  //  */
+  //  $("#js_btn_toggle_search").click(function(){
+  //     $("#js_search_header__form").toggleClass("show")
+  // })
+
+  /***
+   * 
+   * Jquery toggle menu mobile
+   */
+  // var $menu = $("#menu");
+  // $menu.find(".navigate__link__icon_plus").click(function(){
+  //     /// check is mobile have show class of toggle button is click
+  //     if($menu.hasClass('show')){
+  //         /// remove all class active link old 
+  //         $(".navigate__link").removeClass('active')
+  //         /// dont have class active so now active class click
+  //         $(this).closest(".navigate__link").find('.dropdown-menu').slideToggle('fast', function(){
+  //             if($(this).hasClass('active')){
+  //                 $(this).closest(".navigate__link").removeClass('active')
+  //             }else{
+  //                 $(this).closest(".navigate__link").addClass('active')
+  //             }
+  //         })
+  //     }
+  // })
+  /// button này là close trong menu khi bấm vô thì close đi 
+  // đồng thời có xóa đi cái active của cái nút js_btn_header_toggle__menu
+
+
+  menu.find("#js_menu__mobile_close").click(function () {
+    $("#menu").toggleClass("show"); // $("#js_btn_header_toggle__menu").removeClass('active')
+
+    $("body").toggleClass("neo-scroll");
+  });
+  $("#js_btn_header_toggle__menu").click(function () {
+    $("#menu").toggleClass("show"); // $(this).toggleClass("active")
+
+    $("body").toggleClass("neo-scroll");
+  });
+});
+
+function filterLocation(data, field, value) {
+  var cloneData = [];
+
+  for (var iData = 0; iData < data.length; iData++) {
+    if (data[iData][field] == value) {
+      var obj = {
+        id: data[iData].id,
+        text: data[iData].text
+      };
+      cloneData.push(obj);
+    }
+  }
+
+  return cloneData;
+}
+
+window.changeDistrict = function (e) {
+  var districtValue = e.value;
+  var $select2Commune = $('#js__select-commune');
+  $select2Commune.find('option').not(':first').remove();
+
+  if (districtValue == 0) {
+    /// reset select 2 Commune to none loading 
+    $select2Commune.val(districtValue);
+  } else {
+    /// fetch ajax DISTRICT
+    var ROUTE_COMMUNES = "/api/v1/commune/" + districtValue;
+    fetch(ROUTE_COMMUNES).then(function (resp) {
+      return resp.json();
+    }).then(function (res) {
+      var COMMUNES = filterLocation(res.data, 'district', districtValue);
+      var options = '';
+
+      for (var optionIndex = 0; optionIndex < COMMUNES.length; optionIndex++) {
+        options += "<option value=\"".concat(COMMUNES[optionIndex].id, "\">").concat(COMMUNES[optionIndex].text, "</option>");
+      }
+
+      console.log(options);
+      $select2Commune.html($select2Commune.html() + options);
+      return true;
+    })["catch"](function (error) {
+      console.log(error);
+    });
+  }
+};
+
+/***/ }),
+
+/***/ "./resources/sass/page/contact.scss":
+/*!******************************************!*\
+  !*** ./resources/sass/page/contact.scss ***!
+  \******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/sass/page/product.detail.scss":
+/*!*************************************************!*\
+  !*** ./resources/sass/page/product.detail.scss ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/admin/sass/page/admin.scss":
+/*!**********************************************!*\
+  !*** ./resources/admin/sass/page/admin.scss ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/sass/page/home.scss":
+/*!***************************************!*\
+  !*** ./resources/sass/page/home.scss ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/sass/page/profile.scss":
+/*!******************************************!*\
+  !*** ./resources/sass/page/profile.scss ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/sass/page/login.scss":
+/*!****************************************!*\
+  !*** ./resources/sass/page/login.scss ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/sass/page/register.scss":
+/*!*******************************************!*\
+  !*** ./resources/sass/page/register.scss ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/sass/page/forgot.scss":
+/*!*****************************************!*\
+  !*** ./resources/sass/page/forgot.scss ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
@@ -100,7 +337,14 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"/js/app": 0,
-/******/ 			"css/app": 0
+/******/ 			"css/admin": 0,
+/******/ 			"css/forgot": 0,
+/******/ 			"css/register": 0,
+/******/ 			"css/login": 0,
+/******/ 			"css/profile": 0,
+/******/ 			"css/home": 0,
+/******/ 			"css/product.detail": 0,
+/******/ 			"css/contact": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -148,7 +392,15 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/sass/app.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/admin","css/forgot","css/register","css/login","css/profile","css/home","css/product.detail","css/contact"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/admin","css/forgot","css/register","css/login","css/profile","css/home","css/product.detail","css/contact"], () => (__webpack_require__("./resources/sass/page/home.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/admin","css/forgot","css/register","css/login","css/profile","css/home","css/product.detail","css/contact"], () => (__webpack_require__("./resources/sass/page/profile.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/admin","css/forgot","css/register","css/login","css/profile","css/home","css/product.detail","css/contact"], () => (__webpack_require__("./resources/sass/page/login.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/admin","css/forgot","css/register","css/login","css/profile","css/home","css/product.detail","css/contact"], () => (__webpack_require__("./resources/sass/page/register.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/admin","css/forgot","css/register","css/login","css/profile","css/home","css/product.detail","css/contact"], () => (__webpack_require__("./resources/sass/page/forgot.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/admin","css/forgot","css/register","css/login","css/profile","css/home","css/product.detail","css/contact"], () => (__webpack_require__("./resources/sass/page/contact.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/admin","css/forgot","css/register","css/login","css/profile","css/home","css/product.detail","css/contact"], () => (__webpack_require__("./resources/sass/page/product.detail.scss")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/admin","css/forgot","css/register","css/login","css/profile","css/home","css/product.detail","css/contact"], () => (__webpack_require__("./resources/admin/sass/page/admin.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

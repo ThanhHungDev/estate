@@ -8,7 +8,7 @@
     <script src="{{ asset('js/library/select2.min.js') }}"></script>
     <script src="{{ asset('js/admin/validate.user.min.js') }}"></script>
     <script src="{{ asset('ckfinder/ckfinder.js') }}"></script>
-    <script src="{{ asset('js/admin/app.min.js') }}"></script>
+    <script src="{{ asset('js/admin/app.js') }}"></script>
     
 @endsection
 
@@ -57,10 +57,19 @@
                 <div class="col-12 bg-color-white shadows-1 px-3 py-3">
                     <h2 class="title">avatar</h2>
                     <div class="position-relative wrapper__selectImageWithCKFinder type-select-ckfinder__inline">
-                        <input name="avatar" class="img__outputCKFinder" type="text" value="{{ old('avatar', $user->avatar) }}" />
+                        <input name="avatar" class="img__outputCKFinder jquery__append-out" type="text" 
+                            onblur="showImage__InputCKFinder( this.value, this )"
+                            onclick="this.setSelectionRange(0, this.value.length)"
+                            value="{{ old('avatar', $user->avatar) }}" />
                         <button class="btn bg-cyan bd-cyan text-white btn-input-append" 
                         type="button" onclick="selectImageWithCKFinder(this)">chọn ảnh</button>
                     </div>
+                </div>
+            </div>
+            <div class="row block-content">
+                <div class="col-12 bg-color-white shadows-1 px-3 py-3">
+                    <h2 class="title">email bạn nhận tin nhắn khi đăng bài</h2>
+                    <input name="contact" type="text" value="{{ old('contact', $user->contact) }}" />
                 </div>
             </div>
             @if(!$user->id)

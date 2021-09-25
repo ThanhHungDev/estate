@@ -1,5 +1,5 @@
 <div class="alo-now">
-    <a href="tel:{{ Config::get('app.phone_one') }}" rel="nofollow">
+    <a href="tel:{{ Config::get('app.phone') }}" rel="nofollow">
         <span class="alo-phone">
             <span class="animated infinite zoomIn alo-ph-circle"></span>
             <span class="animated infinite pulse alo-ph-circle-fill"></span>

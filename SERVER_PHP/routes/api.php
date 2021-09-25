@@ -45,6 +45,9 @@ Route::group([ 'prefix'=>'/v1' ], function () {
     // Lấy danh sách districts
     Route::get('communes', [ App\Http\Controllers\Api\CommuneController::class, 'communes' ])
     ->name('COMMUNES');
+
+    Route::get('commune/{district?}', [ App\Http\Controllers\Api\CommuneController::class, 'commune' ])
+    ->name('COMMUNE_BY_DISTRICT');
     // ->middleware([ 'CACHE_LOCATIONS']);
 
     // Lấy danh sách districts

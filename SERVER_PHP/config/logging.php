@@ -41,6 +41,27 @@ return [
             'ignore_exceptions' => false,
         ],
 
+        'mail' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/mail.log'),
+            'level' => 'debug',
+            'days' => 14
+        ],
+
+        'request' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/request.log'),
+            'level' => 'debug',
+            'days' => 14
+        ],
+
+        'posting' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/posting.log'),
+            'level' => 'debug',
+            'days' => 14
+        ],
+
         'single' => [
             'driver' => 'single',
             'path' => storage_path('logs/laravel.log'),

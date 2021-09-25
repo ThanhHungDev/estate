@@ -20,11 +20,11 @@ function Category( props ){
                     onError={ onError }
                     data-src={src}
                     data-sdrc={src}
-                    alt={ category.title } width="300" height="300"/>
+                    alt={ category.name } width="300" height="300"/>
             </Link>
             
             <Link to={ `/${category.slug}` }> {/* ${config.REACT_ASSET} */}
-                <h5 className="categories__item-link-text">{ category.title }</h5>
+                <h5 className="categories__item-link-text">{ category.name }</h5>
             </Link>
         </div>
     )

@@ -21,7 +21,7 @@
             </a>
         </li>
         <li>
-            <a target="_blank" href="tell:{{ env('PHONE') }}" class="phone">
+            <a target="_blank" href="tel:{{ env('PHONE') }}" class="phone">
                 <i class="fad fa-phone-square-alt"></i>
                 <span>{{ env('PHONE') }}</span>
             </a>

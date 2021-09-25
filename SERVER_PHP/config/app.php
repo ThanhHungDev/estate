@@ -42,8 +42,10 @@ return [
     'company_address_region'   => env('COMPANY_ADDRESS_REGION'),
     'company_address_locality' => env('COMPANY_ADDRESS_LOCALITY'),
     'company_address_country'  => env('COMPANY_ADDRESS_COUNTRY'),
-    'tax_code_date'            => env('TAX_CODE_DATE'),
     'lazyload'                 => env('SRC_LAZYLOAD'),
+
+    'block' => 3,
+    'DIFF_MINUTE_SEND_MAIL_LOGIN' => 5,
 
     /*
     |--------------------------------------------------------------------------
@@ -265,22 +267,20 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        'Agent' => Jenssegers\Agent\Facades\Agent::class,
         'Image' => Intervention\Image\Facades\Image::class,
-
-
-        
+        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
+        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
         'SupportString' => App\Helpers\SupportString::class,
         'SupportDB' => App\Helpers\SupportDB::class,
         'SupportHtml' => App\Helpers\SupportHtml::class,
         'SupportRouter' => App\Helpers\SupportRouter::class,
         'SupportCache' => App\Helpers\SupportCache::class,
         'SupportDBRealtime' => App\Helpers\SupportDBRealtime::class,
-
-        'Agent' => Jenssegers\Agent\Facades\Agent::class,
-        'Image' => Intervention\Image\Facades\Image::class,
-
-        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
-        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
+        'ReadMoney' => App\Helpers\ReadMoney::class,
+        'RemoteInfor' => App\Helpers\RemoteInfor::class,
+        'RemoteAddress' => App\Helpers\RemoteAddress::class,
+        'SupportJson' => App\Helpers\SupportJson::class,
     ],
 
 ];

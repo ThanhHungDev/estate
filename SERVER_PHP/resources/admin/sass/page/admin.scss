@@ -1,0 +1,81 @@
+@import "../_variable";
+@import "../_mixin";
+@import "../_reboot";
+
+@import "../library/_scroll";
+@import "../library/_grid";
+@import "../library/_alert";
+@import "../library/_button";
+@import "../library/_proress";
+@import "../library/_animate";
+@import "../library/_spinner";
+@import "../library/_gradient";
+@import "../library/_hero_icon";
+@import "../library/_awesome";
+// @import "./library/_modal_jquery";
+@import "../library/_select2";
+
+@import "./login";
+@import "./request-information";
+
+@import "../partial/_sidebar";
+@import "../partial/_header";
+@import "../partial/_footer";
+@import "../partial/_content";
+@import "../partial/_foundation";
+
+.right_content_page {
+    display: flex;
+    flex: 1 1;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 100vh;
+}
+.admin_content_body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+.footer {
+    display: flex;
+    flex: 0 0 50px;
+    flex-wrap: wrap;
+    align-items: center;
+    height: 50px;
+    padding: 0 1rem;
+}
+
+.output-image-finder-multi {
+    margin-top: 30px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-flow: wrap;
+
+    .outputCKFinder__item {
+        position: relative;
+        width: 50%;
+        @include Screen(SM) {
+            width: 33.33%;
+        }
+        padding: 2px;
+        max-width: 300px;
+
+        .outputCKFinder__item-img {
+            width: 100%;
+            height: auto;
+            border: 1px solid $gray-200;
+            border-radius: 4px;
+        }
+
+        .btn__delete-image {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            z-index: 1111;
+            font-size: 22px;
+            color: $gray-700;
+            cursor: pointer;
+        }
+    }
+}

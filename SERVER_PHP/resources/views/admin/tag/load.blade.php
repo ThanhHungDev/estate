@@ -4,7 +4,7 @@
 
 @section('javascripts')
     <script src="{{ asset('js/library/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/admin/app.min.js') }}"></script>
+    <script src="{{ asset('js/admin/app.js') }}"></script>
     <script>
         var ADMIN_DELETE_POST = "{{ Route('ADMIN_DELETE_TAG', ['id' => null ])}}";
         function deleteComponent( id, element ){
@@ -61,21 +61,19 @@
                         {{ $tag->getName(30) }}
                     </a>
                 </div>
-                <div class="col-3">{{ $tag->getDescriptionSeo(30) }}</div>
+                <div class="col-7">{{ $tag->getDescriptionSeo(120) }}</div>
                 <div class="col-1">
-                    @if(Illuminate\Support\Facades\Gate::allows('delete'))
                     <button type="button"
                     onclick="deleteComponent('{{ $tag->id }}', this)"
                     class="bg-transparent btn-remove-row">
                         <i class="hero-icon hero-delete-variant"></i>
                     </button>
-                    @endif
                 </div>
             </div>
             @endforeach
 
             <div class="pagi">
-                {{ $tags->onEachSide(3)->links() }}
+                {{ $tags->onEachSide(3)->links("pagination::default") }}
             </div>
 
         </div>
