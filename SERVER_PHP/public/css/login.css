@@ -10245,7 +10245,7 @@ ul.contact li a span {
   text-transform: uppercase;
   list-style-type: none;
   display: inline-block;
-  padding: 10px 20px 6px 20px;
+  padding: 9px 20px 7px 20px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -10264,6 +10264,57 @@ ul.contact li a span {
 }
 .navigate__link.search {
   padding: 0;
+}
+.navigate__link--btn {
+  color: #fff;
+  text-align: center;
+  white-space: normal;
+  word-wrap: break-word;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-color: transparent;
+  font-size: 0.81rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  border: 2px solid transparent;
+  border-radius: 0.125rem;
+  background-color: #6610f2;
+  color: #fff;
+  border: 2px solid #6610f2;
+}
+.navigate__link--btn a, .navigate__link--btn span {
+  color: unset;
+}
+.navigate__link--btn:hover {
+  background-color: #fff;
+  border: 2px solid #c8a9fa;
+  color: #6610f2;
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+}
+.navigate__link--btn:focus, .navigate__link--btn.focus {
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+  outline: 0;
+}
+.navigate__link--btn:disabled, .navigate__link--btn.disabled, fieldset:disabled .navigate__link--btn {
+  pointer-events: none;
+  opacity: 0.65;
+}
+.navigate__link.active {
+  position: relative;
+}
+.navigate__link.active a, .navigate__link.active span {
+  color: #d63384;
+}
+.navigate__link.active:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 15px;
+  right: 15px;
+  border: 1px solid #d63384;
 }
 
 @media (max-width: 768px) {
