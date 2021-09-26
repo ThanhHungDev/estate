@@ -18,7 +18,7 @@ function Categories( props ){
                     </div>
                     <div className="row categories__row">
                         {
-                            CATEGORIES.map( cat => <Category key={cat.id} category={cat} config={CONFIG} />)
+                            CATEGORIES.reverse().map( cat => <Category key={cat.id} category={cat} config={CONFIG} />)
                         }
                     </div>
                 </div>

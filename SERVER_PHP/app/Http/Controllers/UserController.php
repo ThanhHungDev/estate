@@ -2,17 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\Province\ProvinceEloquentRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\REGISTER_REQUEST;
 use App\Models\Channel;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Cookie;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 
@@ -64,7 +61,7 @@ class UserController extends Controller
     }
 
     /**
-     * Display the profile resource.
+     * Display the logout resource.
      *
      * @return \Illuminate\Http\Response
      */
@@ -221,9 +218,12 @@ class UserController extends Controller
 
         $userId = $profile->id;
 
-        $conversations = (new Channel())->getConversationsByUser($profile->id);
-        /// từ conversations dùng laravel lấy hết user id friend bạn bè
-        $idFriends = $conversations->pluck('user')->toArray();
+        // $conversations = (new Channel())->getConversationsByUser($profile->id);
+        // /// từ conversations dùng laravel lấy hết user id friend bạn bè
+        // $idFriends = $conversations->pluck('user')->toArray();
+        $idFriends = [
+            Config::get('constant.ID_ADMIN')
+        ];
         /// get id friends 
         $friends = User::whereIn('id', $idFriends)->get();
 

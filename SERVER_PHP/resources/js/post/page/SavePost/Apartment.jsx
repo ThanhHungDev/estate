@@ -119,15 +119,6 @@ function Apartment( props ){
     )
 }
 
-function Step1(props){
-
-    return <div>
-        <p>step 1<button onClick={props.nextStep}>Next Step</button></p>
-        <h2>Step {props.currentStep}</h2>
-        <p>Total Steps: {props.totalSteps}</p>
-    </div>
-    
-}
 function Step2(props){
 
     return <div>

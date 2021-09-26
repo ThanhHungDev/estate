@@ -9086,7 +9086,7 @@ function Categories(props) {
           children: "Ch\u1ECDn lo\u1EA1i B\u1EA5t \u0111\u1ED9ng s\u1EA3n mu\u1ED1n \u0111\u0103ng"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
           className: "row categories__row",
-          children: CATEGORIES.map(function (cat) {
+          children: CATEGORIES.reverse().map(function (cat) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Category__WEBPACK_IMPORTED_MODULE_2__.default, {
               category: cat,
               config: CONFIG
@@ -9411,21 +9411,6 @@ function Apartment(props) {
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Apartment_FooterApartment__WEBPACK_IMPORTED_MODULE_4__.default, {
       parentCallback: continueStep
-    })]
-  });
-}
-
-function Step1(props) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("p", {
-      children: ["step 1", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("button", {
-        onClick: props.nextStep,
-        children: "Next Step"
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("h2", {
-      children: ["Step ", props.currentStep]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("p", {
-      children: ["Total Steps: ", props.totalSteps]
     })]
   });
 }
