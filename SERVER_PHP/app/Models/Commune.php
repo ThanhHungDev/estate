@@ -13,4 +13,9 @@ class Commune extends Model
 
         return $this->belongsTo( District::class, 'district_id');
     }
+
+
+    // public function province(){
+    //     return $this->belongsTo( District::class, 'district_id');
+    // }
 }

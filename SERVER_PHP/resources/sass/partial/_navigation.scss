@@ -20,6 +20,10 @@
             padding: 10px 10px 6px 10px;
             font-size: 13px;
         }
+        @include ScreenMax( SM ){
+            padding: 20px 10px 14px 10px;
+            font-size: 16px;
+        }
         a, span{
             color: $green-dark;
 

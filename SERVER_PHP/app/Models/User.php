@@ -55,6 +55,15 @@ class User extends Authenticatable implements JWTSubject
      * @return array
      */
     public function getJWTCustomClaims() {
+        $commune  = null;
+        $province = null;
+        $district = null;
+        if( $this->commune_id ){
+            // lấy ra district nhưng chưa chắc là có
+            $commune  = $this->commune()->select(['id', 'name as text'])->first();
+            $district = $this->commune->district()->select(['id', 'name as text'])->first();
+            $province = $this->commune->district->province()->select(['id', 'name as text'])->first();
+        }
         return [
             "iss"          => "http://localhost",
             'id'           => $this->id,
@@ -64,6 +73,14 @@ class User extends Authenticatable implements JWTSubject
             'role_id'      => $this->role_id,
             'sale_type'    => $this->sale_type,
             'phone_verify' => $this->phone_verify,
+            'commune_id'   => $this->commune_id,
+            'district_id'  => $district ? $district->id : 0,
+            'province_id'  => $province ? $province->id : 0,
+            'commune'      => $commune  ? $commune->toArray()  : null,
+            'district'     => $district ? $district->toArray() : null,
+            'province'     => $province ? $province->toArray() : null,
+            'street'       => $this->street,
+            'home_number'  => $this->home_number,
             'time_verify'  => $this->time_verify,
         ];
     }
@@ -149,5 +166,10 @@ class User extends Authenticatable implements JWTSubject
             return 'Admin';
         }
         return null;
+    }
+
+    public function commune(){
+
+        return $this->belongsTo( Commune::class, 'commune_id');
     }
 }

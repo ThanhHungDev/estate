@@ -38,6 +38,10 @@ return [
             'driver' => 'local',
             'root' => base_path('resources/views'),
         ],
+        'config' => [
+            'driver' => 'local',
+            'root' => base_path('config'),
+        ],
         'sass' => [
             'driver' => 'local',
             'root' => base_path('resources/sass'),

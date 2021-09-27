@@ -21,7 +21,7 @@
         transition: all .5s ease;
 
         .menu{
-            padding: 10px 20px 10px 120px; /// padding đặc biệt dành cho logo
+            padding: 10px 20px 10px 70px; /// padding đặc biệt dành cho logo
         }
     }
 }
@@ -54,7 +54,7 @@
 
 .menu{
     box-shadow: 0 2px 10px 0 rgba(0,0,0,.2);
-    padding: 20px 20px 20px 120px;
+    padding: 20px 20px 20px 70px;
     position: relative;
     @include clearfix();
 

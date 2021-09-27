@@ -26,17 +26,17 @@ Validator.setLocale(Validator.languages.vi)
 
 
 const ApartmentInfo = forwardRef((props, ref) => {
+    const DEFAULT_NONE_SELECT = "";
     const { AUTH, CONFIG } = props
     const [ projects, setProjects ] = useState([])
 
-    const [values, setValues] = useState({ project: "" })
+    const [values, setValues] = useState({ project: DEFAULT_NONE_SELECT })
     const [touched, setTouched] = useState({ project: true })
     const [errors, setErrors] = useState(Validator.getEmpty())
     /// add function error custom
     const hasErr = name => {
         return touched[name] && errors.isError(name)
     }
-    // const [ inputValue, setInputValue ] = useState('')
 
 
     useImperativeHandle(
@@ -100,6 +100,8 @@ const ApartmentInfo = forwardRef((props, ref) => {
     // }
     const handleChangeProject = (event) => {
 
+        console.log(event, "eventeventeventeventeventeventeventevent")
+        
         setTouched({ ...touched, ['project']: true })  
         const newValues = { ...values, ['project']: event } 
         setValues(newValues)
@@ -109,7 +111,7 @@ const ApartmentInfo = forwardRef((props, ref) => {
     return(
         <div className="user-information position-relative">
             <div className="row">
-                <div className="col-6">
+                <div className="col-12 col-md-6">
                     <div className="form-group">
                         <label htmlFor="project">Tên khu dân cư / dự án </label>
                         <AsyncCreatableSelect
@@ -130,7 +132,7 @@ const ApartmentInfo = forwardRef((props, ref) => {
                     </div>
                 </div>
                 {
-                    values.project == "" && (
+                    values.project == DEFAULT_NONE_SELECT && (
                         <div className='col-12'>đây là trường hợp không có nhập gì</div>
                     )
                 }
@@ -140,13 +142,13 @@ const ApartmentInfo = forwardRef((props, ref) => {
                             <a target='_blank' href={ `${CONFIG.REACT_ASSET}/apartment/project/${values.project.id}` }>
                                 bấm để xem chi tiết
                             </a>
-                            <div dangerouslySetInnerHTML={{__html: values.project.short_introduction }} />
+                            <div dangerouslySetInnerHTML={{ __html: values.project.short_introduction }} />
                         </div>
                     )
                 }
                 {
-                    !values.project.id && values.project.label && (
-                        <div className='col-12'> {values.project.label } </div>
+                    ! values.project.id && values.project.label && (
+                        <div className='col-12'> { values.project.label } </div>
                     )
                 }
             </div>
