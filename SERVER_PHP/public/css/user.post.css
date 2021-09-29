@@ -24919,10 +24919,14 @@ ul.contact li a span {
   font-size: 13px;
 }
 
+.page-content-layout {
+  position: relative;
+  z-index: 1;
+}
+
 .apartment {
   max-width: 900px;
   margin: 0 auto;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -25108,4 +25112,38 @@ ul.contact li a span {
   background: transparent;
   background: linear-gradient(to bottom, rgba(241, 243, 251, 0) 0%, #f1f3fb 60%);
   text-align: center;
+}
+
+ul.timeline {
+  list-style-type: none;
+  position: relative;
+}
+ul.timeline > li {
+  margin: 20px 0;
+  padding-left: 20px;
+}
+ul.timeline > li:before {
+  content: " ";
+  background: white;
+  display: inline-block;
+  position: absolute;
+  border-radius: 50%;
+  border: 3px solid #22c0e8;
+  left: 20px;
+  width: 20px;
+  height: 20px;
+  z-index: 400;
+}
+ul.timeline:before {
+  content: " ";
+  background: #d4d9df;
+  display: inline-block;
+  position: absolute;
+  left: 29px;
+  width: 2px;
+  height: 100%;
+  z-index: 400;
+}
+ul.timeline .opacity-low {
+  opacity: 0.7;
 }

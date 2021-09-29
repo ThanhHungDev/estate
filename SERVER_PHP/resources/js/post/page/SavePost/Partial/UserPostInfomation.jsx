@@ -27,11 +27,13 @@ const UserPostInfomation = forwardRef((props, ref) => {
 
     /// setting giá trị mặc định
     const [ values, setValues ] = useState({
-        province   : AUTH.province_id ?? 0,
-        district   : AUTH.district_id ?? 0,
-        commune    : AUTH.commune_id ?? 0,
-        home_number: AUTH.home_number ?? '',
-        street     : AUTH.street ?? '',
+        name        : AUTH.name,
+        phone_verify: AUTH.phone_verify,
+        province    : AUTH.province_id ?? 0,
+        district    : AUTH.district_id ?? 0,
+        commune     : AUTH.commune_id ?? 0,
+        home_number : AUTH.home_number ?? '',
+        street      : AUTH.street ?? '',
     })
     const [touched, setTouched] = useState({})
     const [errors, setErrors] = useState(Validator.getEmpty())
@@ -218,7 +220,10 @@ const UserPostInfomation = forwardRef((props, ref) => {
                     return false
                 }else{
                     /// lưu lại và next step
-                    return values
+                    return {
+                        ...values,
+                        locations: { province: provinces, district: districts, commune: communes }
+                    }
                 }
             }
         }),
@@ -270,7 +275,7 @@ const UserPostInfomation = forwardRef((props, ref) => {
                 </div>
                 <div className="col-12 col-sm-4">
                     <div className="form-group required">
-                        <label htmlFor="district">Chọn Quận / Huyện</label>
+                        <label htmlFor="district">Quận / Huyện</label>
                         {
                             districtOptions.length <= 1 && values.district
                             ? <input className="form-control" defaultValue={ DISTRICT_USER.text } readOnly /> /// thẻ input này chỉ để load ra dữ liệu cho người dùng thấy trước thôi
@@ -326,7 +331,7 @@ const UserPostInfomation = forwardRef((props, ref) => {
                 </div>
                 <div className="col-12 col-sm-8">
                     <div className="form-group required">
-                        <label htmlFor="street">Tên Đường { values.street }</label>
+                        <label htmlFor="street">Tên Đường</label>
                         <input type="text" id="street" placeholder="Hàng 5 - Ấp Lộc Hoà"
                             className={ hasErr("street") ? "is-invalid form-control" : "form-control" }
                             name="street"

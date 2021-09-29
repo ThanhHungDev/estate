@@ -2,35 +2,16 @@ import React, { useState, useEffect, forwardRef, useRef, useImperativeHandle } f
 import Validator from "hero-validate"
 import AsyncCreatableSelect from 'react-select/async-creatable'
 import projectApi from "../../../../service/apartment.project.api"
+import V from "../../../validator/user.apartment-info"
 
-
-
-const rules = {
-    project: {
-        required: true,
-        validateProject: function (project) {
-            if( project.id ){
-                /// đã có trong hệ thống 
-                return true
-            }
-            if( project.label.length <= 1 || project.value == 0 ){
-                /// thêm mới mà không có text 
-                return "Bạn cần nhập project"
-            }
-            return true;
-        },
-    }
-}
 Validator.setLocale(Validator.languages.vi)
-
-
 
 const ApartmentInfo = forwardRef((props, ref) => {
     const DEFAULT_NONE_SELECT = "";
     const { AUTH, CONFIG } = props
     const [ projects, setProjects ] = useState([])
 
-    const [values, setValues] = useState({ project: DEFAULT_NONE_SELECT })
+    const [values, setValues] = useState({ project: DEFAULT_NONE_SELECT, title: '' })
     const [touched, setTouched] = useState({ project: true })
     const [errors, setErrors] = useState(Validator.getEmpty())
     /// add function error custom
@@ -43,13 +24,13 @@ const ApartmentInfo = forwardRef((props, ref) => {
         ref,
         () => ({
             validateFromStep(){
-                const errors = Validator.validate(values, rules)
+                const errors = Validator.validate(values, V.rules)
                 if( errors.hasError ){
-                    let _touched = {}
-                    Object.keys(touched).map(function(key, index) {
-                        _touched[key] = true
+                    
+                    Object.keys(touched).map((key, index) => {
+                        touched[key] = true
                     })
-                    setTouched(_touched)
+                    setTouched(touched)
                     setErrors(errors)
                     return false
                 }else{
@@ -82,35 +63,51 @@ const ApartmentInfo = forwardRef((props, ref) => {
             callback([{ value: "0", label: "đã có lỗi tìm kiếm" }])
         });
     }
-
-    // const handleInputChange = newValue => {
-
-    //     setInputValue( newValue.replace(/\W/g, '') )
-    //     console.log(newValue.replace(/\W/g, ''), "data nhận được")
-    // }
-    // const handleChange = (event) => {
-        
-    //     if(event.persist){
-    //         event.persist()
-    //     }
-    //     setTouched({ ...touched, [event.target.name]: true })
-    //     const newValues = { ...values, [event.target.name]: event }
-    //     setValues(newValues)
-    //     setErrors(Validator.validate(newValues, rules));
-    // }
+    
     const handleChangeProject = (event) => {
-
-        console.log(event, "eventeventeventeventeventeventeventevent")
         
         setTouched({ ...touched, ['project']: true })  
         const newValues = { ...values, ['project']: event } 
         setValues(newValues)
-        setErrors(Validator.validate(newValues, rules))
+        setErrors(Validator.validate(newValues, V.rules))
+    }
+
+    const handleChange = (event) => {
+        
+        if(event.persist){
+            event.persist()
+        }
+
+        setValues({ ...values, [event.target.name]: event.target.value })
+        setTouched({ ...touched, [event.target.name]: true })
     }
 
     return(
         <div className="user-information position-relative">
             <div className="row">
+                <div className="col-12">
+                    <div className="form-group required">
+                        <label htmlFor="title">Tiêu đề sản phẩm</label>
+                        <input type="text" id="title" placeholder="Nhập tiêu đề ... vd: Bán căn hộ xxxxxx tại dự án xxxxxx"
+                            className={hasErr("title") ? "is-invalid form-control" : "form-control"}
+                            name="title"
+                            value={ values.title }
+                            onChange={handleChange}
+                        />
+                        { errors.getError('title') && <div className="invalid-feedback"> { errors.getError('title') } </div> }
+                    </div>
+                </div>
+                <div className="col-12">
+                    <div className="form-group required">
+                        <label htmlFor="description">Nội dung mô tả</label>
+                        <textarea id="description" rows="3"
+                        className={ hasErr("description") ? "is-invalid form-control" : "form-control" }
+                        placeholder="Mô tả đặc điểm bất động sản... "
+                        onChange={handleChange}
+                        >{ values.description }</textarea>
+                        { errors.getError('description') && <div className="invalid-feedback"> { errors.getError('description') } </div> }
+                    </div>
+                </div>
                 <div className="col-12 col-md-6">
                     <div className="form-group">
                         <label htmlFor="project">Tên khu dân cư / dự án </label>
@@ -124,18 +121,11 @@ const ApartmentInfo = forwardRef((props, ref) => {
                             // onInputChange={ handleInputChange }
                             onChange={ handleChangeProject }
                         />
-                        {
-                            hasErr("project") && (
-                                <div className="invalid-feedback"> { errors.getError("project") } </div>
-                            )
-                        }
+                        { values.project == DEFAULT_NONE_SELECT && <small className="form-text text-muted">Bạn chưa chọn hoặc thêm thông tin căn hộ.</small> }
+                        { hasErr("project") &&  <div className="invalid-feedback"> { errors.getError("project") } </div> }
                     </div>
                 </div>
-                {
-                    values.project == DEFAULT_NONE_SELECT && (
-                        <div className='col-12'>đây là trường hợp không có nhập gì</div>
-                    )
-                }
+                
                 {
                     values.project.id && (
                         <div className='col-12'>

@@ -37,20 +37,20 @@ const TypePost = forwardRef((props, ref) => {
                 isValid && 
                 <div className="alert alert-danger" role="alert"> Bạn cần chọn kiểu đăng bài </div>
             }
-            <label className="container__radio d-block"> Bạn đăng bài <span className="text-color-pink"> để bán </span>
-                <input name='type' type="radio" value={CONFIG.CONSTANT.POST_TYPE.SALE} onChange={onChangeRadio} />
+            <label htmlFor="sale" className="container__radio d-block"> Bạn đăng bài <span className="text-color-pink"> để bán </span>
+                <input id="sale" name='type' type="radio" value={CONFIG.CONSTANT.POST_TYPE.SALE} onChange={onChangeRadio} />
                 <span className="checkmark"></span>
             </label>
-            <label className="container__radio d-block"> Bạn đăng bài <span className="text-color-blue-grey"> để mua </span> 
-                <input name='type' type="radio" value={CONFIG.CONSTANT.POST_TYPE.BUY} onChange={onChangeRadio} />
+            <label htmlFor="buy" className="container__radio d-block"> Bạn đăng bài <span className="text-color-blue-grey"> để mua </span> 
+                <input id="buy" name='type' type="radio" value={CONFIG.CONSTANT.POST_TYPE.BUY} onChange={onChangeRadio} />
                 <span className="checkmark"></span>
             </label>
-            <label className="container__radio d-block"> Bạn đăng bài <span className="text-color-pink"> cho thuê </span>  
-                <input name='type' type="radio" value={CONFIG.CONSTANT.POST_TYPE.LEASE}  onChange={onChangeRadio}/>
+            <label htmlFor="lease" className="container__radio d-block"> Bạn đăng bài <span className="text-color-pink"> cho thuê </span>  
+                <input id="lease" name='type' type="radio" value={CONFIG.CONSTANT.POST_TYPE.LEASE}  onChange={onChangeRadio}/>
                 <span className="checkmark"></span>
             </label>
-            <label className="container__radio d-block"> Bạn đăng bài <span className="text-color-blue-grey"> tìm nơi thuê </span>
-                <input name='type' type="radio" value={CONFIG.CONSTANT.POST_TYPE.RENT}  onChange={onChangeRadio}/>
+            <label htmlFor="rent" className="container__radio d-block"> Bạn đăng bài <span className="text-color-blue-grey"> tìm nơi thuê </span>
+                <input id="rent" name='type' type="radio" value={CONFIG.CONSTANT.POST_TYPE.RENT}  onChange={onChangeRadio}/>
                 <span className="checkmark"></span>
             </label>
         </div>

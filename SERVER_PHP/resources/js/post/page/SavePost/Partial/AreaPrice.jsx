@@ -1,37 +1,15 @@
 import React, { useState, forwardRef, useImperativeHandle, useEffect } from 'react'
 import Validator from "hero-validate"
 import formatUnitHelper from "../../../../service/convert.number.stringvnd"
+import V from "../../../validator/user.price-area"
 /// create rule for your form
-const rules = {
-    area: "required|min:2|max:20",
-    price: {
-        required: true,
-        max: 16,
-        mycustom: function (value) {
-            const number = parseInt(value.replace(/[^0-9]/g, "")) || 0
-            if (number % 1000 != 0 ) {
-                return "tiền phải là bội số của 1000vnd"
-            }
-            return true
-        },
-    },
-    horizontal: "required|min:1|max:20",
-    vertical: "required|min:1|max:20"
-}
 Validator.setLocale(Validator.languages.vi)
-/// custom message for your form
-// Validator.setMessages({
-//     area: "Diện tí",
-//     password: {
-//         min: "sdfsdf password min"
-//     }
-// })
 
 const AreaPrice = forwardRef((props, ref) => {
 
-    const [values, setValues] = useState({ area: "", price: "", horizontal: "", vertical: "" })
-    const [touched, setTouched] = useState({area: false, price: false, horizontal: false, vertical: false })
-    const [errors, setErrors] = useState(Validator.getEmpty())
+    const [values, setValues]   = useState({ area: "", price: "", horizontal: "", vertical: "" })
+    const [touched, setTouched] = useState({})
+    const [errors, setErrors]   = useState(Validator.getEmpty())
 
     /// add function error custom
     const hasErr = name => {
@@ -48,20 +26,17 @@ const AreaPrice = forwardRef((props, ref) => {
     /// hook react
     useEffect(() => {
         
-        setErrors( Validator.validate(values, rules) )
-        console.log( "values1", touched )
-    }, [values])
-    
+        setErrors( Validator.validate(values, V.rules) )
+    }, [ values, touched ])
 
     useImperativeHandle(
         ref,
         () => ({
             validateFromStep(){
                 
-                const errors = Validator.validate( values, rules)
+                const errors = Validator.validate( values, V.rules)
                 if( errors.hasError ){
-                    
-                    Object.keys(touched).map(function(key, index) {
+                    Object.keys(touched).map((key, index) => {
                         touched[key] = true
                     })
                     setTouched(touched)
@@ -74,6 +49,12 @@ const AreaPrice = forwardRef((props, ref) => {
             }
         }),
     )
+    function renderFeedbackPrice(){
+        if(values.price){
+            return <div className="d-block valid-feedback"> Số tiền: { ` ${formatUnitHelper.formatNumberToDotStringVND(parseInt(values.price) || 0, "VND")} ( ${ formatUnitHelper.convertNumber2StringVND(values.price) })` }</div>
+        }
+        return null
+    }
     return(
         <div className="user-information position-relative">
             <h5 className="user-type__title pt-2 pb-4">Bạn cần cung cấp diện tích và giá:</h5>
@@ -84,93 +65,49 @@ const AreaPrice = forwardRef((props, ref) => {
                         <div className="form-group required">
                             <label htmlFor="area">Tổng Diện tích </label>
                             <div className="unit_field unit__area">
-                                <input
-                                    id="area"
-                                    type="number"
-                                    className={ 
-                                        touched["area"]
-                                        ? errors.isError("area") ? "is-invalid form-control" : "is-valid form-control"
-                                        : "form-control"}
-                                    name="area"
-                                    value={ values.area }
-                                    onChange={ handleChange }
+                                <input id="area" type="number"
+                                    className={ "form-control " + ( hasErr('area') ? 'is-invalid' : 'is-valid' ) }
+                                    name="area" value={ values.area } onChange={ handleChange }
                                 />
                             </div>
-                            { hasErr("area") && (
-                                <div className="d-block invalid-feedback">{ errors.getError("area") }</div>
-                            )}
+                            { errors.getError('area') && <div className="invalid-feedback">{ errors.getError("area") }</div> }
                         </div>
                     </div>
                     <div className="col-6">
                         <div className="form-group required">
                             <label htmlFor="price">Giá </label>
                             <div className="unit_field unit__price">
-                                <input
-                                    id="price"
-                                    type="number"
-                                    className={ 
-                                        touched["price"]
-                                        ? errors.isError("price") ? "is-invalid form-control" : "is-valid form-control"
-                                        : "form-control"}
-                                    name="price"
-                                    value={ values.price }
-                                    onChange={ handleChange }
+                                <input id="price" type="number"
+                                    className={ "form-control " + ( hasErr('price') ? 'is-invalid' : 'is-valid' ) }
+                                    name="price" value={ values.price } onChange={ handleChange }
                                 />
                             </div>
-                            { hasErr("price") && (
-                                <div className="d-block invalid-feedback">{ errors.getError("price") }</div>
-                            )}
-                            {
-                                values.price
-                                ? <div className="d-block valid-feedback">
-                                    Số tiền: 
-                                    {
-                                    ` ${formatUnitHelper.formatNumberToDotStringVND(parseInt(values.price) || 0, "VND")} ( ${ formatUnitHelper.convertNumber2StringVND(values.price) })`
-                                    }</div>
-                                : null
-                            }
+                            { errors.getError('price') && <div className="invalid-feedback">{ errors.getError("price") }</div> }
+                            { renderFeedbackPrice() }
                         </div>
                     </div>
                     <div className="col-6">
                         <div className="form-group required">
-                            <label htmlFor="price">Chiều ngang </label>
+                            <label htmlFor="horizontal">Chiều ngang </label>
                             <div className="unit_field unit__horizontal">
-                                <input
-                                    id="horizontal"
-                                    type="number"
-                                    className={ 
-                                        touched["horizontal"]
-                                        ? errors.isError("horizontal") ? "is-invalid form-control" : "is-valid form-control"
-                                        : "form-control"}
-                                    name="horizontal"
-                                    value={ values.horizontal }
-                                    onChange={ handleChange }
+                                <input id="horizontal" type="number"
+                                    className={ "form-control " + ( hasErr('horizontal') ? 'is-invalid' : 'is-valid' ) }
+                                    name="horizontal" value={ values.horizontal } onChange={ handleChange }
                                 />
                             </div>
-                            { hasErr("horizontal") && (
-                                <div className="d-block invalid-feedback">{ errors.getError("horizontal") }</div>
-                            )}
+                            { errors.getError('horizontal') && <div className="invalid-feedback">{ errors.getError("horizontal") }</div> }
                         </div>
                     </div>
                     <div className="col-6">
                         <div className="form-group required">
-                            <label htmlFor="price">Chiều dài </label>
+                            <label htmlFor="vertical">Chiều dài </label>
                             <div className="unit_field unit__vetical">
-                                <input
-                                    id="vertical"
-                                    type="number"
-                                    className={ 
-                                        touched["vertical"]
-                                        ? errors.isError("vertical") ? "is-invalid form-control" : "is-valid form-control"
-                                        : "form-control"}
-                                    name="vertical"
-                                    value={ values.vertical }
-                                    onChange={ handleChange }
+                                <input id="vertical" type="number"
+                                    className={ "form-control " + ( hasErr('vertical') ? 'is-invalid' : 'is-valid' ) }
+                                    name="vertical" value={ values.vertical } onChange={ handleChange }
                                 />
                             </div>
-                            { hasErr("vertical") && (
-                                <div className="d-block invalid-feedback">{ errors.getError("vertical") }</div>
-                            )}
+                            { errors.getError('vertical') && <div className="invalid-feedback">{ errors.getError("vertical") }</div> }
                         </div>
                     </div>
                 </div>

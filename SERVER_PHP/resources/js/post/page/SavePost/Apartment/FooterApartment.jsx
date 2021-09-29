@@ -3,8 +3,19 @@ import React from "react"
 const FooterApartment = props => {
 
     const continueStepInFooter = () => {
-        console.log("vào continueStepInFooter of FooterApartment")
         props.parentCallback()
+    }
+    const fetchApiSaveFooter = () => {
+        props.fetchApiSave()
+    }
+    if( props.currentStep == 7 ){
+        return (
+            <div className="footer__fixed-step">
+                <button className="btn apartment__footer" onClick={fetchApiSaveFooter}>
+                    Gọi api nè
+                </button>
+            </div>
+        )
     }
 
     return (

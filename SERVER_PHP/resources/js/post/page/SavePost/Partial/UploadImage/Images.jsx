@@ -5,8 +5,12 @@ export default props =>
     props.images.map( url =>
         <div key={ md5(url) } className='animated fadeIn image__block-item'>
             <div className="position-relative">
+                {
+                    props.removeImage
+                    ? <i onClick={() => props.removeImage( url )} className="btn__delete-image fal fa-times-circle"></i>
+                    : null
+                }
                 
-                <i onClick={() => props.removeImage( url )} className="btn__delete-image fal fa-times-circle"></i>
                 <img src={ url } alt='' />
             </div>
         </div>

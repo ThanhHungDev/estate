@@ -2,9 +2,9 @@ import React, { useState, forwardRef, useRef, useImperativeHandle } from 'react'
 
 
 const RoleUser = forwardRef((props, ref) => {
-    const { CONFIG } = props
+    const { CONFIG, OLD } = props
     /// init state
-    const [ role, setRole ] = useState(CONFIG.CONSTANT.USER_TYPE.PERSON)
+    const [ role, setRole ] = useState( OLD.type || CONFIG.CONSTANT.USER_TYPE.PERSON )
     
 
     function onChangeRadio(e){
@@ -27,12 +27,12 @@ const RoleUser = forwardRef((props, ref) => {
             <h5 className="user-type__title pt-2 pb-4">Bạn Là Cá Nhân Hay Môi giới: </h5>
 
             <div className="mycustom-form-group-radio">
-                <label className="container__radio d-block"> Cá Nhân
-                    <input name='type' type="radio" value={CONFIG.CONSTANT.USER_TYPE.PERSON} defaultChecked onChange={onChangeRadio} />
+                <label htmlFor="person" className="container__radio d-block"> Cá Nhân
+                    <input id="person" name='role' type="radio" value={CONFIG.CONSTANT.USER_TYPE.PERSON} checked={ role == CONFIG.CONSTANT.USER_TYPE.PERSON } onChange={onChangeRadio} />
                     <span className="checkmark"></span>
                 </label>
-                <label className="container__radio d-block"> Môi Giới
-                    <input name='type' type="radio" value={CONFIG.CONSTANT.USER_TYPE.COMPANY} onChange={onChangeRadio} />
+                <label htmlFor="company" className="container__radio d-block"> Môi Giới
+                    <input id="company" name='role' type="radio" value={CONFIG.CONSTANT.USER_TYPE.COMPANY} checked={ role == CONFIG.CONSTANT.USER_TYPE.COMPANY } onChange={onChangeRadio} />
                     <span className="checkmark"></span>
                 </label>
             </div>

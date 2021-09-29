@@ -10,6 +10,10 @@ import RoleUser from "./Partial/RoleUser"
 import GalleryPost from "./Partial/GalleryPost"
 import AreaPrice from "./Partial/AreaPrice"
 import ApartmentInfo from "./Partial/ApartmentInfo"
+import ConfirmApartment from "./Partial/ConfirmApartment"
+
+
+import userAPI from "../../../service/user.api"
 
 
 /// lưu căn hộ chung cư
@@ -17,6 +21,7 @@ function Apartment( props ){
 
     const [ form, setForm ] = useState({})
     const [ state, updateState] = useState({})
+    const [ progress, setProgress ] = useState(false)
 
     // let refRolePost = React.createRef()
     const refType = useRef()
@@ -42,6 +47,40 @@ function Apartment( props ){
         ...state,
         SW,
     })
+
+    const saveApartment = () => {
+        /// create progress
+        setProgress(true)
+        /// fetch api
+        console.log( "dữ liệu lưu lên server", form )
+        const { 
+            area, price, horizontal, vertical,
+            commune, home_number, street,
+            role,
+            type,
+            project,
+            images, videos
+        } = form
+
+        const formData = {
+            area, price, horizontal, vertical,
+            commune, home_number, street,
+            role,
+            type,
+            project,
+            images, videos
+        }
+        userAPI
+        .saveApartment(formData)
+        .then( response => {
+            const { data } = response
+            setProgress(JSON.stringify(data))
+        })
+        .catch(error => {
+            setProgress(JSON.stringify(error))
+            console.log("ERROR:: ",error)
+        });
+    }
 
     const continueStep = (childData) => {
         
@@ -94,11 +133,26 @@ function Apartment( props ){
     /// ban đầu state là {} => SW là undefine
     const { SW } = state
     const { CONFIG, AUTH, device } = props
+    if( progress ){
+        return(
+            <div className={ "apartment__wrapper " + ( !progress && 'd-block') }>
+                <p>
+                    Đang lưu trữ dữ liện lên server
+                </p>
+                <p>
+                    { progress }
+                </p>
+                <div className="progress progress-purple">
+                    <div className="progress-loadding"></div>
+                </div>
+            </div>
+        )
+    }
     return (
         <div className="apartment" style={{ minHeight: device.calcHeightSubtractHeight + "px" }}>
             { SW && <HeaderApartment SW={SW} parentCallback={continueStep} /> }
             
-            <div className="apartment__wrapper">
+            <div className="apartment__wrapper ">
                 <StepWizard
                     isHashEnabled
                     onStepChange={onStepChange}
@@ -106,34 +160,17 @@ function Apartment( props ){
                 >
                     <TypePost ref={ refType } CONFIG={CONFIG}/>
                     <UserPostInfomation ref={ refUserPostInfor } CONFIG={CONFIG} AUTH={AUTH}/>
-                    <RoleUser ref={ refRoleUser}  CONFIG={CONFIG}/>
+                    <RoleUser ref={ refRoleUser}  CONFIG={CONFIG} OLD={form} />
                     <ApartmentInfo ref={ refApartmentInfo }  CONFIG={CONFIG} AUTH={AUTH}/>
                     <GalleryPost ref={ refGalleryUser}  CONFIG={CONFIG}/>
                     <AreaPrice ref={ refAreaPrice } CONFIG={CONFIG}/>
-                    <Step2 />
-                    <Step3 />
+                    <ConfirmApartment data={form} CONFIG={CONFIG} />
                 </StepWizard>
             </div>
-            <FooterApartment parentCallback={continueStep}/>
+            
+            <FooterApartment currentStep={SW?.currentStep} parentCallback={continueStep} fetchApiSave={ saveApartment } />
         </div>
     )
-}
-
-function Step2(props){
-
-    return <div>
-        <p>step 2<button onClick={props.nextStep}>Next Step</button></p>
-        <h2>Step {props.currentStep}</h2>
-        <p>Total Steps: {props.totalSteps}</p>
-    </div>
-}
-function Step3(props){
-
-    return <div>
-        <p>step 3<button onClick={props.nextStep}>Next Step</button></p>
-        <h2>Step {props.currentStep}</h2>
-        <p>Total Steps: {props.totalSteps}</p>
-    </div>
 }
 
 

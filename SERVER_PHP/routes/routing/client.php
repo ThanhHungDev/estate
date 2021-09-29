@@ -44,6 +44,7 @@ Route::group(['prefix' => '/','middleware' => [ 'HTML_MINIFIER']], function () {
         ->name('USER_POST');
 
         Route::patch('/verify/phone', [ App\Http\Controllers\UserController::class, 'patchVerifyPhone' ])->name('PATCH_VERIFY_PHONE');
+        
 
         Route::get('/logout', [ App\Http\Controllers\UserController::class, 'logout' ])->name('LOGOUT');
         Route::get('/', [ App\Http\Controllers\UserController::class, 'profile' ])->name('USER_DASHBOARD');
@@ -51,6 +52,13 @@ Route::group(['prefix' => '/','middleware' => [ 'HTML_MINIFIER']], function () {
 
         Route::get('/information', [ App\Http\Controllers\UserController::class, 'profile' ])->name('USER_INFORMATION');
         Route::get('/ajax-demo', [ App\Http\Controllers\UserController::class, 'getUserInfo' ])->name('USER_AJAX');
+
+
+
+        Route::group(['prefix' => '/apartment'], function () {
+        
+            Route::post('/', [ App\Http\Controllers\Post\ApartmentController::class, 'store' ])->name('STORE_APARTMENT');
+        });
     });
 
     // Route::get('/article/{slug?}',[ App\Http\Controllers\ClientController::class, 'viewPostArticle' ])->name('VIEW_POST_ARTICLE');

@@ -26,4 +26,9 @@ export default {
         return Api.patch(CONFIG.WEB.PATCH_VERIFY_PHONE, params)
         .then(res => res.data )
     },
+    saveApartment(params) {
+        console.log("vào saveApartment " + CONFIG.WEB.STORE_APARTMENT, params)
+        return Api.post(CONFIG.WEB.STORE_APARTMENT, params)
+        .then(res => res.data )
+    }
 }

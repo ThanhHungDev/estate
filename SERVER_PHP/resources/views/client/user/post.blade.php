@@ -39,6 +39,7 @@ $configApp['API'] = [
 ];
 $configApp['WEB'] = [
     'PATCH_VERIFY_PHONE' => Route('PATCH_VERIFY_PHONE'),
+    'STORE_APARTMENT' => Route('STORE_APARTMENT'),
     'LOGOUT' => Route('LOGOUT'),
     'USER_POST' =>  Route('USER_POST', ['path' => null ], false ),
 ];
