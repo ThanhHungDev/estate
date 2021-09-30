@@ -1,5 +1,7 @@
 export default {
     rules : {
+        title: "min:10|max:150",
+        description: "min:5|max:1000",
         area: "required|min:2|max:20",
         price: {
             required: true,

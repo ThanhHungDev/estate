@@ -9,7 +9,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\ADMIN_VALIDATE_SAVE_PRODUCT;
 use App\Libraries\Catalogue;
-use App\Mail\MailPosting;
 use App\Models\Category;
 use App\Models\Commune;
 use App\Models\District;
@@ -18,14 +17,10 @@ use App\Models\Product;
 use App\Models\ProductTagActive;
 use App\Models\Ptag;
 use App\Models\Rating;
-use Error;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
 
 class ProductController extends Controller
 {
@@ -75,10 +70,11 @@ class ProductController extends Controller
     public function save(ADMIN_VALIDATE_SAVE_PRODUCT $request, $id = 0){
 
         ///setting data insert table product
-        $productInput = $request->only('category_id','commune_id', 'rating_id', 'rate_value', 'rate_review_body', 'title', 'slug', 'excerpt', 
-        'content', 'background', 'thumbnail', 'public', 'site_name', 'howto', 'showto',
-        'image_seo', 'images', 'description_seo', 'type', 'stylesheet', 'javascript',
-        'direction', 'direction_balcony', 'horizontal', 'square', 'price', 'unit_price', 'negotiate', 'extensions'
+        $productInput = $request->only(
+            'category_id','commune_id', 'rating_id', 'rate_value', 'rate_review_body', 'title', 'slug', 'excerpt', 
+            'content', 'background', 'thumbnail', 'public', 'site_name', 'howto', 'showto',
+            'image_seo', 'images', 'description_seo', 'type', 'stylesheet', 'javascript',
+            'direction', 'direction_balcony', 'horizontal', 'area', 'price', 'unit_price', 'negotiate', 'extensions'
         );
 
 
@@ -175,42 +171,6 @@ class ProductController extends Controller
                 Picture::insert($pics);
             }
             
-
-            /// đây là user
-            // try {
-            //     $auth       = Auth::user();
-            //     $emailAdmin = env('MAIL_TO_ADMIN', 'thanhhung.code@gmail.com');
-            //     $dataMail   = array(
-            //         'email'        => $auth->email,
-            //         'name'         => $auth->name,
-            //         'message'      => "bạn cần duyệt bài để bài viết được công khai",
-            //         'title'        => $productInput['title'],
-            //         'text_content' => htmlentities(SupportString::limitText($productInput['text_content'], 500))
-            //     );
-            //     Log::channel('producting')->info("QUYỀN USER VỪA ĐĂNG BÀI" . $auth->email . " - " . $auth->name );
-            //     Mail::to(trim($emailAdmin))
-            //     ->send(new MailProducting($dataMail));
-            //     if (Mail::failures()) {
-    
-            //         Log::channel('mail')->info("lỗi product bài $emailAdmin, không thể liên lạc với quản trị viên.");
-            //     }
-            //     $dataMail = array(
-            //         'email'        => $auth->email,
-            //         'name'         => $auth->name,
-            //         'message'      => "Cảm ơn bạn đã đồng hành cùng " . Config::get('app.company_name') . ". Admin sẽ cố gắng duyệt bài sớm nhất có thể",
-            //         'title'        => $productInput['title'],
-            //         'text_content' => htmlentities(SupportString::limitText($productInput['text_content'], 500))
-            //     );
-            //     Log::channel('producting')->info("QUYỀN USER VỪA ĐĂNG BÀI" . $auth->email . " - " . $auth->name );
-            //     Mail::to(trim($auth->contact))
-            //     ->send(new MailProducting($dataMail));
-            //     if (Mail::failures()) {
-    
-            //         Log::channel('mail')->info("lỗi product bài $auth->contact, không thể liên lạc với quản trị viên.");
-            //     }
-            // } catch (\Throwable $th) {
-            //     //throw $th;
-            // }
 
             $request->session()->flash(Config::get('constant.SAVE_SUCCESS'), true);
             return redirect()->route('ADMIN_STORE_PRODUCT',  ['id' => $productId]);

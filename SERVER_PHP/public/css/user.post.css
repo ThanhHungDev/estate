@@ -25016,7 +25016,7 @@ ul.contact li a span {
 .apartment__wrapper .user-information .unit__vertical:after {
   content: "m";
 }
-.apartment__wrapper .mycustom-form-group-radio {
+.apartment__wrapper .mycustom-form-group, .apartment__wrapper .mycustom-form-group-radio {
   border: 1px solid #ddd;
   border-radius: 4px;
   margin-bottom: 5px;

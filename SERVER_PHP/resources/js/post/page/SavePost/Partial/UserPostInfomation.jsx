@@ -268,9 +268,7 @@ const UserPostInfomation = forwardRef((props, ref) => {
                                 options={ castOptionSelect(provinceOptions, 'province' ) } 
                             />
                         }
-                        {
-                            errors.getError('province') && <div className="invalid-feedback"> { errors.getError('province') } </div>
-                        }
+                        { hasErr('province') && <div className="invalid-feedback"> { errors.getError('province') } </div>  }
                     </div>
                 </div>
                 <div className="col-12 col-sm-4">
@@ -288,9 +286,7 @@ const UserPostInfomation = forwardRef((props, ref) => {
                                 options={ castOptionSelect(districtOptions, 'district' ) }
                             />
                         }
-                        {
-                            errors.getError('district') && <div className="invalid-feedback"> { errors.getError('district') } </div>
-                        }
+                        { hasErr('district') && <div className="invalid-feedback"> { errors.getError('district') } </div>  }
                     </div>
                 </div>
                 <div className="col-12 col-sm-4">
@@ -308,9 +304,7 @@ const UserPostInfomation = forwardRef((props, ref) => {
                                 options={ castOptionSelect(communeOptions, 'commune' ) }
                             />
                         }
-                        {
-                            errors.getError('commune') && <div className="invalid-feedback"> { errors.getError('commune') } </div>
-                        }
+                        { hasErr('commune') && <div className="invalid-feedback"> { errors.getError('commune') } </div> }
                     </div>
                 </div>
             </div>
@@ -319,28 +313,24 @@ const UserPostInfomation = forwardRef((props, ref) => {
                     <div className="form-group required">
                         <label htmlFor="home_number">Số Nhà </label>
                         <input type="text" id="home_number" placeholder="0674"
-                            className={hasErr("home_number") ? "is-invalid form-control" : "form-control"}
+                            className={"form-control " + ( hasErr("home_number") ? "is-invalid" : ( touched['home_number'] && "is-valid" ) )}
                             name="home_number"
                             value={ values.home_number }
                             onChange={handleChange}
                         />
-                        {
-                            errors.getError('home_number') && <div className="invalid-feedback"> { errors.getError('home_number') } </div>
-                        }
+                        { hasErr('home_number') && <div className="invalid-feedback"> { errors.getError('home_number') } </div> }
                     </div>
                 </div>
                 <div className="col-12 col-sm-8">
                     <div className="form-group required">
                         <label htmlFor="street">Tên Đường</label>
                         <input type="text" id="street" placeholder="Hàng 5 - Ấp Lộc Hoà"
-                            className={ hasErr("street") ? "is-invalid form-control" : "form-control" }
+                            className={"form-control " + ( hasErr("street") ? "is-invalid" : ( touched['street'] && "is-valid" ) )}
                             name="street"
                             value={ values.street }
                             onChange={ handleChange }
                         />
-                        {
-                            errors.getError('street') && <div className="invalid-feedback"> { errors.getError('street') } </div>
-                        }
+                        { hasErr('street') && <div className="invalid-feedback"> { errors.getError('street') } </div> }
                     </div>
                 </div>
             </div>

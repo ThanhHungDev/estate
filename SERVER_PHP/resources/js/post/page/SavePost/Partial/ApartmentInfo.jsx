@@ -2,43 +2,28 @@ import React, { useState, useEffect, forwardRef, useRef, useImperativeHandle } f
 import Validator from "hero-validate"
 import AsyncCreatableSelect from 'react-select/async-creatable'
 import projectApi from "../../../../service/apartment.project.api"
-import V from "../../../validator/user.apartment-info"
 
 Validator.setLocale(Validator.languages.vi)
 
 const ApartmentInfo = forwardRef((props, ref) => {
-    const DEFAULT_NONE_SELECT = "";
-    const { AUTH, CONFIG } = props
+    const DEFAULT_NONE_SELECT = ""
+    const { CONFIG } = props
     const [ projects, setProjects ] = useState([])
+    const [ values, setValues]   = useState({ project: DEFAULT_NONE_SELECT })
 
-    const [values, setValues] = useState({ project: DEFAULT_NONE_SELECT, title: '' })
-    const [touched, setTouched] = useState({ project: true })
-    const [errors, setErrors] = useState(Validator.getEmpty())
     /// add function error custom
     const hasErr = name => {
         return touched[name] && errors.isError(name)
     }
 
-
     useImperativeHandle(
         ref,
         () => ({
             validateFromStep(){
-                const errors = Validator.validate(values, V.rules)
-                if( errors.hasError ){
-                    
-                    Object.keys(touched).map((key, index) => {
-                        touched[key] = true
-                    })
-                    setTouched(touched)
-                    setErrors(errors)
-                    return false
-                }else{
-                    /// lưu lại và next step
-                    return values
-                }
+                /// lưu lại và next step
+                return values
             }
-        }),
+        })
     )
 
     const loadOptions = (inputValue, callback) => {
@@ -61,71 +46,50 @@ const ApartmentInfo = forwardRef((props, ref) => {
         .catch(error => {
             console.log("ERROR:: ",error)
             callback([{ value: "0", label: "đã có lỗi tìm kiếm" }])
-        });
+        })
     }
     
     const handleChangeProject = (event) => {
-        
-        setTouched({ ...touched, ['project']: true })  
-        const newValues = { ...values, ['project']: event } 
-        setValues(newValues)
-        setErrors(Validator.validate(newValues, V.rules))
-    }
-
-    const handleChange = (event) => {
-        
-        if(event.persist){
-            event.persist()
-        }
-
-        setValues({ ...values, [event.target.name]: event.target.value })
-        setTouched({ ...touched, [event.target.name]: true })
+        setValues({ ...values, project: event })
     }
 
     return(
         <div className="user-information position-relative">
             <div className="row">
-                <div className="col-12">
-                    <div className="form-group required">
-                        <label htmlFor="title">Tiêu đề sản phẩm</label>
-                        <input type="text" id="title" placeholder="Nhập tiêu đề ... vd: Bán căn hộ xxxxxx tại dự án xxxxxx"
-                            className={hasErr("title") ? "is-invalid form-control" : "form-control"}
-                            name="title"
-                            value={ values.title }
-                            onChange={handleChange}
-                        />
-                        { errors.getError('title') && <div className="invalid-feedback"> { errors.getError('title') } </div> }
-                    </div>
-                </div>
-                <div className="col-12">
-                    <div className="form-group required">
-                        <label htmlFor="description">Nội dung mô tả</label>
-                        <textarea id="description" rows="3"
-                        className={ hasErr("description") ? "is-invalid form-control" : "form-control" }
-                        placeholder="Mô tả đặc điểm bất động sản... "
-                        onChange={handleChange}
-                        >{ values.description }</textarea>
-                        { errors.getError('description') && <div className="invalid-feedback"> { errors.getError('description') } </div> }
-                    </div>
-                </div>
                 <div className="col-12 col-md-6">
                     <div className="form-group">
                         <label htmlFor="project">Tên khu dân cư / dự án </label>
                         <AsyncCreatableSelect
+                            formatCreateLabel={(value) => `Tạo mới dự án: ${value}`}
+                            // formatOptionLabel={(option) => option.__isNew__ ? <span>{option.label}</span> : option.label}
                             id="project" 
                             name='project'
                             className={ " " + ( hasErr('project') && 'is-invalid' ) }
                             cacheOptions
                             defaultOptions={ [{ value: "0", label: "nhập dự án bạn muốn tìm" }] }
                             loadOptions={ loadOptions }
-                            // onInputChange={ handleInputChange }
                             onChange={ handleChangeProject }
                         />
                         { values.project == DEFAULT_NONE_SELECT && <small className="form-text text-muted">Bạn chưa chọn hoặc thêm thông tin căn hộ.</small> }
-                        { hasErr("project") &&  <div className="invalid-feedback"> { errors.getError("project") } </div> }
                     </div>
                 </div>
-                
+                <div className="col-12">
+                    <div className="alert alert-info mt-3">
+                        <p><b>Tìm chung cư bạn sẽ đăng tin:</b></p>
+                        <ul>
+                            <li>Bạn có thể nhập tìm kiếm căn hộ bạn muốn đăng tin hoặc thêm mới căn hộ</li>
+                            <li>Trong trường hợp bạn không tìm thấy căn hộ chung cư bạn muốn bán thì có thể <span className="text-color-red">thêm mới căn hộ</span>.</li>
+                        </ul>
+                        <p><b>Thêm mới chung cư bạn sẽ đăng tin:</b></p>
+                        <ul>
+                            <li>Trong trường hợp bạn đăng căn hộ mới chưa có trên hệ thống, vui lòng nhập vị trí căn hộ bạn sẽ đăng tin.</li>
+                        </ul>
+                        <p><b>Thông tin căn hộ không bắt buộc:</b></p>
+                        <ul>
+                            <li>Chúng tôi không bắt buộc bạn phải nhập thông tin căn hộ, nhưng nếu bạn nhập thông tin căn hộ thì hệ thống sẽ hiện thị bài đăng của bạn nhiều hơn đến người dùng</li>
+                        </ul>
+                    </div>
+                </div>
                 {
                     values.project.id && (
                         <div className='col-12'>

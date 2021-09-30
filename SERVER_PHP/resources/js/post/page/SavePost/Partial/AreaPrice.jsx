@@ -7,7 +7,7 @@ Validator.setLocale(Validator.languages.vi)
 
 const AreaPrice = forwardRef((props, ref) => {
 
-    const [values, setValues]   = useState({ area: "", price: "", horizontal: "", vertical: "" })
+    const [values, setValues]   = useState({ title: "", content: "", area: "", price: "", horizontal: "", vertical: "" })
     const [touched, setTouched] = useState({})
     const [errors, setErrors]   = useState(Validator.getEmpty())
 
@@ -20,7 +20,8 @@ const AreaPrice = forwardRef((props, ref) => {
         event.persist()
         
         setTouched({ ...touched, [event.target.name]: true })
-        setValues({ ...values, [event.target.name]: event.target.value })
+        let dataValues = { ...values, [event.target.name]: event.target.value }
+        setValues({ ...values, ...calcAreaPrice(event.target.name, dataValues) })
     }
 
     /// hook react
@@ -36,13 +37,14 @@ const AreaPrice = forwardRef((props, ref) => {
                 
                 const errors = Validator.validate( values, V.rules)
                 if( errors.hasError ){
-                    Object.keys(touched).map((key, index) => {
+                    Object.keys(values).map((key, index) => {
                         touched[key] = true
                     })
                     setTouched(touched)
                     setValues({ ...values })
                     return false
                 }else{
+                    console.log("có vào đay lưu lại và next step ")
                     /// lưu lại và next step
                     return values
                 }
@@ -55,22 +57,100 @@ const AreaPrice = forwardRef((props, ref) => {
         }
         return null
     }
+
+    function calcAreaPrice( keyName = null, xdata ){
+        
+        if( !keyName ){
+            return xdata
+        }
+        let { area, horizontal, vertical } = xdata
+        
+        /// check exist 2 variable = empty
+        if( [ area, horizontal, vertical ].filter(item => !!parseInt(item)).length < 2 ){
+            return xdata
+        }
+
+        if( keyName == "area"){
+
+            if( horizontal ){
+                vertical = Math.round( parseInt( area ) / parseInt( horizontal ) )
+            }else {
+                horizontal = Math.round(parseInt( area ) / parseInt( vertical ))
+            } 
+        }else if( keyName == 'horizontal' ){
+            
+            if( area ){
+                vertical = Math.round( parseInt( area ) / parseInt( horizontal ) )
+            }else {
+                area = Math.round( parseInt( horizontal ) * parseInt( vertical ) )
+            } 
+        }else if( keyName == 'vertical' ){
+
+            if( area ){
+                horizontal = Math.round( parseInt( area ) / parseInt( vertical ) )
+            } else {
+                area = Math.round( parseInt( horizontal ) * parseInt( vertical ) )
+            } 
+        }
+        return { area: area.toString(), horizontal: horizontal.toString(), vertical: vertical.toString() }
+    }
+    function renderCalcAverageArea(){
+        const { area, price } = values
+        if( area && price ){
+            let priceUnit = price / area
+            if( priceUnit > 1000 ){
+                priceUnit = Math.floor( priceUnit / 1000 ) * 1000 
+                return <small className="form-text text-muted">khoảng { formatUnitHelper.formatNumberToDotStringVND(parseInt(priceUnit) || 0, "VND") } / m² </small>
+            }
+        }
+        return null
+    }
     return(
         <div className="user-information position-relative">
+
+            <h5 className="user-type__title pt-2 pb-4">Bạn cần nhập thông tin tiêu đề và nội dung:</h5>
+            <div className="mycustom-form-group">
+                <div className="row">
+                    <div className="col-12">
+                        <div className="form-group required">
+                            <label htmlFor="title">Tiêu đề sản phẩm</label>
+                            <input type="text" id="title" name="title" placeholder="Nhập tiêu đề ... vd: Bán căn hộ xxxxxx tại dự án xxxxxx"
+                                className={"form-control " + ( hasErr("title") ? "is-invalid" : ( touched['title'] && "is-valid" ) )}
+                                defaultValue={ values.title }
+                                onChange={handleChange}
+                            />
+                            { hasErr('title') && <div className="d-block invalid-feedback"> { errors.getError('title') } </div> }
+                        </div>
+                    </div>
+                    <div className="col-12">
+                        <div className="form-group required">
+                            <label htmlFor="content">Nội dung mô tả</label>
+                            <textarea id="content" rows="3" name="content"
+                            className={"form-control " + ( hasErr("content") ? "is-invalid" : ( touched['content'] && "is-valid" ) )}
+                            placeholder="Mô tả đặc điểm bất động sản... "
+                            onChange={handleChange}
+                            defaultValue={ values.content }
+                            ></textarea>
+                            { hasErr('content') && <div className="d-block invalid-feedback"> { errors.getError('content') } </div> }
+                        </div>
+                    </div>
+                </div>
+            </div>
             <h5 className="user-type__title pt-2 pb-4">Bạn cần cung cấp diện tích và giá:</h5>
 
-            <div className="mycustom-form-group-radio">
+            <div className="mycustom-form-group">
                 <div className="row">
                     <div className="col-6">
                         <div className="form-group required">
                             <label htmlFor="area">Tổng Diện tích </label>
                             <div className="unit_field unit__area">
                                 <input id="area" type="number"
-                                    className={ "form-control " + ( hasErr('area') ? 'is-invalid' : 'is-valid' ) }
-                                    name="area" value={ values.area } onChange={ handleChange }
+                                    className={"form-control " + ( hasErr("area") ? "is-invalid" : ( touched['area'] && "is-valid" ) )}
+                                    name="area" defaultValue={ values.area } onChange={ handleChange }
                                 />
                             </div>
-                            { errors.getError('area') && <div className="invalid-feedback">{ errors.getError("area") }</div> }
+                            { hasErr('area') && <div className="d-block invalid-feedback">{ errors.getError("area") }</div> }
+                            { renderCalcAverageArea() }
                         </div>
                     </div>
                     <div className="col-6">
@@ -78,11 +158,11 @@ const AreaPrice = forwardRef((props, ref) => {
                             <label htmlFor="price">Giá </label>
                             <div className="unit_field unit__price">
                                 <input id="price" type="number"
-                                    className={ "form-control " + ( hasErr('price') ? 'is-invalid' : 'is-valid' ) }
-                                    name="price" value={ values.price } onChange={ handleChange }
+                                    className={"form-control " + ( hasErr("price") ? "is-invalid" : ( touched['price'] && "is-valid" ) )}
+                                    name="price" defaultValue={ values.price } onChange={ handleChange }
                                 />
                             </div>
-                            { errors.getError('price') && <div className="invalid-feedback">{ errors.getError("price") }</div> }
+                            { hasErr('price') && <div className="d-block invalid-feedback">{ errors.getError("price") }</div> }
                             { renderFeedbackPrice() }
                         </div>
                     </div>
@@ -91,11 +171,11 @@ const AreaPrice = forwardRef((props, ref) => {
                             <label htmlFor="horizontal">Chiều ngang </label>
                             <div className="unit_field unit__horizontal">
                                 <input id="horizontal" type="number"
-                                    className={ "form-control " + ( hasErr('horizontal') ? 'is-invalid' : 'is-valid' ) }
-                                    name="horizontal" value={ values.horizontal } onChange={ handleChange }
+                                    className={"form-control " + ( hasErr("horizontal") ? "is-invalid" : ( touched['horizontal'] && "is-valid" ) )}
+                                    name="horizontal" defaultValue={ values.horizontal } onChange={ handleChange }
                                 />
                             </div>
-                            { errors.getError('horizontal') && <div className="invalid-feedback">{ errors.getError("horizontal") }</div> }
+                            { hasErr('horizontal') && <div className="d-block invalid-feedback">{ errors.getError("horizontal") }</div> }
                         </div>
                     </div>
                     <div className="col-6">
@@ -103,11 +183,11 @@ const AreaPrice = forwardRef((props, ref) => {
                             <label htmlFor="vertical">Chiều dài </label>
                             <div className="unit_field unit__vetical">
                                 <input id="vertical" type="number"
-                                    className={ "form-control " + ( hasErr('vertical') ? 'is-invalid' : 'is-valid' ) }
-                                    name="vertical" value={ values.vertical } onChange={ handleChange }
+                                    className={"form-control " + ( hasErr("vertical") ? "is-invalid" : ( touched['vertical'] && "is-valid" ) )}
+                                    name="vertical" defaultValue={ values.vertical } onChange={ handleChange }
                                 />
                             </div>
-                            { errors.getError('vertical') && <div className="invalid-feedback">{ errors.getError("vertical") }</div> }
+                            { hasErr('vertical') && <div className="d-block invalid-feedback">{ errors.getError("vertical") }</div> }
                         </div>
                     </div>
                 </div>

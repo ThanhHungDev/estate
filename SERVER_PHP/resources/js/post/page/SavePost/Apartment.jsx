@@ -49,12 +49,15 @@ function Apartment( props ){
     })
 
     const saveApartment = () => {
+
+        //// khi chạy 1 cái apartment cũng phải truyền cái category người dùng đã chọn vào
+        const { category } = props
         /// create progress
         setProgress(true)
         /// fetch api
         console.log( "dữ liệu lưu lên server", form )
         const { 
-            area, price, horizontal, vertical,
+            title, description, area, price, horizontal, vertical,
             commune, home_number, street,
             role,
             type,
@@ -63,13 +66,30 @@ function Apartment( props ){
         } = form
 
         const formData = {
-            area, price, horizontal, vertical,
-            commune, home_number, street,
+            category_id: category,
+            title: title, 
+            content: description, 
+            area, 
+            price: price,
+            horizontal, 
+            vertical, 
+            site_name: title,
+            commune_id: commune, 
+            home_number, 
+            street,
             role,
             type,
             project,
-            images, videos
+            images, 
+            videos
         }
+
+        // 'category_id','commune_id', 'rating_id', 'rate_value', 'rate_review_body', 'title', 'slug', 'excerpt', 
+        // 'content', 'background', 'thumbnail', 'public', 'site_name', 'howto', 'showto',
+        // 'image_seo', 'images', 'description_seo', 'type', 'stylesheet', 'javascript',
+        // 'direction', 'direction_balcony', 'horizontal', 'area', 'price', 'unit_price', 'negotiate', 'extensions'
+
+
         userAPI
         .saveApartment(formData)
         .then( response => {
@@ -106,10 +126,10 @@ function Apartment( props ){
                 SW.nextStep()
             }
         }else if(SW.currentStep == 4){
-
-            const apartmentInfo = refApartmentInfo.current.validateFromStep()
-            if( apartmentInfo ){
-                setForm({ ...form, ... apartmentInfo })
+            
+            const areaPrice = refAreaPrice.current.validateFromStep()
+            if( areaPrice ){
+                setForm({ ...form, ... areaPrice })
                 SW.nextStep()
             }
         }else if(SW.currentStep == 5){
@@ -121,9 +141,9 @@ function Apartment( props ){
             }
         }else if(SW.currentStep == 6){
 
-            const areaPrice = refAreaPrice.current.validateFromStep()
-            if( areaPrice ){
-                setForm({ ...form, ... areaPrice })
+            const apartmentInfo = refApartmentInfo.current.validateFromStep()
+            if( apartmentInfo ){
+                setForm({ ...form, ... apartmentInfo })
                 SW.nextStep()
             }
         }
@@ -161,9 +181,9 @@ function Apartment( props ){
                     <TypePost ref={ refType } CONFIG={CONFIG}/>
                     <UserPostInfomation ref={ refUserPostInfor } CONFIG={CONFIG} AUTH={AUTH}/>
                     <RoleUser ref={ refRoleUser}  CONFIG={CONFIG} OLD={form} />
-                    <ApartmentInfo ref={ refApartmentInfo }  CONFIG={CONFIG} AUTH={AUTH}/>
-                    <GalleryPost ref={ refGalleryUser}  CONFIG={CONFIG}/>
                     <AreaPrice ref={ refAreaPrice } CONFIG={CONFIG}/>
+                    <GalleryPost ref={ refGalleryUser}  CONFIG={CONFIG}/>
+                    <ApartmentInfo ref={ refApartmentInfo }  CONFIG={CONFIG} AUTH={AUTH}/>
                     <ConfirmApartment data={form} CONFIG={CONFIG} />
                 </StepWizard>
             </div>

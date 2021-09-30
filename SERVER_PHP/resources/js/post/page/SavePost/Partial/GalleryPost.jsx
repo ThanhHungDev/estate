@@ -2,7 +2,7 @@ import React, { useState, forwardRef, useRef, useImperativeHandle, useEffect } f
 
 import MainUpload from './UploadImage/MainUpload'
 
-const MIN_GALLERY = 3;
+const MIN_GALLERY = 1;
 
 
 const GalleryPost = forwardRef((props, ref) => {
@@ -39,11 +39,12 @@ const GalleryPost = forwardRef((props, ref) => {
         ref,
         () => ({
             validateFromStep(){
-
+                console.log("vào đây là ảnh dduocj next ")
                 if( (images.length + videos.length ) < MIN_GALLERY ){
                     setError("Bạn chưa đăng đủ số lượng ảnh hoặc video")
                     return false
                 }
+                
                 setError(null)
                 return { images, videos }
             }
@@ -51,7 +52,7 @@ const GalleryPost = forwardRef((props, ref) => {
     )
     return(
         <div className="user-type position-relative">
-            <h5 className={ "user-type__title pt-2 pb-4 " + (error ? 'text-color-red' : '') }>Bạn Cần đăng ít nhất 3 ảnh: </h5>
+            <h5 className={ "user-type__title pt-2 pb-4 " + (error ? 'text-color-red' : '') }>Bạn Cần đăng ít nhất { MIN_GALLERY } ảnh: </h5>
 
             {
                 error && 

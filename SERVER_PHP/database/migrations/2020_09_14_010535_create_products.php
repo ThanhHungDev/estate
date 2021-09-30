@@ -22,6 +22,7 @@ class CreateProducts extends Migration
             $table->unsignedInteger('user_id')->unsigned()->nullable();
             $table->unsignedInteger('rating_id')->unsigned()->nullable();
             $table->unsignedInteger('commune_id')->unsigned();
+            $table->unsignedInteger('project_id')->unsigned();
             $table->string('title', 150)->nullable();
             $table->string('slug', 150)->nullable();
             $table->string('excerpt')->nullable();
@@ -41,15 +42,19 @@ class CreateProducts extends Migration
             $table->integer('direction')->default(Config::get("constant.DIRECTION.DEFAULT.VALUE")); /// đông / đông bắc / đông nam / tây / tây bắc / tây nam / nam / bắc
             $table->integer('direction_balcony')->default(Config::get("constant.BALCONY.DEFAULT.VALUE")); /// hướng ban công
             $table->float('horizontal', 8, 5)->nullable();/// chiều ngang tính theo mét
-            $table->string('square')->nullable(); /// chiều dài tính theo mét
+            $table->float('vertical', 8, 5)->nullable();/// chiều ngang tính theo mét
+            $table->string('area')->nullable(); /// chiều dài tính theo mét
             $table->string('price')->nullable();
             $table->integer('unit_price')->default(Config::get("unit.PRICE.DEFAULT.VALUE")); /// triệu / m2 hay bao nhiêu trên sào hay tổng giá làm default nè
             $table->integer('negotiate')->default(Config::get("constant.NEGOTIATE.YES.VALUE")); // có thương lượng hay không
 
+            $table->string('home_number')->nullable();
+            $table->string('street')->nullable();
+
             $table->json('extensions')->default("[]"); /// là tiện ích mở rộng mà bạn muốn mở rộng ví dụ nhà thì có số phòng ngủ số tolet nhưng đất thì không
             
             $table->json('ldjson')->nullable();
-            $table->integer('type')->default(1);
+            $table->integer('type')->default(Config::get('constant.TYPE-PRODUCT.HOUSE'));
             $table->integer('sort')->default(-1);
             $table->integer('public')->default(1);
             $table->string('site_name', 150)->nullable();

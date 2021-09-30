@@ -214,10 +214,10 @@ if( !$district_id ){
                             <section class="pb-4">
                                 <h2 class="title">tổng diện tích</h2>
                                 <div class="position-relative after-unit-met-double">
-                                    <input class="jquery__append-out" name="square" type="text" 
+                                    <input class="jquery__append-out" name="area" type="text" 
                                         autocomplete="false"
                                         onkeyup="calcTotalPriceProduct()"
-                                        value="{{ old('square', $product->square ) }}" />
+                                        value="{{ old('area', $product->area ) }}" />
                                 </div>
                             </section>
                         </div>

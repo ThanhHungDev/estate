@@ -326,9 +326,9 @@
                                                 </div>
                                                 <div class="tag">
                                                     <div class="tag__row">
-                                                        <div class="tag__col simple-tooltip" title="Diện tích: {{ $product->square }} mét vuông">
+                                                        <div class="tag__col simple-tooltip" title="Diện tích: {{ $product->area }} mét vuông">
                                                             <i class="fal fa-line-height"></i>
-                                                            {{ $product->square }} m²
+                                                            {{ $product->area }} m²
                                                         </div>
                                                         @php
                                                             $direction = SupportString::getRecordByValueConfig(Config::get("constant.DIRECTION"), $product->direction) 
