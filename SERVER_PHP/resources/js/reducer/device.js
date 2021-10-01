@@ -49,7 +49,7 @@ function calcHeightSubtractHeight(){
 let DEVICE = {
     isPcDevice              : isPcDevice(),
     widthDevice             : getWidthDevice(),
-    heightDevice            : getHeightDevice(),
+    heightDevice            : getHeightDevice() + 150,
     calcHeightSubtractHeight: calcHeightSubtractHeight(),
 }
 

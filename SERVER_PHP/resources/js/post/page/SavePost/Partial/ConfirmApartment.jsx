@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
+import { connect } from "react-redux"
 import Images from '../Partial/UploadImage/Images'
-import formatUnitHelper from "../../../../service/convert.number.stringvnd"
 
 function ConfirmApartment( props ){
 
@@ -17,10 +17,8 @@ function ConfirmApartment( props ){
     }
 
     function renderLocationConfirm(key = 'commune'){
-        const { data, CONFIG } = props
+        const { locations, CONFIG } = props
         if( data[key] ){
-            /// có thông số commune hoặc district  hoặc province
-            const { locations } = data
             if( locations ){
                 const datas = locations[key]
                 const loc = datas.find(item => item.id == data[key] )
@@ -162,4 +160,9 @@ function ConfirmApartment( props ){
     )
 }
 
-export default ConfirmApartment
+let mapStateToProps = (state) => {
+    return {
+        locations: state.location
+    }
+}
+export default connect(mapStateToProps)(ConfirmApartment)

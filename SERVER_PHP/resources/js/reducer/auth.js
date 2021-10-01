@@ -6,6 +6,6 @@ export default function (state = jwtHelper.AUTH, action) {
         case TYPE.AUTH_SETTER:
             return action.payload
         default:
-            return state;
+            return state
     }
 }

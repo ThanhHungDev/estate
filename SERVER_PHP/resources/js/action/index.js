@@ -6,3 +6,10 @@ export function setterAuth(auth){
         payload : auth
     }
 }
+export function setterLocation( locs, _key = 'province'){
+    console.log(locs , " setterLocation ")
+    return {
+        type : TYPE.LOCATION_SETTER,
+        payload : { key: _key, data: locs }
+    }
+}
