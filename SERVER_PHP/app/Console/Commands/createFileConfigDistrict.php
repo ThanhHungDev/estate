@@ -2,19 +2,18 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Province;
+use App\Models\District;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
-class createFileConfigProvince extends Command
+class createFileConfigDistrict extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'command:province-config';
+    protected $signature = 'command:district-config';
 
     /**
      * The console command description.
@@ -40,10 +39,11 @@ class createFileConfigProvince extends Command
      */
     public function handle()
     {
-        $provinces = Province::select([ 'id', 'name', 'name as text'])->get()->toArray();
-        Storage::disk('config')->delete('province.php');
-        $hugn = var_export($provinces, true) ;
-        Storage::disk('config')->put('province.php', "<?php return $hugn ;");
+        // 1: {id: 1, text: 'Quận Ba Đình', province: 1}
+        $districts = District::select([ 'id', 'name as text', 'province_id as province'])->get()->toArray();
+        Storage::disk('config')->delete('district.php');
+        $hugn = var_export($districts, true) ;
+        Storage::disk('config')->put('district.php', "<?php return $hugn;");
         dd( "chạy");
     }
 }

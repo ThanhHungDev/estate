@@ -58,13 +58,8 @@ $configApp['VIDEO'] = Config::get('video.UPLOAD');
 
         const CONFIG_APP = `{!! json_encode($configApp) !!}`;
         const CATEGORIES = `{!! json_encode($categories ?? []) !!}`;
-
-        /// setting jwt
-        if(window.localStorage !== undefined){
-            localStorage.setItem('jwt', "{{ Cookie::get(Config::get('constant.TOKEN_COOKIE_NAME')) }}");
-        }else{
-            alert('Your browser is not support localStorage!');
-        }
+        const PROVINCES  = `{!! json_encode(Config::get('province')) !!}`;
+        const JWT_TOKEN  = `{{ Cookie::get(Config::get('constant.TOKEN_COOKIE_NAME')) }}`;
         // const KEY_CAPTCHA = "{{ env('GOOGLE_RECAPTCHA_KEY')  }}";
     </script>
     <script src="{{ asset('js/post.js'. Config::get('app.version')) }}"></script>

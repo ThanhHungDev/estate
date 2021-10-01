@@ -9,10 +9,10 @@ export default {
                 }
                 if( project.__isNew__ ){
                     /// thêm mới
-                    if( !project.label.length < 5 ){
+                    if( project.label.length < 1 ){
                         return "Bạn nhập mới tên chung cư nhưng tên quá ngắn"
                     }
-                    if( !project.comune ){
+                    if( !project.commune ){
                         return "thêm mới nhưng chưa thêm vị trí"
                     }
                 }

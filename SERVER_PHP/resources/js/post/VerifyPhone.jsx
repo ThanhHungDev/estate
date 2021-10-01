@@ -146,33 +146,20 @@ function VerifyPhone( props ){
         window.confirmationResult
             .confirm(code)
             .then(function (result) {
-                const user = result.user;
+                const user = result.user
                 setAlert(null)
                 //// lưu vào localStorage
                 localStorage.setItem('AUTH_PHONE_FIREBASE', JSON.stringify(user))
                 /// send axios cập nhật tài khoản đã được update
-                userAPI.verifyPhone({ phone_verify: `${backupPhone}` })
-                .then( response => {
-                    console.log(response)
-                    
-                    firebase.auth().signOut()
-                    // .then(() => {
-                    //     // Sign-out successful.
-                    // }).catch((error) => {
-                    //     // An error happened.
-                    // });
-                    location.reload()
-                    /// thành công thì refresh trang
-                    // const { user, phone, jwt } = response.data
-                    // /// lưu jwt vào localStorage
-                    // localStorage.setItem('jwt', jwt)
-                    // /// dispatch auth
-                    // props.dispatch(setterAuth(jwt_decode(jwt)))
-                })
-                .catch(error => {
-                    console.log("ERROR:: ",error)
-                });
-            }).catch(function (error) {
+                return userAPI.verifyPhone({ phone_verify: `${backupPhone}` })
+            })
+            .then( response => {
+                console.log(response)
+                
+                firebase.auth().signOut()
+                location.reload()
+            })
+            .catch(function (error) {
                 setAlert("xác minh code không thành công")
             });
     }

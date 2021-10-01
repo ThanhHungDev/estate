@@ -33,4 +33,9 @@ export default {
         return Api.get(CONFIG.API.COMMUNES)
         .then(res => res.data )
     },
+    getLocations() {
+        console.log("vào getLocations")
+        return Api.get(CONFIG.API.LOCATIONS)
+        .then(res => res.data )
+    },
 }

@@ -3,16 +3,24 @@ import Validator from "hero-validate"
 import AsyncCreatableSelect from 'react-select/async-creatable'
 import projectApi from "../../../../service/apartment.project.api"
 import V from "../../../validator/apartment.project"
+import SelectLocation from '../SelectLocation'
 
 Validator.setLocale(Validator.languages.vi)
 
 const ApartmentInfo = forwardRef((props, ref) => {
     const DEFAULT_NONE_SELECT = ""
-    const { CONFIG } = props
+
+    const refLocation = useRef()
+
     const [ projects, setProjects ] = useState([])
     const [ values, setValues]    = useState({ project: DEFAULT_NONE_SELECT })
     const [ touched, setTouched ] = useState({})
     const [ errors, setErrors ]   = useState(Validator.getEmpty())
+
+    /// add function error custom
+    const hasErr = name => {
+        return touched[name] && errors.isError(name)
+    }
 
     /// hook react
     useEffect(() => {
@@ -24,19 +32,24 @@ const ApartmentInfo = forwardRef((props, ref) => {
         ref,
         () => ({
             validateFromStep(){
-                const errors = Validator.validate( values, V.rules)
-                if( errors.hasError ){
-                    Object.keys(values).map((key, index) => {
-                        touched[key] = true
-                    })
-                    setTouched(touched)
-                    setValues({ ...values })
-                    return false
-                }else{
-                    console.log("có vào đay lưu lại và next step ")
-                    /// lưu lại và next step
-                    return values
+
+                /// check xem có chọn không hay bấm không chọn
+                if( values.project.__isNew__ ){
+                    /// chạy hàm validate tất cả 3 field của location
+                    refLocation.current?.validateData()
+                    console.log("valuesvaluesvaluesvaluesvalues", values    )
+                    const errors = Validator.validate( values, V.rules)
+                    console.log("errorserrorserrorserrorserrors", errors    )
+                    if( errors.hasError ){
+                        Object.keys(values).map((key, index) => {
+                            touched[key] = true
+                        })
+                        setTouched(touched)
+                        setValues({ ...values })
+                        return false
+                    }
                 }
+                return values
             }
         })
     )
@@ -67,13 +80,22 @@ const ApartmentInfo = forwardRef((props, ref) => {
     const handleChangeProject = (event) => {
         console.log(event, "đây là event nha")
 
-        setTouched({ ...touched, [event.target.name]: true })
+        setTouched({ ...touched, [event?.target?.name]: true })
         setValues({ ...values, project: event })
     }
+
+    const getDataSelectChange = data => {
+        const { project } = values
+        setValues({ project: { ...project, ...data } })
+    }
+
     const showProjectApartment = () => {
-        
+        const { CONFIG, AUTH } = props
         if( values.project.__isNew__ ){
-            return <div className='col-12'> { values.project.label } </div>
+            return <div className='col-12'> 
+                { values.project.label }
+                <SelectLocation ref={ refLocation }  CONFIG={CONFIG} OLD={AUTH} passingDataParent={ getDataSelectChange } />
+            </div>
         }
         if( !values.project.id ){
             return null
@@ -103,6 +125,7 @@ const ApartmentInfo = forwardRef((props, ref) => {
                             onChange={ handleChangeProject }
                         />
                         { values.project == DEFAULT_NONE_SELECT && <small className="form-text text-muted">Bạn chưa chọn hoặc thêm thông tin căn hộ.</small> }
+                        { hasErr('project') && <div className="d-block invalid-feedback"> { errors.getError('project') } </div> }
                     </div>
                 </div>
                 { showProjectApartment() }

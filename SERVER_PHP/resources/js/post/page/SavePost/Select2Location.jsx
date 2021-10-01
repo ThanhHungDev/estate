@@ -6,11 +6,11 @@ import locationAPI from "../../../service/location.api"
 import V from "../../validator/user.location"
 import { setterLocation } from "../../../action/index"
 
-const SelectLocation = forwardRef((props, ref) => {
+const Select2Location = forwardRef((props, ref) => {
 
     const { OLD } = props
 
-    const PROVINCE_NULL = [ {id: 0, text: 'Chọn Tỉnh Thành'} ]
+    const PROVINCE_NULL = [ {id: 0, text: 'Chọn Tỉnh Thành'}, ...props.locations.province ]
     const DISTRICT_NULL = [ {id: 0, text: 'Chọn Quận / Huyện'} ]
     const COMMUNE_NULL  = [ {id: 0, text: 'Chọn Phường, xã, thị trấn'} ]
 
@@ -25,8 +25,8 @@ const SelectLocation = forwardRef((props, ref) => {
         district: OLD.district_id ?? 0,
         commune : OLD.commune_id ?? 0
     })
-    const [touched, setTouched] = useState({})
-    const [errors, setErrors]   = useState(Validator.getEmpty())
+    const [ touched, setTouched] = useState({})
+    const [ errors, setErrors]   = useState(Validator.getEmpty())
 
     /// add function error custom
     const hasErr = name => {
@@ -35,92 +35,40 @@ const SelectLocation = forwardRef((props, ref) => {
 
     useEffect( () => {
 
-        if( values.commune ){
-            /// chắc chắn thông tin district và province cũng đã có sẵn rồi nên mình fetch hết về để nếu ng ta có chỉnh thì chỉnh nhanh luôn
-            /// nhưng thường sẽ không chỉnh đâu mà họ sẽ next qua luôn
-            callApiLocation()
-        }else{
-            callApiProvince()
-        }
         setErrors( Validator.validate(values, V.rules) )
     }, [ values, districts, provinces, communes ] )
 
-    function callApiProvince(callback){
-
-        if( provinces.length <= 1 ){
-            
-            if(props.locations && props.locations.province ){
-                const newProvinces = [ ...provinces, ... props.locations.province ]
-                callback ? callback(newProvinces) : setProvinces(newProvinces)
-            }else{
-                /// call api get province
-                locationAPI.getProvinces()
-                .then( response => {
-                    const { data } = response
-                    const newProvinces = [ ...provinces, ... data ]
-                    // props.dispatch(setterLocation(newProvinces, 'province'))
-                    callback ? callback(newProvinces) : setProvinces(newProvinces)
-                })
-                .catch(error => {
-                    console.log("ERROR:: ",error)
-                });
-            }
-        }
-    }
 
     function callApiDistrict(callback){
         if( districts.length <= 1 ){
-            if(props.locations && props.locations.district ){
-                const newDistricts = [ ...districts, ... props.locations.district ]
+            /// chưa fetch api bao giờ thì fetch thôi
+            locationAPI.getDistricts()
+            .then( response => {
+                const { data } = response
+                const newDistricts = [ ...districts, ... data ]
+                props.dispatch(setterLocation(newDistricts, 'district'))
                 callback ? callback(newDistricts) : setDistricts(newDistricts)
-            }else{
-                /// chưa fetch api bao giờ thì fetch thôi
-                locationAPI.getDistricts()
-                .then( response => {
-                    const { data } = response
-                    const newDistricts = [ ...districts, ... data ]
-                    props.dispatch(setterLocation(newDistricts, 'district'))
-                    callback ? callback(newDistricts) : setDistricts(newDistricts)
-                })
-                .catch(error => {
-                    console.log("ERROR:: locationAPI.getDistricts-- ",error)
-                })
-            }
+            })
+            .catch(error => {
+                console.log("ERROR:: locationAPI.getDistricts-- ",error)
+            })
         }
     }
     function callApiCommune(callback){
         if( communes.length <= 1 ){
-            if(props.locations && props.locations.commune ){
-                const newCommunes = [ ...communes, ... props.locations.commune ]
+            /// chưa fetch api bao giờ thì fetch thôi
+            locationAPI.getCommunes()
+            .then( response => {
+                const { data } = response
+                const newCommunes = [ ...communes, ... data ]
+                props.dispatch(setterLocation(newCommunes, 'commune'))
                 callback ? callback(newCommunes) : setCommunes(newCommunes)
-            }else{
-                /// chưa fetch api bao giờ thì fetch thôi
-                locationAPI.getCommunes()
-                .then( response => {
-                    const { data } = response
-                    const newCommunes = [ ...communes, ... data ]
-                    props.dispatch(setterLocation(newCommunes, 'commune'))
-                    callback ? callback(newCommunes) : setCommunes(newCommunes)
-                })
-                .catch(error => {
-                    console.log("ERROR:: locationAPI.getCommunes-- ",error)
-                })
-            }
-            
+            })
+            .catch(error => {
+                console.log("ERROR:: locationAPI.getCommunes-- ",error)
+            })
         }
     }
-    function callApiLocation(){
-        callApiProvince( function( provinces ){
-            setProvinces(provinces)
-            callApiDistrict(function( districts ){
-                setDistricts(districts)
-                callApiCommune( function( communes ){
-                    setCommunes(communes)
-                })
-            })
-        })
-    }
-
 
     function castOptionSelect(locations, targetName = 'commune' ){
         return locations.map( item => { return { value: item.id, label: item.text, currentTarget: { value: item.id }, target: { name: targetName, value: item.id } }})
@@ -234,7 +182,7 @@ const SelectLocation = forwardRef((props, ref) => {
                     setValues({ ...values })
                     return false
                 }else{
-                    console.log("có vào đay lưu lại và next step rong SelectLocation")
+                    console.log("có vào đay lưu lại và next step ")
                     /// lưu lại và next step
                     return values
                 }
@@ -309,10 +257,9 @@ const SelectLocation = forwardRef((props, ref) => {
 })
 
 
-
 let mapStateToProps = (state) => {
     return {
         locations: state.location
     }
 }
-export default connect( mapStateToProps, null, null, { forwardRef: true })(SelectLocation)
+export default connect( mapStateToProps, null, null, { forwardRef: true })(Select2Location)
