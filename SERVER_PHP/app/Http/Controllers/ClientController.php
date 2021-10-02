@@ -110,7 +110,7 @@ class ClientController extends Controller
 
         $productsNew = Product::orderBy('id', 'DESC')->take(3)->get();
         $categories = Category::orderBy('id', 'DESC')->get();
-        $districts = District::where('province_id', 68)->get();
+        $districts = District::all();
         $communes  = Commune::whereIn('district_id', $districts->pluck('id')->toArray())->get();
 
         return view('client.news', compact(['posts', 'topics', 'productsNew', 'categories', 'districts', 'communes']) );

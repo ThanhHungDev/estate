@@ -4,10 +4,11 @@ import formatUnitHelper from "../../../../service/convert.number.stringvnd"
 import V from "../../../validator/user.price-area"
 /// create rule for your form
 Validator.setLocale(Validator.languages.vi)
+Validator.setMessages(V.messages)
 
 const AreaPrice = forwardRef((props, ref) => {
 
-    const [values, setValues]   = useState({ title: "", content: "", area: "", price: "", horizontal: "", vertical: "" })
+    const [values, setValues]   = useState({ area: "", price: "", horizontal: "", vertical: "" })
     const [touched, setTouched] = useState({})
     const [errors, setErrors]   = useState(Validator.getEmpty())
 
@@ -26,7 +27,7 @@ const AreaPrice = forwardRef((props, ref) => {
 
     /// hook react
     useEffect(() => {
-        
+        console.log( values)
         setErrors( Validator.validate(values, V.rules) )
     }, [ values, touched ])
 
@@ -107,46 +108,17 @@ const AreaPrice = forwardRef((props, ref) => {
     }
     return(
         <div className="user-information position-relative">
-
-            <h5 className="user-type__title pt-2 pb-4">Bạn cần nhập thông tin tiêu đề và nội dung:</h5>
-            <div className="mycustom-form-group">
-                <div className="row">
-                    <div className="col-12">
-                        <div className="form-group required">
-                            <label htmlFor="title">Tiêu đề sản phẩm</label>
-                            <input type="text" id="title" name="title" placeholder="Nhập tiêu đề ... vd: Bán căn hộ xxxxxx tại dự án xxxxxx"
-                                className={"form-control " + ( hasErr("title") ? "is-invalid" : ( touched['title'] && "is-valid" ) )}
-                                defaultValue={ values.title }
-                                onChange={handleChange}
-                            />
-                            { hasErr('title') && <div className="d-block invalid-feedback"> { errors.getError('title') } </div> }
-                        </div>
-                    </div>
-                    <div className="col-12">
-                        <div className="form-group required">
-                            <label htmlFor="content">Nội dung mô tả</label>
-                            <textarea id="content" rows="3" name="content"
-                            className={"form-control " + ( hasErr("content") ? "is-invalid" : ( touched['content'] && "is-valid" ) )}
-                            placeholder="Mô tả đặc điểm bất động sản... "
-                            onChange={handleChange}
-                            defaultValue={ values.content }
-                            ></textarea>
-                            { hasErr('content') && <div className="d-block invalid-feedback"> { errors.getError('content') } </div> }
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <h5 className="user-type__title pt-2 pb-4">Bạn cần cung cấp diện tích và giá:</h5>
+            <h5 className="user-type__title pt-2 pb-4">Bạn nên cung cấp diện tích và giá <span className="text-color-warning">( Không bắt buộc )</span>:</h5>
 
             <div className="mycustom-form-group">
                 <div className="row">
                     <div className="col-6">
-                        <div className="form-group required">
+                        <div className="form-group">
                             <label htmlFor="area">Tổng Diện tích </label>
                             <div className="unit_field unit__area">
                                 <input id="area" type="number"
                                     className={"form-control " + ( hasErr("area") ? "is-invalid" : ( touched['area'] && "is-valid" ) )}
-                                    name="area" defaultValue={ values.area } onChange={ handleChange }
+                                    name="area" value={ values.area } onChange={ handleChange }
                                 />
                             </div>
                             { hasErr('area') && <div className="d-block invalid-feedback">{ errors.getError("area") }</div> }
@@ -154,12 +126,12 @@ const AreaPrice = forwardRef((props, ref) => {
                         </div>
                     </div>
                     <div className="col-6">
-                        <div className="form-group required">
+                        <div className="form-group">
                             <label htmlFor="price">Giá </label>
                             <div className="unit_field unit__price">
                                 <input id="price" type="number"
                                     className={"form-control " + ( hasErr("price") ? "is-invalid" : ( touched['price'] && "is-valid" ) )}
-                                    name="price" defaultValue={ values.price } onChange={ handleChange }
+                                    name="price" value={ values.price } onChange={ handleChange }
                                 />
                             </div>
                             { hasErr('price') && <div className="d-block invalid-feedback">{ errors.getError("price") }</div> }
@@ -167,24 +139,24 @@ const AreaPrice = forwardRef((props, ref) => {
                         </div>
                     </div>
                     <div className="col-6">
-                        <div className="form-group required">
+                        <div className="form-group">
                             <label htmlFor="horizontal">Chiều ngang </label>
                             <div className="unit_field unit__horizontal">
                                 <input id="horizontal" type="number"
                                     className={"form-control " + ( hasErr("horizontal") ? "is-invalid" : ( touched['horizontal'] && "is-valid" ) )}
-                                    name="horizontal" defaultValue={ values.horizontal } onChange={ handleChange }
+                                    name="horizontal" value={ values.horizontal } onChange={ handleChange }
                                 />
                             </div>
                             { hasErr('horizontal') && <div className="d-block invalid-feedback">{ errors.getError("horizontal") }</div> }
                         </div>
                     </div>
                     <div className="col-6">
-                        <div className="form-group required">
+                        <div className="form-group">
                             <label htmlFor="vertical">Chiều dài </label>
                             <div className="unit_field unit__vetical">
                                 <input id="vertical" type="number"
                                     className={"form-control " + ( hasErr("vertical") ? "is-invalid" : ( touched['vertical'] && "is-valid" ) )}
-                                    name="vertical" defaultValue={ values.vertical } onChange={ handleChange }
+                                    name="vertical" value={ values.vertical } onChange={ handleChange }
                                 />
                             </div>
                             { hasErr('vertical') && <div className="d-block invalid-feedback">{ errors.getError("vertical") }</div> }

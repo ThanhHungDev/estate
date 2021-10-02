@@ -40,7 +40,8 @@ class createFileConfigDistrict extends Command
     public function handle()
     {
         // 1: {id: 1, text: 'Quận Ba Đình', province: 1}
-        $districts = District::select([ 'id', 'name as text', 'province_id as province'])->get()->toArray();
+        $districts = District::select([ 'id', 'name as text', 'province_id as province'])
+                                ->get()->toArray();
         Storage::disk('config')->delete('district.php');
         $hugn = var_export($districts, true) ;
         Storage::disk('config')->put('district.php', "<?php return $hugn;");

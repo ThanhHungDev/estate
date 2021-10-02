@@ -93,8 +93,14 @@ const ApartmentInfo = forwardRef((props, ref) => {
         const { CONFIG, AUTH } = props
         if( values.project.__isNew__ ){
             return <div className='col-12'> 
-                { values.project.label }
-                <SelectLocation ref={ refLocation }  CONFIG={CONFIG} OLD={AUTH} passingDataParent={ getDataSelectChange } />
+                <div className="row pt-2">
+                    <div className="col-12">
+                        <h3 className="text-color-warning"><span className="h6 text-muted">Bạn thêm mới dự án:</span> { values.project.label }</h3>
+                    </div>
+                    <div className="col-12 pt-2">
+                        <SelectLocation ref={ refLocation }  CONFIG={CONFIG} OLD={AUTH} passingDataParent={ getDataSelectChange } />
+                    </div>
+                </div>
             </div>
         }
         if( !values.project.id ){

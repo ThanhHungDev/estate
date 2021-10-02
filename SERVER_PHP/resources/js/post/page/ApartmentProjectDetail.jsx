@@ -4,6 +4,7 @@ import { useParams } from 'react-router'
 import { useHistory } from "react-router-dom"
 import ImagesApartment from './SavePost/Partial/UploadImage/ImagesApartment'
 import projectApi from "../../service/apartment.project.api"
+import ExpandShowMore from "./ExpandShowMore"
 
 
 function ApartmentProjectDetail( props ){
@@ -11,13 +12,6 @@ function ApartmentProjectDetail( props ){
     const history = useHistory()
     const { id } = useParams()
     const [ project, setProject ] = useState(null)
-    const [ expand, setExpand ] = useState(false)
-    /// bình thường
-    // const { match } = props
-    // if( match && match.params && match.params.id ){
-
-    // }
-
 
     useEffect(()=>{
         if( !project ){
@@ -46,12 +40,7 @@ function ApartmentProjectDetail( props ){
         <div className="apartment-project-detail main-upload">
             <h2>{ project.name }</h2>
             <div className="galleries"> { project.images.length ? <ImagesApartment images={ project.images } /> : null } </div>
-            <div className="expand">
-                <div className={ "expand__content " + (expand ? "show" : "hide") } dangerouslySetInnerHTML={{__html: project.introduction }} />
-                <div className="expand__show">
-                    <a onClick={ () => { setExpand( !expand ) } }>toggle</a>
-                </div>
-            </div>
+            <ExpandShowMore content={project.introduction} />
         </div>
     )
 }

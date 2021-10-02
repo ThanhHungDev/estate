@@ -1,5 +1,6 @@
 import React from "react"
 
+const CURRENT_STEP_SHOW_API = 8
 const FooterApartment = props => {
 
     const continueStepInFooter = () => {
@@ -8,7 +9,7 @@ const FooterApartment = props => {
     const fetchApiSaveFooter = () => {
         props.fetchApiSave()
     }
-    if( props.currentStep == 7 ){
+    if( props.currentStep == CURRENT_STEP_SHOW_API ){
         return (
             <div className="footer__fixed-step">
                 <button className="btn apartment__footer" onClick={fetchApiSaveFooter}>

@@ -25085,7 +25085,7 @@ ul.contact li a span {
 
 .expand {
   position: relative;
-  padding: 30px 15px;
+  padding: 30px 15px 60px;
 }
 .expand__content {
   max-height: 120px;

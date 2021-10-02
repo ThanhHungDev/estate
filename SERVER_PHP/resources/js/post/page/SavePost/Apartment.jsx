@@ -14,21 +14,23 @@ import ConfirmApartment from "./Partial/ConfirmApartment"
 
 
 import userAPI from "../../../service/user.api"
+import ContentApartment from "./Partial/ContentApartment"
 
 
 /// lưu căn hộ chung cư
 function Apartment( props ){
 
-    const [ form, setForm ] = useState({})
-    const [ state, updateState] = useState({})
+    const [ form, setForm ]         = useState({})
+    const [ state, updateState]     = useState({})
     const [ progress, setProgress ] = useState(false)
 
     // let refRolePost = React.createRef()
-    const refType = useRef()
+    const refType          = useRef()
     const refUserPostInfor = useRef()
-    const refRoleUser = useRef()
-    const refGalleryUser = useRef()
-    const refAreaPrice = useRef()
+    const refRoleUser      = useRef()
+    const refGalleryUser   = useRef()
+    const refContent       = useRef()
+    const refAreaPrice     = useRef()
     const refApartmentInfo = useRef()
 
     // Do something on step change
@@ -127,19 +129,26 @@ function Apartment( props ){
             }
         }else if(SW.currentStep == 4){
             
+            const contentTitle = refContent.current.validateFromStep()
+            if( contentTitle ){
+                setForm({ ...form, ... contentTitle })
+                SW.nextStep()
+            }
+        }else if(SW.currentStep == 5){
+            
             const areaPrice = refAreaPrice.current.validateFromStep()
             if( areaPrice ){
                 setForm({ ...form, ... areaPrice })
                 SW.nextStep()
             }
-        }else if(SW.currentStep == 5){
+        }else if(SW.currentStep == 6){
 
             const { images, videos } = refGalleryUser.current.validateFromStep()
             if( images && images.length ){
                 setForm({ ...form, images, videos })
                 SW.nextStep()
             }
-        }else if(SW.currentStep == 6){
+        }else if(SW.currentStep == 7){
 
             const apartmentInfo = refApartmentInfo.current.validateFromStep()
             if( apartmentInfo ){
@@ -181,6 +190,7 @@ function Apartment( props ){
                     <TypePost ref={ refType } CONFIG={CONFIG}/>
                     <UserPostInfomation ref={ refUserPostInfor } CONFIG={CONFIG} AUTH={AUTH}/>
                     <RoleUser ref={ refRoleUser}  CONFIG={CONFIG} OLD={form} />
+                    <ContentApartment ref={ refContent } CONFIG={CONFIG}/>
                     <AreaPrice ref={ refAreaPrice } CONFIG={CONFIG}/>
                     <GalleryPost ref={ refGalleryUser}  CONFIG={CONFIG}/>
                     <ApartmentInfo ref={ refApartmentInfo }  CONFIG={CONFIG} AUTH={AUTH}/>

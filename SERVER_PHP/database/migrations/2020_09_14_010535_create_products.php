@@ -21,8 +21,8 @@ class CreateProducts extends Migration
             $table->unsignedInteger('category_id')->unsigned();
             $table->unsignedInteger('user_id')->unsigned()->nullable();
             $table->unsignedInteger('rating_id')->unsigned()->nullable();
-            $table->unsignedInteger('commune_id')->unsigned();
-            $table->unsignedInteger('project_id')->unsigned();
+            $table->unsignedInteger('commune_id')->unsigned()->nullable();
+            $table->unsignedInteger('project_id')->unsigned()->nullable();
             $table->string('title', 150)->nullable();
             $table->string('slug', 150)->nullable();
             $table->string('excerpt')->nullable();

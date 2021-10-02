@@ -40,7 +40,9 @@ class createFileConfigProvince extends Command
      */
     public function handle()
     {
-        $provinces = Province::select([ 'id', 'name', 'name as text'])->get()->toArray();
+        $provinces = Province::select([ 'id', 'name', 'name as text'])
+                                ->orderBy('sort', 'DESC')
+                                ->get()->toArray();
         Storage::disk('config')->delete('province.php');
         $hugn = var_export($provinces, true) ;
         Storage::disk('config')->put('province.php', "<?php return $hugn ;");

@@ -21,6 +21,7 @@ class CreateProvinces extends Migration
             $table->string('latitude');/// google map 
             $table->string('longitude');/// google map 
             $table->string('type'); /// tỉnh hay thành phố trung ương 
+            $table->string('sort')->default(1); 
             $table->timestamps();
         });
     }

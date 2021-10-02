@@ -1,12 +1,11 @@
 export default {
     rules : {
-        title: "min:10|max:150",
-        description: "min:5|max:1000",
-        area: "required|min:2|max:20",
+        area: "string|max_length:20",
         price: {
-            required: true,
-            max: 16,
+            string: true,
+            max_length: 16,
             mycustom: function (value) {
+                
                 const number = parseInt(value.replace(/[^0-9]/g, "")) || 0
                 if (number % 1000 != 0 ) {
                     return "tiền phải là bội số của 1000vnd"
@@ -14,7 +13,12 @@ export default {
                 return true
             },
         },
-        horizontal: "required|min:1|max:20",
-        vertical: "required|min:1|max:20"
+        horizontal: "string|max_length:20",
+        vertical: "string|max_length:20"
     },
+    messages: {
+        area: {
+            max_length: ":value hung"
+        }
+    }
 }

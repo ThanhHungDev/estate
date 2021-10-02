@@ -7,45 +7,45 @@
   ),
   1 => 
   array (
-    'id' => 2,
-    'name' => 'Tỉnh Hà Giang',
-    'text' => 'Tỉnh Hà Giang',
+    'id' => 77,
+    'name' => 'Tỉnh Bà Rịa - Vũng Tàu',
+    'text' => 'Tỉnh Bà Rịa - Vũng Tàu',
   ),
   2 => 
   array (
-    'id' => 4,
-    'name' => 'Tỉnh Cao Bằng',
-    'text' => 'Tỉnh Cao Bằng',
+    'id' => 68,
+    'name' => 'Tỉnh Lâm Đồng',
+    'text' => 'Tỉnh Lâm Đồng',
   ),
   3 => 
   array (
-    'id' => 6,
-    'name' => 'Tỉnh Bắc Kạn',
-    'text' => 'Tỉnh Bắc Kạn',
+    'id' => 48,
+    'name' => 'Thành phố Đà Nẵng',
+    'text' => 'Thành phố Đà Nẵng',
   ),
   4 => 
   array (
-    'id' => 8,
-    'name' => 'Tỉnh Tuyên Quang',
-    'text' => 'Tỉnh Tuyên Quang',
+    'id' => 92,
+    'name' => 'Thành phố Cần Thơ',
+    'text' => 'Thành phố Cần Thơ',
   ),
   5 => 
   array (
-    'id' => 10,
-    'name' => 'Tỉnh Lào Cai',
-    'text' => 'Tỉnh Lào Cai',
+    'id' => 31,
+    'name' => 'Thành phố Hải Phòng',
+    'text' => 'Thành phố Hải Phòng',
   ),
   6 => 
   array (
-    'id' => 11,
-    'name' => 'Tỉnh Điện Biên',
-    'text' => 'Tỉnh Điện Biên',
+    'id' => 82,
+    'name' => 'Tỉnh Tiền Giang',
+    'text' => 'Tỉnh Tiền Giang',
   ),
   7 => 
   array (
-    'id' => 12,
-    'name' => 'Tỉnh Lai Châu',
-    'text' => 'Tỉnh Lai Châu',
+    'id' => 79,
+    'name' => 'Thành phố Hồ Chí Minh',
+    'text' => 'Thành phố Hồ Chí Minh',
   ),
   8 => 
   array (
@@ -115,266 +115,266 @@
   ),
   19 => 
   array (
-    'id' => 31,
-    'name' => 'Thành phố Hải Phòng',
-    'text' => 'Thành phố Hải Phòng',
-  ),
-  20 => 
-  array (
     'id' => 33,
     'name' => 'Tỉnh Hưng Yên',
     'text' => 'Tỉnh Hưng Yên',
   ),
-  21 => 
+  20 => 
   array (
     'id' => 34,
     'name' => 'Tỉnh Thái Bình',
     'text' => 'Tỉnh Thái Bình',
   ),
-  22 => 
+  21 => 
   array (
     'id' => 35,
     'name' => 'Tỉnh Hà Nam',
     'text' => 'Tỉnh Hà Nam',
   ),
-  23 => 
+  22 => 
   array (
     'id' => 36,
     'name' => 'Tỉnh Nam Định',
     'text' => 'Tỉnh Nam Định',
   ),
-  24 => 
+  23 => 
   array (
     'id' => 37,
     'name' => 'Tỉnh Ninh Bình',
     'text' => 'Tỉnh Ninh Bình',
   ),
-  25 => 
+  24 => 
   array (
     'id' => 38,
     'name' => 'Tỉnh Thanh Hóa',
     'text' => 'Tỉnh Thanh Hóa',
   ),
-  26 => 
+  25 => 
   array (
     'id' => 40,
     'name' => 'Tỉnh Nghệ An',
     'text' => 'Tỉnh Nghệ An',
   ),
-  27 => 
+  26 => 
   array (
     'id' => 42,
     'name' => 'Tỉnh Hà Tĩnh',
     'text' => 'Tỉnh Hà Tĩnh',
   ),
-  28 => 
+  27 => 
   array (
     'id' => 44,
     'name' => 'Tỉnh Quảng Bình',
     'text' => 'Tỉnh Quảng Bình',
   ),
-  29 => 
+  28 => 
   array (
     'id' => 45,
     'name' => 'Tỉnh Quảng Trị',
     'text' => 'Tỉnh Quảng Trị',
   ),
-  30 => 
+  29 => 
   array (
     'id' => 46,
     'name' => 'Tỉnh Thừa Thiên Huế',
     'text' => 'Tỉnh Thừa Thiên Huế',
   ),
-  31 => 
-  array (
-    'id' => 48,
-    'name' => 'Thành phố Đà Nẵng',
-    'text' => 'Thành phố Đà Nẵng',
-  ),
-  32 => 
+  30 => 
   array (
     'id' => 49,
     'name' => 'Tỉnh Quảng Nam',
     'text' => 'Tỉnh Quảng Nam',
   ),
-  33 => 
+  31 => 
   array (
     'id' => 51,
     'name' => 'Tỉnh Quảng Ngãi',
     'text' => 'Tỉnh Quảng Ngãi',
   ),
-  34 => 
+  32 => 
   array (
     'id' => 52,
     'name' => 'Tỉnh Bình Định',
     'text' => 'Tỉnh Bình Định',
   ),
-  35 => 
+  33 => 
   array (
     'id' => 54,
     'name' => 'Tỉnh Phú Yên',
     'text' => 'Tỉnh Phú Yên',
   ),
-  36 => 
+  34 => 
   array (
     'id' => 56,
     'name' => 'Tỉnh Khánh Hòa',
     'text' => 'Tỉnh Khánh Hòa',
   ),
-  37 => 
+  35 => 
   array (
     'id' => 58,
     'name' => 'Tỉnh Ninh Thuận',
     'text' => 'Tỉnh Ninh Thuận',
   ),
-  38 => 
+  36 => 
   array (
     'id' => 60,
     'name' => 'Tỉnh Bình Thuận',
     'text' => 'Tỉnh Bình Thuận',
   ),
-  39 => 
+  37 => 
   array (
     'id' => 62,
     'name' => 'Tỉnh Kon Tum',
     'text' => 'Tỉnh Kon Tum',
   ),
-  40 => 
+  38 => 
   array (
     'id' => 64,
     'name' => 'Tỉnh Gia Lai',
     'text' => 'Tỉnh Gia Lai',
   ),
-  41 => 
+  39 => 
   array (
     'id' => 66,
     'name' => 'Tỉnh Đắk Lắk',
     'text' => 'Tỉnh Đắk Lắk',
   ),
-  42 => 
+  40 => 
   array (
     'id' => 67,
     'name' => 'Tỉnh Đắk Nông',
     'text' => 'Tỉnh Đắk Nông',
   ),
-  43 => 
-  array (
-    'id' => 68,
-    'name' => 'Tỉnh Lâm Đồng',
-    'text' => 'Tỉnh Lâm Đồng',
-  ),
-  44 => 
+  41 => 
   array (
     'id' => 70,
     'name' => 'Tỉnh Bình Phước',
     'text' => 'Tỉnh Bình Phước',
   ),
-  45 => 
+  42 => 
   array (
     'id' => 72,
     'name' => 'Tỉnh Tây Ninh',
     'text' => 'Tỉnh Tây Ninh',
   ),
-  46 => 
+  43 => 
   array (
     'id' => 74,
     'name' => 'Tỉnh Bình Dương',
     'text' => 'Tỉnh Bình Dương',
   ),
-  47 => 
+  44 => 
   array (
     'id' => 75,
     'name' => 'Tỉnh Đồng Nai',
     'text' => 'Tỉnh Đồng Nai',
   ),
-  48 => 
-  array (
-    'id' => 77,
-    'name' => 'Tỉnh Bà Rịa - Vũng Tàu',
-    'text' => 'Tỉnh Bà Rịa - Vũng Tàu',
-  ),
-  49 => 
-  array (
-    'id' => 79,
-    'name' => 'Thành phố Hồ Chí Minh',
-    'text' => 'Thành phố Hồ Chí Minh',
-  ),
-  50 => 
+  45 => 
   array (
     'id' => 80,
     'name' => 'Tỉnh Long An',
     'text' => 'Tỉnh Long An',
   ),
-  51 => 
-  array (
-    'id' => 82,
-    'name' => 'Tỉnh Tiền Giang',
-    'text' => 'Tỉnh Tiền Giang',
-  ),
-  52 => 
+  46 => 
   array (
     'id' => 83,
     'name' => 'Tỉnh Bến Tre',
     'text' => 'Tỉnh Bến Tre',
   ),
-  53 => 
+  47 => 
   array (
     'id' => 84,
     'name' => 'Tỉnh Trà Vinh',
     'text' => 'Tỉnh Trà Vinh',
   ),
-  54 => 
+  48 => 
   array (
     'id' => 86,
     'name' => 'Tỉnh Vĩnh Long',
     'text' => 'Tỉnh Vĩnh Long',
   ),
-  55 => 
+  49 => 
   array (
     'id' => 87,
     'name' => 'Tỉnh Đồng Tháp',
     'text' => 'Tỉnh Đồng Tháp',
   ),
-  56 => 
+  50 => 
   array (
     'id' => 89,
     'name' => 'Tỉnh An Giang',
     'text' => 'Tỉnh An Giang',
   ),
-  57 => 
+  51 => 
   array (
     'id' => 91,
     'name' => 'Tỉnh Kiên Giang',
     'text' => 'Tỉnh Kiên Giang',
   ),
-  58 => 
-  array (
-    'id' => 92,
-    'name' => 'Thành phố Cần Thơ',
-    'text' => 'Thành phố Cần Thơ',
-  ),
-  59 => 
+  52 => 
   array (
     'id' => 93,
     'name' => 'Tỉnh Hậu Giang',
     'text' => 'Tỉnh Hậu Giang',
   ),
-  60 => 
+  53 => 
   array (
     'id' => 94,
     'name' => 'Tỉnh Sóc Trăng',
     'text' => 'Tỉnh Sóc Trăng',
   ),
-  61 => 
+  54 => 
   array (
     'id' => 95,
     'name' => 'Tỉnh Bạc Liêu',
     'text' => 'Tỉnh Bạc Liêu',
   ),
-  62 => 
+  55 => 
   array (
     'id' => 96,
     'name' => 'Tỉnh Cà Mau',
     'text' => 'Tỉnh Cà Mau',
+  ),
+  56 => 
+  array (
+    'id' => 2,
+    'name' => 'Tỉnh Hà Giang',
+    'text' => 'Tỉnh Hà Giang',
+  ),
+  57 => 
+  array (
+    'id' => 4,
+    'name' => 'Tỉnh Cao Bằng',
+    'text' => 'Tỉnh Cao Bằng',
+  ),
+  58 => 
+  array (
+    'id' => 6,
+    'name' => 'Tỉnh Bắc Kạn',
+    'text' => 'Tỉnh Bắc Kạn',
+  ),
+  59 => 
+  array (
+    'id' => 8,
+    'name' => 'Tỉnh Tuyên Quang',
+    'text' => 'Tỉnh Tuyên Quang',
+  ),
+  60 => 
+  array (
+    'id' => 10,
+    'name' => 'Tỉnh Lào Cai',
+    'text' => 'Tỉnh Lào Cai',
+  ),
+  61 => 
+  array (
+    'id' => 11,
+    'name' => 'Tỉnh Điện Biên',
+    'text' => 'Tỉnh Điện Biên',
+  ),
+  62 => 
+  array (
+    'id' => 12,
+    'name' => 'Tỉnh Lai Châu',
+    'text' => 'Tỉnh Lai Châu',
   ),
 ) ;

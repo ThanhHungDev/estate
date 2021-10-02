@@ -17,8 +17,9 @@ class ProvinceController extends Controller
     public function provinces(Request $request){
         
         $provinceModel = new Province();
-        $provinces     = $provinceModel ->get(['id', 'name as text'])
-                                            ->toArray();
+        $provinces     = $provinceModel->orderBy('sort', 'DESC')
+                                        ->get(['id', 'name as text'])    
+                                        ->toArray();
         return response()
                     ->success('Your custom success $provinces', $provinces)
                     ->setStatusCode(Response::HTTP_OK);
