@@ -133,61 +133,6 @@
     <div class="selectus wow fadeInUp" data-wow-duration="1s">
         <div class="selectus__wrapper">
             <h3 id="selectus" class="selectus__title" tabindex="0" title="💥 Vì Sao bạn nên chọn {{ Config::get('app.name') }}" >
-                Vì Sao bạn nên chọn 
-                <span class="text-color-pink">{{ Config::get('app.name') }}</span>
-            </h3>
-            <div class="selectus__row">
-                <div class="selectus__item">
-                    <div class="selectus__item-wrapper">
-                        <i class="fal fa-user-chart"></i>
-                        <h5 class="selectus__item-link-text">
-                            Được khách hàng đánh giá 4.9/5 sao.
-                        </h5>
-                    </div>
-                </div>
-                <div class="selectus__item">
-                    <div class="selectus__item-wrapper">
-                        <i class="fal fa-drafting-compass"></i>
-                        <h5 class="selectus__item-link-text">
-                            Dịch vụ uy tín top 1 tp. Bảo Lộc.
-                        </h5>
-                    </div>
-                </div>
-                <div class="selectus__item">
-                    <div class="selectus__item-wrapper">
-                        <i class="fal fa-people-arrows"></i>
-                        <h5 class="selectus__item-link-text">
-                            Cam kết chính chủ - nói không môi giới.
-                        </h5>
-                    </div>
-                </div>
-                <div class="selectus__item">
-                    <div class="selectus__item-wrapper">
-                        <i class="fal fa-cogs"></i>
-                        <h5 class="selectus__item-link-text">
-                            Hộ trợ chuyên nghiệp, hiệu quả.
-                        </h5>
-                    </div>
-                </div>
-                <div class="selectus__item">
-                    <div class="selectus__item-wrapper">
-                        <i class="fal fa-sack-dollar"></i>
-                        <h5 class="selectus__item-link-text">
-                            Giá cả cạnh tranh nhất trên thị trường.
-                        </h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-
-
-    <div class="selectus wow fadeInUp" data-wow-duration="1s">
-        <div class="selectus__wrapper">
-            <h3 id="selectus" class="selectus__title" tabindex="0" title="💥 Vì Sao bạn nên chọn {{ Config::get('app.name') }}" >
                 Sản phẩm Mua Bán Nhà Đất Tp Bảo Lộc đang có
             </h3>
         </div>
