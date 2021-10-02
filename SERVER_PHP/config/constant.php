@@ -98,6 +98,14 @@ return [
         'FOUR'    => [ 'VALUE' => 4, 'TEXT' => 'Bốn nhà vệ sinh', 'TEXT_CLIENT' => 'Bốn nhà vệ sinh'  ],   /// tây
         'FIVE'    => [ 'VALUE' => 5, 'TEXT' => 'Năm nhà vệ sinh', 'TEXT_CLIENT' => 'Năm nhà vệ sinh'  ],   // tây bắc
     ],
+    'BATHROOM' => [
+        'DEFAULT' => [ 'VALUE' => 0, 'TEXT' => 'Chọn nhà tắm', 'TEXT_CLIENT' => '---' ],
+        'ONE'     => [ 'VALUE' => 1, 'TEXT' => 'Một nhà tắm', 'TEXT_CLIENT' => 'Một nhà tắm'  ],
+        'TWO'     => [ 'VALUE' => 2, 'TEXT' => 'Hai nhà tắm', 'TEXT_CLIENT' => 'Hai nhà tắm'  ],
+        'THREE'   => [ 'VALUE' => 3, 'TEXT' => 'Ba nhà tắm', 'TEXT_CLIENT' => 'Ba nhà tắm'  ],
+        'FOUR'    => [ 'VALUE' => 4, 'TEXT' => 'Bốn nhà tắm', 'TEXT_CLIENT' => 'Bốn nhà tắm'  ],
+        'FIVE'    => [ 'VALUE' => 5, 'TEXT' => 'Năm nhà tắm', 'TEXT_CLIENT' => 'Năm nhà tắm'  ],
+    ],
 
     'ROOM' => [
         'DEFAULT' => [ 'VALUE' => 0, 'TEXT' => 'Chọn số phòng ngủ', 'TEXT_CLIENT' => '---' ],

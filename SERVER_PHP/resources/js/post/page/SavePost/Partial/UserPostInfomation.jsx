@@ -55,7 +55,7 @@ const UserPostInfomation = forwardRef((props, ref) => {
         ref,
         () => ({
             validateFromStep(){
-                console.log( values , "validateFromStep")
+                
                 refLocation.current.validateData()
                 const errors = Validator.validate(values, V.rules)
                 if( errors.hasError ){

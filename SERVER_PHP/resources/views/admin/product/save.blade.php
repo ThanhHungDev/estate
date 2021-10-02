@@ -192,7 +192,7 @@ if( !$district_id ){
                             <section class="pb-4">
                                 <h2 class="title">hướng ban công</h2>
                                 <select name="direction_balcony" class="js__single-select">
-                                    @foreach (Config::get("constant.BALCONY") as $key => $direction )
+                                    @foreach (Config::get("constant.DIRECTION") as $key => $direction )
                                     <option @if(old('direction_balcony', $product->direction_balcony) == $direction['VALUE']) {{ 'selected' }} @endif
                                         value="{{ $direction['VALUE'] }}">{{ $direction['TEXT'] }}</option>
                                     @endforeach

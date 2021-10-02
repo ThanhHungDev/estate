@@ -41,7 +41,7 @@ class ApartmentController extends Controller
                     )
                     ->setStatusCode(Response::HTTP_NOT_FOUND);
         }
-        $user->commune_id   = $request->input('commune_id');
+        $user->commune_id   = $request->input('user_commune_id');
         $user->home_number  = $request->input('home_number');
         $user->street       = $request->input('street');
         $user->role         = $request->input('role', Config::get("constant.USER_TYPE.PERSON"));

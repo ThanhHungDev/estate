@@ -40,7 +40,7 @@ class CreateProducts extends Migration
             $table->text('javascript')->nullable();
 
             $table->integer('direction')->default(Config::get("constant.DIRECTION.DEFAULT.VALUE")); /// đông / đông bắc / đông nam / tây / tây bắc / tây nam / nam / bắc
-            $table->integer('direction_balcony')->default(Config::get("constant.BALCONY.DEFAULT.VALUE")); /// hướng ban công
+            $table->integer('direction_balcony')->default(Config::get("constant.DIRECTION.DEFAULT.VALUE")); /// hướng ban công
             $table->float('horizontal', 8, 5)->nullable();/// chiều ngang tính theo mét
             $table->float('vertical', 8, 5)->nullable();/// chiều ngang tính theo mét
             $table->string('area')->nullable(); /// chiều dài tính theo mét

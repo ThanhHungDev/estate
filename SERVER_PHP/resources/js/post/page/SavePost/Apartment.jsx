@@ -15,6 +15,7 @@ import ConfirmApartment from "./Partial/ConfirmApartment"
 
 import userAPI from "../../../service/user.api"
 import ContentApartment from "./Partial/ContentApartment"
+import ApartmentOrtherInfor from "./Partial/ApartmentOrtherInfor"
 
 
 /// lưu căn hộ chung cư
@@ -33,6 +34,7 @@ function Apartment( props ){
     const refGalleryUser   = useRef()
     const refContent       = useRef()
     const refAreaPrice     = useRef()
+    const refOrtherInfo    = useRef()
     const refApartmentInfo = useRef()
 
     // Do something on step change
@@ -55,7 +57,7 @@ function Apartment( props ){
     const saveApartment = () => {
 
         //// khi chạy 1 cái apartment cũng phải truyền cái category người dùng đã chọn vào
-        const { category } = props
+        const { category, CONFIG } = props
         /// create progress
         setProgress(true)
         /// fetch api
@@ -70,22 +72,54 @@ function Apartment( props ){
         } = form
 
         const formData = {
-            category_id: category.id,
-            title: title, 
+
             content: description, 
-            area, 
-            price: price,
-            horizontal, 
-            vertical, 
-            site_name: title,
-            commune_id: commune, 
-            home_number, 
-            street,
-            role,
-            usertype: type, /// xác định bài đăng thuộc thuê / cho thuê hay bán / mua 
+            area, /// tổng diện tích của bất động sản
+            price: price, /// tổng giá của bất động sản
+            horizontal, /// chiều rộng của bất động sản
+            vertical, /// chiểu dài của bất động sản
             project,
             images, 
-            videos
+            videos,
+
+            user_commune_id: commune,
+            home_number: home_number,
+            street: street,
+            role: role,
+
+
+
+            // category_id: category.id,
+            // usertype: type, /// xác định bài đăng thuộc thuê / cho thuê hay bán / mua 
+            // title: title, 
+            // /// 'slug', 
+            // /// 'excerpt', 
+            // content: content, 
+            // /// 'background', 
+            // /// 'thumbnail', 
+            // public: CONFIG.CONSTANT.TYPE_SAVE.PUBLIC,
+            // /// 'site_name', 
+            // /// 'howto', 
+            // /// 'showto',
+            // // 'image_seo', 
+            // // 'images', 
+            // // 'description_seo', 
+            // type: CONFIG.CONSTANT.TYPE-PRODUCT.HOUSE, 
+            // // 'stylesheet', 
+            // // 'javascript',
+            // 'direction', 
+            // 'direction_balcony', 
+            // horizontal: horizontal, 
+            // vertical: vertical, 
+            // area: area, 
+            // price: price, 
+            // 'unit_price', 
+            // 'negotiate', 
+            // 'extensions'
+        }
+        if( project.__isNew__ ){
+            /// thêm mới project
+            formData.commune_id = project.commune /// thông qua project appartment
         }
 
         // 'category_id','commune_id', 'rating_id', 'rate_value', 'rate_review_body', 'title', 'slug', 'excerpt', 
@@ -154,6 +188,13 @@ function Apartment( props ){
                 SW.nextStep()
             }
         }else if(SW.currentStep == 7){
+            
+            const ortherInfo = refOrtherInfo.current.validateFromStep()
+            if( ortherInfo ){
+                setForm({ ...form, ... ortherInfo })
+                SW.nextStep()
+            }
+        }else if(SW.currentStep == 8){
 
             const apartmentInfo = refApartmentInfo.current.validateFromStep()
             if( apartmentInfo ){
@@ -205,6 +246,7 @@ function Apartment( props ){
                     <ContentApartment ref={ refContent } CONFIG={CONFIG}/>
                     <GalleryPost ref={ refGalleryUser}  CONFIG={CONFIG}/>
                     <AreaPrice ref={ refAreaPrice } CONFIG={CONFIG}/>
+                    <ApartmentOrtherInfor ref={ refOrtherInfo } CONFIG={CONFIG} OLD={form} />
                     <ApartmentInfo ref={ refApartmentInfo }  CONFIG={CONFIG} AUTH={AUTH}/>
                     <ConfirmApartment data={form} CONFIG={CONFIG} />
                 </StepWizard>

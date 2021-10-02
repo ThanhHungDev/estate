@@ -27,7 +27,7 @@ const AreaPrice = forwardRef((props, ref) => {
 
     /// hook react
     useEffect(() => {
-        console.log( values)
+        
         setErrors( Validator.validate(values, V.rules) )
     }, [ values, touched ])
 

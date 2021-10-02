@@ -1,6 +1,6 @@
 import React from "react"
 
-const CURRENT_STEP_SHOW_API = 8
+const CURRENT_STEP_SHOW_API = 9
 const FooterApartment = props => {
 
     const continueStepInFooter = () => {

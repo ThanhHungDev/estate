@@ -9290,7 +9290,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Partial_ConfirmApartment__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Partial/ConfirmApartment */ "./resources/js/post/page/SavePost/Partial/ConfirmApartment.jsx");
 /* harmony import */ var _service_user_api__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../../service/user.api */ "./resources/js/service/user.api.js");
 /* harmony import */ var _Partial_ContentApartment__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./Partial/ContentApartment */ "./resources/js/post/page/SavePost/Partial/ContentApartment.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _Partial_ApartmentOrtherInfor__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./Partial/ApartmentOrtherInfor */ "./resources/js/post/page/SavePost/Partial/ApartmentOrtherInfor.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -9308,6 +9309,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -9360,6 +9362,7 @@ function Apartment(props) {
   var refGalleryUser = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   var refContent = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   var refAreaPrice = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
+  var refOrtherInfo = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   var refApartmentInfo = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(); // Do something on step change
 
   var onStepChange = function onStepChange(stats) {
@@ -9375,7 +9378,8 @@ function Apartment(props) {
 
   var saveApartment = function saveApartment() {
     //// khi chạy 1 cái apartment cũng phải truyền cái category người dùng đã chọn vào
-    var category = props.category; /// create progress
+    var category = props.category,
+        CONFIG = props.CONFIG; /// create progress
 
     setProgress(true); /// fetch api
 
@@ -9395,27 +9399,59 @@ function Apartment(props) {
         images = form.images,
         videos = form.videos;
     var formData = {
-      category_id: category.id,
-      title: title,
       content: description,
       area: area,
+      /// tổng diện tích của bất động sản
       price: price,
+      /// tổng giá của bất động sản
       horizontal: horizontal,
+      /// chiều rộng của bất động sản
       vertical: vertical,
-      site_name: title,
-      commune_id: commune,
-      home_number: home_number,
-      street: street,
-      role: role,
-      usertype: type,
-      /// xác định bài đăng thuộc thuê / cho thuê hay bán / mua 
+      /// chiểu dài của bất động sản
       project: project,
       images: images,
-      videos: videos
-    }; // 'category_id','commune_id', 'rating_id', 'rate_value', 'rate_review_body', 'title', 'slug', 'excerpt', 
+      videos: videos,
+      user_commune_id: commune,
+      home_number: home_number,
+      street: street,
+      role: role // category_id: category.id,
+      // usertype: type, /// xác định bài đăng thuộc thuê / cho thuê hay bán / mua 
+      // title: title, 
+      // /// 'slug', 
+      // /// 'excerpt', 
+      // content: content, 
+      // /// 'background', 
+      // /// 'thumbnail', 
+      // public: CONFIG.CONSTANT.TYPE_SAVE.PUBLIC,
+      // /// 'site_name', 
+      // /// 'howto', 
+      // /// 'showto',
+      // // 'image_seo', 
+      // // 'images', 
+      // // 'description_seo', 
+      // type: CONFIG.CONSTANT.TYPE-PRODUCT.HOUSE, 
+      // // 'stylesheet', 
+      // // 'javascript',
+      // 'direction', 
+      // 'direction_balcony', 
+      // horizontal: horizontal, 
+      // vertical: vertical, 
+      // area: area, 
+      // price: price, 
+      // 'unit_price', 
+      // 'negotiate', 
+      // 'extensions'
+
+    };
+
+    if (project.__isNew__) {
+      /// thêm mới project
+      formData.commune_id = project.commune; /// thông qua project appartment
+    } // 'category_id','commune_id', 'rating_id', 'rate_value', 'rate_review_body', 'title', 'slug', 'excerpt', 
     // 'content', 'background', 'thumbnail', 'public', 'site_name', 'howto', 'showto',
     // 'image_seo', 'images', 'description_seo', 'type', 'stylesheet', 'javascript',
     // 'direction', 'direction_balcony', 'horizontal', 'area', 'price', 'unit_price', 'negotiate', 'extensions'
+
 
     _service_user_api__WEBPACK_IMPORTED_MODULE_12__.default.saveApartment(formData).then(function (response) {
       var data = response.data;
@@ -9483,6 +9519,13 @@ function Apartment(props) {
         SW.nextStep();
       }
     } else if (SW.currentStep == 7) {
+      var ortherInfo = refOrtherInfo.current.validateFromStep();
+
+      if (ortherInfo) {
+        setForm(_objectSpread(_objectSpread({}, form), ortherInfo));
+        SW.nextStep();
+      }
+    } else if (SW.currentStep == 8) {
       var apartmentInfo = refApartmentInfo.current.validateFromStep();
 
       if (apartmentInfo) {
@@ -9499,75 +9542,79 @@ function Apartment(props) {
       device = props.device;
 
   if (success) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
       className: "success",
       children: [" l\u01B0u th\xE0nh c\xF4ng ", success]
     });
   }
 
   if (error) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
       className: "error",
       children: [" l\u01B0u th\xE2td b\u1EA1i ", JSON.stringify(error)]
     });
   }
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
     className: "apartment",
     style: {
       minHeight: device.calcHeightSubtractHeight + "px"
     },
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
       className: "apartment__wrapper d-none " + (progress && 'd-block'),
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("p", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("p", {
         children: "\u0110ang l\u01B0u tr\u1EEF d\u1EEF li\u1EC7n l\xEAn server"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("p", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("p", {
         children: progress
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
         className: "progress progress-purple",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
           className: "progress-loadding"
         })
       })]
-    }), SW && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_Apartment_HeaderApartment__WEBPACK_IMPORTED_MODULE_3__.default, {
+    }), SW && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_Apartment_HeaderApartment__WEBPACK_IMPORTED_MODULE_3__.default, {
       SW: SW,
       parentCallback: continueStep
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
       className: "apartment__wrapper " + (progress && 'd-none'),
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)((react_step_wizard__WEBPACK_IMPORTED_MODULE_2___default()), {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)((react_step_wizard__WEBPACK_IMPORTED_MODULE_2___default()), {
         isHashEnabled: true,
         onStepChange: onStepChange,
         instance: setInstance,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_Partial_TypePost__WEBPACK_IMPORTED_MODULE_6__.default, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_Partial_TypePost__WEBPACK_IMPORTED_MODULE_6__.default, {
           ref: refType,
           CONFIG: CONFIG
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_Partial_UserPostInfomation__WEBPACK_IMPORTED_MODULE_5__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_Partial_UserPostInfomation__WEBPACK_IMPORTED_MODULE_5__.default, {
           ref: refUserPostInfor,
           CONFIG: CONFIG,
           AUTH: AUTH
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_Partial_RoleUser__WEBPACK_IMPORTED_MODULE_7__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_Partial_RoleUser__WEBPACK_IMPORTED_MODULE_7__.default, {
           ref: refRoleUser,
           CONFIG: CONFIG,
           OLD: form
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_Partial_ContentApartment__WEBPACK_IMPORTED_MODULE_13__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_Partial_ContentApartment__WEBPACK_IMPORTED_MODULE_13__.default, {
           ref: refContent,
           CONFIG: CONFIG
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_Partial_GalleryPost__WEBPACK_IMPORTED_MODULE_8__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_Partial_GalleryPost__WEBPACK_IMPORTED_MODULE_8__.default, {
           ref: refGalleryUser,
           CONFIG: CONFIG
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_Partial_AreaPrice__WEBPACK_IMPORTED_MODULE_9__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_Partial_AreaPrice__WEBPACK_IMPORTED_MODULE_9__.default, {
           ref: refAreaPrice,
           CONFIG: CONFIG
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_Partial_ApartmentInfo__WEBPACK_IMPORTED_MODULE_10__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_Partial_ApartmentOrtherInfor__WEBPACK_IMPORTED_MODULE_14__.default, {
+          ref: refOrtherInfo,
+          CONFIG: CONFIG,
+          OLD: form
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_Partial_ApartmentInfo__WEBPACK_IMPORTED_MODULE_10__.default, {
           ref: refApartmentInfo,
           CONFIG: CONFIG,
           AUTH: AUTH
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_Partial_ConfirmApartment__WEBPACK_IMPORTED_MODULE_11__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_Partial_ConfirmApartment__WEBPACK_IMPORTED_MODULE_11__.default, {
           data: form,
           CONFIG: CONFIG
         })]
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_Apartment_FooterApartment__WEBPACK_IMPORTED_MODULE_4__.default, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_Apartment_FooterApartment__WEBPACK_IMPORTED_MODULE_4__.default, {
       currentStep: SW === null || SW === void 0 ? void 0 : SW.currentStep,
       parentCallback: continueStep,
       fetchApiSave: saveApartment
@@ -9603,7 +9650,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
-var CURRENT_STEP_SHOW_API = 8;
+var CURRENT_STEP_SHOW_API = 9;
 
 var FooterApartment = function FooterApartment(props) {
   var continueStepInFooter = function continueStepInFooter() {
@@ -10027,6 +10074,322 @@ var ApartmentInfo = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRe
 
 /***/ }),
 
+/***/ "./resources/js/post/page/SavePost/Partial/ApartmentOrtherInfor.jsx":
+/*!**************************************************************************!*\
+  !*** ./resources/js/post/page/SavePost/Partial/ApartmentOrtherInfor.jsx ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var hero_validate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! hero-validate */ "./node_modules/hero-validate/src/index.js");
+/* harmony import */ var _service_convert_number_stringvnd__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../service/convert.number.stringvnd */ "./resources/js/service/convert.number.stringvnd.js");
+/* harmony import */ var _validator_user_price_area__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../validator/user.price-area */ "./resources/js/post/validator/user.price-area.js");
+/* harmony import */ var react_select__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-select */ "./node_modules/react-select/dist/react-select.esm.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+ /// create rule for your form
+
+
+
+hero_validate__WEBPACK_IMPORTED_MODULE_1__.default.setLocale(hero_validate__WEBPACK_IMPORTED_MODULE_1__.default.languages.vi);
+hero_validate__WEBPACK_IMPORTED_MODULE_1__.default.setMessages(_validator_user_price_area__WEBPACK_IMPORTED_MODULE_3__.default.messages);
+var ApartmentOrtherInfor = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(function (props, ref) {
+  var _OLD$direction, _OLD$direction_balcon, _OLD$negotiate, _OLD$room, _OLD$wc, _OLD$bathroom;
+
+  var OLD = props.OLD;
+  var DIRECTIONS = Object.keys(props.CONFIG.CONSTANT.DIRECTION).map(function (key, index) {
+    var _props$CONFIG$CONSTAN, _props$CONFIG$CONSTAN2;
+
+    return {
+      id: (_props$CONFIG$CONSTAN = props.CONFIG.CONSTANT.DIRECTION[key]) === null || _props$CONFIG$CONSTAN === void 0 ? void 0 : _props$CONFIG$CONSTAN.VALUE,
+      text: (_props$CONFIG$CONSTAN2 = props.CONFIG.CONSTANT.DIRECTION[key]) === null || _props$CONFIG$CONSTAN2 === void 0 ? void 0 : _props$CONFIG$CONSTAN2.TEXT
+    };
+  });
+  var NEGOTIATES = Object.keys(props.CONFIG.CONSTANT.NEGOTIATE).map(function (key, index) {
+    var _props$CONFIG$CONSTAN3, _props$CONFIG$CONSTAN4;
+
+    return {
+      id: (_props$CONFIG$CONSTAN3 = props.CONFIG.CONSTANT.NEGOTIATE[key]) === null || _props$CONFIG$CONSTAN3 === void 0 ? void 0 : _props$CONFIG$CONSTAN3.VALUE,
+      text: (_props$CONFIG$CONSTAN4 = props.CONFIG.CONSTANT.NEGOTIATE[key]) === null || _props$CONFIG$CONSTAN4 === void 0 ? void 0 : _props$CONFIG$CONSTAN4.TEXT
+    };
+  });
+  var ROOMS = Object.keys(props.CONFIG.CONSTANT.ROOM).map(function (key, index) {
+    var _props$CONFIG$CONSTAN5, _props$CONFIG$CONSTAN6;
+
+    return {
+      id: (_props$CONFIG$CONSTAN5 = props.CONFIG.CONSTANT.ROOM[key]) === null || _props$CONFIG$CONSTAN5 === void 0 ? void 0 : _props$CONFIG$CONSTAN5.VALUE,
+      text: (_props$CONFIG$CONSTAN6 = props.CONFIG.CONSTANT.ROOM[key]) === null || _props$CONFIG$CONSTAN6 === void 0 ? void 0 : _props$CONFIG$CONSTAN6.TEXT
+    };
+  });
+  var WCS = Object.keys(props.CONFIG.CONSTANT.WC).map(function (key, index) {
+    var _props$CONFIG$CONSTAN7, _props$CONFIG$CONSTAN8;
+
+    return {
+      id: (_props$CONFIG$CONSTAN7 = props.CONFIG.CONSTANT.WC[key]) === null || _props$CONFIG$CONSTAN7 === void 0 ? void 0 : _props$CONFIG$CONSTAN7.VALUE,
+      text: (_props$CONFIG$CONSTAN8 = props.CONFIG.CONSTANT.WC[key]) === null || _props$CONFIG$CONSTAN8 === void 0 ? void 0 : _props$CONFIG$CONSTAN8.TEXT
+    };
+  });
+  var BATHROOMS = Object.keys(props.CONFIG.CONSTANT.BATHROOM).map(function (key, index) {
+    var _props$CONFIG$CONSTAN9, _props$CONFIG$CONSTAN10;
+
+    return {
+      id: (_props$CONFIG$CONSTAN9 = props.CONFIG.CONSTANT.BATHROOM[key]) === null || _props$CONFIG$CONSTAN9 === void 0 ? void 0 : _props$CONFIG$CONSTAN9.VALUE,
+      text: (_props$CONFIG$CONSTAN10 = props.CONFIG.CONSTANT.BATHROOM[key]) === null || _props$CONFIG$CONSTAN10 === void 0 ? void 0 : _props$CONFIG$CONSTAN10.TEXT
+    };
+  });
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    direction: (_OLD$direction = OLD.direction) !== null && _OLD$direction !== void 0 ? _OLD$direction : props.CONFIG.CONSTANT.DIRECTION.DEFAULT.VALUE,
+    direction_balcony: (_OLD$direction_balcon = OLD.direction_balcony) !== null && _OLD$direction_balcon !== void 0 ? _OLD$direction_balcon : props.CONFIG.CONSTANT.DIRECTION.DEFAULT.VALUE,
+    negotiate: (_OLD$negotiate = OLD.negotiate) !== null && _OLD$negotiate !== void 0 ? _OLD$negotiate : props.CONFIG.CONSTANT.NEGOTIATE.YES.VALUE,
+    room: (_OLD$room = OLD.room) !== null && _OLD$room !== void 0 ? _OLD$room : props.CONFIG.CONSTANT.ROOM.DEFAULT.VALUE,
+    wc: (_OLD$wc = OLD.wc) !== null && _OLD$wc !== void 0 ? _OLD$wc : props.CONFIG.CONSTANT.WC.DEFAULT.VALUE,
+    bathroom: (_OLD$bathroom = OLD.bathroom) !== null && _OLD$bathroom !== void 0 ? _OLD$bathroom : props.CONFIG.CONSTANT.BATHROOM.DEFAULT.VALUE
+  }),
+      _useState2 = _slicedToArray(_useState, 2),
+      values = _useState2[0],
+      setValues = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+      _useState4 = _slicedToArray(_useState3, 2),
+      touched = _useState4[0],
+      setTouched = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(hero_validate__WEBPACK_IMPORTED_MODULE_1__.default.getEmpty()),
+      _useState6 = _slicedToArray(_useState5, 2),
+      errors = _useState6[0],
+      setErrors = _useState6[1]; /// add function error custom
+
+
+  var hasErr = function hasErr(name) {
+    return touched[name] && errors.isError(name);
+  }; /// add function when value change
+
+
+  var handleChange = function handleChange(event) {
+    if (event.persist) {
+      event.persist();
+    }
+
+    setValues(_objectSpread(_objectSpread({}, values), {}, _defineProperty({}, event.target.name, event.target.value)));
+    setTouched(_objectSpread(_objectSpread({}, touched), {}, _defineProperty({}, event.target.name, true)));
+  }; /// hook react
+
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    setErrors(hero_validate__WEBPACK_IMPORTED_MODULE_1__.default.validate(values, _validator_user_price_area__WEBPACK_IMPORTED_MODULE_3__.default.rules));
+  }, [values, touched]);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useImperativeHandle)(ref, function () {
+    return {
+      validateFromStep: function validateFromStep() {
+        var errors = hero_validate__WEBPACK_IMPORTED_MODULE_1__.default.validate(values, _validator_user_price_area__WEBPACK_IMPORTED_MODULE_3__.default.rules);
+
+        if (errors.hasError) {
+          Object.keys(values).map(function (key, index) {
+            touched[key] = true;
+          });
+          setTouched(touched);
+          setValues(_objectSpread({}, values));
+          return false;
+        } else {
+          console.log("có vào đay lưu lại và next step "); /// lưu lại và next step
+
+          return values;
+        }
+      }
+    };
+  });
+
+  function castOptionSelect(options) {
+    var targetName = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'direction';
+    return options.map(function (item) {
+      return {
+        value: item.id,
+        label: item.text,
+        currentTarget: {
+          value: item.id
+        },
+        target: {
+          name: targetName,
+          value: item.id
+        }
+      };
+    });
+  }
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+    className: "user-information position-relative",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("h5", {
+      className: "user-type__title pt-2 pb-4",
+      children: ["B\u1EA1n n\xEAn cung c\u1EA5p th\xF4ng tin th\xEAm ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+        className: "text-color-warning",
+        children: "( Kh\xF4ng b\u1EAFt bu\u1ED9c )"
+      }), ":"]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      className: "mycustom-form-group",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+        className: "row",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          className: "col-6",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "form-group",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+              htmlFor: "direction",
+              children: "H\u01B0\u1EDBng c\u1EEDa ch\xEDnh "
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_select__WEBPACK_IMPORTED_MODULE_5__.default, {
+              id: "direction",
+              name: "direction",
+              className: " " + (hasErr('direction') && 'is-invalid'),
+              value: castOptionSelect(DIRECTIONS, 'direction').find(function (item) {
+                return item.value == values.direction;
+              }),
+              onChange: handleChange,
+              options: castOptionSelect(DIRECTIONS, 'direction')
+            }), hasErr('direction') && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+              className: "d-block invalid-feedback",
+              children: errors.getError("direction")
+            })]
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          className: "col-6",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "form-group",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+              htmlFor: "direction_balcony",
+              children: "H\u01B0\u1EDBng c\u1EEDa s\u1ED5 "
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_select__WEBPACK_IMPORTED_MODULE_5__.default, {
+              id: "direction_balcony",
+              name: "direction_balcony",
+              className: " " + (hasErr('direction_balcony') && 'is-invalid'),
+              value: castOptionSelect(DIRECTIONS, 'direction_balcony').find(function (item) {
+                return item.value == values.direction_balcony;
+              }),
+              onChange: handleChange,
+              options: castOptionSelect(DIRECTIONS, 'direction_balcony')
+            }), hasErr('direction_balcony') && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+              className: "d-block invalid-feedback",
+              children: errors.getError("direction_balcony")
+            })]
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          className: "col-6",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "form-group",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+              htmlFor: "negotiate",
+              children: " Th\u01B0\u01A1ng l\u01B0\u1EE3ng "
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_select__WEBPACK_IMPORTED_MODULE_5__.default, {
+              id: "negotiate",
+              name: "negotiate",
+              className: " " + (hasErr('negotiate') && 'is-invalid'),
+              value: castOptionSelect(NEGOTIATES, 'negotiate').find(function (item) {
+                return item.value == values.negotiate;
+              }),
+              onChange: handleChange,
+              options: castOptionSelect(NEGOTIATES, 'negotiate')
+            }), hasErr('negotiate') && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+              className: "d-block invalid-feedback",
+              children: errors.getError("negotiate")
+            })]
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          className: "col-6",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "form-group",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+              htmlFor: "vertical",
+              children: " S\u1ED1 ph\xF2ng ng\u1EE7 "
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_select__WEBPACK_IMPORTED_MODULE_5__.default, {
+              id: "room",
+              name: "room",
+              className: " " + (hasErr('room') && 'is-invalid'),
+              value: castOptionSelect(ROOMS, 'room').find(function (item) {
+                return item.value == values.room;
+              }),
+              onChange: handleChange,
+              options: castOptionSelect(ROOMS, 'room')
+            }), hasErr('room') && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+              className: "d-block invalid-feedback",
+              children: errors.getError("room")
+            })]
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          className: "col-6",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "form-group",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+              htmlFor: "vertical",
+              children: " S\u1ED1 nh\xE0 v\u1EC7 sinh "
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_select__WEBPACK_IMPORTED_MODULE_5__.default, {
+              id: "wc",
+              name: "wc",
+              className: " " + (hasErr('wc') && 'is-invalid'),
+              value: castOptionSelect(WCS, 'wc').find(function (item) {
+                return item.value == values.wc;
+              }),
+              onChange: handleChange,
+              options: castOptionSelect(WCS, 'wc')
+            }), hasErr('wc') && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+              className: "d-block invalid-feedback",
+              children: errors.getError("wc")
+            })]
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          className: "col-6",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "form-group",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+              htmlFor: "vertical",
+              children: " S\u1ED1 nh\xE0 t\u1EAFm "
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_select__WEBPACK_IMPORTED_MODULE_5__.default, {
+              id: "bathroom",
+              name: "bathroom",
+              className: " " + (hasErr('bathroom') && 'is-invalid'),
+              value: castOptionSelect(BATHROOMS, 'bathroom').find(function (item) {
+                return item.value == values.bathroom;
+              }),
+              onChange: handleChange,
+              options: castOptionSelect(BATHROOMS, 'bathroom')
+            }), hasErr('bathroom') && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+              className: "d-block invalid-feedback",
+              children: errors.getError("bathroom")
+            })]
+          })
+        })]
+      })
+    })]
+  });
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ApartmentOrtherInfor);
+
+/***/ }),
+
 /***/ "./resources/js/post/page/SavePost/Partial/AreaPrice.jsx":
 /*!***************************************************************!*\
   !*** ./resources/js/post/page/SavePost/Partial/AreaPrice.jsx ***!
@@ -10108,7 +10471,6 @@ var AreaPrice = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(f
 
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    console.log(values);
     setErrors(hero_validate__WEBPACK_IMPORTED_MODULE_1__.default.validate(values, _validator_user_price_area__WEBPACK_IMPORTED_MODULE_3__.default.rules));
   }, [values, touched]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useImperativeHandle)(ref, function () {
@@ -10765,7 +11127,6 @@ var ContentApartment = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwar
 
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    console.log(values, "usefect ");
     setErrors(hero_validate__WEBPACK_IMPORTED_MODULE_1__.default.validate(values, _validator_user_content_apartment__WEBPACK_IMPORTED_MODULE_2__.default.rules));
   }, [values, touched]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useImperativeHandle)(ref, function () {
@@ -11700,7 +12061,6 @@ var UserPostInfomation = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forw
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useImperativeHandle)(ref, function () {
     return {
       validateFromStep: function validateFromStep() {
-        console.log(values, "validateFromStep");
         refLocation.current.validateData();
         var errors = hero_validate__WEBPACK_IMPORTED_MODULE_1__.default.validate(values, _validator_user_infor__WEBPACK_IMPORTED_MODULE_2__.default.rules);
 

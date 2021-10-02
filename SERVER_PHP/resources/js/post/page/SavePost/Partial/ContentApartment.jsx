@@ -24,7 +24,7 @@ const ContentApartment = forwardRef((props, ref) => {
 
     /// hook react
     useEffect(() => {
-        console.log( values , "usefect ")
+        
         setErrors( Validator.validate(values, V.rules) )
     }, [ values, touched ])
 
