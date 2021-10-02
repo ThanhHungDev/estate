@@ -47,7 +47,30 @@ class ApartmentController extends Controller
         $user->role         = $request->input('role', Config::get("constant.USER_TYPE.PERSON"));
         $user->save();
 
-        // {"area":null,"price":null,"horizontal":null,"vertical":null,"type":"2","project":null,"images":[{"root":"/uploads/images/post/1633159935tải xuống.jpeg","IMAGE_COMPRESS":"http://estate.com/compress/50//uploads/images/post/1633159935ta%CC%89i%20xuo%CC%82%CC%81ng.jpeg","IMAGE_RESIZE":"http://estate.com/resizes/small/fit//uploads/images/post/1633159935ta%CC%89i%20xuo%CC%82%CC%81ng.jpeg"}],"videos":[]}
+        // area: "120"
+        // bathroom: 0
+        // commune: 26554
+        // content: "mô tả phần thông tiêu đề phần thông tin cá nhân\nssdf"
+        // direction: 3
+        // direction_balcony: 1
+        // district: 748
+        // home_number: "2344"
+        // horizontal: "12"
+        // images: [{…}]
+        // name: "Trương người đăng"
+        // negotiate: 1
+        // phone_verify: "+818033870674"
+        // price: "300000000"
+        // project: {name: 'Nhà phố Shophouse D2Eight', id: 1356, slug: 'nha-pho-shophouse-d2eight', public: 1, type_id: 2, …}
+        // province: 77
+        // role: 1
+        // room: 0
+        // street: "343243243 nội dung tên đường"
+        // title: "tiêu đề phần thông tin cá nhân"
+        // type: "1"
+        // vertical: "10"
+        // videos: []
+        // wc: 0
 
         /// save product
         ///setting data insert table product

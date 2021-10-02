@@ -29,23 +29,24 @@ $configApp = Config::get('app');
 $configApp['providers'] = [];
 $configApp['aliases'] = [];
 $configApp['API'] = [
-    'UPDATE_VERIFY_PHONE' => Route('API.USER.PATCH_VERIFY_PHONE'),
-    'DISTRICTS' => Route('DISTRICTS'),
-    'COMMUNES' => Route('COMMUNES'),
-    'PROVINCES' => Route('PROVINCES'),
-    'API_UPLOAD_FILE' => Route('API_UPLOAD_FILE'),
-    'APARTMENT_PROJECTS' => Route('APARTMENT_PROJECTS'),
+    'UPDATE_VERIFY_PHONE'      => Route('API.USER.PATCH_VERIFY_PHONE'),
+    'DISTRICTS'                => Route('DISTRICTS'),
+    'COMMUNES'                 => Route('COMMUNES'),
+    'PROVINCES'                => Route('PROVINCES'),
+    'API_UPLOAD_FILE'          => Route('API_UPLOAD_FILE'),
+    'APARTMENT_PROJECTS'       => Route('APARTMENT_PROJECTS'),
     'APARTMENT_PROJECT_DETAIL' => Route('APARTMENT_PROJECT_DETAIL', [ 'id' => null ]),
 ];
 $configApp['WEB'] = [
     'PATCH_VERIFY_PHONE' => Route('PATCH_VERIFY_PHONE'),
-    'STORE_APARTMENT' => Route('STORE_APARTMENT'),
-    'LOGOUT' => Route('LOGOUT'),
-    'USER_POST' =>  Route('USER_POST', ['path' => null ], false ),
+    'STORE_APARTMENT'    => Route('STORE_APARTMENT'),
+    'LOGOUT'             => Route('LOGOUT'),
+    'USER_POST'          => Route('USER_POST', ['path' => null ], false ),
 ];
 $configApp['CONSTANT'] = Config::get('constant');
-$configApp['IMAGE'] = Config::get('image.UPLOAD');
-$configApp['VIDEO'] = Config::get('video.UPLOAD');
+$configApp['UNIT']     = Config::get('unit');
+$configApp['IMAGE']    = Config::get('image.UPLOAD');
+$configApp['VIDEO']    = Config::get('video.UPLOAD');
 @endphp
 
 @section('javascripts')

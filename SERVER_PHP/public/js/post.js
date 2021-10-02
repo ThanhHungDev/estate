@@ -9291,7 +9291,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _service_user_api__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../../service/user.api */ "./resources/js/service/user.api.js");
 /* harmony import */ var _Partial_ContentApartment__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./Partial/ContentApartment */ "./resources/js/post/page/SavePost/Partial/ContentApartment.jsx");
 /* harmony import */ var _Partial_ApartmentOrtherInfor__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./Partial/ApartmentOrtherInfor */ "./resources/js/post/page/SavePost/Partial/ApartmentOrtherInfor.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _Apartment_SaveApartmentSuccess__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./Apartment/SaveApartmentSuccess */ "./resources/js/post/page/SavePost/Apartment/SaveApartmentSuccess.jsx");
+/* harmony import */ var _Apartment_SaveApartmentError__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./Apartment/SaveApartmentError */ "./resources/js/post/page/SavePost/Apartment/SaveApartmentError.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -9309,6 +9311,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
@@ -9385,7 +9389,7 @@ function Apartment(props) {
 
     console.log("dữ liệu lưu lên server", form);
     var title = form.title,
-        description = form.description,
+        content = form.content,
         area = form.area,
         price = form.price,
         horizontal = form.horizontal,
@@ -9393,65 +9397,59 @@ function Apartment(props) {
         commune = form.commune,
         home_number = form.home_number,
         street = form.street,
+        direction = form.direction,
+        direction_balcony = form.direction_balcony,
+        negotiate = form.negotiate,
+        room = form.room,
+        wc = form.wc,
+        bathroom = form.bathroom,
         role = form.role,
         type = form.type,
         project = form.project,
         images = form.images,
         videos = form.videos;
     var formData = {
-      content: description,
-      area: area,
-      /// tổng diện tích của bất động sản
-      price: price,
-      /// tổng giá của bất động sản
+      project: project,
+      //// ===========> đặc biệt cái field này dùng trong đây để đẩy lên tính riêng nha
+      images: images,
+      videos: videos,
+      categories: category,
+      /// dành cho user
+      user_commune_id: commune,
+      home_number: home_number,
+      street: street,
+      role: role,
+      /// dành cho product 
+      category_id: category,
+      usertype: type,
+      /// xác định bài đăng thuộc thuê / cho thuê hay bán / mua 
+      title: title,
+      content: content,
+      "public": CONFIG.CONSTANT.TYPE_SAVE.PUBLIC,
+      type: CONFIG.CONSTANT['TYPE-PRODUCT'].HOUSE,
+      direction: direction,
+      direction_balcony: direction_balcony,
       horizontal: horizontal,
       /// chiều rộng của bất động sản
       vertical: vertical,
       /// chiểu dài của bất động sản
-      project: project,
-      images: images,
-      videos: videos,
-      user_commune_id: commune,
-      home_number: home_number,
-      street: street,
-      role: role // category_id: category.id,
-      // usertype: type, /// xác định bài đăng thuộc thuê / cho thuê hay bán / mua 
-      // title: title, 
-      // /// 'slug', 
-      // /// 'excerpt', 
-      // content: content, 
-      // /// 'background', 
-      // /// 'thumbnail', 
-      // public: CONFIG.CONSTANT.TYPE_SAVE.PUBLIC,
-      // /// 'site_name', 
-      // /// 'howto', 
-      // /// 'showto',
-      // // 'image_seo', 
-      // // 'images', 
-      // // 'description_seo', 
-      // type: CONFIG.CONSTANT.TYPE-PRODUCT.HOUSE, 
-      // // 'stylesheet', 
-      // // 'javascript',
-      // 'direction', 
-      // 'direction_balcony', 
-      // horizontal: horizontal, 
-      // vertical: vertical, 
-      // area: area, 
-      // price: price, 
-      // 'unit_price', 
-      // 'negotiate', 
-      // 'extensions'
-
+      area: area,
+      /// tổng diện tích của bất động sản
+      price: price,
+      /// tổng giá của bất động sản
+      unit_price: CONFIG.UNIT.PRICE.DEFAULT.VALUE,
+      negotiate: negotiate,
+      extensions: {
+        room: room,
+        wc: wc,
+        bathroom: bathroom
+      }
     };
 
-    if (project.__isNew__) {
+    if (project !== null && project !== void 0 && project.__isNew__) {
       /// thêm mới project
       formData.commune_id = project.commune; /// thông qua project appartment
-    } // 'category_id','commune_id', 'rating_id', 'rate_value', 'rate_review_body', 'title', 'slug', 'excerpt', 
-    // 'content', 'background', 'thumbnail', 'public', 'site_name', 'howto', 'showto',
-    // 'image_seo', 'images', 'description_seo', 'type', 'stylesheet', 'javascript',
-    // 'direction', 'direction_balcony', 'horizontal', 'area', 'price', 'unit_price', 'negotiate', 'extensions'
-
+    }
 
     _service_user_api__WEBPACK_IMPORTED_MODULE_12__.default.saveApartment(formData).then(function (response) {
       var data = response.data;
@@ -9542,79 +9540,75 @@ function Apartment(props) {
       device = props.device;
 
   if (success) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
-      className: "success",
-      children: [" l\u01B0u th\xE0nh c\xF4ng ", success]
-    });
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Apartment_SaveApartmentSuccess__WEBPACK_IMPORTED_MODULE_15__.default, {});
   }
 
   if (error) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
-      className: "error",
-      children: [" l\u01B0u th\xE2td b\u1EA1i ", JSON.stringify(error)]
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Apartment_SaveApartmentError__WEBPACK_IMPORTED_MODULE_16__.default, {
+      error: JSON.stringify(error)
     });
   }
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsxs)("div", {
     className: "apartment",
     style: {
       minHeight: device.calcHeightSubtractHeight + "px"
     },
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsxs)("div", {
       className: "apartment__wrapper d-none " + (progress && 'd-block'),
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("p", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("p", {
         children: "\u0110ang l\u01B0u tr\u1EEF d\u1EEF li\u1EC7n l\xEAn server"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("p", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("p", {
         children: progress
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("div", {
         className: "progress progress-purple",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("div", {
           className: "progress-loadding"
         })
       })]
-    }), SW && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_Apartment_HeaderApartment__WEBPACK_IMPORTED_MODULE_3__.default, {
+    }), SW && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Apartment_HeaderApartment__WEBPACK_IMPORTED_MODULE_3__.default, {
       SW: SW,
       parentCallback: continueStep
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("div", {
       className: "apartment__wrapper " + (progress && 'd-none'),
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)((react_step_wizard__WEBPACK_IMPORTED_MODULE_2___default()), {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsxs)((react_step_wizard__WEBPACK_IMPORTED_MODULE_2___default()), {
         isHashEnabled: true,
         onStepChange: onStepChange,
         instance: setInstance,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_Partial_TypePost__WEBPACK_IMPORTED_MODULE_6__.default, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Partial_TypePost__WEBPACK_IMPORTED_MODULE_6__.default, {
           ref: refType,
           CONFIG: CONFIG
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_Partial_UserPostInfomation__WEBPACK_IMPORTED_MODULE_5__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Partial_UserPostInfomation__WEBPACK_IMPORTED_MODULE_5__.default, {
           ref: refUserPostInfor,
           CONFIG: CONFIG,
           AUTH: AUTH
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_Partial_RoleUser__WEBPACK_IMPORTED_MODULE_7__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Partial_RoleUser__WEBPACK_IMPORTED_MODULE_7__.default, {
           ref: refRoleUser,
           CONFIG: CONFIG,
           OLD: form
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_Partial_ContentApartment__WEBPACK_IMPORTED_MODULE_13__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Partial_ContentApartment__WEBPACK_IMPORTED_MODULE_13__.default, {
           ref: refContent,
           CONFIG: CONFIG
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_Partial_GalleryPost__WEBPACK_IMPORTED_MODULE_8__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Partial_GalleryPost__WEBPACK_IMPORTED_MODULE_8__.default, {
           ref: refGalleryUser,
           CONFIG: CONFIG
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_Partial_AreaPrice__WEBPACK_IMPORTED_MODULE_9__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Partial_AreaPrice__WEBPACK_IMPORTED_MODULE_9__.default, {
           ref: refAreaPrice,
           CONFIG: CONFIG
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_Partial_ApartmentOrtherInfor__WEBPACK_IMPORTED_MODULE_14__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Partial_ApartmentOrtherInfor__WEBPACK_IMPORTED_MODULE_14__.default, {
           ref: refOrtherInfo,
           CONFIG: CONFIG,
           OLD: form
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_Partial_ApartmentInfo__WEBPACK_IMPORTED_MODULE_10__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Partial_ApartmentInfo__WEBPACK_IMPORTED_MODULE_10__.default, {
           ref: refApartmentInfo,
           CONFIG: CONFIG,
           AUTH: AUTH
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_Partial_ConfirmApartment__WEBPACK_IMPORTED_MODULE_11__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Partial_ConfirmApartment__WEBPACK_IMPORTED_MODULE_11__.default, {
           data: form,
           CONFIG: CONFIG
         })]
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_Apartment_FooterApartment__WEBPACK_IMPORTED_MODULE_4__.default, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Apartment_FooterApartment__WEBPACK_IMPORTED_MODULE_4__.default, {
       currentStep: SW === null || SW === void 0 ? void 0 : SW.currentStep,
       parentCallback: continueStep,
       fetchApiSave: saveApartment
@@ -9783,6 +9777,134 @@ var HeaderApartment = function HeaderApartment(props) {
 // <p><button onClick={()=>this.props.goToStep(2)}>Step 2</button></p>
 // <p><button onClick={this.props.firstStep}>First Step</button></p>
 // <p><button onClick={this.props.lastStep}>Last Step</button></p>
+
+/***/ }),
+
+/***/ "./resources/js/post/page/SavePost/Apartment/SaveApartmentError.jsx":
+/*!**************************************************************************!*\
+  !*** ./resources/js/post/page/SavePost/Apartment/SaveApartmentError.jsx ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+function SaveApartmentError(props) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    className: "post__saved--success",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: "alert alert-warning mt-3",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("b", {
+          children: "\u0110\u0103ng b\xE0i th\u1EA5t b\u1EA1i!"
+        })
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h5", {
+      className: "h5 text-color-warning pt-2 pb-4",
+      children: "H\u1EC7 th\u1ED1ng \u0111ang ghi nh\u1EADn \u0111\u0103ng b\xE0i th\u1EA5t b\u1EA1i: "
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      className: "alert alert-info mt-3",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("b", {
+          children: "Xin l\u1ED7i v\u1EC1 s\u1EF1 c\u1ED1 v\u1EEBa s\u1EA3y ra:"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("ul", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
+          children: "Qu\u1EA3n tr\u1ECB vi\xEAn s\u1EBD kh\u1EAFc ph\u1EE5c l\u1ED7i tr\xEAn s\u1EDBm nh\u1EA5t c\xF3 th\u1EC3"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("li", {
+          children: ["Vui l\xF2ng b\xE1o c\xE1o v\u1EC1 s\u1EF1 c\u1ED1 b\u1EA1n v\u1EEBa g\u1EB7p ph\u1EA3i \u0111\u1EBFn admin \u0111\u1EC3 \u0111\u01B0\u1EE3c h\u1ED9 tr\u1EE3 t\u1ED1t nh\u1EA5t. N\u1EBFu s\u1EF1 c\u1ED1 l\xE0 ch\xEDnh x\xE1c b\u1EA1n s\u1EBD \u0111\u01B0\u1EE3c nh\u1EADn c\xE1c \u01B0u \u0111\xE3i d\xE0nh cho ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+            className: "text-color-red",
+            children: " VIP "
+          }), " "]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("li", {
+          children: ["L\u1ED7i c\u1EE5 th\u1EC3: ", props.error]
+        })]
+      })]
+    })]
+  });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SaveApartmentError);
+
+/***/ }),
+
+/***/ "./resources/js/post/page/SavePost/Apartment/SaveApartmentSuccess.jsx":
+/*!****************************************************************************!*\
+  !*** ./resources/js/post/page/SavePost/Apartment/SaveApartmentSuccess.jsx ***!
+  \****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+function SaveApartmentSuccess(props) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    className: "post__saved--success",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: "alert alert-success mt-3",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("b", {
+          children: "\u0110\u0103ng b\xE0i th\xE0nh c\xF4ng!"
+        })
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h5", {
+      className: "h5 text-color-warning pt-2 pb-4",
+      children: "C\u1EA3m \u01A1n b\u1EA1n \u0111\xE3 \u0111\u0103ng b\xE0i tr\xEAn n\u1EC1n t\u1EA3ng c\u1EE7a ch\xFAng t\xF4i: "
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      className: "alert alert-info mt-3",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("b", {
+          children: "\u0110\u0103ng b\xE0i th\xE0nh c\xF4ng:"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("ul", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
+          children: "Ch\xFAng t\xF4i s\u1EBD cho ph\xE9p b\xE0i \u0111\u0103ng c\u1EE7a b\u1EA1n xu\u1EA5t hi\u1EC7n ngay tr\xEAn k\u1EBFt qu\u1EA3 t\xECm ki\u1EBFm c\u1EE7a ch\xFAng t\xF4i"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
+          children: "B\xE0i \u0111\u0103ng v\u1EABn s\u1EBD \u0111\u01B0\u1EE3c ch\xFAng t\xF4i ki\u1EC3m duy\u1EC7t v\u1EC1 n\u1ED9i dung sau 1 tu\u1EA7n, n\u1EBFu c\xF3 b\u1EA5t k\u1EF3 khi\u1EBFu n\u1EA1i s\u1EA3y ra ch\xFAng t\xF4i s\u1EBD c\xF3 th\u1EC3 g\u1EE1 b\xE0i \u0111\u0103ng c\u1EE7a b\u1EA1n"
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("b", {
+          children: "\u0110\u1EC3 k\u1EBFt qu\u1EA3 t\xECm ki\u1EBFm \u0111\u01B0\u1EE3c xu\u1EA5t hi\u1EC7n t\u1ED1i \u1EDF google:"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("ul", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
+          children: "B\u1EA1n c\xF3 th\u1EC3 li\xEAn h\u1EC7 v\u1EDBi qu\u1EA3n tr\u1ECB vi\xEAn \u0111\u1EC3 \u0111\u01B0\u1EE3c t\u01B0 v\u1EA5n v\u1EC1 gi\u1EA3i ph\xE1p qu\u1EA3ng c\xE1o"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("b", {
+          children: "Kh\xF4ng:"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("ul", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
+          children: "S\u1EED d\u1EE5ng n\u1ED9i dung sai quy \u0111\u1ECBnh"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("li", {
+          children: ["Ch\xE8n n\u1ED9i dung th\xF4ng tin kh\xF4ng \u0111\xFAng quy \u0111\u1ECBnh v\xE0o h\xECnh \u1EA3nh ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+            className: "text-color-red",
+            children: "Sai quy \u0111\u1ECBnh c\xF3 th\u1EC3 bay account nh\xE9 :D "
+          })]
+        })]
+      })]
+    })]
+  });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SaveApartmentSuccess);
 
 /***/ }),
 

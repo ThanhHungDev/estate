@@ -16,6 +16,8 @@ import ConfirmApartment from "./Partial/ConfirmApartment"
 import userAPI from "../../../service/user.api"
 import ContentApartment from "./Partial/ContentApartment"
 import ApartmentOrtherInfor from "./Partial/ApartmentOrtherInfor"
+import SaveApartmentSuccess from "./Apartment/SaveApartmentSuccess"
+import SaveApartmentError from "./Apartment/SaveApartmentError"
 
 
 /// lưu căn hộ chung cư
@@ -63,8 +65,9 @@ function Apartment( props ){
         /// fetch api
         console.log( "dữ liệu lưu lên server", form )
         const { 
-            title, description, area, price, horizontal, vertical,
+            title, content, area, price, horizontal, vertical,
             commune, home_number, street,
+            direction, direction_balcony, negotiate, room, wc, bathroom,
             role,
             type,
             project,
@@ -72,61 +75,38 @@ function Apartment( props ){
         } = form
 
         const formData = {
-
-            content: description, 
-            area, /// tổng diện tích của bất động sản
-            price: price, /// tổng giá của bất động sản
-            horizontal, /// chiều rộng của bất động sản
-            vertical, /// chiểu dài của bất động sản
-            project,
+            project, //// ===========> đặc biệt cái field này dùng trong đây để đẩy lên tính riêng nha
             images, 
             videos,
+            categories: category,
 
+            /// dành cho user
             user_commune_id: commune,
             home_number: home_number,
             street: street,
             role: role,
 
-
-
-            // category_id: category.id,
-            // usertype: type, /// xác định bài đăng thuộc thuê / cho thuê hay bán / mua 
-            // title: title, 
-            // /// 'slug', 
-            // /// 'excerpt', 
-            // content: content, 
-            // /// 'background', 
-            // /// 'thumbnail', 
-            // public: CONFIG.CONSTANT.TYPE_SAVE.PUBLIC,
-            // /// 'site_name', 
-            // /// 'howto', 
-            // /// 'showto',
-            // // 'image_seo', 
-            // // 'images', 
-            // // 'description_seo', 
-            // type: CONFIG.CONSTANT.TYPE-PRODUCT.HOUSE, 
-            // // 'stylesheet', 
-            // // 'javascript',
-            // 'direction', 
-            // 'direction_balcony', 
-            // horizontal: horizontal, 
-            // vertical: vertical, 
-            // area: area, 
-            // price: price, 
-            // 'unit_price', 
-            // 'negotiate', 
-            // 'extensions'
+            /// dành cho product 
+            category_id: category,
+            usertype: type, /// xác định bài đăng thuộc thuê / cho thuê hay bán / mua 
+            title: title,
+            content: content,
+            public: CONFIG.CONSTANT.TYPE_SAVE.PUBLIC,
+            type: CONFIG.CONSTANT['TYPE-PRODUCT'].HOUSE,
+            direction: direction, 
+            direction_balcony: direction_balcony, 
+            horizontal: horizontal, /// chiều rộng của bất động sản
+            vertical: vertical, /// chiểu dài của bất động sản
+            area: area, /// tổng diện tích của bất động sản
+            price: price, /// tổng giá của bất động sản
+            unit_price: CONFIG.UNIT.PRICE.DEFAULT.VALUE, 
+            negotiate: negotiate, 
+            extensions: { room, wc, bathroom }
         }
-        if( project.__isNew__ ){
+        if( project?.__isNew__ ){
             /// thêm mới project
             formData.commune_id = project.commune /// thông qua project appartment
         }
-
-        // 'category_id','commune_id', 'rating_id', 'rate_value', 'rate_review_body', 'title', 'slug', 'excerpt', 
-        // 'content', 'background', 'thumbnail', 'public', 'site_name', 'howto', 'showto',
-        // 'image_seo', 'images', 'description_seo', 'type', 'stylesheet', 'javascript',
-        // 'direction', 'direction_balcony', 'horizontal', 'area', 'price', 'unit_price', 'negotiate', 'extensions'
-
 
         userAPI
         .saveApartment(formData)
@@ -210,11 +190,11 @@ function Apartment( props ){
     const { CONFIG, AUTH, device } = props
 
     if( success ){
-        return <div className="success"> lưu thành công { success }</div>
+        return <SaveApartmentSuccess />
     }
 
     if( error ){
-        return <div className="error"> lưu thâtd bại { JSON.stringify(error) }</div>
+        return <SaveApartmentError error={JSON.stringify(error)} />
     }
 
     return (
