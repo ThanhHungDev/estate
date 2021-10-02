@@ -79,7 +79,7 @@ const SelectLocation = forwardRef((props, ref) => {
                 .then( response => {
                     const { data } = response
                     const newDistricts = [ ...districts, ... data ]
-                    props.dispatch(setterLocation(newDistricts, 'district'))
+                    props.dispatch(setterLocation(data, 'district'))
                     callback ? callback(newDistricts) : setDistricts(newDistricts)
                 })
                 .catch(error => {
@@ -99,7 +99,7 @@ const SelectLocation = forwardRef((props, ref) => {
                 .then( response => {
                     const { data } = response
                     const newCommunes = [ ...communes, ... data ]
-                    props.dispatch(setterLocation(newCommunes, 'commune'))
+                    props.dispatch(setterLocation(data, 'commune'))
                     callback ? callback(newCommunes) : setCommunes(newCommunes)
                 })
                 .catch(error => {

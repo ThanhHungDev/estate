@@ -9510,8 +9510,8 @@ function Apartment(props) {
       parentCallback: continueStep
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
       className: "apartment__wrapper ",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)((react_step_wizard__WEBPACK_IMPORTED_MODULE_2___default()), {
-        isHashEnabled: true,
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)((react_step_wizard__WEBPACK_IMPORTED_MODULE_2___default()) // isHashEnabled
+      , {
         onStepChange: onStepChange,
         instance: setInstance,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_Partial_TypePost__WEBPACK_IMPORTED_MODULE_6__.default, {
@@ -11936,7 +11936,7 @@ var SelectLocation = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardR
         _service_location_api__WEBPACK_IMPORTED_MODULE_3__.default.getDistricts().then(function (response) {
           var data = response.data;
           var newDistricts = [].concat(_toConsumableArray(districts), _toConsumableArray(data));
-          props.dispatch((0,_action_index__WEBPACK_IMPORTED_MODULE_5__.setterLocation)(newDistricts, 'district'));
+          props.dispatch((0,_action_index__WEBPACK_IMPORTED_MODULE_5__.setterLocation)(data, 'district'));
           callback ? callback(newDistricts) : setDistricts(newDistricts);
         })["catch"](function (error) {
           console.log("ERROR:: locationAPI.getDistricts-- ", error);
@@ -11955,7 +11955,7 @@ var SelectLocation = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardR
         _service_location_api__WEBPACK_IMPORTED_MODULE_3__.default.getCommunes().then(function (response) {
           var data = response.data;
           var newCommunes = [].concat(_toConsumableArray(communes), _toConsumableArray(data));
-          props.dispatch((0,_action_index__WEBPACK_IMPORTED_MODULE_5__.setterLocation)(newCommunes, 'commune'));
+          props.dispatch((0,_action_index__WEBPACK_IMPORTED_MODULE_5__.setterLocation)(data, 'commune'));
           callback ? callback(newCommunes) : setCommunes(newCommunes);
         })["catch"](function (error) {
           console.log("ERROR:: locationAPI.getCommunes-- ", error);
