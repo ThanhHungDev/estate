@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Config;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class ApartmentController extends Controller
@@ -17,7 +18,7 @@ class ApartmentController extends Controller
      */
     public function store(Request $request){
 
-
+        $input = $request->all();
         $token = $request->bearerToken(); 
         JWTAuth::setToken($token); //<-- set token and check
         if (! $claim = JWTAuth::getPayload()) {
@@ -40,17 +41,44 @@ class ApartmentController extends Controller
                     )
                     ->setStatusCode(Response::HTTP_NOT_FOUND);
         }
-        $user->commune_id == $request->input('commune');
-        $user->home_number == $request->input('home_number');
-        $user->street == $request->input('street');
+        $user->commune_id   = $request->input('commune_id');
+        $user->home_number  = $request->input('home_number');
+        $user->street       = $request->input('street');
+        $user->role         = $request->input('role', Config::get("constant.USER_TYPE.PERSON"));
         $user->save();
+
+        // {"area":null,"price":null,"horizontal":null,"vertical":null,"type":"2","project":null,"images":[{"root":"/uploads/images/post/1633159935tải xuống.jpeg","IMAGE_COMPRESS":"http://estate.com/compress/50//uploads/images/post/1633159935ta%CC%89i%20xuo%CC%82%CC%81ng.jpeg","IMAGE_RESIZE":"http://estate.com/resizes/small/fit//uploads/images/post/1633159935ta%CC%89i%20xuo%CC%82%CC%81ng.jpeg"}],"videos":[]}
 
         /// save product
         ///setting data insert table product
-        $productInput = $request->only('category_id','commune_id', 'rating_id', 'rate_value', 'rate_review_body', 'title', 'slug', 'excerpt', 
-        'content', 'background', 'thumbnail', 'public', 'site_name', 'howto', 'showto',
-        'image_seo', 'images', 'description_seo', 'type', 'stylesheet', 'javascript',
-        'direction', 'direction_balcony', 'horizontal', 'area', 'price', 'unit_price', 'negotiate', 'extensions'
+        $productInput = $request->only(
+            'category_id',
+            'commune_id', /// thông qua project appartment
+            'usertype', 
+            'title', 
+            'slug', 
+            'excerpt', 
+            'content', 
+            'background', 
+            'thumbnail', 
+            'public', 
+            'site_name', 
+            'howto', 
+            'showto',
+            'image_seo', 
+            'images', 
+            'description_seo', 
+            'type', 
+            'stylesheet', 
+            'javascript',
+            'direction', 
+            'direction_balcony', 
+            'horizontal', 
+            'area', 
+            'price', 
+            'unit_price', 
+            'negotiate', 
+            'extensions'
         );
 
 

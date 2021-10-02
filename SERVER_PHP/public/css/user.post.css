@@ -25147,3 +25147,7 @@ ul.timeline:before {
 ul.timeline .opacity-low {
   opacity: 0.7;
 }
+
+body {
+  overflow-x: hidden;
+}

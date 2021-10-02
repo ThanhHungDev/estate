@@ -9341,7 +9341,17 @@ function Apartment(props) {
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState6 = _slicedToArray(_useState5, 2),
       progress = _useState6[0],
-      setProgress = _useState6[1]; // let refRolePost = React.createRef()
+      setProgress = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState8 = _slicedToArray(_useState7, 2),
+      success = _useState8[0],
+      setSuccess = _useState8[1];
+
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState10 = _slicedToArray(_useState9, 2),
+      error = _useState10[0],
+      setError = _useState10[1]; // let refRolePost = React.createRef()
 
 
   var refType = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
@@ -9385,7 +9395,7 @@ function Apartment(props) {
         images = form.images,
         videos = form.videos;
     var formData = {
-      category_id: category,
+      category_id: category.id,
       title: title,
       content: description,
       area: area,
@@ -9397,7 +9407,8 @@ function Apartment(props) {
       home_number: home_number,
       street: street,
       role: role,
-      type: type,
+      usertype: type,
+      /// xác định bài đăng thuộc thuê / cho thuê hay bán / mua 
       project: project,
       images: images,
       videos: videos
@@ -9408,10 +9419,13 @@ function Apartment(props) {
 
     _service_user_api__WEBPACK_IMPORTED_MODULE_12__.default.saveApartment(formData).then(function (response) {
       var data = response.data;
-      setProgress(JSON.stringify(data));
+      setProgress(false);
+      console.log(data);
+      setSuccess("thành công rồi nè");
     })["catch"](function (error) {
-      setProgress(JSON.stringify(error));
+      setProgress(false);
       console.log("ERROR:: ", error);
+      setError(error);
     });
   };
 
@@ -9450,13 +9464,6 @@ function Apartment(props) {
         SW.nextStep();
       }
     } else if (SW.currentStep == 5) {
-      var areaPrice = refAreaPrice.current.validateFromStep();
-
-      if (areaPrice) {
-        setForm(_objectSpread(_objectSpread({}, form), areaPrice));
-        SW.nextStep();
-      }
-    } else if (SW.currentStep == 6) {
       var _refGalleryUser$curre = refGalleryUser.current.validateFromStep(),
           images = _refGalleryUser$curre.images,
           videos = _refGalleryUser$curre.videos;
@@ -9466,6 +9473,13 @@ function Apartment(props) {
           images: images,
           videos: videos
         }));
+        SW.nextStep();
+      }
+    } else if (SW.currentStep == 6) {
+      var areaPrice = refAreaPrice.current.validateFromStep();
+
+      if (areaPrice) {
+        setForm(_objectSpread(_objectSpread({}, form), areaPrice));
         SW.nextStep();
       }
     } else if (SW.currentStep == 7) {
@@ -9484,9 +9498,27 @@ function Apartment(props) {
       AUTH = props.AUTH,
       device = props.device;
 
-  if (progress) {
+  if (success) {
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
-      className: "apartment__wrapper " + (!progress && 'd-block'),
+      className: "success",
+      children: [" l\u01B0u th\xE0nh c\xF4ng ", success]
+    });
+  }
+
+  if (error) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
+      className: "error",
+      children: [" l\u01B0u th\xE2td b\u1EA1i ", JSON.stringify(error)]
+    });
+  }
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
+    className: "apartment",
+    style: {
+      minHeight: device.calcHeightSubtractHeight + "px"
+    },
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
+      className: "apartment__wrapper d-none " + (progress && 'd-block'),
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("p", {
         children: "\u0110ang l\u01B0u tr\u1EEF d\u1EEF li\u1EC7n l\xEAn server"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("p", {
@@ -9497,21 +9529,13 @@ function Apartment(props) {
           className: "progress-loadding"
         })
       })]
-    });
-  }
-
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
-    className: "apartment",
-    style: {
-      minHeight: device.calcHeightSubtractHeight + "px"
-    },
-    children: [SW && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_Apartment_HeaderApartment__WEBPACK_IMPORTED_MODULE_3__.default, {
+    }), SW && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_Apartment_HeaderApartment__WEBPACK_IMPORTED_MODULE_3__.default, {
       SW: SW,
       parentCallback: continueStep
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
-      className: "apartment__wrapper ",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)((react_step_wizard__WEBPACK_IMPORTED_MODULE_2___default()) // isHashEnabled
-      , {
+      className: "apartment__wrapper " + (progress && 'd-none'),
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)((react_step_wizard__WEBPACK_IMPORTED_MODULE_2___default()), {
+        isHashEnabled: true,
         onStepChange: onStepChange,
         instance: setInstance,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_Partial_TypePost__WEBPACK_IMPORTED_MODULE_6__.default, {
@@ -9528,11 +9552,11 @@ function Apartment(props) {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_Partial_ContentApartment__WEBPACK_IMPORTED_MODULE_13__.default, {
           ref: refContent,
           CONFIG: CONFIG
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_Partial_AreaPrice__WEBPACK_IMPORTED_MODULE_9__.default, {
-          ref: refAreaPrice,
-          CONFIG: CONFIG
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_Partial_GalleryPost__WEBPACK_IMPORTED_MODULE_8__.default, {
           ref: refGalleryUser,
+          CONFIG: CONFIG
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_Partial_AreaPrice__WEBPACK_IMPORTED_MODULE_9__.default, {
+          ref: refAreaPrice,
           CONFIG: CONFIG
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_Partial_ApartmentInfo__WEBPACK_IMPORTED_MODULE_10__.default, {
           ref: refApartmentInfo,
@@ -12132,7 +12156,7 @@ var SelectLocation = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardR
           children: " T\u1EC9nh Th\xE0nh "
         }), provinceOptions.length <= 1 && values.province ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
           className: "form-control",
-          defaultValue: PROVINCE_USER.text,
+          defaultValue: OLD.province.text,
           readOnly: true
         }) /// thẻ input này chỉ để load ra dữ liệu cho người dùng thấy trước thôi
         :
@@ -12160,7 +12184,7 @@ var SelectLocation = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardR
           children: "Qu\u1EADn / Huy\u1EC7n"
         }), districtOptions.length <= 1 && values.district ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
           className: "form-control",
-          defaultValue: DISTRICT_USER.text,
+          defaultValue: OLD.district.text,
           readOnly: true
         }) /// thẻ input này chỉ để load ra dữ liệu cho người dùng thấy trước thôi
         :
@@ -12188,7 +12212,7 @@ var SelectLocation = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardR
           children: "Ph\u01B0\u1EDDng, X\xE3, Th\u1ECB Tr\u1EA5n"
         }), communes.length <= 1 && values.commune ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
           className: "form-control",
-          defaultValue: COMMUNE_USER.text,
+          defaultValue: OLD.commune.text,
           readOnly: true
         }) /// thẻ input này chỉ để load ra dữ liệu cho người dùng thấy trước thôi
         :

@@ -54,7 +54,8 @@ class CreateProducts extends Migration
             $table->json('extensions')->default("[]"); /// là tiện ích mở rộng mà bạn muốn mở rộng ví dụ nhà thì có số phòng ngủ số tolet nhưng đất thì không
             
             $table->json('ldjson')->nullable();
-            $table->integer('type')->default(Config::get('constant.TYPE-PRODUCT.HOUSE'));
+            $table->integer('type')->default(Config::get('constant.TYPE-PRODUCT.HOUSE')); /// xác định là nhà hay đất
+            $table->integer('usertype')->default(Config::get('constant.POST_TYPE.SALE')); /// xác định đăng bài để bán / mua hay thuê / cho thuê
             $table->integer('sort')->default(-1);
             $table->integer('public')->default(1);
             $table->string('site_name', 150)->nullable();

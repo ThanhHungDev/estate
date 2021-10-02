@@ -9,7 +9,7 @@ import { setterLocation } from "../../../action/index"
 const SelectLocation = forwardRef((props, ref) => {
 
     const { OLD } = props
-
+    
     const PROVINCE_NULL = [ {id: 0, text: 'Chọn Tỉnh Thành'} ]
     const DISTRICT_NULL = [ {id: 0, text: 'Chọn Quận / Huyện'} ]
     const COMMUNE_NULL  = [ {id: 0, text: 'Chọn Phường, xã, thị trấn'} ]
@@ -255,7 +255,7 @@ const SelectLocation = forwardRef((props, ref) => {
                     <label htmlFor="province"> Tỉnh Thành </label>
                     {
                         provinceOptions.length <= 1 && values.province
-                        ? <input className="form-control" defaultValue={ PROVINCE_USER.text } readOnly />  /// thẻ input này chỉ để load ra dữ liệu cho người dùng thấy trước thôi
+                        ? <input className="form-control" defaultValue={ OLD.province.text } readOnly />  /// thẻ input này chỉ để load ra dữ liệu cho người dùng thấy trước thôi
                         : <Select 
                             id="province" 
                             name='province'
@@ -273,7 +273,7 @@ const SelectLocation = forwardRef((props, ref) => {
                     <label htmlFor="district">Quận / Huyện</label>
                     {
                         districtOptions.length <= 1 && values.district
-                        ? <input className="form-control" defaultValue={ DISTRICT_USER.text } readOnly /> /// thẻ input này chỉ để load ra dữ liệu cho người dùng thấy trước thôi
+                        ? <input className="form-control" defaultValue={ OLD.district.text } readOnly /> /// thẻ input này chỉ để load ra dữ liệu cho người dùng thấy trước thôi
                         : <Select 
                             id="district" 
                             name='district'
@@ -291,7 +291,7 @@ const SelectLocation = forwardRef((props, ref) => {
                     <label htmlFor="commune">Phường, Xã, Thị Trấn</label>
                     {
                         communes.length <= 1 && values.commune
-                        ? <input className="form-control" defaultValue={ COMMUNE_USER.text } readOnly />  /// thẻ input này chỉ để load ra dữ liệu cho người dùng thấy trước thôi
+                        ? <input className="form-control" defaultValue={ OLD.commune.text } readOnly />  /// thẻ input này chỉ để load ra dữ liệu cho người dùng thấy trước thôi
                         : <Select 
                             id="commune" 
                             name='commune'

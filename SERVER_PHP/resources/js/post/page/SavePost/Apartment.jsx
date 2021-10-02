@@ -23,6 +23,8 @@ function Apartment( props ){
     const [ form, setForm ]         = useState({})
     const [ state, updateState]     = useState({})
     const [ progress, setProgress ] = useState(false)
+    const [ success, setSuccess ]   = useState(false)
+    const [ error, setError ]       = useState(false)
 
     // let refRolePost = React.createRef()
     const refType          = useRef()
@@ -68,7 +70,7 @@ function Apartment( props ){
         } = form
 
         const formData = {
-            category_id: category,
+            category_id: category.id,
             title: title, 
             content: description, 
             area, 
@@ -80,7 +82,7 @@ function Apartment( props ){
             home_number, 
             street,
             role,
-            type,
+            usertype: type, /// xác định bài đăng thuộc thuê / cho thuê hay bán / mua 
             project,
             images, 
             videos
@@ -96,11 +98,14 @@ function Apartment( props ){
         .saveApartment(formData)
         .then( response => {
             const { data } = response
-            setProgress(JSON.stringify(data))
+            setProgress(false)
+            console.log( data )
+            setSuccess("thành công rồi nè")
         })
         .catch(error => {
-            setProgress(JSON.stringify(error))
+            setProgress(false)
             console.log("ERROR:: ",error)
+            setError( error )
         });
     }
 
@@ -135,17 +140,17 @@ function Apartment( props ){
                 SW.nextStep()
             }
         }else if(SW.currentStep == 5){
-            
-            const areaPrice = refAreaPrice.current.validateFromStep()
-            if( areaPrice ){
-                setForm({ ...form, ... areaPrice })
-                SW.nextStep()
-            }
-        }else if(SW.currentStep == 6){
 
             const { images, videos } = refGalleryUser.current.validateFromStep()
             if( images && images.length ){
                 setForm({ ...form, images, videos })
+                SW.nextStep()
+            }
+        }else if(SW.currentStep == 6){
+            
+            const areaPrice = refAreaPrice.current.validateFromStep()
+            if( areaPrice ){
+                setForm({ ...form, ... areaPrice })
                 SW.nextStep()
             }
         }else if(SW.currentStep == 7){
@@ -162,9 +167,19 @@ function Apartment( props ){
     /// ban đầu state là {} => SW là undefine
     const { SW } = state
     const { CONFIG, AUTH, device } = props
-    if( progress ){
-        return(
-            <div className={ "apartment__wrapper " + ( !progress && 'd-block') }>
+
+    if( success ){
+        return <div className="success"> lưu thành công { success }</div>
+    }
+
+    if( error ){
+        return <div className="error"> lưu thâtd bại { JSON.stringify(error) }</div>
+    }
+
+    return (
+        <div className="apartment" style={{ minHeight: device.calcHeightSubtractHeight + "px" }}>
+
+            <div className={ "apartment__wrapper d-none " + ( progress && 'd-block') }>
                 <p>
                     Đang lưu trữ dữ liện lên server
                 </p>
@@ -175,15 +190,12 @@ function Apartment( props ){
                     <div className="progress-loadding"></div>
                 </div>
             </div>
-        )
-    }
-    return (
-        <div className="apartment" style={{ minHeight: device.calcHeightSubtractHeight + "px" }}>
+
             { SW && <HeaderApartment SW={SW} parentCallback={continueStep} /> }
             
-            <div className="apartment__wrapper ">
+            <div className={ "apartment__wrapper " + ( progress && 'd-none') }>
                 <StepWizard
-                    // isHashEnabled
+                    isHashEnabled
                     onStepChange={onStepChange}
                     instance={setInstance}
                 >
@@ -191,8 +203,8 @@ function Apartment( props ){
                     <UserPostInfomation ref={ refUserPostInfor } CONFIG={CONFIG} AUTH={AUTH}/>
                     <RoleUser ref={ refRoleUser}  CONFIG={CONFIG} OLD={form} />
                     <ContentApartment ref={ refContent } CONFIG={CONFIG}/>
-                    <AreaPrice ref={ refAreaPrice } CONFIG={CONFIG}/>
                     <GalleryPost ref={ refGalleryUser}  CONFIG={CONFIG}/>
+                    <AreaPrice ref={ refAreaPrice } CONFIG={CONFIG}/>
                     <ApartmentInfo ref={ refApartmentInfo }  CONFIG={CONFIG} AUTH={AUTH}/>
                     <ConfirmApartment data={form} CONFIG={CONFIG} />
                 </StepWizard>
