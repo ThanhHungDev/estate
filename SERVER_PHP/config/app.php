@@ -209,7 +209,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         App\Providers\ResponseServiceProvider::class,
-        Jenssegers\Mongodb\MongodbServiceProvider::class,
+        // Jenssegers\Mongodb\MongodbServiceProvider::class,
 
         Intervention\Image\ImageServiceProvider::class,
 
