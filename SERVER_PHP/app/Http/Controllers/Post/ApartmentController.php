@@ -71,13 +71,14 @@ class ApartmentController extends Controller
         // vertical: "10"
         // videos: []
         // wc: 0
+        // posttype
 
         /// save product
         ///setting data insert table product
         $productInput = $request->only(
             'category_id',
             'commune_id', /// thông qua project appartment
-            'usertype', 
+            'posttype', 
             'title', 
             'slug', 
             'excerpt', 

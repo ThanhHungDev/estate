@@ -9419,6 +9419,7 @@ function Apartment(props) {
       home_number: home_number,
       street: street,
       role: role,
+      /// role là để xác định cái người này là cá nhân hay môi giới
       /// dành cho product 
       category_id: category,
       usertype: type,
@@ -9427,6 +9428,7 @@ function Apartment(props) {
       content: content,
       "public": CONFIG.CONSTANT.TYPE_SAVE.PUBLIC,
       type: CONFIG.CONSTANT['TYPE-PRODUCT'].HOUSE,
+      /// bán nhà hay bán đất
       direction: direction,
       direction_balcony: direction_balcony,
       horizontal: horizontal,

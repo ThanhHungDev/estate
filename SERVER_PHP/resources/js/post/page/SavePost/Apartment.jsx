@@ -84,15 +84,15 @@ function Apartment( props ){
             user_commune_id: commune,
             home_number: home_number,
             street: street,
-            role: role,
+            role: role, /// role là để xác định cái người này là cá nhân hay môi giới
 
             /// dành cho product 
             category_id: category,
-            usertype: type, /// xác định bài đăng thuộc thuê / cho thuê hay bán / mua 
+            posttype: type, /// xác định bài đăng thuộc thuê / cho thuê hay bán / mua 
             title: title,
             content: content,
             public: CONFIG.CONSTANT.TYPE_SAVE.PUBLIC,
-            type: CONFIG.CONSTANT['TYPE-PRODUCT'].HOUSE,
+            type: CONFIG.CONSTANT['TYPE-PRODUCT'].HOUSE, /// bán nhà hay bán đất
             direction: direction, 
             direction_balcony: direction_balcony, 
             horizontal: horizontal, /// chiều rộng của bất động sản
