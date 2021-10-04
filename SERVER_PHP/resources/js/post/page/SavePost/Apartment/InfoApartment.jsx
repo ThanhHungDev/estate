@@ -13,10 +13,7 @@ const InfoApartment = forwardRef((props, ref) => {
     const refLocation = useRef()
 
 
-    // console.log(props.OLD?.project, "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
-
-    const [ projects, setProjects ] = useState([])
-    const [ values, setValues]    = useState({ project: DEFAULT_NONE_SELECT })
+    const [ values, setValues]    = useState({ project: props.OLD?.project || DEFAULT_NONE_SELECT })
     const [ touched, setTouched ] = useState({})
     const [ errors, setErrors ]   = useState(Validator.getEmpty())
 
@@ -69,7 +66,6 @@ const InfoApartment = forwardRef((props, ref) => {
                     target: { name: 'project', value: p.id } 
                 }
             })
-            setProjects([ ... projects, ...data ])
             callback( [ ... data ])
         })
         .catch(error => {
