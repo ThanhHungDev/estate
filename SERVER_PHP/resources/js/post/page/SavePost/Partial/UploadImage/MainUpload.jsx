@@ -53,6 +53,7 @@ export default props => {
         })
         .catch(error => {
             console.log("ERROR:: ",error)
+            alert("upload lỗi : " + error.message)
             setUploading(null)
         })
     }

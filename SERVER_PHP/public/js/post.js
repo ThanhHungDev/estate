@@ -11887,6 +11887,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       }
     })["catch"](function (error) {
       console.log("ERROR:: ", error);
+      alert("upload lỗi : " + error.message);
       setUploading(null);
     });
   }
