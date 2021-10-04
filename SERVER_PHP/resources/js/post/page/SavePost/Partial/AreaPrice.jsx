@@ -8,7 +8,12 @@ Validator.setMessages(V.messages)
 
 const AreaPrice = forwardRef((props, ref) => {
 
-    const [values, setValues]   = useState({ area: "", price: "", horizontal: "", vertical: "" })
+    const [values, setValues]   = useState({ 
+        area      : props.OLD.area || "",
+        price     : props.OLD.price || "",
+        horizontal: props.OLD.horizontal || "",
+        vertical  : props.OLD.vertical || "",
+    })
     const [touched, setTouched] = useState({})
     const [errors, setErrors]   = useState(Validator.getEmpty())
 

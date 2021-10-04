@@ -34,7 +34,7 @@ class ApartmentController extends Controller
                     ->setStatusCode(Response::HTTP_NOT_FOUND);
         }
         /// query db find user
-        $user = User::findOrFail($claim['id']);
+        $user = User::find($claim['id']);
         if( !$user ){
             return  response()
                     ->error(
@@ -47,7 +47,7 @@ class ApartmentController extends Controller
 
 
         // nếu null thì không lấy để update
-        $userInputUpdate = collect(request()->only('commune_id3', 'home_number', 'street', 'role'))->filter()->all();
+        $userInputUpdate = collect(request()->only('commune_id', 'home_number', 'street', 'role'))->filter()->all();
         $user->fill($userInputUpdate);
         $user->save();
 

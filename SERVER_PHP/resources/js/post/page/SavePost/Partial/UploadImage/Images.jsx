@@ -3,7 +3,7 @@ import md5 from "js-md5"
 
 export default props =>
     props.images.map( url =>
-        <div key={ md5(url) } className='animated fadeIn image__block-item'>
+        <div key={ md5(url || '') } className='animated fadeIn image__block-item'>
             <div className="position-relative">
                 {
                     props.removeImage

@@ -7,10 +7,13 @@ import SelectLocation from '../SelectLocation'
 
 Validator.setLocale(Validator.languages.vi)
 
-const ApartmentInfo = forwardRef((props, ref) => {
+const InfoApartment = forwardRef((props, ref) => {
     const DEFAULT_NONE_SELECT = ""
 
     const refLocation = useRef()
+
+
+    // console.log(props.OLD?.project, "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
 
     const [ projects, setProjects ] = useState([])
     const [ values, setValues]    = useState({ project: DEFAULT_NONE_SELECT })
@@ -37,9 +40,7 @@ const ApartmentInfo = forwardRef((props, ref) => {
                 if( values.project.__isNew__ ){
                     /// chạy hàm validate tất cả 3 field của location
                     refLocation.current?.validateData()
-                    console.log("valuesvaluesvaluesvaluesvalues", values    )
                     const errors = Validator.validate( values, V.rules)
-                    console.log("errorserrorserrorserrorserrors", errors    )
                     if( errors.hasError ){
                         Object.keys(values).map((key, index) => {
                             touched[key] = true
@@ -158,4 +159,4 @@ const ApartmentInfo = forwardRef((props, ref) => {
     )
 })
 
-export default ApartmentInfo
+export default InfoApartment

@@ -4,26 +4,25 @@ import StepWizard from "react-step-wizard"
 
 import HeaderApartment from "./Apartment/HeaderApartment"
 import FooterApartment from "./Apartment/FooterApartment"
+import SaveApartmentSuccess from "./Apartment/SaveApartmentSuccess"
+import SaveApartmentError from "./Apartment/SaveApartmentError"
+import InfoApartment from "./Apartment/InfoApartment"
+import ConfirmApartment from "./Apartment/ConfirmApartment"
+import OrtherInforApartment from "./Apartment/OrtherInforApartment"
+
 import UserPostInfomation from "./Partial/UserPostInfomation"
 import TypePost from "./Partial/TypePost"
 import RoleUser from "./Partial/RoleUser"
 import GalleryPost from "./Partial/GalleryPost"
 import AreaPrice from "./Partial/AreaPrice"
-import ApartmentInfo from "./Partial/ApartmentInfo"
-import ConfirmApartment from "./Partial/ConfirmApartment"
-
+import ContentTitle from "./Partial/ContentTitle"
 
 import userAPI from "../../../service/user.api"
-import ContentApartment from "./Partial/ContentApartment"
-import ApartmentOrtherInfor from "./Partial/ApartmentOrtherInfor"
-import SaveApartmentSuccess from "./Apartment/SaveApartmentSuccess"
-import SaveApartmentError from "./Apartment/SaveApartmentError"
-
 
 /// lưu căn hộ chung cư
 function Apartment( props ){
 
-    const [ form, setForm ]         = useState({})
+    const [ form, setForm ]         = useState( props.OLD ?? {})
     const [ state, updateState]     = useState({})
     const [ progress, setProgress ] = useState(false)
     const [ success, setSuccess ]   = useState(false)
@@ -217,23 +216,25 @@ function Apartment( props ){
             
             <div className={ "apartment__wrapper " + ( progress && 'd-none') }>
                 <StepWizard
-                    // isHashEnabled
+                    isHashEnabled
                     onStepChange={onStepChange}
                     instance={setInstance} 
                 >
-                    <TypePost ref={ refType } CONFIG={CONFIG}/>
-                    <UserPostInfomation ref={ refUserPostInfor } CONFIG={CONFIG} AUTH={AUTH}/>
+                    <TypePost ref={ refType } CONFIG={CONFIG} OLD={form} />
+                    <UserPostInfomation ref={ refUserPostInfor } CONFIG={CONFIG} AUTH={AUTH} OLD={form}/>
                     <RoleUser ref={ refRoleUser}  CONFIG={CONFIG} OLD={form} />
-                    <ContentApartment ref={ refContent } CONFIG={CONFIG}/>
-                    <GalleryPost ref={ refGalleryUser}  CONFIG={CONFIG}/>
-                    <AreaPrice ref={ refAreaPrice } CONFIG={CONFIG}/>
-                    <ApartmentOrtherInfor ref={ refOrtherInfo } CONFIG={CONFIG} OLD={form} />
-                    <ApartmentInfo ref={ refApartmentInfo }  CONFIG={CONFIG} AUTH={AUTH}/>
+                    <ContentTitle ref={ refContent } CONFIG={CONFIG} OLD={form} />
+                    <GalleryPost ref={ refGalleryUser}  CONFIG={CONFIG} OLD={form} />
+                    <AreaPrice ref={ refAreaPrice } CONFIG={CONFIG}  OLD={form} />
+                    <OrtherInforApartment ref={ refOrtherInfo } CONFIG={CONFIG} OLD={form} />
+                    <InfoApartment ref={ refApartmentInfo }  CONFIG={CONFIG} AUTH={AUTH} OLD={form} />
                     <ConfirmApartment data={form} CONFIG={CONFIG} />
                 </StepWizard>
             </div>
             
-            <FooterApartment currentStep={SW?.currentStep} parentCallback={continueStep} fetchApiSave={ saveApartment } />
+            <div className={ "footer__wrapper " + ( progress && 'd-none') }>
+                <FooterApartment currentStep={SW?.currentStep} parentCallback={continueStep} fetchApiSave={ saveApartment } />
+            </div>
         </div>
     )
 }

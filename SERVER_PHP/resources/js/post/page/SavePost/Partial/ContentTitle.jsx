@@ -1,25 +1,25 @@
 import React, { useState, forwardRef, useImperativeHandle, useEffect } from 'react'
-import { EditorState, convertFromRaw, convertToRaw } from "draft-js"
-import draftToHtml from 'draftjs-to-html';
+import { EditorState, convertToRaw, convertFromHTML, ContentState, ContentBlock  } from "draft-js"
+import draftToHtml from 'draftjs-to-html'
 import { Editor } from "react-draft-wysiwyg"
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
-
-{/* <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/react-draft-wysiwyg@1.12.3/dist/react-draft-wysiwyg.css' />
-<div id="root"></div> */}
 
 import Validator from "hero-validate"
 import V from "../../../validator/user.content-apartment"
 /// create rule for your form
 Validator.setLocale(Validator.languages.vi)
 
-const ContentApartment = forwardRef((props, ref) => {
+const ContentTitle = forwardRef((props, ref) => {
 
-    const [ values, setValues]   = useState({ title: "", content: "", contentText: "" })
+    const { OLD } = props
+
+    const [ values, setValues]   = useState({ title: OLD.title || "", content: OLD.content || "", contentText: OLD.content || "" })
     const [ touched, setTouched] = useState({})
     const [ errors, setErrors]   = useState(Validator.getEmpty())
 
+    // / https://jpuri.github.io/react-draft-wysiwyg/#/demo
     const [editorState, setEditorState] = React.useState(
-        () => EditorState.createEmpty(),
+        () => EditorState.createWithContent(ContentState.createFromBlockArray(convertFromHTML(values.content)))
     )
 
     /// add function error custom
@@ -88,7 +88,7 @@ const ContentApartment = forwardRef((props, ref) => {
                             <label htmlFor="title">Tiêu đề sản phẩm</label>
                             <input type="text" id="title" name="title" placeholder="Nhập tiêu đề ... vd: Bán căn hộ xxxxxx tại dự án xxxxxx"
                                 className={"form-control " + ( hasErr("title") ? "is-invalid" : ( touched['title'] && "is-valid" ) )}
-                                defaultValue={ values.title }
+                                value={ values.title }
                                 onChange={handleChange}
                             />
                             { hasErr('title') && <div className="d-block invalid-feedback"> { errors.getError('title') } </div> }
@@ -136,4 +136,4 @@ const ContentApartment = forwardRef((props, ref) => {
     )
 })
 
-export default ContentApartment
+export default ContentTitle

@@ -2,9 +2,10 @@ import React, { useState, forwardRef, useRef, useImperativeHandle } from 'react'
 
 
 const RoleUser = forwardRef((props, ref) => {
-    const { CONFIG, OLD } = props
+
+    const { CONFIG } = props
     /// init state
-    const [ role, setRole ] = useState( OLD.type || CONFIG.CONSTANT.USER_TYPE.PERSON )
+    const [ role, setRole ] = useState( props.OLD.role || CONFIG.CONSTANT.USER_TYPE.PERSON )
     
 
     function onChangeRadio(e){

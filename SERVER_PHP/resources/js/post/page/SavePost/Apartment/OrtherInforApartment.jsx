@@ -7,7 +7,7 @@ import Select from 'react-select'
 Validator.setLocale(Validator.languages.vi)
 Validator.setMessages(V.messages)
 
-const ApartmentOrtherInfor = forwardRef((props, ref) => {
+const OrtherInforApartment = forwardRef((props, ref) => {
 
     const { OLD } = props
 
@@ -80,7 +80,7 @@ const ApartmentOrtherInfor = forwardRef((props, ref) => {
 
             <div className="mycustom-form-group">
                 <div className="row">
-                    <div className="col-6">
+                    <div className="col-12 col-md-6">
                         <div className="form-group">
                             <label htmlFor="direction">Hướng cửa chính </label>
                             <Select 
@@ -94,7 +94,7 @@ const ApartmentOrtherInfor = forwardRef((props, ref) => {
                             { hasErr('direction') && <div className="d-block invalid-feedback">{ errors.getError("direction") }</div> }
                         </div>
                     </div>
-                    <div className="col-6">
+                    <div className="col-12 col-md-6">
                         <div className="form-group">
                             <label htmlFor="direction_balcony">Hướng cửa sổ </label>
                             <Select 
@@ -108,7 +108,7 @@ const ApartmentOrtherInfor = forwardRef((props, ref) => {
                             { hasErr('direction_balcony') && <div className="d-block invalid-feedback">{ errors.getError("direction_balcony") }</div> }
                         </div>
                     </div>
-                    <div className="col-6">
+                    <div className="col-12 col-md-6">
                         <div className="form-group">
                             <label htmlFor="negotiate"> Thương lượng </label>
                             <Select 
@@ -122,7 +122,7 @@ const ApartmentOrtherInfor = forwardRef((props, ref) => {
                             { hasErr('negotiate') && <div className="d-block invalid-feedback">{ errors.getError("negotiate") }</div> }
                         </div>
                     </div>
-                    <div className="col-6">
+                    <div className="col-12 col-md-6">
                         <div className="form-group">
                             <label htmlFor="vertical"> Số phòng ngủ </label>
                             <Select 
@@ -136,7 +136,7 @@ const ApartmentOrtherInfor = forwardRef((props, ref) => {
                             { hasErr('room') && <div className="d-block invalid-feedback">{ errors.getError("room") }</div> }
                         </div>
                     </div>
-                    <div className="col-6">
+                    <div className="col-12 col-md-6">
                         <div className="form-group">
                             <label htmlFor="vertical"> Số nhà vệ sinh </label>
                             <Select 
@@ -150,7 +150,7 @@ const ApartmentOrtherInfor = forwardRef((props, ref) => {
                             { hasErr('wc') && <div className="d-block invalid-feedback">{ errors.getError("wc") }</div> }
                         </div>
                     </div>
-                    <div className="col-6">
+                    <div className="col-12 col-md-6">
                         <div className="form-group">
                             <label htmlFor="vertical"> Số nhà tắm </label>
                             <Select 
@@ -165,15 +165,10 @@ const ApartmentOrtherInfor = forwardRef((props, ref) => {
                         </div>
                     </div>
 
-
-
-
-                    
-                    
                 </div>
             </div>
         </div>
     )
 })
 
-export default ApartmentOrtherInfor
+export default OrtherInforApartment

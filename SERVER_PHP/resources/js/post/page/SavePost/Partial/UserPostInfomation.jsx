@@ -78,13 +78,13 @@ const UserPostInfomation = forwardRef((props, ref) => {
     return(
         <div className="user-information position-relative">
             <div className="row">
-                <div className="col-6">
+                <div className="col-12 col-md-6">
                     <div className="form-group">
                         <label htmlFor="name">Họ Tên </label>
                         <input type="text" className="form-control" id="name" defaultValue={AUTH.name} readOnly />
                     </div>
                 </div>
-                <div className="col-6">
+                <div className="col-12 col-md-6">
                     <div className="form-group">
                         <label htmlFor="phone">Số Điện Thoại </label>
                         <input type="text" className="form-control" id="phone" defaultValue={AUTH.phone_verify} readOnly />

@@ -3,7 +3,7 @@ import React, { useState, forwardRef, useRef, useImperativeHandle } from 'react'
 
 const TypePost = forwardRef((props, ref) => {
     /// init state
-    const [ type, setType ] = useState(0)
+    const [ type, setType ] = useState( props.OLD.type || CONFIG.CONSTANT.POST_TYPE.SALE )
     const [ isValid, setIsValid ] = useState( null )
     const { CONFIG } = props
 
@@ -38,19 +38,19 @@ const TypePost = forwardRef((props, ref) => {
                 <div className="alert alert-danger" role="alert"> Bạn cần chọn kiểu đăng bài </div>
             }
             <label htmlFor="sale" className="container__radio d-block"> Bạn đăng bài <span className="text-color-pink"> để bán </span>
-                <input id="sale" name='type' type="radio" value={CONFIG.CONSTANT.POST_TYPE.SALE} onChange={onChangeRadio} />
+                <input id="sale" name='type' type="radio" value={CONFIG.CONSTANT.POST_TYPE.SALE} checked={ type == CONFIG.CONSTANT.POST_TYPE.SALE } onChange={onChangeRadio} />
                 <span className="checkmark"></span>
             </label>
             <label htmlFor="buy" className="container__radio d-block"> Bạn đăng bài <span className="text-color-blue-grey"> để mua </span> 
-                <input id="buy" name='type' type="radio" value={CONFIG.CONSTANT.POST_TYPE.BUY} onChange={onChangeRadio} />
+                <input id="buy" name='type' type="radio" value={CONFIG.CONSTANT.POST_TYPE.BUY} checked={ type == CONFIG.CONSTANT.POST_TYPE.BUY } onChange={onChangeRadio} />
                 <span className="checkmark"></span>
             </label>
             <label htmlFor="lease" className="container__radio d-block"> Bạn đăng bài <span className="text-color-pink"> cho thuê </span>  
-                <input id="lease" name='type' type="radio" value={CONFIG.CONSTANT.POST_TYPE.LEASE}  onChange={onChangeRadio}/>
+                <input id="lease" name='type' type="radio" value={CONFIG.CONSTANT.POST_TYPE.LEASE} checked={ type == CONFIG.CONSTANT.POST_TYPE.LEASE } onChange={onChangeRadio}/>
                 <span className="checkmark"></span>
             </label>
             <label htmlFor="rent" className="container__radio d-block"> Bạn đăng bài <span className="text-color-blue-grey"> tìm nơi thuê </span>
-                <input id="rent" name='type' type="radio" value={CONFIG.CONSTANT.POST_TYPE.RENT}  onChange={onChangeRadio}/>
+                <input id="rent" name='type' type="radio" value={CONFIG.CONSTANT.POST_TYPE.RENT} checked={ type == CONFIG.CONSTANT.POST_TYPE.RENT } onChange={onChangeRadio}/>
                 <span className="checkmark"></span>
             </label>
         </div>

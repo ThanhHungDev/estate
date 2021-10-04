@@ -25,8 +25,10 @@ function ConfirmApartment( props ){
         if( values[key] ){
             if( locations ){
                 const datas = locations[key]
-                const loc = datas.find(item => item.id == values[key] )
-                return loc['text']
+                if( datas ){
+                    const loc = datas.find(item => item.id == values[key] )
+                    return loc['text']
+                }
             }
         }
         return false

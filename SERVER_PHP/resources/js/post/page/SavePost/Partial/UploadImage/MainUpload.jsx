@@ -8,10 +8,10 @@ import Buttons from './Buttons'
 import fileAPI from "../../../../../service/file.api"
 
 export default props => {
-    const { CONFIG } = props
+    const { CONFIG, OLD } = props
 
     const [ uploading, setUploading ] = useState(null)
-    const [ images, setImages ] = useState([])
+    const [ images, setImages ] = useState(OLD.images || [])
     const [ videos, setVideos ] = useState([])
 
     function onChange(e, isVideo = false ){

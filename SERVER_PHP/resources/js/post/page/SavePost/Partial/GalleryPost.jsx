@@ -6,14 +6,15 @@ const MIN_GALLERY = 1;
 
 
 const GalleryPost = forwardRef((props, ref) => {
-    const { CONFIG } = props
+    const { CONFIG, OLD } = props
 
     const [ error, setError ] = useState(null)
     /// init state
-    const [ images, setImages ] = useState( [] )
+    const [ images, setImages ] = useState( OLD.images || [] )
     const [ videos, setVideos ] = useState( [] )
     
 
+    console.log( images )
     // function onChangeRadio(e){
 
     //     setRole(e.currentTarget.value)
@@ -39,7 +40,7 @@ const GalleryPost = forwardRef((props, ref) => {
         ref,
         () => ({
             validateFromStep(){
-                console.log("vào đây là ảnh dduocj next ")
+                
                 if( (images.length + videos.length ) < MIN_GALLERY ){
                     setError("Bạn chưa đăng đủ số lượng ảnh hoặc video")
                     return false
@@ -59,7 +60,7 @@ const GalleryPost = forwardRef((props, ref) => {
                 <div className="text-color-red">{ error }</div>
             }
             <div className="upload-image">
-                <MainUpload CONFIG={CONFIG} childChangeImagesParent={childChangeImagesParent} childChangeVideosParent={childChangeVideosParent}/>
+                <MainUpload CONFIG={CONFIG} childChangeImagesParent={childChangeImagesParent} childChangeVideosParent={childChangeVideosParent} OLD={{ images, videos }}/>
             </div>
             
             
