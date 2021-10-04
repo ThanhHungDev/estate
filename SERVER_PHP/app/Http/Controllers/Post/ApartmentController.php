@@ -47,7 +47,11 @@ class ApartmentController extends Controller
 
 
         // nếu null thì không lấy để update
-        $user->update(collect(request()->only('commune_id', 'home_number', 'street', 'role'))->filter()->all());
+        $userInputUpdate = collect(request()->only('commune_id3', 'home_number', 'street', 'role'))->filter()->all();
+        $user->fill($userInputUpdate);
+        $user->save();
+
+        $token = JWTAuth::fromUser($user);
   
         $productInput = collect($request->only(
             'content', 
@@ -67,22 +71,17 @@ class ApartmentController extends Controller
             'posttype',
             'public',
             'extensions',
+            'description_seo',
         ))->filter()->all();
 
         $productInput['user_id']    = $user->id;
         $productInput['commune_id'] = $request->input('product_commune_id', null);
+        $productInput['title']      = $productInput['title'] . "--" . date('Ymd-His-v');
         $productInput['slug']       = SupportString::createSlug($productInput['title']);
         $productInput['content']    = SupportString::createEmoji($productInput['content']);
-
-        /// create catalogue
-                   $catalogue           = Catalogue::generate($productInput['content']);
-        $productInput['content']        = $catalogue->text;
-        $productInput['text_content']   = SupportString::cleanText($productInput['content']);
-
-        $productInput['catalogue']      = $catalogue->catalogue;
-        $productInput['text_catalogue'] = $catalogue->text_catalogue;
-
-        $productInput['description_seo'] = SupportString::createDescription($productInput['description_seo'], $catalogue->text_catalogue);
+        ///
+        $productInput['text_content'] = SupportString::cleanText($productInput['content']);
+        $productInput['description_seo'] = SupportString::createDescription($productInput['title'], $productInput['text_content']);
 
         $images = $request->input('images', [ 'root' => '/img/default.jpg']);
         $firstImages = $images[0];
@@ -97,7 +96,8 @@ class ApartmentController extends Controller
             'status'  => Response::HTTP_OK,
             'message' => 'Thành công',
             'data'    => $request->all(),
-            'res'     => $production->toArray()
+            'res'     => $production->toArray(),
+            'token'   => $token
         );
 
         return response()
@@ -106,6 +106,7 @@ class ApartmentController extends Controller
                     $response,
                     Response::HTTP_OK
                 )
-                ->setStatusCode(Response::HTTP_OK);
+                ->setStatusCode(Response::HTTP_OK)
+                ->withCookie(cookie()->forever(Config::get('constant.TOKEN_COOKIE_NAME'), $token));;
     }
 }

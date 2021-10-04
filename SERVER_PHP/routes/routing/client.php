@@ -8,7 +8,7 @@ Route::get('/404', function(){
 
 Route::get("/test", function(){
     $input = collect(request()->merge([ 'sfđsf' => "asads"])->all())->filter()->all();
-    dd( $input);
+    dd( $input + 1);
 });
 
 

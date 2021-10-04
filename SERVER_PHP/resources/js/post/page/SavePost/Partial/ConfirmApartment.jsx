@@ -74,7 +74,7 @@ function ConfirmApartment( props ){
                                     </tr>
                                     <tr>
                                         <th scope="row">Nội dung bài đăng</th>
-                                        <td>{ data.content }</td>
+                                        <td dangerouslySetInnerHTML={{ __html: data.content }}  ></td>
                                     </tr>
                                 </tbody>
                             </table>
