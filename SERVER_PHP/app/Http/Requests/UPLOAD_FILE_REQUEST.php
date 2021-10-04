@@ -41,7 +41,7 @@ class UPLOAD_FILE_REQUEST extends FormRequest
         $RULE_TYPE = join(",",array_values($TYPE));
         return [
             'file.required' => 'Tệp tải lên phải được nhập',
-            'file.max'      => 'Tệp tải lên không được vượt quá 2MB',
+            'file.max'      => 'Tệp tải lên không được vượt quá 20MB',
             'type.in'       => 'Kiểu lưu trữ phải trong các định dạng sau : ' . $RULE_TYPE
         ];
     }

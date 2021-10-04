@@ -59,7 +59,7 @@ class FileController extends Controller
 
         $rules = array( 
             'file'   => [ "required", "array", "min:1", "max:4" ],
-            'file.*' => 'required|mimes:doc,docx|max:2048'
+            'file.*' => 'required|mimes:doc,docx|max:20480'
         );
         $message = array( 
             'file.required' => 'lỗi không tìm thấy file',
@@ -81,7 +81,7 @@ class FileController extends Controller
             // ];
             $rules = array( 
                 'file'   => [ "required" ],                                       // , "array", "min:1", "max:6"
-                'file.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+                'file.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:20480'
             );
             $message = array( 
                 'file.required' => 'lỗi không tìm thấy file',
