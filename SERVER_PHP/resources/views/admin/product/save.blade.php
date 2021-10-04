@@ -123,33 +123,11 @@ if( !$district_id ){
                     <textarea name="content" id="editor1" class="h-100">{{ old('content', $product->content) }}</textarea>
                 </div>
             </div>
-            <div class="row block-content">
-                <div class="col-12 bg-color-white shadows-1 px-3 py-3">
-                    <h2 class="title">site name SEO</h2>
-                    <input name="site_name" type="text" value="{{ old('site_name', $product->site_name) }}" />
-                </div>
-            </div>
-            <div class="row block-content">
-                <div class="col-12 bg-color-white shadows-1 px-3 py-3">
-                    <h2 class="title">hình ảnh SEO</h2>
-                    <div class="position-relative wrapper__selectImageWithCKFinder type-select-ckfinder__inline">
-                        <input name="image_seo" class="img__outputCKFinder jquery__append-out" type="text" 
-                            value="{{ old('image_seo', $product->image_seo) }}" 
-                            onblur="showImage__InputCKFinder( this.value, this )"
-                            onclick="this.setSelectionRange(0, this.value.length)"/>
-                        <button class="btn bg-cyan bd-cyan text-white btn-input-append" 
-                        type="button" onclick="selectImageWithCKFinder(this)">chọn ảnh</button>
-                    </div>
-                </div>
-            </div>
+            
             <div class="row block-content">
                 <div class="col-12 bg-color-white shadows-1 px-3 py-3">
                     <h2 class="title">Tải Danh sách hình ảnh</h2>
                     <div class="position-relative wrapper__selectImageWithCKFinder">
-                        {{-- <input name="image_seo" class="img__outputCKFinder jquery__append-out" type="text" 
-                            value="{{ old('image_seo', $product->image_seo) }}" 
-                            onblur="showImage__InputCKFinder( this.value, this )"
-                            onclick="this.setSelectionRange(0, this.value.length)"/> --}}
                         <button id="js__multiImageCKFinder" class="btn bg-cyan bd-cyan text-white btn-input-append" 
                         type="button" onclick="selectMultiImageWithCKFinder(this)">chọn ảnh</button>
                     </div>

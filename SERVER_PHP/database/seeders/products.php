@@ -120,7 +120,6 @@ class products extends Seeder
                 'price'           => '1.000.000.000',
                 'area'            => rand ( 1 , 100 ) . "00",
                 'commune_id'      => 24814,
-                'site_name'       => 'site_name ' . $product['title'],
                 'description_seo' => 'description_seo ' . $product['title'],
                 'view'            => rand(10 , 50),
                 'background'      => $product['image'],

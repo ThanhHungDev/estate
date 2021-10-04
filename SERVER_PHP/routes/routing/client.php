@@ -6,6 +6,12 @@ Route::get('/404', function(){
 })->name('CLIENT_404');
 
 
+Route::get("/test", function(){
+    $input = collect(request()->merge([ 'sfđsf' => "asads"])->all())->filter()->all();
+    dd( $input);
+});
+
+
 Route::group(['prefix' => '/','middleware' => [ 'HTML_MINIFIER']], function () { ///'READ_CACHE',
 
     Route::get('/',[ App\Http\Controllers\ClientController::class, 'index' ])->name('HOME_PAGE');

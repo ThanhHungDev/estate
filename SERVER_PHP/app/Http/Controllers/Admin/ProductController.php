@@ -72,8 +72,8 @@ class ProductController extends Controller
         ///setting data insert table product
         $productInput = $request->only(
             'category_id','commune_id', 'rating_id', 'rate_value', 'rate_review_body', 'title', 'slug', 'excerpt', 
-            'content', 'background', 'thumbnail', 'public', 'site_name', 'howto', 'showto',
-            'image_seo', 'images', 'description_seo', 'type', 'stylesheet', 'javascript',
+            'content', 'background', 'thumbnail', 'public', 'howto', 'showto',
+            'images', 'description_seo', 'type', 'stylesheet', 'javascript',
             'direction', 'direction_balcony', 'horizontal', 'area', 'price', 'unit_price', 'negotiate', 'extensions'
         );
 
@@ -101,7 +101,7 @@ class ProductController extends Controller
                     $productInput['title'],
                     $productInput['description_seo'],
                     $productInput['content'],
-                    $productInput['image_seo']
+                    $productInput['thumbnail']
                 )
             ];
         }else{

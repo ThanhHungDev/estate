@@ -48,18 +48,13 @@ class CreateProducts extends Migration
             $table->integer('unit_price')->default(Config::get("unit.PRICE.DEFAULT.VALUE")); /// triệu / m2 hay bao nhiêu trên sào hay tổng giá làm default nè
             $table->integer('negotiate')->default(Config::get("constant.NEGOTIATE.YES.VALUE")); // có thương lượng hay không
 
-            $table->string('home_number')->nullable();
-            $table->string('street')->nullable();
-
             $table->json('extensions')->default("[]"); /// là tiện ích mở rộng mà bạn muốn mở rộng ví dụ nhà thì có số phòng ngủ số tolet nhưng đất thì không
             
             $table->json('ldjson')->nullable();
             $table->integer('type')->default(Config::get('constant.TYPE-PRODUCT.HOUSE')); /// xác định là nhà hay đất
-            $table->integer('usertype')->default(Config::get('constant.POST_TYPE.SALE')); /// xác định đăng bài để bán / mua hay thuê / cho thuê
+            $table->integer('posttype')->default(Config::get('constant.POST_TYPE.SALE')); /// xác định đăng bài để bán / mua hay thuê / cho thuê
             $table->integer('sort')->default(-1);
             $table->integer('public')->default(1);
-            $table->string('site_name', 150)->nullable();
-            $table->string('image_seo', 510)->nullable();
             $table->string('description_seo', 255)->nullable();
             $table->timestamps();
         });

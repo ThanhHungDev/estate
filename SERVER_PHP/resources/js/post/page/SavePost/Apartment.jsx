@@ -81,13 +81,14 @@ function Apartment( props ){
             categories: category,
 
             /// dành cho user
-            user_commune_id: commune,
+            commune_id: commune,
             home_number: home_number,
             street: street,
             role: role, /// role là để xác định cái người này là cá nhân hay môi giới
 
             /// dành cho product 
-            category_id: category,
+            project_id: project.id,
+            category_id: category.id,
             posttype: type, /// xác định bài đăng thuộc thuê / cho thuê hay bán / mua 
             title: title,
             content: content,
@@ -101,11 +102,11 @@ function Apartment( props ){
             price: price, /// tổng giá của bất động sản
             unit_price: CONFIG.UNIT.PRICE.DEFAULT.VALUE, 
             negotiate: negotiate, 
-            extensions: { room, wc, bathroom }
+            extensions: { room, wc, bathroom, project, category }
         }
         if( project?.__isNew__ ){
             /// thêm mới project
-            formData.commune_id = project.commune /// thông qua project appartment
+            formData.product_commune_id = project.commune /// thông qua project appartment
         }
 
         userAPI
