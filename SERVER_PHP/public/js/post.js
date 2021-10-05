@@ -11011,11 +11011,12 @@ var AreaPrice = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(f
 
   var handleChange = function handleChange(event) {
     event.persist();
-    setTouched(_objectSpread(_objectSpread({}, touched), {}, _defineProperty({}, event.target.name, true)));
 
     var dataValues = _objectSpread(_objectSpread({}, values), {}, _defineProperty({}, event.target.name, event.target.value));
 
+    console.log(_objectSpread(_objectSpread({}, values), calcAreaPrice(event.target.name, dataValues)), "{ ...values, ...calcAreaPrice(event.target.name, dataValues) }-----" + event.target.value);
     setValues(_objectSpread(_objectSpread({}, values), calcAreaPrice(event.target.name, dataValues)));
+    setTouched(_objectSpread(_objectSpread({}, touched), {}, _defineProperty({}, event.target.name, true)));
   }; /// hook react
 
 

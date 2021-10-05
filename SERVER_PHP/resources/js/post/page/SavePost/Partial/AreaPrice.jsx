@@ -25,9 +25,11 @@ const AreaPrice = forwardRef((props, ref) => {
     const handleChange = (event) => {
         event.persist()
         
-        setTouched({ ...touched, [event.target.name]: true })
+        
         let dataValues = { ...values, [event.target.name]: event.target.value }
+        console.log( { ...values, ...calcAreaPrice(event.target.name, dataValues) } , "{ ...values, ...calcAreaPrice(event.target.name, dataValues) }-----" + event.target.value)
         setValues({ ...values, ...calcAreaPrice(event.target.name, dataValues) })
+        setTouched({ ...touched, [event.target.name]: true })
     }
 
     /// hook react
