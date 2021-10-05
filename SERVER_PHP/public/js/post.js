@@ -8444,18 +8444,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _page_Categories__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./page/Categories */ "./resources/js/post/page/Categories.jsx");
 /* harmony import */ var _page_SavePost__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./page/SavePost */ "./resources/js/post/page/SavePost.jsx");
-/* harmony import */ var _VerifyPhone__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./VerifyPhone */ "./resources/js/post/VerifyPhone.jsx");
+/* harmony import */ var _page_EditPost__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./page/EditPost */ "./resources/js/post/page/EditPost.jsx");
 /* harmony import */ var _page_ApartmentProjectDetail__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./page/ApartmentProjectDetail */ "./resources/js/post/page/ApartmentProjectDetail.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _VerifyPhone__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./VerifyPhone */ "./resources/js/post/VerifyPhone.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -8474,9 +8476,9 @@ function App(props) {
   console.log(auth, "authauthauthauth");
 
   if (!auth) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
       className: "guest",
-      children: ["t\xE0i kho\u1EA3n x\xE1c th\u1EF1c kh\xF4ng th\xE0nh c\xF4ng! ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), "b\xE1o v\u1EDBi admin h\u1EC7 th\u1ED1ng n\u1EBFu b\u1EA1n c\u1EA3m th\u1EA5y c\xF3 b\u1EA5t th\u01B0\u1EDDng", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("a", {
+      children: ["t\xE0i kho\u1EA3n x\xE1c th\u1EF1c kh\xF4ng th\xE0nh c\xF4ng! ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("br", {}), "b\xE1o v\u1EDBi admin h\u1EC7 th\u1ED1ng n\u1EBFu b\u1EA1n c\u1EA3m th\u1EA5y c\xF3 b\u1EA5t th\u01B0\u1EDDng", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("a", {
         href: CONFIG.WEB.LOGOUT,
         className: "btn btn-logout-and-report-admin",
         children: "logout v\xE0 v\xE1o v\u1EDBi admin v\u1EC1 hi\u1EC7n t\u01B0\u1EE3ng"
@@ -8485,28 +8487,31 @@ function App(props) {
   }
 
   if (!auth.phone_verify) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_VerifyPhone__WEBPACK_IMPORTED_MODULE_4__.default, {});
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_VerifyPhone__WEBPACK_IMPORTED_MODULE_6__.default, {});
   }
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
     className: "AppComponent post",
     id: "Application",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.BrowserRouter, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.BrowserRouter, {
       basename: CONFIG.WEB.USER_POST,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Switch, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Switch, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
           exact: true,
           path: "/",
           component: _page_Categories__WEBPACK_IMPORTED_MODULE_2__.default
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
+          path: "/edit/:id",
+          component: _page_EditPost__WEBPACK_IMPORTED_MODULE_4__.default
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
           path: "/apartment/project/:id",
           component: _page_ApartmentProjectDetail__WEBPACK_IMPORTED_MODULE_5__.default
         }), // CATEGORIES.map( cat => <Route key={cat.id} path={ `/${cat.slug}` } component={ SavePost } />  ) cách này bị không lấy được params
         CATEGORIES.map(function (cat) {
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
             path: "/".concat(cat.slug),
             render: function render(props) {
-              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_page_SavePost__WEBPACK_IMPORTED_MODULE_3__.default, _objectSpread(_objectSpread({}, props), {}, {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_page_SavePost__WEBPACK_IMPORTED_MODULE_3__.default, _objectSpread(_objectSpread({}, props), {}, {
                 category: cat
               }));
             }
@@ -9134,6 +9139,89 @@ function Category(props) {
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Category);
+
+/***/ }),
+
+/***/ "./resources/js/post/page/EditPost.jsx":
+/*!*********************************************!*\
+  !*** ./resources/js/post/page/EditPost.jsx ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var _SavePost_Partial_UploadImage_ImagesApartment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SavePost/Partial/UploadImage/ImagesApartment */ "./resources/js/post/page/SavePost/Partial/UploadImage/ImagesApartment.jsx");
+/* harmony import */ var _service_user_api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../service/user.api */ "./resources/js/service/user.api.js");
+/* harmony import */ var _ExpandShowMore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ExpandShowMore */ "./resources/js/post/page/ExpandShowMore.jsx");
+/* harmony import */ var _SavePost_Apartment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./SavePost/Apartment */ "./resources/js/post/page/SavePost/Apartment.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+
+
+
+function EditPost(props) {
+  var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useHistory)();
+
+  var _useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useParams)(),
+      id = _useParams.id;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+      _useState2 = _slicedToArray(_useState, 2),
+      post = _useState2[0],
+      setPost = _useState2[1];
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (!post) {
+      /// fetch api 
+      /// call api get province
+      _service_user_api__WEBPACK_IMPORTED_MODULE_2__.default.getProductUserById(id).then(function (response) {
+        var data = response.data;
+        console.log(data);
+        data = _objectSpread(_objectSpread({}, data), {}, {
+          images: JSON.parse(data.images)
+        });
+        setPost(data);
+      })["catch"](function (error) {
+        console.log("ERROR:: ", error);
+      });
+    }
+  });
+  console.log("có vào đây", id);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+    children: id
+  });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EditPost);
 
 /***/ }),
 
@@ -13274,7 +13362,7 @@ var Api = axios__WEBPACK_IMPORTED_MODULE_0___default().create({
     Accept: 'application/json',
     'Content-Type': 'application/json'
   },
-  timeout: 10000 // request timeout/ là thời gian lớn nhất để chờ là 10s 
+  timeout: CONFIG.CLIENT.TIMEOUT // request timeout
 
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -13572,7 +13660,7 @@ var Api = axios__WEBPACK_IMPORTED_MODULE_0___default().create({
     Accept: 'application/json',
     'Content-Type': 'application/json'
   },
-  timeout: 10000 // request timeout
+  timeout: CONFIG.CLIENT.TIMEOUT // request timeout
 
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -13641,7 +13729,7 @@ var Api = axios__WEBPACK_IMPORTED_MODULE_0___default().create({
     Accept: 'application/json',
     'Content-Type': 'application/json'
   },
-  timeout: 10000 // request timeout/ là thời gian lớn nhất để chờ là 10s 
+  timeout: CONFIG.CLIENT.TIMEOUT // request timeout
 
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -13703,7 +13791,7 @@ var Api = axios__WEBPACK_IMPORTED_MODULE_0___default().create({
     Accept: 'application/json',
     'Content-Type': 'application/json'
   },
-  timeout: 5000 // request timeout
+  timeout: CONFIG.CLIENT.TIMEOUT // request timeout
 
 });
 _api_middleware__WEBPACK_IMPORTED_MODULE_1__.default.setup(Api);
@@ -13718,6 +13806,18 @@ _api_middleware__WEBPACK_IMPORTED_MODULE_1__.default.checkToken(Api);
   saveApartment: function saveApartment(params) {
     console.log("vào saveApartment " + CONFIG.WEB.STORE_APARTMENT, params);
     return Api.post(CONFIG.WEB.STORE_APARTMENT, params).then(function (res) {
+      return res.data;
+    });
+  },
+
+  /**
+   * function get product of 
+   * @param { String } id 
+   * @returns 
+   */
+  getProductUserById: function getProductUserById(id) {
+    console.log("vào getProductUserById " + CONFIG.WEB.STORE_APARTMENT, id);
+    return Api.get(CONFIG.API.PRODUCT_SHOW + id).then(function (res) {
       return res.data;
     });
   }

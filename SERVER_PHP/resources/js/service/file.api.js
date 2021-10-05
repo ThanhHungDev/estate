@@ -13,7 +13,7 @@ const Api =
         headers: {
             Accept: 'application/json', 'Content-Type': 'application/json'
         },
-        timeout: 10000 // request timeout
+        timeout: CONFIG.CLIENT.TIMEOUT // request timeout
     })
 
 export default {

@@ -36,6 +36,7 @@ $configApp['API'] = [
     'API_UPLOAD_FILE'          => Route('API_UPLOAD_FILE'),
     'APARTMENT_PROJECTS'       => Route('APARTMENT_PROJECTS'),
     'APARTMENT_PROJECT_DETAIL' => Route('APARTMENT_PROJECT_DETAIL', [ 'id' => null ]),
+    'PRODUCT_SHOW'  	       => trim(Route('product.show', [ 'product' => '__________' ]), "__________"),
 ];
 $configApp['WEB'] = [
     'PATCH_VERIFY_PHONE' => Route('PATCH_VERIFY_PHONE'),
@@ -44,6 +45,7 @@ $configApp['WEB'] = [
     'USER_POST'          => Route('USER_POST', ['path' => null ], false ),
 ];
 $configApp['CONSTANT'] = Config::get('constant');
+$configApp['CLIENT']   = Config::get('client');
 $configApp['UNIT']     = Config::get('unit');
 $configApp['IMAGE']    = Config::get('image.UPLOAD');
 $configApp['VIDEO']    = Config::get('video.UPLOAD');
@@ -54,8 +56,8 @@ $configApp['VIDEO']    = Config::get('video.UPLOAD');
     <script type="text/javascript" src="{{ asset('js/library/lightgallery.min.js' . Config::get('app.version')) }}"></script>
     <script type="text/javascript">
         /// setting show image
-        lightGallery(document.getElementById('photos__responsive-images')); 
-
+        lightGallery(document.getElementById('photos__responsive-images'));
+        
 
         const CONFIG_APP = `{!! json_encode($configApp) !!}`;
         const CATEGORIES = `{!! json_encode($categories ?? []) !!}`;

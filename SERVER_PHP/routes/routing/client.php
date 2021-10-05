@@ -59,7 +59,7 @@ Route::group(['prefix' => '/','middleware' => [ 'HTML_MINIFIER']], function () {
         Route::get('/information', [ App\Http\Controllers\UserController::class, 'profile' ])->name('USER_INFORMATION');
         Route::get('/ajax-demo', [ App\Http\Controllers\UserController::class, 'getUserInfo' ])->name('USER_AJAX');
 
-
+        Route::resource('product', App\Http\Controllers\Api\ProductController::class, ['only' => ['show']]);
 
         Route::group(['prefix' => '/apartment'], function () {
         

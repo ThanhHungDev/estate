@@ -14,7 +14,7 @@ const Api =
         headers: {
             Accept: 'application/json', 'Content-Type': 'application/json'
         },
-        timeout: 5000 // request timeout
+        timeout: CONFIG.CLIENT.TIMEOUT // request timeout
     })
 
 interceptors.setup(Api)
@@ -30,5 +30,15 @@ export default {
         console.log("vào saveApartment " + CONFIG.WEB.STORE_APARTMENT, params)
         return Api.post(CONFIG.WEB.STORE_APARTMENT, params)
         .then(res => res.data )
-    }
+    },
+    /**
+     * function get product of 
+     * @param { String } id 
+     * @returns 
+     */
+    getProductUserById( id ) {
+        console.log("vào getProductUserById " + CONFIG.WEB.STORE_APARTMENT, id)
+        return Api.get(CONFIG.API.PRODUCT_SHOW + id )
+        .then(res => res.data )
+    },
 }

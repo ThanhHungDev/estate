@@ -4,8 +4,8 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Throwable;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Exceptions\TokenExpiredException;
@@ -50,7 +50,15 @@ class Handler extends ExceptionHandler
 
         /// api 
         if ($request->expectsJson()){
-            $this->renderable(function(TokenInvalidException $e, $request){
+            if($exception instanceof RouteNotFoundException) {
+                return response()
+                ->error(
+                    'Đường dẫn không hợp lệ', 
+                    ['error' => 'route_not_found'],
+                    Response::HTTP_NOT_FOUND
+                )
+                ->setStatusCode(Response::HTTP_NOT_FOUND);
+            }else if( $exception instanceof TokenInvalidException ){
                 return response()
                 ->error(
                     'Invalid token', 
@@ -58,8 +66,7 @@ class Handler extends ExceptionHandler
                     Response::HTTP_UNAUTHORIZED
                 )
                 ->setStatusCode(Response::HTTP_UNAUTHORIZED);
-            });
-            $this->renderable(function (TokenExpiredException $e, $request) {
+            }else if( $exception instanceof TokenExpiredException ){
                 return response()
                 ->error(
                     'Token has Expired', 
@@ -67,9 +74,7 @@ class Handler extends ExceptionHandler
                     Response::HTTP_UNAUTHORIZED
                 )
                 ->setStatusCode(Response::HTTP_UNAUTHORIZED);
-            });
-    
-            $this->renderable(function (JWTException $e, $request) {
+            }else if( $exception instanceof JWTException ){
                 return response()
                 ->error(
                     'Token not parsed', 
@@ -77,9 +82,7 @@ class Handler extends ExceptionHandler
                     Response::HTTP_UNAUTHORIZED
                 )
                 ->setStatusCode(Response::HTTP_UNAUTHORIZED);
-            });
-
-            $this->renderable(function (JWTException $e, $request) {
+            }else if( $exception instanceof Throwable ){
                 return response()
                 ->error(
                     'Lỗi chưa xác định', 
@@ -87,10 +90,7 @@ class Handler extends ExceptionHandler
                     Response::HTTP_INTERNAL_SERVER_ERROR
                 )
                 ->setStatusCode(Response::HTTP_INTERNAL_SERVER_ERROR);
-            });
+            }
         }
-
-        
-        
     }
 }
