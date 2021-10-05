@@ -118,7 +118,7 @@
                             <meta itemprop="worstRating" content="1" />
                         </div>
                         
-                        <div class="d-none" itemprop="review" itemtype="https://schema.org/Review" itemscope>
+                        {{-- <div class="d-none" itemprop="review" itemtype="https://schema.org/Review" itemscope>
                             <meta itemprop="datePublished" content="{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $product->created_at)->format('Y-m-d') }}" />
                             <meta itemprop="reviewBody" content="{{ $product->rate_review_body }}" />
                             <div itemprop="author" itemtype="https://schema.org/Person" itemscope>
@@ -130,7 +130,7 @@
                                 <meta itemprop="worstRating" content="1" />
                                 <meta itemprop="ratingValue" content="{{ $product->rate_value }}" />
                             </div>
-                        </div>
+                        </div> --}}
                         <div itemprop="offers" itemtype="https://schema.org/Offer" itemscope>
                             <meta itemprop="priceValidUntil" content="2022-08-25" />
                             <meta itemprop="price" content="{{ str_replace([".", "e", ","], "", $product->price ) }}" />
