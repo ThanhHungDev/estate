@@ -23,6 +23,7 @@ class ImageResource extends JsonResource
             'publish'        => $this->publish,
             'src'            => $this->src,
             'title'          => $this->title,
+            'root'           => $this->src,
             'IMAGE_RESIZE'   => Route('IMAGE_RESIZE', [ "size" => 'small', "type" => 'fit', 'imagePath' => $this->src ]),
             'IMAGE_COMPRESS' => Route('IMAGE_COMPRESS', ['quality' => '50', 'imagePath' => $this->src ]),
         ];

@@ -118,4 +118,78 @@ class ProductController extends Controller
             )
             ->setStatusCode(Response::HTTP_OK);
     }
+
+
+
+
+    /**
+     * update a resource in db.
+     *
+     * @param Request $request
+     * @return Product|\Illuminate\Database\Eloquent\Model
+     */
+    public function update(Request $request, $id )
+    {
+        $user = JWTAuth::parseToken()->authenticate();
+        // nếu null thì không lấy để update
+        $userInputUpdate = collect(request()->only('commune_id', 'home_number', 'street', 'role'))->filter()->all();
+        $user->fill($userInputUpdate);
+        $user->save();
+        /// create token jwt
+        $token = JWTAuth::fromUser($user);
+  
+        $productInput = collect($request->only(
+            'content', 'category_id', 'project_id', 'title', 'content',
+            'direction', 'direction_balcony', 'horizontal', 'vertical',
+            'area',  'price', 'unit_price', 'negotiate', 'type',
+            'posttype', 'public', 'extensions', 'description_seo',
+        ))->filter()->all();
+
+        $productInput['user_id']    = $user->id;
+        $productInput['commune_id'] = $request->input('product_commune_id', null);
+        $productInput['title']      = $productInput['title'] . "--" . date('Ymd-His-v');
+        $productInput['slug']       = SupportString::createSlug($productInput['title']);
+        $productInput['content']    = SupportString::createEmoji($productInput['content']);
+        ///
+        $productInput['text_content']    = SupportString::cleanText($productInput['content']);
+        $productInput['description_seo'] = SupportString::createDescription($productInput['title'], $productInput['text_content']);
+
+        $images = $request->input('images', [ 'root' => '/img/default.jpg']);
+        $firstImages = $images[0];
+        $productInput['background'] = $firstImages['root'];
+        $productInput['thumbnail']  = $firstImages['root'];
+        //// create
+        $production = Product::findOrFail($id);
+        $production->update($productInput);
+
+        /// save image
+        if( isset($images) ){
+            $pics = [];
+            foreach ($images as $key => $img) {
+                $pics[] = [
+                    'src'     => $img['root'],
+                    'alt'     => $productInput['title'],
+                    'key'     => $production->id,
+                    'title'   => $productInput['title'],
+                    'gallery' => Config::get("constant.GALARIES.PRODUCT")
+                ];
+            }
+            /// 
+            Picture::where('key', $production->id)->where( 'gallery', Config::get("constant.GALARIES.PRODUCT") )->delete();
+            Picture::insert($pics);
+        }
+
+        return response()
+                ->success(
+                    'update apartment thành công', 
+                    [
+                        'input'      => $request->all(),
+                        'production' => $production->toArray(),
+                        'token'      => $token
+                    ],
+                    Response::HTTP_OK
+                )
+                ->setStatusCode(Response::HTTP_OK)
+                ->withCookie(cookie()->forever(Config::get('constant.TOKEN_COOKIE_NAME'), $token));;
+    }
 }

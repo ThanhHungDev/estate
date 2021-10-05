@@ -52,7 +52,7 @@ function EditPost( props ){
                 } = user
 
                 const post = { 
-                    edit: true,
+                    edit: id,
                     category_id: category_id,
                     type: posttype.toString(), 
                     role: role, 

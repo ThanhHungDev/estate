@@ -9238,7 +9238,7 @@ function EditPost(props) {
             sale_type = user.sale_type,
             street = user.street;
         var post = {
-          edit: true,
+          edit: id,
           category_id: category_id,
           type: posttype.toString(),
           role: role,
