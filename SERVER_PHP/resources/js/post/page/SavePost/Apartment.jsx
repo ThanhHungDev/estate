@@ -64,6 +64,7 @@ function Apartment( props ){
         const { category, CONFIG } = props
         /// create progress
         setProgress(true)
+        window.scrollTo(0, refHeader.current.offsetTop)
         /// fetch api
         console.log( "dữ liệu lưu lên server", form )
         const { 

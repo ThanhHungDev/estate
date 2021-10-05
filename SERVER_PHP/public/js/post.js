@@ -9546,7 +9546,8 @@ function Apartment(props) {
     var category = props.category,
         CONFIG = props.CONFIG; /// create progress
 
-    setProgress(true); /// fetch api
+    setProgress(true);
+    window.scrollTo(0, refHeader.current.offsetTop); /// fetch api
 
     console.log("dữ liệu lưu lên server", form);
     var title = form.title,
