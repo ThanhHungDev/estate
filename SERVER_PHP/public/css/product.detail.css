@@ -19122,7 +19122,7 @@ ul.contact li a span {
 }
 
 .header {
-  max-width: 1300px;
+  max-width: 1500px;
   margin: 0 auto;
   background-color: #fff;
   position: relative;
@@ -19339,6 +19339,26 @@ ul.contact li a span {
   background-color: #6610f2;
   color: #fff;
   border: 2px solid #6610f2;
+  padding: 0;
+}
+@media (max-width: 768px) {
+  .navigate__link--btn {
+    margin-top: 20px;
+  }
+}
+.navigate__link--btn a {
+  display: block;
+  padding: 9px 20px 7px 20px;
+}
+@media (max-width: 991px) {
+  .navigate__link--btn a {
+    padding: 10px 10px 6px 10px;
+  }
+}
+@media (max-width: 768px) {
+  .navigate__link--btn a {
+    padding: 20px 10px 14px 10px;
+  }
 }
 .navigate__link--btn a, .navigate__link--btn span {
   color: unset;

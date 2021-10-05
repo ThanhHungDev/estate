@@ -340,54 +340,6 @@
 
 
 
-
-
-
-
-    <div class="workprocess">
-        <h2 id="workprocess" class="workprocess__title" tabindex="3" title="💥 Quy Trình Làm Việc">Quy Trình Làm Việc</h2>
-        @if (!$workprocess->isEmpty())
-            @foreach ($workprocess as $key => $work)
-            <div class="workprocess__step wow fadeInLeft" data-wow-duration="1s">
-                <span class="workprocess__step-number">{{ $key + 1 }}</span>
-                <div class="workprocess__step-content">
-                    <h3 class="workprocess__step-title">{{ $work->title }}</h3>
-                    <p>{!! $work->getExcerpt()  !!}</p>
-                </div>
-            </div>
-            @endforeach
-        @endif
-    </div>
-
-
-
-
-
-
-
-    <div id="rating__custommer" class="rating__comment lazyload">
-        <div class="rating__comment-wrapper">
-            <h3 class="rating__comment-title" id="rating__comment-tab" tabindex="4" title="💥 KHÁCH HÀNG NÓI VỀ CHÚNG TÔI">KHÁCH HÀNG NÓI VỀ CHÚNG TÔI</h3>
-            <div id="rating__comment-owl" class="owl-carousel owl-theme rating__comment-owl mt-5">
-                @foreach ($reviews as $key => $review)
-                <div class="item">
-                    <img class="owl-lazy item__avatar" data-src="{{ $review->avatar }}" alt="{{ $review->topic }}" >
-                    <i class="fad fa-quote-right"></i>
-                    <div class="item__title">{{ $review->topic }}</div>
-                    <div class="item__des">{{ $review->excerpt }}</div>
-                    <div class="item__author">{!! $review->author !!}</div>
-                </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
-    
-
-
-
-
-
-
     @if (!$posts->isEmpty())
     <div class="news">
         <h3 class="news-title" title="💥 Tin tức bất động sản">Tin tức bất động sản</h3>
