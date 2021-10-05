@@ -104,7 +104,12 @@
    
 
     <div class="content__product product bg__product--detail" itemscope itemtype="https://schema.org/Article">
-
+        <div class="d-none" itemtype="https://schema.org/AggregateRating" itemscope>
+            <meta itemprop="reviewCount" content="{{ SupportString::createRateValueByDate($product->id) }}" />
+            <meta itemprop="ratingValue" content="{{ $product->rate_value }}" />
+            <meta itemprop="bestRating" content="5" />
+            <meta itemprop="worstRating" content="1" />
+        </div>
         
         <div class="d-none" itemprop="review" itemtype="https://schema.org/Review" itemscope>
             <meta itemprop="datePublished" content="{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $product->created_at)->format('Y-m-d') }}" />
@@ -307,12 +312,12 @@
                                             <div class="d-none" itemprop="brand" itemtype="https://schema.org/Brand" itemscope>
                                                 <meta itemprop="name" content="{{ Config::get('app.company_name') }}" />
                                             </div>
-                                            <div class="d-none" itemprop="aggregateRating" itemtype="https://schema.org/AggregateRating" itemscope>
+                                            {{-- <div class="d-none" itemprop="aggregateRating" itemtype="https://schema.org/AggregateRating" itemscope>
                                                 <meta itemprop="reviewCount" content="{{ SupportString::createRateValueByDate($product->id) }}" />
                                                 <meta itemprop="ratingValue" content="{{ $product->rate_value }}" />
                                                 <meta itemprop="bestRating" content="5" />
                                                 <meta itemprop="worstRating" content="1" />
-                                            </div>
+                                            </div> --}}
                                             
                                             <div class="d-none" itemprop="review" itemtype="https://schema.org/Review" itemscope>
                                                 <meta itemprop="datePublished" content="{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $product->created_at)->format('Y-m-d') }}" />
