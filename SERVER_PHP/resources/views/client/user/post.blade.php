@@ -36,11 +36,12 @@ $configApp['API'] = [
     'API_UPLOAD_FILE'          => Route('API_UPLOAD_FILE'),
     'APARTMENT_PROJECTS'       => Route('APARTMENT_PROJECTS'),
     'APARTMENT_PROJECT_DETAIL' => Route('APARTMENT_PROJECT_DETAIL', [ 'id' => null ]),
-    'PRODUCT_SHOW'  	       => trim(Route('product.show', [ 'product' => '__________' ]), "__________"),
+    'PRODUCT_SHOW'             => trim(Route('product.show', [ 'product' => '__________' ]), "__________"),
+    'APARTMENT_STORE'          => Route('product.store'),
+    'APARTMENT_UPDATE'         => trim(Route('product.update', [ 'product' => '__________' ]), "__________"),
 ];
 $configApp['WEB'] = [
     'PATCH_VERIFY_PHONE' => Route('PATCH_VERIFY_PHONE'),
-    'STORE_APARTMENT'    => Route('STORE_APARTMENT'),
     'LOGOUT'             => Route('LOGOUT'),
     'USER_POST'          => Route('USER_POST', ['path' => null ], false ),
 ];

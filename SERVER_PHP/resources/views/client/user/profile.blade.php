@@ -300,10 +300,7 @@
                                     <a class="card-link" href="{{ Route('USER_POST') }}/edit/{{ $product->id }}">
                                         <h5 class="card-title">{{ $product->title }}</h5>
                                     </a>
-                                    <p class="card-text">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam sunt fugit reprehenderit consectetur exercitationem odio, quam nobis? Officiis, similique, harum voluptate, facilis voluptas pariatur dolorum tempora sapiente eius maxime quaerat.
-                                        <a href="https://mega.nz/#!1J01nRIb!lMZ4B_DR2UWi9SRQK5TTzU1PmQpDtbZkMZjAIbv97hU" target="_blank">https://mega.nz/#!1J01nRIb!lMZ4B_DR2UWi9SRQK5TTzU1PmQpDtbZkMZjAIbv97hU</a>
-                                    </p>
+                                    <div class="card-text">{!! $product->content !!}</div>
                                 </div>
                                 <div class="card-footer">
                                     <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>

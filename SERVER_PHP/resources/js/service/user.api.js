@@ -26,10 +26,16 @@ export default {
         return Api.patch(CONFIG.WEB.PATCH_VERIFY_PHONE, params)
         .then(res => res.data )
     },
-    saveApartment(params) {
-        console.log("vào saveApartment " + CONFIG.WEB.STORE_APARTMENT, params)
-        return Api.post(CONFIG.WEB.STORE_APARTMENT, params)
-        .then(res => res.data )
+    saveApartment(params ) {
+        console.log("vào saveApartment ", params)
+        if( !params.edit ){
+            return Api.post(CONFIG.API.APARTMENT_STORE, params)
+            .then(res => res.data )
+        }else{
+            return Api.patch(CONFIG.API.APARTMENT_UPDATE + params.edit, params)
+            .then(res => res.data )
+        }
+        
     },
     /**
      * function get product of 
@@ -37,7 +43,7 @@ export default {
      * @returns 
      */
     getProductUserById( id ) {
-        console.log("vào getProductUserById " + CONFIG.WEB.STORE_APARTMENT, id)
+        console.log("vào getProductUserById " + CONFIG.WEB.PRODUCT_SHOW, id)
         return Api.get(CONFIG.API.PRODUCT_SHOW + id )
         .then(res => res.data )
     },

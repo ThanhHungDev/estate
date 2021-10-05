@@ -59,12 +59,7 @@ Route::group(['prefix' => '/','middleware' => [ 'HTML_MINIFIER']], function () {
         Route::get('/information', [ App\Http\Controllers\UserController::class, 'profile' ])->name('USER_INFORMATION');
         Route::get('/ajax-demo', [ App\Http\Controllers\UserController::class, 'getUserInfo' ])->name('USER_AJAX');
 
-        Route::resource('product', App\Http\Controllers\Api\ProductController::class, ['only' => ['show']]);
-
-        Route::group(['prefix' => '/apartment'], function () {
-        
-            Route::post('/', [ App\Http\Controllers\Post\ApartmentController::class, 'store' ])->name('STORE_APARTMENT');
-        });
+        Route::resource('product', App\Http\Controllers\Api\ProductController::class, ['only' => ['show', 'store', 'update' ]]);
     });
 
     // Route::get('/article/{slug?}',[ App\Http\Controllers\ClientController::class, 'viewPostArticle' ])->name('VIEW_POST_ARTICLE');

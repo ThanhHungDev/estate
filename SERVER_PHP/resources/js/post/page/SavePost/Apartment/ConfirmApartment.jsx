@@ -99,6 +99,8 @@ function ConfirmApartment( props ){
         if( contents.every( item => !item.value ) ){
             return null
         }
+       
+        
         return (
             <li>
                 <a className="h6 text-capitalize font-weight-bold">Diện Tích / Giá</a>
@@ -108,10 +110,10 @@ function ConfirmApartment( props ){
                             <table className="table table-bordered table-hover">
                                 <tbody>
                                     {
-                                        contents.filter(item => !item.value )
+                                        contents.filter(item => !!item.value )
                                         .map( item => {
                                             return(
-                                                <tr>
+                                                <tr key={item.value}>
                                                     <th scope="row">{ item.text }</th>
                                                     <td>{ item.value }</td>
                                                 </tr>

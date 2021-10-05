@@ -59,7 +59,7 @@ class FileController extends Controller
 
         $rules = array( 
             'file'   => [ "required", "array", "min:1", "max:4" ],
-            'file.*' => 'required|mimes:doc,docx|max:20480'
+            'file.*' => 'required|mimes:doc,docx|max:51200'
         );
         $message = array( 
             'file.required' => 'lỗi không tìm thấy file',
@@ -67,7 +67,7 @@ class FileController extends Controller
             'file.min'      => 'array ít nhất là 1',
             'file.max'      => 'array nhiều nhất là 4',
             'file.*.mimes'  => 'Không đúng định dạng cần thiết',
-            'file.*.max'    => 'file không được vượt quá 2048Byte',
+            'file.*.max'    => 'file không được vượt quá 50MB',
         );
         /// check người dùng đẩy lên upload có phải image hông
         if(FileController::isUploadImage($request)){
@@ -81,7 +81,7 @@ class FileController extends Controller
             // ];
             $rules = array( 
                 'file'   => [ "required" ],                                       // , "array", "min:1", "max:6"
-                'file.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:20480'
+                'file.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:51200'
             );
             $message = array( 
                 'file.required' => 'lỗi không tìm thấy file',
@@ -90,7 +90,7 @@ class FileController extends Controller
                 'file.max'      => 'array nhiều nhất là 4',
                 'file.*.mimes'  => 'Không đúng định dạng cần thiết',
                 'file.*.image'  => 'Không đúng định dạng ảnh',
-                'file.*.max'    => 'file không được vượt quá 2048Byte',
+                'file.*.max'    => 'file không được vượt quá 50MB',
             );
         }else if( FileController::isUploadVideo($request)){
             

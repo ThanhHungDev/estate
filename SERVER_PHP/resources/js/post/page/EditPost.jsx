@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { connect } from "react-redux"
 import { Link } from "react-router-dom"
 import { useParams } from 'react-router'
 import { useHistory } from "react-router-dom"
@@ -6,6 +7,7 @@ import ImagesApartment from './SavePost/Partial/UploadImage/ImagesApartment'
 import userAPI from "../../service/user.api"
 import ExpandShowMore from "./ExpandShowMore"
 import Apartment from "./SavePost/Apartment"
+import SavePost from "./SavePost"
 
 function EditPost( props ){
 
@@ -21,9 +23,56 @@ function EditPost( props ){
             userAPI.getProductUserById(id)
             .then( response => {
                 const { data } = response
-                console.log(data)
-                
-                setPost(data)
+                const { product, user, images } = data
+
+                const {
+                    category_id,
+                    commune_id,
+                    content,
+                    direction,
+                    direction_balcony,
+                    extensions,
+                    horizontal,
+                    vertical,
+                    negotiate,
+                    posttype,
+                    price,
+                    text_content,
+                    title,
+                    type,
+                    area,
+                } = product
+
+                const {
+                    // commune_id,
+                    home_number,
+                    role,
+                    sale_type,
+                    street,
+                } = user
+
+                const post = { 
+                    edit: true,
+                    category_id: category_id,
+                    type: posttype.toString(), 
+                    role: role, 
+                    title: title, 
+                    content: content, 
+                    contentText: text_content,
+                    images: images,
+                    area: area,
+                    horizontal: horizontal,
+                    price: price,
+                    vertical: vertical,
+                    bathroom: extensions.bathroom,
+                    direction: direction,
+                    direction_balcony: direction_balcony,
+                    negotiate: negotiate,
+                    room: extensions.room,
+                    wc: extensions.wc,
+                    project: extensions.project
+                }
+                setPost(post)
             })
             .catch(error => {
                 setError( error )
@@ -48,11 +97,22 @@ function EditPost( props ){
             </div>
         )
     }
+
+    const category = props.CATEGORIES.find( cat => cat.id == post?.category_id )
     
-    return <div>
-        { post?.title }
-    </div>
+    if( !category ){
+        return null
+    }
+
+    return <SavePost {...props } category={category} OLD={ post }/>
 }
 
 
-export default EditPost
+let mapStateToProps = (state) => {
+    return {
+        auth      : state.auth,
+        CATEGORIES: state.categories,
+        CONFIG    : state.config,
+    }
+}
+export default connect(mapStateToProps)(EditPost)

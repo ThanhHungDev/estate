@@ -22,6 +22,7 @@ import userAPI from "../../../service/user.api"
 /// lưu căn hộ chung cư
 function Apartment( props ){
 
+    
     const [ form, setForm ]         = useState( props.OLD ?? {})
     const [ state, updateState]     = useState({})
     const [ progress, setProgress ] = useState(false)
@@ -29,6 +30,7 @@ function Apartment( props ){
     const [ error, setError ]       = useState(false)
 
     // let refRolePost = React.createRef()
+    const refHeader        = useRef()
     const refType          = useRef()
     const refUserPostInfor = useRef()
     const refRoleUser      = useRef()
@@ -182,7 +184,7 @@ function Apartment( props ){
                 SW.nextStep()
             }
         }
-        
+        window.scrollTo(0, refHeader.current.offsetTop)
     }
     
     /// ban đầu state là {} => SW là undefine
@@ -200,7 +202,7 @@ function Apartment( props ){
     return (
         <div className="apartment" style={{ minHeight: device.calcHeightSubtractHeight + "px" }}>
 
-            <div className={ "apartment__wrapper d-none " + ( progress && 'd-block') }>
+            <div ref={refHeader} className={ "apartment__wrapper d-none " + ( progress && 'd-block') }>
                 <p>
                     Đang lưu trữ dữ liện lên server
                 </p>
@@ -216,7 +218,7 @@ function Apartment( props ){
             
             <div className={ "apartment__wrapper " + ( progress && 'd-none') }>
                 <StepWizard
-                    isHashEnabled
+                    // isHashEnabled
                     onStepChange={onStepChange}
                     instance={setInstance} 
                 >

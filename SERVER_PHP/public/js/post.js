@@ -9154,12 +9154,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
-/* harmony import */ var _SavePost_Partial_UploadImage_ImagesApartment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SavePost/Partial/UploadImage/ImagesApartment */ "./resources/js/post/page/SavePost/Partial/UploadImage/ImagesApartment.jsx");
-/* harmony import */ var _service_user_api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../service/user.api */ "./resources/js/service/user.api.js");
-/* harmony import */ var _ExpandShowMore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ExpandShowMore */ "./resources/js/post/page/ExpandShowMore.jsx");
-/* harmony import */ var _SavePost_Apartment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./SavePost/Apartment */ "./resources/js/post/page/SavePost/Apartment.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var _SavePost_Partial_UploadImage_ImagesApartment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SavePost/Partial/UploadImage/ImagesApartment */ "./resources/js/post/page/SavePost/Partial/UploadImage/ImagesApartment.jsx");
+/* harmony import */ var _service_user_api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../service/user.api */ "./resources/js/service/user.api.js");
+/* harmony import */ var _ExpandShowMore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ExpandShowMore */ "./resources/js/post/page/ExpandShowMore.jsx");
+/* harmony import */ var _SavePost_Apartment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./SavePost/Apartment */ "./resources/js/post/page/SavePost/Apartment.jsx");
+/* harmony import */ var _SavePost__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./SavePost */ "./resources/js/post/page/SavePost.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -9183,10 +9191,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function EditPost(props) {
-  var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useHistory)();
 
-  var _useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useParams)(),
+
+function EditPost(props) {
+  var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.useHistory)();
+
+  var _useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.useParams)(),
       id = _useParams.id;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
@@ -9203,10 +9213,52 @@ function EditPost(props) {
     if (!post && !error) {
       /// fetch api 
       /// call api get province
-      _service_user_api__WEBPACK_IMPORTED_MODULE_2__.default.getProductUserById(id).then(function (response) {
+      _service_user_api__WEBPACK_IMPORTED_MODULE_3__.default.getProductUserById(id).then(function (response) {
         var data = response.data;
-        console.log(data);
-        setPost(data);
+        var product = data.product,
+            user = data.user,
+            images = data.images;
+        var category_id = product.category_id,
+            commune_id = product.commune_id,
+            content = product.content,
+            direction = product.direction,
+            direction_balcony = product.direction_balcony,
+            extensions = product.extensions,
+            horizontal = product.horizontal,
+            vertical = product.vertical,
+            negotiate = product.negotiate,
+            posttype = product.posttype,
+            price = product.price,
+            text_content = product.text_content,
+            title = product.title,
+            type = product.type,
+            area = product.area;
+        var home_number = user.home_number,
+            role = user.role,
+            sale_type = user.sale_type,
+            street = user.street;
+        var post = {
+          edit: true,
+          category_id: category_id,
+          type: posttype.toString(),
+          role: role,
+          title: title,
+          content: content,
+          contentText: text_content,
+          images: images,
+          area: area,
+          horizontal: horizontal,
+          price: price,
+          vertical: vertical,
+          bathroom: extensions.bathroom,
+          direction: direction,
+          direction_balcony: direction_balcony,
+          negotiate: negotiate,
+          room: extensions.room,
+          wc: extensions.wc,
+          project: extensions.project
+        };
+        setPost(post);
       })["catch"](function (error) {
         setError(error);
         console.log("ERROR:: ", error);
@@ -9215,27 +9267,27 @@ function EditPost(props) {
   });
 
   if (error) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
       className: "post__edit--error",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
         className: "alert alert-warning mt-3",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("b", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("b", {
             children: "Kh\xF4ng t\xECm th\u1EA5y b\xE0i \u0111\u0103ng ho\u1EB7c kh\xF4ng c\xF3 quy\u1EC1n ch\u1EC9nh s\u1EEDa!"
           })
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h5", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h5", {
         className: "h5 text-color-pink pt-2 pb-4",
         children: "H\u1EC7 th\u1ED1ng kh\xF4ng th\u1EC3 c\u1EA5p ph\xE9p ch\u1EC9nh s\u1EEDa: "
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
         className: "alert alert-info mt-3",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("b", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("b", {
             children: "Xin l\u1ED7i v\u1EC1 s\u1EF1 c\u1ED1 v\u1EEBa s\u1EA3y ra:"
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("ul", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("li", {
-            children: ["N\u1EBFu b\u1EA1n ph\xE1t hi\u1EC7n \u0111i\u1EC1u b\u1EA5t th\u01B0\u1EDDng do l\u1ED7i h\u1EC7 th\u1ED1ng vui l\xF2ng b\xE1o c\xE1o v\u1EDBi \u0111i\u1EC1u n\xE0y \u0111\u1EBFn qu\u1EA3n tr\u1ECB vi\xEAn \u0111\u1EC3 \u0111\u01B0\u1EE3c h\u01B0\u1EDFng \u01B0u \u0111\xE3i ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("ul", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("li", {
+            children: ["N\u1EBFu b\u1EA1n ph\xE1t hi\u1EC7n \u0111i\u1EC1u b\u1EA5t th\u01B0\u1EDDng do l\u1ED7i h\u1EC7 th\u1ED1ng vui l\xF2ng b\xE1o c\xE1o v\u1EDBi \u0111i\u1EC1u n\xE0y \u0111\u1EBFn qu\u1EA3n tr\u1ECB vi\xEAn \u0111\u1EC3 \u0111\u01B0\u1EE3c h\u01B0\u1EDFng \u01B0u \u0111\xE3i ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
               className: "text-color-red",
               children: " VIP "
             })]
@@ -9245,12 +9297,29 @@ function EditPost(props) {
     });
   }
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-    children: post === null || post === void 0 ? void 0 : post.title
+  var category = props.CATEGORIES.find(function (cat) {
+    return cat.id == (post === null || post === void 0 ? void 0 : post.category_id);
   });
+
+  if (!category) {
+    return null;
+  }
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_SavePost__WEBPACK_IMPORTED_MODULE_6__.default, _objectSpread(_objectSpread({}, props), {}, {
+    category: category,
+    OLD: post
+  }));
 }
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (EditPost);
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    auth: state.auth,
+    CATEGORIES: state.categories,
+    CONFIG: state.config
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps)(EditPost));
 
 /***/ }),
 
@@ -9334,56 +9403,14 @@ function SavePost(props) {
   var form = props.form,
       history = props.history,
       match = props.match,
-      category = props.category;
+      category = props.category,
+      OLD = props.OLD;
 
   switch (category.slug) {
     case 'can-ho-chung-cu':
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_SavePost_Apartment__WEBPACK_IMPORTED_MODULE_1__.default, {
         category: category,
-        OLD: {
-          type: "4",
-          role: "2",
-          title: "hùng nè",
-          content: "<p>sdfsdf</p>\n<p>sdf</p>\n<p>ds</p>\n<p>fs</p>\n<p>df</p>\n<p>ds</p>\n",
-          contentText: "234243",
-          images: [{
-            root: '/uploads/images/post/1633336359Background.png',
-            IMAGE_RESIZE: '/resizes/small/fit//uploads/images/post/1633336359Background.png'
-          }],
-          area: "120",
-          horizontal: "2",
-          price: "1000000000",
-          vertical: "60",
-          bathroom: 3,
-          direction: 4,
-          direction_balcony: 5,
-          negotiate: 2,
-          room: 2,
-          wc: 2,
-          project: {
-            address: "đường Đồng Văn Cống",
-            address2: "Quận 2 - Thành phố Thủ Đức, Tp Hồ Chí Minh",
-            area_total: null,
-            currentTarget: {
-              value: 1356
-            },
-            id: 1356,
-            introduction: "<p><strong>1. Vị trí:</strong></p><p style=\"padding-left: 30px;\">Nhà Phố Shophouse D2Eight ở vị trí 4 mặt&nbsp; tiền đường Đồng Văn Cống-đường Phan Văn Đáng- đường Nguyễn Thanh Sơn, ngay cạnh dự án Vista Verde</p><p><strong>2. Tiện ích:</strong></p><p style=\"padding-left: 30px;\">Đang cập nhật</p><p><strong>3. Chủ đầu tư:</strong></p><ul><li>Công ty TNHH CapitaLand</li><li>Các dự án khác:&nbsp;The Vista, Vista Verde, Parcspring, The Krista (TP HCM), Mulberry Lane, Seasons Avenue (Hà Nội)...&nbsp;</li></ul><p><strong>4. Chính sách ưu đãi:</strong></p><p style=\"padding-left: 30px;\">Đang cập nhật</p><p><strong>5. Quy mô:</strong></p><ul><li>Tổng diện tích: 3,326m2.</li><li>Quy Mô: 28 căn nhà phố shophouse.</li><li>Diện tích xây dựng mỗi căn: 531 - 735m2.</li><li>Số tầng 8 tầng: 1 hầm, 1 trệt, 1 lửng, 4 lầu, 1 gác mái.</li></ul><p><strong>6. Tiến độ dự án:</strong></p><ul><li>Năm khởi công: 12/03/2018</li><li>Thời gian hoàn thành: 2019</li><li>Thời gian bàn giao: Cuối tháng 05/2019</li></ul>",
-            label: "Nhà phố Shophouse D2Eight",
-            name: "Nhà phố Shophouse D2Eight",
-            process: "Đã hoàn thành",
-            "public": 1,
-            short_introduction: "<p><strong>1. Vị trí:</strong></p><p style=\"padding-left: 30px;\">Nhà Phố Shophouse D2Eight ở vị trí 4 mặt&nbsp; tiền đường Đồng Văn Cống-đường Phan Văn Đáng- đường Nguyễn Thanh Sơn, ngay cạnh dự án Vista Verde</p><p><strong>2. Tiện ích:</strong></p><p style=\"padding-left: 30px;\">Đang cập nhật</p><p><strong>3. Chủ đầu tư:</strong></p><ul><li>Công ty TNHH CapitaLand</li><li>Các dự án khác:&nbsp;The Vista, Vista Verde, Parcspring, The Krista (TP HCM), Mulberry Lane, Seasons Avenue (Hà Nội)...&nbsp;</li></ul>",
-            slug: "nha-pho-shophouse-d2eight",
-            target: {
-              name: 'project',
-              value: 1356
-            },
-            type: "Khu dân cư",
-            type_id: 2,
-            value: 1356
-          }
-        }
+        OLD: OLD
       });
 
     default:
@@ -9493,6 +9520,7 @@ function Apartment(props) {
       setError = _useState10[1]; // let refRolePost = React.createRef()
 
 
+  var refHeader = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   var refType = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   var refUserPostInfor = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   var refRoleUser = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
@@ -9669,6 +9697,8 @@ function Apartment(props) {
         SW.nextStep();
       }
     }
+
+    window.scrollTo(0, refHeader.current.offsetTop);
   }; /// ban đầu state là {} => SW là undefine
 
 
@@ -9693,6 +9723,7 @@ function Apartment(props) {
       minHeight: device.calcHeightSubtractHeight + "px"
     },
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsxs)("div", {
+      ref: refHeader,
       className: "apartment__wrapper d-none " + (progress && 'd-block'),
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("p", {
         children: "\u0110ang l\u01B0u tr\u1EEF d\u1EEF li\u1EC7n l\xEAn server"
@@ -9709,8 +9740,8 @@ function Apartment(props) {
       parentCallback: continueStep
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("div", {
       className: "apartment__wrapper " + (progress && 'd-none'),
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsxs)((react_step_wizard__WEBPACK_IMPORTED_MODULE_2___default()), {
-        isHashEnabled: true,
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsxs)((react_step_wizard__WEBPACK_IMPORTED_MODULE_2___default()) // isHashEnabled
+      , {
         onStepChange: onStepChange,
         instance: setInstance,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Partial_TypePost__WEBPACK_IMPORTED_MODULE_11__.default, {
@@ -9972,7 +10003,7 @@ function ConfirmApartment(props) {
               className: "table table-bordered table-hover",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("tbody", {
                 children: contents.filter(function (item) {
-                  return !item.value;
+                  return !!item.value;
                 }).map(function (item) {
                   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("tr", {
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
@@ -9981,7 +10012,7 @@ function ConfirmApartment(props) {
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
                       children: item.value
                     })]
-                  });
+                  }, item.value);
                 })
               })
             })
@@ -11590,11 +11621,10 @@ var GalleryPost = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState6 = _slicedToArray(_useState5, 2),
       videos = _useState6[0],
-      setVideos = _useState6[1];
-
-  console.log(images); // function onChangeRadio(e){
+      setVideos = _useState6[1]; // function onChangeRadio(e){
   //     setRole(e.currentTarget.value)
   // }
+
 
   function childChangeImagesParent(images) {
     setImages(images);
@@ -11836,7 +11866,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var TypePost = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(function (props, ref) {
-  /// init state
+  var CONFIG = props.CONFIG; /// init state
+
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(props.OLD.type || CONFIG.CONSTANT.POST_TYPE.SALE),
       _useState2 = _slicedToArray(_useState, 2),
       type = _useState2[0],
@@ -11846,8 +11877,6 @@ var TypePost = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(fu
       _useState4 = _slicedToArray(_useState3, 2),
       isValid = _useState4[0],
       setIsValid = _useState4[1];
-
-  var CONFIG = props.CONFIG;
 
   function onChangeRadio(e) {
     setType(e.currentTarget.value);
@@ -13830,10 +13859,17 @@ _api_middleware__WEBPACK_IMPORTED_MODULE_1__.default.checkToken(Api);
     });
   },
   saveApartment: function saveApartment(params) {
-    console.log("vào saveApartment " + CONFIG.WEB.STORE_APARTMENT, params);
-    return Api.post(CONFIG.WEB.STORE_APARTMENT, params).then(function (res) {
-      return res.data;
-    });
+    console.log("vào saveApartment ", params);
+
+    if (!params.edit) {
+      return Api.post(CONFIG.API.APARTMENT_STORE, params).then(function (res) {
+        return res.data;
+      });
+    } else {
+      return Api.patch(CONFIG.API.APARTMENT_UPDATE + params.edit, params).then(function (res) {
+        return res.data;
+      });
+    }
   },
 
   /**
@@ -13842,7 +13878,7 @@ _api_middleware__WEBPACK_IMPORTED_MODULE_1__.default.checkToken(Api);
    * @returns 
    */
   getProductUserById: function getProductUserById(id) {
-    console.log("vào getProductUserById " + CONFIG.WEB.STORE_APARTMENT, id);
+    console.log("vào getProductUserById " + CONFIG.WEB.PRODUCT_SHOW, id);
     return Api.get(CONFIG.API.PRODUCT_SHOW + id).then(function (res) {
       return res.data;
     });

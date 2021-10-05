@@ -2,10 +2,11 @@ import React, { useState, forwardRef, useRef, useImperativeHandle } from 'react'
 
 
 const TypePost = forwardRef((props, ref) => {
+    const { CONFIG } = props
     /// init state
     const [ type, setType ] = useState( props.OLD.type || CONFIG.CONSTANT.POST_TYPE.SALE )
     const [ isValid, setIsValid ] = useState( null )
-    const { CONFIG } = props
+    
 
     function onChangeRadio(e){
 
@@ -30,6 +31,7 @@ const TypePost = forwardRef((props, ref) => {
             }
         }),
     )
+
     return(
         <div className="user-type position-relative">
             <h5 className="user-type__title pt-2 pb-4">Bạn đăng bài để: </h5>

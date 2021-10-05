@@ -14,7 +14,7 @@ const GalleryPost = forwardRef((props, ref) => {
     const [ videos, setVideos ] = useState( [] )
     
 
-    console.log( images )
+    
     // function onChangeRadio(e){
 
     //     setRole(e.currentTarget.value)
