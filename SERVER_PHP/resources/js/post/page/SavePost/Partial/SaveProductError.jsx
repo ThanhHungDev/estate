@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-function SaveApartmentError( props ){
+function SaveProductError( props ){
 
     return (
         <div className="post__saved--success">
@@ -20,4 +20,4 @@ function SaveApartmentError( props ){
         </div>
     )
 }
-export default SaveApartmentError
+export default SaveProductError

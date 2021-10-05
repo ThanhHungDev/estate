@@ -4,8 +4,6 @@ import StepWizard from "react-step-wizard"
 
 import HeaderApartment from "./Apartment/HeaderApartment"
 import FooterApartment from "./Apartment/FooterApartment"
-import SaveApartmentSuccess from "./Apartment/SaveApartmentSuccess"
-import SaveApartmentError from "./Apartment/SaveApartmentError"
 import InfoApartment from "./Apartment/InfoApartment"
 import ConfirmApartment from "./Apartment/ConfirmApartment"
 import OrtherInforApartment from "./Apartment/OrtherInforApartment"
@@ -16,6 +14,9 @@ import RoleUser from "./Partial/RoleUser"
 import GalleryPost from "./Partial/GalleryPost"
 import AreaPrice from "./Partial/AreaPrice"
 import ContentTitle from "./Partial/ContentTitle"
+
+import SaveProductSuccess from "./Partial/SaveProductSuccess"
+import SaveProductError from "./Partial/SaveProductError"
 
 import userAPI from "../../../service/user.api"
 
@@ -72,10 +73,12 @@ function Apartment( props ){
             role,
             type,
             project,
-            images, videos
+            images, videos,
+            edit
         } = form
 
         const formData = {
+            edit: edit,
             project, //// ===========> đặc biệt cái field này dùng trong đây để đẩy lên tính riêng nha
             images, 
             videos,
@@ -192,11 +195,11 @@ function Apartment( props ){
     const { CONFIG, AUTH, device } = props
 
     if( success ){
-        return <SaveApartmentSuccess />
+        return <SaveProductSuccess />
     }
 
     if( error ){
-        return <SaveApartmentError error={JSON.stringify(error)} />
+        return <SaveProductError error={JSON.stringify(error)} />
     }
 
     return (

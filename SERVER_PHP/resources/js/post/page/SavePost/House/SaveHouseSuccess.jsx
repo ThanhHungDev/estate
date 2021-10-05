@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-function SaveApartmentSuccess( props ){
+function SaveProductSuccess( props ){
 
     return (
         <div className="post__saved--success">
@@ -28,4 +28,4 @@ function SaveApartmentSuccess( props ){
         </div>
     )
 }
-export default SaveApartmentSuccess
+export default SaveProductSuccess

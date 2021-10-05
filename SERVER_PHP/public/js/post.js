@@ -9439,17 +9439,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_step_wizard__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_step_wizard__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _Apartment_HeaderApartment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Apartment/HeaderApartment */ "./resources/js/post/page/SavePost/Apartment/HeaderApartment.jsx");
 /* harmony import */ var _Apartment_FooterApartment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Apartment/FooterApartment */ "./resources/js/post/page/SavePost/Apartment/FooterApartment.jsx");
-/* harmony import */ var _Apartment_SaveApartmentSuccess__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Apartment/SaveApartmentSuccess */ "./resources/js/post/page/SavePost/Apartment/SaveApartmentSuccess.jsx");
-/* harmony import */ var _Apartment_SaveApartmentError__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Apartment/SaveApartmentError */ "./resources/js/post/page/SavePost/Apartment/SaveApartmentError.jsx");
-/* harmony import */ var _Apartment_InfoApartment__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Apartment/InfoApartment */ "./resources/js/post/page/SavePost/Apartment/InfoApartment.jsx");
-/* harmony import */ var _Apartment_ConfirmApartment__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Apartment/ConfirmApartment */ "./resources/js/post/page/SavePost/Apartment/ConfirmApartment.jsx");
-/* harmony import */ var _Apartment_OrtherInforApartment__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Apartment/OrtherInforApartment */ "./resources/js/post/page/SavePost/Apartment/OrtherInforApartment.jsx");
-/* harmony import */ var _Partial_UserPostInfomation__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Partial/UserPostInfomation */ "./resources/js/post/page/SavePost/Partial/UserPostInfomation.jsx");
-/* harmony import */ var _Partial_TypePost__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Partial/TypePost */ "./resources/js/post/page/SavePost/Partial/TypePost.jsx");
-/* harmony import */ var _Partial_RoleUser__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Partial/RoleUser */ "./resources/js/post/page/SavePost/Partial/RoleUser.jsx");
-/* harmony import */ var _Partial_GalleryPost__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./Partial/GalleryPost */ "./resources/js/post/page/SavePost/Partial/GalleryPost.jsx");
-/* harmony import */ var _Partial_AreaPrice__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./Partial/AreaPrice */ "./resources/js/post/page/SavePost/Partial/AreaPrice.jsx");
-/* harmony import */ var _Partial_ContentTitle__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./Partial/ContentTitle */ "./resources/js/post/page/SavePost/Partial/ContentTitle.jsx");
+/* harmony import */ var _Apartment_InfoApartment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Apartment/InfoApartment */ "./resources/js/post/page/SavePost/Apartment/InfoApartment.jsx");
+/* harmony import */ var _Apartment_ConfirmApartment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Apartment/ConfirmApartment */ "./resources/js/post/page/SavePost/Apartment/ConfirmApartment.jsx");
+/* harmony import */ var _Apartment_OrtherInforApartment__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Apartment/OrtherInforApartment */ "./resources/js/post/page/SavePost/Apartment/OrtherInforApartment.jsx");
+/* harmony import */ var _Partial_UserPostInfomation__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Partial/UserPostInfomation */ "./resources/js/post/page/SavePost/Partial/UserPostInfomation.jsx");
+/* harmony import */ var _Partial_TypePost__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Partial/TypePost */ "./resources/js/post/page/SavePost/Partial/TypePost.jsx");
+/* harmony import */ var _Partial_RoleUser__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Partial/RoleUser */ "./resources/js/post/page/SavePost/Partial/RoleUser.jsx");
+/* harmony import */ var _Partial_GalleryPost__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Partial/GalleryPost */ "./resources/js/post/page/SavePost/Partial/GalleryPost.jsx");
+/* harmony import */ var _Partial_AreaPrice__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Partial/AreaPrice */ "./resources/js/post/page/SavePost/Partial/AreaPrice.jsx");
+/* harmony import */ var _Partial_ContentTitle__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./Partial/ContentTitle */ "./resources/js/post/page/SavePost/Partial/ContentTitle.jsx");
+/* harmony import */ var _Partial_SaveProductSuccess__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./Partial/SaveProductSuccess */ "./resources/js/post/page/SavePost/Partial/SaveProductSuccess.jsx");
+/* harmony import */ var _Partial_SaveProductError__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./Partial/SaveProductError */ "./resources/js/post/page/SavePost/Partial/SaveProductError.jsx");
 /* harmony import */ var _service_user_api__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../../service/user.api */ "./resources/js/service/user.api.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
@@ -9568,8 +9568,10 @@ function Apartment(props) {
         type = form.type,
         project = form.project,
         images = form.images,
-        videos = form.videos;
+        videos = form.videos,
+        edit = form.edit;
     var formData = {
+      edit: edit,
       project: project,
       //// ===========> đặc biệt cái field này dùng trong đây để đẩy lên tính riêng nha
       images: images,
@@ -9708,11 +9710,11 @@ function Apartment(props) {
       device = props.device;
 
   if (success) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Apartment_SaveApartmentSuccess__WEBPACK_IMPORTED_MODULE_5__.default, {});
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Partial_SaveProductSuccess__WEBPACK_IMPORTED_MODULE_14__.default, {});
   }
 
   if (error) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Apartment_SaveApartmentError__WEBPACK_IMPORTED_MODULE_6__.default, {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Partial_SaveProductError__WEBPACK_IMPORTED_MODULE_15__.default, {
       error: JSON.stringify(error)
     });
   }
@@ -9744,41 +9746,41 @@ function Apartment(props) {
       , {
         onStepChange: onStepChange,
         instance: setInstance,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Partial_TypePost__WEBPACK_IMPORTED_MODULE_11__.default, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Partial_TypePost__WEBPACK_IMPORTED_MODULE_9__.default, {
           ref: refType,
           CONFIG: CONFIG,
           OLD: form
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Partial_UserPostInfomation__WEBPACK_IMPORTED_MODULE_10__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Partial_UserPostInfomation__WEBPACK_IMPORTED_MODULE_8__.default, {
           ref: refUserPostInfor,
           CONFIG: CONFIG,
           AUTH: AUTH,
           OLD: form
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Partial_RoleUser__WEBPACK_IMPORTED_MODULE_12__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Partial_RoleUser__WEBPACK_IMPORTED_MODULE_10__.default, {
           ref: refRoleUser,
           CONFIG: CONFIG,
           OLD: form
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Partial_ContentTitle__WEBPACK_IMPORTED_MODULE_15__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Partial_ContentTitle__WEBPACK_IMPORTED_MODULE_13__.default, {
           ref: refContent,
           CONFIG: CONFIG,
           OLD: form
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Partial_GalleryPost__WEBPACK_IMPORTED_MODULE_13__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Partial_GalleryPost__WEBPACK_IMPORTED_MODULE_11__.default, {
           ref: refGalleryUser,
           CONFIG: CONFIG,
           OLD: form
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Partial_AreaPrice__WEBPACK_IMPORTED_MODULE_14__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Partial_AreaPrice__WEBPACK_IMPORTED_MODULE_12__.default, {
           ref: refAreaPrice,
           CONFIG: CONFIG,
           OLD: form
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Apartment_OrtherInforApartment__WEBPACK_IMPORTED_MODULE_9__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Apartment_OrtherInforApartment__WEBPACK_IMPORTED_MODULE_7__.default, {
           ref: refOrtherInfo,
           CONFIG: CONFIG,
           OLD: form
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Apartment_InfoApartment__WEBPACK_IMPORTED_MODULE_7__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Apartment_InfoApartment__WEBPACK_IMPORTED_MODULE_5__.default, {
           ref: refApartmentInfo,
           CONFIG: CONFIG,
           AUTH: AUTH,
           OLD: form
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Apartment_ConfirmApartment__WEBPACK_IMPORTED_MODULE_8__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Apartment_ConfirmApartment__WEBPACK_IMPORTED_MODULE_6__.default, {
           data: form,
           CONFIG: CONFIG
         })]
@@ -10936,134 +10938,6 @@ var OrtherInforApartment = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.fo
 
 /***/ }),
 
-/***/ "./resources/js/post/page/SavePost/Apartment/SaveApartmentError.jsx":
-/*!**************************************************************************!*\
-  !*** ./resources/js/post/page/SavePost/Apartment/SaveApartmentError.jsx ***!
-  \**************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
-
-
-
-function SaveApartmentError(props) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-    className: "post__saved--success",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-      className: "alert alert-warning mt-3",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("b", {
-          children: "\u0110\u0103ng b\xE0i th\u1EA5t b\u1EA1i!"
-        })
-      })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h5", {
-      className: "h5 text-color-warning pt-2 pb-4",
-      children: "H\u1EC7 th\u1ED1ng \u0111ang ghi nh\u1EADn \u0111\u0103ng b\xE0i th\u1EA5t b\u1EA1i: "
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-      className: "alert alert-info mt-3",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("b", {
-          children: "Xin l\u1ED7i v\u1EC1 s\u1EF1 c\u1ED1 v\u1EEBa s\u1EA3y ra:"
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("ul", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
-          children: "Qu\u1EA3n tr\u1ECB vi\xEAn s\u1EBD kh\u1EAFc ph\u1EE5c l\u1ED7i tr\xEAn s\u1EDBm nh\u1EA5t c\xF3 th\u1EC3"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("li", {
-          children: ["Vui l\xF2ng b\xE1o c\xE1o v\u1EC1 s\u1EF1 c\u1ED1 b\u1EA1n v\u1EEBa g\u1EB7p ph\u1EA3i \u0111\u1EBFn admin \u0111\u1EC3 \u0111\u01B0\u1EE3c h\u1ED9 tr\u1EE3 t\u1ED1t nh\u1EA5t. N\u1EBFu s\u1EF1 c\u1ED1 l\xE0 ch\xEDnh x\xE1c b\u1EA1n s\u1EBD \u0111\u01B0\u1EE3c nh\u1EADn c\xE1c \u01B0u \u0111\xE3i d\xE0nh cho ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-            className: "text-color-red",
-            children: " VIP "
-          }), " "]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("li", {
-          children: ["L\u1ED7i c\u1EE5 th\u1EC3: ", props.error]
-        })]
-      })]
-    })]
-  });
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SaveApartmentError);
-
-/***/ }),
-
-/***/ "./resources/js/post/page/SavePost/Apartment/SaveApartmentSuccess.jsx":
-/*!****************************************************************************!*\
-  !*** ./resources/js/post/page/SavePost/Apartment/SaveApartmentSuccess.jsx ***!
-  \****************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
-
-
-
-function SaveApartmentSuccess(props) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-    className: "post__saved--success",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-      className: "alert alert-success mt-3",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("b", {
-          children: "\u0110\u0103ng b\xE0i th\xE0nh c\xF4ng!"
-        })
-      })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h5", {
-      className: "h5 text-color-warning pt-2 pb-4",
-      children: "C\u1EA3m \u01A1n b\u1EA1n \u0111\xE3 \u0111\u0103ng b\xE0i tr\xEAn n\u1EC1n t\u1EA3ng c\u1EE7a ch\xFAng t\xF4i: "
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-      className: "alert alert-info mt-3",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("b", {
-          children: "\u0110\u0103ng b\xE0i th\xE0nh c\xF4ng:"
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("ul", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
-          children: "Ch\xFAng t\xF4i s\u1EBD cho ph\xE9p b\xE0i \u0111\u0103ng c\u1EE7a b\u1EA1n xu\u1EA5t hi\u1EC7n ngay tr\xEAn k\u1EBFt qu\u1EA3 t\xECm ki\u1EBFm c\u1EE7a ch\xFAng t\xF4i"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
-          children: "B\xE0i \u0111\u0103ng v\u1EABn s\u1EBD \u0111\u01B0\u1EE3c ch\xFAng t\xF4i ki\u1EC3m duy\u1EC7t v\u1EC1 n\u1ED9i dung sau 1 tu\u1EA7n, n\u1EBFu c\xF3 b\u1EA5t k\u1EF3 khi\u1EBFu n\u1EA1i s\u1EA3y ra ch\xFAng t\xF4i s\u1EBD c\xF3 th\u1EC3 g\u1EE1 b\xE0i \u0111\u0103ng c\u1EE7a b\u1EA1n"
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("b", {
-          children: "\u0110\u1EC3 k\u1EBFt qu\u1EA3 t\xECm ki\u1EBFm \u0111\u01B0\u1EE3c xu\u1EA5t hi\u1EC7n t\u1ED1i \u1EDF google:"
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("ul", {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
-          children: "B\u1EA1n c\xF3 th\u1EC3 li\xEAn h\u1EC7 v\u1EDBi qu\u1EA3n tr\u1ECB vi\xEAn \u0111\u1EC3 \u0111\u01B0\u1EE3c t\u01B0 v\u1EA5n v\u1EC1 gi\u1EA3i ph\xE1p qu\u1EA3ng c\xE1o"
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("b", {
-          children: "Kh\xF4ng:"
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("ul", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
-          children: "S\u1EED d\u1EE5ng n\u1ED9i dung sai quy \u0111\u1ECBnh"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("li", {
-          children: ["Ch\xE8n n\u1ED9i dung th\xF4ng tin kh\xF4ng \u0111\xFAng quy \u0111\u1ECBnh v\xE0o h\xECnh \u1EA3nh ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-            className: "text-color-red",
-            children: "Sai quy \u0111\u1ECBnh c\xF3 th\u1EC3 bay account nh\xE9 :D "
-          })]
-        })]
-      })]
-    })]
-  });
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SaveApartmentSuccess);
-
-/***/ }),
-
 /***/ "./resources/js/post/page/SavePost/Partial/AreaPrice.jsx":
 /*!***************************************************************!*\
   !*** ./resources/js/post/page/SavePost/Partial/AreaPrice.jsx ***!
@@ -11834,6 +11708,134 @@ var RoleUser = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(fu
   });
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RoleUser);
+
+/***/ }),
+
+/***/ "./resources/js/post/page/SavePost/Partial/SaveProductError.jsx":
+/*!**********************************************************************!*\
+  !*** ./resources/js/post/page/SavePost/Partial/SaveProductError.jsx ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+function SaveProductError(props) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    className: "post__saved--success",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: "alert alert-warning mt-3",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("b", {
+          children: "\u0110\u0103ng b\xE0i th\u1EA5t b\u1EA1i!"
+        })
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h5", {
+      className: "h5 text-color-warning pt-2 pb-4",
+      children: "H\u1EC7 th\u1ED1ng \u0111ang ghi nh\u1EADn \u0111\u0103ng b\xE0i th\u1EA5t b\u1EA1i: "
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      className: "alert alert-info mt-3",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("b", {
+          children: "Xin l\u1ED7i v\u1EC1 s\u1EF1 c\u1ED1 v\u1EEBa s\u1EA3y ra:"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("ul", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
+          children: "Qu\u1EA3n tr\u1ECB vi\xEAn s\u1EBD kh\u1EAFc ph\u1EE5c l\u1ED7i tr\xEAn s\u1EDBm nh\u1EA5t c\xF3 th\u1EC3"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("li", {
+          children: ["Vui l\xF2ng b\xE1o c\xE1o v\u1EC1 s\u1EF1 c\u1ED1 b\u1EA1n v\u1EEBa g\u1EB7p ph\u1EA3i \u0111\u1EBFn admin \u0111\u1EC3 \u0111\u01B0\u1EE3c h\u1ED9 tr\u1EE3 t\u1ED1t nh\u1EA5t. N\u1EBFu s\u1EF1 c\u1ED1 l\xE0 ch\xEDnh x\xE1c b\u1EA1n s\u1EBD \u0111\u01B0\u1EE3c nh\u1EADn c\xE1c \u01B0u \u0111\xE3i d\xE0nh cho ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+            className: "text-color-red",
+            children: " VIP "
+          }), " "]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("li", {
+          children: ["L\u1ED7i c\u1EE5 th\u1EC3: ", props.error]
+        })]
+      })]
+    })]
+  });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SaveProductError);
+
+/***/ }),
+
+/***/ "./resources/js/post/page/SavePost/Partial/SaveProductSuccess.jsx":
+/*!************************************************************************!*\
+  !*** ./resources/js/post/page/SavePost/Partial/SaveProductSuccess.jsx ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+function SaveProductSuccess(props) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    className: "post__saved--success",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: "alert alert-success mt-3",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("b", {
+          children: "\u0110\u0103ng b\xE0i th\xE0nh c\xF4ng!"
+        })
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h5", {
+      className: "h5 text-color-warning pt-2 pb-4",
+      children: "C\u1EA3m \u01A1n b\u1EA1n \u0111\xE3 \u0111\u0103ng b\xE0i tr\xEAn n\u1EC1n t\u1EA3ng c\u1EE7a ch\xFAng t\xF4i: "
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      className: "alert alert-info mt-3",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("b", {
+          children: "\u0110\u0103ng b\xE0i th\xE0nh c\xF4ng:"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("ul", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
+          children: "Ch\xFAng t\xF4i s\u1EBD cho ph\xE9p b\xE0i \u0111\u0103ng c\u1EE7a b\u1EA1n xu\u1EA5t hi\u1EC7n ngay tr\xEAn k\u1EBFt qu\u1EA3 t\xECm ki\u1EBFm c\u1EE7a ch\xFAng t\xF4i"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
+          children: "B\xE0i \u0111\u0103ng v\u1EABn s\u1EBD \u0111\u01B0\u1EE3c ch\xFAng t\xF4i ki\u1EC3m duy\u1EC7t v\u1EC1 n\u1ED9i dung sau 1 tu\u1EA7n, n\u1EBFu c\xF3 b\u1EA5t k\u1EF3 khi\u1EBFu n\u1EA1i s\u1EA3y ra ch\xFAng t\xF4i s\u1EBD c\xF3 th\u1EC3 g\u1EE1 b\xE0i \u0111\u0103ng c\u1EE7a b\u1EA1n"
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("b", {
+          children: "\u0110\u1EC3 k\u1EBFt qu\u1EA3 t\xECm ki\u1EBFm \u0111\u01B0\u1EE3c xu\u1EA5t hi\u1EC7n t\u1ED1i \u1EDF google:"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("ul", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
+          children: "B\u1EA1n c\xF3 th\u1EC3 li\xEAn h\u1EC7 v\u1EDBi qu\u1EA3n tr\u1ECB vi\xEAn \u0111\u1EC3 \u0111\u01B0\u1EE3c t\u01B0 v\u1EA5n v\u1EC1 gi\u1EA3i ph\xE1p qu\u1EA3ng c\xE1o"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("b", {
+          children: "Kh\xF4ng:"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("ul", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
+          children: "S\u1EED d\u1EE5ng n\u1ED9i dung sai quy \u0111\u1ECBnh"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("li", {
+          children: ["Ch\xE8n n\u1ED9i dung th\xF4ng tin kh\xF4ng \u0111\xFAng quy \u0111\u1ECBnh v\xE0o h\xECnh \u1EA3nh ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+            className: "text-color-red",
+            children: "Sai quy \u0111\u1ECBnh c\xF3 th\u1EC3 bay account nh\xE9 :D "
+          })]
+        })]
+      })]
+    })]
+  });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SaveProductSuccess);
 
 /***/ }),
 
