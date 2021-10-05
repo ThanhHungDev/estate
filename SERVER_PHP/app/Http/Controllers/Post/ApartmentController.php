@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Post;
 use App\Helpers\SupportString;
 use App\Http\Controllers\Controller;
 use App\Libraries\Catalogue;
+use App\Models\Picture;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -91,6 +92,27 @@ class ApartmentController extends Controller
 
         //// create
         $production = Product::create($productInput);
+
+        /// save image
+        if( isset($images) ){
+            $pics = [];
+            foreach ($images as $key => $img) {
+                $pics[] = [
+                    'src' => $img['root'],
+                    'alt' => $productInput['title'],
+                    'key' => $production->id,
+                    'title' => $productInput['title'],
+                    'gallery' => Config::get("constant.GALARIES.PRODUCT")
+                ];
+            }
+            /// 
+            Picture::where('key', $production->id)->where( 'gallery', Config::get("constant.GALARIES.PRODUCT") )->delete();
+            try {
+                Picture::insert($pics);
+            } catch (\Throwable $th) {
+                throw $th;
+            }
+        }
 
         $response = array(
             'status'  => Response::HTTP_OK,

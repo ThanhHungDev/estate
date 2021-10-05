@@ -26,7 +26,7 @@ function App( props ){
             </div>
         )
     }
-    if( !auth.phone_verify ){
+    if( !auth.phone_verify ){ 
         return <VerifyPhone />
     }
     return (
