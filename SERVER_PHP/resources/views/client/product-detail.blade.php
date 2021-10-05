@@ -305,7 +305,8 @@
                                 <div class="row-hero productions-fixrow">
                                     @foreach ($relates as $key => $product)
                                     <div class="col-hero-md-4 col-hero-sm-4 productions-fixcol">
-                                        <div class="item" itemtype="https://schema.org/Product" itemscope >
+                                        <div class="item" >
+                                        {{-- <div class="item" itemtype="https://schema.org/Product" itemscope >
                                             <meta class="d-none" itemprop="position" content="{{ $key }}" />
                                             <meta class="d-none" itemprop="url" content="{{ Route('PRODUCT_VIEW', ['slug' => $product->slug ]) }}" />
                                             <meta class="d-none" itemprop="gtin14" content="{{ $product->id }}" />
@@ -319,7 +320,7 @@
                                             <div class="d-none" itemprop="brand" itemtype="https://schema.org/Brand" itemscope>
                                                 <meta itemprop="name" content="{{ Config::get('app.company_name') }}" />
                                             </div>
-                                            {{-- <div class="d-none" itemprop="aggregateRating" itemtype="https://schema.org/AggregateRating" itemscope>
+                                            <div class="d-none" itemprop="aggregateRating" itemtype="https://schema.org/AggregateRating" itemscope>
                                                 <meta itemprop="reviewCount" content="{{ SupportString::createRateValueByDate($product->id) }}" />
                                                 <meta itemprop="ratingValue" content="{{ $product->rate_value }}" />
                                                 <meta itemprop="bestRating" content="5" />
@@ -338,14 +339,14 @@
                                                     <meta itemprop="worstRating" content="1" />
                                                     <meta itemprop="ratingValue" content="{{ $product->rate_value }}" />
                                                 </div>
-                                            </div> --}}
+                                            </div>
                                             <div itemprop="offers" itemtype="https://schema.org/Offer" itemscope>
                                                 <meta itemprop="priceValidUntil" content="2022-08-25" />
                                                 <meta itemprop="price" content="{{ str_replace([".", "e", ","], "", $product->price ) }}" />
                                                 <meta itemprop="offerCount" content="2" />
                                                 <meta itemprop="priceCurrency" content="VND" />
                                                 <link property="availability" href="https://schema.org/InStock" />
-                                            </div>
+                                            </div> --}}
                                             
                                             {{-- box-shadow: 0 1px 10px 0 rgb(0 0 0 / 12%); --}}
                                             <div class="item__action">
