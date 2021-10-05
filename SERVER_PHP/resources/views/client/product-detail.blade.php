@@ -103,190 +103,196 @@
 
    
 
-    <div class="content__product product bg__product--detail" itemscope itemtype="https://schema.org/Article">
-        <div class="d-none" itemtype="https://schema.org/AggregateRating" itemscope>
-            <meta itemprop="reviewCount" content="{{ SupportString::createRateValueByDate($product->id) }}" />
-            <meta itemprop="ratingValue" content="{{ $product->rate_value }}" />
-            <meta itemprop="bestRating" content="5" />
-            <meta itemprop="worstRating" content="1" />
-        </div>
+    <div class="content__product product bg__product--detail">
         
-        <div class="d-none" itemprop="review" itemtype="https://schema.org/Review" itemscope>
-            <meta itemprop="datePublished" content="{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $product->created_at)->format('Y-m-d') }}" />
-            <meta itemprop="reviewBody" content="{{ $product->rate_review_body }}" />
-            <div itemprop="author" itemtype="https://schema.org/Person" itemscope>
-                <meta itemprop="name" content="{{ $product->rateAuthor ? $product->rateAuthor->name : 'chưa xác định' }}" />
-            </div>
-            <div itemprop="reviewRating" itemtype="https://schema.org/Rating" itemscope>
-                <meta itemprop="ratingCount" content="{{ SupportString::createRateValueByDate($product->id) }}" />
-                <meta itemprop="bestRating" content="5" />
-                <meta itemprop="worstRating" content="1" />
-                <meta itemprop="ratingValue" content="{{ $product->rate_value }}" />
-            </div>
-        </div>
-        <div itemprop="offers" itemtype="https://schema.org/Offer" itemscope>
-            <meta itemprop="priceValidUntil" content="2022-08-25" />
-            <meta itemprop="price" content="{{ str_replace([".", "e", ","], "", $product->price ) }}" />
-            <meta itemprop="offerCount" content="2" />
-            <meta itemprop="priceCurrency" content="VND" />
-            <link property="availability" href="https://schema.org/InStock" />
-        </div>
-
         <div class="product__container">
             <div class="product__row py-3">
                 <div class="product__left">
-                    <div class="product__title">
-                        <h2 class="product__title--negotive" itemprop="name">
-                            {{ $product->getTitleLocateCategory(100)  }}
-                            <span class="for-negotive ">
-                                {{ $product->getStringNegotiate() }}
-                            </span>
-                        </h2>
-                        <div title="Giá: {{ $product->getTooltipPrice() }}" class="product__title--price simple-tooltip"> {{ $product->getStringPrice() }}&nbsp; </div>
-                        <div class="product__title--address">
-                            <i class="fal fa-street-view"></i>
-                            {{ $product->getLocation() }}
+
+                    <div class="itemscope__article" itemscope itemtype="https://schema.org/Article">
+
+                        <div class="d-none" itemtype="https://schema.org/AggregateRating" itemscope>
+                            <meta itemprop="reviewCount" content="{{ SupportString::createRateValueByDate($product->id) }}" />
+                            <meta itemprop="ratingValue" content="{{ $product->rate_value }}" />
+                            <meta itemprop="bestRating" content="5" />
+                            <meta itemprop="worstRating" content="1" />
                         </div>
-                    </div>
-
-
-
-
-                    <div class="product__information">
-                        <div class="product__information--author" itemprop="author" itemtype="https://schema.org/Person" itemscope>
-                            <span class="text">
-                                Được đăng bởi
-                                <a href="{{ asset('/') }}" itemprop="name">{{ Config::get('app.company') }}</a>
-                            </span>
-                        </div>
-
-                        <div class="product__information--datepublished">
-                            <i class="fal fa-calendar-check"></i>
-                            <span class="text" itemprop="datePublished" >{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $product->created_at)->format('Y-m-d') }}</span>
-                        </div>
-                        <div class="product__information--view">
-                            <i class="fal fa-eye"></i>
-                            <span class="text">{{ $product->view }} lượt xem</span>
-                        </div>
-                    </div>
-
-
-
-
-                    @php $pics = $product->getImages()->get(); @endphp
-                    @if (!$pics->isEmpty())
-                    <div class="product__slider">
-                        <div id="slider" class="slider">
-                            
-                            @foreach ($pics as $key => $pic)
-                            <div>
-                                <div class="slider__item">
-                                    <img src="{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => $pic->src ]) }}"/>
-                                </div>
+                        
+                        <div class="d-none" itemprop="review" itemtype="https://schema.org/Review" itemscope>
+                            <meta itemprop="datePublished" content="{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $product->created_at)->format('Y-m-d') }}" />
+                            <meta itemprop="reviewBody" content="{{ $product->rate_review_body }}" />
+                            <div itemprop="author" itemtype="https://schema.org/Person" itemscope>
+                                <meta itemprop="name" content="{{ $product->rateAuthor ? $product->rateAuthor->name : 'chưa xác định' }}" />
                             </div>
-                            @endforeach
+                            <div itemprop="reviewRating" itemtype="https://schema.org/Rating" itemscope>
+                                <meta itemprop="ratingCount" content="{{ SupportString::createRateValueByDate($product->id) }}" />
+                                <meta itemprop="bestRating" content="5" />
+                                <meta itemprop="worstRating" content="1" />
+                                <meta itemprop="ratingValue" content="{{ $product->rate_value }}" />
+                            </div>
                         </div>
-                        <div id="slider__nav" class="slider__nav">
-                            @php $pics = $product->getImages()->get(); @endphp
-                            @foreach ($pics as $key => $pic)
-                            <div>
-                                <div class="slider__nav--item">
-                                    <div class="wrapper">
+                        <div itemprop="offers" itemtype="https://schema.org/Offer" itemscope>
+                            <meta itemprop="priceValidUntil" content="2022-08-25" />
+                            <meta itemprop="price" content="{{ str_replace([".", "e", ","], "", $product->price ) }}" />
+                            <meta itemprop="offerCount" content="2" />
+                            <meta itemprop="priceCurrency" content="VND" />
+                            <link property="availability" href="https://schema.org/InStock" />
+                        </div>
+
+                            
+                        <div class="product__title">
+                            <h2 class="product__title--negotive" itemprop="name">
+                                {{ $product->getTitleLocateCategory(100)  }}
+                                <span class="for-negotive ">
+                                    {{ $product->getStringNegotiate() }}
+                                </span>
+                            </h2>
+                            <div title="Giá: {{ $product->getTooltipPrice() }}" class="product__title--price simple-tooltip"> {{ $product->getStringPrice() }}&nbsp; </div>
+                            <div class="product__title--address">
+                                <i class="fal fa-street-view"></i>
+                                {{ $product->getLocation() }}
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="product__information">
+                            <div class="product__information--author" itemprop="author" itemtype="https://schema.org/Person" itemscope>
+                                <span class="text">
+                                    Được đăng bởi
+                                    <a href="{{ asset('/') }}" itemprop="name">{{ Config::get('app.company') }}</a>
+                                </span>
+                            </div>
+
+                            <div class="product__information--datepublished">
+                                <i class="fal fa-calendar-check"></i>
+                                <span class="text" itemprop="datePublished" >{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $product->created_at)->format('Y-m-d') }}</span>
+                            </div>
+                            <div class="product__information--view">
+                                <i class="fal fa-eye"></i>
+                                <span class="text">{{ $product->view }} lượt xem</span>
+                            </div>
+                        </div>
+
+
+
+
+                        @php $pics = $product->getImages()->get(); @endphp
+                        @if (!$pics->isEmpty())
+                        <div class="product__slider">
+                            <div id="slider" class="slider">
+                                
+                                @foreach ($pics as $key => $pic)
+                                <div>
+                                    <div class="slider__item">
                                         <img src="{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => $pic->src ]) }}"/>
                                     </div>
                                 </div>
+                                @endforeach
                             </div>
-                            @endforeach
-                        </div>
-                    </div>
-                    @endif
-                    
-
-
-
-
-
-                    <div class="product__data">
-                        <div class="block">
-                            <h3 class="block__title"> Thông tin mô tả </h3>
-                            <div class="block__data--content">
-                                {!! $product->content !!}
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="product__data">
-                        
-                        <div class="block">
-                            <h3 class="block__title"> Đơn vị đăng bán </h3>
-                            <div class="company">
-                                <div class="company-left">
-                                    <div class="img__cover" style="background-image: url({{ SupportDB::getOption('product-detail-company-image') }}); background-repeat: no-repeat; background-size:cover; "></div>
-                                </div>
-                                <div class="company-right">
-                                    <div class="company-right--content">
-                                        <div class="title">
-                                            <h4 class="text-truncate">
-                                                <a class="text-truncate" href="{{ asset('/') }}">{{ SupportDB::getOption('product-detail-company-name') }}</a>
-                                            </h4>
-                                            <p class="position text-truncate">{{ SupportDB::getOption('product-detail-company-description') }}</p>
+                            <div id="slider__nav" class="slider__nav">
+                                @php $pics = $product->getImages()->get(); @endphp
+                                @foreach ($pics as $key => $pic)
+                                <div>
+                                    <div class="slider__nav--item">
+                                        <div class="wrapper">
+                                            <img src="{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => $pic->src ]) }}"/>
                                         </div>
-                                        <div class="description">{{ SupportDB::getOption('product-detail-company-content') }}</div>
                                     </div>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        @endif
+                        
+
+
+
+
+
+                        <div class="product__data">
+                            <div class="block">
+                                <h3 class="block__title"> Thông tin mô tả </h3>
+                                <div class="block__data--content">
+                                    {!! $product->content !!}
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-
-                    <div class="product__data">
                         
-                        <div class="block">
-                            <h3 class="block__title"> Nhận Tư Vấn Miễn Phí </h3>
-                            <div class="form">
-                                <form id="contact" class="form__wrapper" action="{{ Route('MAIL_CONTACT_PRODUCT') }}" method="POST">
-                                    {!! csrf_field() !!}
-                                    <input name="slug" type="hidden" value="{{ $product->slug }}" />
-                                    @if (Session::has(Config::get('constant.SAVE_ERROR')))
-                                    <div class="alert alert-danger">
-                                        {{ Session::get(Config::get('constant.SAVE_ERROR')) }}
+                        <div class="product__data">
+                            
+                            <div class="block">
+                                <h3 class="block__title"> Đơn vị đăng bán </h3>
+                                <div class="company">
+                                    <div class="company-left">
+                                        <div class="img__cover" style="background-image: url({{ SupportDB::getOption('product-detail-company-image') }}); background-repeat: no-repeat; background-size:cover; "></div>
                                     </div>
-                                    @elseif (Session::has(Config::get('constant.SAVE_SUCCESS')))
-                                    <div class="alert alert-success">
-                                        Đã liên lạc với quản trị viên. Chúng tôi sẽ liên lạc với bạn sớm nhất có thể.
-                                    </div>
-                                    @endif
-                                    @if(!empty($errors->all()))
-                                        @foreach ($errors->all() as $error)
-                                        <div class="alert alert-warning">
-                                            {{ $error }}
-                                        </div>
-                                        @endforeach
-                                    @endif
-                                    <div class="contact">
-                                        <div class="contact__left">
-                                            <input name="name" type="text" placeholder="Tên" class="contact__left-input" value="{{ old('name' ) }}"/>
-                                            <input name="mobile" type="text" placeholder="Số điện thoại" class="contact__left-input" value="{{ old('mobile' ) }}"/>
-                                        </div>
-                                        <div class="contact__right">
-                                            <textarea name="message" class="contact__right-textarea" cols="54" rows="2" title="Tin nhắn" placeholder="Tin nhắn yêu cầu tư vấn (không bắt buộc nhập)">{{ old('message' ) }}</textarea>
+                                    <div class="company-right">
+                                        <div class="company-right--content">
+                                            <div class="title">
+                                                <h4 class="text-truncate">
+                                                    <a class="text-truncate" href="{{ asset('/') }}">{{ SupportDB::getOption('product-detail-company-name') }}</a>
+                                                </h4>
+                                                <p class="position text-truncate">{{ SupportDB::getOption('product-detail-company-description') }}</p>
+                                            </div>
+                                            <div class="description">{{ SupportDB::getOption('product-detail-company-content') }}</div>
                                         </div>
                                     </div>
-                                    
-                                    <div class="bottom">
-                                        <div id="google__recaptcha" class="lazyload">
-                                            <!-- Google reCaptcha -->
-                                            <div class="g-recaptcha" id="feedback-recaptcha" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY')  }}"></div>
-                                            <!-- End Google reCaptcha -->
-                                            <button class="btn-send-mail-contact">Gửi liên lạc</button>
-                                        </div>
-                                    </div>
-                                </form>
+                                </div>
                             </div>
                         </div>
+
+
+                        <div class="product__data">
+                            
+                            <div class="block">
+                                <h3 class="block__title"> Nhận Tư Vấn Miễn Phí </h3>
+                                <div class="form">
+                                    <form id="contact" class="form__wrapper" action="{{ Route('MAIL_CONTACT_PRODUCT') }}" method="POST">
+                                        {!! csrf_field() !!}
+                                        <input name="slug" type="hidden" value="{{ $product->slug }}" />
+                                        @if (Session::has(Config::get('constant.SAVE_ERROR')))
+                                        <div class="alert alert-danger">
+                                            {{ Session::get(Config::get('constant.SAVE_ERROR')) }}
+                                        </div>
+                                        @elseif (Session::has(Config::get('constant.SAVE_SUCCESS')))
+                                        <div class="alert alert-success">
+                                            Đã liên lạc với quản trị viên. Chúng tôi sẽ liên lạc với bạn sớm nhất có thể.
+                                        </div>
+                                        @endif
+                                        @if(!empty($errors->all()))
+                                            @foreach ($errors->all() as $error)
+                                            <div class="alert alert-warning">
+                                                {{ $error }}
+                                            </div>
+                                            @endforeach
+                                        @endif
+                                        <div class="contact">
+                                            <div class="contact__left">
+                                                <input name="name" type="text" placeholder="Tên" class="contact__left-input" value="{{ old('name' ) }}"/>
+                                                <input name="mobile" type="text" placeholder="Số điện thoại" class="contact__left-input" value="{{ old('mobile' ) }}"/>
+                                            </div>
+                                            <div class="contact__right">
+                                                <textarea name="message" class="contact__right-textarea" cols="54" rows="2" title="Tin nhắn" placeholder="Tin nhắn yêu cầu tư vấn (không bắt buộc nhập)">{{ old('message' ) }}</textarea>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="bottom">
+                                            <div id="google__recaptcha" class="lazyload">
+                                                <!-- Google reCaptcha -->
+                                                <div class="g-recaptcha" id="feedback-recaptcha" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY')  }}"></div>
+                                                <!-- End Google reCaptcha -->
+                                                <button class="btn-send-mail-contact">Gửi liên lạc</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
-
-
 
 
                     @if (!$relates->isEmpty())
@@ -312,12 +318,12 @@
                                             <div class="d-none" itemprop="brand" itemtype="https://schema.org/Brand" itemscope>
                                                 <meta itemprop="name" content="{{ Config::get('app.company_name') }}" />
                                             </div>
-                                            {{-- <div class="d-none" itemprop="aggregateRating" itemtype="https://schema.org/AggregateRating" itemscope>
+                                            <div class="d-none" itemprop="aggregateRating" itemtype="https://schema.org/AggregateRating" itemscope>
                                                 <meta itemprop="reviewCount" content="{{ SupportString::createRateValueByDate($product->id) }}" />
                                                 <meta itemprop="ratingValue" content="{{ $product->rate_value }}" />
                                                 <meta itemprop="bestRating" content="5" />
                                                 <meta itemprop="worstRating" content="1" />
-                                            </div> --}}
+                                            </div>
                                             
                                             <div class="d-none" itemprop="review" itemtype="https://schema.org/Review" itemscope>
                                                 <meta itemprop="datePublished" content="{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $product->created_at)->format('Y-m-d') }}" />
