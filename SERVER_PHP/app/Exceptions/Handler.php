@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Throwable;
 use Tymon\JWTAuth\Exceptions\JWTException;
@@ -54,7 +55,7 @@ class Handler extends ExceptionHandler
                 return response()
                 ->error(
                     'Đường dẫn không hợp lệ', 
-                    ['error' => 'route_not_found'],
+                    ['error' => 'route_not_found', 'message' => $exception->getMessage()],
                     Response::HTTP_NOT_FOUND
                 )
                 ->setStatusCode(Response::HTTP_NOT_FOUND);
@@ -62,7 +63,7 @@ class Handler extends ExceptionHandler
                 return response()
                 ->error(
                     'Invalid token', 
-                    ['error' => 'invalid_token'],
+                    ['error' => 'invalid_token', 'message' => $exception->getMessage()],
                     Response::HTTP_UNAUTHORIZED
                 )
                 ->setStatusCode(Response::HTTP_UNAUTHORIZED);
@@ -70,23 +71,42 @@ class Handler extends ExceptionHandler
                 return response()
                 ->error(
                     'Token has Expired', 
-                    ['error' => 'expired'],
+                    ['error' => 'expired', 'message' => $exception->getMessage()],
                     Response::HTTP_UNAUTHORIZED
                 )
                 ->setStatusCode(Response::HTTP_UNAUTHORIZED);
             }else if( $exception instanceof JWTException ){
                 return response()
                 ->error(
-                    'Token not parsed', 
-                    ['error' => 'not_parsed'],
+                    'Token not parsed',
+                    ['error' => 'not_parsed', 'message' => $exception->getMessage()],
                     Response::HTTP_UNAUTHORIZED
                 )
                 ->setStatusCode(Response::HTTP_UNAUTHORIZED);
-            }else if( $exception instanceof Throwable ){
+            }
+            
+            else if( $exception instanceof NotFoundHttpException ){
+                return response()
+                ->error(
+                    'Lỗi Không tìm thấy tài nguyên trong db', 
+                    [
+                        'error' => 'not_found', 
+                        'data' => $request->all(),
+                        'message' => $exception->getMessage()
+                    ],
+                    Response::HTTP_NOT_FOUND
+                )
+                ->setStatusCode(Response::HTTP_NOT_FOUND);
+            }
+            else if( $exception instanceof Throwable ){
                 return response()
                 ->error(
                     'Lỗi chưa xác định', 
-                    ['error' => 'not_define', 'data' => $request->all()],
+                    [
+                        'error' => 'not_define', 
+                        'data' => $request->all(),
+                        'message' => $exception->getMessage()
+                    ],
                     Response::HTTP_INTERNAL_SERVER_ERROR
                 )
                 ->setStatusCode(Response::HTTP_INTERNAL_SERVER_ERROR);

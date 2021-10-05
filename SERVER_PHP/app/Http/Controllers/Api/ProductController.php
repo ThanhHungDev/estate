@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PostResource;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class ProductController extends Controller
@@ -40,7 +42,13 @@ class ProductController extends Controller
     public function show($id)
     {
         $user = JWTAuth::parseToken()->authenticate();
-        // xác nhận thành công thì trả về 1 token hợp lệ
-        return response()->json(compact('user'));
+        $product = Product::where('user_id', $user->id)->where('id', $id)->firstOrFail();
+        return response()
+            ->success(
+                'thành công',
+                $product,
+                Response::HTTP_OK
+            )
+            ->setStatusCode(Response::HTTP_OK);
     }
 }

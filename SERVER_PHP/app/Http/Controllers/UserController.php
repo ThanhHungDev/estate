@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Config;
 use App\Http\Requests\REGISTER_REQUEST;
 use App\Models\Channel;
 use App\Models\Category;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Response;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -227,7 +228,10 @@ class UserController extends Controller
         /// get id friends 
         $friends = User::whereIn('id', $idFriends)->get();
 
-        return view('client.user.profile', compact(['profile', 'friends', 'token']));
+        /// get list product of user post
+        $products = Product::where('user_id', $userId)->orderBy('created_at', 'DESC')->get();
+
+        return view('client.user.profile', compact(['profile', 'friends', 'token', 'products']));
     }
 
 

@@ -266,52 +266,53 @@
                             </div>
                         </div>
                         <!-- Post /////-->
-                        <!--- \\\\\\\Post-->
-                        <div class="card social-timeline-card">
-                            <div class="card-header">
-                                <div class="d-flex justify-content-between align-items-center">
+                        @if ($products && !$products->isEmpty())
+                            @foreach ($products as $product)
+                            <div class="card social-timeline-card">
+                                <div class="card-header">
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <div class="mr-2">
-                                            <img class="rounded-circle" width="45" src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="mr-2">
+                                                <img class="rounded-circle" width="45" src="{{ $profile->avatar }}" alt="">
+                                            </div>
+                                            <div class="ml-2">
+                                                <div class="h5 m-0 text-blue">{{ $profile->getNameTagLimited() }}</div>
+                                                <div class="h7 text-muted">Miracles Lee Cross</div>
+                                            </div>
                                         </div>
-                                        <div class="ml-2">
-                                            <div class="h5 m-0 text-blue">@JaneSmith</div>
-                                            <div class="h7 text-muted">Miracles Lee Cross</div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="dropdown">
-                                            <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fa fa-ellipsis-h"></i>
-                                            </button>
-                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop2">
-                                                <div class="h6 dropdown-header">Configuration</div>
-                                                <a class="dropdown-item" href="#">Save</a>
-                                                <a class="dropdown-item" href="#">Hide</a>
-                                                <a class="dropdown-item" href="#">Report</a>
+                                        <div>
+                                            <div class="dropdown">
+                                                <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fa fa-ellipsis-h"></i>
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop2">
+                                                    <div class="h6 dropdown-header">Configuration</div>
+                                                    <a class="dropdown-item" href="#">Save</a>
+                                                    <a class="dropdown-item" href="#">Hide</a>
+                                                    <a class="dropdown-item" href="#">Report</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="card-body">
+                                    <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i> Hace 40 min</div>
+                                    <a class="card-link" href="{{ Route('USER_POST') }}/edit/{{ $product->id }}">
+                                        <h5 class="card-title">{{ $product->title }}</h5>
+                                    </a>
+                                    <p class="card-text">
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam sunt fugit reprehenderit consectetur exercitationem odio, quam nobis? Officiis, similique, harum voluptate, facilis voluptas pariatur dolorum tempora sapiente eius maxime quaerat.
+                                        <a href="https://mega.nz/#!1J01nRIb!lMZ4B_DR2UWi9SRQK5TTzU1PmQpDtbZkMZjAIbv97hU" target="_blank">https://mega.nz/#!1J01nRIb!lMZ4B_DR2UWi9SRQK5TTzU1PmQpDtbZkMZjAIbv97hU</a>
+                                    </p>
+                                </div>
+                                <div class="card-footer">
+                                    <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
+                                    <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
+                                    <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
+                                </div>
                             </div>
-                            <div class="card-body">
-                                <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i> Hace 40 min</div>
-                                <a class="card-link" href="#">
-                                    <h5 class="card-title">Totam non adipisci hic! Possimus ducimus amet, dolores illo ipsum quos
-                                                    cum.</h5>
-                                </a>
-                                <p class="card-text">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam sunt fugit reprehenderit consectetur exercitationem odio, quam nobis? Officiis, similique, harum voluptate, facilis voluptas pariatur dolorum tempora sapiente eius maxime quaerat.
-                                    <a href="https://mega.nz/#!1J01nRIb!lMZ4B_DR2UWi9SRQK5TTzU1PmQpDtbZkMZjAIbv97hU" target="_blank">https://mega.nz/#!1J01nRIb!lMZ4B_DR2UWi9SRQK5TTzU1PmQpDtbZkMZjAIbv97hU</a>
-                                </p>
-                            </div>
-                            <div class="card-footer">
-                                <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
-                                <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
-                                <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
-                            </div>
-                        </div>
-                        <!-- Post /////-->
+                            @endforeach
+                        @endif
                     </div>
                     <div class="col-reset-px-0-sm col-lg-3">
                         <div class="card">

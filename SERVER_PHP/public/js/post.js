@@ -9160,12 +9160,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ExpandShowMore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ExpandShowMore */ "./resources/js/post/page/ExpandShowMore.jsx");
 /* harmony import */ var _SavePost_Apartment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./SavePost/Apartment */ "./resources/js/post/page/SavePost/Apartment.jsx");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -9188,6 +9182,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 function EditPost(props) {
   var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_6__.useHistory)();
 
@@ -9199,25 +9194,59 @@ function EditPost(props) {
       post = _useState2[0],
       setPost = _useState2[1];
 
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+      _useState4 = _slicedToArray(_useState3, 2),
+      error = _useState4[0],
+      setError = _useState4[1];
+
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (!post) {
+    if (!post && !error) {
       /// fetch api 
       /// call api get province
       _service_user_api__WEBPACK_IMPORTED_MODULE_2__.default.getProductUserById(id).then(function (response) {
         var data = response.data;
         console.log(data);
-        data = _objectSpread(_objectSpread({}, data), {}, {
-          images: JSON.parse(data.images)
-        });
         setPost(data);
       })["catch"](function (error) {
+        setError(error);
         console.log("ERROR:: ", error);
       });
     }
   });
-  console.log("có vào đây", id);
+
+  if (error) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+      className: "post__edit--error",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+        className: "alert alert-warning mt-3",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("b", {
+            children: "Kh\xF4ng t\xECm th\u1EA5y b\xE0i \u0111\u0103ng ho\u1EB7c kh\xF4ng c\xF3 quy\u1EC1n ch\u1EC9nh s\u1EEDa!"
+          })
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h5", {
+        className: "h5 text-color-pink pt-2 pb-4",
+        children: "H\u1EC7 th\u1ED1ng kh\xF4ng th\u1EC3 c\u1EA5p ph\xE9p ch\u1EC9nh s\u1EEDa: "
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+        className: "alert alert-info mt-3",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("b", {
+            children: "Xin l\u1ED7i v\u1EC1 s\u1EF1 c\u1ED1 v\u1EEBa s\u1EA3y ra:"
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("ul", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("li", {
+            children: ["N\u1EBFu b\u1EA1n ph\xE1t hi\u1EC7n \u0111i\u1EC1u b\u1EA5t th\u01B0\u1EDDng do l\u1ED7i h\u1EC7 th\u1ED1ng vui l\xF2ng b\xE1o c\xE1o v\u1EDBi \u0111i\u1EC1u n\xE0y \u0111\u1EBFn qu\u1EA3n tr\u1ECB vi\xEAn \u0111\u1EC3 \u0111\u01B0\u1EE3c h\u01B0\u1EDFng \u01B0u \u0111\xE3i ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+              className: "text-color-red",
+              children: " VIP "
+            })]
+          })
+        })]
+      })]
+    });
+  }
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-    children: id
+    children: post === null || post === void 0 ? void 0 : post.title
   });
 }
 
