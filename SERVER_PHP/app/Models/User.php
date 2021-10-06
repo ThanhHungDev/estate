@@ -155,7 +155,8 @@ class User extends Authenticatable implements JWTSubject
     // }
 
     public function getNameTagLimited(){
-        return '@' . str_replace(' ', '_', $this->name);
+        $slug = SupportString::createSlug($this->name);
+        return '@' . str_replace('-', '_', $slug);
     }
 
     public function getTypeUser(){
