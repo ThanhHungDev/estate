@@ -2,11 +2,11 @@ import React, { useState, forwardRef, useRef, useImperativeHandle } from "react"
 import { connect } from "react-redux"
 import StepWizard from "react-step-wizard"
 
-import HeaderApartment from "./Apartment/HeaderApartment"
-import FooterApartment from "./Apartment/FooterApartment"
-import InfoApartment from "./Apartment/InfoApartment"
-import ConfirmApartment from "./Apartment/ConfirmApartment"
-import OrtherInforApartment from "./Apartment/OrtherInforApartment"
+import Header from "./Apartment/Header"
+import Footer from "./Apartment/Footer"
+import Info from "./Apartment/Info"
+import Confirm from "./Apartment/Confirm"
+import OrtherInfor from "./Apartment/OrtherInfor"
 
 import UserPostInfomation from "./Partial/UserPostInfomation"
 import TypePost from "./Partial/TypePost"
@@ -218,7 +218,7 @@ function Apartment( props ){
                 </div>
             </div>
 
-            { SW && <HeaderApartment SW={SW} parentCallback={continueStep} /> }
+            { SW && <Header SW={SW} parentCallback={continueStep} /> }
             
             <div className={ "apartment__wrapper " + ( progress && 'd-none') }>
                 <StepWizard
@@ -232,14 +232,14 @@ function Apartment( props ){
                     <ContentTitle ref={ refContent } CONFIG={CONFIG} OLD={form} />
                     <GalleryPost ref={ refGalleryUser}  CONFIG={CONFIG} OLD={form} />
                     <AreaPrice ref={ refAreaPrice } CONFIG={CONFIG}  OLD={form} />
-                    <OrtherInforApartment ref={ refOrtherInfo } CONFIG={CONFIG} OLD={form} />
-                    <InfoApartment ref={ refApartmentInfo }  CONFIG={CONFIG} AUTH={AUTH} OLD={form} />
-                    <ConfirmApartment data={form} CONFIG={CONFIG} />
+                    <OrtherInfor ref={ refOrtherInfo } CONFIG={CONFIG} OLD={form} />
+                    <Info ref={ refApartmentInfo }  CONFIG={CONFIG} AUTH={AUTH} OLD={form} />
+                    <Confirm data={form} CONFIG={CONFIG} />
                 </StepWizard>
             </div>
             
             <div className={ "footer__wrapper " + ( progress && 'd-none') }>
-                <FooterApartment currentStep={SW?.currentStep} parentCallback={continueStep} fetchApiSave={ saveApartment } />
+                <Footer currentStep={SW?.currentStep} parentCallback={continueStep} fetchApiSave={ saveApartment } />
             </div>
         </div>
     )

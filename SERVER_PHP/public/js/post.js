@@ -9045,7 +9045,9 @@ function Categories(props) {
           children: "Ch\u1ECDn lo\u1EA1i B\u1EA5t \u0111\u1ED9ng s\u1EA3n mu\u1ED1n \u0111\u0103ng"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
           className: "row categories__row",
-          children: CATEGORIES.reverse().map(function (cat) {
+          children: CATEGORIES.sort(function (first, second) {
+            return second.id - first.id;
+          }).map(function (cat) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Category__WEBPACK_IMPORTED_MODULE_2__.default, {
               category: cat,
               config: CONFIG
@@ -9437,11 +9439,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react_step_wizard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-step-wizard */ "./node_modules/react-step-wizard/dist/react-step-wizard.min.js");
 /* harmony import */ var react_step_wizard__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_step_wizard__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _Apartment_HeaderApartment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Apartment/HeaderApartment */ "./resources/js/post/page/SavePost/Apartment/HeaderApartment.jsx");
-/* harmony import */ var _Apartment_FooterApartment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Apartment/FooterApartment */ "./resources/js/post/page/SavePost/Apartment/FooterApartment.jsx");
-/* harmony import */ var _Apartment_InfoApartment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Apartment/InfoApartment */ "./resources/js/post/page/SavePost/Apartment/InfoApartment.jsx");
-/* harmony import */ var _Apartment_ConfirmApartment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Apartment/ConfirmApartment */ "./resources/js/post/page/SavePost/Apartment/ConfirmApartment.jsx");
-/* harmony import */ var _Apartment_OrtherInforApartment__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Apartment/OrtherInforApartment */ "./resources/js/post/page/SavePost/Apartment/OrtherInforApartment.jsx");
+/* harmony import */ var _Apartment_Header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Apartment/Header */ "./resources/js/post/page/SavePost/Apartment/Header.jsx");
+/* harmony import */ var _Apartment_Footer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Apartment/Footer */ "./resources/js/post/page/SavePost/Apartment/Footer.jsx");
+/* harmony import */ var _Apartment_Info__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Apartment/Info */ "./resources/js/post/page/SavePost/Apartment/Info.jsx");
+/* harmony import */ var _Apartment_Confirm__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Apartment/Confirm */ "./resources/js/post/page/SavePost/Apartment/Confirm.jsx");
+/* harmony import */ var _Apartment_OrtherInfor__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Apartment/OrtherInfor */ "./resources/js/post/page/SavePost/Apartment/OrtherInfor.jsx");
 /* harmony import */ var _Partial_UserPostInfomation__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Partial/UserPostInfomation */ "./resources/js/post/page/SavePost/Partial/UserPostInfomation.jsx");
 /* harmony import */ var _Partial_TypePost__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Partial/TypePost */ "./resources/js/post/page/SavePost/Partial/TypePost.jsx");
 /* harmony import */ var _Partial_RoleUser__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Partial/RoleUser */ "./resources/js/post/page/SavePost/Partial/RoleUser.jsx");
@@ -9738,7 +9740,7 @@ function Apartment(props) {
           className: "progress-loadding"
         })
       })]
-    }), SW && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Apartment_HeaderApartment__WEBPACK_IMPORTED_MODULE_3__.default, {
+    }), SW && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Apartment_Header__WEBPACK_IMPORTED_MODULE_3__.default, {
       SW: SW,
       parentCallback: continueStep
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("div", {
@@ -9772,23 +9774,23 @@ function Apartment(props) {
           ref: refAreaPrice,
           CONFIG: CONFIG,
           OLD: form
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Apartment_OrtherInforApartment__WEBPACK_IMPORTED_MODULE_7__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Apartment_OrtherInfor__WEBPACK_IMPORTED_MODULE_7__.default, {
           ref: refOrtherInfo,
           CONFIG: CONFIG,
           OLD: form
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Apartment_InfoApartment__WEBPACK_IMPORTED_MODULE_5__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Apartment_Info__WEBPACK_IMPORTED_MODULE_5__.default, {
           ref: refApartmentInfo,
           CONFIG: CONFIG,
           AUTH: AUTH,
           OLD: form
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Apartment_ConfirmApartment__WEBPACK_IMPORTED_MODULE_6__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Apartment_Confirm__WEBPACK_IMPORTED_MODULE_6__.default, {
           data: form,
           CONFIG: CONFIG
         })]
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("div", {
       className: "footer__wrapper " + (progress && 'd-none'),
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Apartment_FooterApartment__WEBPACK_IMPORTED_MODULE_4__.default, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Apartment_Footer__WEBPACK_IMPORTED_MODULE_4__.default, {
         currentStep: SW === null || SW === void 0 ? void 0 : SW.currentStep,
         parentCallback: continueStep,
         fetchApiSave: saveApartment
@@ -9810,10 +9812,10 @@ var mapStateToProps = function mapStateToProps(state) {
 
 /***/ }),
 
-/***/ "./resources/js/post/page/SavePost/Apartment/ConfirmApartment.jsx":
-/*!************************************************************************!*\
-  !*** ./resources/js/post/page/SavePost/Apartment/ConfirmApartment.jsx ***!
-  \************************************************************************/
+/***/ "./resources/js/post/page/SavePost/Apartment/Confirm.jsx":
+/*!***************************************************************!*\
+  !*** ./resources/js/post/page/SavePost/Apartment/Confirm.jsx ***!
+  \***************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -9833,7 +9835,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function ConfirmApartment(props) {
+function Confirm(props) {
   var _data$images;
 
   function renderTypePost(type) {
@@ -10187,14 +10189,14 @@ var mapStateToProps = function mapStateToProps(state) {
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps)(ConfirmApartment));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps)(Confirm));
 
 /***/ }),
 
-/***/ "./resources/js/post/page/SavePost/Apartment/FooterApartment.jsx":
-/*!***********************************************************************!*\
-  !*** ./resources/js/post/page/SavePost/Apartment/FooterApartment.jsx ***!
-  \***********************************************************************/
+/***/ "./resources/js/post/page/SavePost/Apartment/Footer.jsx":
+/*!**************************************************************!*\
+  !*** ./resources/js/post/page/SavePost/Apartment/Footer.jsx ***!
+  \**************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -10208,7 +10210,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var CURRENT_STEP_SHOW_API = 9;
 
-var FooterApartment = function FooterApartment(props) {
+var Footer = function Footer(props) {
   var continueStepInFooter = function continueStepInFooter() {
     props.parentCallback();
   };
@@ -10238,14 +10240,14 @@ var FooterApartment = function FooterApartment(props) {
   });
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FooterApartment);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Footer);
 
 /***/ }),
 
-/***/ "./resources/js/post/page/SavePost/Apartment/HeaderApartment.jsx":
-/*!***********************************************************************!*\
-  !*** ./resources/js/post/page/SavePost/Apartment/HeaderApartment.jsx ***!
-  \***********************************************************************/
+/***/ "./resources/js/post/page/SavePost/Apartment/Header.jsx":
+/*!**************************************************************!*\
+  !*** ./resources/js/post/page/SavePost/Apartment/Header.jsx ***!
+  \**************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -10259,7 +10261,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var renderTitleHeaderApartment = function renderTitleHeaderApartment(currentStep) {
+var renderTitleHeader = function renderTitleHeader(currentStep) {
   switch (currentStep) {
     case 1:
       return 'Chọn Kiểu Đăng';
@@ -10287,11 +10289,11 @@ var renderTitleHeaderApartment = function renderTitleHeaderApartment(currentStep
   }
 };
 
-var HeaderApartment = function HeaderApartment(props) {
+var Header = function Header(props) {
   var SW = props.SW;
 
   var continueStepInHeader = function continueStepInHeader() {
-    console.log("vào continueStepInHeader of HeaderApartment");
+    console.log("vào continueStepInHeader of Header");
     props.parentCallback();
   };
 
@@ -10308,7 +10310,7 @@ var HeaderApartment = function HeaderApartment(props) {
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
         className: "apartment__title",
-        children: renderTitleHeaderApartment(SW.currentStep)
+        children: renderTitleHeader(SW.currentStep)
       }), SW.currentStep == SW.totalSteps ? null : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
         className: "btn apartment__btn-next",
         onClick: continueStepInHeader,
@@ -10329,7 +10331,7 @@ var HeaderApartment = function HeaderApartment(props) {
   });
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HeaderApartment); // https://github.com/jcmcneal/react-step-wizard
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Header); // https://github.com/jcmcneal/react-step-wizard
 // <h2>Step {this.props.currentStep}</h2>
 // <p>Total Steps: {this.props.totalSteps}</p>
 // <p>Is Active: {this.props.isActive}</p>
@@ -10342,10 +10344,10 @@ var HeaderApartment = function HeaderApartment(props) {
 
 /***/ }),
 
-/***/ "./resources/js/post/page/SavePost/Apartment/InfoApartment.jsx":
-/*!*********************************************************************!*\
-  !*** ./resources/js/post/page/SavePost/Apartment/InfoApartment.jsx ***!
-  \*********************************************************************/
+/***/ "./resources/js/post/page/SavePost/Apartment/Info.jsx":
+/*!************************************************************!*\
+  !*** ./resources/js/post/page/SavePost/Apartment/Info.jsx ***!
+  \************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -10395,7 +10397,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 hero_validate__WEBPACK_IMPORTED_MODULE_1__.default.setLocale(hero_validate__WEBPACK_IMPORTED_MODULE_1__.default.languages.vi);
-var InfoApartment = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(function (props, ref) {
+var Info = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(function (props, ref) {
   var _props$OLD;
 
   var DEFAULT_NONE_SELECT = "";
@@ -10619,14 +10621,14 @@ var InfoApartment = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRe
     })
   });
 });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (InfoApartment);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Info);
 
 /***/ }),
 
-/***/ "./resources/js/post/page/SavePost/Apartment/OrtherInforApartment.jsx":
-/*!****************************************************************************!*\
-  !*** ./resources/js/post/page/SavePost/Apartment/OrtherInforApartment.jsx ***!
-  \****************************************************************************/
+/***/ "./resources/js/post/page/SavePost/Apartment/OrtherInfor.jsx":
+/*!*******************************************************************!*\
+  !*** ./resources/js/post/page/SavePost/Apartment/OrtherInfor.jsx ***!
+  \*******************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -10668,7 +10670,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 hero_validate__WEBPACK_IMPORTED_MODULE_1__.default.setLocale(hero_validate__WEBPACK_IMPORTED_MODULE_1__.default.languages.vi);
 hero_validate__WEBPACK_IMPORTED_MODULE_1__.default.setMessages(_validator_user_price_area__WEBPACK_IMPORTED_MODULE_3__.default.messages);
-var OrtherInforApartment = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(function (props, ref) {
+var OrtherInfor = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(function (props, ref) {
   var _OLD$direction, _OLD$direction_balcon, _OLD$negotiate, _OLD$room, _OLD$wc, _OLD$bathroom;
 
   var OLD = props.OLD;
@@ -10935,7 +10937,7 @@ var OrtherInforApartment = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.fo
     })]
   });
 });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (OrtherInforApartment);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (OrtherInfor);
 
 /***/ }),
 
@@ -11014,8 +11016,7 @@ var AreaPrice = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(f
 
     var dataValues = _objectSpread(_objectSpread({}, values), {}, _defineProperty({}, event.target.name, event.target.value));
 
-    console.log(_objectSpread(_objectSpread({}, values), calcAreaPrice(event.target.name, dataValues)), "{ ...values, ...calcAreaPrice(event.target.name, dataValues) }-----" + event.target.value);
-    setValues(_objectSpread(_objectSpread({}, values), calcAreaPrice(event.target.name, dataValues)));
+    setValues(_objectSpread(_objectSpread({}, dataValues), calcAreaPrice(event.target.name, dataValues)));
     setTouched(_objectSpread(_objectSpread({}, touched), {}, _defineProperty({}, event.target.name, true)));
   }; /// hook react
 

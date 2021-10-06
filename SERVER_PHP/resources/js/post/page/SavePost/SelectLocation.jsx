@@ -90,6 +90,7 @@ const SelectLocation = forwardRef((props, ref) => {
     }
     function callApiCommune(callback){
         if( communes.length <= 1 ){
+            
             if(props.locations && props.locations.commune ){
                 const newCommunes = [ ...communes, ... props.locations.commune ]
                 callback ? callback(newCommunes) : setCommunes(newCommunes)

@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 import ExpandShowMore from "../../ExpandShowMore"
 import Images from '../Partial/UploadImage/Images'
 
-function ConfirmApartment( props ){
+function Confirm( props ){
 
     function renderTypePost(type){
         const { CONFIG } = props
@@ -246,4 +246,4 @@ let mapStateToProps = (state) => {
         locations: state.location
     }
 }
-export default connect(mapStateToProps)(ConfirmApartment)
+export default connect(mapStateToProps)(Confirm)

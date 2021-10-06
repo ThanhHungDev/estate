@@ -27,8 +27,7 @@ const AreaPrice = forwardRef((props, ref) => {
         
         
         let dataValues = { ...values, [event.target.name]: event.target.value }
-        console.log( { ...values, ...calcAreaPrice(event.target.name, dataValues) } , "{ ...values, ...calcAreaPrice(event.target.name, dataValues) }-----" + event.target.value)
-        setValues({ ...values, ...calcAreaPrice(event.target.name, dataValues) })
+        setValues({ ...dataValues, ...calcAreaPrice(event.target.name, dataValues) })
         setTouched({ ...touched, [event.target.name]: true })
     }
 

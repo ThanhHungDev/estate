@@ -7,7 +7,7 @@ import Select from 'react-select'
 Validator.setLocale(Validator.languages.vi)
 Validator.setMessages(V.messages)
 
-const OrtherInforApartment = forwardRef((props, ref) => {
+const OrtherInfor = forwardRef((props, ref) => {
 
     const { OLD } = props
 
@@ -171,4 +171,4 @@ const OrtherInforApartment = forwardRef((props, ref) => {
     )
 })
 
-export default OrtherInforApartment
+export default OrtherInfor

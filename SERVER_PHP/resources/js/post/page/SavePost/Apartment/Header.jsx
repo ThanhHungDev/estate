@@ -1,6 +1,6 @@
 import React from "react"
 
-const renderTitleHeaderApartment = currentStep => {
+const renderTitleHeader = currentStep => {
 
     switch(currentStep) {
         case 1:
@@ -21,11 +21,11 @@ const renderTitleHeaderApartment = currentStep => {
             return 'Nhập Thông Tin Liên Hệ';
     }
 }
-const HeaderApartment = (props) => {
+const Header = (props) => {
     let { SW } = props
 
     const continueStepInHeader = () => {
-        console.log("vào continueStepInHeader of HeaderApartment")
+        console.log("vào continueStepInHeader of Header")
         props.parentCallback()
     }
 
@@ -40,7 +40,7 @@ const HeaderApartment = (props) => {
                     : <button className='btn apartment__btn-prev' onClick={SW.previousStep}><i className="fas fa-chevron-left"></i></button>
                 }
                 <span className="apartment__title">
-                { renderTitleHeaderApartment(SW.currentStep) }
+                { renderTitleHeader(SW.currentStep) }
                 </span>
                 {
                     SW.currentStep == SW.totalSteps
@@ -56,7 +56,7 @@ const HeaderApartment = (props) => {
     )
 };
 
-export default HeaderApartment
+export default Header
 
 
 // https://github.com/jcmcneal/react-step-wizard

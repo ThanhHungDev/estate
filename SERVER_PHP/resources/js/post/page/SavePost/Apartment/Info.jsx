@@ -7,7 +7,7 @@ import SelectLocation from '../SelectLocation'
 
 Validator.setLocale(Validator.languages.vi)
 
-const InfoApartment = forwardRef((props, ref) => {
+const Info = forwardRef((props, ref) => {
     const DEFAULT_NONE_SELECT = ""
 
     const refLocation = useRef()
@@ -155,4 +155,4 @@ const InfoApartment = forwardRef((props, ref) => {
     )
 })
 
-export default InfoApartment
+export default Info

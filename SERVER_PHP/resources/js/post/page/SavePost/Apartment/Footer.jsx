@@ -1,7 +1,7 @@
 import React from "react"
 
 const CURRENT_STEP_SHOW_API = 9
-const FooterHouse = props => {
+const Footer = props => {
 
     const continueStepInFooter = () => {
         props.parentCallback()
@@ -28,4 +28,4 @@ const FooterHouse = props => {
     )
 }
 
-export default FooterHouse
+export default Footer
