@@ -49,7 +49,7 @@ class ProductController extends Controller
 
         $productInput['user_id']    = $user->id;
         $productInput['commune_id'] = $request->input('product_commune_id', null);
-        $productInput['title']      = $productInput['title'] . "--" . date('Ymd-His-v');
+        $productInput['title']      = $productInput['title'] . "--" . time();
         $productInput['slug']       = SupportString::createSlug($productInput['title']);
         $productInput['content']    = SupportString::createEmoji($productInput['content']);
         ///
