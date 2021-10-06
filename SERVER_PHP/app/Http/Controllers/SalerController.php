@@ -16,8 +16,6 @@ class SalerController extends Controller
     public function profile(Request $request)
     {
         $profile = Auth::user();
-        $token   = $request->cookie(config('constant.TOKEN_COOKIE_NAME'));
-        dd( $token );
         return view('client.saler.profile', compact(['profile']));
     }
 

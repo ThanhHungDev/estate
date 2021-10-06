@@ -6,7 +6,11 @@ use App\Models\Option;
 use App\Models\Picture;
 use App\Models\Post;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Session;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class SupportDB{
 
@@ -100,4 +104,20 @@ class SupportDB{
     }
     
 
+    public static function getJwtAuthentication(){
+        $token = Session::get(Config::get("constant.TOKEN_COOKIE_NAME"), null );
+        if( !!$token ){
+            return $token;
+        }
+        /// check user logged 
+        $user = Auth::user();
+        if( !$user ){
+            /// user not loged => return null
+            return null;
+        }
+        /// tạo 1 token đưa về client lưu vào localStorage
+        $token = JWTAuth::fromUser($user);
+        Session::put(Config::get("constant.TOKEN_COOKIE_NAME"),$token);
+        return $token;
+    }
 }

@@ -63,7 +63,7 @@ $configApp['VIDEO']    = Config::get('video.UPLOAD');
         const CONFIG_APP = `{!! json_encode($configApp) !!}`;
         const CATEGORIES = `{!! json_encode($categories ?? []) !!}`;
         const PROVINCES  = `{!! json_encode(Config::get('province')) !!}`;
-        const JWT_TOKEN  = `{{ Cookie::get(Config::get('constant.TOKEN_COOKIE_NAME')) }}`;
+        const JWT_TOKEN  = `{{ SupportDB::getJwtAuthentication() }}`;
         // const KEY_CAPTCHA = "{{ env('GOOGLE_RECAPTCHA_KEY')  }}";
     </script>
     <script src="{{ asset('js/post.js'. Config::get('app.version')) }}"></script>

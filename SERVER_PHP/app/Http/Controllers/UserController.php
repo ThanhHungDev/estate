@@ -199,8 +199,7 @@ class UserController extends Controller
         );
 
         return response()
-        ->json($response, Response::HTTP_OK)   // JsonResponse object
-        ->withCookie(cookie()->forever(Config::get('constant.TOKEN_COOKIE_NAME'), $tokenNew));
+        ->json($response, Response::HTTP_OK);
     }
 
 
@@ -213,8 +212,6 @@ class UserController extends Controller
      */
     public function profile(Request $request)
     {
-        $token   = $request->cookie(config('constant.TOKEN_COOKIE_NAME'));
-
         $profile = Auth::user();
 
         $userId = $profile->id;
@@ -231,7 +228,7 @@ class UserController extends Controller
         /// get list product of user post
         $products = Product::where('user_id', $userId)->orderBy('created_at', 'DESC')->get();
 
-        return view('client.user.profile', compact(['profile', 'friends', 'token', 'products']));
+        return view('client.user.profile', compact(['profile', 'friends', 'products']));
     }
 
 

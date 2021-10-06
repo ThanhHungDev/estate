@@ -64,12 +64,10 @@ class LoginController extends Controller
             
             if( $user->role_id == Config::get('constant.ROLE.USER')){
 
-                return redirect()->route('USER_DASHBOARD')
-                ->withCookie(cookie()->forever(Config::get('constant.TOKEN_COOKIE_NAME'), $token));
+                return redirect()->route('USER_DASHBOARD');
             }else{
 
-                return redirect()->route('ADMIN_DASHBOARD')
-                ->withCookie(cookie()->forever(Config::get('constant.TOKEN_COOKIE_NAME'), $token));
+                return redirect()->route('ADMIN_DASHBOARD');
             }
         }
         return redirect()->back()->with(Config::get('constant.LOGIN_ERROR'), 'đăng nhập thất bại!!! ');

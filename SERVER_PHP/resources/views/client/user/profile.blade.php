@@ -31,7 +31,7 @@
         lightGallery(document.getElementById('photos__responsive-images')); 
     </script>
     <script>
-        const jwt = "{{ Cookie::get(Config::get('constant.TOKEN_COOKIE_NAME')) }}";
+        const jwt = `{{ SupportDB::getJwtAuthentication() }}`;
     </script>
 @endsection
 

@@ -90,8 +90,7 @@ class ProductController extends Controller
                     ],
                     Response::HTTP_OK
                 )
-                ->setStatusCode(Response::HTTP_OK)
-                ->withCookie(cookie()->forever(Config::get('constant.TOKEN_COOKIE_NAME'), $token));;
+                ->setStatusCode(Response::HTTP_OK);
     }
     
 
@@ -147,7 +146,7 @@ class ProductController extends Controller
 
         $productInput['user_id']    = $user->id;
         $productInput['commune_id'] = $request->input('product_commune_id', null);
-        $productInput['title']      = $productInput['title'] . "--" . date('Ymd-His-v');
+        $productInput['title']      = $productInput['title'];
         $productInput['slug']       = SupportString::createSlug($productInput['title']);
         $productInput['content']    = SupportString::createEmoji($productInput['content']);
         ///
@@ -189,7 +188,6 @@ class ProductController extends Controller
                     ],
                     Response::HTTP_OK
                 )
-                ->setStatusCode(Response::HTTP_OK)
-                ->withCookie(cookie()->forever(Config::get('constant.TOKEN_COOKIE_NAME'), $token));;
+                ->setStatusCode(Response::HTTP_OK);
     }
 }
