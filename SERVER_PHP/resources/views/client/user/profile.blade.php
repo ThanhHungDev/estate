@@ -135,7 +135,10 @@
                                             </div>
                                             <div class="ml-2">
                                                 <div class="h5 m-0 text-blue">{{ $profile->getNameTagLimited() }}</div>
-                                                <div class="h7 text-muted">Miracles Lee Cross</div>
+                                                <div class="h7 text-muted">
+                                                    <i class="fal fa-clock"></i>
+                                                    <small class="">{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $product->updated_at)->diffForHumans() }}</small>
+                                                </div>
                                             </div>
                                         </div>
                                         <div>
@@ -150,15 +153,18 @@
                                                     <a class="dropdown-item" href="#">Report</a>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> 
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i> Hace 40 min</div>
                                     <a class="card-link" href="{{ Route('USER_POST') }}/edit/{{ $product->id }}">
                                         <h5 class="card-title">{{ $product->title }}</h5>
                                     </a>
-                                    <div class="card-text">{!! $product->content !!}</div>
+                                    <div class="card-text collapse-group ">
+                                        {!! $product->content !!}
+                                        <div class="collapse" id="viewdetails3">{!! $product->content !!}</div>
+                                        <a class="btn float-right" data-toggle="collapse" data-target="#viewdetails3">More... &raquo;</a>
+                                    </div>
                                 </div>
                                 <div class="card-footer">
                                     <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>

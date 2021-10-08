@@ -99,7 +99,7 @@ const ContentTitle = forwardRef((props, ref) => {
                             <label htmlFor="content">Nội dung mô tả</label>
                             <div
                                 style={{ borderRadius: '.25rem', minHeight: "10em", cursor: "text" }} 
-                                className={"editor form-control h-auto " + ( hasErr("contentText") ? "is-invalid" : ( touched['contentText'] && "is-valid" ) )}>
+                                className={"editor hero__editor form-control h-auto " + ( hasErr("contentText") ? "is-invalid" : ( touched['contentText'] && "is-valid" ) )}>
                          
                                 <Editor
                                     editorState={ editorState }
