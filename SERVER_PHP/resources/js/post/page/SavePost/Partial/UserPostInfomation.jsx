@@ -16,8 +16,8 @@ const UserPostInfomation = forwardRef((props, ref) => {
 
     /// setting giá trị mặc định
     const [ values, setValues ] = useState({
-        name        : AUTH.name,
-        phone_verify: AUTH.phone_verify,
+        name        : AUTH.name? "" : "",
+        phone_verify: AUTH.phone_verify??"",
         province    : AUTH.province_id ?? 0,
         district    : AUTH.district_id ?? 0,
         commune     : AUTH.commune_id ?? 0,
@@ -81,13 +81,13 @@ const UserPostInfomation = forwardRef((props, ref) => {
                 <div className="col-12 col-md-6">
                     <div className="form-group">
                         <label htmlFor="name">Họ Tên </label>
-                        <input type="text" className="form-control" id="name" defaultValue={AUTH.name} readOnly />
+                        <input type="text" className="form-control" id="name" defaultValue={AUTH.name} readOnly={!!AUTH.name} />
                     </div>
                 </div>
                 <div className="col-12 col-md-6">
                     <div className="form-group">
                         <label htmlFor="phone">Số Điện Thoại </label>
-                        <input type="text" className="form-control" id="phone" defaultValue={AUTH.phone_verify} readOnly />
+                        <input type="text" className="form-control" id="phone" defaultValue={AUTH.phone_verify} readOnly={!!AUTH.phone_verify} />
                     </div>
                 </div>
             </div>

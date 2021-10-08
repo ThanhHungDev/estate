@@ -12384,15 +12384,15 @@ hero_validate__WEBPACK_IMPORTED_MODULE_1__.default.setLocale(hero_validate__WEBP
 
 hero_validate__WEBPACK_IMPORTED_MODULE_1__.default.setMessages(_validator_user_infor__WEBPACK_IMPORTED_MODULE_2__.default.messages);
 var UserPostInfomation = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(function (props, ref) {
-  var _AUTH$province_id, _AUTH$district_id, _AUTH$commune_id, _AUTH$home_number, _AUTH$street;
+  var _AUTH$phone_verify, _AUTH$province_id, _AUTH$district_id, _AUTH$commune_id, _AUTH$home_number, _AUTH$street;
 
   var refLocation = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   var AUTH = props.AUTH,
       CONFIG = props.CONFIG; /// setting giá trị mặc định
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
-    name: AUTH.name,
-    phone_verify: AUTH.phone_verify,
+    name: AUTH.name ? "" : "",
+    phone_verify: (_AUTH$phone_verify = AUTH.phone_verify) !== null && _AUTH$phone_verify !== void 0 ? _AUTH$phone_verify : "",
     province: (_AUTH$province_id = AUTH.province_id) !== null && _AUTH$province_id !== void 0 ? _AUTH$province_id : 0,
     district: (_AUTH$district_id = AUTH.district_id) !== null && _AUTH$district_id !== void 0 ? _AUTH$district_id : 0,
     commune: (_AUTH$commune_id = AUTH.commune_id) !== null && _AUTH$commune_id !== void 0 ? _AUTH$commune_id : 0,
@@ -12471,7 +12471,7 @@ var UserPostInfomation = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forw
             className: "form-control",
             id: "name",
             defaultValue: AUTH.name,
-            readOnly: true
+            readOnly: !!AUTH.name
           })]
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
@@ -12486,7 +12486,7 @@ var UserPostInfomation = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forw
             className: "form-control",
             id: "phone",
             defaultValue: AUTH.phone_verify,
-            readOnly: true
+            readOnly: !!AUTH.phone_verify
           })]
         })
       })]
