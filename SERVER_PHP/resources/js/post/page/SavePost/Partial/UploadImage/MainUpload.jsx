@@ -52,8 +52,24 @@ export default props => {
             }
         })
         .catch(error => {
-            console.log("ERROR:: ",error)
-            alert("upload lỗi : " + error.message)
+            if (error.response) {
+                // Request made and server responded
+                console.log(error.response.data)
+                console.log(error.response.status)
+                console.log(error.response.headers)
+                let { data, status, headers } = error.response
+                let { errors } = data
+                let firsKeyError = Object.keys(errors)[0]
+                alert("upload lỗi : " + errors[firsKeyError] )
+            } else if (error.request) {
+                // The request was made but no response was received
+                console.log(error.request)
+                alert("upload lỗi không nhận được phản hồi" )
+            } else {
+                // Something happened in setting up the request that triggered an Error
+                console.log('Error', error.message)
+                alert("Đã xảy ra sự cố khi thiết lập upload." )
+            }
             setUploading(null)
         })
     }

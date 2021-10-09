@@ -9194,7 +9194,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _SavePost_Apartment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SavePost/Apartment */ "./resources/js/post/page/SavePost/Apartment.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _SavePost_DwellingHouse__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SavePost/DwellingHouse */ "./resources/js/post/page/SavePost/DwellingHouse.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
 
@@ -9208,7 +9210,13 @@ function SavePost(props) {
 
   switch (category.slug) {
     case 'can-ho-chung-cu':
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_SavePost_Apartment__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_SavePost_Apartment__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        category: category,
+        OLD: OLD
+      });
+
+    case 'nha-rieng':
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_SavePost_DwellingHouse__WEBPACK_IMPORTED_MODULE_2__["default"], {
         category: category,
         OLD: OLD
       });
@@ -10739,6 +10747,502 @@ var OrtherInfor = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)
 
 /***/ }),
 
+/***/ "./resources/js/post/page/SavePost/DwellingHouse.jsx":
+/*!***********************************************************!*\
+  !*** ./resources/js/post/page/SavePost/DwellingHouse.jsx ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_step_wizard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-step-wizard */ "./node_modules/react-step-wizard/dist/react-step-wizard.min.js");
+/* harmony import */ var react_step_wizard__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_step_wizard__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Apartment_Header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Apartment/Header */ "./resources/js/post/page/SavePost/Apartment/Header.jsx");
+/* harmony import */ var _Apartment_Footer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Apartment/Footer */ "./resources/js/post/page/SavePost/Apartment/Footer.jsx");
+/* harmony import */ var _Apartment_Confirm__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Apartment/Confirm */ "./resources/js/post/page/SavePost/Apartment/Confirm.jsx");
+/* harmony import */ var _Apartment_OrtherInfor__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Apartment/OrtherInfor */ "./resources/js/post/page/SavePost/Apartment/OrtherInfor.jsx");
+/* harmony import */ var _DwellingHouse_Info__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./DwellingHouse/Info */ "./resources/js/post/page/SavePost/DwellingHouse/Info.jsx");
+/* harmony import */ var _Partial_UserPostInfomation__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Partial/UserPostInfomation */ "./resources/js/post/page/SavePost/Partial/UserPostInfomation.jsx");
+/* harmony import */ var _Partial_TypePost__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Partial/TypePost */ "./resources/js/post/page/SavePost/Partial/TypePost.jsx");
+/* harmony import */ var _Partial_RoleUser__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Partial/RoleUser */ "./resources/js/post/page/SavePost/Partial/RoleUser.jsx");
+/* harmony import */ var _Partial_GalleryPost__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Partial/GalleryPost */ "./resources/js/post/page/SavePost/Partial/GalleryPost.jsx");
+/* harmony import */ var _Partial_AreaPrice__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Partial/AreaPrice */ "./resources/js/post/page/SavePost/Partial/AreaPrice.jsx");
+/* harmony import */ var _Partial_ContentTitle__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./Partial/ContentTitle */ "./resources/js/post/page/SavePost/Partial/ContentTitle.jsx");
+/* harmony import */ var _Partial_SaveProductSuccess__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./Partial/SaveProductSuccess */ "./resources/js/post/page/SavePost/Partial/SaveProductSuccess.jsx");
+/* harmony import */ var _Partial_SaveProductError__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./Partial/SaveProductError */ "./resources/js/post/page/SavePost/Partial/SaveProductError.jsx");
+/* harmony import */ var _service_user_api__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../../service/user.api */ "./resources/js/service/user.api.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ /// lưu căn hộ chung cư
+
+
+
+
+function DwellingHouse(props) {
+  var _props$OLD;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)((_props$OLD = props.OLD) !== null && _props$OLD !== void 0 ? _props$OLD : {}),
+      _useState2 = _slicedToArray(_useState, 2),
+      form = _useState2[0],
+      setForm = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+      _useState4 = _slicedToArray(_useState3, 2),
+      state = _useState4[0],
+      updateState = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      progress = _useState6[0],
+      setProgress = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState8 = _slicedToArray(_useState7, 2),
+      success = _useState8[0],
+      setSuccess = _useState8[1];
+
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState10 = _slicedToArray(_useState9, 2),
+      error = _useState10[0],
+      setError = _useState10[1]; // let refRolePost = React.createRef()
+
+
+  var refHeader = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
+  var refType = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
+  var refUserPostInfor = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
+  var refRoleUser = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
+  var refGalleryUser = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
+  var refContent = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
+  var refAreaPrice = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
+  var refOrtherInfo = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
+  var refInfRealEstate = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(); // Do something on step change
+
+  var onStepChange = function onStepChange(stats) {
+    console.log(form, "onStepChange đã cập nhật dữ liệu mới");
+    updateState(_objectSpread(_objectSpread(_objectSpread({}, stats), state), form));
+  };
+
+  var setInstance = function setInstance(SW) {
+    return updateState(_objectSpread(_objectSpread(_objectSpread({}, form), state), {}, {
+      SW: SW
+    }));
+  };
+
+  var saveApartment = function saveApartment() {
+    //// khi chạy 1 cái apartment cũng phải truyền cái category người dùng đã chọn vào
+    var category = props.category,
+        CONFIG = props.CONFIG; /// create progress
+
+    setProgress(true);
+    window.scrollTo(0, refHeader.current.offsetTop); /// fetch api
+
+    console.log("dữ liệu lưu lên server", form);
+    var title = form.title,
+        content = form.content,
+        area = form.area,
+        price = form.price,
+        horizontal = form.horizontal,
+        vertical = form.vertical,
+        commune = form.commune,
+        home_number = form.home_number,
+        street = form.street,
+        direction = form.direction,
+        direction_balcony = form.direction_balcony,
+        negotiate = form.negotiate,
+        room = form.room,
+        wc = form.wc,
+        bathroom = form.bathroom,
+        role = form.role,
+        type = form.type,
+        project = form.project,
+        images = form.images,
+        videos = form.videos,
+        edit = form.edit;
+    var formData = {
+      edit: edit,
+      project: project,
+      //// ===========> đặc biệt cái field này dùng trong đây để đẩy lên tính riêng nha
+      images: images,
+      videos: videos,
+      categories: category,
+      /// dành cho user
+      commune_id: commune,
+      home_number: home_number,
+      street: street,
+      role: role,
+      /// role là để xác định cái người này là cá nhân hay môi giới
+      /// dành cho product 
+      project_id: project.id,
+      category_id: category.id,
+      posttype: type,
+      /// xác định bài đăng thuộc thuê / cho thuê hay bán / mua 
+      title: title,
+      content: content,
+      "public": CONFIG.CONSTANT.TYPE_SAVE.PUBLIC,
+      type: CONFIG.CONSTANT['TYPE-PRODUCT'].HOUSE,
+      /// bán nhà hay bán đất
+      direction: direction,
+      direction_balcony: direction_balcony,
+      horizontal: horizontal,
+      /// chiều rộng của bất động sản
+      vertical: vertical,
+      /// chiểu dài của bất động sản
+      area: area,
+      /// tổng diện tích của bất động sản
+      price: price,
+      /// tổng giá của bất động sản
+      unit_price: CONFIG.UNIT.PRICE.DEFAULT.VALUE,
+      negotiate: negotiate,
+      extensions: {
+        room: room,
+        wc: wc,
+        bathroom: bathroom,
+        project: project,
+        category: category
+      }
+    };
+
+    if (project !== null && project !== void 0 && project.__isNew__) {
+      /// thêm mới project
+      formData.product_commune_id = project.commune; /// thông qua project appartment
+    }
+
+    _service_user_api__WEBPACK_IMPORTED_MODULE_16__["default"].saveApartment(formData).then(function (response) {
+      var data = response.data;
+      setProgress(false);
+      console.log(data);
+      setSuccess("thành công rồi nè");
+    })["catch"](function (error) {
+      setProgress(false);
+      console.log("ERROR:: ", error);
+      setError(error);
+    });
+  };
+
+  var continueStep = function continueStep(childData) {
+    if (SW.currentStep == 1) {
+      /// validate đúng thì mới đc next step
+      var type = refType.current.validateFromStep();
+
+      if (type) {
+        setForm(_objectSpread(_objectSpread({}, form), {}, {
+          type: type
+        }));
+        SW.nextStep();
+      }
+    } else if (SW.currentStep == 2) {
+      var infor = refUserPostInfor.current.validateFromStep();
+
+      if (infor) {
+        setForm(_objectSpread(_objectSpread({}, form), infor));
+        SW.nextStep();
+      }
+    } else if (SW.currentStep == 3) {
+      var role = refRoleUser.current.validateFromStep();
+
+      if (role) {
+        setForm(_objectSpread(_objectSpread({}, form), {}, {
+          role: role
+        }));
+        SW.nextStep();
+      }
+    } else if (SW.currentStep == 4) {
+      var contentTitle = refContent.current.validateFromStep();
+
+      if (contentTitle) {
+        setForm(_objectSpread(_objectSpread({}, form), contentTitle));
+        SW.nextStep();
+      }
+    } else if (SW.currentStep == 5) {
+      var _refGalleryUser$curre = refGalleryUser.current.validateFromStep(),
+          images = _refGalleryUser$curre.images,
+          videos = _refGalleryUser$curre.videos;
+
+      if (images && images.length) {
+        setForm(_objectSpread(_objectSpread({}, form), {}, {
+          images: images,
+          videos: videos
+        }));
+        SW.nextStep();
+      }
+    } else if (SW.currentStep == 6) {
+      var areaPrice = refAreaPrice.current.validateFromStep();
+
+      if (areaPrice) {
+        setForm(_objectSpread(_objectSpread({}, form), areaPrice));
+        SW.nextStep();
+      }
+    } else if (SW.currentStep == 7) {
+      var ortherInfo = refOrtherInfo.current.validateFromStep();
+
+      if (ortherInfo) {
+        setForm(_objectSpread(_objectSpread({}, form), ortherInfo));
+        SW.nextStep();
+      }
+    } else if (SW.currentStep == 8) {
+      var apartmentInfo = refInfRealEstate.current.validateFromStep();
+
+      if (apartmentInfo) {
+        setForm(_objectSpread(_objectSpread({}, form), apartmentInfo));
+        SW.nextStep();
+      }
+    }
+
+    window.scrollTo(0, refHeader.current.offsetTop);
+  }; /// ban đầu state là {} => SW là undefine
+
+
+  var SW = state.SW;
+  var CONFIG = props.CONFIG,
+      AUTH = props.AUTH,
+      device = props.device;
+
+  if (success) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Partial_SaveProductSuccess__WEBPACK_IMPORTED_MODULE_14__["default"], {});
+  }
+
+  if (error) {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Partial_SaveProductError__WEBPACK_IMPORTED_MODULE_15__["default"], {
+      error: JSON.stringify(error)
+    });
+  }
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsxs)("div", {
+    className: "apartment",
+    style: {
+      minHeight: device.calcHeightSubtractHeight + "px"
+    },
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsxs)("div", {
+      ref: refHeader,
+      className: "apartment__wrapper d-none " + (progress && 'd-block'),
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("p", {
+        children: "\u0110ang l\u01B0u tr\u1EEF d\u1EEF li\u1EC7n l\xEAn server"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("p", {
+        children: progress
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("div", {
+        className: "progress progress-purple",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("div", {
+          className: "progress-loadding"
+        })
+      })]
+    }), SW && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Apartment_Header__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      SW: SW,
+      parentCallback: continueStep
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("div", {
+      className: "apartment__wrapper " + (progress && 'd-none'),
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsxs)((react_step_wizard__WEBPACK_IMPORTED_MODULE_2___default()), {
+        isHashEnabled: true,
+        onStepChange: onStepChange,
+        instance: setInstance,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Partial_TypePost__WEBPACK_IMPORTED_MODULE_9__["default"], {
+          ref: refType,
+          CONFIG: CONFIG,
+          OLD: form
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Partial_UserPostInfomation__WEBPACK_IMPORTED_MODULE_8__["default"], {
+          ref: refUserPostInfor,
+          CONFIG: CONFIG,
+          AUTH: AUTH,
+          OLD: form
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Partial_RoleUser__WEBPACK_IMPORTED_MODULE_10__["default"], {
+          ref: refRoleUser,
+          CONFIG: CONFIG,
+          OLD: form
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Partial_ContentTitle__WEBPACK_IMPORTED_MODULE_13__["default"], {
+          ref: refContent,
+          CONFIG: CONFIG,
+          OLD: form
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Partial_GalleryPost__WEBPACK_IMPORTED_MODULE_11__["default"], {
+          ref: refGalleryUser,
+          CONFIG: CONFIG,
+          OLD: form
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Partial_AreaPrice__WEBPACK_IMPORTED_MODULE_12__["default"], {
+          ref: refAreaPrice,
+          CONFIG: CONFIG,
+          OLD: form
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Apartment_OrtherInfor__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          ref: refOrtherInfo,
+          CONFIG: CONFIG,
+          OLD: form
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_DwellingHouse_Info__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          ref: refInfRealEstate,
+          CONFIG: CONFIG,
+          AUTH: AUTH,
+          OLD: form
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Apartment_Confirm__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          data: form,
+          CONFIG: CONFIG
+        })]
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("div", {
+      className: "footer__wrapper " + (progress && 'd-none'),
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Apartment_Footer__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        currentStep: SW === null || SW === void 0 ? void 0 : SW.currentStep,
+        parentCallback: continueStep,
+        fetchApiSave: saveApartment
+      })
+    })]
+  });
+}
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    CATEGORIES: state.categories,
+    CONFIG: state.config,
+    AUTH: state.auth,
+    device: state.device
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps)(DwellingHouse));
+
+/***/ }),
+
+/***/ "./resources/js/post/page/SavePost/DwellingHouse/Info.jsx":
+/*!****************************************************************!*\
+  !*** ./resources/js/post/page/SavePost/DwellingHouse/Info.jsx ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var hero_validate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! hero-validate */ "./node_modules/hero-validate/src/index.js");
+/* harmony import */ var react_select_async_creatable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-select/async-creatable */ "./node_modules/react-select/async-creatable/dist/react-select.esm.js");
+/* harmony import */ var _SelectLocation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../SelectLocation */ "./resources/js/post/page/SavePost/SelectLocation.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+hero_validate__WEBPACK_IMPORTED_MODULE_1__["default"].setLocale(hero_validate__WEBPACK_IMPORTED_MODULE_1__["default"].languages.vi);
+var Info = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(function (props, ref) {
+  var CONFIG = props.CONFIG,
+      OLD = props.OLD;
+  var refLocation = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useImperativeHandle)(ref, function () {
+    return {
+      validateFromStep: function validateFromStep() {
+        var _refLocation$current;
+
+        var locations = (_refLocation$current = refLocation.current) === null || _refLocation$current === void 0 ? void 0 : _refLocation$current.validateData();
+
+        if (!locations) {
+          return false;
+        } else {
+          return {
+            project: _objectSpread({}, locations)
+          };
+        }
+      }
+    };
+  });
+
+  var getDataSelectChange = function getDataSelectChange(data) {};
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+    className: "user-information position-relative",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      className: "row",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        className: "col-12 pt-2",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_SelectLocation__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          ref: refLocation,
+          CONFIG: CONFIG,
+          OLD: OLD,
+          passingDataParent: getDataSelectChange
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        className: "col-12",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          className: "alert alert-info mt-3",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("b", {
+              children: "T\xECm chung c\u01B0 b\u1EA1n s\u1EBD \u0111\u0103ng tin:"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("ul", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("li", {
+              children: "B\u1EA1n c\xF3 th\u1EC3 nh\u1EADp t\xECm ki\u1EBFm c\u0103n h\u1ED9 b\u1EA1n mu\u1ED1n \u0111\u0103ng tin ho\u1EB7c th\xEAm m\u1EDBi c\u0103n h\u1ED9"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("li", {
+              children: ["Trong tr\u01B0\u1EDDng h\u1EE3p b\u1EA1n kh\xF4ng t\xECm th\u1EA5y c\u0103n h\u1ED9 chung c\u01B0 b\u1EA1n mu\u1ED1n b\xE1n th\xEC c\xF3 th\u1EC3 ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+                className: "text-color-red",
+                children: "th\xEAm m\u1EDBi c\u0103n h\u1ED9"
+              }), "."]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("b", {
+              children: "Th\xEAm m\u1EDBi chung c\u01B0 b\u1EA1n s\u1EBD \u0111\u0103ng tin:"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("ul", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("li", {
+              children: "Trong tr\u01B0\u1EDDng h\u1EE3p b\u1EA1n \u0111\u0103ng c\u0103n h\u1ED9 m\u1EDBi ch\u01B0a c\xF3 tr\xEAn h\u1EC7 th\u1ED1ng, vui l\xF2ng nh\u1EADp v\u1ECB tr\xED c\u0103n h\u1ED9 b\u1EA1n s\u1EBD \u0111\u0103ng tin."
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("b", {
+              children: "Th\xF4ng tin c\u0103n h\u1ED9 kh\xF4ng b\u1EAFt bu\u1ED9c:"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("ul", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("li", {
+              children: "Ch\xFAng t\xF4i kh\xF4ng b\u1EAFt bu\u1ED9c b\u1EA1n ph\u1EA3i nh\u1EADp th\xF4ng tin c\u0103n h\u1ED9, nh\u01B0ng n\u1EBFu b\u1EA1n nh\u1EADp th\xF4ng tin c\u0103n h\u1ED9 th\xEC h\u1EC7 th\u1ED1ng s\u1EBD hi\u1EC7n th\u1ECB b\xE0i \u0111\u0103ng c\u1EE7a b\u1EA1n nhi\u1EC1u h\u01A1n \u0111\u1EBFn ng\u01B0\u1EDDi d\xF9ng"
+            })
+          })]
+        })
+      })]
+    })
+  });
+});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Info);
+
+/***/ }),
+
 /***/ "./resources/js/post/page/SavePost/Partial/AreaPrice.jsx":
 /*!***************************************************************!*\
   !*** ./resources/js/post/page/SavePost/Partial/AreaPrice.jsx ***!
@@ -12037,8 +12541,28 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         }
       }
     })["catch"](function (error) {
-      console.log("ERROR:: ", error);
-      alert("upload lỗi : " + error.message);
+      if (error.response) {
+        // Request made and server responded
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+        var _error$response = error.response,
+            data = _error$response.data,
+            status = _error$response.status,
+            headers = _error$response.headers;
+        var errors = data.errors;
+        var firsKeyError = Object.keys(errors)[0];
+        alert("upload lỗi : " + errors[firsKeyError]);
+      } else if (error.request) {
+        // The request was made but no response was received
+        console.log(error.request);
+        alert("upload lỗi không nhận được phản hồi");
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.log('Error', error.message);
+        alert("Đã xảy ra sự cố khi thiết lập upload.");
+      }
+
       setUploading(null);
     });
   }
