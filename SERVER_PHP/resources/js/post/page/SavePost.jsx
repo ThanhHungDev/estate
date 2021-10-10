@@ -12,7 +12,7 @@ function SavePost( props ){
         case 'nha-rieng':
             return <DwellingHouse category={category} OLD={ OLD }/>
         default:
-            return null;
+            return <DwellingHouse category={category} OLD={ OLD }/>;
     }
 }
 

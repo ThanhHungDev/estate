@@ -222,7 +222,7 @@ function Apartment( props ){
             
             <div className={ "apartment__wrapper " + ( progress && 'd-none') }>
                 <StepWizard
-                    isHashEnabled
+                    // isHashEnabled
                     onStepChange={onStepChange}
                     instance={setInstance} 
                 >

@@ -24720,6 +24720,9 @@ ul.contact li a span {
 .hero__editor .public-DraftStyleDefault-block {
   margin: 0px;
 }
+.hero__editor .editor__wrapper-hero {
+  min-height: 7em;
+}
 
 .wrapper-verify {
   max-width: 500px;

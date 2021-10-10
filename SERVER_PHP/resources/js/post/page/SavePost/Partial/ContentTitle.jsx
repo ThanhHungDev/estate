@@ -98,7 +98,7 @@ const ContentTitle = forwardRef((props, ref) => {
                         <div className="form-group required">
                             <label htmlFor="content">Nội dung mô tả</label>
                             <div
-                                style={{ borderRadius: '.25rem', minHeight: "10em", cursor: "text" }} 
+                                style={{ borderRadius: '.25rem', cursor: "text" }} 
                                 className={"editor hero__editor form-control h-auto " + ( hasErr("contentText") ? "is-invalid" : ( touched['contentText'] && "is-valid" ) )}>
                          
                                 <Editor
@@ -106,7 +106,7 @@ const ContentTitle = forwardRef((props, ref) => {
                                     onEditorStateChange={ handleChangeEditor }
                                     toolbarClassName="toolbarClassName"
                                     wrapperClassName="px-1"
-                                    editorClassName=" "
+                                    editorClassName="editor__wrapper-hero"
                                     placeholder="Mô tả đặc điểm bất động sản... "
                                     toolbar={{
                                     options: ["inline", "blockType", "fontSize"],

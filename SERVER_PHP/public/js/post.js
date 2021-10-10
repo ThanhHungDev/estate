@@ -9222,7 +9222,10 @@ function SavePost(props) {
       });
 
     default:
-      return null;
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_SavePost_DwellingHouse__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        category: category,
+        OLD: OLD
+      });
   }
 }
 
@@ -9551,8 +9554,8 @@ function Apartment(props) {
       parentCallback: continueStep
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("div", {
       className: "apartment__wrapper " + (progress && 'd-none'),
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsxs)((react_step_wizard__WEBPACK_IMPORTED_MODULE_2___default()), {
-        isHashEnabled: true,
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsxs)((react_step_wizard__WEBPACK_IMPORTED_MODULE_2___default()) // isHashEnabled
+      , {
         onStepChange: onStepChange,
         instance: setInstance,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Partial_TypePost__WEBPACK_IMPORTED_MODULE_9__["default"], {
@@ -11068,8 +11071,8 @@ function DwellingHouse(props) {
       parentCallback: continueStep
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)("div", {
       className: "apartment__wrapper " + (progress && 'd-none'),
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsxs)((react_step_wizard__WEBPACK_IMPORTED_MODULE_2___default()), {
-        isHashEnabled: true,
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsxs)((react_step_wizard__WEBPACK_IMPORTED_MODULE_2___default()) // isHashEnabled
+      , {
         onStepChange: onStepChange,
         instance: setInstance,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_17__.jsx)(_Partial_TypePost__WEBPACK_IMPORTED_MODULE_9__["default"], {
@@ -11706,7 +11709,6 @@ var ContentTitle = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
               style: {
                 borderRadius: '.25rem',
-                minHeight: "10em",
                 cursor: "text"
               },
               className: "editor hero__editor form-control h-auto " + (hasErr("contentText") ? "is-invalid" : touched['contentText'] && "is-valid"),
@@ -11715,7 +11717,7 @@ var ContentTitle = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef
                 onEditorStateChange: handleChangeEditor,
                 toolbarClassName: "toolbarClassName",
                 wrapperClassName: "px-1",
-                editorClassName: " ",
+                editorClassName: "editor__wrapper-hero",
                 placeholder: "M\xF4 t\u1EA3 \u0111\u1EB7c \u0111i\u1EC3m b\u1EA5t \u0111\u1ED9ng s\u1EA3n... ",
                 toolbar: {
                   options: ["inline", "blockType", "fontSize"],
