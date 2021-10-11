@@ -60,10 +60,6 @@ var CONFIG = {
         fill: 'fill',
         fit: 'fit'
     },
-    API: {
-        domain_ahaquiz: 'https://img.ahaquiz.me',
-        ahaquiz: 'https://img.ahaquiz.me/1_@a2pi_1/vi/home1.json',
-        ahaquiz_answer : "https://img.ahaquiz.me/1_@a2pi_1/vi/data"
-    }
+    MAX_LENGTH_COMMENT: 2000,
 }
 module.exports = CONFIG;
