@@ -1,5 +1,4 @@
-const User       = require("../../models/user.model"),
-      authHelper = require("../../helpers/auth.helper")
+const Comment = require("../../models/comment.model")
 
 module.exports.getUser = async (req, res) => {
 

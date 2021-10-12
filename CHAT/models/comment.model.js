@@ -24,7 +24,10 @@ const CommentSchema = new Schema(
         },
         report:  [
             { 
-                user: Number, 
+                user: { 
+                    type: Number,
+                    required: [true, 'Báo cáo chưa xác định user']
+                },
                 date: String, 
                 reason: {
                     type: String,
