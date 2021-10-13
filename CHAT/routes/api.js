@@ -4,10 +4,13 @@
 const express = require("express")
 const router  = express.Router()
 
-const userApiController = require("../controller/Api/user.controller")
+const userApiController    = require("../controller/Api/user.controller"),
+      commentApiController = require("../controller/Api/comment.controller")
+
 const generalMiddleware = require('../middlewares/general.middleware'),
       authMiddleware    = require('../middlewares/jwt.middleware'),
-      userMiddleware    = require('../middlewares/user.middleware')
+      userMiddleware    = require('../middlewares/user.middleware'),
+      commentMiddleware = require('../middlewares/comment.middleware')
 /**
  * Init all APIs on your application
  * @param {*} app from express
@@ -26,6 +29,10 @@ let initAPIs = app => {
     /////////// route cần verify thành công jwt ////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////
     router.get('/users', userApiController.getUser )
+
+
+    router.get('/comment', [ commentMiddleware.GET_COMMENT_INKEY ], commentApiController.index )
+    router.post('/comment', [ commentMiddleware.CREATE_COMMENT ], commentApiController.store )
     
     return app.use( "/api", router )
 }

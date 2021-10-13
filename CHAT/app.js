@@ -30,32 +30,39 @@ initAPIs(app)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  next(createError(404));
+    next(createError(404, "không tìm thấy route"));
 });
 
-app.use((error, req, res, next) => {
-  console.log("Error Handling Middleware called")
-  console.log('Path: ', req.path)
-  console.error('Error: ', error)
- 
-  if (error.type == 'redirect')
-      res.redirect('/error')
+// app.use((error, req, res, next) => {
+//     console.log("Error Handling Middleware called")
+//     console.log('Path: ', req.path)
+//     console.error('Error: ', error)
+    
+//     // if (error.type == 'redirect')
+//     //     res.redirect('/error')
 
-  else if (error.type == 'time-out') // arbitrary condition check
-      res.status(Response.HTTP_REQUEST_TIMEOUT).send(error)
-  else
-      res.status(Response.HTTP_INTERNAL_SERVER_ERROR).send(error)
-})
+//     // else if (error.type == 'time-out') // arbitrary condition check
+//     //     res.status(Response.HTTP_REQUEST_TIMEOUT).send(error)
+//     // else
+//     //     res.status(Response.HTTP_INTERNAL_SERVER_ERROR).send(error)
+// })
 
 // // error handler
-// app.use(function(err, req, res, next) {
-//   // set locals, only providing error in development
-//   res.locals.message = err.message;
-//   res.locals.error = req.app.get('env') === 'development' ? err : {};
+app.use(function(err, req, res, next) {
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-//   // render the error page
-//   res.status(err.status || 500);
-//   res.render('error');
-// });
+    const accept = req.accepts(['html', 'json'])
+    console.log(accept)
+    if (accept == 'json') {
+        res.json(err).status(err.status || 500)
+    } else {
+        // render the error page
+        res.status(err.status || 500);
+        res.render('error');
+    }
+    
+});
 
 module.exports = app;

@@ -1,29 +1,44 @@
 const Comment = require("../../models/comment.model")
 
-module.exports.getUser = async (req, res) => {
+module.exports.index = async (req, res) => {
 
-    let response = {},
-        code = 500
+    let response = {}
 
-    try {
-        
-        const { user } = req
+    const { user } = req
+    const comments = await Comment.find({ user: user.id })
 
-        /// response 
-        response.code             = 200
-        response.data             = user
-        response.message          = "buộc phải login nè"
-        response.internal_message = "buộc phải login nè"
-        return res.status(response.code).json(response)
+    /// response 
+    response.code             = 200
+    response.data             = comments.map( i => i.toResources() )
+    response.user             = user
+    response.message          = "buộc phải login nè"
+    response.internal_message = "buộc phải login nè"
+    return res.status(response.code).json(response)
+}
 
-    } catch (error) {
+module.exports.store = async (req, res) => {
 
-        let err                       = { error: 'error', message: error.message }
-            response.code             = code || 500
-            response.message          = error.message
-            response.internal_message = error.message
-            response.errors           = [err]
-        return res.status(response.code).json(response)
+    let response = {}
+    
+    const { user } = req
+    const { inkey, body, parent } = req.body
+
+    let commentObject = {
+        inkey: inkey,
+        user: user.id,
+        body: body,
     }
+    if( !!parent ){
+        commentObject.parent = parent
+    }
+    const comment = await new Comment(commentObject).save()
+
+    /// response 
+    response.code             = 200
+    response.data             = comment.toResources()
+    response.user             = user
+    response.message          = "buộc phải login nè"
+    response.internal_message = "buộc phải login nè"
+    return res.status(response.code).json(response)
 }
 

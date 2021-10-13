@@ -6,6 +6,10 @@ const mongoose = require('mongoose'),
 
 const CommentSchema = new Schema(
     {
+        inkey: { 
+            type: String, 
+            required: [true, 'Bình luận chưa xác định khoá']
+        },
         user: { 
             type: Number,
             required: [true, 'Bình luận chưa xác định user']
@@ -35,9 +39,9 @@ const CommentSchema = new Schema(
                 }
             }
         ],
-        level: {
-            type: Number,
-            default: 0,
+        parent : {
+            type: Schema.Types.ObjectId,
+            ref : 'comments'
         },
     }, {
         timestamps: true
@@ -48,12 +52,14 @@ const CommentSchema = new Schema(
 CommentSchema.methods.toResources = function() {   
     return {
         _id    : this._id,
+        inkey  : this.inkey,
+        type   : this.type,
         user   : this.user,
         body   : this.body,
         like   : this.like,
         dislike: this.dislike,
         report : this.report,
-        level  : this.level,
+        parent : this.parent || '',
     }
 }
 module.exports = mongoose.model("comments", CommentSchema)
