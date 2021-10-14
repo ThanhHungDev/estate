@@ -1,4 +1,5 @@
 const Comment = require("../../models/comment.model")
+const asyncHandler = require('express-async-handler')
 
 module.exports.index = async (req, res) => {
 
@@ -16,7 +17,7 @@ module.exports.index = async (req, res) => {
     return res.status(response.code).json(response)
 }
 
-module.exports.store = async (req, res) => {
+module.exports.store = asyncHandler(async(req, res) => {
 
     let response = {}
     
@@ -29,7 +30,14 @@ module.exports.store = async (req, res) => {
         body: body,
     }
     if( !!parent ){
-        commentObject.parent = parent
+        /// check parent have comment ? 
+        const commentParent = await Comment.findOne({ _id: parent })
+        if( commentParent ){
+            commentObject.parent = parent
+        }else{
+            throw new Error("không tồn tại _id mongoose trong hệ thống")
+        }
+        
     }
     const comment = await new Comment(commentObject).save()
 
@@ -40,5 +48,5 @@ module.exports.store = async (req, res) => {
     response.message          = "buộc phải login nè"
     response.internal_message = "buộc phải login nè"
     return res.status(response.code).json(response)
-}
+})
 

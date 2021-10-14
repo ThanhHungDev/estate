@@ -29,9 +29,10 @@ initUsers(app)
 initAPIs(app)
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-    next(createError(404, "không tìm thấy route"));
-});
+// app.use(function(req, res, next) {
+// 	console.log("createErrorcreateErrorcreateErrorcreateErrorcreateError app.js")
+//     next(createError(404, "không tìm thấy route"));
+// });
 
 // app.use((error, req, res, next) => {
 //     console.log("Error Handling Middleware called")
@@ -49,19 +50,18 @@ app.use(function(req, res, next) {
 
 // // error handler
 app.use(function(err, req, res, next) {
+	
+	console.error(err.stack)
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-    const accept = req.accepts(['html', 'json'])
-    console.log(accept)
-    if (accept == 'json') {
-        res.json(err).status(err.status || 500)
-    } else {
-        // render the error page
-        res.status(err.status || 500);
-        res.render('error');
+    if (req.isApi) {
+        return res.status(err.status || 500).json(res.locals)
     }
+	// render the error page
+	res.status(err.status || 500);
+	return res.render('error')
     
 });
 

@@ -8,6 +8,7 @@ let setAllowOrigin = (req, res, next) => {
 }
 let formatJsonApi = ( req, res, next ) => {
     res.setHeader('Content-Type', 'application/json')
+    req.isApi = true
     next()
 }
 
