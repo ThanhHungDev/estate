@@ -1,6 +1,8 @@
 <?php 
 namespace App\Helpers;
 
+use Illuminate\Support\Facades\Config;
+
 class SupportHtml{
 
     public static function style($path = null) {
@@ -20,6 +22,39 @@ class SupportHtml{
         }
         return "<style>" .$filePath  . $phpOutput . "</style>";
         
+    }
+
+
+
+    public static function getConfigReact() {
+
+        $configApp = Config::get('app');
+        $configApp['providers'] = [];
+        $configApp['aliases'] = [];
+        $configApp['API'] = [
+            'UPDATE_VERIFY_PHONE'      => Route('API.USER.PATCH_VERIFY_PHONE'),
+            'DISTRICTS'                => Route('DISTRICTS'),
+            'COMMUNES'                 => Route('COMMUNES'),
+            'PROVINCES'                => Route('PROVINCES'),
+            'API_UPLOAD_FILE'          => Route('API_UPLOAD_FILE'),
+            'APARTMENT_PROJECTS'       => Route('APARTMENT_PROJECTS'),
+            'APARTMENT_PROJECT_DETAIL' => Route('APARTMENT_PROJECT_DETAIL', [ 'id' => null ]),
+            'PRODUCT_SHOW'             => trim(Route('product.show', [ 'product' => '__________' ]), "__________"),
+            'APARTMENT_STORE'          => Route('product.store'),
+            'APARTMENT_UPDATE'         => trim(Route('product.update', [ 'product' => '__________' ]), "__________"),
+        ];
+        $configApp['WEB'] = [
+            'PATCH_VERIFY_PHONE' => Route('PATCH_VERIFY_PHONE'),
+            'LOGOUT'             => Route('LOGOUT'),
+            'USER_POST'          => Route('USER_POST', ['path' => null ], false ),
+        ];
+        $configApp['CONSTANT'] = Config::get('constant');
+        $configApp['CLIENT']   = Config::get('client');
+        $configApp['UNIT']     = Config::get('unit');
+        $configApp['IMAGE']    = Config::get('image.UPLOAD');
+        $configApp['VIDEO']    = Config::get('video.UPLOAD');
+        
+        return $configApp;
     }
 }
 

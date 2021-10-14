@@ -19,6 +19,12 @@
     <script type="text/javascript" src="{{ asset('js/product.detail.js' . Config::get('app.version')) }}"></script>
     <script type="text/javascript" src="{{ asset('js/library/lightgallery.min.js' . Config::get('app.version')) }}"></script>
     <script>
+        const CONFIG_APP = `{!! json_encode(SupportHtml::getConfigReact()) !!}`;
+        const CATEGORIES = `{!! json_encode($categories ?? []) !!}`;
+        const PROVINCES  = `{!! json_encode(Config::get('province')) !!}`;
+        const JWT_TOKEN  = `{{ SupportDB::getJwtAuthentication() }}`;
+        // const KEY_CAPTCHA = "{{ env('GOOGLE_RECAPTCHA_KEY')  }}";
+
         function showLightGaleries(e){
             
             $(e).closest('.item').find(".lightgallery img").click()
@@ -50,58 +56,10 @@
         
 
     </script>
+    <script type="text/javascript" src="{{ asset('js/comment.js'. Config::get('app.version')) }}"></script>
 @endsection
+
 @section('content')
-    <div class="content">
-        <div class="tz-Breadcrumb"
-            style="background-image: url({{ asset('/images/background/product-breadcrumb.jpeg') }})">
-            <div class="tzOverlayBreadcrumb">
-                <div class="container">
-                    <h1>{{ $product->title }}</h1>
-                    <div class="tz-breadcrumb-navxt" itemscope itemtype="https://schema.org/BreadcrumbList">
-                        <!--Breadcrumbs-->
-
-                        <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                            <a itemprop="item"  title="{{ Config::get('app.name') }}"
-                                href="{{ asset('/') }}" class="home">
-                                <span itemprop="name"> Trang chủ </span>
-                            </a>
-                            <meta itemprop="position" content="1" />
-                        </span> &gt;
-
-                        <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                            <a itemprop="item"  title="{{ Config::get('app.name') }}"
-                                href="{{ asset('/') }}" class="post post-property-archive">
-                                <span itemprop="name"> {{ $product->category->name }} </span>
-                            </a>
-                            <meta itemprop="position" content="2" />
-                        </span> &gt;
-
-                        @foreach ($product->ptags as $key => $tag)
-                            <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                                <a itemprop="item" 
-                                    title="{{ Config::get('app.name') }}" href="{{ asset('/') }}"
-                                    class="post post-property-archive">
-                                    <span itemprop="name"> {{ $tag->name }} </span>
-                                </a>
-                                <meta itemprop="position" content="3" />
-                            </span>,
-                        @endforeach
-                        <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                            <a itemprop="item"  title="{{ Config::get('app.name') }}"
-                                href="{{ Route('PRODUCT_VIEW', ['slug' => $product->slug]) }}" class="post post-property current-item">
-                                <span itemprop="name"> {{ $product->title }} </span>
-                            </a>
-                            <meta property="url" content="{{ Route('PRODUCT_VIEW', ['slug' => $product->slug]) }}">
-                            <meta itemprop="position" content="4" />
-                        </span>
-                    </div>
-                </div><!-- end class container -->
-            </div>
-        </div>
-    </div>
-
-   
 
     <div class="content__product product bg__product--detail">
         
@@ -111,27 +69,6 @@
 
                     <div class="itemscope__article" itemscope itemtype="https://schema.org/Article">
 
-                        {{-- <div class="d-none" itemtype="https://schema.org/AggregateRating" itemscope>
-                            <meta itemprop="reviewCount" content="{{ SupportString::createRateValueByDate($product->id) }}" />
-                            <meta itemprop="ratingValue" content="{{ $product->rate_value }}" />
-                            <meta itemprop="bestRating" content="5" />
-                            <meta itemprop="worstRating" content="1" />
-                            <meta itemprop="worstRating" content="1" />
-                        </div>
-                        
-                        <div class="d-none" itemprop="review" itemtype="https://schema.org/Review" itemscope>
-                            <meta itemprop="datePublished" content="{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $product->created_at)->format('Y-m-d') }}" />
-                            <meta itemprop="reviewBody" content="{{ $product->rate_review_body }}" />
-                            <div itemprop="author" itemtype="https://schema.org/Person" itemscope>
-                                <meta itemprop="name" content="{{ $product->rateAuthor ? $product->rateAuthor->name : 'chưa xác định' }}" />
-                            </div>
-                            <div itemprop="reviewRating" itemtype="https://schema.org/Rating" itemscope>
-                                <meta itemprop="ratingCount" content="{{ SupportString::createRateValueByDate($product->id) }}" />
-                                <meta itemprop="bestRating" content="5" />
-                                <meta itemprop="worstRating" content="1" />
-                                <meta itemprop="ratingValue" content="{{ $product->rate_value }}" />
-                            </div>
-                        </div> --}}
                         <div itemprop="offers" itemtype="https://schema.org/Offer" itemscope>
                             <meta itemprop="priceValidUntil" content="2022-08-25" />
                             <meta itemprop="price" content="{{ str_replace([".", "e", ","], "", $product->price ) }}" />
@@ -221,79 +158,9 @@
                             </div>
                         </div>
                         
-                        <div class="product__data">
-                            
-                            <div class="block">
-                                <h3 class="block__title"> Đơn vị đăng bán </h3>
-                                <div class="company">
-                                    <div class="company-left">
-                                        <div class="img__cover" style="background-image: url({{ SupportDB::getOption('product-detail-company-image') }}); background-repeat: no-repeat; background-size:cover; "></div>
-                                    </div>
-                                    <div class="company-right">
-                                        <div class="company-right--content">
-                                            <div class="title">
-                                                <h4 class="text-truncate">
-                                                    <a class="text-truncate" href="{{ asset('/') }}">{{ SupportDB::getOption('product-detail-company-name') }}</a>
-                                                </h4>
-                                                <p class="position text-truncate">{{ SupportDB::getOption('product-detail-company-description') }}</p>
-                                            </div>
-                                            <div class="description">{{ SupportDB::getOption('product-detail-company-content') }}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="product__data">
-                            
-                            <div class="block">
-                                <h3 class="block__title"> Nhận Tư Vấn Miễn Phí </h3>
-                                <div class="form">
-                                    <form id="contact" class="form__wrapper" action="{{ Route('MAIL_CONTACT_PRODUCT') }}" method="POST">
-                                        {!! csrf_field() !!}
-                                        <input name="slug" type="hidden" value="{{ $product->slug }}" />
-                                        @if (Session::has(Config::get('constant.SAVE_ERROR')))
-                                        <div class="alert alert-danger">
-                                            {{ Session::get(Config::get('constant.SAVE_ERROR')) }}
-                                        </div>
-                                        @elseif (Session::has(Config::get('constant.SAVE_SUCCESS')))
-                                        <div class="alert alert-success">
-                                            Đã liên lạc với quản trị viên. Chúng tôi sẽ liên lạc với bạn sớm nhất có thể.
-                                        </div>
-                                        @endif
-                                        @if(!empty($errors->all()))
-                                            @foreach ($errors->all() as $error)
-                                            <div class="alert alert-warning">
-                                                {{ $error }}
-                                            </div>
-                                            @endforeach
-                                        @endif
-                                        <div class="contact">
-                                            <div class="contact__left">
-                                                <input name="name" type="text" placeholder="Tên" class="contact__left-input" value="{{ old('name' ) }}"/>
-                                                <input name="mobile" type="text" placeholder="Số điện thoại" class="contact__left-input" value="{{ old('mobile' ) }}"/>
-                                            </div>
-                                            <div class="contact__right">
-                                                <textarea name="message" class="contact__right-textarea" cols="54" rows="2" title="Tin nhắn" placeholder="Tin nhắn yêu cầu tư vấn (không bắt buộc nhập)">{{ old('message' ) }}</textarea>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="bottom">
-                                            <div id="google__recaptcha" class="lazyload">
-                                                <!-- Google reCaptcha -->
-                                                <div class="g-recaptcha" id="feedback-recaptcha" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY')  }}"></div>
-                                                <!-- End Google reCaptcha -->
-                                                <button class="btn-send-mail-contact">Gửi liên lạc</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-
-
                     </div>
+
+                    <div id="root__comment"></div>
 
 
                     @if (!$relates->isEmpty())
@@ -306,49 +173,6 @@
                                     @foreach ($relates as $key => $product)
                                     <div class="col-hero-md-4 col-hero-sm-4 productions-fixcol">
                                         <div class="item" >
-                                        {{-- <div class="item" itemtype="https://schema.org/Product" itemscope >
-                                            <meta class="d-none" itemprop="position" content="{{ $key }}" />
-                                            <meta class="d-none" itemprop="url" content="{{ Route('PRODUCT_VIEW', ['slug' => $product->slug ]) }}" />
-                                            <meta class="d-none" itemprop="gtin14" content="{{ $product->id }}" />
-                                            <meta class="d-none" itemprop="name" content="{{ $product->title }}" />
-                                            @php $pics = $product->getImages()->get(); @endphp
-                                            @foreach ($pics as $key => $pic)
-                                            <link class="d-none" itemprop="image" href="{{ Route('IMAGE_RESIZE_RATIO', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => $product->thumbnail ]) }}" />
-                                            @endforeach
-                                            <meta class="d-none" itemprop="description" content="{{ $product->excerpt }}" />
-                                            <meta class="d-none" itemprop="sku" content="{{ $product->slug }}" />
-                                            <div class="d-none" itemprop="brand" itemtype="https://schema.org/Brand" itemscope>
-                                                <meta itemprop="name" content="{{ Config::get('app.company_name') }}" />
-                                            </div>
-                                            <div class="d-none" itemprop="aggregateRating" itemtype="https://schema.org/AggregateRating" itemscope>
-                                                <meta itemprop="reviewCount" content="{{ SupportString::createRateValueByDate($product->id) }}" />
-                                                <meta itemprop="ratingValue" content="{{ $product->rate_value }}" />
-                                                <meta itemprop="bestRating" content="5" />
-                                                <meta itemprop="worstRating" content="1" />
-                                            </div>
-                                            
-                                            <div class="d-none" itemprop="review" itemtype="https://schema.org/Review" itemscope>
-                                                <meta itemprop="datePublished" content="{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $product->created_at)->format('Y-m-d') }}" />
-                                                <meta itemprop="reviewBody" content="{{ $product->rate_review_body }}" />
-                                                <div itemprop="author" itemtype="https://schema.org/Person" itemscope>
-                                                    <meta itemprop="name" content="{{ $product->rateAuthor ? $product->rateAuthor->name : 'chưa xác định' }}" />
-                                                </div>
-                                                <div itemprop="reviewRating" itemtype="https://schema.org/Rating" itemscope>
-                                                    <meta itemprop="ratingCount" content="{{ SupportString::createRateValueByDate($product->id) }}" />
-                                                    <meta itemprop="bestRating" content="5" />
-                                                    <meta itemprop="worstRating" content="1" />
-                                                    <meta itemprop="ratingValue" content="{{ $product->rate_value }}" />
-                                                </div>
-                                            </div>
-                                            <div itemprop="offers" itemtype="https://schema.org/Offer" itemscope>
-                                                <meta itemprop="priceValidUntil" content="2022-08-25" />
-                                                <meta itemprop="price" content="{{ str_replace([".", "e", ","], "", $product->price ) }}" />
-                                                <meta itemprop="offerCount" content="2" />
-                                                <meta itemprop="priceCurrency" content="VND" />
-                                                <link property="availability" href="https://schema.org/InStock" />
-                                            </div> --}}
-                                            
-                                            {{-- box-shadow: 0 1px 10px 0 rgb(0 0 0 / 12%); --}}
                                             <div class="item__action">
                                                 <div class="item__image">
                                                     <img class="product-image"
@@ -440,19 +264,10 @@
                                                             <i class="fad fa-calendar-alt"></i>
                                                             <span> {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $product->updated_at)->diffForHumans() }}</span>
                                                         </strong>
-                                                        {{-- <span class="detail__footer-divider hidden-hero-decrement-xs">|</span>
-                                                        <strong class="detail__footer-time hidden-hero-decrement-xs">
-                                                            <i class="fad fa-eye"></i>
-                                                            <span>4</span>
-                                                        </strong> --}}
                                                         <a class="detail__footer-messager" href="tel:{{ Config::get('app.phone') }}">
                                                             <i class="fal fa-comment-alt-lines"></i>
                                                             Tư vấn
                                                         </a>
-                                                        {{-- <a class="detail__footer-messager hidden-hero-increment-md" href="{{ Route('PRODUCT_VIEW', ['slug' => $product->slug ]) }}">
-                                                            <i class="fal fa-thumbs-up"></i>
-                                                            Thích
-                                                        </a> --}}
                                                     </div>
                                                 </div>
                                             </div>
