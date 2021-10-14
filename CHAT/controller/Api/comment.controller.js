@@ -22,31 +22,37 @@ module.exports.store = asyncHandler(async(req, res) => {
     let response = {}
     
     const { user } = req
-    const { inkey, body, parent } = req.body
+    const { parent } = req.body
 
-    let commentObject = {
-        inkey: inkey,
-        user: user.id,
-        body: body,
-    }
+    /// tìm lại cái parent
+    let commentParent
     if( !!parent ){
-        /// check parent have comment ? 
-        const commentParent = await Comment.findOne({ _id: parent })
-        if( commentParent ){
-            commentObject.parent = parent
-        }else{
-            throw new Error("không tồn tại _id mongoose trong hệ thống")
-        }
-        
+        commentParent = await Comment.findById(parent) /// giống y chang findOne
+        if( !commentParent ) throw new Error("không tồn tại _id mongoose trong hệ thống")
     }
-    const comment = await new Comment(commentObject).save()
+
+    const comment = new Comment(req.body)
+    /// add more properti
+    comment.user  = user.id
+    comment.level = (!!parent) | 0
+    /// lưu trữ lại comment
+    await comment.save()
+    
+    //// có parent thật thì chỉ cần làm động tác sau
+    if( !!commentParent ){
+        // commentParent.childrens.unshift(comment)
+        commentParent.childrens.push(comment)
+        /// thực hiện update 
+        await commentParent.save()
+    }
+    
 
     /// response 
     response.code             = 200
     response.data             = comment.toResources()
-    response.user             = user
     response.message          = "buộc phải login nè"
     response.internal_message = "buộc phải login nè"
     return res.status(response.code).json(response)
+
 })
 

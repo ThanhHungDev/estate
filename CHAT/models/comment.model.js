@@ -2,7 +2,8 @@
 
 const mongoose = require('mongoose'),
       Schema   = mongoose.Schema,
-      CONFIG   = require("../config")
+      CONFIG   = require("../config"),
+      Populate = require("../helpers/autopopulate.helper")
 
 const CommentSchema = new Schema(
     {
@@ -26,7 +27,7 @@ const CommentSchema = new Schema(
             type: Number,
             default: 0,
         },
-        report:  [
+        report: [
             { 
                 user: { 
                     type: Number,
@@ -39,27 +40,37 @@ const CommentSchema = new Schema(
                 }
             }
         ],
-        parent : {
-            type: Schema.Types.ObjectId,
-            ref : 'comments'
+        level: {
+            type: Number,
+            default: 0,
         },
+        childrens: [{type: Schema.Types.ObjectId, ref: "comments"}], // Array of comment replies
     }, {
         timestamps: true
     }
 )
 
 
+// Middleware to populate the replies when you call `find()`
+// CommentSchema.pre('find', function() {
+//     this.populate('childrens')
+// })
+
+CommentSchema
+  .pre('findOne', Populate('childrens'))
+  .pre('find', Populate('childrens'));
+
 CommentSchema.methods.toResources = function() {   
     return {
-        _id    : this._id,
-        inkey  : this.inkey,
-        type   : this.type,
-        user   : this.user,
-        body   : this.body,
-        like   : this.like,
-        dislike: this.dislike,
-        report : this.report,
-        parent : this.parent || '',
+        _id      : this._id,
+        inkey    : this.inkey,
+        type     : this.type,
+        user     : this.user,
+        body     : this.body,
+        like     : this.like,
+        dislike  : this.dislike,
+        report   : this.report,
+        childrens: this.childrens,
     }
 }
 module.exports = mongoose.model("comments", CommentSchema)

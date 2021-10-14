@@ -19,7 +19,6 @@ content-type: application/json
 
 {
     "inkey": "sample",
-    "body" : "hùng comment cha index 3 đây là con của 6166e83a88974a1ca4ed2a54",
-    "parent" : "6166e83a88974a1ca4ed2a54"
+    "body" : "cha nè"
 }
 ################################
