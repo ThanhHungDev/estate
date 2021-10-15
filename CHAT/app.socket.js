@@ -12,24 +12,32 @@ io
     const { query } = socket.handshake
     const { token } = query
     if (!token){
-        
-        let err  = new Error('Authentication error')
-        err.code = 401
-        err.type = 'token'
-        err.message = 'Authentication error'
-        return next(err)
+        console.log("have error")
+        // either handle it
+        // socket.disconnect(true)
+        let err  = {
+            code   : 401,
+            type   : 'token',
+            message: 'Authentication error'
+        }
+        const error = new Error(err.message)
+        error.data = err // additional detail
+        return next(error)
     }
     const auth = await authMiddleware.isAuthSocket(token)
     if( !auth ){
         
-        let err  = new Error('Authentication error')
-        err.code = 403
-        err.type = 'authentication_error'
-        err.message = 'Authentication error'
-        return next(err)
+        let err  = {
+            code   : 403,
+            type   : 'authentication_error',
+            message: 'Authentication error'
+        }
+        const error = new Error(err.message)
+        error.data = err // additional detail
+        return next(error)
     }
     socket.jwt = auth
-    next();
+    next()
 })
 .on( "connection", socket => {
 
@@ -40,7 +48,8 @@ io
         console.log( "disconnect set user offline")
         socket.leaveAll()
     })
-});
+})
+
 // end of socket.io logic
 
 module.exports = eventIO;

@@ -86,6 +86,7 @@ return [
     */
 
     'url' => env('APP_URL', 'http://localhost'),
+    'REALTIME_URL' => env('REALTIME_URL', 'http://localhost:3000'),
 
     'asset_url' => env('ASSET_URL', null),
 
