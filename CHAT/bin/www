@@ -10,8 +10,6 @@ var http      = require('http');
 var eventIO   = require('../app.socket');
 var dbConnect = require('../app.mongo.connect');
 var dotenv    = require('dotenv')                 /// thêm dot env vào hệ thống
-var socket    = require('socket.io');
-const CONFIG = require('../config');
 dotenv.config() /// load file .env
 
 const initIndex = require('../routes/index'),
@@ -30,28 +28,17 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
-// eventIO.io.attach(server);
-/**
- * Listen on provided port, on all network interfaces.
- */
-const allowedOrigins = CONFIG.CORS_IO 
-console.log(allowedOrigins)
-const io = socket(server,{
-  origins: allowedOrigins
-})
-
-const USER_ONLINE_GLOBAL = []
+eventIO.attach(server);
 
 /// pass socket to api
 app.use(function(req, res, next){
-  res.io                 = io
-  res.USER_ONLINE_GLOBAL = USER_ONLINE_GLOBAL
+  res.io = eventIO
   next()
 })
 // // respond with "hello world" when a GET request is made to the homepage
 app.get('/onlines', function (req, res) {
-  console.log(res.io.USER_ONLINES)
-  return res.status(200).json({ message: 'hello onlines', onlines: res.io.USER_ONLINES || [] , xonlines : res.USER_ONLINE_GLOBAL || [] })
+  
+  return res.status(200).json({ message: 'hello onlines', onlines: res.io.USER_ONLINES || [] })
 })
 
 /// set root index
@@ -66,7 +53,6 @@ server.listen(port,  () => {
 
   console.log(`server run: http://localhost:${port}`)  
   dbConnect.myConnection()
-  eventIO(io, USER_ONLINE_GLOBAL)
 });
 
 server.on('error', onError);
