@@ -51,12 +51,22 @@ function socketConnecting(io){
     })
     .on( CONFIG.EVENT.CONNECTION, socket => {
 
-        console.log("have connect: " + socket.id )
+        console.log("have connect: " + socket.id, socket.jwt )
+        /// set user online active false
+        const { jwt } = socket
+        USER_ONLINES.push({ id: jwt.id, email: jwt.email, socketId : socket.id, active: false })
+        io.USER_ONLINES = USER_ONLINES
             
         socket.on( CONFIG.EVENT.DISCONNECT, async function () {
 
             console.log( "disconnect set user offline")
+            USER_ONLINES = USER_ONLINES.filter(item => item.socketId != socket.id )
+            io.USER_ONLINES = USER_ONLINES
+            console.log( "disconnect set user offline", USER_ONLINES)
             socket.leaveAll()
+        })
+        socket.on( CONFIG.EVENT.JOIN__COMMENT, async data => {
+            // USER_ONLINES.map( user => {}user.socketId == socket.id ? { ...})
         })
     })
 }

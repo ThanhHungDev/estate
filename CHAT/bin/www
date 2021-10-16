@@ -50,7 +50,8 @@ app.use(function(req, res, next){
 })
 // // respond with "hello world" when a GET request is made to the homepage
 app.get('/onlines', function (req, res) {
-  return res.status(200).json({ message: 'hello onlines', onlines: res.USER_ONLINE_GLOBAL || 'không có' })
+  console.log(res.io.USER_ONLINES)
+  return res.status(200).json({ message: 'hello onlines', onlines: res.io.USER_ONLINES || [] , xonlines : res.USER_ONLINE_GLOBAL || [] })
 })
 
 /// set root index
