@@ -3,23 +3,20 @@ const asyncHandler = require('express-async-handler')
 
 module.exports.index = async (req, res) => {
 
-    let response = {}
-
     const { user } = req
-    const comments = await Comment.find({ user: user.id })
+    const comments = await Comment.find({ user: user.id, level: 0 })
 
     /// response 
-    response.code             = 200
-    response.data             = comments.map( i => i.toResources() )
-    response.user             = user
-    response.message          = "buộc phải login nè"
-    response.internal_message = "buộc phải login nè"
+    const response = {
+        code   : 200,
+        data   : comments.map( i => i.toResources() ),
+        user   : user,
+        message: "danh sách comment"
+    }
     return res.status(response.code).json(response)
 }
 
 module.exports.store = asyncHandler(async(req, res) => {
-
-    let response = {}
     
     const { user } = req
     const { parent } = req.body
@@ -46,12 +43,11 @@ module.exports.store = asyncHandler(async(req, res) => {
         await commentParent.save()
     }
     
-
-    /// response 
-    response.code             = 200
-    response.data             = comment.toResources()
-    response.message          = "buộc phải login nè"
-    response.internal_message = "buộc phải login nè"
+    const response = {
+        code: 200,
+        data: comment.toResources(),
+        message: "add mới comment thành công"
+    }
     return res.status(response.code).json(response)
 
 })

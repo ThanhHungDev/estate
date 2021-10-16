@@ -25,6 +25,15 @@ class SupportHtml{
     }
 
 
+    public static function getEventsRealTime(){
+        /// convert array to array key => value
+        $events = [];
+        foreach (Config::get('realtime') as $item) {
+            $events[strtoupper($item)] = strtolower($item);
+            $events[strtoupper("response__$item")] = strtolower("response__$item");
+        }
+        return $events;
+    }
 
     public static function getConfigReact() {
 
@@ -49,6 +58,7 @@ class SupportHtml{
             'USER_POST'          => Route('USER_POST', ['path' => null ], false ),
         ];
         $configApp['CONSTANT'] = Config::get('constant');
+        $configApp['EVENT']    = self::getEventsRealTime();
         $configApp['CLIENT']   = Config::get('client');
         $configApp['UNIT']     = Config::get('unit');
         $configApp['IMAGE']    = Config::get('image.UPLOAD');

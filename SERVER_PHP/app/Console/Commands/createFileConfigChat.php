@@ -2,9 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Models\District;
+use App\Helpers\SupportHtml;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Storage;
 
 class createFileConfigChat extends Command
@@ -41,11 +40,7 @@ class createFileConfigChat extends Command
     public function handle()
     {
         /// convert array to array key => value
-        $events = [];
-        foreach (Config::get('realtime') as $item) {
-            $events[strtoupper($item)] = strtolower($item);
-            $events[strtoupper("response__$item")] = strtolower("response__$item");
-        }
+        $events = SupportHtml::getEventsRealTime();
         $fileContent = "'use strict' \n\n\nmodule.exports = "  . json_encode($events);
         Storage::disk('chat')->delete('event.config.js');
         Storage::disk('chat')->put('event.config.js', $fileContent);

@@ -173,7 +173,13 @@ var App = /*#__PURE__*/function (_Component) {
       console.log("Successfully connected!");
 
       if (socket.connected) {
-        console.log("connected ở đây sẽ thành công " + socket.connected);
+        console.log("connected ở đây sẽ thành công " + socket.connected); /// thử emit lên mới 1 comment
+
+        socket.emit(CONFIG.EVENT.ADD__COMMENT, {
+          inkey: "sample",
+          body: "cha vị trí n",
+          parent: "23424234"
+        });
       }
     }) // .on('error', function(error) {
     //     console.log(error, "có lỗi ")
@@ -185,8 +191,7 @@ var App = /*#__PURE__*/function (_Component) {
       console.log("************ Error ************"); // Show the toaster with the error
       // Try re-connect
       // close the socket connection
-    });
-    socket.on('connect_error', function (error) {
+    }).on('connect_error', function (error) {
       // console.error(`Connection error: ${error}`)
       // console.error(error instanceof Error); // true
       console.error(error.message); // not authorized

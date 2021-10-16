@@ -23,6 +23,12 @@ class App extends Component {
             console.log("Successfully connected!")
             if(socket.connected){
                 console.log("connected ở đây sẽ thành công " + socket.connected)
+                /// thử emit lên mới 1 comment
+                socket.emit(CONFIG.EVENT.ADD__COMMENT, {
+                    inkey: "sample",
+                    body : "cha vị trí n",
+                    parent: "23424234"
+                })
             }
         })
         // .on('error', function(error) {
@@ -37,7 +43,7 @@ class App extends Component {
                // Try re-connect
                // close the socket connection
         })
-        socket.on('connect_error', (error) => {
+        .on('connect_error', (error) => {
             // console.error(`Connection error: ${error}`)
             // console.error(error instanceof Error); // true
             console.error(error.message); // not authorized
