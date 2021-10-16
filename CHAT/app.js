@@ -28,6 +28,12 @@ initUsers(app)
 /// set root api
 initAPIs(app)
 
+
+/// tạo ssl
+app.get('/.well-known/acme-challenge/GqChRTvrheO91S86JrAdTgYg4_Eabx_rmSI8v_MPIQA', function (req, res) {
+    res.send('GqChRTvrheO91S86JrAdTgYg4_Eabx_rmSI8v_MPIQA.LAt3oi4VAM7TgqpMC_3NdaCZTlCcbxl6OBzQx9aVDT8')
+})
+
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {
 // 	console.log("createErrorcreateErrorcreateErrorcreateErrorcreateError app.js")
