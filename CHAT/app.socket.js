@@ -62,6 +62,8 @@ io
     })
     socket.on( CONFIG.EVENT.JOIN__COMMENT, async data => {
         // USER_ONLINES.map( user => {}user.socketId == socket.id ? { ...})
+        const { inkey } = data
+        socket.join( inkey )
     })
 })
 // end of socket.io logic

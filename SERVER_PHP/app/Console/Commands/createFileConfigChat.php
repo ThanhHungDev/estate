@@ -44,6 +44,7 @@ class createFileConfigChat extends Command
         $events = [];
         foreach (Config::get('realtime') as $item) {
             $events[strtoupper($item)] = strtolower($item);
+            $events[strtoupper("response__$item")] = strtolower("response__$item");
         }
         $fileContent = "'use strict' \n\n\nmodule.exports = "  . json_encode($events);
         Storage::disk('chat')->delete('event.config.js');
