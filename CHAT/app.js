@@ -5,10 +5,6 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const Response = require("./helpers/response.library");
 
-const initIndex = require('./routes/index'),
-      initUsers = require('./routes/users'),
-      initAPIs  = require("./routes/api");
-
 var app = express();
 
 // view engine setup
@@ -20,14 +16,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-/// set root index
-initIndex(app)
-/// set root users
-initUsers(app)
-/// set root api
-initAPIs(app)
-
 
 /// tạo ssl
 app.get('/.well-known/acme-challenge/GqChRTvrheO91S86JrAdTgYg4_Eabx_rmSI8v_MPIQA', function (req, res) {

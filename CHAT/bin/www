@@ -14,6 +14,10 @@ var socket    = require('socket.io');
 const CONFIG = require('../config');
 dotenv.config() /// load file .env
 
+const initIndex = require('../routes/index'),
+      initUsers = require('../routes/users'),
+      initAPIs  = require("../routes/api");
+
 /**
  * Get port from environment and store in Express.
  */
@@ -40,15 +44,22 @@ const USER_ONLINE_GLOBAL = []
 
 /// pass socket to api
 app.use(function(req, res, next){
-  console.log("có vào đây")
   res.io                 = io
   res.USER_ONLINE_GLOBAL = USER_ONLINE_GLOBAL
   next()
-});
+})
 // // respond with "hello world" when a GET request is made to the homepage
-app.get('/honlines', function (req, res) {
+app.get('/onlines', function (req, res) {
   return res.status(200).json({ message: 'hello onlines', onlines: res.USER_ONLINE_GLOBAL || 'không có' })
 })
+
+/// set root index
+initIndex(app)
+/// set root users
+initUsers(app)
+/// set root api
+initAPIs(app)
+
 // server.listen(port); /// comment lại 
 server.listen(port,  () => {
 
