@@ -51,7 +51,7 @@ function socketConnecting(io){
     })
     .on( CONFIG.EVENT.CONNECTION, socket => {
 
-        console.log("have connect: " + socket.id, socket.jwt )
+        console.log("have connect: " + socket.id )
         /// set user online active false
         const { jwt } = socket
         USER_ONLINES.push({ id: jwt.id, email: jwt.email, socketId : socket.id, active: false })
