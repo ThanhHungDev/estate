@@ -4,12 +4,14 @@
  * Module dependencies.
  */
 
-var app = require('../app');
-var debug = require('debug')('chat:server');
-var http = require('http');
-var eventIO = require('../app.socket');
+var app       = require('../app');
+var debug     = require('debug')('chat:server');
+var http      = require('http');
+var eventIO   = require('../app.socket');
 var dbConnect = require('../app.mongo.connect');
-var dotenv = require('dotenv') /// thêm dot env vào hệ thống
+var dotenv    = require('dotenv')                 /// thêm dot env vào hệ thống
+var socket    = require('socket.io');
+const CONFIG = require('../config');
 dotenv.config() /// load file .env
 
 /**
@@ -24,17 +26,35 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
-eventIO.io.attach(server);
-
+// eventIO.io.attach(server);
 /**
  * Listen on provided port, on all network interfaces.
  */
+const allowedOrigins = CONFIG.CORS_IO 
+console.log(allowedOrigins)
+const io = socket(server,{
+  origins: allowedOrigins
+})
 
+const USER_ONLINE_GLOBAL = []
+
+/// pass socket to api
+app.use(function(req, res, next){
+  console.log("có vào đây")
+  res.io                 = io
+  res.USER_ONLINE_GLOBAL = USER_ONLINE_GLOBAL
+  next()
+});
+// // respond with "hello world" when a GET request is made to the homepage
+app.get('/honlines', function (req, res) {
+  return res.status(200).json({ message: 'hello onlines', onlines: res.USER_ONLINE_GLOBAL || 'không có' })
+})
 // server.listen(port); /// comment lại 
 server.listen(port,  () => {
 
   console.log(`server run: http://localhost:${port}`)  
   dbConnect.myConnection()
+  eventIO(io, USER_ONLINE_GLOBAL)
 });
 
 server.on('error', onError);

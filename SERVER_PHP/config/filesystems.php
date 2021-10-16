@@ -42,6 +42,10 @@ return [
             'driver' => 'local',
             'root' => base_path('config'),
         ],
+        'chat' => [
+            'driver' => 'local',
+            'root' => base_path('config/../../CHAT'),
+        ],
         'sass' => [
             'driver' => 'local',
             'root' => base_path('resources/sass'),

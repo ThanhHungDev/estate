@@ -1,5 +1,6 @@
 'use strict'
 require('dotenv').config()
+const events = require("./event.config")
 
 var local      = process.env.ASSET_REALTIME,
     local_ip   = process.env.ASSET_REALTIME_IP,
@@ -48,10 +49,7 @@ var CONFIG = {
     CORS_API:  process.env.APP_ENV == 'local' ? '*' : process.env.ASSET_PHP_URL,
     CORS_IO:  process.env.APP_ENV == 'local' ? '*:*' : process.env.ASSET_PHP_URL + ":*",
     
-    EVENT : {
-        CONNECTTION                 : 'connection',
-        DISCONNECT                  : 'disconnect',
-    },
+    EVENT : events,
     SIZES: {
         icon: [ 100, 200 ],
         avatar: [ 200, 200 ],
