@@ -1,2 +1,2 @@
-require('./comment/index');
+require('./comment/index')
 // console.log("vào ")
