@@ -20,17 +20,15 @@ module.exports.index = asyncHandler(async (req, res) => {
     const commentsWithUser = comments.map( i => {
 
         const childWithUser = i.childrens.map( childCom => { 
-            const us = users.find( uItem => uItem.id = childCom.user )
             return {
                 ...childCom.toResources(),
-                user: us
+                user: { ... users.find( uItem => uItem.id = childCom.user ) }
             }
         })
-        const u = users.find( item => item.id = i.user )
         return {
             ...i.toResources(),
-            user: u,
-            childrens : childWithUser,
+            user: { ... users.find( item => item.id = i.user ) },
+            childrens : [ ... childWithUser ],
         }
     })
 
