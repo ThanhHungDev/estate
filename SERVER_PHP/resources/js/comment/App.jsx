@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
 /// soccket 
 import socketIOClient from "socket.io-client"
+import Main from './Main'
 
 class App extends Component {
 
@@ -24,16 +25,8 @@ class App extends Component {
             if(socket.connected){
                 console.log("connected ở đây sẽ thành công " + socket.connected)
                 /// thử emit lên mới 1 comment
-                socket.emit(CONFIG.EVENT.ADD__COMMENT, {
-                    inkey: "sample",
-                    body : "cha vị trí n",
-                    parent: "23424234"
-                })
             }
         })
-        // .on('error', function(error) {
-        //     console.log(error, "có lỗi ")
-        // })
         .on('error', (err) => {
             console.log("************ Error ************")
             console.log("************ Error ************")
@@ -49,13 +42,15 @@ class App extends Component {
             console.error(error.message); // not authorized
             // console.error(error.data); // { content: "Please retry later" }
         })
+        /// check if comment none fetch or comment length empty
+
     }
 
     render() {
         
         return (
             <div className="AppComponent" id="Application">
-                đây là app react soccket
+                <Main />
             </div>
         )
     }

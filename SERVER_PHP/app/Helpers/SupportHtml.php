@@ -37,9 +37,14 @@ class SupportHtml{
 
     public static function getConfigReact() {
 
+        $assetRealtime = Config::get('app.REALTIME_URL');
+
         $configApp = Config::get('app');
         $configApp['providers'] = [];
         $configApp['aliases'] = [];
+        $configApp['REALTIME'] = [
+            'GET_COMMENT' =>  "$assetRealtime/api/comment?inkey=",
+        ];
         $configApp['API'] = [
             'UPDATE_VERIFY_PHONE'      => Route('API.USER.PATCH_VERIFY_PHONE'),
             'DISTRICTS'                => Route('DISTRICTS'),

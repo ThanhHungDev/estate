@@ -8190,7 +8190,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 var TYPE = {
   AUTH_SETTER: 'AUTH_SETTER',
-  LOCATION_SETTER: "LOCATIONS"
+  LOCATION_SETTER: "LOCATIONS",
+  SETTER_COMMENT: "SETTER_COMMENT"
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TYPE);
 

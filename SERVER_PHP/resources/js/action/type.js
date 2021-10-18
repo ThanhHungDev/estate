@@ -1,5 +1,6 @@
 const TYPE =  {
     AUTH_SETTER: 'AUTH_SETTER',
     LOCATION_SETTER  : "LOCATIONS",
+    SETTER_COMMENT  : "SETTER_COMMENT",
 }
 export default TYPE;
