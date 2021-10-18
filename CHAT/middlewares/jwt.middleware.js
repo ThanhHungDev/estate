@@ -15,7 +15,7 @@ let isAuth = async (req, res, next) => {
     // Lấy token được gửi lên từ phía client, thông thường tốt nhất là các bạn nên truyền token vào header
     const access =  req.headers["x-access-token"] || req.headers["authorization"] || req.query.token || req.body.token
     try {
-        console.log(access, "accessaccessaccess")
+        
         if (!access) {
             code = 403
             /// không tồn tại access token
