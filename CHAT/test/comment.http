@@ -16,9 +16,8 @@ Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2Nh
 content-type: application/json
 
 {
-    "inkey": "sample",
-    "body" : "cha nè cuar usser khacs truowng posst",
-    "parent" : "616aea1220645a0812da8f5d"
+    "inkey": "/tieu-de-san-pha--1633833623",
+    "body" : "cha nè cuar usser khacs truowng posst"
 }
 ################################
 

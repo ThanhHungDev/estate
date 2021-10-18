@@ -15,7 +15,7 @@ let isAuth = async (req, res, next) => {
     // Lấy token được gửi lên từ phía client, thông thường tốt nhất là các bạn nên truyền token vào header
     const access =  req.headers["x-access-token"] || req.headers["authorization"] || req.query.token || req.body.token
     try {
-
+        console.log(access, "accessaccessaccess")
         if (!access) {
             code = 403
             /// không tồn tại access token
@@ -23,7 +23,7 @@ let isAuth = async (req, res, next) => {
         }
         // Thực hiện giải mã token xem có hợp lệ hay không?
         // let user = await jwt.decode( access, secret ) => hàm này chỉ decode thôi nghen không phải xác thực
-        const user = await jwt.verify( access, secret ) // hàm này để xác thực
+        const user = await jwt.verify( access.toString().replace("Bearer ",""), secret ) // hàm này để xác thực
 
         // Nếu token hợp lệ, lưu thông tin giải mã được vào đối tượng req, dùng cho các xử lý ở phía sau.
         req.user = user
