@@ -60,14 +60,15 @@ const CommentSchema = new Schema(
 CommentSchema
   .pre('findOne', Populate({
     path: 'childrens',
-    populate: { path: 'childrens' }
+    // populate: { path: 'childrens' }
 }))
   .pre('find', Populate({
     path: 'childrens',
-    populate: { path: 'childrens' }
+    // populate: { path: 'childrens' }
 }));
 
 CommentSchema.methods.toResources = function() {
+    const childrens = this.childrens.map( c => c.toResources() )
     return {
         _id      : this._id,
         inkey    : this.inkey,
@@ -77,7 +78,7 @@ CommentSchema.methods.toResources = function() {
         like     : this.like,
         dislike  : this.dislike,
         report   : this.report,
-        childrens: this.childrens,
+        childrens: childrens,
     }
 }
 module.exports = mongoose.model("comments", CommentSchema)
