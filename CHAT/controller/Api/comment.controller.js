@@ -15,16 +15,14 @@ module.exports.index = asyncHandler(async (req, res) => {
     const merged = [].concat.apply([], ids)
     /// get list user in postgre
     let users = await Postgre.USER.findAll({ where: { id: merged } })
-
-    console.log( ids )
     users = users.map( i => i.toJSONFor())
     /// populate comment và user
     const commentsWithUser = comments.map( i => {
-        const childrens = i.childrens
-        const childWithUser = childrens.map( child => { 
-            const us = users.find( item => item.id = child.user )
+
+        const childWithUser = i.childrens.map( childCom => { 
+            const us = users.find( uItem => uItem.id = childCom.user )
             return {
-                ...child.toResources(),
+                ...childCom.toResources(),
                 user: us
             }
         })
