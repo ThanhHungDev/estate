@@ -1,12 +1,16 @@
 const Comment = require("../../models/comment.model")
 const Postgre = require("../../models/Postgre")
 const asyncHandler = require('express-async-handler')
+// const sizeof = require('object-sizeof')
 
 module.exports.index = asyncHandler(async (req, res) => {
 
     // const { user } = req
     const comments = await Comment
                                 .find({ inkey: req.query.inkey, level: 0 })
+                                // .lean()
+    // sizeof(comments); // approximately 600 
+    // sizeof(comments); // 36, more than 10x smaller!
 
     const ids = comments.map( com => {
         let childs = com.childrens.map( c => c.user )
