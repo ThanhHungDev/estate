@@ -4,9 +4,9 @@ const asyncHandler = require('express-async-handler')
 
 module.exports.index = asyncHandler(async (req, res) => {
 
-    const { user } = req
+    // const { user } = req
     const comments = await Comment
-                                .find({ user: user.id, level: 0 })
+                                .find({ inkey: req.query.inkey, level: 0 })
 
     const ids = comments.map( com => {
         let childs = com.childrens.map( c => c.user )
@@ -40,7 +40,6 @@ module.exports.index = asyncHandler(async (req, res) => {
     const response = {
         code   : 200,
         data   : commentsWithUser,
-        user   : user,
         message: "danh sách comment"
     }
     return res.status(response.code).json(response)

@@ -19,6 +19,13 @@ content-type: application/json
 
 {
     "inkey": "sample",
-    "body" : "cha nè"
+    "body" : "cha nè cuar usser khacs nef"
 }
+################################
+
+GET https://chat.topbds.vn/api/comment?inkey=sample HTTP/1.1
+User-Agent: rest-client
+Accept-Language: en-GB,en-US;q=0.8,en;q=0.6,zh-CN;q=0.4
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE2MzQ1MTYwMjgsImV4cCI6MTYzNTcyNTYyOCwibmJmIjoxNjM0NTE2MDI4LCJqdGkiOiJkNWpNUTVDcEd3WEFKVThYIiwic3ViIjoyLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3IiwiaWQiOjIsIm5hbWUiOiJUclx1MDFiMFx1MDFhMW5nIFRoYW5oIEhcdTAwZjluZyBUZXN0IiwiZW1haWwiOiJ0cnVvbmcyNjA2MjBAZ21haWwuY29tIiwiYXZhdGFyIjoiXC9pbWFnZXNcL2F2YXRhci5qcGciLCJyb2xlX2lkIjoyLCJzYWxlX3R5cGUiOjEsInBob25lX3ZlcmlmeSI6IjA5NzI1Njc4NzUiLCJjb21tdW5lX2lkIjoyNjU5MCwiZGlzdHJpY3RfaWQiOjc1MCwicHJvdmluY2VfaWQiOjc3LCJjb21tdW5lIjp7ImlkIjoyNjU5MCwidGV4dCI6IlhcdTAwZTMgQlx1MDBlY25oIEdpXHUwMGUzIn0sImRpc3RyaWN0Ijp7ImlkIjo3NTAsInRleHQiOiJIdXlcdTFlYzduIENoXHUwMGUydSBcdTAxMTBcdTFlZTljIn0sInByb3ZpbmNlIjp7ImlkIjo3NywidGV4dCI6IlRcdTFlYzluaCBCXHUwMGUwIFJcdTFlY2JhIC0gVlx1MDE2OW5nIFRcdTAwZTB1In0sInN0cmVldCI6IkxcdTFlZDljIGhvXHUwMGUwIGJcdTAwZWNuaCBnaVx1MDBlMyIsImhvbWVfbnVtYmVyIjoiMDY3NCIsInRpbWVfdmVyaWZ5IjoiMjAyMS0xMC0wNSAwODo0MDoyMCJ9.N_Bt7WSDkGFWFId4rtXAKlbdTr11C-8831FYkT-Zo8g
+content-type: application/json
 ################################
