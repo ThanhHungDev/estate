@@ -1,20 +1,50 @@
 const Comment = require("../../models/comment.model")
+const Postgre = require("../../models/Postgre")
 const asyncHandler = require('express-async-handler')
 
-module.exports.index = async (req, res) => {
+module.exports.index = asyncHandler(async (req, res) => {
 
     const { user } = req
-    const comments = await Comment.find({ user: user.id, level: 0 })
+    const comments = await Comment
+                                .find({ user: user.id, level: 0 })
+
+    const ids = comments.map( com => {
+        let childs = com.childrens.map( c => c.user )
+        return [ com.user, ... childs]
+    })
+    const merged = [].concat.apply([], ids)
+    /// get list user in postgre
+    let users = await Postgre.USER.findAll({ where: { id: merged } })
+
+    console.log( ids )
+    users = users.map( i => i.toJSONFor())
+    /// populate comment và user
+    const commentsWithUser = comments.map( i => {
+        const childrens = i.childrens
+        const childWithUser = childrens.map( child => { 
+            const us = users.find( item => item.id = child.user )
+            return {
+                ...child.toResources(),
+                user: us
+            }
+        })
+        const u = users.find( item => item.id = i.user )
+        return {
+            ...i.toResources(),
+            user: u,
+            childrens : childWithUser,
+        }
+    })
 
     /// response 
     const response = {
         code   : 200,
-        data   : comments.map( i => i.toResources() ),
+        data   : commentsWithUser,
         user   : user,
         message: "danh sách comment"
     }
     return res.status(response.code).json(response)
-}
+})
 
 module.exports.store = asyncHandler(async(req, res) => {
     

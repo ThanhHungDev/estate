@@ -3,7 +3,8 @@
 const mongoose = require('mongoose'),
       Schema   = mongoose.Schema,
       CONFIG   = require("../config"),
-      Populate = require("../helpers/autopopulate.helper")
+      Populate = require("../helpers/autopopulate.helper"),
+      User = require("./user.model")
 
 const CommentSchema = new Schema(
     {
@@ -57,10 +58,16 @@ const CommentSchema = new Schema(
 // })
 
 CommentSchema
-  .pre('findOne', Populate('childrens'))
-  .pre('find', Populate('childrens'));
+  .pre('findOne', Populate({
+    path: 'childrens',
+    populate: { path: 'childrens' }
+}))
+  .pre('find', Populate({
+    path: 'childrens',
+    populate: { path: 'childrens' }
+}));
 
-CommentSchema.methods.toResources = function() {   
+CommentSchema.methods.toResources = function() {
     return {
         _id      : this._id,
         inkey    : this.inkey,
