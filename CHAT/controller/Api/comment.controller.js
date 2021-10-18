@@ -19,15 +19,15 @@ module.exports.index = asyncHandler(async (req, res) => {
     /// populate comment và user
     const commentsWithUser = comments.map( i => {
 
-        const childWithUser = i.childrens.map( childCom => { 
+        const childWithUser = i.childrens.map( childCom => {
             return {
                 ...childCom.toResources(),
-                user: { ... users.find( uItem => uItem.id = childCom.user ) }
+                user: { ... users.find( uItem => uItem.id == childCom.user ) }
             }
         })
         return {
             ...i.toResources(),
-            user: { ... users.find( item => item.id = i.user ) },
+            user: { ... users.find( item => item.id == i.user ) },
             childrens : [ ... childWithUser ],
         }
     })

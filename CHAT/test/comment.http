@@ -8,6 +8,19 @@ content-type: application/json
 ################################
 
 
+POST /api/comment HTTP/1.1
+Host: localhost:3000
+User-Agent: rest-client
+Accept-Language: en-GB,en-US;q=0.8,en;q=0.6,zh-CN;q=0.4
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3QiLCJpYXQiOjE2MzQ1MjQ0MTAsImV4cCI6MTYzNTczNDAxMCwibmJmIjoxNjM0NTI0NDEwLCJqdGkiOiJrU0x1RU9scjlXUGgxYnBOIiwic3ViIjozLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3IiwiaWQiOjMsIm5hbWUiOiJUclx1MDFiMFx1MDFhMW5nIG5nXHUwMWIwXHUxZWRkaSBcdTAxMTFcdTAxMDNuZyIsImVtYWlsIjoidXNlcnBvc3RAZ21haWwuY29tIiwiYXZhdGFyIjoiXC9pbWFnZXNcL2F2YXRhci5qcGciLCJyb2xlX2lkIjoyLCJzYWxlX3R5cGUiOjEsInBob25lX3ZlcmlmeSI6bnVsbCwiY29tbXVuZV9pZCI6bnVsbCwiZGlzdHJpY3RfaWQiOjAsInByb3ZpbmNlX2lkIjowLCJjb21tdW5lIjpudWxsLCJkaXN0cmljdCI6bnVsbCwicHJvdmluY2UiOm51bGwsInN0cmVldCI6bnVsbCwiaG9tZV9udW1iZXIiOm51bGwsInRpbWVfdmVyaWZ5IjoiMjAyMS0xMC0wNCAxMDozNDoxOCJ9.sJPNnYNfuk0V4sC8Ofb4EnUreL5HKGp551DHYkZMYaA
+content-type: application/json
+
+{
+    "inkey": "sample",
+    "body" : "cha nè cuar usser khacs truowng posst",
+    "parent" : "616cd9fcc72498383c836e82"
+}
+################################
 
 
 POST https://chat.topbds.vn/api/comment HTTP/1.1
