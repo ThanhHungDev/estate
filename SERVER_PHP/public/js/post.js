@@ -8191,7 +8191,10 @@ __webpack_require__.r(__webpack_exports__);
 var TYPE = {
   AUTH_SETTER: 'AUTH_SETTER',
   LOCATION_SETTER: "LOCATIONS",
-  SETTER_COMMENT: "SETTER_COMMENT"
+  SETTER_COMMENT: "SETTER_COMMENT",
+  SOCCKET: {
+    SET_SOCKET_IO: "SET_SOCKET_IO"
+  }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TYPE);
 
@@ -13469,10 +13472,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _action_type__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../action/type */ "./resources/js/action/type.js");
 /* harmony import */ var _service_jwt_helper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../service/jwt.helper */ "./resources/js/service/jwt.helper.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 /* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _service_jwt_helper__WEBPACK_IMPORTED_MODULE_1__["default"].AUTH;
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _objectSpread(_objectSpread({}, _service_jwt_helper__WEBPACK_IMPORTED_MODULE_1__["default"].AUTH), {}, {
+    JWT: _service_jwt_helper__WEBPACK_IMPORTED_MODULE_1__["default"].jwt
+  });
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {

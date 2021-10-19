@@ -4,23 +4,32 @@ import commentAPI from "../service/comment.api"
 import { setterComment } from "../action/comment.action"
 import Comment from "./Comment"
 
-function Main({ COMMENT, CONFIG, dispatch }){
+function Main({ COMMENT, CONFIG, AUTH, dispatch }){
     const [ fetched, setFetched ] = useState(false)
 
     useEffect(() => {
+        // if( !!AUTH.JWT && !COMMENT.length && !fetched ){
         if( !COMMENT.length && !fetched ){
             /// fetch data api
             setFetched( true )
             commentAPI.getComment({ slug: CONFIG.LOCATION.pathname })
             .then( response => {
-                console.log(response)
-                dispatch(setterComment(response.data))
+                
+                const users = response.users
+                const comments = response.data.map( com => {
+                    return { ... com, user: { ... users.find( u => u.id == com.user )  } }
+                })
+                dispatch(setterComment(comments))
             })
             .catch(error => {
                 console.log("ERROR:: ",error);
             })
         }
-    });
+    })
+
+    // if( !AUTH.JWT ){
+    //     return <div className="text-color-pink text-base">Buộc phải locgin để sử dụng tính năng comment!</div>
+    // }
 
     return <div className="comment">
         {

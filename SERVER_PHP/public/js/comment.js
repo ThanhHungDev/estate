@@ -2154,6 +2154,29 @@ function setterComment(comments) {
 
 /***/ }),
 
+/***/ "./resources/js/action/socket.action.js":
+/*!**********************************************!*\
+  !*** ./resources/js/action/socket.action.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "setterSocket": () => (/* binding */ setterSocket)
+/* harmony export */ });
+/* harmony import */ var _type__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./type */ "./resources/js/action/type.js");
+
+function setterSocket(socket) {
+  console.log(socket, " setterSocket ");
+  return {
+    type: _type__WEBPACK_IMPORTED_MODULE_0__["default"].SOCCKET.SET_SOCKET_IO,
+    payload: socket
+  };
+}
+
+/***/ }),
+
 /***/ "./resources/js/action/type.js":
 /*!*************************************!*\
   !*** ./resources/js/action/type.js ***!
@@ -2168,9 +2191,70 @@ __webpack_require__.r(__webpack_exports__);
 var TYPE = {
   AUTH_SETTER: 'AUTH_SETTER',
   LOCATION_SETTER: "LOCATIONS",
-  SETTER_COMMENT: "SETTER_COMMENT"
+  SETTER_COMMENT: "SETTER_COMMENT",
+  SOCCKET: {
+    SET_SOCKET_IO: "SET_SOCKET_IO"
+  }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TYPE);
+
+/***/ }),
+
+/***/ "./resources/js/comment/Action.jsx":
+/*!*****************************************!*\
+  !*** ./resources/js/comment/Action.jsx ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+function Action(_ref) {
+  var comment = _ref.comment;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: "bg-white",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+        className: "d-flex flex-row fs-12",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          className: "like p-2 cursor",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
+            className: "fal fa-thumbs-up"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+            className: "ml-1",
+            children: "Th\xEDch"
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          className: "like p-2 cursor",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
+            className: "fal fa-reply"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+            className: "ml-1",
+            children: "Tr\u1EA3 l\u1EDDi"
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          className: "like p-2 cursor",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
+            className: "fal fa-exclamation-triangle"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+            className: "ml-1",
+            children: "B\xE1o c\xE1o Vi ph\u1EA1m"
+          })]
+        })]
+      })
+    })
+  });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Action);
 
 /***/ }),
 
@@ -2190,8 +2274,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! socket.io-client */ "./node_modules/socket.io-client/lib/index.js");
 /* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(socket_io_client__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _Main__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Main */ "./resources/js/comment/Main.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _action_socket_action__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../action/socket.action */ "./resources/js/action/socket.action.js");
+/* harmony import */ var _WrapperComment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./WrapperComment */ "./resources/js/comment/WrapperComment.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2222,25 +2307,26 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var App = /*#__PURE__*/function (_Component) {
   _inherits(App, _Component);
 
   var _super = _createSuper(App);
 
   function App(props) {
-    var _auth$jwt, _CONFIG$LOCATION$path;
+    var _AUTH$jwt, _CONFIG$LOCATION$path;
 
     var _this;
 
     _classCallCheck(this, App);
 
     _this = _super.call(this, props);
-    var auth = props.auth,
+    var AUTH = props.AUTH,
         CONFIG = props.CONFIG;
     var param = {
       autoConnect: false,
       query: {
-        token: (_auth$jwt = auth === null || auth === void 0 ? void 0 : auth.jwt) !== null && _auth$jwt !== void 0 ? _auth$jwt : '',
+        token: (_AUTH$jwt = AUTH === null || AUTH === void 0 ? void 0 : AUTH.jwt) !== null && _AUTH$jwt !== void 0 ? _AUTH$jwt : '',
         pathname: (_CONFIG$LOCATION$path = CONFIG.LOCATION.pathname) !== null && _CONFIG$LOCATION$path !== void 0 ? _CONFIG$LOCATION$path : "/"
       }
     };
@@ -2249,7 +2335,9 @@ var App = /*#__PURE__*/function (_Component) {
 
     console.log("connected ở đây không thành công đâu " + socket.connected);
     socket.on('connect', function () {
-      console.log("Successfully connected!");
+      console.log("Successfully connected!"); /// lưu lại trạng thái connect mới của socket
+
+      props.dispatch((0,_action_socket_action__WEBPACK_IMPORTED_MODULE_4__.setterSocket)(socket));
 
       if (socket.connected) {
         console.log("connected ở đây sẽ thành công " + socket.connected); /// thử emit lên mới 1 comment
@@ -2261,10 +2349,13 @@ var App = /*#__PURE__*/function (_Component) {
       console.log("************ Error ************"); // Show the toaster with the error
       // Try re-connect
       // close the socket connection
+      /// lưu vào redux là socket false
+
+      props.dispatch((0,_action_socket_action__WEBPACK_IMPORTED_MODULE_4__.setterSocket)(socket));
     }).on('connect_error', function (error) {
       // console.error(`Connection error: ${error}`)
       // console.error(error instanceof Error); // true
-      console.error(error.message); // not authorized
+      console.error("connect_error", error.message); // not authorized
       // console.error(error.data); // { content: "Please retry later" }
     }); /// check if comment none fetch or comment length empty
 
@@ -2274,10 +2365,10 @@ var App = /*#__PURE__*/function (_Component) {
   _createClass(App, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
         className: "AppComponent",
         id: "Application",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Main__WEBPACK_IMPORTED_MODULE_4__["default"], {})
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_WrapperComment__WEBPACK_IMPORTED_MODULE_5__["default"], {})
       });
     }
   }]);
@@ -2287,7 +2378,7 @@ var App = /*#__PURE__*/function (_Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    auth: state.auth,
+    AUTH: state.auth,
     CONFIG: state.config
   };
 };
@@ -2308,102 +2399,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _Content__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Content */ "./resources/js/comment/Content.jsx");
+/* harmony import */ var _Action__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Action */ "./resources/js/comment/Action.jsx");
+/* harmony import */ var _Input__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Input */ "./resources/js/comment/Input.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
 
 
 
 
 
 function Comment(_ref) {
-  var comment = _ref.comment,
-      dispatch = _ref.dispatch;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-    className: "container mt-5",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+  var comment = _ref.comment;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       className: "d-flex justify-content-center row",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
         className: "col-12",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
           className: "d-flex flex-column comment-section",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-            className: "bg-white p-2",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-              className: "d-flex flex-row user-info",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
-                className: "rounded-circle",
-                src: "https://i.imgur.com/RpzrMR2.jpg",
-                width: "40"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                className: "d-flex flex-column justify-content-start ml-2",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-                  className: "d-block font-weight-bold name",
-                  children: "Marry Andrews"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-                  className: "date text-black-50",
-                  children: "Shared publicly - Jan 2020"
-                })]
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-              className: "mt-2",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-                className: "comment-text",
-                children: comment.body
-              })
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-            className: "bg-white",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-              className: "d-flex flex-row fs-12",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                className: "like p-2 cursor",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
-                  className: "fa fa-thumbs-o-up"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-                  className: "ml-1",
-                  children: "Like"
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                className: "like p-2 cursor",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
-                  className: "fa fa-commenting-o"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-                  className: "ml-1",
-                  children: "Comment"
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                className: "like p-2 cursor",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
-                  className: "fa fa-share"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-                  className: "ml-1",
-                  children: "Share"
-                })]
-              })]
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-            className: "bg-light p-2",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-              className: "d-flex flex-row align-items-start",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
-                className: "rounded-circle",
-                src: "https://i.imgur.com/RpzrMR2.jpg",
-                width: "40"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("textarea", {
-                className: "form-control ml-1 shadow-none textarea"
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-              className: "mt-2 text-right",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-                className: "btn btn-primary btn-sm shadow-none",
-                type: "button",
-                children: "Post comment"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-                className: "btn btn-outline-primary btn-sm ml-1 shadow-none",
-                type: "button",
-                children: "Cancel"
-              })]
-            })]
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Content__WEBPACK_IMPORTED_MODULE_1__["default"], {
+            comment: comment
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Action__WEBPACK_IMPORTED_MODULE_2__["default"], {
+            comment: comment
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Input__WEBPACK_IMPORTED_MODULE_3__["default"], {
+            comment: comment
           })]
         })
       })
@@ -2411,7 +2432,127 @@ function Comment(_ref) {
   });
 }
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)()(Comment));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Comment);
+
+/***/ }),
+
+/***/ "./resources/js/comment/Content.jsx":
+/*!******************************************!*\
+  !*** ./resources/js/comment/Content.jsx ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+function Content(_ref) {
+  var _comment$user, _comment$user2;
+
+  var comment = _ref.comment;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    className: "bg-white p-2",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      className: "d-flex flex-row user-info",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+        className: "rounded-circle",
+        src: (_comment$user = comment.user) === null || _comment$user === void 0 ? void 0 : _comment$user.avatar,
+        width: "40"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+        className: "d-flex flex-column justify-content-start ml-2",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+          className: "d-block font-weight-bold name",
+          children: (_comment$user2 = comment.user) === null || _comment$user2 === void 0 ? void 0 : _comment$user2.name
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+          className: "date text-black-50",
+          children: "Shared publicly - Jan 2020"
+        })]
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: "mt-2",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+        className: "comment-text",
+        children: comment.body
+      })
+    })]
+  });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Content);
+
+/***/ }),
+
+/***/ "./resources/js/comment/Input.jsx":
+/*!****************************************!*\
+  !*** ./resources/js/comment/Input.jsx ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+function Input(_ref) {
+  var AUTH = _ref.AUTH,
+      comment = _ref.comment,
+      dispatch = _ref.dispatch;
+
+  if (!AUTH || !AUTH.id) {
+    /// chưa được login thì không cho hiện
+    return null;
+  }
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    className: "bg-light p-2",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      className: "d-flex flex-row align-items-start",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+        className: "rounded-circle",
+        src: AUTH === null || AUTH === void 0 ? void 0 : AUTH.avatar,
+        width: "40"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("textarea", {
+        className: "form-control ml-1 shadow-none textarea"
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      className: "mt-2 text-right",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+        className: "btn btn-primary btn-sm shadow-none",
+        type: "button",
+        children: "G\u1EEDi B\xECnh lu\u1EADn"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+        className: "btn btn-outline-primary btn-sm ml-1 shadow-none",
+        type: "button",
+        children: "Hu\u1EF7 B\xECnh lu\u1EADn"
+      })]
+    })]
+  });
+}
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    CONFIG: state.config,
+    AUTH: state.auth,
+    COMMENT: state.comment
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps)(Input));
 
 /***/ }),
 
@@ -2432,6 +2573,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _action_comment_action__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../action/comment.action */ "./resources/js/action/comment.action.js");
 /* harmony import */ var _Comment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Comment */ "./resources/js/comment/Comment.jsx");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2454,6 +2601,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function Main(_ref) {
   var COMMENT = _ref.COMMENT,
       CONFIG = _ref.CONFIG,
+      AUTH = _ref.AUTH,
       dispatch = _ref.dispatch;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
@@ -2462,19 +2610,30 @@ function Main(_ref) {
       setFetched = _useState2[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    // if( !!AUTH.JWT && !COMMENT.length && !fetched ){
     if (!COMMENT.length && !fetched) {
       /// fetch data api
       setFetched(true);
       _service_comment_api__WEBPACK_IMPORTED_MODULE_2__["default"].getComment({
         slug: CONFIG.LOCATION.pathname
       }).then(function (response) {
-        console.log(response);
-        dispatch((0,_action_comment_action__WEBPACK_IMPORTED_MODULE_3__.setterComment)(response.data));
+        var users = response.users;
+        var comments = response.data.map(function (com) {
+          return _objectSpread(_objectSpread({}, com), {}, {
+            user: _objectSpread({}, users.find(function (u) {
+              return u.id == com.user;
+            }))
+          });
+        });
+        dispatch((0,_action_comment_action__WEBPACK_IMPORTED_MODULE_3__.setterComment)(comments));
       })["catch"](function (error) {
         console.log("ERROR:: ", error);
       });
     }
-  });
+  }); // if( !AUTH.JWT ){
+  //     return <div className="text-color-pink text-base">Buộc phải locgin để sử dụng tính năng comment!</div>
+  // }
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
     className: "comment",
     children: COMMENT.map(function (comment) {
@@ -2494,6 +2653,45 @@ var mapStateToProps = function mapStateToProps(state) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps)(Main));
+
+/***/ }),
+
+/***/ "./resources/js/comment/WrapperComment.jsx":
+/*!*************************************************!*\
+  !*** ./resources/js/comment/WrapperComment.jsx ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _Main__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Main */ "./resources/js/comment/Main.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+function WrapperComment(props) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    className: "product__data",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      className: "block",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
+        className: "block__title",
+        children: " B\xECnh Lu\u1EADn "
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "block__data--content shadow p-3 mb-5 bg-white rounded",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Main__WEBPACK_IMPORTED_MODULE_1__["default"], {})
+      })]
+    })
+  });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (WrapperComment);
 
 /***/ }),
 
@@ -2550,10 +2748,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _action_type__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../action/type */ "./resources/js/action/type.js");
 /* harmony import */ var _service_jwt_helper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../service/jwt.helper */ "./resources/js/service/jwt.helper.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 /* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _service_jwt_helper__WEBPACK_IMPORTED_MODULE_1__["default"].AUTH;
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _objectSpread(_objectSpread({}, _service_jwt_helper__WEBPACK_IMPORTED_MODULE_1__["default"].AUTH), {}, {
+    JWT: _service_jwt_helper__WEBPACK_IMPORTED_MODULE_1__["default"].jwt
+  });
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
@@ -2606,20 +2812,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./config */ "./resources/js/reducer/config.js");
 /* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./auth */ "./resources/js/reducer/auth.js");
 /* harmony import */ var _comment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./comment */ "./resources/js/reducer/comment.js");
+/* harmony import */ var _socket__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./socket */ "./resources/js/reducer/socket.js");
  ///thêm các reducer funtion cần được combine vào đây
+
 
 
 
  //// khởi tạo 1 biến biểu diễn REDUCER ALL 
 
-var Reducer = (0,redux__WEBPACK_IMPORTED_MODULE_3__.combineReducers)({
+var Reducer = (0,redux__WEBPACK_IMPORTED_MODULE_4__.combineReducers)({
   config: _config__WEBPACK_IMPORTED_MODULE_0__["default"],
   auth: _auth__WEBPACK_IMPORTED_MODULE_1__["default"],
-  comment: _comment__WEBPACK_IMPORTED_MODULE_2__["default"]
+  comment: _comment__WEBPACK_IMPORTED_MODULE_2__["default"],
+  socket: _socket__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Reducer);
 
@@ -2666,6 +2875,34 @@ if (typeof CONFIG_APP != 'undefined') {
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
+/***/ "./resources/js/reducer/socket.js":
+/*!****************************************!*\
+  !*** ./resources/js/reducer/socket.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ SocketReducer)
+/* harmony export */ });
+/* harmony import */ var _action_type_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../action/type.js */ "./resources/js/action/type.js");
+
+function SocketReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case _action_type_js__WEBPACK_IMPORTED_MODULE_0__["default"].SOCCKET.SET_SOCKET_IO:
+      return action.payload;
+
     default:
       return state;
   }

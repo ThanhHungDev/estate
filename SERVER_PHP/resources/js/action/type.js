@@ -2,5 +2,8 @@ const TYPE =  {
     AUTH_SETTER: 'AUTH_SETTER',
     LOCATION_SETTER  : "LOCATIONS",
     SETTER_COMMENT  : "SETTER_COMMENT",
+    SOCCKET  : {
+        SET_SOCKET_IO: "SET_SOCKET_IO"
+    },
 }
 export default TYPE;

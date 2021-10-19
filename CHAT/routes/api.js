@@ -23,6 +23,9 @@ let initAPIs = app => {
     ////////////////////////////////////////////////////////////////////////////
     router.post('/register', [ userMiddleware.REGISTER ], userApiController.register)
     router.post('/login', [ userMiddleware.LOGIN ], userApiController.login)
+
+    /// lấy danh sách comment không cần login
+    router.get('/comment', [ commentMiddleware.GET_COMMENT_INKEY ], commentApiController.index )
     ////////////////////////////////////////////////////////////////////////////
     router.use([ authMiddleware.isAuth])
     ////////////////////////////////////////////////////////////////////////////
@@ -30,8 +33,6 @@ let initAPIs = app => {
     ////////////////////////////////////////////////////////////////////////////
     router.get('/users', userApiController.getUser )
 
-
-    router.get('/comment', [ commentMiddleware.GET_COMMENT_INKEY ], commentApiController.index )
     router.post('/comment', [ commentMiddleware.CREATE_COMMENT ], commentApiController.store )
     
     return app.use( "/api", router )

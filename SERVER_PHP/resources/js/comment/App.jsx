@@ -3,17 +3,18 @@ import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
 /// soccket 
 import socketIOClient from "socket.io-client"
-import Main from './Main'
+import { setterSocket } from '../action/socket.action'
+import WrapperComment from "./WrapperComment"
 
 class App extends Component {
 
     constructor(props) {
         super(props)
-        const { auth, CONFIG } = props
+        const { AUTH, CONFIG } = props
         const param = {
             autoConnect: false,
             query: {
-                token: auth?.jwt ?? '',
+                token: AUTH?.jwt ?? '',
                 pathname: CONFIG.LOCATION.pathname ?? "/",
             }
         }
@@ -22,6 +23,8 @@ class App extends Component {
         console.log("connected ở đây không thành công đâu " + socket.connected)
         socket.on('connect', function() {
             console.log("Successfully connected!")
+            /// lưu lại trạng thái connect mới của socket
+            props.dispatch(setterSocket(socket))
             if(socket.connected){
                 console.log("connected ở đây sẽ thành công " + socket.connected)
                 /// thử emit lên mới 1 comment
@@ -32,14 +35,17 @@ class App extends Component {
             console.log("************ Error ************")
             console.log(err)
             console.log("************ Error ************")
-               // Show the toaster with the error
-               // Try re-connect
-               // close the socket connection
+            // Show the toaster with the error
+            // Try re-connect
+            // close the socket connection
+
+            /// lưu vào redux là socket false
+            props.dispatch(setterSocket(socket))
         })
         .on('connect_error', (error) => {
             // console.error(`Connection error: ${error}`)
             // console.error(error instanceof Error); // true
-            console.error(error.message); // not authorized
+            console.error("connect_error", error.message); // not authorized
             // console.error(error.data); // { content: "Please retry later" }
         })
         /// check if comment none fetch or comment length empty
@@ -50,7 +56,7 @@ class App extends Component {
         
         return (
             <div className="AppComponent" id="Application">
-                <Main />
+                <WrapperComment />
             </div>
         )
     }
@@ -59,7 +65,7 @@ class App extends Component {
 
 let mapStateToProps = (state) => {
     return {
-        auth  : state.auth,
+        AUTH  : state.auth,
         CONFIG: state.config,
     }
 }

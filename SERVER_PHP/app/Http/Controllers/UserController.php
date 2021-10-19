@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\SupportDB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
@@ -67,7 +68,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function logout(){
-
+        SupportDB::resetJwtAuthentication();
         Auth::logout();
         return redirect()->route('LOGIN');
     }

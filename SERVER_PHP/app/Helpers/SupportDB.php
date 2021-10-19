@@ -120,4 +120,8 @@ class SupportDB{
         Session::put(Config::get("constant.TOKEN_COOKIE_NAME"),$token);
         return $token;
     }
+
+    public static function resetJwtAuthentication(){
+        Session::forget(Config::get("constant.TOKEN_COOKIE_NAME") );
+    }
 }
