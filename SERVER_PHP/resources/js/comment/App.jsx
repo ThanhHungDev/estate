@@ -42,6 +42,7 @@ class App extends Component {
             /// lưu vào redux là socket false
             props.dispatch(setterSocket(socket))
         })
+        
         .on('connect_error', (error) => {
             // console.error(`Connection error: ${error}`)
             // console.error(error instanceof Error); // true

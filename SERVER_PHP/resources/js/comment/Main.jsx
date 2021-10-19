@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 import commentAPI from "../service/comment.api"
 import { setterComment } from "../action/comment.action"
 import Comment from "./Comment"
+import Input from "./Input"
 
 function Main({ COMMENT, CONFIG, AUTH, dispatch }){
     const [ fetched, setFetched ] = useState(false)
@@ -17,7 +18,8 @@ function Main({ COMMENT, CONFIG, AUTH, dispatch }){
                 
                 const users = response.users
                 const comments = response.data.map( com => {
-                    return { ... com, user: { ... users.find( u => u.id == com.user )  } }
+                    const childrens = com.childrens.map( child => { return { ... child, user: { ... users.find( u => u.id == child.user )  } } })
+                    return { ... com, childrens, user: { ... users.find( u => u.id == com.user )  } }
                 })
                 dispatch(setterComment(comments))
             })
@@ -35,6 +37,7 @@ function Main({ COMMENT, CONFIG, AUTH, dispatch }){
         {
             COMMENT.map( comment => <Comment key={ comment._id } comment={ comment } /> )
         }
+        <div><Input /></div>
     </div>
 }
 

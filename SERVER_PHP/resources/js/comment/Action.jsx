@@ -1,6 +1,7 @@
 import React from 'react'
 
 function Action({ comment }) {
+
     return (
         <div>
             <div className="bg-white">

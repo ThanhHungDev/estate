@@ -79,6 +79,8 @@ CommentSchema.methods.toResources = function() {
         dislike  : this.dislike,
         report   : this.report,
         childrens: childrens,
+        createdAt: this.createdAt,
+        updatedAt: this.updatedAt,
     }
 }
 module.exports = mongoose.model("comments", CommentSchema)

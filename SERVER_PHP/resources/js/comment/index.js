@@ -6,6 +6,10 @@ import { Provider } from 'react-redux'
 import Reducer from '../reducer/comment.reducer'
 import App from "./App"
 
+
+import moment from 'moment'
+moment.locale('vi')
+
 const store = createStore(Reducer)
 store.subscribe(function(){
     console.log('có thay đổi trong Redux!!', store.getState());
