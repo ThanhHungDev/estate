@@ -11,6 +11,7 @@ const Comment = require("./models/comment.model")
 const CONFIG = require("./config")
 const io = require( "socket.io" )()
 const authMiddleware = require("./middlewares/jwt.middleware")
+const USER = require("./models/user.model")
 
 // Add your socket.io logic here!
 io
@@ -91,6 +92,7 @@ io
         // USER_ONLINES.map( user => {}user.socketId == socket.id ? { ...})
         const { inkey, parent } = data
         const { jwt } = socket
+        const user = new USER(jwt)
         
         try {
             /// tìm lại cái parent
@@ -118,7 +120,7 @@ io
             /// response 
             const response = {
                 code   : 200,
-                data   : comment.toResources(),
+                data   : { ...comment.toResources(), user: { ... user.toJSONFor() }, parent },
                 message: "socket add comment thành công"
             }
             io.sockets.in(inkey).emit(CONFIG.EVENT.RESPONSE__ADD__COMMENT, response )

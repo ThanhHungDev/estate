@@ -1,6 +1,7 @@
 const Comment = require("../../models/comment.model")
 const Postgre = require("../../models/Postgre")
 const asyncHandler = require('express-async-handler')
+const USER = require("../../models/user.model")
 // const sizeof = require('object-sizeof')
 
 module.exports.index = asyncHandler(async (req, res) => {
@@ -59,7 +60,7 @@ module.exports.store = asyncHandler(async(req, res) => {
     
     const response = {
         code: 200,
-        data: comment.toResources(),
+        data: { ...comment.toResources(), user: (new USER(user)).toJSONFor(), parent },
         message: "add mới comment thành công"
     }
     return res.status(response.code).json(response)

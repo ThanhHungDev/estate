@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
 /// soccket 
 import socketIOClient from "socket.io-client"
+import { addComment } from '../action/comment.action'
 import { setterSocket } from '../action/socket.action'
 import WrapperComment from "./WrapperComment"
 
@@ -28,7 +29,15 @@ class App extends Component {
             if(socket.connected){
                 console.log("connected ở đây sẽ thành công " + socket.connected)
                 /// thử emit lên mới 1 comment
+                socket.emit(CONFIG.EVENT.JOIN__COMMENT, { inkey: CONFIG.LOCATION.pathname })
             }
+        })
+        .on(CONFIG.EVENT.RESPONSE__JOIN__COMMENT, function(data) {
+            console.log("Thành công join room!", data )
+        })
+        .on(CONFIG.EVENT.RESPONSE__ADD__COMMENT, function(response) {
+            console.log("Thành công add comment!", response )
+            props.dispatch(addComment(response.data))
         })
         .on('error', (err) => {
             console.log("************ Error ************")

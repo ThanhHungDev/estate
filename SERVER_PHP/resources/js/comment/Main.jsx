@@ -9,6 +9,7 @@ function Main({ COMMENT, CONFIG, AUTH, dispatch }){
     const [ fetched, setFetched ] = useState(false)
 
     useEffect(() => {
+        console.log(AUTH, "AUTHAUTHAUTH" )
         // if( !!AUTH.JWT && !COMMENT.length && !fetched ){
         if( !COMMENT.length && !fetched ){
             /// fetch data api
@@ -29,15 +30,17 @@ function Main({ COMMENT, CONFIG, AUTH, dispatch }){
         }
     })
 
-    // if( !AUTH.JWT ){
-    //     return <div className="text-color-pink text-base">Buộc phải locgin để sử dụng tính năng comment!</div>
-    // }
-
     return <div className="comment">
         {
             COMMENT.map( comment => <Comment key={ comment._id } comment={ comment } /> )
         }
-        <div><Input /></div>
+        { fetched && !COMMENT.length && <div className=" text-base"> Chưa có bình luận nào trước đó!  </div> }
+        { 
+            !AUTH.JWT
+            ? <div className="pt-3 text-sm">Bạn cần login để được bình luận <a href={CONFIG.WEB.LOGIN}>bấm để chuyển đến trang login</a></div>
+            : <div><Input /></div>
+        }
+        
     </div>
 }
 

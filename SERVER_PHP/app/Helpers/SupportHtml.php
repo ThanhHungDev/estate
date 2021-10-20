@@ -60,6 +60,7 @@ class SupportHtml{
         $configApp['WEB'] = [
             'PATCH_VERIFY_PHONE' => Route('PATCH_VERIFY_PHONE'),
             'LOGOUT'             => Route('LOGOUT'),
+            'LOGIN'              => Route('LOGIN'),
             'USER_POST'          => Route('USER_POST', ['path' => null ], false ),
         ];
         $configApp['CONSTANT'] = Config::get('constant');
