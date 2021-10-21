@@ -34,3 +34,47 @@ $__background_product--detail: #f0f9fb;
 .bg__product--detail{
   background-color: $__background_product--detail;
 }
+
+.comment-text{
+  width: fit-content;
+  white-space: pre-line;
+  position: relative;
+  z-index: 2;
+  font-size: 13px;
+  line-height: 20px;
+  word-break: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  
+  
+  &.show{
+    max-height: unset; /* fallback */
+    -webkit-line-clamp: unset; /* number of lines to show */
+    -webkit-box-orient: unset;
+  }
+  &.hidden{
+    max-height: 100px; /* fallback */
+    -webkit-line-clamp: 5; /* number of lines to show */
+    -webkit-box-orient: vertical;
+  }
+}
+
+.btn__action{
+  margin: 3px 1px;
+  padding: .175rem .75rem;
+  font-size: 12px;
+  background-color: $white;
+  color: $custom-unique-color;
+  border: 0!important;
+
+  @include btn-interaction($custom-unique-color , color-level($custom-unique-color , -8), $white )
+}
+.btn__more{
+  margin: 3px 1px;
+  padding: .175rem .75rem;
+  font-size: 12px;
+  background-color: transparent;
+  color: $custom-unique-color;
+  border: 1px solid $gray-100;
+}

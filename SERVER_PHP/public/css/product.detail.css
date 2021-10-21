@@ -23764,3 +23764,64 @@ ul.contact li a span {
 .bg__product--detail {
   background-color: #f0f9fb;
 }
+
+.comment-text {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  white-space: pre-line;
+  position: relative;
+  z-index: 2;
+  font-size: 13px;
+  line-height: 20px;
+  word-break: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+}
+.comment-text.show {
+  max-height: unset;
+  /* fallback */
+  -webkit-line-clamp: unset;
+  /* number of lines to show */
+  -webkit-box-orient: unset;
+}
+.comment-text.hidden {
+  max-height: 100px;
+  /* fallback */
+  -webkit-line-clamp: 5;
+  /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+
+.btn__action {
+  margin: 3px 1px;
+  padding: 0.175rem 0.75rem;
+  font-size: 12px;
+  background-color: #fff;
+  color: #3f729b;
+  border: 0 !important;
+}
+.btn__action:hover {
+  background-color: #3f729b;
+  border: 2px solid #baccdb;
+  color: #fff;
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+}
+.btn__action:focus, .btn__action.focus {
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+  outline: 0;
+}
+.btn__action:disabled, .btn__action.disabled, fieldset:disabled .btn__action {
+  pointer-events: none;
+  opacity: 0.65;
+}
+
+.btn__more {
+  margin: 3px 1px;
+  padding: 0.175rem 0.75rem;
+  font-size: 12px;
+  background-color: transparent;
+  color: #3f729b;
+  border: 1px solid #f8f9fa;
+}
