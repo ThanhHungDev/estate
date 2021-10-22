@@ -78,6 +78,7 @@ CommentSchema.methods.toResources = function() {
         like     : this.like,
         dislike  : this.dislike,
         report   : this.report,
+        level    : this.level,
         childrens: childrens,
         createdAt: this.createdAt,
         updatedAt: this.updatedAt,

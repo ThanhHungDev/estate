@@ -1,7 +1,7 @@
 import React, { useState, forwardRef, useRef, useImperativeHandle } from "react"
 import { connect } from "react-redux"
 
-function Input({ AUTH, comment, SOCKET, CONFIG, dispatch }) {
+function Input({ AUTH, comment, SOCKET, CONFIG, setReply, dispatch }) {
 
     const refComment = useRef()
 
@@ -18,8 +18,13 @@ function Input({ AUTH, comment, SOCKET, CONFIG, dispatch }) {
                 commentObject.parent = comment._id
             }
             SOCKET.emit(CONFIG.EVENT.ADD__COMMENT, commentObject)
+            if( !!setReply ){
+                /// có truyền vào ( level 1 )
+                setReply(false)
+            }
         }
     }
+    
     if( !AUTH || !AUTH.id ){
         /// chưa được login thì không cho hiện
         return null
@@ -34,7 +39,9 @@ function Input({ AUTH, comment, SOCKET, CONFIG, dispatch }) {
                 <button className="btn btn-primary btn-sm shadow-none" type="button" onClick={ sendComment }>
                     Gửi Bình Luận
                 </button>
-                <button className="btn btn-outline-primary btn-sm ml-1 shadow-none" type="button">Huỷ Bình luận</button>
+                <button className="btn btn-outline-primary btn-sm ml-1 shadow-none" type="button"  onClick={ () => { refComment.current.value = '' } }>
+                    Huỷ Bình luận
+                </button>
             </div>
         </div>
     )

@@ -34,8 +34,8 @@ function Readmore({ comment }) {
                     <button className="btn btn__more" ref={refBtnToggle}  onClick={ () => {setShowmore( showmore == 'hidden' ? 'show' : 'hidden' )}}>
                         { 
                             showmore == 'hidden' 
-                            ? <span>hiện tất cả <i class="far fa-angle-double-down"></i> </span>
-                            : <span>ẩn bớt <i class="far fa-angle-double-up"></i> </span>
+                            ? <span>hiện tất cả <i className="far fa-angle-double-down"></i> </span>
+                            : <span>ẩn bớt <i className="far fa-angle-double-up"></i> </span>
                         }
                     </button>
                 </div>

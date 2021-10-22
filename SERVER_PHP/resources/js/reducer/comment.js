@@ -15,8 +15,8 @@ export default function (state = [], action) {
             /// loop tìm từng comment coi có comment nào trùng thì add vào childrens 
             return state.map( comment => {
                 if( comment._id == parent ){
-                    const childrens = comment.childrens.push(comment)
-                    return { ... comment, childrens }
+                    const { childrens } = comment
+                    return { ... comment, childrens: [ ... childrens, action.payload ] }
                 }
                 return { ... comment }
             })
