@@ -1,18 +1,21 @@
 <?php 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/404', function(){
-    echo 'không tìm thấy trang';
-})->name('CLIENT_404');
+Route::group(['prefix' => '/','middleware' => [ 'LOGIN_REDIRECT', 'HTML_MINIFIER' ]], function () { ///'READ_CACHE',
 
 
-Route::get("/test", function(){
-    $input = collect(request()->merge([ 'sfđsf' => "asads"])->all())->filter()->all();
-    dd( $input + 1);
-});
+    Route::get('/404', function(){
+        echo 'không tìm thấy trang';
+    })->name('CLIENT_404');
+    
+    
+    Route::get("/test", function(){
+        $input = collect(request()->merge([ 'sfđsf' => "asads"])->all())->filter()->all();
+        dd( $input + 1);
+    });
 
 
-Route::group(['prefix' => '/','middleware' => [ 'HTML_MINIFIER']], function () { ///'READ_CACHE',
+
 
     Route::get('/',[ App\Http\Controllers\ClientController::class, 'index' ])->name('HOME_PAGE');
 

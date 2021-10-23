@@ -7,7 +7,7 @@ import Readmore from './Readmore'
 function Content({ comment }) {
     
     return (
-        <div className="bg-white p-2">
+        <div className="bg-white">
             <div className="d-flex flex-row user-info">
                 <div className="">
                     <img className="rounded-circle" src={ comment.user?.avatar } width="40" />

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\REGISTER_REQUEST;
 use App\Models\User;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Session;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Exceptions\TokenExpiredException;
 use Tymon\JWTAuth\Exceptions\TokenInvalidException;
@@ -22,7 +23,22 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function login(){
+    public function login(Request $request){
+
+        $redirect        = $request->input('redirect', null );
+        $routeRedirect   = $request->input('nredirect', null );
+
+        /// nếu redirect lấy referer ra sử dụng thì phải check biến này
+        if( !!$request->input('rredirect', null ) ){
+            $redirect = $request->headers->get('referer');
+        }
+        if($redirect){
+            Session::put(Config::get("constant.SESSION__REDIRECT--URL"),$redirect);
+        }
+        if($routeRedirect){
+            Session::put(Config::get("constant.SESSION__REDIRECT--ROUTE"),$routeRedirect);
+        }
+        
 
         if (Auth::check()){
             /// check user role 
@@ -56,6 +72,15 @@ class LoginController extends Controller
 
         if (Auth::attempt( $dataLogin, $remember )) {
             
+            $url = Session::get(Config::get("constant.SESSION__REDIRECT--URL"), null );
+            $routeName = Session::get(Config::get("constant.SESSION__REDIRECT--ROUTE"), null );
+            if(!!$url){
+                return redirect($url);
+            }
+            if(!!$routeName){
+                return redirect()->route($routeName);
+            }
+
             $request->session()->flash(Config::get('constant.LOGIN_ADMIN_SUCCESS'), true);
             /// check user role 
             $user = Auth::user();

@@ -68,6 +68,7 @@ class Kernel extends HttpKernel
         'jwt.refresh' => \Tymon\JWTAuth\Http\Middleware\RefreshToken::class,
         'ADMIN_LOGGED' =>\App\Http\Middleware\ADMIN_LOGGED::class,
         'HTML_MINIFIER' => \App\Http\Middleware\HTML_MIFIER::class,
+        'LOGIN_REDIRECT' => \App\Http\Middleware\LOGIN_REDIRECT::class,
     ];
 
     

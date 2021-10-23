@@ -37,7 +37,7 @@ function Main({ COMMENT, CONFIG, AUTH, dispatch }){
         { fetched && !COMMENT.length && <div className=" text-base"> Chưa có bình luận nào trước đó!  </div> }
         { 
             !AUTH.JWT
-            ? <div className="pt-3 text-sm">Bạn cần login để được bình luận <a href={CONFIG.WEB.LOGIN}>bấm để chuyển đến trang login</a></div>
+            ? <div className="pt-3 text-sm">Bạn cần login để được bình luận <a href={ `${CONFIG.WEB.LOGIN}?rredirect=1` }>bấm để chuyển đến trang login</a></div>
             : <div><Input /></div>
         }
         

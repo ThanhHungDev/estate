@@ -52,6 +52,9 @@ return [
     'FORGOT_ERROR'        => "FORGOT_ERROR",
     'SAVE_ERROR'          => "SAVE_ERROR",
     'SAVE_SUCCESS'        => "SAVE_SUCCESS",
+
+    'SESSION__REDIRECT--URL'   => "SAVE_SUCCESS",
+    'SESSION__REDIRECT--ROUTE' => "SAVE_SUCCESS",
     /*
     |--------------------------------------------------------------------------
     | Role of user

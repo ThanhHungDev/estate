@@ -2282,11 +2282,24 @@ function Action(_ref) {
       reply = _useState4[0],
       setReply = _useState4[1];
 
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      report = _useState6[0],
+      setReport = _useState6[1];
+
   var level = comment.level;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {});
 
   var clickReply = function clickReply() {
     setReply(!reply);
+
+    if (!AUTH.JWT) {
+      setModelOpen(true);
+    }
+  };
+
+  var clickReport = function clickReport() {
+    setReport(!report);
 
     if (!AUTH.JWT) {
       setModelOpen(true);
@@ -2316,6 +2329,7 @@ function Action(_ref) {
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("button", {
         className: "btn btn__action btn__action--report",
+        onClick: clickReport,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("i", {
           className: "fal fa-exclamation-triangle"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
@@ -2385,7 +2399,7 @@ function Action(_ref) {
           children: "B\xF5 qua"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
           className: "btn btn__login ml-1",
-          href: CONFIG.WEB.LOGIN,
+          href: "".concat(CONFIG.WEB.LOGIN, "?rredirect=1"),
           children: "\u0110i \u0111\u1EBFn \u0111\u0103ng nh\u1EADp"
         })]
       })]
@@ -2612,7 +2626,7 @@ function Content(_ref) {
 
   var comment = _ref.comment;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-    className: "bg-white p-2",
+    className: "bg-white",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
       className: "d-flex flex-row user-info",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
@@ -2844,7 +2858,7 @@ function Main(_ref) {
     }), !AUTH.JWT ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
       className: "pt-3 text-sm",
       children: ["B\u1EA1n c\u1EA7n login \u0111\u1EC3 \u0111\u01B0\u1EE3c b\xECnh lu\u1EADn ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("a", {
-        href: CONFIG.WEB.LOGIN,
+        href: "".concat(CONFIG.WEB.LOGIN, "?rredirect=1"),
         children: "b\u1EA5m \u0111\u1EC3 chuy\u1EC3n \u0111\u1EBFn trang login"
       })]
     }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
@@ -2924,12 +2938,12 @@ function Readmore(_ref) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
     className: "d-flex flex-column justify-content-start ml-2",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-      className: "shadow-none p-3 bg-light rounded",
+      className: "shadow-none p-2 bg-light rounded",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
         className: " font-weight-bold name",
         children: (_comment$user = comment.user) === null || _comment$user === void 0 ? void 0 : _comment$user.name
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-        className: "mt-2",
+        className: "mt-1",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
           ref: refCommentText,
           className: "comment-text ".concat(showmore),

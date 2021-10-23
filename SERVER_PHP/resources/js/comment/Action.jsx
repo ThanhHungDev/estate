@@ -20,7 +20,8 @@ Modal.setAppElement("#root__comment")
 function Action({ comment, AUTH, CONFIG }) {
     const [ modelOpen, setModelOpen ] = useState(false)
 
-    const [ reply, setReply ] = useState(false)
+    const [ reply, setReply ]   = useState(false)
+    const [ report, setReport ] = useState(false)
 
     const { level } = comment
 
@@ -30,6 +31,12 @@ function Action({ comment, AUTH, CONFIG }) {
 
     const clickReply = () => {
         setReply(!reply)
+        if(!AUTH.JWT){
+            setModelOpen( true )
+        }
+    }
+    const clickReport = () => {
+        setReport(!report)
         if(!AUTH.JWT){
             setModelOpen( true )
         }
@@ -45,7 +52,7 @@ function Action({ comment, AUTH, CONFIG }) {
                 <button className="btn btn__action btn__action--reply" onClick={ clickReply }>
                     <i className="fal fa-reply"></i><span className="ml-1">Trả lời</span>
                 </button>
-                <button className="btn btn__action btn__action--report">
+                <button className="btn btn__action btn__action--report" onClick={ clickReport }>
                     <i className="fal fa-exclamation-triangle"></i><span className="ml-1">Báo cáo Vi phạm</span>
                 </button>
             </div>
@@ -85,7 +92,7 @@ function Action({ comment, AUTH, CONFIG }) {
                     <a className="btn btn__close mr-1" onClick={ () => { setModelOpen(!modelOpen) } }>
                         Bõ qua
                     </a>
-                    <a className="btn btn__login ml-1" href={CONFIG.WEB.LOGIN}>
+                    <a className="btn btn__login ml-1" href={ `${CONFIG.WEB.LOGIN}?rredirect=1` }>
                         Đi đến đăng nhập
                     </a>
                 </div>

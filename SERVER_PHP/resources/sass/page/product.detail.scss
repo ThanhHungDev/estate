@@ -82,6 +82,9 @@ $__background_product--detail: #f0f9fb;
 .ReactModal__Body--open{
   overflow: hidden;
 }
+.cursor-pointer{
+  cursor: pointer;
+}
 .Overlay {
   z-index: 111111;
   position: fixed;
@@ -97,6 +100,9 @@ $__background_product--detail: #f0f9fb;
   background-color: black;
   background-color: rgba(0, 0, 0, 0.75);
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 
@@ -104,7 +110,7 @@ $__background_product--detail: #f0f9fb;
 .modal.modal__notification{
   border-radius: 0;
   // height: 100%;
-  padding: 0 10px 15px;
+  padding: 0 15px 15px;
   @include Screen(SM){ padding: 15px 30px; }
 
   .modal__header{
