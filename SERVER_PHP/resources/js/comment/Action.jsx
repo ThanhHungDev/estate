@@ -20,14 +20,22 @@ Modal.setAppElement("#root__comment")
 function Action({ comment, AUTH, CONFIG }) {
     const [ modelOpen, setModelOpen ] = useState(false)
 
+    const [ like, setLike ]     = useState(comment.like)
     const [ reply, setReply ]   = useState(false)
-    const [ report, setReport ] = useState(false)
+    const [ report, setReport ] = useState(comment.report)
 
     const { level } = comment
 
     useEffect(() => {
 
     })
+
+    const clickLike = () => {
+        
+        if(!AUTH.JWT){
+            setModelOpen( true )
+        }
+    }
 
     const clickReply = () => {
         setReply(!reply)
@@ -36,7 +44,6 @@ function Action({ comment, AUTH, CONFIG }) {
         }
     }
     const clickReport = () => {
-        setReport(!report)
         if(!AUTH.JWT){
             setModelOpen( true )
         }
@@ -46,8 +53,8 @@ function Action({ comment, AUTH, CONFIG }) {
     let actionHTML = (
         <div className="float-left">
             <div className="d-flex flex-row px-3">
-                <button className="btn btn__action btn__action--like">
-                    <i className="fal fa-thumbs-up"></i><span className="ml-1">Thích</span>
+                <button className="btn btn__action btn__action--like" onClick={ clickLike }>
+                    <i className="fal fa-thumbs-up"></i><span className="ml-1">Thích { !!like.length && `(${like.length})` }</span>
                 </button>
                 <button className="btn btn__action btn__action--reply" onClick={ clickReply }>
                     <i className="fal fa-reply"></i><span className="ml-1">Trả lời</span>

@@ -2277,18 +2277,29 @@ function Action(_ref) {
       modelOpen = _useState2[0],
       setModelOpen = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(comment.like),
       _useState4 = _slicedToArray(_useState3, 2),
-      reply = _useState4[0],
-      setReply = _useState4[1];
+      like = _useState4[0],
+      setLike = _useState4[1];
 
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState6 = _slicedToArray(_useState5, 2),
-      report = _useState6[0],
-      setReport = _useState6[1];
+      reply = _useState6[0],
+      setReply = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(comment.report),
+      _useState8 = _slicedToArray(_useState7, 2),
+      report = _useState8[0],
+      setReport = _useState8[1];
 
   var level = comment.level;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {});
+
+  var clickLike = function clickLike() {
+    if (!AUTH.JWT) {
+      setModelOpen(true);
+    }
+  };
 
   var clickReply = function clickReply() {
     setReply(!reply);
@@ -2299,8 +2310,6 @@ function Action(_ref) {
   };
 
   var clickReport = function clickReport() {
-    setReport(!report);
-
     if (!AUTH.JWT) {
       setModelOpen(true);
     }
@@ -2312,11 +2321,12 @@ function Action(_ref) {
       className: "d-flex flex-row px-3",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("button", {
         className: "btn btn__action btn__action--like",
+        onClick: clickLike,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("i", {
           className: "fal fa-thumbs-up"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
           className: "ml-1",
-          children: "Th\xEDch"
+          children: ["Th\xEDch ", !!like.length && "(".concat(like.length, ")")]
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("button", {
         className: "btn btn__action btn__action--reply",
@@ -2512,7 +2522,15 @@ var App = /*#__PURE__*/function (_Component) {
       console.log("Thành công join room!", data);
     }).on(CONFIG.EVENT.RESPONSE__ADD__COMMENT, function (response) {
       console.log("Thành công add comment!", response);
-      props.dispatch((0,_action_comment_action__WEBPACK_IMPORTED_MODULE_4__.addComment)(response.data));
+      var code = response.code,
+          data = response.data;
+
+      if (code == 200) {
+        props.dispatch((0,_action_comment_action__WEBPACK_IMPORTED_MODULE_4__.addComment)(data));
+      } else {
+        alert("thêm mới comment bị lỗi");
+        console.log("thêm mới comment bị lỗi");
+      }
     }).on('error', function (err) {
       console.log("************ Error ************");
       console.log("************ Error ************");
@@ -2582,7 +2600,7 @@ function Comment(_ref) {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
       className: "d-flex justify-content-center row",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-        className: "col-12",
+        className: "col-12 comment__level--col".concat(comment.level),
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
           className: "d-flex flex-column comment-section",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Content__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -2634,7 +2652,7 @@ function Content(_ref) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
           className: "rounded-circle",
           src: (_comment$user = comment.user) === null || _comment$user === void 0 ? void 0 : _comment$user.avatar,
-          width: "40"
+          width: !!comment.level ? '20' : '40'
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
         className: "d-block w-100",
@@ -2643,7 +2661,8 @@ function Content(_ref) {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Action__WEBPACK_IMPORTED_MODULE_1__["default"], {
           comment: comment
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-          className: "hr",
+          className: "hr"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
           children: comment.childrens.map(function (com) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Comment__WEBPACK_IMPORTED_MODULE_2__["default"], {
               comment: com
@@ -2673,6 +2692,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -2686,6 +2717,11 @@ function Input(_ref) {
       setReply = _ref.setReply,
       dispatch = _ref.dispatch;
   var refComment = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      send = _useState2[0],
+      setSend = _useState2[1];
 
   var sendComment = function sendComment() {
     console.log(comment, refComment.current.value);
@@ -2710,6 +2746,25 @@ function Input(_ref) {
     }
   };
 
+  var handleKeyUpSendComment = function handleKeyUpSendComment(event) {
+    if (send) {
+      setSend(false);
+      sendComment();
+      return false;
+    }
+  };
+
+  var handleKeyDownSendComment = function handleKeyDownSendComment(event) {
+    /// dettect if key = enter and not (shift + enter) => send
+    if (event.keyCode == 13 && !event.shiftKey) {
+      setSend(true);
+      return false;
+    } /// if keyCode is space check emoji exist key then replace
+
+
+    if (event.keyCode == 32) {}
+  };
+
   if (!AUTH || !AUTH.id) {
     /// chưa được login thì không cho hiện
     return null;
@@ -2725,7 +2780,10 @@ function Input(_ref) {
         width: "40"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("textarea", {
         ref: refComment,
-        className: "form-control ml-1 shadow-none textarea"
+        className: "form-control ml-1 shadow-none textarea",
+        placeholder: "nhập bình luận của bạn \nĐể xuống dòng bạn nhấn nút shift enter!",
+        onKeyDown: handleKeyDownSendComment,
+        onKeyUp: handleKeyUpSendComment
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
       className: "mt-2 text-right",
@@ -2936,14 +2994,14 @@ function Readmore(_ref) {
     }
   }, [showmore]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-    className: "d-flex flex-column justify-content-start ml-2",
+    className: "d-flex flex-column justify-content-start ml-1",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
       className: "shadow-none p-2 bg-light rounded",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-        className: " font-weight-bold name",
+        className: " font-weight-bold comment__user--name text-color-black",
         children: (_comment$user = comment.user) === null || _comment$user === void 0 ? void 0 : _comment$user.name
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-        className: "mt-1",
+        className: "text-color-black",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
           ref: refCommentText,
           className: "comment-text ".concat(showmore),

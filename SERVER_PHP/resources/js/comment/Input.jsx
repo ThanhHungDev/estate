@@ -4,6 +4,7 @@ import { connect } from "react-redux"
 function Input({ AUTH, comment, SOCKET, CONFIG, setReply, dispatch }) {
 
     const refComment = useRef()
+    const [ send, setSend ] = useState(false)
 
 
     const sendComment = () => {
@@ -24,6 +25,25 @@ function Input({ AUTH, comment, SOCKET, CONFIG, setReply, dispatch }) {
             }
         }
     }
+
+    const handleKeyUpSendComment = event => {
+        if ( send ) {
+            setSend( false )
+            sendComment()
+            return false
+        }
+    }
+    const handleKeyDownSendComment = event => {
+        /// dettect if key = enter and not (shift + enter) => send
+        if (event.keyCode == 13 && !event.shiftKey) {
+            setSend( true )
+            return false
+        }
+        /// if keyCode is space check emoji exist key then replace
+        if (event.keyCode == 32) {
+            
+        }
+    }
     
     if( !AUTH || !AUTH.id ){
         /// chưa được login thì không cho hiện
@@ -33,7 +53,11 @@ function Input({ AUTH, comment, SOCKET, CONFIG, setReply, dispatch }) {
         <div className="bg-light p-2">
             <div className="d-flex flex-row align-items-start">
                 <img className="rounded-circle" src={ AUTH?.avatar } width="40" />
-                <textarea ref={refComment} className="form-control ml-1 shadow-none textarea"></textarea>
+                <textarea ref={refComment} className="form-control ml-1 shadow-none textarea" 
+                placeholder= {"nhập bình luận của bạn \nĐể xuống dòng bạn nhấn nút shift enter!"}
+                onKeyDown={ handleKeyDownSendComment }
+                onKeyUp={ handleKeyUpSendComment }
+                ></textarea>
             </div>
             <div className="mt-2 text-right">
                 <button className="btn btn-primary btn-sm shadow-none" type="button" onClick={ sendComment }>

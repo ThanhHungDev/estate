@@ -21,12 +21,28 @@ const CommentSchema = new Schema(
             maxlength: CONFIG.MAX_LENGTH_MESSAGE
         },
         like: {
-            type: Number,
-            default: 0,
-        },
+            type: [
+                { 
+                    user: { 
+                        type: Number,
+                        required: [true, 'Báo cáo chưa xác định user']
+                    },
+                    date: String,
+                }
+            ],
+            default: [],
+        }, 
         dislike: {
-            type: Number,
-            default: 0,
+            type: [
+                { 
+                    user: { 
+                        type: Number,
+                        required: [true, 'Báo cáo chưa xác định user']
+                    },
+                    date: String,
+                }
+            ],
+            default: [],
         },
         report: [
             { 

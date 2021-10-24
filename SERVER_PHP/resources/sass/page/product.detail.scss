@@ -36,6 +36,19 @@ $__background_product--detail: #f0f9fb;
   background-color: $__background_product--detail;
 }
 
+.comment{
+  &__user{
+    &--name{
+      line-height: 1em;
+    }
+  }
+  &__level{
+    &--col0{
+      padding: 0 5px;
+    }
+  }
+}
+
 .comment-text{
   width: fit-content;
   white-space: pre-line;

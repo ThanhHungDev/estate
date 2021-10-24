@@ -575,10 +575,24 @@ $box-models: (
   .pl-#{$key} {
     padding-left: $value !important;
   }
+  @each $name in $hidden_screens {
+    @include Screen($name) {
+      .pl-#{to-lower-case(#{$name})}-#{$key} {
+        padding-left: $value !important;
+      }
+    }
+  }
 }
 @each $key, $value in $box-models {
   .pr-#{$key} {
     padding-right: $value !important;
+  }
+  @each $name in $hidden_screens {
+    @include Screen($name) {
+      .pr-#{to-lower-case(#{$name})}-#{$key} {
+        padding-right: $value !important;
+      }
+    }
   }
 }
 @each $key, $value in $box-models {
@@ -586,15 +600,37 @@ $box-models: (
     padding-left: $value !important;
     padding-right: $value !important;
   }
+  @each $name in $hidden_screens {
+    @include Screen($name) {
+      .px-#{to-lower-case(#{$name})}-#{$key} {
+        padding-left: $value !important;
+        padding-right: $value !important;
+      }
+    }
+  }
 }
 @each $key, $value in $box-models {
   .pt-#{$key} {
     padding-top: $value !important;
   }
+  @each $name in $hidden_screens {
+    @include Screen($name) {
+      .pt-#{to-lower-case(#{$name})}-#{$key} {
+        padding-top: $value !important;
+      }
+    }
+  }
 }
 @each $key, $value in $box-models {
   .pb-#{$key} {
     padding-bottom: $value !important;
+  }
+  @each $name in $hidden_screens {
+    @include Screen($name) {
+      .pb-#{to-lower-case(#{$name})}-#{$key} {
+        padding-bottom: $value !important;
+      }
+    }
   }
 }
 @each $key, $value in $box-models {
@@ -602,16 +638,38 @@ $box-models: (
     padding-top: $value !important;
     padding-bottom: $value !important;
   }
+  @each $name in $hidden_screens {
+    @include Screen($name) {
+      .py-#{to-lower-case(#{$name})}-#{$key} {
+        padding-top: $value !important;
+        padding-bottom: $value !important;
+      }
+    }
+  }
 }
 /// margin
 @each $key, $value in $box-models {
   .ml-#{$key} {
     margin-left: $value !important;
   }
+  @each $name in $hidden_screens {
+    @include Screen($name) {
+      .ml-#{to-lower-case(#{$name})}-#{$key} {
+        margin-left: $value !important;
+      }
+    }
+  }
 }
 @each $key, $value in $box-models {
   .mr-#{$key} {
     margin-right: $value !important;
+  }
+  @each $name in $hidden_screens {
+    @include Screen($name) {
+      .mr-#{to-lower-case(#{$name})}-#{$key} {
+        margin-right: $value !important;
+      }
+    }
   }
 }
 @each $key, $value in $box-models {
@@ -619,21 +677,51 @@ $box-models: (
     margin-left: $value !important;
     margin-right: $value !important;
   }
+  @each $name in $hidden_screens {
+    @include Screen($name) {
+      .mx-#{to-lower-case(#{$name})}-#{$key} {
+        margin-left: $value !important;
+        margin-right: $value !important;
+      }
+    }
+  }
 }
 @each $key, $value in $box-models {
   .mt-#{$key} {
     margin-top: $value !important;
+  }
+  @each $name in $hidden_screens {
+    @include Screen($name) {
+      .mt-#{to-lower-case(#{$name})}-#{$key} {
+        margin-top: $value !important;
+      }
+    }
   }
 }
 @each $key, $value in $box-models {
   .mb-#{$key} {
     margin-bottom: $value !important;
   }
+  @each $name in $hidden_screens {
+    @include Screen($name) {
+      .mb-#{to-lower-case(#{$name})}-#{$key} {
+        margin-bottom: $value !important;
+      }
+    }
+  }
 }
 @each $key, $value in $box-models {
   .my-#{$key} {
     margin-top: $value !important;
     margin-bottom: $value !important;
+  }
+  @each $name in $hidden_screens {
+    @include Screen($name) {
+      .my-#{to-lower-case(#{$name})}-#{$key} {
+        margin-top: $value !important;
+        margin-bottom: $value !important;
+      }
+    }
   }
 }
 

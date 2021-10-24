@@ -106,6 +106,8 @@ io
             /// add more properti
             comment.user  = jwt.id
             comment.level = (!!parent) | 0
+            comment.like = []
+
             /// lưu trữ lại comment
             await comment.save()
             
@@ -121,6 +123,7 @@ io
             const response = {
                 code   : 200,
                 data   : { ...comment.toResources(), user: { ... user.toJSONFor() }, parent },
+                old    : data,
                 message: "socket add comment thành công"
             }
             io.sockets.in(inkey).emit(CONFIG.EVENT.RESPONSE__ADD__COMMENT, response )
@@ -130,6 +133,7 @@ io
             const response = {
                 code   : 500,
                 error  : error,
+                old    : data,
                 message: "socket add comment không thành công"
             }
             io.sockets.in(inkey).emit(CONFIG.EVENT.RESPONSE__ADD__COMMENT, response )

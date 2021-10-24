@@ -37,7 +37,14 @@ class App extends Component {
         })
         .on(CONFIG.EVENT.RESPONSE__ADD__COMMENT, function(response) {
             console.log("Thành công add comment!", response )
-            props.dispatch(addComment(response.data))
+            const { code, data } = response
+            if( code == 200 ){
+                props.dispatch(addComment(data))
+            }else{
+                alert( "thêm mới comment bị lỗi")
+                console.log( "thêm mới comment bị lỗi")
+            }
+            
         })
         .on('error', (err) => {
             console.log("************ Error ************")

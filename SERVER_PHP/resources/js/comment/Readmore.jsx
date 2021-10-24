@@ -26,10 +26,10 @@ function Readmore({ comment }) {
     }, [ showmore ])
 
     return (
-        <div className="d-flex flex-column justify-content-start ml-2">
+        <div className="d-flex flex-column justify-content-start ml-1">
             <div className="shadow-none p-2 bg-light rounded">
-                <span className=" font-weight-bold name">{ comment.user?.name }</span>
-                <div className="mt-1">
+                <span className=" font-weight-bold comment__user--name text-color-black">{ comment.user?.name }</span>
+                <div className="text-color-black">
                     <div ref={refCommentText} className={ `comment-text ${showmore}` }>{comment.body}</div>
                     <button className="btn btn__more" ref={refBtnToggle}  onClick={ () => {setShowmore( showmore == 'hidden' ? 'show' : 'hidden' )}}>
                         { 
