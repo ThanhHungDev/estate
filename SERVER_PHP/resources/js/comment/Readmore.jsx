@@ -15,7 +15,6 @@ function Readmore({ comment }) {
             /// kiểm tra height để setting ban đầu
             if( refCommentText.current.offsetHeight > MAX__WIDTH ){
                 setShowmore('hidden')
-                refBtnToggle.current.scrollIntoView() 
             }else if( refCommentText.current.offsetHeight <= MAX__WIDTH ){
                 /// ẩn luôn cái btn
                 refBtnToggle.current.classList.add('d-none')
@@ -23,8 +22,15 @@ function Readmore({ comment }) {
                 setShowmore('show')
             }
         }
-        
     }, [ showmore ])
+
+    const clickShowMore = () => {
+
+        setShowmore( showmore == 'hidden' ? 'show' : 'hidden' )
+        setTimeout(() => {
+            refCommentText.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }, 100 )
+    }
 
     return (
         <div className="d-flex flex-column justify-content-start ml-1">
@@ -32,7 +38,7 @@ function Readmore({ comment }) {
                 <span className=" font-weight-bold comment__user--name text-color-black">{ comment.user?.name }</span>
                 <div className="text-color-black">
                     <div ref={refCommentText} className={ `comment-text ${showmore}` }>{comment.body}</div>
-                    <button className="btn btn__more" ref={refBtnToggle}  onClick={ () => {setShowmore( showmore == 'hidden' ? 'show' : 'hidden' )}}>
+                    <button className="btn btn__more" ref={refBtnToggle}  onClick={ clickShowMore }>
                         { 
                             showmore == 'hidden' 
                             ? <span>hiện tất cả <i className="far fa-angle-double-down"></i> </span>

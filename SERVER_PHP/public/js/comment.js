@@ -2985,7 +2985,6 @@ function Readmore(_ref) {
       /// kiểm tra height để setting ban đầu
       if (refCommentText.current.offsetHeight > MAX__WIDTH) {
         setShowmore('hidden');
-        refBtnToggle.current.scrollIntoView();
       } else if (refCommentText.current.offsetHeight <= MAX__WIDTH) {
         /// ẩn luôn cái btn
         refBtnToggle.current.classList.add('d-none'); /// cái text cần xử lý
@@ -2994,6 +2993,17 @@ function Readmore(_ref) {
       }
     }
   }, [showmore]);
+
+  var clickShowMore = function clickShowMore() {
+    setShowmore(showmore == 'hidden' ? 'show' : 'hidden');
+    setTimeout(function () {
+      refCommentText.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }, 100);
+  };
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
     className: "d-flex flex-column justify-content-start ml-1",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
@@ -3010,9 +3020,7 @@ function Readmore(_ref) {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
           className: "btn btn__more",
           ref: refBtnToggle,
-          onClick: function onClick() {
-            setShowmore(showmore == 'hidden' ? 'show' : 'hidden');
-          },
+          onClick: clickShowMore,
           children: showmore == 'hidden' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
             children: ["hi\u1EC7n t\u1EA5t c\u1EA3 ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
               className: "far fa-angle-double-down"
