@@ -15,6 +15,7 @@ function Readmore({ comment }) {
             /// kiểm tra height để setting ban đầu
             if( refCommentText.current.offsetHeight > MAX__WIDTH ){
                 setShowmore('hidden')
+                refBtnToggle.current.scrollIntoView() 
             }else if( refCommentText.current.offsetHeight <= MAX__WIDTH ){
                 /// ẩn luôn cái btn
                 refBtnToggle.current.classList.add('d-none')
