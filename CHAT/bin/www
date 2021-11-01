@@ -9,6 +9,7 @@ var debug     = require('debug')('chat:server');
 var http      = require('http');
 var eventIO   = require('../app.socket');
 var dbConnect = require('../app.mongo.connect');
+var CONFIG = require("../config")
 var dotenv    = require('dotenv')                 /// thêm dot env vào hệ thống
 dotenv.config() /// load file .env
 
@@ -29,7 +30,7 @@ app.set('port', port);
 
 var server = http.createServer(app);
 eventIO.attach(server, {
-  origins: CONFIG.CORS_IO
+  origins: CONFIG.CORS_IO 
 })
 
 /// pass socket to api
