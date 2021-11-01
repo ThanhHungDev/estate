@@ -13,6 +13,7 @@ const io = require( "socket.io" )()
 const authMiddleware = require("./middlewares/jwt.middleware")
 const USER = require("./models/user.model")
 
+io.set('origins', '*:*')
 // Add your socket.io logic here!
 io
 .use(async (socket, next) => {
