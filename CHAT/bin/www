@@ -28,10 +28,9 @@ app.set('port', port);
  * Create HTTP server.
  */
 console.log(CONFIG.CORS_IO )
+eventIO.origins(CONFIG.CORS_IO)
 var server = http.createServer(app);
-eventIO.attach(server, {
-  origins: CONFIG.CORS_IO 
-})
+eventIO.attach(server)
 
 /// pass socket to api
 app.use(function(req, res, next){
