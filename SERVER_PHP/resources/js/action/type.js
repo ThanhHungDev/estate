@@ -5,6 +5,7 @@ const TYPE =  {
     COMMENT: {
         SETTER_COMMENT: "SETTER_COMMENT",
         ADD_COMMENT   : "ADD_COMMENT",
+        LIKE_COMMENT  : "LIKE_COMMENT",
     },
     SOCCKET  : {
         SET_SOCKET_IO: "SET_SOCKET_IO"

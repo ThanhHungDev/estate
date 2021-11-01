@@ -17,25 +17,30 @@ import Input from './Input'
 // }
 Modal.setAppElement("#root__comment")
 
-function Action({ comment, AUTH, CONFIG }) {
+function Action({ comment, AUTH, CONFIG, SOCKET }) {
     const [ modelOpen, setModelOpen ] = useState(false)
 
-    const [ like, setLike ]     = useState(comment.like)
+    const [ like, setLike ]     = useState([])
     const [ reply, setReply ]   = useState(false)
-    const [ report, setReport ] = useState(comment.report)
+    const [ report, setReport ] = useState([])
 
     const { level } = comment
 
     useEffect(() => {
-
-    })
+        setLike(comment.like)
+        setReport(comment.report)
+    }, [ comment ])
 
     const clickLike = () => {
         
         if(!AUTH.JWT){
             setModelOpen( true )
         }
-        //// call socket 
+        //// call socket LIKE
+        console.log("call socket LIKE", comment._id )
+        if( SOCKET.connected ){
+            SOCKET.emit(CONFIG.EVENT.LIKE__COMMENT, { ... comment, inkey: CONFIG.LOCATION.pathname })
+        }
     }
 
     const clickReply = () => {
@@ -51,10 +56,11 @@ function Action({ comment, AUTH, CONFIG }) {
     }
 
 
+    const likeActive = like.some( l => l.user == AUTH.id ) && 'active'
     let actionHTML = (
         <div className="float-left">
             <div className="d-flex flex-row px-3">
-                <button className="btn btn__action btn__action--like" onClick={ clickLike }>
+                <button className={`btn btn__action btn__action--like ${ likeActive }`} onClick={ clickLike }>
                     <i className="fal fa-thumbs-up"></i><span className="ml-1">Thích { !!like.length && `(${like.length})` }</span>
                 </button>
                 <button className="btn btn__action btn__action--reply" onClick={ clickReply }>
@@ -113,6 +119,7 @@ let mapStateToProps = state => {
     return {
         AUTH  : state.auth,
         CONFIG: state.config,
+        SOCKET : state.socket,
     }
 }
 

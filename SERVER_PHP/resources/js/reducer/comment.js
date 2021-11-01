@@ -20,6 +20,15 @@ export default function (state = [], action) {
                 }
                 return { ... comment }
             })
+        case TYPE.COMMENT.LIKE_COMMENT:
+            const { _id, like } = action.payload
+            /// loop tìm từng comment coi có comment nào trùng thì thay like mới
+            return state.map( comment => {
+                if( comment._id == _id ){
+                    return { ... comment, like: [ ... like ] }
+                }
+                return { ... comment }
+            })
 
         default:
             return state;

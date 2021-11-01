@@ -85,7 +85,13 @@ $__background_product--detail: #f0f9fb;
   color: $custom-unique-color;
   border: 0!important;
 
-  @include btn-interaction($custom-unique-color , color-level($custom-unique-color , -8), $white )
+  @include btn-interaction($custom-unique-color , color-level($custom-unique-color , -8), $white );
+  &.active {
+    background-color: $custom-unique-color;
+    border: 2px solid color-level($custom-unique-color , -8);
+    color: #fff;
+    box-shadow: 0 5px 11px 0 rgb(0 0 0 / 18%), 0 4px 15px 0 rgb(0 0 0 / 15%);
+  }
 }
 .btn__more{
   margin: 3px 1px;

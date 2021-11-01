@@ -5,4 +5,5 @@ return [
     'DISCONNECT',
     'JOIN__COMMENT',
     'ADD__COMMENT',
+    'LIKE__COMMENT',
 ];

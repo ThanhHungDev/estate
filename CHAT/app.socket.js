@@ -12,6 +12,7 @@ const CONFIG = require("./config")
 const io = require( "socket.io" )()
 const authMiddleware = require("./middlewares/jwt.middleware")
 const USER = require("./models/user.model")
+const RESPONSE = require("./helpers/response.library")
 
 // Add your socket.io logic here!
 io
@@ -25,7 +26,7 @@ io
         // either handle it
         // socket.disconnect(true)
         let err  = {
-            code   : 401,
+            code   : RESPONSE.HTTP_UNAUTHORIZED,
             type   : 'token',
             message: 'Authentication error'
         }
@@ -37,7 +38,7 @@ io
     if( !auth ){
         
         let err  = {
-            code   : 403,
+            code   : RESPONSE.HTTP_FORBIDDEN,
             type   : 'authentication_error',
             message: 'Authentication error'
         }
@@ -82,7 +83,7 @@ io
         const { jwt } = socket
         socket.join( inkey )
         const response = {
-            code: 200,
+            code: RESPONSE.HTTP_OK,
             data: jwt.id
         }
         io.sockets.in(inkey).emit(CONFIG.EVENT.RESPONSE__JOIN__COMMENT, response )
@@ -121,7 +122,7 @@ io
             
             /// response 
             const response = {
-                code   : 200,
+                code   : RESPONSE.HTTP_OK,
                 data   : { ...comment.toResources(), user: { ... user.toJSONFor() }, parent },
                 old    : data,
                 message: "socket add comment thành công"
@@ -131,12 +132,58 @@ io
         } catch (error) {
             /// response 
             const response = {
-                code   : 500,
+                code   : RESPONSE.HTTP_INTERNAL_SERVER_ERROR,
                 error  : error,
                 old    : data,
                 message: "socket add comment không thành công"
             }
             io.sockets.in(inkey).emit(CONFIG.EVENT.RESPONSE__ADD__COMMENT, response )
+            return
+        }
+    })
+
+    
+
+    //// 
+    .on( CONFIG.EVENT.LIKE__COMMENT, async data => {
+        
+        const { _id, inkey } = data
+        const { jwt } = socket
+        
+        try {
+            /// tìm lại cái comment
+            const comment = await Comment.findById(_id) /// giống y chang findOne
+            const index = comment.like.findIndex(c => c.user == jwt.id )
+            const likes = [ ...comment.like ]
+            if( index == -1 ){
+                likes.push({ 
+                    user: jwt.id,
+                    date: Date.now,
+                })
+            }else{
+                likes.splice(index,1)
+            }
+            comment.like = [ ... likes ]
+            /// lưu trữ lại comment
+            await comment.save()
+            /// response lại comment
+            const response = {
+                code   : RESPONSE.HTTP_OK,
+                data   : { ...comment.toResources() },
+                old    : data,
+                message: "socket like comment thành công"
+            }
+            io.sockets.in(inkey).emit(CONFIG.EVENT.RESPONSE__LIKE__COMMENT, response )
+            return
+        } catch (error) {
+            /// response 
+            const response = {
+                code   : RESPONSE.HTTP_INTERNAL_SERVER_ERROR,
+                error  : error,
+                old    : data,
+                message: "socket like comment không thành công"
+            }
+            io.sockets.in(inkey).emit(CONFIG.EVENT.RESPONSE__LIKE__COMMENT, response )
             return
         }
     })

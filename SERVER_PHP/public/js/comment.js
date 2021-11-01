@@ -2141,7 +2141,8 @@ module.exports = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "setterComment": () => (/* binding */ setterComment),
-/* harmony export */   "addComment": () => (/* binding */ addComment)
+/* harmony export */   "addComment": () => (/* binding */ addComment),
+/* harmony export */   "likeComment": () => (/* binding */ likeComment)
 /* harmony export */ });
 /* harmony import */ var _type__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./type */ "./resources/js/action/type.js");
 
@@ -2162,6 +2163,19 @@ function addComment(comment) {
   console.log(comment, " addComment ");
   return {
     type: _type__WEBPACK_IMPORTED_MODULE_0__["default"].COMMENT.ADD_COMMENT,
+    payload: comment
+  };
+}
+/**
+ * tạo action comment data to reducer
+ * @param { parent, comment__data } data 
+ * @returns 
+ */
+
+function likeComment(comment) {
+  console.log(comment, " likeComment ");
+  return {
+    type: _type__WEBPACK_IMPORTED_MODULE_0__["default"].COMMENT.LIKE_COMMENT,
     payload: comment
   };
 }
@@ -2207,13 +2221,24 @@ var TYPE = {
   LOCATION_SETTER: "LOCATIONS",
   COMMENT: {
     SETTER_COMMENT: "SETTER_COMMENT",
-    ADD_COMMENT: "ADD_COMMENT"
+    ADD_COMMENT: "ADD_COMMENT",
+    LIKE_COMMENT: "LIKE_COMMENT"
   },
   SOCCKET: {
     SET_SOCKET_IO: "SET_SOCKET_IO"
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TYPE);
+
+/***/ }),
+
+/***/ "./resources/js/comment.js":
+/*!*********************************!*\
+  !*** ./resources/js/comment.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+__webpack_require__(/*! ./comment/index */ "./resources/js/comment/index.js"); // console.log("vào ")
 
 /***/ }),
 
@@ -2236,6 +2261,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_moment__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_moment__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _Input__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Input */ "./resources/js/comment/Input.jsx");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2270,14 +2301,15 @@ react_modal__WEBPACK_IMPORTED_MODULE_2___default().setAppElement("#root__comment
 function Action(_ref) {
   var comment = _ref.comment,
       AUTH = _ref.AUTH,
-      CONFIG = _ref.CONFIG;
+      CONFIG = _ref.CONFIG,
+      SOCKET = _ref.SOCKET;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
       modelOpen = _useState2[0],
       setModelOpen = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(comment.like),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState4 = _slicedToArray(_useState3, 2),
       like = _useState4[0],
       setLike = _useState4[1];
@@ -2287,19 +2319,30 @@ function Action(_ref) {
       reply = _useState6[0],
       setReply = _useState6[1];
 
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(comment.report),
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState8 = _slicedToArray(_useState7, 2),
       report = _useState8[0],
       setReport = _useState8[1];
 
   var level = comment.level;
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {});
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    setLike(comment.like);
+    setReport(comment.report);
+  }, [comment]);
 
   var clickLike = function clickLike() {
     if (!AUTH.JWT) {
       setModelOpen(true);
-    } //// call socket 
+    } //// call socket LIKE
 
+
+    console.log("call socket LIKE", comment._id);
+
+    if (SOCKET.connected) {
+      SOCKET.emit(CONFIG.EVENT.LIKE__COMMENT, _objectSpread(_objectSpread({}, comment), {}, {
+        inkey: CONFIG.LOCATION.pathname
+      }));
+    }
   };
 
   var clickReply = function clickReply() {
@@ -2316,12 +2359,16 @@ function Action(_ref) {
     }
   };
 
+  var likeActive = like.some(function (l) {
+    return l.user == AUTH.id;
+  }) && 'active';
+
   var actionHTML = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
     className: "float-left",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
       className: "d-flex flex-row px-3",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("button", {
-        className: "btn btn__action btn__action--like",
+        className: "btn btn__action btn__action--like ".concat(likeActive),
         onClick: clickLike,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("i", {
           className: "fal fa-thumbs-up"
@@ -2421,7 +2468,8 @@ function Action(_ref) {
 var mapStateToProps = function mapStateToProps(state) {
   return {
     AUTH: state.auth,
-    CONFIG: state.config
+    CONFIG: state.config,
+    SOCKET: state.socket
   };
 };
 
@@ -2532,6 +2580,14 @@ var App = /*#__PURE__*/function (_Component) {
       } else {
         alert("thêm mới comment bị lỗi");
         console.log("thêm mới comment bị lỗi");
+      }
+    }).on(CONFIG.EVENT.RESPONSE__LIKE__COMMENT, function (response) {
+      console.log("Thành công like comment!", response);
+      var code = response.code,
+          data = response.data; //// data is comment resource
+
+      if (code == 200) {
+        props.dispatch((0,_action_comment_action__WEBPACK_IMPORTED_MODULE_4__.likeComment)(data));
       }
     }).on('error', function (err) {
       console.log("************ Error ************");
@@ -3216,6 +3272,21 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           var childrens = comment.childrens;
           return _objectSpread(_objectSpread({}, comment), {}, {
             childrens: [].concat(_toConsumableArray(childrens), [action.payload])
+          });
+        }
+
+        return _objectSpread({}, comment);
+      });
+
+    case _action_type__WEBPACK_IMPORTED_MODULE_0__["default"].COMMENT.LIKE_COMMENT:
+      var _action$payload = action.payload,
+          _id = _action$payload._id,
+          like = _action$payload.like; /// loop tìm từng comment coi có comment nào trùng thì thay like mới
+
+      return state.map(function (comment) {
+        if (comment._id == _id) {
+          return _objectSpread(_objectSpread({}, comment), {}, {
+            like: _toConsumableArray(like)
           });
         }
 
@@ -9976,6 +10047,110 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 function e(e){this.message=e}e.prototype=new Error,e.prototype.name="InvalidCharacterError";var r="undefined"!=typeof window&&window.atob&&window.atob.bind(window)||function(r){var t=String(r).replace(/=+$/,"");if(t.length%4==1)throw new e("'atob' failed: The string to be decoded is not correctly encoded.");for(var n,o,a=0,i=0,c="";o=t.charAt(i++);~o&&(n=a%4?64*n+o:o,a++%4)?c+=String.fromCharCode(255&n>>(-2*a&6)):0)o="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".indexOf(o);return c};function t(e){var t=e.replace(/-/g,"+").replace(/_/g,"/");switch(t.length%4){case 0:break;case 2:t+="==";break;case 3:t+="=";break;default:throw"Illegal base64url string!"}try{return function(e){return decodeURIComponent(r(e).replace(/(.)/g,(function(e,r){var t=r.charCodeAt(0).toString(16).toUpperCase();return t.length<2&&(t="0"+t),"%"+t})))}(t)}catch(e){return r(t)}}function n(e){this.message=e}function o(e,r){if("string"!=typeof e)throw new n("Invalid token specified");var o=!0===(r=r||{}).header?0:1;try{return JSON.parse(t(e.split(".")[o]))}catch(e){throw new n("Invalid token specified: "+e.message)}}n.prototype=new Error,n.prototype.name="InvalidTokenError";/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (o);
 //# sourceMappingURL=jwt-decode.esm.js.map
+
+
+/***/ }),
+
+/***/ "./resources/sass/page/contact.scss":
+/*!******************************************!*\
+  !*** ./resources/sass/page/contact.scss ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/sass/page/product.detail.scss":
+/*!*************************************************!*\
+  !*** ./resources/sass/page/product.detail.scss ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/admin/sass/page/admin.scss":
+/*!**********************************************!*\
+  !*** ./resources/admin/sass/page/admin.scss ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/sass/page/home.scss":
+/*!***************************************!*\
+  !*** ./resources/sass/page/home.scss ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/sass/page/profile.scss":
+/*!******************************************!*\
+  !*** ./resources/sass/page/profile.scss ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/sass/page/login.scss":
+/*!****************************************!*\
+  !*** ./resources/sass/page/login.scss ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/sass/page/register.scss":
+/*!*******************************************!*\
+  !*** ./resources/sass/page/register.scss ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/sass/page/forgot.scss":
+/*!*****************************************!*\
+  !*** ./resources/sass/page/forgot.scss ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
 
 
 /***/ }),
@@ -70400,7 +70575,42 @@ module.exports = JSON.parse('{"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBu
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = __webpack_modules__;
+/******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/chunk loaded */
+/******/ 	(() => {
+/******/ 		var deferred = [];
+/******/ 		__webpack_require__.O = (result, chunkIds, fn, priority) => {
+/******/ 			if(chunkIds) {
+/******/ 				priority = priority || 0;
+/******/ 				for(var i = deferred.length; i > 0 && deferred[i - 1][2] > priority; i--) deferred[i] = deferred[i - 1];
+/******/ 				deferred[i] = [chunkIds, fn, priority];
+/******/ 				return;
+/******/ 			}
+/******/ 			var notFulfilled = Infinity;
+/******/ 			for (var i = 0; i < deferred.length; i++) {
+/******/ 				var [chunkIds, fn, priority] = deferred[i];
+/******/ 				var fulfilled = true;
+/******/ 				for (var j = 0; j < chunkIds.length; j++) {
+/******/ 					if ((priority & 1 === 0 || notFulfilled >= priority) && Object.keys(__webpack_require__.O).every((key) => (__webpack_require__.O[key](chunkIds[j])))) {
+/******/ 						chunkIds.splice(j--, 1);
+/******/ 					} else {
+/******/ 						fulfilled = false;
+/******/ 						if(priority < notFulfilled) notFulfilled = priority;
+/******/ 					}
+/******/ 				}
+/******/ 				if(fulfilled) {
+/******/ 					deferred.splice(i--, 1)
+/******/ 					var r = fn();
+/******/ 					if (r !== undefined) result = r;
+/******/ 				}
+/******/ 			}
+/******/ 			return result;
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
 /******/ 		// getDefaultExport function for compatibility with non-harmony modules
@@ -70462,15 +70672,82 @@ module.exports = JSON.parse('{"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBu
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/jsonp chunk loading */
+/******/ 	(() => {
+/******/ 		// no baseURI
+/******/ 		
+/******/ 		// object to store loaded and loading chunks
+/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
+/******/ 		var installedChunks = {
+/******/ 			"/js/comment": 0,
+/******/ 			"css/admin": 0,
+/******/ 			"css/forgot": 0,
+/******/ 			"css/register": 0,
+/******/ 			"css/login": 0,
+/******/ 			"css/profile": 0,
+/******/ 			"css/home": 0,
+/******/ 			"css/product.detail": 0,
+/******/ 			"css/contact": 0
+/******/ 		};
+/******/ 		
+/******/ 		// no chunk on demand loading
+/******/ 		
+/******/ 		// no prefetching
+/******/ 		
+/******/ 		// no preloaded
+/******/ 		
+/******/ 		// no HMR
+/******/ 		
+/******/ 		// no HMR manifest
+/******/ 		
+/******/ 		__webpack_require__.O.j = (chunkId) => (installedChunks[chunkId] === 0);
+/******/ 		
+/******/ 		// install a JSONP callback for chunk loading
+/******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
+/******/ 			var [chunkIds, moreModules, runtime] = data;
+/******/ 			// add "moreModules" to the modules object,
+/******/ 			// then flag all "chunkIds" as loaded and fire callback
+/******/ 			var moduleId, chunkId, i = 0;
+/******/ 			if(chunkIds.some((id) => (installedChunks[id] !== 0))) {
+/******/ 				for(moduleId in moreModules) {
+/******/ 					if(__webpack_require__.o(moreModules, moduleId)) {
+/******/ 						__webpack_require__.m[moduleId] = moreModules[moduleId];
+/******/ 					}
+/******/ 				}
+/******/ 				if(runtime) var result = runtime(__webpack_require__);
+/******/ 			}
+/******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
+/******/ 			for(;i < chunkIds.length; i++) {
+/******/ 				chunkId = chunkIds[i];
+/******/ 				if(__webpack_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) {
+/******/ 					installedChunks[chunkId][0]();
+/******/ 				}
+/******/ 				installedChunks[chunkIds[i]] = 0;
+/******/ 			}
+/******/ 			return __webpack_require__.O(result);
+/******/ 		}
+/******/ 		
+/******/ 		var chunkLoadingGlobal = self["webpackChunk"] = self["webpackChunk"] || [];
+/******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
+/******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
+/******/ 	})();
+/******/ 	
 /************************************************************************/
-var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
-(() => {
-/*!*********************************!*\
-  !*** ./resources/js/comment.js ***!
-  \*********************************/
-__webpack_require__(/*! ./comment/index */ "./resources/js/comment/index.js"); // console.log("vào ")
-})();
-
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
+/******/ 	__webpack_require__.O(undefined, ["css/admin","css/forgot","css/register","css/login","css/profile","css/home","css/product.detail","css/contact"], () => (__webpack_require__("./resources/js/comment.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/admin","css/forgot","css/register","css/login","css/profile","css/home","css/product.detail","css/contact"], () => (__webpack_require__("./resources/sass/page/home.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/admin","css/forgot","css/register","css/login","css/profile","css/home","css/product.detail","css/contact"], () => (__webpack_require__("./resources/sass/page/profile.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/admin","css/forgot","css/register","css/login","css/profile","css/home","css/product.detail","css/contact"], () => (__webpack_require__("./resources/sass/page/login.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/admin","css/forgot","css/register","css/login","css/profile","css/home","css/product.detail","css/contact"], () => (__webpack_require__("./resources/sass/page/register.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/admin","css/forgot","css/register","css/login","css/profile","css/home","css/product.detail","css/contact"], () => (__webpack_require__("./resources/sass/page/forgot.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/admin","css/forgot","css/register","css/login","css/profile","css/home","css/product.detail","css/contact"], () => (__webpack_require__("./resources/sass/page/contact.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/admin","css/forgot","css/register","css/login","css/profile","css/home","css/product.detail","css/contact"], () => (__webpack_require__("./resources/sass/page/product.detail.scss")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/admin","css/forgot","css/register","css/login","css/profile","css/home","css/product.detail","css/contact"], () => (__webpack_require__("./resources/admin/sass/page/admin.scss")))
+/******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
+/******/ 	
 /******/ })()
 ;

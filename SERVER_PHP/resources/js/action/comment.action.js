@@ -20,3 +20,19 @@ export function addComment( comment ){
         payload : comment
     }
 }
+
+
+/**
+ * tạo action comment data to reducer
+ * @param { parent, comment__data } data 
+ * @returns 
+ */
+export function likeComment( comment ){
+    console.log(comment , " likeComment ")
+    return {
+        type : TYPE.COMMENT.LIKE_COMMENT,
+        payload : comment
+    }
+}
+
+

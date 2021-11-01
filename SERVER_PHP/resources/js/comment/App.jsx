@@ -3,7 +3,10 @@ import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
 /// soccket 
 import socketIOClient from "socket.io-client"
-import { addComment } from '../action/comment.action'
+import { 
+    addComment,
+    likeComment,
+} from '../action/comment.action'
 import { setterSocket } from '../action/socket.action'
 import WrapperComment from "./WrapperComment"
 
@@ -45,7 +48,14 @@ class App extends Component {
                     alert("thêm mới comment bị lỗi")
                     console.log("thêm mới comment bị lỗi")
                 }
-
+            })
+            .on(CONFIG.EVENT.RESPONSE__LIKE__COMMENT, function (response) {
+                console.log("Thành công like comment!", response)
+                const { code, data } = response
+                //// data is comment resource
+                if( code == 200 ){
+                    props.dispatch(likeComment(data))
+                }
             })
             .on('error', (err) => {
                 console.log("************ Error ************")
