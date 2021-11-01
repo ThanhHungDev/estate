@@ -46,8 +46,8 @@ var CONFIG = {
     TimeExpireAccessToken : 20 * 60 * 60,
     salt : 5,
     IS_ENVIROMENT_PRODUCT : true,
-    CORS_API:  process.env.APP_ENV == 'local' ? '*' : process.env.ASSET_PHP_URL,
-    CORS_IO:  process.env.APP_ENV == 'local' ? '*:*' : process.env.ASSET_PHP_URL + ":*",
+    CORS_API:  process.env.APP_ENV == 'local' ? '*' : '*', // : process.env.ASSET_PHP_URL,
+    CORS_IO:  process.env.APP_ENV == 'local' ? '*:*' : '*:*',/// : process.env.ASSET_PHP_URL + ":*",
     
     EVENT : events,
     SIZES: {
