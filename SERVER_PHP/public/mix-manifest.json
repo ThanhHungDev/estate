@@ -1,15 +1,13 @@
 {
-    "/js/post.js": "/js/post.js",
     "/js/comment.js": "/js/comment.js",
     "/js/validate.login.user.js": "/js/validate.login.user.js",
     "/js/validate.register.user.js": "/js/validate.register.user.js",
-    "/css/user.post.css": "/css/user.post.css",
     "/css/admin.css": "/css/admin.css",
+    "/css/forgot.css": "/css/forgot.css",
     "/css/register.css": "/css/register.css",
     "/css/login.css": "/css/login.css",
     "/css/profile.css": "/css/profile.css",
     "/css/home.css": "/css/home.css",
     "/css/product.detail.css": "/css/product.detail.css",
-    "/css/contact.css": "/css/contact.css",
-    "/css/forgot.css": "/css/forgot.css"
+    "/css/contact.css": "/css/contact.css"
 }
