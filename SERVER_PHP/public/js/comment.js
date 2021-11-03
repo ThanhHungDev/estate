@@ -2503,6 +2503,7 @@ var App = /*#__PURE__*/function (_Component) {
         pathname: (_CONFIG$LOCATION$path = CONFIG.LOCATION.pathname) !== null && _CONFIG$LOCATION$path !== void 0 ? _CONFIG$LOCATION$path : "/"
       }
     };
+    console.log(CONFIG.LOCATION.pathname, "CONFIG.LOCATION.pathname ");
     var socket = socket_io_client__WEBPACK_IMPORTED_MODULE_3___default()(CONFIG.REALTIME_URL, param);
     socket.open(); // synonym to socket.connect()
 
