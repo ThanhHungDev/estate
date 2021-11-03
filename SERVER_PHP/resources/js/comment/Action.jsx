@@ -35,6 +35,7 @@ function Action({ comment, AUTH, CONFIG }) {
         if(!AUTH.JWT){
             setModelOpen( true )
         }
+        //// call socket 
     }
 
     const clickReply = () => {
