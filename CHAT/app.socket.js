@@ -9,11 +9,11 @@ const Comment = require("./models/comment.model")
 
 
 const CONFIG = require("./config")
+const io = require( "socket.io" )()
 const authMiddleware = require("./middlewares/jwt.middleware")
 const USER = require("./models/user.model")
 
 // Add your socket.io logic here!
-const initSocket = io => {
 io
 .use(async (socket, next) => {
     console.log('middleware running...')
@@ -141,7 +141,6 @@ io
         }
     })
 })
-}
 // end of socket.io logic
 
-module.exports = initSocket;
+module.exports = io;

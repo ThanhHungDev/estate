@@ -7,6 +7,7 @@
 var app       = require('../app');
 var debug     = require('debug')('chat:server');
 var http      = require('http');
+var eventIO   = require('../app.socket');
 var dbConnect = require('../app.mongo.connect');
 var CONFIG = require("../config")
 var dotenv    = require('dotenv')                 /// thêm dot env vào hệ thống
@@ -28,10 +29,9 @@ app.set('port', port);
  */
 console.log(CONFIG.CORS_IO )
 var server = http.createServer(app);
-const eventIO = require( "socket.io" )(server, {
+eventIO.attach(server, {
   origins: CONFIG.CORS_IO
 })
-require('../app.socket')(eventIO)
 
 /// pass socket to api
 app.use(function(req, res, next){
