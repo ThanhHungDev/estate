@@ -28011,9 +28011,6 @@ ul.contact li a span {
   background-color: black;
   background-color: rgba(0, 0, 0, 0.75);
   text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .modal.modal__notification {

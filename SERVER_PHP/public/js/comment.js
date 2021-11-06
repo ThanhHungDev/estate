@@ -3313,18 +3313,17 @@ var reports = [{
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-    className: "report",
+    className: "list-group list-group-flush",
     children: reports.map(function (report) {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-        className: "report__item",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-            type: "checkbox",
-            "data-key": report._id,
-            onChange: handleCheckItem,
-            checked: checkedItems.has(report._id)
-          }), report.label]
-        })
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
+        className: "mb-0 list-group-item list-group-item-action cursor-pointer ".concat(checkedItems.has(report._id) && 'list-group-item-warning'),
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+          className: "d-none",
+          type: "checkbox",
+          "data-key": report._id,
+          onChange: handleCheckItem,
+          checked: checkedItems.has(report._id)
+        }), report.label]
       }, report._id);
     })
   });
