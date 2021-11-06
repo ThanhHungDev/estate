@@ -2724,7 +2724,7 @@ function Input(_ref) {
     console.log(comment, refComment.current.value.trim("\n"));
     console.log(" before send socket", SOCKET);
 
-    if (SOCKET.connected) {
+    if (SOCKET.connected && !!refComment.current.value.trim("\n")) {
       var commentObject = {
         inkey: CONFIG.LOCATION.pathname,
         body: refComment.current.value.trim("\n")

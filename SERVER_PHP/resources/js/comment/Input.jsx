@@ -16,7 +16,7 @@ function Input({ AUTH, comment, SOCKET, CONFIG, setReply, dispatch }) {
     const sendComment = () => {
         console.log(comment, refComment.current.value.trim("\n") )
         console.log(" before send socket", SOCKET )
-        if( SOCKET.connected ){
+        if( SOCKET.connected && !!refComment.current.value.trim("\n") ){
             const commentObject = {
                 inkey: CONFIG.LOCATION.pathname,
                 body : refComment.current.value.trim("\n")
