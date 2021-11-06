@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Main from './Main'
 
 function WrapperComment(props) {
+    useEffect(()=>{
+        console.log("WrapperComment")
+    })
     return (
         <div className="product__data">
             <div className="block">

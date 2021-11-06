@@ -28038,6 +28038,9 @@ ul.contact li a span {
   border-radius: 50%;
   color: #0d3617;
   background-color: #e2e7e3;
+  width: 38px;
+  height: 38px;
+  text-align: center;
 }
 .modal.modal__notification .modal__header i.close {
   color: #0d3617;

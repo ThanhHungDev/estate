@@ -6,4 +6,5 @@ return [
     'JOIN__COMMENT',
     'ADD__COMMENT',
     'LIKE__COMMENT',
+    'REPORT__COMMENT',
 ];

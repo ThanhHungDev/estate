@@ -153,6 +153,9 @@ $__background_product--detail: #f0f9fb;
           border-radius: 50%;
           color: $custom-green-dark;
           background-color: color-level($custom-green-dark, -11);
+          width: 38px;
+          height: 38px;
+          text-align: center;
       }
       i.close{
           color: $custom-green-dark;

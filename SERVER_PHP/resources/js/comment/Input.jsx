@@ -1,18 +1,25 @@
-import React, { useState, forwardRef, useRef, useImperativeHandle } from "react"
+import React, { useState, forwardRef, useRef, useImperativeHandle, useEffect } from "react"
 import { connect } from "react-redux"
 
 function Input({ AUTH, comment, SOCKET, CONFIG, setReply, dispatch }) {
 
     const refComment = useRef()
     const [ send, setSend ] = useState(false)
+    const [ socketConnected , setSocketConnected ] = useState(true)
+
+    useEffect(() => {
+        console.log("không vào đây Input", 2)
+        setSocketConnected( SOCKET?.connected || false)
+    }, [ socketConnected, send ])
 
 
     const sendComment = () => {
-        console.log(comment, refComment.current.value )
+        console.log(comment, refComment.current.value.trim("\n") )
+        console.log(" before send socket", SOCKET )
         if( SOCKET.connected ){
             const commentObject = {
                 inkey: CONFIG.LOCATION.pathname,
-                body : refComment.current.value
+                body : refComment.current.value.trim("\n")
             }
             refComment.current.value = ''
             if( comment && comment._id ){
@@ -47,6 +54,9 @@ function Input({ AUTH, comment, SOCKET, CONFIG, setReply, dispatch }) {
     
     if( !AUTH || !AUTH.id ){
         /// chưa được login thì không cho hiện
+        return null
+    }
+    if( !SOCKET || !SOCKET.connected ){
         return null
     }
     return (

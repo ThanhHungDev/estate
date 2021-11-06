@@ -2255,12 +2255,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-modal */ "./node_modules/react-modal/lib/index.js");
-/* harmony import */ var react_modal__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_modal__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_moment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-moment */ "./node_modules/react-moment/dist/index.js");
-/* harmony import */ var react_moment__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_moment__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _Input__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Input */ "./resources/js/comment/Input.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-moment */ "./node_modules/react-moment/dist/index.js");
+/* harmony import */ var react_moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_moment__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Input__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Input */ "./resources/js/comment/Input.jsx");
+/* harmony import */ var _ModalLogin__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ModalLogin */ "./resources/js/comment/ModalLogin.jsx");
+/* harmony import */ var _ModelReport__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./ModelReport */ "./resources/js/comment/ModelReport.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2283,20 +2283,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
- // const customStyles = {
-//     content: {
-//       top: '50%',
-//       left: '50%',
-//       right: 'auto',
-//       bottom: 'auto',
-//       marginRight: '-50%',
-//       transform: 'translate(-50%, -50%)',
-//     },
-// }
 
 
 
-react_modal__WEBPACK_IMPORTED_MODULE_2___default().setAppElement("#root__comment");
+
 
 function Action(_ref) {
   var comment = _ref.comment,
@@ -2309,20 +2299,25 @@ function Action(_ref) {
       modelOpen = _useState2[0],
       setModelOpen = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState4 = _slicedToArray(_useState3, 2),
-      like = _useState4[0],
-      setLike = _useState4[1];
+      modelreport = _useState4[0],
+      setModelreport = _useState4[1];
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState6 = _slicedToArray(_useState5, 2),
-      reply = _useState6[0],
-      setReply = _useState6[1];
+      like = _useState6[0],
+      setLike = _useState6[1];
 
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState8 = _slicedToArray(_useState7, 2),
-      report = _useState8[0],
-      setReport = _useState8[1];
+      reply = _useState8[0],
+      setReply = _useState8[1];
+
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+      _useState10 = _slicedToArray(_useState9, 2),
+      report = _useState10[0],
+      setReport = _useState10[1];
 
   var level = comment.level;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
@@ -2356,41 +2351,44 @@ function Action(_ref) {
   var clickReport = function clickReport() {
     if (!AUTH.JWT) {
       setModelOpen(true);
+    } else {
+      setModelreport(true);
     }
   };
 
   var likeActive = like.some(function (l) {
     return l.user == AUTH.id;
   }) && 'active';
+  var reportActive = 1;
 
-  var actionHTML = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+  var actionHTML = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
     className: "float-left",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
       className: "d-flex flex-row px-3",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("button", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("button", {
         className: "btn btn__action btn__action--like ".concat(likeActive),
         onClick: clickLike,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("i", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("i", {
           className: "fal fa-thumbs-up"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("span", {
           className: "ml-1",
           children: ["Th\xEDch ", !!like.length && "(".concat(like.length, ")")]
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("button", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("button", {
         className: "btn btn__action btn__action--reply",
         onClick: clickReply,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("i", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("i", {
           className: "fal fa-reply"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
           className: "ml-1",
           children: "Tr\u1EA3 l\u1EDDi"
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("button", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("button", {
         className: "btn btn__action btn__action--report",
         onClick: clickReport,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("i", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("i", {
           className: "fal fa-exclamation-triangle"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
           className: "ml-1",
           children: "B\xE1o c\xE1o Vi ph\u1EA1m"
         })]
@@ -2398,69 +2396,31 @@ function Action(_ref) {
     })
   });
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
       className: "bg-white clearfix",
-      children: [!level && actionHTML, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("small", {
+      children: [!level && actionHTML, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("small", {
         className: "date text-black-50 text-right float-right p-1",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)((react_moment__WEBPACK_IMPORTED_MODULE_3___default()), {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)((react_moment__WEBPACK_IMPORTED_MODULE_2___default()), {
           format: "LLLL",
           children: comment === null || comment === void 0 ? void 0 : comment.createdAt
         })
       })]
-    }), reply && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Input__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    }), reply && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Input__WEBPACK_IMPORTED_MODULE_3__["default"], {
         comment: comment,
         setReply: setReply
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)((react_modal__WEBPACK_IMPORTED_MODULE_2___default()), {
-      isOpen: modelOpen,
-      onRequestClose: function onRequestClose() {
-        setModelOpen(!modelOpen);
-      },
-      contentLabel: "My dialog" // style={customStyles}
-      ,
-      className: "modal d-inline-block overflow-auto h-auto modal__notification",
-      overlayClassName: "Overlay",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-        className: "modal__header",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("i", {
-          className: "icon far fa-bell-on"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-          className: "title",
-          children: "Th\xF4ng b\xE1o! "
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
-          className: "cursor-pointer",
-          onClick: function onClick() {
-            setModelOpen(!modelOpen);
-          },
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("i", {
-            className: "close fal fa-times"
-          })
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-        className: "modal__body",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h3", {
-          className: "h5",
-          children: "B\u1EA1n c\u1EA7n \u0111\u0103ng nh\u1EADp v\xE0o h\u1EC7 th\u1ED1ng!"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-          className: "font-weight-light py-3 text-color-gray",
-          children: "T\xEDnh n\u0103ng n\xE0y c\u1EA7n \u0111\u0103ng nh\u1EADp v\xE0o h\u1EC7 th\u1ED1ng \u0111\u1EC3 m\u1ECDi ng\u01B0\u1EDDi c\xF3 th\u1EC3 bi\u1EBFt ai \u0111ang b\xECnh lu\u1EADn"
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-        className: "modal__footer",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
-          className: "btn btn__close mr-1",
-          onClick: function onClick() {
-            setModelOpen(!modelOpen);
-          },
-          children: "B\xF5 qua"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
-          className: "btn btn__login ml-1",
-          href: "".concat(CONFIG.WEB.LOGIN, "?rredirect=1"),
-          children: "\u0110i \u0111\u1EBFn \u0111\u0103ng nh\u1EADp"
-        })]
-      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ModalLogin__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      modelOpen: modelOpen,
+      setModelOpen: setModelOpen,
+      CONFIG: CONFIG
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ModelReport__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      modelOpen: modelreport,
+      setModelOpen: setModelreport,
+      comment: comment,
+      CONFIG: CONFIG,
+      SOCKET: SOCKET
     })]
   });
 }
@@ -2489,37 +2449,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! socket.io-client */ "./node_modules/socket.io-client/lib/index.js");
-/* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(socket_io_client__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _action_comment_action__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../action/comment.action */ "./resources/js/action/comment.action.js");
-/* harmony import */ var _action_socket_action__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../action/socket.action */ "./resources/js/action/socket.action.js");
-/* harmony import */ var _WrapperComment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./WrapperComment */ "./resources/js/comment/WrapperComment.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! socket.io-client */ "./node_modules/socket.io-client/lib/index.js");
+/* harmony import */ var socket_io_client__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(socket_io_client__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _action_comment_action__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../action/comment.action */ "./resources/js/action/comment.action.js");
+/* harmony import */ var _action_socket_action__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../action/socket.action */ "./resources/js/action/socket.action.js");
+/* harmony import */ var _WrapperComment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./WrapperComment */ "./resources/js/comment/WrapperComment.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
  /// soccket 
 
@@ -2529,21 +2465,69 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-var App = /*#__PURE__*/function (_Component) {
-  _inherits(App, _Component);
+var createSocketListenner = function createSocketListenner(socket, props, CONFIG) {
+  socket.on('connect', function () {
+    console.log("Successfully connected!"); /// lưu lại trạng thái connect mới của socket
 
-  var _super = _createSuper(App);
+    props.dispatch((0,_action_socket_action__WEBPACK_IMPORTED_MODULE_4__.setterSocket)(socket));
 
-  function App(props) {
+    if (socket.connected) {
+      console.log("connected ở đây sẽ thành công " + socket.connected); /// thử emit lên mới 1 comment
+
+      socket.emit(CONFIG.EVENT.JOIN__COMMENT, {
+        inkey: CONFIG.LOCATION.pathname
+      });
+    }
+  }).on(CONFIG.EVENT.RESPONSE__JOIN__COMMENT, function (data) {
+    console.log("Thành công join room!", data);
+  }).on(CONFIG.EVENT.RESPONSE__ADD__COMMENT, function (response) {
+    console.log("Thành công add comment!", response);
+    var code = response.code,
+        data = response.data;
+
+    if (code == 200) {
+      props.dispatch((0,_action_comment_action__WEBPACK_IMPORTED_MODULE_3__.addComment)(data));
+    } else {
+      alert("thêm mới comment bị lỗi");
+      console.log("thêm mới comment bị lỗi");
+    }
+  }).on(CONFIG.EVENT.RESPONSE__LIKE__COMMENT, function (response) {
+    console.log("Thành công like comment!", response);
+    var code = response.code,
+        data = response.data; //// data is comment resource
+
+    if (code == 200) {
+      props.dispatch((0,_action_comment_action__WEBPACK_IMPORTED_MODULE_3__.likeComment)(data));
+    }
+  }).on(CONFIG.EVENT.RESPONSE__REPORT__COMMENT, function (response) {
+    console.log("Thành công report comment!", response);
+  }).on('error', function (err) {
+    console.log("************ Error ************");
+    console.log("************ Error ************");
+    console.log(err);
+    console.log("************ Error ************"); // Show the toaster with the error
+    // Try re-connect
+    // close the socket connection
+    /// lưu vào redux là socket false
+
+    props.dispatch((0,_action_socket_action__WEBPACK_IMPORTED_MODULE_4__.setterSocket)(socket));
+  }).on('connect_error', function (error) {
+    // console.error(`Connection error: ${error}`)
+    // console.error(error instanceof Error); // true
+    console.error("connect_error " + socket.connected, error.message); // not authorized
+    // console.error(error.data); // { content: "Please retry later" }
+
+    socket.disconnect();
+    props.dispatch((0,_action_socket_action__WEBPACK_IMPORTED_MODULE_4__.setterSocket)(null));
+  }); /// check if comment none fetch or comment length empty
+};
+
+var App = function App(props) {
+  var AUTH = props.AUTH,
+      CONFIG = props.CONFIG;
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var _AUTH$jwt, _CONFIG$LOCATION$path;
 
-    var _this;
-
-    _classCallCheck(this, App);
-
-    _this = _super.call(this, props);
-    var AUTH = props.AUTH,
-        CONFIG = props.CONFIG;
     var param = {
       autoConnect: false,
       query: {
@@ -2551,77 +2535,22 @@ var App = /*#__PURE__*/function (_Component) {
         pathname: (_CONFIG$LOCATION$path = CONFIG.LOCATION.pathname) !== null && _CONFIG$LOCATION$path !== void 0 ? _CONFIG$LOCATION$path : "/"
       }
     };
-    console.log(CONFIG.LOCATION.pathname, "CONFIG.LOCATION.pathname ");
-    var socket = socket_io_client__WEBPACK_IMPORTED_MODULE_3___default()(CONFIG.REALTIME_URL, param);
+    var socket = socket_io_client__WEBPACK_IMPORTED_MODULE_2___default()(CONFIG.REALTIME_URL, param);
+    createSocketListenner(socket, props, CONFIG);
     socket.open(); // synonym to socket.connect()
 
     console.log("connected ở đây không thành công đâu " + socket.connected);
-    socket.on('connect', function () {
-      console.log("Successfully connected!"); /// lưu lại trạng thái connect mới của socket
-
-      props.dispatch((0,_action_socket_action__WEBPACK_IMPORTED_MODULE_5__.setterSocket)(socket));
-
-      if (socket.connected) {
-        console.log("connected ở đây sẽ thành công " + socket.connected); /// thử emit lên mới 1 comment
-
-        socket.emit(CONFIG.EVENT.JOIN__COMMENT, {
-          inkey: CONFIG.LOCATION.pathname
-        });
-      }
-    }).on(CONFIG.EVENT.RESPONSE__JOIN__COMMENT, function (data) {
-      console.log("Thành công join room!", data);
-    }).on(CONFIG.EVENT.RESPONSE__ADD__COMMENT, function (response) {
-      console.log("Thành công add comment!", response);
-      var code = response.code,
-          data = response.data;
-
-      if (code == 200) {
-        props.dispatch((0,_action_comment_action__WEBPACK_IMPORTED_MODULE_4__.addComment)(data));
-      } else {
-        alert("thêm mới comment bị lỗi");
-        console.log("thêm mới comment bị lỗi");
-      }
-    }).on(CONFIG.EVENT.RESPONSE__LIKE__COMMENT, function (response) {
-      console.log("Thành công like comment!", response);
-      var code = response.code,
-          data = response.data; //// data is comment resource
-
-      if (code == 200) {
-        props.dispatch((0,_action_comment_action__WEBPACK_IMPORTED_MODULE_4__.likeComment)(data));
-      }
-    }).on('error', function (err) {
-      console.log("************ Error ************");
-      console.log("************ Error ************");
-      console.log(err);
-      console.log("************ Error ************"); // Show the toaster with the error
-      // Try re-connect
-      // close the socket connection
-      /// lưu vào redux là socket false
-
-      props.dispatch((0,_action_socket_action__WEBPACK_IMPORTED_MODULE_5__.setterSocket)(socket));
-    }).on('connect_error', function (error) {
-      // console.error(`Connection error: ${error}`)
-      // console.error(error instanceof Error); // true
-      console.error("connect_error", error.message); // not authorized
-      // console.error(error.data); // { content: "Please retry later" }
-    }); /// check if comment none fetch or comment length empty
-
-    return _this;
-  }
-
-  _createClass(App, [{
-    key: "render",
-    value: function render() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-        className: "AppComponent",
-        id: "Application",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_WrapperComment__WEBPACK_IMPORTED_MODULE_6__["default"], {})
-      });
-    }
-  }]);
-
-  return App;
-}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+    return function () {
+      socket.disconnect();
+      props.dispatch((0,_action_socket_action__WEBPACK_IMPORTED_MODULE_4__.setterSocket)(null));
+    };
+  }, []);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+    className: "AppComponent",
+    id: "Application",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_WrapperComment__WEBPACK_IMPORTED_MODULE_5__["default"], {})
+  });
+};
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
@@ -2630,7 +2559,7 @@ var mapStateToProps = function mapStateToProps(state) {
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_2__.connect)(mapStateToProps)(App));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps)(App));
 
 /***/ }),
 
@@ -2781,13 +2710,24 @@ function Input(_ref) {
       send = _useState2[0],
       setSend = _useState2[1];
 
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+      _useState4 = _slicedToArray(_useState3, 2),
+      socketConnected = _useState4[0],
+      setSocketConnected = _useState4[1];
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    console.log("không vào đây Input", 2);
+    setSocketConnected((SOCKET === null || SOCKET === void 0 ? void 0 : SOCKET.connected) || false);
+  }, [socketConnected, send]);
+
   var sendComment = function sendComment() {
-    console.log(comment, refComment.current.value);
+    console.log(comment, refComment.current.value.trim("\n"));
+    console.log(" before send socket", SOCKET);
 
     if (SOCKET.connected) {
       var commentObject = {
         inkey: CONFIG.LOCATION.pathname,
-        body: refComment.current.value
+        body: refComment.current.value.trim("\n")
       };
       refComment.current.value = '';
 
@@ -2825,6 +2765,10 @@ function Input(_ref) {
 
   if (!AUTH || !AUTH.id) {
     /// chưa được login thì không cho hiện
+    return null;
+  }
+
+  if (!SOCKET || !SOCKET.connected) {
     return null;
   }
 
@@ -2899,18 +2843,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 
 
 
@@ -2925,50 +2857,39 @@ function Main(_ref) {
       CONFIG = _ref.CONFIG,
       AUTH = _ref.AUTH,
       dispatch = _ref.dispatch;
-
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-      _useState2 = _slicedToArray(_useState, 2),
-      fetched = _useState2[0],
-      setFetched = _useState2[1];
-
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    console.log(AUTH, "AUTHAUTHAUTH"); // if( !!AUTH.JWT && !COMMENT.length && !fetched ){
-
-    if (!COMMENT.length && !fetched) {
-      /// fetch data api
-      setFetched(true);
-      _service_comment_api__WEBPACK_IMPORTED_MODULE_2__["default"].getComment({
-        slug: CONFIG.LOCATION.pathname
-      }).then(function (response) {
-        var users = response.users;
-        var comments = response.data.map(function (com) {
-          var childrens = com.childrens.map(function (child) {
-            return _objectSpread(_objectSpread({}, child), {}, {
-              user: _objectSpread({}, users.find(function (u) {
-                return u.id == child.user;
-              }))
-            });
-          });
-          return _objectSpread(_objectSpread({}, com), {}, {
-            childrens: childrens,
+    console.log("main thay đổi nà");
+    _service_comment_api__WEBPACK_IMPORTED_MODULE_2__["default"].getComment({
+      slug: CONFIG.LOCATION.pathname
+    }).then(function (response) {
+      var users = response.users;
+      var comments = response.data.map(function (com) {
+        var childrens = com.childrens.map(function (child) {
+          return _objectSpread(_objectSpread({}, child), {}, {
             user: _objectSpread({}, users.find(function (u) {
-              return u.id == com.user;
+              return u.id == child.user;
             }))
           });
         });
-        dispatch((0,_action_comment_action__WEBPACK_IMPORTED_MODULE_3__.setterComment)(comments));
-      })["catch"](function (error) {
-        console.log("ERROR:: ", error);
+        return _objectSpread(_objectSpread({}, com), {}, {
+          childrens: childrens,
+          user: _objectSpread({}, users.find(function (u) {
+            return u.id == com.user;
+          }))
+        });
       });
-    }
-  });
+      dispatch((0,_action_comment_action__WEBPACK_IMPORTED_MODULE_3__.setterComment)(comments));
+    })["catch"](function (error) {
+      console.log("ERROR:: ", error);
+    });
+  }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
     className: "comment",
     children: [COMMENT.map(function (comment) {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Comment__WEBPACK_IMPORTED_MODULE_4__["default"], {
         comment: comment
       }, comment._id);
-    }), fetched && !COMMENT.length && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+    }), !COMMENT.length && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
       className: " text-base",
       children: " Ch\u01B0a c\xF3 b\xECnh lu\u1EADn n\xE0o tr\u01B0\u1EDBc \u0111\xF3!  "
     }), !AUTH.JWT ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
@@ -2992,6 +2913,232 @@ var mapStateToProps = function mapStateToProps(state) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps)(Main));
+
+/***/ }),
+
+/***/ "./resources/js/comment/ModalLogin.jsx":
+/*!*********************************************!*\
+  !*** ./resources/js/comment/ModalLogin.jsx ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-modal */ "./node_modules/react-modal/lib/index.js");
+/* harmony import */ var react_modal__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_modal__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+ // const customStyles = {
+//     content: {
+//       top: '50%',
+//       left: '50%',
+//       right: 'auto',
+//       bottom: 'auto',
+//       marginRight: '-50%',
+//       transform: 'translate(-50%, -50%)',
+//     },
+// }
+
+
+
+react_modal__WEBPACK_IMPORTED_MODULE_1___default().setAppElement("#root__comment");
+
+function ModalLogin(_ref) {
+  var modelOpen = _ref.modelOpen,
+      setModelOpen = _ref.setModelOpen,
+      CONFIG = _ref.CONFIG;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)((react_modal__WEBPACK_IMPORTED_MODULE_1___default()), {
+    isOpen: modelOpen,
+    onRequestClose: function onRequestClose() {
+      setModelOpen(!modelOpen);
+    },
+    contentLabel: "My dialog" // style={customStyles}
+    ,
+    className: "modal d-inline-block overflow-auto h-auto modal__notification",
+    overlayClassName: "Overlay",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      className: "modal__header",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
+        className: "icon far fa-bell-on"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+        className: "title",
+        children: "Th\xF4ng b\xE1o! "
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
+        className: "cursor-pointer",
+        onClick: function onClick() {
+          setModelOpen(!modelOpen);
+        },
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
+          className: "close fal fa-times"
+        })
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      className: "modal__body",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
+        className: "h5",
+        children: "B\u1EA1n c\u1EA7n \u0111\u0103ng nh\u1EADp v\xE0o h\u1EC7 th\u1ED1ng!"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "font-weight-light py-3 text-color-gray",
+        children: "T\xEDnh n\u0103ng n\xE0y c\u1EA7n \u0111\u0103ng nh\u1EADp v\xE0o h\u1EC7 th\u1ED1ng \u0111\u1EC3 m\u1ECDi ng\u01B0\u1EDDi c\xF3 th\u1EC3 bi\u1EBFt ai \u0111ang b\xECnh lu\u1EADn"
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      className: "modal__footer",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
+        className: "btn btn__close mr-1",
+        onClick: function onClick() {
+          setModelOpen(!modelOpen);
+        },
+        children: "B\xF5 qua"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
+        className: "btn btn__login ml-1",
+        href: "".concat(CONFIG.WEB.LOGIN, "?rredirect=1"),
+        children: "\u0110i \u0111\u1EBFn \u0111\u0103ng nh\u1EADp"
+      })]
+    })]
+  });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ModalLogin);
+
+/***/ }),
+
+/***/ "./resources/js/comment/ModelReport.jsx":
+/*!**********************************************!*\
+  !*** ./resources/js/comment/ModelReport.jsx ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-modal */ "./node_modules/react-modal/lib/index.js");
+/* harmony import */ var react_modal__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_modal__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Reports__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Reports */ "./resources/js/comment/Reports.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+react_modal__WEBPACK_IMPORTED_MODULE_1___default().setAppElement("#root__comment");
+
+function ModalReport(_ref) {
+  var modelOpen = _ref.modelOpen,
+      setModelOpen = _ref.setModelOpen,
+      comment = _ref.comment,
+      CONFIG = _ref.CONFIG,
+      SOCKET = _ref.SOCKET;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      reportsChecked = _useState2[0],
+      setReportsChecked = _useState2[1];
+
+  var changeCheckedItem = function changeCheckedItem(reportChecked) {
+    setReportsChecked(_toConsumableArray(reportChecked));
+  };
+
+  var sendReport = function sendReport() {
+    setModelOpen(!modelOpen);
+
+    if (SOCKET.connected) {
+      SOCKET.emit(CONFIG.EVENT.REPORT__COMMENT, _objectSpread(_objectSpread({}, comment), {}, {
+        inkey: CONFIG.LOCATION.pathname,
+        reports: reportsChecked
+      }));
+    }
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)((react_modal__WEBPACK_IMPORTED_MODULE_1___default()), {
+    isOpen: modelOpen,
+    onRequestClose: function onRequestClose() {
+      setModelOpen(!modelOpen);
+    },
+    contentLabel: "My dialog" // style={customStyles}
+    ,
+    className: "modal d-inline-block overflow-auto h-auto modal__notification",
+    overlayClassName: "Overlay",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      className: "modal__header",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("i", {
+        className: "icon far fa-bomb"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+        className: "title",
+        children: "Th\xF4ng b\xE1o! "
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
+        className: "cursor-pointer",
+        onClick: function onClick() {
+          setModelOpen(!modelOpen);
+        },
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("i", {
+          className: "close fal fa-times"
+        })
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      className: "modal__body",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("h3", {
+        className: "h6",
+        children: ["B\u1EA1n c\u1EA7n ch\u1ECDn ho\u1EB7c vi\u1EBFt th\xEAm l\xFD do ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+          className: "text-color-red",
+          children: "b\xECnh lu\u1EADn"
+        }), " vi ph\u1EA1m!"]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Reports__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          changeCheckedItem: changeCheckedItem
+        })
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      className: "modal__footer",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
+        className: "btn btn__close mr-1",
+        onClick: function onClick() {
+          setModelOpen(!modelOpen);
+        },
+        children: "Hu\u1EF7"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
+        className: "btn btn__login ml-1",
+        onClick: sendReport,
+        children: "G\u1EEDi b\xE1o c\xE1o"
+      })]
+    })]
+  });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ModalReport);
 
 /***/ }),
 
@@ -3098,6 +3245,92 @@ function Readmore(_ref) {
 
 /***/ }),
 
+/***/ "./resources/js/comment/Reports.jsx":
+/*!******************************************!*\
+  !*** ./resources/js/comment/Reports.jsx ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_checklist__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-checklist */ "./node_modules/react-checklist/esm/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+var reports = [{
+  _id: 1,
+  label: 'thích report test',
+  select: false
+}, {
+  _id: 2,
+  label: 'thích report test fsdf',
+  select: false
+}, {
+  _id: 3,
+  label: 'thích report test à ',
+  select: false
+}, {
+  _id: 4,
+  label: 'thích report test affff ',
+  select: false
+}, {
+  _id: 5,
+  label: 'thích report t ádaest á',
+  select: false
+}, {
+  _id: 6,
+  label: 'thíchád  report test',
+  select: false
+}, {
+  _id: 7,
+  label: 'ta hích report test',
+  select: false
+}];
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function (_ref) {
+  var changeCheckedItem = _ref.changeCheckedItem;
+
+  var _useChecklist = (0,react_checklist__WEBPACK_IMPORTED_MODULE_1__.useChecklist)(reports, {
+    key: '_id',
+    keyType: 'number'
+  }),
+      handleCheck = _useChecklist.handleCheck,
+      isCheckedAll = _useChecklist.isCheckedAll,
+      checkedItems = _useChecklist.checkedItems;
+
+  var handleCheckItem = function handleCheckItem(e) {
+    handleCheck(e); /// send data to parent
+
+    if (!!changeCheckedItem) {
+      changeCheckedItem(checkedItems);
+    }
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    className: "report",
+    children: reports.map(function (report) {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "report__item",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+            type: "checkbox",
+            "data-key": report._id,
+            onChange: handleCheckItem,
+            checked: checkedItems.has(report._id)
+          }), report.label]
+        })
+      }, report._id);
+    })
+  });
+});
+
+/***/ }),
+
 /***/ "./resources/js/comment/WrapperComment.jsx":
 /*!*************************************************!*\
   !*** ./resources/js/comment/WrapperComment.jsx ***!
@@ -3118,6 +3351,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function WrapperComment(props) {
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    console.log("WrapperComment");
+  });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
     className: "product__data",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
@@ -32930,6 +33166,70 @@ if (true) {
 var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 
 module.exports = ReactPropTypesSecret;
+
+
+/***/ }),
+
+/***/ "./node_modules/react-checklist/esm/index.js":
+/*!***************************************************!*\
+  !*** ./node_modules/react-checklist/esm/index.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useChecklist": () => (/* binding */ useChecklist)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+/**
+ *
+ * @param data item list for check. https://github.com/gtgalone/react-checklist#data
+ * @param options option for check. https://github.com/gtgalone/react-checklist#options
+ * @returns return properties. https://github.com/gtgalone/react-checklist#return
+ */
+var useChecklist = function (data, options) {
+    if (options === void 0) { options = { key: 'id', keyType: 'string' }; }
+    var _a = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(new Set()), checkedItems = _a[0], setCheckedItems = _a[1];
+    if (!(data instanceof Array)) {
+        data = [];
+    }
+    if (options === null) {
+        options = {};
+    }
+    if (!options.key) {
+        options.key = 'id';
+    }
+    if (!options.keyType) {
+        options.keyType = 'string';
+    }
+    return {
+        isCheckedAll: (data.length === 0) ? false : (checkedItems.size === data.length),
+        checkedItems: checkedItems,
+        setCheckedItems: setCheckedItems,
+        handleCheck: function (e) {
+            e.stopPropagation();
+            var key = e.currentTarget.dataset.key;
+            if (key) {
+                if (options.keyType === 'number') {
+                    key = parseInt(key, 10);
+                }
+                if (checkedItems.has(key)) {
+                    checkedItems.delete(key);
+                }
+                else {
+                    checkedItems.add(key);
+                }
+                return setCheckedItems(new Set(checkedItems));
+            }
+            if (checkedItems.size === data.length) {
+                return setCheckedItems(new Set());
+            }
+            setCheckedItems(new Set(data.map(function (v) { return v[options.key]; })));
+        },
+    };
+};
 
 
 /***/ }),

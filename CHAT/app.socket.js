@@ -187,6 +187,36 @@ io
             return
         }
     })
+
+
+    //// 
+    .on( CONFIG.EVENT.REPORT__COMMENT, async data => {
+        
+        const { _id, inkey } = data
+        const { jwt } = socket
+        
+        try {
+            
+            const response = {
+                code   : RESPONSE.HTTP_OK,
+                // data   : { ...comment.toResources() },
+                old    : data,
+                message: "socket report comment thành công"
+            }
+            io.sockets.in(inkey).emit(CONFIG.EVENT.RESPONSE__REPORT__COMMENT, response )
+            return
+        } catch (error) {
+            /// response 
+            const response = {
+                code   : RESPONSE.HTTP_INTERNAL_SERVER_ERROR,
+                error  : error,
+                old    : data,
+                message: "socket report comment không thành công"
+            }
+            io.sockets.in(inkey).emit(CONFIG.EVENT.RESPONSE__REPORT__COMMENT, response )
+            return
+        }
+    })
 })
 // end of socket.io logic
 
