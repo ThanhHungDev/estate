@@ -2838,7 +2838,7 @@ function Input(_ref) {
         width: "40"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("textarea", {
         ref: refComment,
-        className: "form-control ml-1 shadow-none textarea",
+        className: "form-control ml-1 shadow-none textarea form__hero-control",
         placeholder: "nhập bình luận của bạn \nĐể xuống dòng bạn nhấn nút shift enter!",
         onKeyDown: handleKeyDownSendComment,
         onKeyUp: handleKeyUpSendComment

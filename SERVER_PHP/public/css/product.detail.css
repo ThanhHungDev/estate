@@ -27915,6 +27915,11 @@ ul.contact li a span {
 .comment__level--col1 {
   padding-top: 5px;
 }
+.comment .form__hero-control {
+  font-size: 13px;
+  line-height: 20px;
+  color: #212529;
+}
 
 .comment-text {
   width: -webkit-fit-content;

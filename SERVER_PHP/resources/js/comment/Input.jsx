@@ -53,7 +53,7 @@ function Input({ AUTH, comment, SOCKET, CONFIG, setReply, dispatch }) {
         <div className="bg-light p-2">
             <div className="d-flex flex-row align-items-start">
                 <img className="rounded-circle" src={ AUTH?.avatar } width="40" />
-                <textarea ref={refComment} className="form-control ml-1 shadow-none textarea" 
+                <textarea ref={refComment} className="form-control ml-1 shadow-none textarea form__hero-control" 
                 placeholder= {"nhập bình luận của bạn \nĐể xuống dòng bạn nhấn nút shift enter!"}
                 onKeyDown={ handleKeyDownSendComment }
                 onKeyUp={ handleKeyUpSendComment }
