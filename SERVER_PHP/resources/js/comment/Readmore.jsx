@@ -25,11 +25,12 @@ function Readmore({ comment }) {
     }, [ showmore ])
 
     const clickShowMore = () => {
-
         setShowmore( showmore == 'hidden' ? 'show' : 'hidden' )
         setTimeout(() => {
-            refCommentText.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
-        }, 100 )
+            const y = refCommentText.current.getBoundingClientRect().top + window.pageYOffset - 150
+            window.scrollTo({top: y, behavior: 'smooth'})
+            // refCommentText.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+        }, 10 )
     }
 
     return (

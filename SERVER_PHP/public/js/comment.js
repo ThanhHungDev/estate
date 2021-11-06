@@ -3202,11 +3202,12 @@ function Readmore(_ref) {
   var clickShowMore = function clickShowMore() {
     setShowmore(showmore == 'hidden' ? 'show' : 'hidden');
     setTimeout(function () {
-      refCommentText.current.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }, 100);
+      var y = refCommentText.current.getBoundingClientRect().top + window.pageYOffset - 150;
+      window.scrollTo({
+        top: y,
+        behavior: 'smooth'
+      }); // refCommentText.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+    }, 10);
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
