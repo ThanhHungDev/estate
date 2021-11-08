@@ -1,4 +1,4 @@
-<div id="header__sticky" class="headerpage">
+<div id="header__sticky" class="headerpage bg__product--detail">
     <div class="header">
         <a class="logo" href="{{ Route('HOME_PAGE') }}">
             <img 
