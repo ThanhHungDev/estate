@@ -2606,10 +2606,9 @@ __webpack_require__.r(__webpack_exports__);
 
 function Comment(_ref) {
   var comment = _ref.comment;
-  var blurReport = !!comment.report.length && 'blur';
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-      className: "d-flex justify-content-center row ".concat(blurReport),
+      className: "d-flex justify-content-center row",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         className: "col-12 comment__level--col".concat(comment.level),
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
@@ -3270,8 +3269,9 @@ function Readmore(_ref) {
     }, 10);
   };
 
+  var blurReport = !!comment.report.length && 'blur';
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-    className: "content__text d-flex flex-column justify-content-start ml-1",
+    className: "".concat(blurReport, " content__text d-flex flex-column justify-content-start ml-1"),
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
       className: "shadow-none p-2 bg-light rounded",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {

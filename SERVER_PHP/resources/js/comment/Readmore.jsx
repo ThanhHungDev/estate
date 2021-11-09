@@ -33,8 +33,9 @@ function Readmore({ comment }) {
         }, 10 )
     }
 
+    const blurReport = !!comment.report.length && 'blur'
     return (
-        <div className="content__text d-flex flex-column justify-content-start ml-1">
+        <div className={`${blurReport} content__text d-flex flex-column justify-content-start ml-1`}>
             <div className="shadow-none p-2 bg-light rounded">
                 <span className=" font-weight-bold comment__user--name text-color-black">{ comment.user?.name }</span>
                 <div className="text-color-black">

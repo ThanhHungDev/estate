@@ -27906,10 +27906,10 @@ ul.contact li a span {
   background-color: #f0f9fb;
 }
 
-.blur .content__text {
+.blur.content__text {
   position: relative;
 }
-.blur .content__text:after {
+.blur.content__text:after {
   position: absolute;
   content: ".";
   color: transparent;

@@ -36,7 +36,7 @@ $__background_product--detail: #f0f9fb;
   background-color: $__background_product--detail;
 }
 
-.blur .content__text{
+.blur.content__text{
   position: relative;
   &:after{
     position: absolute;
