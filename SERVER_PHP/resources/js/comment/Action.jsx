@@ -49,19 +49,22 @@ function Action({ comment, AUTH, CONFIG, SOCKET }) {
 
 
     const likeActive = like.some( l => l.user == AUTH.id ) && 'active'
-    const reportActive = 1
     let actionHTML = (
         <div className="float-left">
             <div className="d-flex flex-row px-3">
                 <button className={`btn btn__action btn__action--like ${ likeActive }`} onClick={ clickLike }>
                     <i className="fal fa-thumbs-up"></i><span className="ml-1">Thích { !!like.length && `(${like.length})` }</span>
                 </button>
-                <button className="btn btn__action btn__action--reply" onClick={ clickReply }>
-                    <i className="fal fa-reply"></i><span className="ml-1">Trả lời</span>
-                </button>
-                <button className="btn btn__action btn__action--report" onClick={ clickReport }>
-                    <i className="fal fa-exclamation-triangle"></i><span className="ml-1">Báo cáo Vi phạm</span>
-                </button>
+                {
+                    !level && <button className="btn btn__action btn__action--reply" onClick={ clickReply }>
+                        <i className="fal fa-reply"></i><span className="ml-1">Trả lời</span>
+                    </button>
+                }
+                {
+                    AUTH.id != comment.user.id && <button className="btn btn__action btn__action--report" onClick={ clickReport }>
+                        <i className="fal fa-exclamation-triangle"></i><span className="ml-1">Báo cáo vi phạm</span>
+                    </button>
+                }
             </div>
         </div>
     )
@@ -69,7 +72,7 @@ function Action({ comment, AUTH, CONFIG, SOCKET }) {
     return (
         <div>
             <div className="bg-white clearfix">
-                { !level && actionHTML }
+                { actionHTML }
                 <small className="date text-black-50 text-right float-right p-1">
                     <Moment format="LLLL">{comment?.createdAt}</Moment>
                 </small>

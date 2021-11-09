@@ -6,6 +6,16 @@ import Reports from "./Reports"
 Modal.setAppElement("#root__comment")
 
 function ModalReport({ modelOpen, setModelOpen, comment, CONFIG, SOCKET }) {
+    const reports = [
+        { _id: 1, label: 'thích report test', select: false },
+        { _id: 2, label: 'thích report test fsdf', select: false },
+        { _id: 3, label: 'thích report test à ', select: false },
+        { _id: 4, label: 'thích report test affff ', select: false },
+        { _id: 5, label: 'thích report t ádaest á', select: false },
+        { _id: 6, label: 'thíchád  report test', select: false },
+        { _id: 7, label: 'ta hích report test', select: false },
+    ]
+
     const [ reportsChecked, setReportsChecked ] = useState([])
 
     const changeCheckedItem = reportChecked => {
@@ -15,7 +25,9 @@ function ModalReport({ modelOpen, setModelOpen, comment, CONFIG, SOCKET }) {
     const sendReport = () => {
         setModelOpen(!modelOpen)
         if( SOCKET.connected ){
-            SOCKET.emit(CONFIG.EVENT.REPORT__COMMENT, { ... comment, inkey: CONFIG.LOCATION.pathname, reports: reportsChecked })
+            /// get list resson
+            const reasons = reports.filter( report => reportsChecked.includes(report._id) ).map(report => report.label )
+            SOCKET.emit(CONFIG.EVENT.REPORT__COMMENT, { ... comment, inkey: CONFIG.LOCATION.pathname, reasons })
         }
     }
 
@@ -38,7 +50,7 @@ function ModalReport({ modelOpen, setModelOpen, comment, CONFIG, SOCKET }) {
             <div className="modal__body">
                 <h3 className="h6">Bạn cần chọn hoặc viết thêm lý do <span className="text-color-red">bình luận</span> vi phạm!</h3>
                 <div className="">
-                    <Reports changeCheckedItem={changeCheckedItem}/>
+                    <Reports changeCheckedItem={changeCheckedItem} reports={ reports } />
                 </div>
 
             </div>

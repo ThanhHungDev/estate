@@ -153,12 +153,13 @@ io
         try {
             /// tìm lại cái comment
             const comment = await Comment.findById(_id) /// giống y chang findOne
+            if( !comment ) throw new Error('comment not found')
             const index = comment.like.findIndex(c => c.user == jwt.id )
             const likes = [ ...comment.like ]
             if( index == -1 ){
                 likes.push({ 
                     user: jwt.id,
-                    date: Date.now,
+                    // date: new Date(Date.now()),
                 })
             }else{
                 likes.splice(index,1)
@@ -192,14 +193,29 @@ io
     //// 
     .on( CONFIG.EVENT.REPORT__COMMENT, async data => {
         
-        const { _id, inkey } = data
+        const { _id, inkey, reasons } = data
         const { jwt } = socket
         
         try {
-            
+            /// tìm lại cái comment
+            const comment = await Comment.findById(_id) /// giống y chang findOne
+            if( !comment ) throw new Error('comment not found')
+
+            const reports = reasons.map( reason => {
+                return { 
+                    user: jwt.id,
+                    date: new Date(Date.now),
+                    reason: reason,
+                }
+            })
+            comment.report.push(...reports)
+            /// lưu trữ lại comment
+            await comment.save()
+            /// response lại comment
+
             const response = {
                 code   : RESPONSE.HTTP_OK,
-                // data   : { ...comment.toResources() },
+                data   : { ...comment.toResources() },
                 old    : data,
                 message: "socket report comment thành công"
             }
@@ -209,7 +225,7 @@ io
             /// response 
             const response = {
                 code   : RESPONSE.HTTP_INTERNAL_SERVER_ERROR,
-                error  : error,
+                error  : error.message,
                 old    : data,
                 message: "socket report comment không thành công"
             }

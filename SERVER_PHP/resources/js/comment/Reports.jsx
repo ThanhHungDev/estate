@@ -1,16 +1,8 @@
 import React from 'react'
 import { useChecklist } from 'react-checklist'
-const reports = [
-    { _id: 1, label: 'thích report test', select: false },
-    { _id: 2, label: 'thích report test fsdf', select: false },
-    { _id: 3, label: 'thích report test à ', select: false },
-    { _id: 4, label: 'thích report test affff ', select: false },
-    { _id: 5, label: 'thích report t ádaest á', select: false },
-    { _id: 6, label: 'thíchád  report test', select: false },
-    { _id: 7, label: 'ta hích report test', select: false },
-]
 
-export default ({changeCheckedItem}) => {
+
+export default ({changeCheckedItem , reports}) => {
     const { handleCheck, isCheckedAll, checkedItems } = useChecklist(reports, {
         key: '_id',
         keyType: 'number',

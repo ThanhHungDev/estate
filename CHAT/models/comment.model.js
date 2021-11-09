@@ -27,7 +27,10 @@ const CommentSchema = new Schema(
                         type: Number,
                         required: [true, 'Báo cáo chưa xác định user']
                     },
-                    date: String,
+                    date: { 
+                        type : Date, 
+                        default: Date.now
+                    },
                 }
             ],
             default: [],
@@ -39,7 +42,10 @@ const CommentSchema = new Schema(
                         type: Number,
                         required: [true, 'Báo cáo chưa xác định user']
                     },
-                    date: String,
+                    date: { 
+                        type : Date, 
+                        default: Date.now 
+                    },
                 }
             ],
             default: [],
@@ -50,7 +56,10 @@ const CommentSchema = new Schema(
                     type: Number,
                     required: [true, 'Báo cáo chưa xác định user']
                 },
-                date: String, 
+                date: { 
+                    type : Date, 
+                    default: Date.now
+                },
                 reason: {
                     type: String,
                     maxlength: CONFIG.MAX_LENGTH_MESSAGE
