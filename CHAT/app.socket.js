@@ -197,14 +197,14 @@ io
         const { jwt } = socket
         
         try {
-            const comments = await Comment.find({})
-            Promise.all(comments.map( comment => {
-                comment.like = []
-                comment.dislike = []
-                return comment.save()
-            })).then( comments => {
-                console.log("success")
-            })
+            // const comments = await Comment.find({})
+            // Promise.all(comments.map( comment => {
+            //     comment.like = []
+            //     comment.dislike = []
+            //     return comment.save()
+            // })).then( comments => {
+            //     console.log("success")
+            // })
 
             /// tìm lại cái comment
             const comment = await Comment.findById(_id) /// giống y chang findOne
