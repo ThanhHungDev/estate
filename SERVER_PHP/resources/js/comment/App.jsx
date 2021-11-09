@@ -5,6 +5,7 @@ import socketIOClient from "socket.io-client"
 import { 
     addComment,
     likeComment,
+    reportComment,
 } from '../action/comment.action'
 import { setterSocket } from '../action/socket.action'
 import WrapperComment from "./WrapperComment"
@@ -44,6 +45,11 @@ const createSocketListenner = (socket, props, CONFIG) => {
     })
     .on(CONFIG.EVENT.RESPONSE__REPORT__COMMENT, function (response) {
         console.log("Thành công report comment!", response)
+        const { code, data } = response
+        //// data is comment resource
+        if( code == 200 ){
+            props.dispatch(reportComment(data))
+        }
     })
     .on('error', (err) => {
         console.log("************ Error ************")

@@ -27,39 +27,30 @@ const CommentSchema = new Schema(
                         type: Number,
                         required: [true, 'Báo cáo chưa xác định user']
                     },
-                    date: { 
-                        type : Date, 
-                        default: Date.now
-                    },
+                    date: Date,
                 }
             ],
             default: [],
         }, 
-        dislike: {
-            type: [
-                { 
-                    user: { 
-                        type: Number,
-                        required: [true, 'Báo cáo chưa xác định user']
-                    },
-                    date: { 
-                        type : Date, 
-                        default: Date.now 
-                    },
-                }
-            ],
-            default: [],
-        },
+        // dislike: {
+        //     type: [
+        //         { 
+        //             user: { 
+        //                 type: Number,
+        //                 required: [true, 'Báo cáo chưa xác định user']
+        //             },
+        //             date: Date,
+        //         }
+        //     ],
+        //     default: [],
+        // },
         report: [
             { 
                 user: { 
                     type: Number,
                     required: [true, 'Báo cáo chưa xác định user']
                 },
-                date: { 
-                    type : Date, 
-                    default: Date.now
-                },
+                date: Date,
                 reason: {
                     type: String,
                     maxlength: CONFIG.MAX_LENGTH_MESSAGE
@@ -101,7 +92,6 @@ CommentSchema.methods.toResources = function() {
         user     : this.user,
         body     : this.body,
         like     : this.like,
-        dislike  : this.dislike,
         report   : this.report,
         level    : this.level,
         childrens: childrens,

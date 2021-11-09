@@ -36,3 +36,18 @@ export function likeComment( comment ){
 }
 
 
+
+/**
+ * tạo action comment data to reducer
+ * @param { parent, comment__data } data 
+ * @returns 
+ */
+ export function reportComment( comment ){
+    console.log(comment , " reportComment ")
+    return {
+        type : TYPE.COMMENT.REPORT_COMMENT,
+        payload : comment
+    }
+}
+
+

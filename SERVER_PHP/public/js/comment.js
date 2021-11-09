@@ -2142,7 +2142,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "setterComment": () => (/* binding */ setterComment),
 /* harmony export */   "addComment": () => (/* binding */ addComment),
-/* harmony export */   "likeComment": () => (/* binding */ likeComment)
+/* harmony export */   "likeComment": () => (/* binding */ likeComment),
+/* harmony export */   "reportComment": () => (/* binding */ reportComment)
 /* harmony export */ });
 /* harmony import */ var _type__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./type */ "./resources/js/action/type.js");
 
@@ -2176,6 +2177,19 @@ function likeComment(comment) {
   console.log(comment, " likeComment ");
   return {
     type: _type__WEBPACK_IMPORTED_MODULE_0__["default"].COMMENT.LIKE_COMMENT,
+    payload: comment
+  };
+}
+/**
+ * tạo action comment data to reducer
+ * @param { parent, comment__data } data 
+ * @returns 
+ */
+
+function reportComment(comment) {
+  console.log(comment, " reportComment ");
+  return {
+    type: _type__WEBPACK_IMPORTED_MODULE_0__["default"].COMMENT.REPORT_COMMENT,
     payload: comment
   };
 }
@@ -2222,7 +2236,8 @@ var TYPE = {
   COMMENT: {
     SETTER_COMMENT: "SETTER_COMMENT",
     ADD_COMMENT: "ADD_COMMENT",
-    LIKE_COMMENT: "LIKE_COMMENT"
+    LIKE_COMMENT: "LIKE_COMMENT",
+    REPORT_COMMENT: "REPORT_COMMENT"
   },
   SOCCKET: {
     SET_SOCKET_IO: "SET_SOCKET_IO"
@@ -2359,6 +2374,9 @@ function Action(_ref) {
   var likeActive = like.some(function (l) {
     return l.user == AUTH.id;
   }) && 'active';
+  var reportActive = report.some(function (r) {
+    return r.user == AUTH.id;
+  }) && 'active';
 
   var actionHTML = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
     className: "float-left",
@@ -2383,7 +2401,7 @@ function Action(_ref) {
           children: "Tr\u1EA3 l\u1EDDi"
         })]
       }), AUTH.id != comment.user.id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("button", {
-        className: "btn btn__action btn__action--report",
+        className: "btn btn__action btn__action--report ".concat(reportActive),
         onClick: clickReport,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("i", {
           className: "fal fa-exclamation-triangle"
@@ -2500,6 +2518,12 @@ var createSocketListenner = function createSocketListenner(socket, props, CONFIG
     }
   }).on(CONFIG.EVENT.RESPONSE__REPORT__COMMENT, function (response) {
     console.log("Thành công report comment!", response);
+    var code = response.code,
+        data = response.data; //// data is comment resource
+
+    if (code == 200) {
+      props.dispatch((0,_action_comment_action__WEBPACK_IMPORTED_MODULE_3__.reportComment)(data));
+    }
   }).on('error', function (err) {
     console.log("************ Error ************");
     console.log("************ Error ************");
@@ -2582,9 +2606,10 @@ __webpack_require__.r(__webpack_exports__);
 
 function Comment(_ref) {
   var comment = _ref.comment;
+  var blurReport = !!comment.report.length && 'blur';
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-      className: "d-flex justify-content-center row",
+      className: "d-flex justify-content-center row ".concat(blurReport),
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         className: "col-12 comment__level--col".concat(comment.level),
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
@@ -3062,31 +3087,31 @@ function ModalReport(_ref) {
       SOCKET = _ref.SOCKET;
   var reports = [{
     _id: 1,
-    label: 'thích report test',
+    label: 'Chủ nghĩa cực đoan bạo lực',
     select: false
   }, {
     _id: 2,
-    label: 'thích report test fsdf',
+    label: 'Hành vi thù địch',
     select: false
   }, {
     _id: 3,
-    label: 'thích report test à ',
+    label: 'Hoạt động bất hợp pháp và hàng hóa bị kiểm soát',
     select: false
   }, {
     _id: 4,
-    label: 'thích report test affff ',
+    label: 'Nội dung bạo lực và ghê rợn',
     select: false
   }, {
     _id: 5,
-    label: 'thích report t ádaest á',
+    label: 'Sự an toàn của trẻ vị thành niên',
     select: false
   }, {
     _id: 6,
-    label: 'thíchád  report test',
+    label: 'Nội dung lừa đảo chiếm đoạt tài sản',
     select: false
   }, {
     _id: 7,
-    label: 'ta hích report test',
+    label: 'vấn đề khác',
     select: false
   }];
 
@@ -3246,7 +3271,7 @@ function Readmore(_ref) {
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-    className: "d-flex flex-column justify-content-start ml-1",
+    className: "content__text d-flex flex-column justify-content-start ml-1",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
       className: "shadow-none p-2 bg-light rounded",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
@@ -3522,19 +3547,60 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       });
 
     case _action_type__WEBPACK_IMPORTED_MODULE_0__["default"].COMMENT.LIKE_COMMENT:
-      var _action$payload = action.payload,
-          _id = _action$payload._id,
-          like = _action$payload.like; /// loop tìm từng comment coi có comment nào trùng thì thay like mới
+      {
+        var _action$payload = action.payload,
+            _id = _action$payload._id,
+            like = _action$payload.like; /// loop tìm từng comment coi có comment nào trùng thì thay like mới
 
-      return state.map(function (comment) {
-        if (comment._id == _id) {
-          return _objectSpread(_objectSpread({}, comment), {}, {
-            like: _toConsumableArray(like)
+        return state.map(function (comment) {
+          if (comment._id == _id) {
+            return _objectSpread(_objectSpread({}, comment), {}, {
+              like: _toConsumableArray(like)
+            });
+          } /// check comment con trung
+
+
+          var childrens = comment.childrens.map(function (child) {
+            if (child._id == _id) {
+              return _objectSpread(_objectSpread({}, child), {}, {
+                like: _toConsumableArray(like)
+              });
+            }
+
+            return _objectSpread({}, child);
           });
-        }
+          comment.childrens = _toConsumableArray(childrens);
+          return _objectSpread({}, comment);
+        });
+      }
 
-        return _objectSpread({}, comment);
-      });
+    case _action_type__WEBPACK_IMPORTED_MODULE_0__["default"].COMMENT.REPORT_COMMENT:
+      {
+        var _action$payload2 = action.payload,
+            _id2 = _action$payload2._id,
+            report = _action$payload2.report; /// loop tìm từng comment coi có comment nào trùng thì thay report mới
+
+        return state.map(function (comment) {
+          if (comment._id == _id2) {
+            return _objectSpread(_objectSpread({}, comment), {}, {
+              report: _toConsumableArray(report)
+            });
+          } /// check comment con trung
+
+
+          var childrens = comment.childrens.map(function (child) {
+            if (child._id == _id2) {
+              return _objectSpread(_objectSpread({}, child), {}, {
+                report: _toConsumableArray(report)
+              });
+            }
+
+            return _objectSpread({}, child);
+          });
+          comment.childrens = _toConsumableArray(childrens);
+          return _objectSpread({}, comment);
+        });
+      }
 
     default:
       return state;
@@ -4237,7 +4303,7 @@ module.exports = (function() {
 
 var base64 = __webpack_require__(/*! base64-js */ "./node_modules/base64-js/index.js")
 var ieee754 = __webpack_require__(/*! ieee754 */ "./node_modules/ieee754/index.js")
-var isArray = __webpack_require__(/*! isarray */ "./node_modules/isarray/index.js")
+var isArray = __webpack_require__(/*! isarray */ "./node_modules/buffer/node_modules/isarray/index.js")
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -6014,6 +6080,21 @@ function blitBuffer (src, dst, offset, length) {
 function isnan (val) {
   return val !== val // eslint-disable-line no-self-compare
 }
+
+
+/***/ }),
+
+/***/ "./node_modules/buffer/node_modules/isarray/index.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/buffer/node_modules/isarray/index.js ***!
+  \***********************************************************/
+/***/ ((module) => {
+
+var toString = {}.toString;
+
+module.exports = Array.isArray || function (arr) {
+  return toString.call(arr) == '[object Array]';
+};
 
 
 /***/ }),
@@ -9929,7 +10010,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*!
  * Module requirements.
  */
 
-var isArray = __webpack_require__(/*! isarray */ "./node_modules/has-binary2/node_modules/isarray/index.js");
+var isArray = __webpack_require__(/*! isarray */ "./node_modules/isarray/index.js");
 
 var toString = Object.prototype.toString;
 var withNativeBlob = typeof Blob === 'function' ||
@@ -9987,21 +10068,6 @@ function hasBinary (obj) {
 
   return false;
 }
-
-
-/***/ }),
-
-/***/ "./node_modules/has-binary2/node_modules/isarray/index.js":
-/*!****************************************************************!*\
-  !*** ./node_modules/has-binary2/node_modules/isarray/index.js ***!
-  \****************************************************************/
-/***/ ((module) => {
-
-var toString = {}.toString;
-
-module.exports = Array.isArray || function (arr) {
-  return toString.call(arr) == '[object Array]';
-};
 
 
 /***/ }),
@@ -69924,7 +69990,7 @@ function url (uri, loc) {
  * Module requirements
  */
 
-var isArray = __webpack_require__(/*! isarray */ "./node_modules/socket.io-parser/node_modules/isarray/index.js");
+var isArray = __webpack_require__(/*! isarray */ "./node_modules/isarray/index.js");
 var isBuf = __webpack_require__(/*! ./is-buffer */ "./node_modules/socket.io-parser/is-buffer.js");
 var toString = Object.prototype.toString;
 var withNativeBlob = typeof Blob === 'function' || (typeof Blob !== 'undefined' && toString.call(Blob) === '[object BlobConstructor]');
@@ -70077,7 +70143,7 @@ exports.removeBlobs = function(data, callback) {
 var debug = __webpack_require__(/*! debug */ "./node_modules/debug/src/browser.js")('socket.io-parser');
 var Emitter = __webpack_require__(/*! component-emitter */ "./node_modules/component-emitter/index.js");
 var binary = __webpack_require__(/*! ./binary */ "./node_modules/socket.io-parser/binary.js");
-var isArray = __webpack_require__(/*! isarray */ "./node_modules/socket.io-parser/node_modules/isarray/index.js");
+var isArray = __webpack_require__(/*! isarray */ "./node_modules/isarray/index.js");
 var isBuf = __webpack_require__(/*! ./is-buffer */ "./node_modules/socket.io-parser/is-buffer.js");
 
 /**
@@ -70516,21 +70582,6 @@ function isBuf(obj) {
 
 /***/ }),
 
-/***/ "./node_modules/socket.io-parser/node_modules/isarray/index.js":
-/*!*********************************************************************!*\
-  !*** ./node_modules/socket.io-parser/node_modules/isarray/index.js ***!
-  \*********************************************************************/
-/***/ ((module) => {
-
-var toString = {}.toString;
-
-module.exports = Array.isArray || function (arr) {
-  return toString.call(arr) == '[object Array]';
-};
-
-
-/***/ }),
-
 /***/ "./node_modules/to-array/index.js":
 /*!****************************************!*\
   !*** ./node_modules/to-array/index.js ***!
@@ -70864,7 +70915,7 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/","/localtunnel"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_shasum":"c67b90dc0568e5c1cf2b0b858c43ba28e2eda575","_spec":"axios@0.21.4","_where":"C:\\\\xampp\\\\htdocs\\\\SITTERX\\\\SERVER_PHP\\\\node_modules\\\\localtunnel","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundleDependencies":false,"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"deprecated":false,"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
+module.exports = JSON.parse('{"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/","#USER","/localtunnel"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_shasum":"c67b90dc0568e5c1cf2b0b858c43ba28e2eda575","_spec":"axios@0.21.4","_where":"/Users/hero/Code/estate/SERVER_PHP","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundleDependencies":false,"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"deprecated":false,"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
 
 /***/ })
 

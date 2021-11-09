@@ -49,6 +49,7 @@ function Action({ comment, AUTH, CONFIG, SOCKET }) {
 
 
     const likeActive = like.some( l => l.user == AUTH.id ) && 'active'
+    const reportActive = report.some( r => r.user == AUTH.id ) && 'active'
     let actionHTML = (
         <div className="float-left">
             <div className="d-flex flex-row px-3">
@@ -61,7 +62,7 @@ function Action({ comment, AUTH, CONFIG, SOCKET }) {
                     </button>
                 }
                 {
-                    AUTH.id != comment.user.id && <button className="btn btn__action btn__action--report" onClick={ clickReport }>
+                    AUTH.id != comment.user.id && <button className={`btn btn__action btn__action--report ${ reportActive }`} onClick={ clickReport }>
                         <i className="fal fa-exclamation-triangle"></i><span className="ml-1">Báo cáo vi phạm</span>
                     </button>
                 }

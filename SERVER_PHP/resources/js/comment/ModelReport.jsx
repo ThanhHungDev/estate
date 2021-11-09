@@ -6,14 +6,15 @@ import Reports from "./Reports"
 Modal.setAppElement("#root__comment")
 
 function ModalReport({ modelOpen, setModelOpen, comment, CONFIG, SOCKET }) {
+    
     const reports = [
-        { _id: 1, label: 'thích report test', select: false },
-        { _id: 2, label: 'thích report test fsdf', select: false },
-        { _id: 3, label: 'thích report test à ', select: false },
-        { _id: 4, label: 'thích report test affff ', select: false },
-        { _id: 5, label: 'thích report t ádaest á', select: false },
-        { _id: 6, label: 'thíchád  report test', select: false },
-        { _id: 7, label: 'ta hích report test', select: false },
+        { _id: 1, label: 'Chủ nghĩa cực đoan bạo lực', select: false },
+        { _id: 2, label: 'Hành vi thù địch', select: false },
+        { _id: 3, label: 'Hoạt động bất hợp pháp và hàng hóa bị kiểm soát', select: false },
+        { _id: 4, label: 'Nội dung bạo lực và ghê rợn', select: false },
+        { _id: 5, label: 'Sự an toàn của trẻ vị thành niên', select: false },
+        { _id: 6, label: 'Nội dung lừa đảo chiếm đoạt tài sản', select: false },
+        { _id: 7, label: 'vấn đề khác', select: false },
     ]
 
     const [ reportsChecked, setReportsChecked ] = useState([])
