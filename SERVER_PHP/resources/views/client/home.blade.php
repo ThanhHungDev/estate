@@ -131,6 +131,52 @@
 
 
 
+
+
+
+
+
+
+
+    <div class="categories wow fadeInLeft" data-wow-duration="1s">
+        <div class="categories__wrapper">
+            <h3 id="categories" class="categories__title" tabindex="1" title="💥 Mẫu giao diện theo ngành hàng" >
+                <span class="text-color-pink">{{ Config::get('app.name') }}</span>
+                Gồm có các dịch vụ sau
+            </h3>
+            <div class="container">
+                <div class="row categories__row">
+                    @isset($categories)
+                        @if (!$categories->isEmpty())
+                            @foreach ($categories as $cat)
+                            <div class="categories__item">
+                                <a class="categories__item-link-img" href="{{ Route('CATEGORY_VIEW', ['slug' => $cat->slug ]) }}">
+                                    <img class="lazyload"
+                                    src="{{ Config::get('app.lazyload_base64') }}"
+                                    onerror="this.onerror=null;this.src='{{ asset('/images/failed.jpg') }}';"
+                                    data-src="{{ Route('IMAGE_COMPRESS', [ 'quality' => 70, 'imagePath' => trim($cat->thumbnail, '/') ]) }}" 
+                                    alt="{{ $cat->name }}" width="300" height="300"/>
+                                </a>
+                                <a href="{{ Route('CATEGORY_VIEW', ['slug' => $cat->slug ]) }}">
+                                    <h5 class="categories__item-link-text">{{ $cat->name }}</h5>
+                                </a>
+                            </div>
+                            @endforeach
+                        @endif
+                    @endisset
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    
+
+
+
     <div class="selectus wow fadeInUp" data-wow-duration="1s">
         <div class="selectus__wrapper">
             <h3 id="selectus" class="selectus__title" tabindex="0" title="💥 Vì Sao bạn nên chọn {{ Config::get('app.name') }}" >
@@ -312,37 +358,6 @@
 
 
 
-    <div class="categories wow fadeInLeft" data-wow-duration="1s">
-        <div class="categories__wrapper">
-            <h3 id="categories" class="categories__title" tabindex="1" title="💥 Mẫu giao diện theo ngành hàng" >
-                <span class="text-color-pink">{{ Config::get('app.name') }}</span>
-                Gồm có các dịch vụ sau
-            </h3>
-            <div class="container">
-                <div class="row categories__row">
-                    @isset($categories)
-                        @if (!$categories->isEmpty())
-                            @foreach ($categories as $cat)
-                            <div class="categories__item">
-                                <a class="categories__item-link-img" href="{{ Route('CATEGORY_VIEW', ['slug' => $cat->slug ]) }}">
-                                    <img class="lazyload"
-                                    src="{{ Config::get('app.lazyload_base64') }}"
-                                    onerror="this.onerror=null;this.src='{{ asset('/images/failed.jpg') }}';"
-                                    data-src="{{ Route('IMAGE_COMPRESS', [ 'quality' => 70, 'imagePath' => trim($cat->thumbnail, '/') ]) }}" 
-                                    alt="{{ $cat->name }}" width="300" height="300"/>
-                                </a>
-                                <a href="{{ Route('CATEGORY_VIEW', ['slug' => $cat->slug ]) }}">
-                                    <h5 class="categories__item-link-text">{{ $cat->name }}</h5>
-                                </a>
-                            </div>
-                            @endforeach
-                        @endif
-                    @endisset
-                    
-                </div>
-            </div>
-        </div>
-    </div>
 
 
 

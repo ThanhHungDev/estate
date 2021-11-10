@@ -1,5 +1,7 @@
 {
     "/js/post.js": "/js/post.js",
+    "/css/product.detail.css": "/css/product.detail.css",
+    "/css/user.post.css": "/css/user.post.css",
     "/js/reactPlayerYouTube.js": "/js/reactPlayerYouTube.js",
     "/js/reactPlayerSoundCloud.js": "/js/reactPlayerSoundCloud.js",
     "/js/reactPlayerVimeo.js": "/js/reactPlayerVimeo.js",
@@ -12,7 +14,5 @@
     "/js/reactPlayerVidyard.js": "/js/reactPlayerVidyard.js",
     "/js/reactPlayerKaltura.js": "/js/reactPlayerKaltura.js",
     "/js/reactPlayerFilePlayer.js": "/js/reactPlayerFilePlayer.js",
-    "/js/reactPlayerPreview.js": "/js/reactPlayerPreview.js",
-    "/css/product.detail.css": "/css/product.detail.css",
-    "/css/user.post.css": "/css/user.post.css"
+    "/js/reactPlayerPreview.js": "/js/reactPlayerPreview.js"
 }
