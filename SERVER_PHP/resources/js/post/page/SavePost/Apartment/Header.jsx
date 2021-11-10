@@ -17,8 +17,10 @@ const renderTitleHeader = currentStep => {
             return 'Thêm Diện Tích/Giá'
         case 7: 
             return 'Thông tin bds'
+        case 8:
+            return 'Thông Tin vị trí bds'
         default:
-            return 'Nhập Thông Tin Liên Hệ';
+            return 'Nhập Thông Tin';
     }
 }
 const Header = (props) => {

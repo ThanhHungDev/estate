@@ -2,16 +2,22 @@ import React, { useState, forwardRef, useImperativeHandle, useEffect } from 'rea
 import { EditorState, convertToRaw, convertFromHTML, ContentState, ContentBlock  } from "draft-js"
 import draftToHtml from 'draftjs-to-html'
 import { Editor } from "react-draft-wysiwyg"
+import {
+    onDraftEditorCopy,
+    onDraftEditorCut,
+    handleDraftEditorPastedText,
+  } from "draftjs-conductor";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
 import Validator from "hero-validate"
 import V from "../../../validator/user.content-apartment"
+import fileApi from '../../../../service/file.api';
 /// create rule for your form
 Validator.setLocale(Validator.languages.vi)
 
 const ContentTitle = forwardRef((props, ref) => {
 
-    const { OLD } = props
+    const { OLD, CONFIG } = props
 
     const [ values, setValues]   = useState({ title: OLD.title || "", content: OLD.content || "", contentText: OLD.content || "" })
     const [ touched, setTouched] = useState({})
@@ -35,6 +41,55 @@ const ContentTitle = forwardRef((props, ref) => {
         
         setTouched({ ...touched, [event.target.name]: true })
         setValues({ ...values, [event.target.name]: event.target.value })
+    }
+    const handlePastedText = (text, html, editorState) => {
+        let newState = handleDraftEditorPastedText(html, editorState)
+    
+        if (newState) {
+            handleChangeEditor(newState);
+            return true
+        }
+        return false
+    }
+
+    const uploadCallback = file => {
+        const formData = new FormData()
+        formData.append("file[]", file)
+        formData.append("type", CONFIG.VIDEO.VPOST)
+
+        return new Promise((resolve, reject) => {
+           
+            fileApi.uploadFile(formData)
+            .then( response => {
+                const { data } = response
+                if( data.length ){
+                    /// vì update là lists nên lấy phần tử đầu tiên
+                    const imgfirst = data[0].root
+                    console.log( imgfirst )
+                    resolve({ data: { link: imgfirst } });
+                }
+            })
+            .catch(error => {
+                if (error.response) {
+                    // Request made and server responded
+                    console.log(error.response.data)
+                    console.log(error.response.status)
+                    console.log(error.response.headers)
+                    let { data, status, headers } = error.response
+                    let { errors } = data
+                    let firsKeyError = Object.keys(errors)[0]
+                    alert("upload lỗi : " + errors[firsKeyError] )
+                } else if (error.request) {
+                    // The request was made but no response was received
+                    console.log(error.request)
+                    alert("upload lỗi không nhận được phản hồi" )
+                } else {
+                    // Something happened in setting up the request that triggered an Error
+                    console.log('Error', error.message)
+                    alert("Đã xảy ra sự cố khi thiết lập upload." )
+                }
+            })
+        })
     }
 
     const handleChangeEditor = editorState => {
@@ -104,26 +159,47 @@ const ContentTitle = forwardRef((props, ref) => {
                                 <Editor
                                     editorState={ editorState }
                                     onEditorStateChange={ handleChangeEditor }
+                                    onCopy={onDraftEditorCopy}
+                                    onCut={onDraftEditorCut}
+                                    handlePastedText={handlePastedText}
                                     toolbarClassName="toolbarClassName"
                                     wrapperClassName="px-1"
                                     editorClassName="editor__wrapper-hero"
                                     placeholder="Mô tả đặc điểm bất động sản... "
-                                    toolbar={{
-                                    options: ["inline", "blockType", "fontSize"],
-                                    inline: { inDropdown: true },
-                                    list: { inDropdown: true },
-                                    textAlign: { inDropdown: true },
-                                    link: { inDropdown: true },
-                                    blockType: {
-                                        inDropdown: false,
-                                        options: [
-                                        "Normal",
-                                        "H2",
-                                        "H3",
-                                        "H4",
-                                        ]
+                                    toolbar={
+                                        {
+                                            options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'link', 'emoji', 'image', 'history'],
+                                            inline: { inDropdown: true },
+                                            list: { inDropdown: true },
+                                            textAlign: { inDropdown: true },
+                                            link: { inDropdown: true },
+                                            image: {
+                                                uploadEnabled: true,
+                                                uploadCallback: uploadCallback,
+                                                previewImage: true,
+                                                // inputAccept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',
+                                                inputAccept: 'image/jpeg,image/jpg,image/png',
+                                                alt: '',
+                                                defaultSize: {
+                                                    height: 'auto',
+                                                    width: 'auto',
+                                                },
+                                            },
+                                            embedded: {
+                                                inDropdown: false
+                                            },
+                                            blockType: {
+                                                inDropdown: false,
+                                                options: [
+                                                "Normal",
+                                                "H2",
+                                                "H3",
+                                                "H4",
+                                                "link"
+                                                ]
+                                            }
+                                        }
                                     }
-                                    }}
                                 />
                             </div>
                             { hasErr('contentText') && <div className="d-block invalid-feedback"> { errors.getError('contentText') } </div> }

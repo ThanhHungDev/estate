@@ -1,13 +1,18 @@
 {
-    "/js/comment.js": "/js/comment.js",
-    "/js/validate.login.user.js": "/js/validate.login.user.js",
-    "/js/validate.register.user.js": "/js/validate.register.user.js",
-    "/css/admin.css": "/css/admin.css",
-    "/css/forgot.css": "/css/forgot.css",
-    "/css/register.css": "/css/register.css",
-    "/css/login.css": "/css/login.css",
-    "/css/profile.css": "/css/profile.css",
-    "/css/home.css": "/css/home.css",
+    "/js/post.js": "/js/post.js",
+    "/js/reactPlayerYouTube.js": "/js/reactPlayerYouTube.js",
+    "/js/reactPlayerSoundCloud.js": "/js/reactPlayerSoundCloud.js",
+    "/js/reactPlayerVimeo.js": "/js/reactPlayerVimeo.js",
+    "/js/reactPlayerFacebook.js": "/js/reactPlayerFacebook.js",
+    "/js/reactPlayerStreamable.js": "/js/reactPlayerStreamable.js",
+    "/js/reactPlayerWistia.js": "/js/reactPlayerWistia.js",
+    "/js/reactPlayerTwitch.js": "/js/reactPlayerTwitch.js",
+    "/js/reactPlayerDailyMotion.js": "/js/reactPlayerDailyMotion.js",
+    "/js/reactPlayerMixcloud.js": "/js/reactPlayerMixcloud.js",
+    "/js/reactPlayerVidyard.js": "/js/reactPlayerVidyard.js",
+    "/js/reactPlayerKaltura.js": "/js/reactPlayerKaltura.js",
+    "/js/reactPlayerFilePlayer.js": "/js/reactPlayerFilePlayer.js",
+    "/js/reactPlayerPreview.js": "/js/reactPlayerPreview.js",
     "/css/product.detail.css": "/css/product.detail.css",
-    "/css/contact.css": "/css/contact.css"
+    "/css/user.post.css": "/css/user.post.css"
 }
