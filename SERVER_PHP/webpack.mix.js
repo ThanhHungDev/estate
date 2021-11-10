@@ -23,7 +23,7 @@ mix
     // .js('resources/js/comment.js', 'public/js').react()
     // .js('resources/js/validate.login.user.js', 'public/js')
     // .js('resources/js/validate.register.user.js', 'public/js')
-    // .js('resources/js/app.js', 'public/js')
+    .js('resources/js/app.js', 'public/js')
     // .js('resources/admin/js/app.js', 'public/js/admin')
     // .js('resources/admin/js/validate.post.js', 'public/js/admin')
     // .js('resources/admin/js/validate.product.js', 'public/js/admin')
@@ -43,7 +43,7 @@ mix
 
 
     // .sass('resources/sass/app.scss', 'public/css')
-    // .sass('resources/sass/page/home.scss', 'public/css')
+    .sass('resources/sass/page/home.scss', 'public/css')
     // .sass('resources/sass/page/profile.scss', 'public/css')
     // .sass('resources/sass/page/login.scss', 'public/css')
     // .sass('resources/sass/page/register.scss', 'public/css')

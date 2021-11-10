@@ -222,7 +222,8 @@
 
 
 .categories{
-    padding-top: 3rem;
+    padding-top: 1.5rem;
+    @include Screen(SM){ padding-top: 3rem;}
 
     &__wrapper{
         
@@ -237,6 +238,8 @@
         text-transform: capitalize;
         margin-top: 0;
         font-weight: 500;
+        font-size: 1.1rem;
+        @include Screen(SM){ font-size: 1.7rem;}
 
         span{
             display: inline-block;
@@ -263,7 +266,7 @@
     }
     &__item{
         padding: .7rem 1.5%;
-        width: 33.333%;
+        width: 25%;
         @include render-autofix(transform, scale(1, 1));
         @include render-autofix(transition, all .3s ease-in-out);
 
@@ -285,7 +288,7 @@
             display: block;
         }
         &-link-text{
-            padding: 10px;
+            padding: 10px 0;
             text-align: center;
             text-transform: capitalize;
             font-weight: normal;

@@ -131,11 +131,14 @@ class ImageController extends Controller
     }
 
 
-    public function encode($quality = self::QUALITY, $imagePath)
+    public function encode($qual = self::QUALITY, $imagePath)
     {
         $imagePath = trim($imagePath, "/");
         $imageFullPath = public_path($imagePath);
-        
+        $quality = $qual;
+        if( $qual == 'mobile'){
+            $quality = 30;
+        }
         /// check file exist
         if(!File::isFile($imageFullPath) || !is_numeric($quality)){
 
@@ -144,6 +147,15 @@ class ImageController extends Controller
     
         
         $image = Image::make($imageFullPath);
+        $WIDTH_MIN = 300;
+        if( $qual == 'mobile' && $image->width() > $WIDTH_MIN ){
+            $width = $WIDTH_MIN;
+            $height = null;
+            $image->resize($width, $height, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+        }
+        
         $mime = $image->mime();
         
         if (isset(self::ALLOWED[$mime])) {

@@ -27706,7 +27706,12 @@ ul.contact li a span {
 }
 
 .categories {
-  padding-top: 3rem;
+  padding-top: 1.5rem;
+}
+@media (min-width: 576px) {
+  .categories {
+    padding-top: 3rem;
+  }
 }
 .categories__wrapper {
   max-width: 1100px;
@@ -27720,6 +27725,12 @@ ul.contact li a span {
   text-transform: capitalize;
   margin-top: 0;
   font-weight: 500;
+  font-size: 1.1rem;
+}
+@media (min-width: 576px) {
+  .categories__title {
+    font-size: 1.7rem;
+  }
 }
 .categories__title span {
   display: inline-block;
@@ -27744,7 +27755,7 @@ ul.contact li a span {
 }
 .categories__item {
   padding: 0.7rem 1.5%;
-  width: 33.333%;
+  width: 25%;
   transform: scale(1, 1);
   transition: all 0.3s ease-in-out;
 }
@@ -27770,7 +27781,7 @@ ul.contact li a span {
   display: block;
 }
 .categories__item-link-text {
-  padding: 10px;
+  padding: 10px 0;
   text-align: center;
   text-transform: capitalize;
   font-weight: normal;

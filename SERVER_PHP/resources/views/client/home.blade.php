@@ -154,7 +154,7 @@
                                     <img class="lazyload"
                                     src="{{ Config::get('app.lazyload_base64') }}"
                                     onerror="this.onerror=null;this.src='{{ asset('/images/failed.jpg') }}';"
-                                    data-src="{{ Route('IMAGE_COMPRESS', [ 'quality' => 70, 'imagePath' => trim($cat->thumbnail, '/') ]) }}" 
+                                    data-src="{{ Route('IMAGE_COMPRESS', [ 'quality' => SupportAgent::getQuanlityByDevice(), 'imagePath' => trim($cat->thumbnail, '/') ]) }}" 
                                     alt="{{ $cat->name }}" width="300" height="300"/>
                                 </a>
                                 <a href="{{ Route('CATEGORY_VIEW', ['slug' => $cat->slug ]) }}">
@@ -173,7 +173,7 @@
 
 
 
-    
+
 
 
 

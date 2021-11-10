@@ -215,6 +215,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
 
         App\Providers\GoogleDriveServiceProvider::class,
+        Jenssegers\Agent\AgentServiceProvider::class,
     ],
 
     /*
@@ -282,6 +283,7 @@ return [
         'RemoteInfor' => App\Helpers\RemoteInfor::class,
         'RemoteAddress' => App\Helpers\RemoteAddress::class,
         'SupportJson' => App\Helpers\SupportJson::class,
+        'SupportAgent' => App\Helpers\SupportAgent::class,
     ],
 
 ];
