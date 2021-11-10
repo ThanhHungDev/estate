@@ -211,9 +211,12 @@
                     <div class="lightgallery d-none">
                         @foreach ($pics as $key => $pic)
                         <a class="img__dtl-item" href="{{ asset($pic->src) }}">
-                            <img 
-                                src="{{ asset($pic->src) }}"
-                                onerror="this.onerror=null;this.src='{{ asset(Config::get('app.image_error')) }}';" />
+                            <img class="lazyload"
+                                src="{{ Config::get('app.lazyload') }}"
+                                onerror="this.onerror=null;this.src='{{ asset(Config::get('app.image_error')) }}';"
+                                data-src="{{ asset($pic->src) }}"
+                                alt="{{ $product->title }}"
+                            />
                         </a>
                         @endforeach
                     </div>
