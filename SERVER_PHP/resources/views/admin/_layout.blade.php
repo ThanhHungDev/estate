@@ -39,11 +39,6 @@
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#62854F">
     
-    {{-- <link rel="stylesheet" href="{{ asset('css/animate.min.css' . Config::get('app.version'))}}">
-    <link rel="stylesheet" href="{{ asset('css/awesome.min.css' . Config::get('app.version'))}}">
-    <link rel="stylesheet" href="{{ asset('css/client.min.css' . Config::get('app.version'))}}">
-    <link rel="stylesheet" href="{{ asset('css/library.min.css' . Config::get('app.version'))}}">
-    <link rel="stylesheet" href="{{ asset('css/material.min.css' . Config::get('app.version'))}}"> --}}
     <link rel="stylesheet" href="{{ asset('css/admin.css' . Config::get('app.version'))}}">
 
     <script async='async' defer='defer' src='{{ asset('js/library/lazysizes.min.js' . Config::get('app.version')) }}'></script>

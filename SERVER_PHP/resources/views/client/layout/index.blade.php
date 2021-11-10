@@ -43,13 +43,13 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('/favicon/favicon.ico' . Config::get('app.version')) }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/favicon/favicon.ico' . Config::get('app.version')) }}"/>
 
-    {{-- <script>
+    <script>
         
         if ('serviceWorker' in navigator) {
             console.log("có hộ trợ run service");
-            navigator.serviceWorker.register('/service.js');
+            navigator.serviceWorker.register('/service-v2.js');
         }
-    </script> --}}
+    </script>
     <script>
         const CONFIG_COMPANY_NAME    = "{{ Config::get('app.company_name') }}";
         const CONFIG_COMPANY_ADDRESS = "{{ implode(',', [ Config::get('app.company_address_street'), Config::get('app.company_address_locality'), Config::get('app.company_address_region'), Config::get('app.company_address_country')]) }}";
@@ -58,19 +58,6 @@
         const MAP_LONG = "{{ Config::get('app.map_long') }}";
         const GOOGLE_PLACES_API = `{{ env('GOOGLE_PLACES_API') }}`;
     </script>
-
-    @php $analatic_key = Config::get("app.analatic") @endphp
-    @if($analatic_key)
-    <script async src="https://www.googletagmanager.com/gtag/js?id={{ $analatic_key }}"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', "{{ $analatic_key }}");
-    </script>
-    @endif
-
     
 </head>
 <body>
@@ -86,12 +73,25 @@
 
 
 
-    <script src="{{ asset('js/library/jquery.min.js' . Config::get('app.version')) }}"></script>
-    <script src="{{ asset('js/library/tipped.min.js' . Config::get('app.version')) }}"></script>
-    <script src="{{ asset('js/library/modal.jquery.min.js' . Config::get('app.version')) }}"></script>
-    <script src="{{ asset('js/app.js' . Config::get('app.version')) }}"></script>
+    <script type="text/javascript" src="{{ asset('js/library/jquery.min.js' . Config::get('app.version')) }}"></script>
+    <script type="text/javascript" src="{{ asset('js/library/tipped.min.js' . Config::get('app.version')) }}"></script>
+    <script type="text/javascript" src="{{ asset('js/library/modal.jquery.min.js' . Config::get('app.version')) }}"></script>
+    <script type="text/javascript" src="{{ asset('js/app.js' . Config::get('app.version')) }}"></script>
     
     @yield('javascripts')
     @yield('make-up-data')
+
+
+    @php $analatic_key = Config::get("app.analatic") @endphp
+    @if($analatic_key)
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ $analatic_key }}"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', "{{ $analatic_key }}");
+    </script>
+    @endif
 </body>
 </html>

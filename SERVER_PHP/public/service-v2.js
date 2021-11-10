@@ -1,5 +1,5 @@
-const CACHE_NAME = 'HERO-CACHE-v1' /// tên nhóm caches để khi xóa cache thì chỉ cần thay đổi nó thôi
-const CACHE_OLD_DELETE = []
+const CACHE_NAME = 'HERO-CACHE-v2' /// tên nhóm caches để khi xóa cache thì chỉ cần thay đổi nó thôi
+const CACHE_OLD_DELETE = ['HERO-CACHE-v1']
 // A list of local resources we always want to be cached.
 const PRECACHE_URLS = [
     "/font/IconFont/webfont.woff2?v=1.4.57",
