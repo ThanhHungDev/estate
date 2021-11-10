@@ -192,10 +192,13 @@
                     {{-- box-shadow: 0 1px 10px 0 rgb(0 0 0 / 12%); --}}
                     <div class="item__action">
                         <div class="item__image">
-                            <img class="product-image"
-                                src="{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => $product->thumbnail ]) }}"
+                            <img class="product-image lazyload"
+                                src="{{ Config::get('app.lazyload') }}" 
+                                {{-- src="{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => $product->thumbnail ]) }}" --}}
                                 onerror="this.onerror=null;this.src='{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => '/images/failed.jpg' ]) }}'"
-                                alt="{{ $product->title }}">
+                                data-src="{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => trim($product->thumbnail, "/") ]) }}"
+                                alt="{{ $product->title }}"
+                            />
                             <div class="hover__show-links">
                                 <button type="button" onclick="showLightGaleries(this)"
                                 class="btn-hero btn__view-detail px-4 py-1 itext-md">xem ảnh</button>
@@ -224,10 +227,13 @@
                         
                         <div class="detail__info media">
                             <a class="detail__info-img" onclick="showLightGaleries(this)">
-                                <img class="product-image"
-                                src="{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => $product->thumbnail ]) }}"
-                                onerror="this.onerror=null;this.src='{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => '/images/failed.jpg' ]) }}'"
-                                alt="{{ $product->title }}"/>
+                                <img class="product-image lazyload"
+                                    src="{{ Config::get('app.lazyload') }}" 
+                                    {{-- src="{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => $product->thumbnail ]) }}" --}}
+                                    onerror="this.onerror=null;this.src='{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => '/images/failed.jpg' ]) }}'"
+                                    data-src="{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => trim($product->thumbnail, "/") ]) }}"
+                                    alt="{{ $product->title }}"
+                                />
                                 <div class="counter__galeries">{{ $pics->count(); }} <i class="far fa-image"></i> - {{ $product->view }} <i class="far fa-eye"></i></div>
                             </a>
                             <div class="clearfix visible-sm"></div>
