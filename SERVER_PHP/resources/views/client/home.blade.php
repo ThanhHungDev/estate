@@ -109,7 +109,7 @@
             <div class="col-12 homeslider">
                 <div id="slider" class="slider">
                     @foreach ($sliders as $key => $slider)
-                    <div class="js__onload--show d-none">
+                    <div class="js__onload--show {{ !$key ?? 'd-none'}}">
                         <div class="slider__item">
                             <div class="slider__item-img">
                                 <img src="{{ $slider->src }}" alt="{{ $slider->alt }}"/>
