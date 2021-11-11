@@ -123,7 +123,7 @@
                     <div class="js__onload--show {{ !$key ?? 'd-none'}}">
                         <div class="slider__item">
                             <div class="slider__item-img">
-                                <img src="{{ $slider->src }}" alt="{{ $slider->alt }}"/>
+                                <img src="{{ $slider->src }}" alt="{{ $slider->alt }}" width="200" height="175"/>
                             </div>
                             <div class="slider__item-content">
                                 <div>
