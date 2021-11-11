@@ -16,9 +16,11 @@
     {{-- <link rel="preload" as="font" href="/font/font-awe/webfonts/fa-brands-400.woff2" /> --}}
     <link rel="preload" as="style" href="{{ asset('css/library/bootstrap.min.css' . Config::get('app.version'))}}"/>
     <link rel="preload" as="style" href="{{ asset('css/library/tipped.css' . Config::get('app.version'))}}"/>
+    @if (!Agent::isRobot())
     <link rel="preload" as="image" href="{{ asset('favicon.ico' . Config::get('app.version')) }}"/>
     <link rel="preload" as="image" href="{{ asset('/favicon/favicon.ico' . Config::get('app.version')) }}"/>
     <link rel="preload" as="fetch" href="{{ asset('/favicon/manifest.json' . Config::get('app.version')) }}" />
+    @endif
     <link rel="preload" as="image" href="{{ asset('logo.png' . Config::get('app.version')) }}"/>
     <link rel="preload" as="script" href="{{ asset('js/library/lazysizes.min.js' . Config::get('app.version')) }}"/>
     <link rel="preload" as="script" href="{{ asset('js/library/jquery.min.js' . Config::get('app.version')) }}"/>
@@ -34,6 +36,7 @@
     <script async='async' defer='defer' src="{{ asset('js/library/lazysizes.min.js' . Config::get('app.version')) }}"></script>
     
     <link rel="icon" type="image/png" href="{{ asset('favicon.ico' . Config::get('app.version')) }}">
+    @if (!Agent::isRobot())
     <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('/favicon/apple-icon-57x57.png' . Config::get('app.version')) }}">
     <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('/favicon/apple-icon-60x60.png' . Config::get('app.version')) }}">
     <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('/favicon/apple-icon-72x72.png' . Config::get('app.version')) }}">
@@ -52,9 +55,11 @@
     <meta name="msapplication-TileImage" content="{{ asset('/favicon/ms-icon-144x144.png' . Config::get('app.version')) }}">
     <meta name="theme-color" content="#62854F">
     {{-- dành cho bing search --}}
+    @endif
     <link rel="icon" type="image/x-icon" href="{{ asset('/favicon/favicon.ico' . Config::get('app.version')) }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/favicon/favicon.ico' . Config::get('app.version')) }}"/>
 
+    @if (!Agent::isRobot())
     <script>
         
         if ('serviceWorker' in navigator) {
@@ -62,6 +67,8 @@
             navigator.serviceWorker.register('/service-v2.js');
         }
     </script>
+    @endif
+    
     <script>
         const CONFIG_COMPANY_NAME    = "{{ Config::get('app.company_name') }}";
         const CONFIG_COMPANY_ADDRESS = "{{ implode(',', [ Config::get('app.company_address_street'), Config::get('app.company_address_locality'), Config::get('app.company_address_region'), Config::get('app.company_address_country')]) }}";
@@ -95,7 +102,7 @@
 
 
     @php $analatic_key = Config::get("app.analatic") @endphp
-    @if($analatic_key)
+    @if($analatic_key && !Agent::isRobot())
     <script async src="https://www.googletagmanager.com/gtag/js?id={{ $analatic_key }}"></script>
     <script>
         window.dataLayer = window.dataLayer || [];

@@ -141,7 +141,7 @@
                                         {{ Config::get('app.phone') }}
                                     </a>
                                     <a class="btn-hero btn-hero-outline-light-green itext-sm" href="{{ Route('CONTACT_PAGE') }}">
-                                        Gửi Yêu Cầu Tư Vấn {{ Agent::isRobot() ? 'robot' : 'máy' }}
+                                        Gửi Yêu Cầu Tư Vấn
                                     </a>
                                 </div>
                             </div>
