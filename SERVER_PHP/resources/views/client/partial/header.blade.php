@@ -2,6 +2,8 @@
     <div class="header">
         <a class="logo" href="{{ Route('HOME_PAGE') }}">
             <img 
+                width="44"
+                height="44"
                 class="logo__img lazyload" 
                 src="{{ Config::get('app.lazyload') }}" 
                 data-src="{{ asset('logo.png' . Config::get('app.version')) }}" 

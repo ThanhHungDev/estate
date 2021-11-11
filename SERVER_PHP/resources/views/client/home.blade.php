@@ -266,6 +266,7 @@
                     <div class="item__action">
                         <div class="item__image">
                             <img class="product-image lazyload"
+                                width="350" height="250"
                                 src="{{ Config::get('app.lazyload') }}" 
                                 {{-- src="{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => $product->thumbnail ]) }}" --}}
                                 onerror="this.onerror=null;this.src='{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => '/images/failed.jpg' ]) }}'"
@@ -304,6 +305,7 @@
                         <div class="detail__info media">
                             <a class="detail__info-img" onclick="showLightGaleries(this)">
                                 <img class="product-image lazyload"
+                                    width="80" height="56"
                                     src="{{ Config::get('app.lazyload') }}" 
                                     {{-- src="{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => $product->thumbnail ]) }}" --}}
                                     onerror="this.onerror=null;this.src='{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => '/images/failed.jpg' ]) }}'"
