@@ -12,6 +12,10 @@
 @foreach ($sliders as $key => $slider)
 <link rel="preload" as="image" href="{{ $slider->src }}"/>
 @endforeach
+@foreach ($categories as $cat)
+<link rel="preload" as="image" href="{{ Route('IMAGE_COMPRESS', [ 'quality' => SupportAgent::getQuanlityByDevice(), 'imagePath' => trim($cat->thumbnail, '/') ]) }}"/>
+@endforeach
+
 <link rel="preload" as="script" href="{{ asset('/js/library/carousel.min.js' . Config::get('app.version')) }}"/>
 <link rel="preload" as="script" href="{{ asset('js/library/wow.min.js' . Config::get('app.version')) }}"/>
 <link rel="preload" as="script" href="{{ asset('js/library/slick.min.js' . Config::get('app.version')) }}"/>
@@ -165,10 +169,12 @@
                             @foreach ($categories as $cat)
                             <div class="categories__item">
                                 <a class="categories__item-link-img" href="{{ Route('CATEGORY_VIEW', ['slug' => $cat->slug ]) }}">
-                                    <img class="lazyload"
-                                    src="{{ Config::get('app.lazyload_base64') }}"
+                                    <img 
+                                    {{-- class="lazyload" --}}
+                                    {{-- src="{{ Config::get('app.lazyload_base64') }}" --}}
                                     onerror="this.onerror=null;this.src='{{ asset('/images/failed.jpg') }}';"
-                                    data-src="{{ Route('IMAGE_COMPRESS', [ 'quality' => SupportAgent::getQuanlityByDevice(), 'imagePath' => trim($cat->thumbnail, '/') ]) }}" 
+                                    {{-- data-src="{{ Route('IMAGE_COMPRESS', [ 'quality' => SupportAgent::getQuanlityByDevice(), 'imagePath' => trim($cat->thumbnail, '/') ]) }}"  --}}
+                                    src="{{ Route('IMAGE_COMPRESS', [ 'quality' => SupportAgent::getQuanlityByDevice(), 'imagePath' => trim($cat->thumbnail, '/') ]) }}" 
                                     alt="{{ $cat->name }}" width="300" height="300"/>
                                 </a>
                                 <a href="{{ Route('CATEGORY_VIEW', ['slug' => $cat->slug ]) }}">
