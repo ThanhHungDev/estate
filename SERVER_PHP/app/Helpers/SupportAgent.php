@@ -11,7 +11,7 @@ class SupportAgent{
         if( $agent->isMobile() ){
             return 'mobile';
         }
-        return 70;
+        return 50;
 	}
     
 }

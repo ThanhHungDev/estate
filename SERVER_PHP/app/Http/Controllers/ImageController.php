@@ -136,7 +136,9 @@ class ImageController extends Controller
         $imagePath = trim($imagePath, "/");
         $imageFullPath = public_path($imagePath);
         $quality = $qual;
+        $WIDTH_MIN = 400;
         if( $qual == 'mobile'){
+            $WIDTH_MIN = 250;
             $quality = 30;
         }
         /// check file exist
@@ -147,8 +149,8 @@ class ImageController extends Controller
     
         
         $image = Image::make($imageFullPath);
-        $WIDTH_MIN = 300;
-        if( $qual == 'mobile' && $image->width() > $WIDTH_MIN ){
+        
+        if( $image->width() > $WIDTH_MIN ){
             $width = $WIDTH_MIN;
             $height = null;
             $image->resize($width, $height, function ($constraint) {
