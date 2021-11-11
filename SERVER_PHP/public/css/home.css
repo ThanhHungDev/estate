@@ -27561,6 +27561,9 @@ ul.contact li a span {
 .homeslider .slider__item-img {
   width: 40%;
 }
+.homeslider .slider__item-img img {
+  width: auto;
+}
 .homeslider .slider__item-content {
   overflow: hidden;
   padding: 15px;
