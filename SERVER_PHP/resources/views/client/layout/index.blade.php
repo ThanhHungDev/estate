@@ -53,13 +53,13 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('/favicon/favicon.ico' . Config::get('app.version')) }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/favicon/favicon.ico' . Config::get('app.version')) }}"/>
 
-    {{-- <script>
+    <script>
         
         if ('serviceWorker' in navigator) {
             console.log("có hộ trợ run service");
             navigator.serviceWorker.register('/service-v2.js');
         }
-    </script> --}}
+    </script>
     <script>
         const CONFIG_COMPANY_NAME    = "{{ Config::get('app.company_name') }}";
         const CONFIG_COMPANY_ADDRESS = "{{ implode(',', [ Config::get('app.company_address_street'), Config::get('app.company_address_locality'), Config::get('app.company_address_region'), Config::get('app.company_address_country')]) }}";
