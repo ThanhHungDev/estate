@@ -5,11 +5,11 @@
 
 
 @section('preload')
-<link rel="preload" as="font" href="{{ asset('/font/font-awe/webfonts/fa-duotone-900.woff2')}}" />
+{{-- <link rel="preload" as="font" href="{{ asset('/font/font-awe/webfonts/fa-duotone-900.woff2')}}" />
 <link rel="preload" as="font" href="{{ asset('/font/font-awe/webfonts/fa-regular-400.woff2')}}" />
 <link rel="preload" as="font" href="{{ asset('/font/font-awe/webfonts/fa-light-300.woff2')}}" />
-<link rel="preload" as="font" href="{{ asset('/font/font-awe/webfonts/fa-solid-900.woff2')}}" />
-<link rel="preload" as="font" href="{{ asset('/css/library/fonts/slick.woff')}}" />
+<link rel="preload" as="font" href="{{ asset('/font/font-awe/webfonts/fa-solid-900.woff2')}}" /> --}}
+{{-- <link rel="preload" as="font" href="{{ asset('/css/library/fonts/slick.woff')}}" /> --}}
 <link rel="preload" as="image" href="{{ asset('/css/library/ajax-loader.gif') }}"/>
 
 <link rel="preload" as="style" href="{{ asset('css/home.css' . Config::get('app.version'))}}"/>
