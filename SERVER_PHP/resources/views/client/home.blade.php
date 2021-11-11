@@ -4,6 +4,20 @@
 @section('description', Config::get("app.description"))
 
 
+@section('preload')
+<link rel="preload" as="style" href="{{ asset('css/home.css' . Config::get('app.version'))}}"/>
+<link rel="preload" as="style" href="{{ asset('css/library/slick.css' . Config::get('app.version')) }}"/>
+<link rel="preload" as="style" href="{{ asset('css/library/slick-theme.css' . Config::get('app.version')) }}"/>
+<link rel="preload" as="style" href="{{ asset('css/library/lightgallery.css' . Config::get('app.version')) }}" />
+@foreach ($sliders as $key => $slider)
+<link rel="preload" as="image" href="{{ $slider->src }}"/>
+@endforeach
+<link rel="preload" as="script" href="{{ asset('/js/library/carousel.min.js' . Config::get('app.version')) }}"/>
+<link rel="preload" as="script" href="{{ asset('js/library/wow.min.js' . Config::get('app.version')) }}"/>
+<link rel="preload" as="script" href="{{ asset('js/library/slick.min.js' . Config::get('app.version')) }}"/>
+<link rel="preload" as="script" href="{{ asset('js/library/lightgallery.min.js' . Config::get('app.version')) }}"/>
+@endsection
+
 @section('stylesheets')
 <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css' . Config::get('app.version'))}}"/>
 <link rel="stylesheet" type="text/css" href="{{ asset('css/library/slick.css' . Config::get('app.version')) }}"/>
