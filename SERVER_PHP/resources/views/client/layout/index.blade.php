@@ -65,6 +65,7 @@
     @endif
     
     <script>
+        window.IS_ROBOT = "{{ Agent::isRobot() ? 1 : null }}";
         const CONFIG_COMPANY_NAME    = "{{ Config::get('app.company_name') }}";
         const CONFIG_COMPANY_ADDRESS = "{{ implode(',', [ Config::get('app.company_address_street'), Config::get('app.company_address_locality'), Config::get('app.company_address_region'), Config::get('app.company_address_country')]) }}";
 

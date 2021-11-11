@@ -38,7 +38,7 @@ $(document).ready(function () {
     /// create tooltip 
     Tipped.create('.simple-tooltip', {skin: 'light', size: 'large' })
     
-    if (menu.length) {
+    if (menu.length && !window.IS_ROBOT ) {
         var sticky = menu.offset().top + 1; // menu.outerHeight()
         // console.log(sticky)
         // if ($(window).width() > 767) {
