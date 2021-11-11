@@ -17,6 +17,7 @@
     <link rel="preload" as="style" href="{{ asset('css/library/bootstrap.min.css' . Config::get('app.version'))}}"/>
     <link rel="preload" as="style" href="{{ asset('css/library/tipped.css' . Config::get('app.version'))}}"/>
     <link rel="preload" as="image" href="{{ asset('favicon.ico' . Config::get('app.version')) }}"/>
+    <link rel="preload" as="image" href="{{ asset('/favicon/favicon.ico' . Config::get('app.version')) }}"/>
     <link rel="preload" as="fetch" href="{{ asset('/favicon/manifest.json' . Config::get('app.version')) }}" />
     <link rel="preload" as="image" href="{{ asset('logo.png' . Config::get('app.version')) }}"/>
     <link rel="preload" as="script" href="{{ asset('js/library/lazysizes.min.js' . Config::get('app.version')) }}"/>
