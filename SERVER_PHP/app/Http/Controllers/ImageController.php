@@ -170,7 +170,7 @@ class ImageController extends Controller
         }
         
 
-        $savedPath = public_path('compress/' . $quality . '/' . $imagePath);
+        $savedPath = public_path('compress/' . $qual . '/' . $imagePath);
         $savedDir  = dirname($savedPath);
 
         if(!File::isDirectory($savedDir)){
