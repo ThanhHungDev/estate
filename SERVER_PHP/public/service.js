@@ -94,7 +94,7 @@ self.addEventListener('fetch', event => {
         .then(function(response) {
             // Cache hit - return response
             if (response) {
-                console.log(`Cache hit: ${CACHE_NAME} ` + JSON.stringify(response.url) )
+                // console.log(`Cache hit: ${CACHE_NAME} ` + JSON.stringify(response.url) )
                 return response
             }
 
@@ -108,7 +108,7 @@ self.addEventListener('fetch', event => {
             function(response) {
                 // Check if we received a valid response
                 if(!response || response.status !== 200 || response.type !== 'basic') {
-                    console.log("return res:"+response.url + " status: "+response.status)
+                    // console.log("return res:"+response.url + " status: "+response.status)
                     return response
                 }
 
