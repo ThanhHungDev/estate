@@ -59,7 +59,7 @@
         
         if ('serviceWorker' in navigator) {
             console.log("có hộ trợ run service");
-            navigator.serviceWorker.register('/service-v2.js');
+            navigator.serviceWorker.register('/service.js');
         }
     </script>
     @endif
@@ -144,3 +144,33 @@
     @endif
 </body>
 </html>
+
+
+
+
+{{-- 
+
+
+gzip              on;
+gzip_buffers      16 8k;
+gzip_comp_level   4;
+gzip_http_version 1.0;
+gzip_min_length   1280;
+gzip_types        text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
+gzip_vary         on;
+
+
+
+
+
+
+
+gzip on;
+	gzip_disable "msie6";
+
+	gzip_vary on;
+	gzip_proxied any;
+	gzip_comp_level 4;
+	gzip_buffers 16 8k;
+	gzip_http_version 1.0;
+	gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript; --}}
