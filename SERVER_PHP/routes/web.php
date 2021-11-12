@@ -64,6 +64,10 @@ Route::get('compress/{quality}/{imagePath}', [ App\Http\Controllers\ImageControl
 ->where('imagePath', '(.*)')
 ->name('IMAGE_COMPRESS');
 
+Route::get('convertor/{quality}/{imagePath}', [ App\Http\Controllers\ImageController::class, 'convertor' ])
+->where('imagePath', '(.*)')
+->name('IMAGE_CONVERTOR');
+
 Route::get('resize-compress/{size}/{type}/{quality}/{ext}/{imagePath}', [ App\Http\Controllers\ImageController::class, 'resize_compress' ])
 ->where('imagePath', '(.*)')
 ->name('IMAGE_RESIZE_COMPRESS');

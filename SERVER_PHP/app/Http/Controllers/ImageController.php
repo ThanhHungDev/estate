@@ -189,6 +189,68 @@ class ImageController extends Controller
             return abort(404);
         }
     }
+
+
+
+    public function convertor($qual = self::QUALITY, $imagePath)
+    {
+        // luôn convert ra định dạng WebP
+        $TYPE_FILE_CONVERTOR = 'webp';
+        
+        $imagePath = trim($imagePath, "/");
+
+        // $ext = pathinfo($imagePath, PATHINFO_EXTENSION);
+        @list( 
+            'basename' => $basename, 
+            'dirname' => $dirname,
+            'extension' => $extension,
+            'filename' => $filename 
+        ) = pathinfo($imagePath);
+        $paths = [ $dirname, $filename ];
+        $imagePath = join("/", $paths);
+        if( strtoupper($extension) != strtoupper($TYPE_FILE_CONVERTOR)){
+            abort(404);
+        }
+        $imageFullPath = public_path($imagePath);
+        $quality = $qual;
+        if( $qual == 'mobile'){
+            $quality = 30;
+        }
+        /// check file exist
+        if(!File::isFile($imageFullPath) || !is_numeric($quality)){
+
+            abort(404);
+        }
+    
+        
+        $image = Image::make($imageFullPath);
+        $WIDTH_MIN = 300;
+        if( $qual == 'mobile' && $image->width() > $WIDTH_MIN ){
+            $width = $WIDTH_MIN;
+            $height = null;
+            $image->resize($width, $height, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+        }
+        
+
+        $savedPath = public_path('convertor/' . $qual . '/' . $imagePath . ".$TYPE_FILE_CONVERTOR");
+        $savedDir  = dirname($savedPath);
+
+        if(!File::isDirectory($savedDir)){
+
+            File::makeDirectory($savedDir, 0777, true, true);
+        }
+        try {
+            // encode png image as jpg
+            $image = $image->encode($TYPE_FILE_CONVERTOR, $quality)->save($savedPath);
+
+            return $image->response();
+        } catch (\Throwable $th) {
+
+            return abort(404);
+        }
+    }
     
 
     public function resize_compress($size, $type = self::TYPE__FIT, $quality = 70, $ext = 'jpg',$imagePath)

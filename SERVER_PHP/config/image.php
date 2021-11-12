@@ -31,7 +31,8 @@ return [
         'POST'       => 'post',
         'BACKGROUND' => 'background',
         'MIXED'      => 'mixed'
-    ]
+    ],
+    'EXTENTION_CONVERTOR' => '.webp',
 
 
 ];
