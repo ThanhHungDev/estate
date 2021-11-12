@@ -21,8 +21,7 @@
 <script>
     
     function showLightGaleries(e){
-        console.log("vòa đây nh")
-        $(e).closest('.item').find(".lightgallery img").click()
+        $(e).closest('.item').find(".lightgallery img").click();
     }
     var lightgalleries = document.getElementsByClassName("lightgallery");
     for (var i = 0; i < lightgalleries.length; i++){
@@ -45,11 +44,11 @@
 
 
         //// home page review custommer
-        var rating__custommer = document.getElementById("rating__custommer")
+        var rating__custommer = document.getElementById("rating__custommer");
         if(rating__custommer){
             
             rating__custommer.addEventListener('lazybeforeunveil', function(e){
-                console.log("rating__custommer")
+                console.log("rating__custommer");
                 /// slider home page
                 $("#rating__comment-owl").owlCarousel({
                     items : 3,
