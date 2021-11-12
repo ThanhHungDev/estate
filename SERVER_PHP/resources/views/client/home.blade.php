@@ -22,7 +22,7 @@
 {{-- @foreach ($categories as $cat)
 <link rel="preload" as="image" href="{{ Route('IMAGE_CONVERTOR', [ 'quality' => SupportAgent::getQuanlityByDevice(), 'imagePath' => trim($cat->thumbnail, '/') . Config::get('image.EXTENTION_CONVERTOR') ]) }}"/>
 @endforeach --}}
-
+<link rel="preload" as="style" href="{{ asset('css/library/bootstrap.home.css' . Config::get('app.version'))}}"/>
 <link rel="preload" as="script" href="{{ asset('/js/library/carousel.min.js' . Config::get('app.version')) }}"/>
 <link rel="preload" as="script" href="{{ asset('js/library/wow.min.js' . Config::get('app.version')) }}"/>
 <link rel="preload" as="script" href="{{ asset('js/library/slick.min.js' . Config::get('app.version')) }}"/>
@@ -30,6 +30,7 @@
 @endsection
 
 @section('stylesheets')
+<link rel="stylesheet" type="text/css" href="{{ asset('css/library/bootstrap.home.css' . Config::get('app.version'))}}"/>
 <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css' . Config::get('app.version'))}}"/>
 <link rel="stylesheet" type="text/css" href="{{ asset('css/library/slick.css' . Config::get('app.version')) }}"/>
 <link rel="stylesheet" type="text/css" href="{{ asset('css/library/slick-theme.css' . Config::get('app.version')) }}"/>

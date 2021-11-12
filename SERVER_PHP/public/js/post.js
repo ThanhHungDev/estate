@@ -28,6 +28,29 @@ __webpack_require__.r(__webpack_exports__);
 
 var last = function last(arr) {
   return arr.length ? arr[arr.length - 1] : null;
+}; // based on https://github.com/thysultan/stylis.js/blob/e6843c373ebcbbfade25ebcc23f540ed8508da0a/src/Tokenizer.js#L239-L244
+
+
+var identifierWithPointTracking = function identifierWithPointTracking(begin, points, index) {
+  var previous = 0;
+  var character = 0;
+
+  while (true) {
+    previous = character;
+    character = (0,stylis__WEBPACK_IMPORTED_MODULE_3__.peek)(); // &\f
+
+    if (previous === 38 && character === 12) {
+      points[index] = 1;
+    }
+
+    if ((0,stylis__WEBPACK_IMPORTED_MODULE_3__.token)(character)) {
+      break;
+    }
+
+    (0,stylis__WEBPACK_IMPORTED_MODULE_3__.next)();
+  }
+
+  return (0,stylis__WEBPACK_IMPORTED_MODULE_3__.slice)(begin, stylis__WEBPACK_IMPORTED_MODULE_3__.position);
 };
 
 var toRules = function toRules(parsed, points) {
@@ -47,7 +70,7 @@ var toRules = function toRules(parsed, points) {
           points[index] = 1;
         }
 
-        parsed[index] += (0,stylis__WEBPACK_IMPORTED_MODULE_3__.identifier)(stylis__WEBPACK_IMPORTED_MODULE_3__.position - 1);
+        parsed[index] += identifierWithPointTracking(stylis__WEBPACK_IMPORTED_MODULE_3__.position - 1, points, index);
         break;
 
       case 2:
@@ -424,9 +447,9 @@ function memoize(fn) {
 
 /***/ }),
 
-/***/ "./node_modules/@emotion/react/dist/emotion-element-a8309070.browser.esm.js":
+/***/ "./node_modules/@emotion/react/dist/emotion-element-99289b21.browser.esm.js":
 /*!**********************************************************************************!*\
-  !*** ./node_modules/@emotion/react/dist/emotion-element-a8309070.browser.esm.js ***!
+  !*** ./node_modules/@emotion/react/dist/emotion-element-99289b21.browser.esm.js ***!
   \**********************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -436,6 +459,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "C": () => (/* binding */ CacheProvider),
 /* harmony export */   "E": () => (/* binding */ Emotion),
 /* harmony export */   "T": () => (/* binding */ ThemeContext),
+/* harmony export */   "_": () => (/* binding */ __unsafe_useEmotionCache),
 /* harmony export */   "a": () => (/* binding */ ThemeProvider),
 /* harmony export */   "b": () => (/* binding */ withTheme),
 /* harmony export */   "c": () => (/* binding */ createEmotionProps),
@@ -469,7 +493,15 @@ var EmotionCacheContext = /* #__PURE__ */(0,react__WEBPACK_IMPORTED_MODULE_0__.c
 typeof HTMLElement !== 'undefined' ? /* #__PURE__ */(0,_emotion_cache__WEBPACK_IMPORTED_MODULE_1__["default"])({
   key: 'css'
 }) : null);
+
+if (true) {
+  EmotionCacheContext.displayName = 'EmotionCacheContext';
+}
+
 var CacheProvider = EmotionCacheContext.Provider;
+var __unsafe_useEmotionCache = function useEmotionCache() {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(EmotionCacheContext);
+};
 
 var withEmotionCache = function withEmotionCache(func) {
   // $FlowFixMe
@@ -481,6 +513,11 @@ var withEmotionCache = function withEmotionCache(func) {
 };
 
 var ThemeContext = /* #__PURE__ */(0,react__WEBPACK_IMPORTED_MODULE_0__.createContext)({});
+
+if (true) {
+  ThemeContext.displayName = 'EmotionThemeContext';
+}
+
 var useTheme = function useTheme() {
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(ThemeContext);
 };
@@ -599,7 +636,7 @@ var Emotion = /* #__PURE__ */withEmotionCache(function (props, cache, ref) {
     className = props.className + " ";
   }
 
-  var serialized = (0,_emotion_serialize__WEBPACK_IMPORTED_MODULE_5__.serializeStyles)(registeredStyles, undefined, typeof cssProp === 'function' || Array.isArray(cssProp) ? (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(ThemeContext) : undefined);
+  var serialized = (0,_emotion_serialize__WEBPACK_IMPORTED_MODULE_5__.serializeStyles)(registeredStyles, undefined, (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(ThemeContext));
 
   if ( true && serialized.name.indexOf('-') === -1) {
     var labelFromStack = props[labelPropName];
@@ -644,12 +681,13 @@ if (true) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "CacheProvider": () => (/* reexport safe */ _emotion_element_a8309070_browser_esm_js__WEBPACK_IMPORTED_MODULE_2__.C),
-/* harmony export */   "ThemeContext": () => (/* reexport safe */ _emotion_element_a8309070_browser_esm_js__WEBPACK_IMPORTED_MODULE_2__.T),
-/* harmony export */   "ThemeProvider": () => (/* reexport safe */ _emotion_element_a8309070_browser_esm_js__WEBPACK_IMPORTED_MODULE_2__.a),
-/* harmony export */   "useTheme": () => (/* reexport safe */ _emotion_element_a8309070_browser_esm_js__WEBPACK_IMPORTED_MODULE_2__.u),
-/* harmony export */   "withEmotionCache": () => (/* reexport safe */ _emotion_element_a8309070_browser_esm_js__WEBPACK_IMPORTED_MODULE_2__.w),
-/* harmony export */   "withTheme": () => (/* reexport safe */ _emotion_element_a8309070_browser_esm_js__WEBPACK_IMPORTED_MODULE_2__.b),
+/* harmony export */   "CacheProvider": () => (/* reexport safe */ _emotion_element_99289b21_browser_esm_js__WEBPACK_IMPORTED_MODULE_2__.C),
+/* harmony export */   "ThemeContext": () => (/* reexport safe */ _emotion_element_99289b21_browser_esm_js__WEBPACK_IMPORTED_MODULE_2__.T),
+/* harmony export */   "ThemeProvider": () => (/* reexport safe */ _emotion_element_99289b21_browser_esm_js__WEBPACK_IMPORTED_MODULE_2__.a),
+/* harmony export */   "__unsafe_useEmotionCache": () => (/* reexport safe */ _emotion_element_99289b21_browser_esm_js__WEBPACK_IMPORTED_MODULE_2__._),
+/* harmony export */   "useTheme": () => (/* reexport safe */ _emotion_element_99289b21_browser_esm_js__WEBPACK_IMPORTED_MODULE_2__.u),
+/* harmony export */   "withEmotionCache": () => (/* reexport safe */ _emotion_element_99289b21_browser_esm_js__WEBPACK_IMPORTED_MODULE_2__.w),
+/* harmony export */   "withTheme": () => (/* reexport safe */ _emotion_element_99289b21_browser_esm_js__WEBPACK_IMPORTED_MODULE_2__.b),
 /* harmony export */   "ClassNames": () => (/* binding */ ClassNames),
 /* harmony export */   "Global": () => (/* binding */ Global),
 /* harmony export */   "createElement": () => (/* binding */ jsx),
@@ -659,7 +697,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _emotion_cache__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @emotion/cache */ "./node_modules/@emotion/cache/dist/emotion-cache.browser.esm.js");
-/* harmony import */ var _emotion_element_a8309070_browser_esm_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./emotion-element-a8309070.browser.esm.js */ "./node_modules/@emotion/react/dist/emotion-element-a8309070.browser.esm.js");
+/* harmony import */ var _emotion_element_99289b21_browser_esm_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./emotion-element-99289b21.browser.esm.js */ "./node_modules/@emotion/react/dist/emotion-element-99289b21.browser.esm.js");
 /* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
 /* harmony import */ var _emotion_weak_memoize__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @emotion/weak-memoize */ "./node_modules/@emotion/weak-memoize/dist/weak-memoize.browser.esm.js");
 /* harmony import */ var hoist_non_react_statics__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! hoist-non-react-statics */ "./node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js");
@@ -681,7 +719,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var pkg = {
 	name: "@emotion/react",
-	version: "11.4.0",
+	version: "11.5.0",
 	main: "dist/emotion-react.cjs.js",
 	module: "dist/emotion-react.esm.js",
 	browser: {
@@ -708,9 +746,9 @@ var pkg = {
 	},
 	dependencies: {
 		"@babel/runtime": "^7.13.10",
-		"@emotion/cache": "^11.4.0",
+		"@emotion/cache": "^11.5.0",
 		"@emotion/serialize": "^1.0.2",
-		"@emotion/sheet": "^1.0.1",
+		"@emotion/sheet": "^1.0.3",
 		"@emotion/utils": "^1.0.0",
 		"@emotion/weak-memoize": "^0.2.5",
 		"hoist-non-react-statics": "^3.3.1"
@@ -729,7 +767,7 @@ var pkg = {
 	},
 	devDependencies: {
 		"@babel/core": "^7.13.10",
-		"@emotion/css": "11.1.3",
+		"@emotion/css": "11.5.0",
 		"@emotion/css-prettifier": "1.0.0",
 		"@emotion/server": "11.4.0",
 		"@emotion/styled": "11.3.0",
@@ -758,15 +796,15 @@ var pkg = {
 var jsx = function jsx(type, props) {
   var args = arguments;
 
-  if (props == null || !_emotion_element_a8309070_browser_esm_js__WEBPACK_IMPORTED_MODULE_2__.h.call(props, 'css')) {
+  if (props == null || !_emotion_element_99289b21_browser_esm_js__WEBPACK_IMPORTED_MODULE_2__.h.call(props, 'css')) {
     // $FlowFixMe
     return react__WEBPACK_IMPORTED_MODULE_0__.createElement.apply(undefined, args);
   }
 
   var argsLength = args.length;
   var createElementArgArray = new Array(argsLength);
-  createElementArgArray[0] = _emotion_element_a8309070_browser_esm_js__WEBPACK_IMPORTED_MODULE_2__.E;
-  createElementArgArray[1] = (0,_emotion_element_a8309070_browser_esm_js__WEBPACK_IMPORTED_MODULE_2__.c)(type, props);
+  createElementArgArray[0] = _emotion_element_99289b21_browser_esm_js__WEBPACK_IMPORTED_MODULE_2__.E;
+  createElementArgArray[1] = (0,_emotion_element_99289b21_browser_esm_js__WEBPACK_IMPORTED_MODULE_2__.c)(type, props);
 
   for (var i = 2; i < argsLength; i++) {
     createElementArgArray[i] = args[i];
@@ -780,7 +818,7 @@ var warnedAboutCssPropForGlobal = false; // maintain place over rerenders.
 // initial render from browser, insertBefore context.sheet.tags[0] or if a style hasn't been inserted there yet, appendChild
 // initial client-side render from SSR, use place of hydrating tag
 
-var Global = /* #__PURE__ */(0,_emotion_element_a8309070_browser_esm_js__WEBPACK_IMPORTED_MODULE_2__.w)(function (props, cache) {
+var Global = /* #__PURE__ */(0,_emotion_element_99289b21_browser_esm_js__WEBPACK_IMPORTED_MODULE_2__.w)(function (props, cache) {
   if ( true && !warnedAboutCssPropForGlobal && ( // check for className as well since the user is
   // probably using the custom createElement which
   // means it will be turned into a className prop
@@ -791,7 +829,7 @@ var Global = /* #__PURE__ */(0,_emotion_element_a8309070_browser_esm_js__WEBPACK
   }
 
   var styles = props.styles;
-  var serialized = (0,_emotion_serialize__WEBPACK_IMPORTED_MODULE_7__.serializeStyles)([styles], undefined, typeof styles === 'function' || Array.isArray(styles) ? (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_emotion_element_a8309070_browser_esm_js__WEBPACK_IMPORTED_MODULE_2__.T) : undefined);
+  var serialized = (0,_emotion_serialize__WEBPACK_IMPORTED_MODULE_7__.serializeStyles)([styles], undefined, (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_emotion_element_99289b21_browser_esm_js__WEBPACK_IMPORTED_MODULE_2__.T));
   // but it is based on a constant that will never change at runtime
   // it's effectively like having two implementations and switching them out
   // so it's not actually breaking anything
@@ -941,7 +979,7 @@ function merge(registered, css, className) {
   return rawClassName + css(registeredStyles);
 }
 
-var ClassNames = /* #__PURE__ */(0,_emotion_element_a8309070_browser_esm_js__WEBPACK_IMPORTED_MODULE_2__.w)(function (props, cache) {
+var ClassNames = /* #__PURE__ */(0,_emotion_element_99289b21_browser_esm_js__WEBPACK_IMPORTED_MODULE_2__.w)(function (props, cache) {
   var hasRendered = false;
 
   var css = function css() {
@@ -977,7 +1015,7 @@ var ClassNames = /* #__PURE__ */(0,_emotion_element_a8309070_browser_esm_js__WEB
   var content = {
     css: css,
     cx: cx,
-    theme: (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_emotion_element_a8309070_browser_esm_js__WEBPACK_IMPORTED_MODULE_2__.T)
+    theme: (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_emotion_element_99289b21_browser_esm_js__WEBPACK_IMPORTED_MODULE_2__.T)
   };
   var ele = props.children(content);
   hasRendered = true;
@@ -995,7 +1033,10 @@ if (true) {
   var isJest = typeof jest !== 'undefined';
 
   if (isBrowser && !isJest) {
-    var globalContext = isBrowser ? window : __webpack_require__.g;
+    // globalThis has wide browser support - https://caniuse.com/?search=globalThis, Node.js 12 and later
+    var globalContext = // $FlowIgnore
+    typeof globalThis !== 'undefined' ? globalThis // eslint-disable-line no-undef
+    : isBrowser ? window : __webpack_require__.g;
     var globalKey = "__EMOTION_REACT_" + pkg.version.split('.')[0] + "__";
 
     if (globalContext[globalKey]) {
@@ -1500,7 +1541,7 @@ var StyleSheet = /*#__PURE__*/function () {
         // the big drawback is that the css won't be editable in devtools
         sheet.insertRule(rule, sheet.cssRules.length);
       } catch (e) {
-        if ( true && !/:(-moz-placeholder|-ms-input-placeholder|-moz-read-write|-moz-read-only){/.test(rule)) {
+        if ( true && !/:(-moz-placeholder|-moz-focus-inner|-moz-focusring|-ms-input-placeholder|-moz-read-write|-moz-read-only|-ms-clear){/.test(rule)) {
           console.error("There was a problem inserting the following rule: \"" + rule + "\"", e);
         }
       }
@@ -1514,7 +1555,7 @@ var StyleSheet = /*#__PURE__*/function () {
   _proto.flush = function flush() {
     // $FlowFixMe
     this.tags.forEach(function (tag) {
-      return tag.parentNode.removeChild(tag);
+      return tag.parentNode && tag.parentNode.removeChild(tag);
     });
     this.tags = [];
     this.ctr = 0;
@@ -6559,7 +6600,7 @@ module.exports = function transformData(data, headers, fns) {
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
-/* provided dependency */ var process = __webpack_require__(/*! process/browser */ "./node_modules/process/browser.js");
+/* provided dependency */ var process = __webpack_require__(/*! process/browser.js */ "./node_modules/process/browser.js");
 
 
 var utils = __webpack_require__(/*! ./utils */ "./node_modules/axios/lib/utils.js");
@@ -13783,9 +13824,9 @@ _api_middleware__WEBPACK_IMPORTED_MODULE_1__["default"].checkToken(Api);
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[8].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[8].oneOf[1].use[2]!./node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css":
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[2]!./node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css":
 /*!*********************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[8].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[8].oneOf[1].use[2]!./node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css ***!
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[2]!./node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css ***!
   \*********************************************************************************************************************************************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
@@ -17933,7 +17974,7 @@ var invariant = __webpack_require__(/*! fbjs/lib/invariant */ "./node_modules/fb
 
 var isHTMLBRElement = __webpack_require__(/*! ./isHTMLBRElement */ "./node_modules/draft-js/lib/isHTMLBRElement.js");
 
-var setDraftEditorSelection = __webpack_require__(/*! ./setDraftEditorSelection */ "./node_modules/draft-js/lib/setDraftEditorSelection.js").setDraftEditorSelection;
+var setDraftEditorSelection = (__webpack_require__(/*! ./setDraftEditorSelection */ "./node_modules/draft-js/lib/setDraftEditorSelection.js").setDraftEditorSelection);
 
 /**
  * All leaf nodes in the editor are spans with single text nodes. Leaf
@@ -35861,7 +35902,7 @@ module.exports = mapObject(UserAgent, memoizeStringOnly);
  */
 
 
-var UAParser = __webpack_require__(/*! ua-parser-js */ "./node_modules/ua-parser-js/src/ua-parser.js");
+var UAParser = __webpack_require__(/*! ua-parser-js */ "./node_modules/fbjs/node_modules/ua-parser-js/src/ua-parser.js");
 
 var UNKNOWN = 'Unknown';
 var PLATFORM_MAP = {
@@ -37486,6 +37527,891 @@ var warning =  true ? function (condition, format) {
   }
 } : 0;
 module.exports = warning;
+
+/***/ }),
+
+/***/ "./node_modules/fbjs/node_modules/ua-parser-js/src/ua-parser.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/fbjs/node_modules/ua-parser-js/src/ua-parser.js ***!
+  \**********************************************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_RESULT__;/////////////////////////////////////////////////////////////////////////////////
+/* UAParser.js v0.7.31
+   Copyright © 2012-2021 Faisal Salman <f@faisalman.com>
+   MIT License *//*
+   Detect Browser, Engine, OS, CPU, and Device type/model from User-Agent data.
+   Supports browser & node.js environment. 
+   Demo   : https://faisalman.github.io/ua-parser-js
+   Source : https://github.com/faisalman/ua-parser-js */
+/////////////////////////////////////////////////////////////////////////////////
+
+(function (window, undefined) {
+
+    'use strict';
+
+    //////////////
+    // Constants
+    /////////////
+
+
+    var LIBVERSION  = '0.7.31',
+        EMPTY       = '',
+        UNKNOWN     = '?',
+        FUNC_TYPE   = 'function',
+        UNDEF_TYPE  = 'undefined',
+        OBJ_TYPE    = 'object',
+        STR_TYPE    = 'string',
+        MAJOR       = 'major',
+        MODEL       = 'model',
+        NAME        = 'name',
+        TYPE        = 'type',
+        VENDOR      = 'vendor',
+        VERSION     = 'version',
+        ARCHITECTURE= 'architecture',
+        CONSOLE     = 'console',
+        MOBILE      = 'mobile',
+        TABLET      = 'tablet',
+        SMARTTV     = 'smarttv',
+        WEARABLE    = 'wearable',
+        EMBEDDED    = 'embedded',
+        UA_MAX_LENGTH = 255;
+
+    var AMAZON  = 'Amazon',
+        APPLE   = 'Apple',
+        ASUS    = 'ASUS',
+        BLACKBERRY = 'BlackBerry',
+        BROWSER = 'Browser',
+        CHROME  = 'Chrome',
+        EDGE    = 'Edge',
+        FIREFOX = 'Firefox',
+        GOOGLE  = 'Google',
+        HUAWEI  = 'Huawei',
+        LG      = 'LG',
+        MICROSOFT = 'Microsoft',
+        MOTOROLA  = 'Motorola',
+        OPERA   = 'Opera',
+        SAMSUNG = 'Samsung',
+        SONY    = 'Sony',
+        XIAOMI  = 'Xiaomi',
+        ZEBRA   = 'Zebra',
+        FACEBOOK   = 'Facebook';
+
+    ///////////
+    // Helper
+    //////////
+
+    var extend = function (regexes, extensions) {
+            var mergedRegexes = {};
+            for (var i in regexes) {
+                if (extensions[i] && extensions[i].length % 2 === 0) {
+                    mergedRegexes[i] = extensions[i].concat(regexes[i]);
+                } else {
+                    mergedRegexes[i] = regexes[i];
+                }
+            }
+            return mergedRegexes;
+        },
+        enumerize = function (arr) {
+            var enums = {};
+            for (var i=0; i<arr.length; i++) {
+                enums[arr[i].toUpperCase()] = arr[i];
+            }
+            return enums;
+        },
+        has = function (str1, str2) {
+            return typeof str1 === STR_TYPE ? lowerize(str2).indexOf(lowerize(str1)) !== -1 : false;
+        },
+        lowerize = function (str) {
+            return str.toLowerCase();
+        },
+        majorize = function (version) {
+            return typeof(version) === STR_TYPE ? version.replace(/[^\d\.]/g, EMPTY).split('.')[0] : undefined;
+        },
+        trim = function (str, len) {
+            if (typeof(str) === STR_TYPE) {
+                str = str.replace(/^\s\s*/, EMPTY).replace(/\s\s*$/, EMPTY);
+                return typeof(len) === UNDEF_TYPE ? str : str.substring(0, UA_MAX_LENGTH);
+            }
+    };
+
+    ///////////////
+    // Map helper
+    //////////////
+
+    var rgxMapper = function (ua, arrays) {
+
+            var i = 0, j, k, p, q, matches, match;
+
+            // loop through all regexes maps
+            while (i < arrays.length && !matches) {
+
+                var regex = arrays[i],       // even sequence (0,2,4,..)
+                    props = arrays[i + 1];   // odd sequence (1,3,5,..)
+                j = k = 0;
+
+                // try matching uastring with regexes
+                while (j < regex.length && !matches) {
+
+                    matches = regex[j++].exec(ua);
+
+                    if (!!matches) {
+                        for (p = 0; p < props.length; p++) {
+                            match = matches[++k];
+                            q = props[p];
+                            // check if given property is actually array
+                            if (typeof q === OBJ_TYPE && q.length > 0) {
+                                if (q.length === 2) {
+                                    if (typeof q[1] == FUNC_TYPE) {
+                                        // assign modified match
+                                        this[q[0]] = q[1].call(this, match);
+                                    } else {
+                                        // assign given value, ignore regex match
+                                        this[q[0]] = q[1];
+                                    }
+                                } else if (q.length === 3) {
+                                    // check whether function or regex
+                                    if (typeof q[1] === FUNC_TYPE && !(q[1].exec && q[1].test)) {
+                                        // call function (usually string mapper)
+                                        this[q[0]] = match ? q[1].call(this, match, q[2]) : undefined;
+                                    } else {
+                                        // sanitize match using given regex
+                                        this[q[0]] = match ? match.replace(q[1], q[2]) : undefined;
+                                    }
+                                } else if (q.length === 4) {
+                                        this[q[0]] = match ? q[3].call(this, match.replace(q[1], q[2])) : undefined;
+                                }
+                            } else {
+                                this[q] = match ? match : undefined;
+                            }
+                        }
+                    }
+                }
+                i += 2;
+            }
+        },
+
+        strMapper = function (str, map) {
+
+            for (var i in map) {
+                // check if current value is array
+                if (typeof map[i] === OBJ_TYPE && map[i].length > 0) {
+                    for (var j = 0; j < map[i].length; j++) {
+                        if (has(map[i][j], str)) {
+                            return (i === UNKNOWN) ? undefined : i;
+                        }
+                    }
+                } else if (has(map[i], str)) {
+                    return (i === UNKNOWN) ? undefined : i;
+                }
+            }
+            return str;
+    };
+
+    ///////////////
+    // String map
+    //////////////
+
+    // Safari < 3.0
+    var oldSafariMap = {
+            '1.0'   : '/8',
+            '1.2'   : '/1',
+            '1.3'   : '/3',
+            '2.0'   : '/412',
+            '2.0.2' : '/416',
+            '2.0.3' : '/417',
+            '2.0.4' : '/419',
+            '?'     : '/'
+        },
+        windowsVersionMap = {
+            'ME'        : '4.90',
+            'NT 3.11'   : 'NT3.51',
+            'NT 4.0'    : 'NT4.0',
+            '2000'      : 'NT 5.0',
+            'XP'        : ['NT 5.1', 'NT 5.2'],
+            'Vista'     : 'NT 6.0',
+            '7'         : 'NT 6.1',
+            '8'         : 'NT 6.2',
+            '8.1'       : 'NT 6.3',
+            '10'        : ['NT 6.4', 'NT 10.0'],
+            'RT'        : 'ARM'
+    };
+
+    //////////////
+    // Regex map
+    /////////////
+
+    var regexes = {
+
+        browser : [[
+
+            /\b(?:crmo|crios)\/([\w\.]+)/i                                      // Chrome for Android/iOS
+            ], [VERSION, [NAME, 'Chrome']], [
+            /edg(?:e|ios|a)?\/([\w\.]+)/i                                       // Microsoft Edge
+            ], [VERSION, [NAME, 'Edge']], [
+
+            // Presto based
+            /(opera mini)\/([-\w\.]+)/i,                                        // Opera Mini
+            /(opera [mobiletab]{3,6})\b.+version\/([-\w\.]+)/i,                 // Opera Mobi/Tablet
+            /(opera)(?:.+version\/|[\/ ]+)([\w\.]+)/i                           // Opera
+            ], [NAME, VERSION], [
+            /opios[\/ ]+([\w\.]+)/i                                             // Opera mini on iphone >= 8.0
+            ], [VERSION, [NAME, OPERA+' Mini']], [
+            /\bopr\/([\w\.]+)/i                                                 // Opera Webkit
+            ], [VERSION, [NAME, OPERA]], [
+
+            // Mixed
+            /(kindle)\/([\w\.]+)/i,                                             // Kindle
+            /(lunascape|maxthon|netfront|jasmine|blazer)[\/ ]?([\w\.]*)/i,      // Lunascape/Maxthon/Netfront/Jasmine/Blazer
+            // Trident based
+            /(avant |iemobile|slim)(?:browser)?[\/ ]?([\w\.]*)/i,               // Avant/IEMobile/SlimBrowser
+            /(ba?idubrowser)[\/ ]?([\w\.]+)/i,                                  // Baidu Browser
+            /(?:ms|\()(ie) ([\w\.]+)/i,                                         // Internet Explorer
+
+            // Webkit/KHTML based                                               // Flock/RockMelt/Midori/Epiphany/Silk/Skyfire/Bolt/Iron/Iridium/PhantomJS/Bowser/QupZilla/Falkon
+            /(flock|rockmelt|midori|epiphany|silk|skyfire|ovibrowser|bolt|iron|vivaldi|iridium|phantomjs|bowser|quark|qupzilla|falkon|rekonq|puffin|brave|whale|qqbrowserlite|qq)\/([-\w\.]+)/i,
+                                                                                // Rekonq/Puffin/Brave/Whale/QQBrowserLite/QQ, aka ShouQ
+            /(weibo)__([\d\.]+)/i                                               // Weibo
+            ], [NAME, VERSION], [
+            /(?:\buc? ?browser|(?:juc.+)ucweb)[\/ ]?([\w\.]+)/i                 // UCBrowser
+            ], [VERSION, [NAME, 'UC'+BROWSER]], [
+            /\bqbcore\/([\w\.]+)/i                                              // WeChat Desktop for Windows Built-in Browser
+            ], [VERSION, [NAME, 'WeChat(Win) Desktop']], [
+            /micromessenger\/([\w\.]+)/i                                        // WeChat
+            ], [VERSION, [NAME, 'WeChat']], [
+            /konqueror\/([\w\.]+)/i                                             // Konqueror
+            ], [VERSION, [NAME, 'Konqueror']], [
+            /trident.+rv[: ]([\w\.]{1,9})\b.+like gecko/i                       // IE11
+            ], [VERSION, [NAME, 'IE']], [
+            /yabrowser\/([\w\.]+)/i                                             // Yandex
+            ], [VERSION, [NAME, 'Yandex']], [
+            /(avast|avg)\/([\w\.]+)/i                                           // Avast/AVG Secure Browser
+            ], [[NAME, /(.+)/, '$1 Secure '+BROWSER], VERSION], [
+            /\bfocus\/([\w\.]+)/i                                               // Firefox Focus
+            ], [VERSION, [NAME, FIREFOX+' Focus']], [
+            /\bopt\/([\w\.]+)/i                                                 // Opera Touch
+            ], [VERSION, [NAME, OPERA+' Touch']], [
+            /coc_coc\w+\/([\w\.]+)/i                                            // Coc Coc Browser
+            ], [VERSION, [NAME, 'Coc Coc']], [
+            /dolfin\/([\w\.]+)/i                                                // Dolphin
+            ], [VERSION, [NAME, 'Dolphin']], [
+            /coast\/([\w\.]+)/i                                                 // Opera Coast
+            ], [VERSION, [NAME, OPERA+' Coast']], [
+            /miuibrowser\/([\w\.]+)/i                                           // MIUI Browser
+            ], [VERSION, [NAME, 'MIUI '+BROWSER]], [
+            /fxios\/([-\w\.]+)/i                                                // Firefox for iOS
+            ], [VERSION, [NAME, FIREFOX]], [
+            /\bqihu|(qi?ho?o?|360)browser/i                                     // 360
+            ], [[NAME, '360 '+BROWSER]], [
+            /(oculus|samsung|sailfish)browser\/([\w\.]+)/i
+            ], [[NAME, /(.+)/, '$1 '+BROWSER], VERSION], [                      // Oculus/Samsung/Sailfish Browser
+            /(comodo_dragon)\/([\w\.]+)/i                                       // Comodo Dragon
+            ], [[NAME, /_/g, ' '], VERSION], [
+            /(electron)\/([\w\.]+) safari/i,                                    // Electron-based App
+            /(tesla)(?: qtcarbrowser|\/(20\d\d\.[-\w\.]+))/i,                   // Tesla
+            /m?(qqbrowser|baiduboxapp|2345Explorer)[\/ ]?([\w\.]+)/i            // QQBrowser/Baidu App/2345 Browser
+            ], [NAME, VERSION], [
+            /(metasr)[\/ ]?([\w\.]+)/i,                                         // SouGouBrowser
+            /(lbbrowser)/i                                                      // LieBao Browser
+            ], [NAME], [
+
+            // WebView
+            /((?:fban\/fbios|fb_iab\/fb4a)(?!.+fbav)|;fbav\/([\w\.]+);)/i       // Facebook App for iOS & Android
+            ], [[NAME, FACEBOOK], VERSION], [
+            /safari (line)\/([\w\.]+)/i,                                        // Line App for iOS
+            /\b(line)\/([\w\.]+)\/iab/i,                                        // Line App for Android
+            /(chromium|instagram)[\/ ]([-\w\.]+)/i                              // Chromium/Instagram
+            ], [NAME, VERSION], [
+            /\bgsa\/([\w\.]+) .*safari\//i                                      // Google Search Appliance on iOS
+            ], [VERSION, [NAME, 'GSA']], [
+
+            /headlesschrome(?:\/([\w\.]+)| )/i                                  // Chrome Headless
+            ], [VERSION, [NAME, CHROME+' Headless']], [
+
+            / wv\).+(chrome)\/([\w\.]+)/i                                       // Chrome WebView
+            ], [[NAME, CHROME+' WebView'], VERSION], [
+
+            /droid.+ version\/([\w\.]+)\b.+(?:mobile safari|safari)/i           // Android Browser
+            ], [VERSION, [NAME, 'Android '+BROWSER]], [
+
+            /(chrome|omniweb|arora|[tizenoka]{5} ?browser)\/v?([\w\.]+)/i       // Chrome/OmniWeb/Arora/Tizen/Nokia
+            ], [NAME, VERSION], [
+
+            /version\/([\w\.]+) .*mobile\/\w+ (safari)/i                        // Mobile Safari
+            ], [VERSION, [NAME, 'Mobile Safari']], [
+            /version\/([\w\.]+) .*(mobile ?safari|safari)/i                     // Safari & Safari Mobile
+            ], [VERSION, NAME], [
+            /webkit.+?(mobile ?safari|safari)(\/[\w\.]+)/i                      // Safari < 3.0
+            ], [NAME, [VERSION, strMapper, oldSafariMap]], [
+
+            /(webkit|khtml)\/([\w\.]+)/i
+            ], [NAME, VERSION], [
+
+            // Gecko based
+            /(navigator|netscape\d?)\/([-\w\.]+)/i                              // Netscape
+            ], [[NAME, 'Netscape'], VERSION], [
+            /mobile vr; rv:([\w\.]+)\).+firefox/i                               // Firefox Reality
+            ], [VERSION, [NAME, FIREFOX+' Reality']], [
+            /ekiohf.+(flow)\/([\w\.]+)/i,                                       // Flow
+            /(swiftfox)/i,                                                      // Swiftfox
+            /(icedragon|iceweasel|camino|chimera|fennec|maemo browser|minimo|conkeror|klar)[\/ ]?([\w\.\+]+)/i,
+                                                                                // IceDragon/Iceweasel/Camino/Chimera/Fennec/Maemo/Minimo/Conkeror/Klar
+            /(seamonkey|k-meleon|icecat|iceape|firebird|phoenix|palemoon|basilisk|waterfox)\/([-\w\.]+)$/i,
+                                                                                // Firefox/SeaMonkey/K-Meleon/IceCat/IceApe/Firebird/Phoenix
+            /(firefox)\/([\w\.]+)/i,                                            // Other Firefox-based
+            /(mozilla)\/([\w\.]+) .+rv\:.+gecko\/\d+/i,                         // Mozilla
+
+            // Other
+            /(polaris|lynx|dillo|icab|doris|amaya|w3m|netsurf|sleipnir|obigo|mosaic|(?:go|ice|up)[\. ]?browser)[-\/ ]?v?([\w\.]+)/i,
+                                                                                // Polaris/Lynx/Dillo/iCab/Doris/Amaya/w3m/NetSurf/Sleipnir/Obigo/Mosaic/Go/ICE/UP.Browser
+            /(links) \(([\w\.]+)/i                                              // Links
+            ], [NAME, VERSION]
+        ],
+
+        cpu : [[
+
+            /(?:(amd|x(?:(?:86|64)[-_])?|wow|win)64)[;\)]/i                     // AMD64 (x64)
+            ], [[ARCHITECTURE, 'amd64']], [
+
+            /(ia32(?=;))/i                                                      // IA32 (quicktime)
+            ], [[ARCHITECTURE, lowerize]], [
+
+            /((?:i[346]|x)86)[;\)]/i                                            // IA32 (x86)
+            ], [[ARCHITECTURE, 'ia32']], [
+
+            /\b(aarch64|arm(v?8e?l?|_?64))\b/i                                 // ARM64
+            ], [[ARCHITECTURE, 'arm64']], [
+
+            /\b(arm(?:v[67])?ht?n?[fl]p?)\b/i                                   // ARMHF
+            ], [[ARCHITECTURE, 'armhf']], [
+
+            // PocketPC mistakenly identified as PowerPC
+            /windows (ce|mobile); ppc;/i
+            ], [[ARCHITECTURE, 'arm']], [
+
+            /((?:ppc|powerpc)(?:64)?)(?: mac|;|\))/i                            // PowerPC
+            ], [[ARCHITECTURE, /ower/, EMPTY, lowerize]], [
+
+            /(sun4\w)[;\)]/i                                                    // SPARC
+            ], [[ARCHITECTURE, 'sparc']], [
+
+            /((?:avr32|ia64(?=;))|68k(?=\))|\barm(?=v(?:[1-7]|[5-7]1)l?|;|eabi)|(?=atmel )avr|(?:irix|mips|sparc)(?:64)?\b|pa-risc)/i
+                                                                                // IA64, 68K, ARM/64, AVR/32, IRIX/64, MIPS/64, SPARC/64, PA-RISC
+            ], [[ARCHITECTURE, lowerize]]
+        ],
+
+        device : [[
+
+            //////////////////////////
+            // MOBILES & TABLETS
+            // Ordered by popularity
+            /////////////////////////
+
+            // Samsung
+            /\b(sch-i[89]0\d|shw-m380s|sm-[pt]\w{2,4}|gt-[pn]\d{2,4}|sgh-t8[56]9|nexus 10)/i
+            ], [MODEL, [VENDOR, SAMSUNG], [TYPE, TABLET]], [
+            /\b((?:s[cgp]h|gt|sm)-\w+|galaxy nexus)/i,
+            /samsung[- ]([-\w]+)/i,
+            /sec-(sgh\w+)/i
+            ], [MODEL, [VENDOR, SAMSUNG], [TYPE, MOBILE]], [
+
+            // Apple
+            /\((ip(?:hone|od)[\w ]*);/i                                         // iPod/iPhone
+            ], [MODEL, [VENDOR, APPLE], [TYPE, MOBILE]], [
+            /\((ipad);[-\w\),; ]+apple/i,                                       // iPad
+            /applecoremedia\/[\w\.]+ \((ipad)/i,
+            /\b(ipad)\d\d?,\d\d?[;\]].+ios/i
+            ], [MODEL, [VENDOR, APPLE], [TYPE, TABLET]], [
+
+            // Huawei
+            /\b((?:ag[rs][23]?|bah2?|sht?|btv)-a?[lw]\d{2})\b(?!.+d\/s)/i
+            ], [MODEL, [VENDOR, HUAWEI], [TYPE, TABLET]], [
+            /(?:huawei|honor)([-\w ]+)[;\)]/i,
+            /\b(nexus 6p|\w{2,4}-[atu]?[ln][01259x][012359][an]?)\b(?!.+d\/s)/i
+            ], [MODEL, [VENDOR, HUAWEI], [TYPE, MOBILE]], [
+
+            // Xiaomi
+            /\b(poco[\w ]+)(?: bui|\))/i,                                       // Xiaomi POCO
+            /\b; (\w+) build\/hm\1/i,                                           // Xiaomi Hongmi 'numeric' models
+            /\b(hm[-_ ]?note?[_ ]?(?:\d\w)?) bui/i,                             // Xiaomi Hongmi
+            /\b(redmi[\-_ ]?(?:note|k)?[\w_ ]+)(?: bui|\))/i,                   // Xiaomi Redmi
+            /\b(mi[-_ ]?(?:a\d|one|one[_ ]plus|note lte|max)?[_ ]?(?:\d?\w?)[_ ]?(?:plus|se|lite)?)(?: bui|\))/i // Xiaomi Mi
+            ], [[MODEL, /_/g, ' '], [VENDOR, XIAOMI], [TYPE, MOBILE]], [
+            /\b(mi[-_ ]?(?:pad)(?:[\w_ ]+))(?: bui|\))/i                        // Mi Pad tablets
+            ],[[MODEL, /_/g, ' '], [VENDOR, XIAOMI], [TYPE, TABLET]], [
+
+            // OPPO
+            /; (\w+) bui.+ oppo/i,
+            /\b(cph[12]\d{3}|p(?:af|c[al]|d\w|e[ar])[mt]\d0|x9007|a101op)\b/i
+            ], [MODEL, [VENDOR, 'OPPO'], [TYPE, MOBILE]], [
+
+            // Vivo
+            /vivo (\w+)(?: bui|\))/i,
+            /\b(v[12]\d{3}\w?[at])(?: bui|;)/i
+            ], [MODEL, [VENDOR, 'Vivo'], [TYPE, MOBILE]], [
+
+            // Realme
+            /\b(rmx[12]\d{3})(?: bui|;|\))/i
+            ], [MODEL, [VENDOR, 'Realme'], [TYPE, MOBILE]], [
+
+            // Motorola
+            /\b(milestone|droid(?:[2-4x]| (?:bionic|x2|pro|razr))?:?( 4g)?)\b[\w ]+build\//i,
+            /\bmot(?:orola)?[- ](\w*)/i,
+            /((?:moto[\w\(\) ]+|xt\d{3,4}|nexus 6)(?= bui|\)))/i
+            ], [MODEL, [VENDOR, MOTOROLA], [TYPE, MOBILE]], [
+            /\b(mz60\d|xoom[2 ]{0,2}) build\//i
+            ], [MODEL, [VENDOR, MOTOROLA], [TYPE, TABLET]], [
+
+            // LG
+            /((?=lg)?[vl]k\-?\d{3}) bui| 3\.[-\w; ]{10}lg?-([06cv9]{3,4})/i
+            ], [MODEL, [VENDOR, LG], [TYPE, TABLET]], [
+            /(lm(?:-?f100[nv]?|-[\w\.]+)(?= bui|\))|nexus [45])/i,
+            /\blg[-e;\/ ]+((?!browser|netcast|android tv)\w+)/i,
+            /\blg-?([\d\w]+) bui/i
+            ], [MODEL, [VENDOR, LG], [TYPE, MOBILE]], [
+
+            // Lenovo
+            /(ideatab[-\w ]+)/i,
+            /lenovo ?(s[56]000[-\w]+|tab(?:[\w ]+)|yt[-\d\w]{6}|tb[-\d\w]{6})/i
+            ], [MODEL, [VENDOR, 'Lenovo'], [TYPE, TABLET]], [
+
+            // Nokia
+            /(?:maemo|nokia).*(n900|lumia \d+)/i,
+            /nokia[-_ ]?([-\w\.]*)/i
+            ], [[MODEL, /_/g, ' '], [VENDOR, 'Nokia'], [TYPE, MOBILE]], [
+
+            // Google
+            /(pixel c)\b/i                                                      // Google Pixel C
+            ], [MODEL, [VENDOR, GOOGLE], [TYPE, TABLET]], [
+            /droid.+; (pixel[\daxl ]{0,6})(?: bui|\))/i                         // Google Pixel
+            ], [MODEL, [VENDOR, GOOGLE], [TYPE, MOBILE]], [
+
+            // Sony
+            /droid.+ ([c-g]\d{4}|so[-gl]\w+|xq-a\w[4-7][12])(?= bui|\).+chrome\/(?![1-6]{0,1}\d\.))/i
+            ], [MODEL, [VENDOR, SONY], [TYPE, MOBILE]], [
+            /sony tablet [ps]/i,
+            /\b(?:sony)?sgp\w+(?: bui|\))/i
+            ], [[MODEL, 'Xperia Tablet'], [VENDOR, SONY], [TYPE, TABLET]], [
+
+            // OnePlus
+            / (kb2005|in20[12]5|be20[12][59])\b/i,
+            /(?:one)?(?:plus)? (a\d0\d\d)(?: b|\))/i
+            ], [MODEL, [VENDOR, 'OnePlus'], [TYPE, MOBILE]], [
+
+            // Amazon
+            /(alexa)webm/i,
+            /(kf[a-z]{2}wi)( bui|\))/i,                                         // Kindle Fire without Silk
+            /(kf[a-z]+)( bui|\)).+silk\//i                                      // Kindle Fire HD
+            ], [MODEL, [VENDOR, AMAZON], [TYPE, TABLET]], [
+            /((?:sd|kf)[0349hijorstuw]+)( bui|\)).+silk\//i                     // Fire Phone
+            ], [[MODEL, /(.+)/g, 'Fire Phone $1'], [VENDOR, AMAZON], [TYPE, MOBILE]], [
+
+            // BlackBerry
+            /(playbook);[-\w\),; ]+(rim)/i                                      // BlackBerry PlayBook
+            ], [MODEL, VENDOR, [TYPE, TABLET]], [
+            /\b((?:bb[a-f]|st[hv])100-\d)/i,
+            /\(bb10; (\w+)/i                                                    // BlackBerry 10
+            ], [MODEL, [VENDOR, BLACKBERRY], [TYPE, MOBILE]], [
+
+            // Asus
+            /(?:\b|asus_)(transfo[prime ]{4,10} \w+|eeepc|slider \w+|nexus 7|padfone|p00[cj])/i
+            ], [MODEL, [VENDOR, ASUS], [TYPE, TABLET]], [
+            / (z[bes]6[027][012][km][ls]|zenfone \d\w?)\b/i
+            ], [MODEL, [VENDOR, ASUS], [TYPE, MOBILE]], [
+
+            // HTC
+            /(nexus 9)/i                                                        // HTC Nexus 9
+            ], [MODEL, [VENDOR, 'HTC'], [TYPE, TABLET]], [
+            /(htc)[-;_ ]{1,2}([\w ]+(?=\)| bui)|\w+)/i,                         // HTC
+
+            // ZTE
+            /(zte)[- ]([\w ]+?)(?: bui|\/|\))/i,
+            /(alcatel|geeksphone|nexian|panasonic|sony)[-_ ]?([-\w]*)/i         // Alcatel/GeeksPhone/Nexian/Panasonic/Sony
+            ], [VENDOR, [MODEL, /_/g, ' '], [TYPE, MOBILE]], [
+
+            // Acer
+            /droid.+; ([ab][1-7]-?[0178a]\d\d?)/i
+            ], [MODEL, [VENDOR, 'Acer'], [TYPE, TABLET]], [
+
+            // Meizu
+            /droid.+; (m[1-5] note) bui/i,
+            /\bmz-([-\w]{2,})/i
+            ], [MODEL, [VENDOR, 'Meizu'], [TYPE, MOBILE]], [
+
+            // Sharp
+            /\b(sh-?[altvz]?\d\d[a-ekm]?)/i
+            ], [MODEL, [VENDOR, 'Sharp'], [TYPE, MOBILE]], [
+
+            // MIXED
+            /(blackberry|benq|palm(?=\-)|sonyericsson|acer|asus|dell|meizu|motorola|polytron)[-_ ]?([-\w]*)/i,
+                                                                                // BlackBerry/BenQ/Palm/Sony-Ericsson/Acer/Asus/Dell/Meizu/Motorola/Polytron
+            /(hp) ([\w ]+\w)/i,                                                 // HP iPAQ
+            /(asus)-?(\w+)/i,                                                   // Asus
+            /(microsoft); (lumia[\w ]+)/i,                                      // Microsoft Lumia
+            /(lenovo)[-_ ]?([-\w]+)/i,                                          // Lenovo
+            /(jolla)/i,                                                         // Jolla
+            /(oppo) ?([\w ]+) bui/i                                             // OPPO
+            ], [VENDOR, MODEL, [TYPE, MOBILE]], [
+
+            /(archos) (gamepad2?)/i,                                            // Archos
+            /(hp).+(touchpad(?!.+tablet)|tablet)/i,                             // HP TouchPad
+            /(kindle)\/([\w\.]+)/i,                                             // Kindle
+            /(nook)[\w ]+build\/(\w+)/i,                                        // Nook
+            /(dell) (strea[kpr\d ]*[\dko])/i,                                   // Dell Streak
+            /(le[- ]+pan)[- ]+(\w{1,9}) bui/i,                                  // Le Pan Tablets
+            /(trinity)[- ]*(t\d{3}) bui/i,                                      // Trinity Tablets
+            /(gigaset)[- ]+(q\w{1,9}) bui/i,                                    // Gigaset Tablets
+            /(vodafone) ([\w ]+)(?:\)| bui)/i                                   // Vodafone
+            ], [VENDOR, MODEL, [TYPE, TABLET]], [
+
+            /(surface duo)/i                                                    // Surface Duo
+            ], [MODEL, [VENDOR, MICROSOFT], [TYPE, TABLET]], [
+            /droid [\d\.]+; (fp\du?)(?: b|\))/i                                 // Fairphone
+            ], [MODEL, [VENDOR, 'Fairphone'], [TYPE, MOBILE]], [
+            /(u304aa)/i                                                         // AT&T
+            ], [MODEL, [VENDOR, 'AT&T'], [TYPE, MOBILE]], [
+            /\bsie-(\w*)/i                                                      // Siemens
+            ], [MODEL, [VENDOR, 'Siemens'], [TYPE, MOBILE]], [
+            /\b(rct\w+) b/i                                                     // RCA Tablets
+            ], [MODEL, [VENDOR, 'RCA'], [TYPE, TABLET]], [
+            /\b(venue[\d ]{2,7}) b/i                                            // Dell Venue Tablets
+            ], [MODEL, [VENDOR, 'Dell'], [TYPE, TABLET]], [
+            /\b(q(?:mv|ta)\w+) b/i                                              // Verizon Tablet
+            ], [MODEL, [VENDOR, 'Verizon'], [TYPE, TABLET]], [
+            /\b(?:barnes[& ]+noble |bn[rt])([\w\+ ]*) b/i                       // Barnes & Noble Tablet
+            ], [MODEL, [VENDOR, 'Barnes & Noble'], [TYPE, TABLET]], [
+            /\b(tm\d{3}\w+) b/i
+            ], [MODEL, [VENDOR, 'NuVision'], [TYPE, TABLET]], [
+            /\b(k88) b/i                                                        // ZTE K Series Tablet
+            ], [MODEL, [VENDOR, 'ZTE'], [TYPE, TABLET]], [
+            /\b(nx\d{3}j) b/i                                                   // ZTE Nubia
+            ], [MODEL, [VENDOR, 'ZTE'], [TYPE, MOBILE]], [
+            /\b(gen\d{3}) b.+49h/i                                              // Swiss GEN Mobile
+            ], [MODEL, [VENDOR, 'Swiss'], [TYPE, MOBILE]], [
+            /\b(zur\d{3}) b/i                                                   // Swiss ZUR Tablet
+            ], [MODEL, [VENDOR, 'Swiss'], [TYPE, TABLET]], [
+            /\b((zeki)?tb.*\b) b/i                                              // Zeki Tablets
+            ], [MODEL, [VENDOR, 'Zeki'], [TYPE, TABLET]], [
+            /\b([yr]\d{2}) b/i,
+            /\b(dragon[- ]+touch |dt)(\w{5}) b/i                                // Dragon Touch Tablet
+            ], [[VENDOR, 'Dragon Touch'], MODEL, [TYPE, TABLET]], [
+            /\b(ns-?\w{0,9}) b/i                                                // Insignia Tablets
+            ], [MODEL, [VENDOR, 'Insignia'], [TYPE, TABLET]], [
+            /\b((nxa|next)-?\w{0,9}) b/i                                        // NextBook Tablets
+            ], [MODEL, [VENDOR, 'NextBook'], [TYPE, TABLET]], [
+            /\b(xtreme\_)?(v(1[045]|2[015]|[3469]0|7[05])) b/i                  // Voice Xtreme Phones
+            ], [[VENDOR, 'Voice'], MODEL, [TYPE, MOBILE]], [
+            /\b(lvtel\-)?(v1[12]) b/i                                           // LvTel Phones
+            ], [[VENDOR, 'LvTel'], MODEL, [TYPE, MOBILE]], [
+            /\b(ph-1) /i                                                        // Essential PH-1
+            ], [MODEL, [VENDOR, 'Essential'], [TYPE, MOBILE]], [
+            /\b(v(100md|700na|7011|917g).*\b) b/i                               // Envizen Tablets
+            ], [MODEL, [VENDOR, 'Envizen'], [TYPE, TABLET]], [
+            /\b(trio[-\w\. ]+) b/i                                              // MachSpeed Tablets
+            ], [MODEL, [VENDOR, 'MachSpeed'], [TYPE, TABLET]], [
+            /\btu_(1491) b/i                                                    // Rotor Tablets
+            ], [MODEL, [VENDOR, 'Rotor'], [TYPE, TABLET]], [
+            /(shield[\w ]+) b/i                                                 // Nvidia Shield Tablets
+            ], [MODEL, [VENDOR, 'Nvidia'], [TYPE, TABLET]], [
+            /(sprint) (\w+)/i                                                   // Sprint Phones
+            ], [VENDOR, MODEL, [TYPE, MOBILE]], [
+            /(kin\.[onetw]{3})/i                                                // Microsoft Kin
+            ], [[MODEL, /\./g, ' '], [VENDOR, MICROSOFT], [TYPE, MOBILE]], [
+            /droid.+; (cc6666?|et5[16]|mc[239][23]x?|vc8[03]x?)\)/i             // Zebra
+            ], [MODEL, [VENDOR, ZEBRA], [TYPE, TABLET]], [
+            /droid.+; (ec30|ps20|tc[2-8]\d[kx])\)/i
+            ], [MODEL, [VENDOR, ZEBRA], [TYPE, MOBILE]], [
+
+            ///////////////////
+            // CONSOLES
+            ///////////////////
+
+            /(ouya)/i,                                                          // Ouya
+            /(nintendo) ([wids3utch]+)/i                                        // Nintendo
+            ], [VENDOR, MODEL, [TYPE, CONSOLE]], [
+            /droid.+; (shield) bui/i                                            // Nvidia
+            ], [MODEL, [VENDOR, 'Nvidia'], [TYPE, CONSOLE]], [
+            /(playstation [345portablevi]+)/i                                   // Playstation
+            ], [MODEL, [VENDOR, SONY], [TYPE, CONSOLE]], [
+            /\b(xbox(?: one)?(?!; xbox))[\); ]/i                                // Microsoft Xbox
+            ], [MODEL, [VENDOR, MICROSOFT], [TYPE, CONSOLE]], [
+
+            ///////////////////
+            // SMARTTVS
+            ///////////////////
+
+            /smart-tv.+(samsung)/i                                              // Samsung
+            ], [VENDOR, [TYPE, SMARTTV]], [
+            /hbbtv.+maple;(\d+)/i
+            ], [[MODEL, /^/, 'SmartTV'], [VENDOR, SAMSUNG], [TYPE, SMARTTV]], [
+            /(nux; netcast.+smarttv|lg (netcast\.tv-201\d|android tv))/i        // LG SmartTV
+            ], [[VENDOR, LG], [TYPE, SMARTTV]], [
+            /(apple) ?tv/i                                                      // Apple TV
+            ], [VENDOR, [MODEL, APPLE+' TV'], [TYPE, SMARTTV]], [
+            /crkey/i                                                            // Google Chromecast
+            ], [[MODEL, CHROME+'cast'], [VENDOR, GOOGLE], [TYPE, SMARTTV]], [
+            /droid.+aft(\w)( bui|\))/i                                          // Fire TV
+            ], [MODEL, [VENDOR, AMAZON], [TYPE, SMARTTV]], [
+            /\(dtv[\);].+(aquos)/i                                              // Sharp
+            ], [MODEL, [VENDOR, 'Sharp'], [TYPE, SMARTTV]], [
+            /\b(roku)[\dx]*[\)\/]((?:dvp-)?[\d\.]*)/i,                          // Roku
+            /hbbtv\/\d+\.\d+\.\d+ +\([\w ]*; *(\w[^;]*);([^;]*)/i               // HbbTV devices
+            ], [[VENDOR, trim], [MODEL, trim], [TYPE, SMARTTV]], [
+            /\b(android tv|smart[- ]?tv|opera tv|tv; rv:)\b/i                   // SmartTV from Unidentified Vendors
+            ], [[TYPE, SMARTTV]], [
+
+            ///////////////////
+            // WEARABLES
+            ///////////////////
+
+            /((pebble))app/i                                                    // Pebble
+            ], [VENDOR, MODEL, [TYPE, WEARABLE]], [
+            /droid.+; (glass) \d/i                                              // Google Glass
+            ], [MODEL, [VENDOR, GOOGLE], [TYPE, WEARABLE]], [
+            /droid.+; (wt63?0{2,3})\)/i
+            ], [MODEL, [VENDOR, ZEBRA], [TYPE, WEARABLE]], [
+            /(quest( 2)?)/i                                                     // Oculus Quest
+            ], [MODEL, [VENDOR, FACEBOOK], [TYPE, WEARABLE]], [
+
+            ///////////////////
+            // EMBEDDED
+            ///////////////////
+
+            /(tesla)(?: qtcarbrowser|\/[-\w\.]+)/i                              // Tesla
+            ], [VENDOR, [TYPE, EMBEDDED]], [
+
+            ////////////////////
+            // MIXED (GENERIC)
+            ///////////////////
+
+            /droid .+?; ([^;]+?)(?: bui|\) applew).+? mobile safari/i           // Android Phones from Unidentified Vendors
+            ], [MODEL, [TYPE, MOBILE]], [
+            /droid .+?; ([^;]+?)(?: bui|\) applew).+?(?! mobile) safari/i       // Android Tablets from Unidentified Vendors
+            ], [MODEL, [TYPE, TABLET]], [
+            /\b((tablet|tab)[;\/]|focus\/\d(?!.+mobile))/i                      // Unidentifiable Tablet
+            ], [[TYPE, TABLET]], [
+            /(phone|mobile(?:[;\/]| safari)|pda(?=.+windows ce))/i              // Unidentifiable Mobile
+            ], [[TYPE, MOBILE]], [
+            /(android[-\w\. ]{0,9});.+buil/i                                    // Generic Android Device
+            ], [MODEL, [VENDOR, 'Generic']]
+        ],
+
+        engine : [[
+
+            /windows.+ edge\/([\w\.]+)/i                                       // EdgeHTML
+            ], [VERSION, [NAME, EDGE+'HTML']], [
+
+            /webkit\/537\.36.+chrome\/(?!27)([\w\.]+)/i                         // Blink
+            ], [VERSION, [NAME, 'Blink']], [
+
+            /(presto)\/([\w\.]+)/i,                                             // Presto
+            /(webkit|trident|netfront|netsurf|amaya|lynx|w3m|goanna)\/([\w\.]+)/i, // WebKit/Trident/NetFront/NetSurf/Amaya/Lynx/w3m/Goanna
+            /ekioh(flow)\/([\w\.]+)/i,                                          // Flow
+            /(khtml|tasman|links)[\/ ]\(?([\w\.]+)/i,                           // KHTML/Tasman/Links
+            /(icab)[\/ ]([23]\.[\d\.]+)/i                                       // iCab
+            ], [NAME, VERSION], [
+
+            /rv\:([\w\.]{1,9})\b.+(gecko)/i                                     // Gecko
+            ], [VERSION, NAME]
+        ],
+
+        os : [[
+
+            // Windows
+            /microsoft (windows) (vista|xp)/i                                   // Windows (iTunes)
+            ], [NAME, VERSION], [
+            /(windows) nt 6\.2; (arm)/i,                                        // Windows RT
+            /(windows (?:phone(?: os)?|mobile))[\/ ]?([\d\.\w ]*)/i,            // Windows Phone
+            /(windows)[\/ ]?([ntce\d\. ]+\w)(?!.+xbox)/i
+            ], [NAME, [VERSION, strMapper, windowsVersionMap]], [
+            /(win(?=3|9|n)|win 9x )([nt\d\.]+)/i
+            ], [[NAME, 'Windows'], [VERSION, strMapper, windowsVersionMap]], [
+
+            // iOS/macOS
+            /ip[honead]{2,4}\b(?:.*os ([\w]+) like mac|; opera)/i,              // iOS
+            /cfnetwork\/.+darwin/i
+            ], [[VERSION, /_/g, '.'], [NAME, 'iOS']], [
+            /(mac os x) ?([\w\. ]*)/i,
+            /(macintosh|mac_powerpc\b)(?!.+haiku)/i                             // Mac OS
+            ], [[NAME, 'Mac OS'], [VERSION, /_/g, '.']], [
+
+            // Mobile OSes
+            /droid ([\w\.]+)\b.+(android[- ]x86)/i                              // Android-x86
+            ], [VERSION, NAME], [                                               // Android/WebOS/QNX/Bada/RIM/Maemo/MeeGo/Sailfish OS
+            /(android|webos|qnx|bada|rim tablet os|maemo|meego|sailfish)[-\/ ]?([\w\.]*)/i,
+            /(blackberry)\w*\/([\w\.]*)/i,                                      // Blackberry
+            /(tizen|kaios)[\/ ]([\w\.]+)/i,                                     // Tizen/KaiOS
+            /\((series40);/i                                                    // Series 40
+            ], [NAME, VERSION], [
+            /\(bb(10);/i                                                        // BlackBerry 10
+            ], [VERSION, [NAME, BLACKBERRY]], [
+            /(?:symbian ?os|symbos|s60(?=;)|series60)[-\/ ]?([\w\.]*)/i         // Symbian
+            ], [VERSION, [NAME, 'Symbian']], [
+            /mozilla\/[\d\.]+ \((?:mobile|tablet|tv|mobile; [\w ]+); rv:.+ gecko\/([\w\.]+)/i // Firefox OS
+            ], [VERSION, [NAME, FIREFOX+' OS']], [
+            /web0s;.+rt(tv)/i,
+            /\b(?:hp)?wos(?:browser)?\/([\w\.]+)/i                              // WebOS
+            ], [VERSION, [NAME, 'webOS']], [
+
+            // Google Chromecast
+            /crkey\/([\d\.]+)/i                                                 // Google Chromecast
+            ], [VERSION, [NAME, CHROME+'cast']], [
+            /(cros) [\w]+ ([\w\.]+\w)/i                                         // Chromium OS
+            ], [[NAME, 'Chromium OS'], VERSION],[
+
+            // Console
+            /(nintendo|playstation) ([wids345portablevuch]+)/i,                 // Nintendo/Playstation
+            /(xbox); +xbox ([^\);]+)/i,                                         // Microsoft Xbox (360, One, X, S, Series X, Series S)
+
+            // Other
+            /\b(joli|palm)\b ?(?:os)?\/?([\w\.]*)/i,                            // Joli/Palm
+            /(mint)[\/\(\) ]?(\w*)/i,                                           // Mint
+            /(mageia|vectorlinux)[; ]/i,                                        // Mageia/VectorLinux
+            /([kxln]?ubuntu|debian|suse|opensuse|gentoo|arch(?= linux)|slackware|fedora|mandriva|centos|pclinuxos|red ?hat|zenwalk|linpus|raspbian|plan 9|minix|risc os|contiki|deepin|manjaro|elementary os|sabayon|linspire)(?: gnu\/linux)?(?: enterprise)?(?:[- ]linux)?(?:-gnu)?[-\/ ]?(?!chrom|package)([-\w\.]*)/i,
+                                                                                // Ubuntu/Debian/SUSE/Gentoo/Arch/Slackware/Fedora/Mandriva/CentOS/PCLinuxOS/RedHat/Zenwalk/Linpus/Raspbian/Plan9/Minix/RISCOS/Contiki/Deepin/Manjaro/elementary/Sabayon/Linspire
+            /(hurd|linux) ?([\w\.]*)/i,                                         // Hurd/Linux
+            /(gnu) ?([\w\.]*)/i,                                                // GNU
+            /\b([-frentopcghs]{0,5}bsd|dragonfly)[\/ ]?(?!amd|[ix346]{1,2}86)([\w\.]*)/i, // FreeBSD/NetBSD/OpenBSD/PC-BSD/GhostBSD/DragonFly
+            /(haiku) (\w+)/i                                                    // Haiku
+            ], [NAME, VERSION], [
+            /(sunos) ?([\w\.\d]*)/i                                             // Solaris
+            ], [[NAME, 'Solaris'], VERSION], [
+            /((?:open)?solaris)[-\/ ]?([\w\.]*)/i,                              // Solaris
+            /(aix) ((\d)(?=\.|\)| )[\w\.])*/i,                                  // AIX
+            /\b(beos|os\/2|amigaos|morphos|openvms|fuchsia|hp-ux)/i,            // BeOS/OS2/AmigaOS/MorphOS/OpenVMS/Fuchsia/HP-UX
+            /(unix) ?([\w\.]*)/i                                                // UNIX
+            ], [NAME, VERSION]
+        ]
+    };
+
+    /////////////////
+    // Constructor
+    ////////////////
+
+    var UAParser = function (ua, extensions) {
+
+        if (typeof ua === OBJ_TYPE) {
+            extensions = ua;
+            ua = undefined;
+        }
+
+        if (!(this instanceof UAParser)) {
+            return new UAParser(ua, extensions).getResult();
+        }
+
+        var _ua = ua || ((typeof window !== UNDEF_TYPE && window.navigator && window.navigator.userAgent) ? window.navigator.userAgent : EMPTY);
+        var _rgxmap = extensions ? extend(regexes, extensions) : regexes;
+
+        this.getBrowser = function () {
+            var _browser = {};
+            _browser[NAME] = undefined;
+            _browser[VERSION] = undefined;
+            rgxMapper.call(_browser, _ua, _rgxmap.browser);
+            _browser.major = majorize(_browser.version);
+            return _browser;
+        };
+        this.getCPU = function () {
+            var _cpu = {};
+            _cpu[ARCHITECTURE] = undefined;
+            rgxMapper.call(_cpu, _ua, _rgxmap.cpu);
+            return _cpu;
+        };
+        this.getDevice = function () {
+            var _device = {};
+            _device[VENDOR] = undefined;
+            _device[MODEL] = undefined;
+            _device[TYPE] = undefined;
+            rgxMapper.call(_device, _ua, _rgxmap.device);
+            return _device;
+        };
+        this.getEngine = function () {
+            var _engine = {};
+            _engine[NAME] = undefined;
+            _engine[VERSION] = undefined;
+            rgxMapper.call(_engine, _ua, _rgxmap.engine);
+            return _engine;
+        };
+        this.getOS = function () {
+            var _os = {};
+            _os[NAME] = undefined;
+            _os[VERSION] = undefined;
+            rgxMapper.call(_os, _ua, _rgxmap.os);
+            return _os;
+        };
+        this.getResult = function () {
+            return {
+                ua      : this.getUA(),
+                browser : this.getBrowser(),
+                engine  : this.getEngine(),
+                os      : this.getOS(),
+                device  : this.getDevice(),
+                cpu     : this.getCPU()
+            };
+        };
+        this.getUA = function () {
+            return _ua;
+        };
+        this.setUA = function (ua) {
+            _ua = (typeof ua === STR_TYPE && ua.length > UA_MAX_LENGTH) ? trim(ua, UA_MAX_LENGTH) : ua;
+            return this;
+        };
+        this.setUA(_ua);
+        return this;
+    };
+
+    UAParser.VERSION = LIBVERSION;
+    UAParser.BROWSER =  enumerize([NAME, VERSION, MAJOR]);
+    UAParser.CPU = enumerize([ARCHITECTURE]);
+    UAParser.DEVICE = enumerize([MODEL, VENDOR, TYPE, CONSOLE, MOBILE, SMARTTV, TABLET, WEARABLE, EMBEDDED]);
+    UAParser.ENGINE = UAParser.OS = enumerize([NAME, VERSION]);
+
+    ///////////
+    // Export
+    //////////
+
+    // check js environment
+    if (typeof(exports) !== UNDEF_TYPE) {
+        // nodejs env
+        if ("object" !== UNDEF_TYPE && module.exports) {
+            exports = module.exports = UAParser;
+        }
+        exports.UAParser = UAParser;
+    } else {
+        // requirejs env (optional)
+        if ("function" === FUNC_TYPE && __webpack_require__.amdO) {
+            !(__WEBPACK_AMD_DEFINE_RESULT__ = (function () {
+                return UAParser;
+            }).call(exports, __webpack_require__, exports, module),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+        } else if (typeof window !== UNDEF_TYPE) {
+            // browser env
+            window.UAParser = UAParser;
+        }
+    }
+
+    // jQuery/Zepto specific (optional)
+    // Note:
+    //   In AMD env the global scope should be kept clean, but jQuery is an exception.
+    //   jQuery always exports to global scope, unless jQuery.noConflict(true) is used,
+    //   and we should catch that.
+    var $ = typeof window !== UNDEF_TYPE && (window.jQuery || window.Zepto);
+    if ($ && !$.ua) {
+        var parser = new UAParser();
+        $.ua = parser.getResult();
+        $.ua.get = function () {
+            return parser.getUA();
+        };
+        $.ua.set = function (ua) {
+            parser.setUA(ua);
+            var result = parser.getResult();
+            for (var prop in result) {
+                $.ua[prop] = result[prop];
+            }
+        };
+    }
+
+})(typeof window === 'object' ? window : this);
+
 
 /***/ }),
 
@@ -44842,7 +45768,7 @@ module.exports = hoistNonReactStatics;
   \****************************************/
 /***/ ((module, exports, __webpack_require__) => {
 
-/* provided dependency */ var process = __webpack_require__(/*! process/browser */ "./node_modules/process/browser.js");
+/* provided dependency */ var process = __webpack_require__(/*! process/browser.js */ "./node_modules/process/browser.js");
 var __WEBPACK_AMD_DEFINE_RESULT__;/**
  * [js-md5]{@link https://github.com/emn178/js-md5}
  *
@@ -45884,6 +46810,19 @@ var index = react__WEBPACK_IMPORTED_MODULE_0__.createContext || createReactConte
 
 /***/ }),
 
+/***/ "./resources/sass/bootstrap.home.scss":
+/*!********************************************!*\
+  !*** ./resources/sass/bootstrap.home.scss ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "./resources/sass/page/user.post.scss":
 /*!********************************************!*\
   !*** ./resources/sass/page/user.post.scss ***!
@@ -46019,6 +46958,455 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 	}
 
 	return to;
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/path-to-regexp/index.js":
+/*!**********************************************!*\
+  !*** ./node_modules/path-to-regexp/index.js ***!
+  \**********************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var isarray = __webpack_require__(/*! isarray */ "./node_modules/path-to-regexp/node_modules/isarray/index.js")
+
+/**
+ * Expose `pathToRegexp`.
+ */
+module.exports = pathToRegexp
+module.exports.parse = parse
+module.exports.compile = compile
+module.exports.tokensToFunction = tokensToFunction
+module.exports.tokensToRegExp = tokensToRegExp
+
+/**
+ * The main path matching regexp utility.
+ *
+ * @type {RegExp}
+ */
+var PATH_REGEXP = new RegExp([
+  // Match escaped characters that would otherwise appear in future matches.
+  // This allows the user to escape special characters that won't transform.
+  '(\\\\.)',
+  // Match Express-style parameters and un-named parameters with a prefix
+  // and optional suffixes. Matches appear as:
+  //
+  // "/:test(\\d+)?" => ["/", "test", "\d+", undefined, "?", undefined]
+  // "/route(\\d+)"  => [undefined, undefined, undefined, "\d+", undefined, undefined]
+  // "/*"            => ["/", undefined, undefined, undefined, undefined, "*"]
+  '([\\/.])?(?:(?:\\:(\\w+)(?:\\(((?:\\\\.|[^\\\\()])+)\\))?|\\(((?:\\\\.|[^\\\\()])+)\\))([+*?])?|(\\*))'
+].join('|'), 'g')
+
+/**
+ * Parse a string for the raw tokens.
+ *
+ * @param  {string}  str
+ * @param  {Object=} options
+ * @return {!Array}
+ */
+function parse (str, options) {
+  var tokens = []
+  var key = 0
+  var index = 0
+  var path = ''
+  var defaultDelimiter = options && options.delimiter || '/'
+  var res
+
+  while ((res = PATH_REGEXP.exec(str)) != null) {
+    var m = res[0]
+    var escaped = res[1]
+    var offset = res.index
+    path += str.slice(index, offset)
+    index = offset + m.length
+
+    // Ignore already escaped sequences.
+    if (escaped) {
+      path += escaped[1]
+      continue
+    }
+
+    var next = str[index]
+    var prefix = res[2]
+    var name = res[3]
+    var capture = res[4]
+    var group = res[5]
+    var modifier = res[6]
+    var asterisk = res[7]
+
+    // Push the current path onto the tokens.
+    if (path) {
+      tokens.push(path)
+      path = ''
+    }
+
+    var partial = prefix != null && next != null && next !== prefix
+    var repeat = modifier === '+' || modifier === '*'
+    var optional = modifier === '?' || modifier === '*'
+    var delimiter = res[2] || defaultDelimiter
+    var pattern = capture || group
+
+    tokens.push({
+      name: name || key++,
+      prefix: prefix || '',
+      delimiter: delimiter,
+      optional: optional,
+      repeat: repeat,
+      partial: partial,
+      asterisk: !!asterisk,
+      pattern: pattern ? escapeGroup(pattern) : (asterisk ? '.*' : '[^' + escapeString(delimiter) + ']+?')
+    })
+  }
+
+  // Match any characters still remaining.
+  if (index < str.length) {
+    path += str.substr(index)
+  }
+
+  // If the path exists, push it onto the end.
+  if (path) {
+    tokens.push(path)
+  }
+
+  return tokens
+}
+
+/**
+ * Compile a string to a template function for the path.
+ *
+ * @param  {string}             str
+ * @param  {Object=}            options
+ * @return {!function(Object=, Object=)}
+ */
+function compile (str, options) {
+  return tokensToFunction(parse(str, options), options)
+}
+
+/**
+ * Prettier encoding of URI path segments.
+ *
+ * @param  {string}
+ * @return {string}
+ */
+function encodeURIComponentPretty (str) {
+  return encodeURI(str).replace(/[\/?#]/g, function (c) {
+    return '%' + c.charCodeAt(0).toString(16).toUpperCase()
+  })
+}
+
+/**
+ * Encode the asterisk parameter. Similar to `pretty`, but allows slashes.
+ *
+ * @param  {string}
+ * @return {string}
+ */
+function encodeAsterisk (str) {
+  return encodeURI(str).replace(/[?#]/g, function (c) {
+    return '%' + c.charCodeAt(0).toString(16).toUpperCase()
+  })
+}
+
+/**
+ * Expose a method for transforming tokens into the path function.
+ */
+function tokensToFunction (tokens, options) {
+  // Compile all the tokens into regexps.
+  var matches = new Array(tokens.length)
+
+  // Compile all the patterns before compilation.
+  for (var i = 0; i < tokens.length; i++) {
+    if (typeof tokens[i] === 'object') {
+      matches[i] = new RegExp('^(?:' + tokens[i].pattern + ')$', flags(options))
+    }
+  }
+
+  return function (obj, opts) {
+    var path = ''
+    var data = obj || {}
+    var options = opts || {}
+    var encode = options.pretty ? encodeURIComponentPretty : encodeURIComponent
+
+    for (var i = 0; i < tokens.length; i++) {
+      var token = tokens[i]
+
+      if (typeof token === 'string') {
+        path += token
+
+        continue
+      }
+
+      var value = data[token.name]
+      var segment
+
+      if (value == null) {
+        if (token.optional) {
+          // Prepend partial segment prefixes.
+          if (token.partial) {
+            path += token.prefix
+          }
+
+          continue
+        } else {
+          throw new TypeError('Expected "' + token.name + '" to be defined')
+        }
+      }
+
+      if (isarray(value)) {
+        if (!token.repeat) {
+          throw new TypeError('Expected "' + token.name + '" to not repeat, but received `' + JSON.stringify(value) + '`')
+        }
+
+        if (value.length === 0) {
+          if (token.optional) {
+            continue
+          } else {
+            throw new TypeError('Expected "' + token.name + '" to not be empty')
+          }
+        }
+
+        for (var j = 0; j < value.length; j++) {
+          segment = encode(value[j])
+
+          if (!matches[i].test(segment)) {
+            throw new TypeError('Expected all "' + token.name + '" to match "' + token.pattern + '", but received `' + JSON.stringify(segment) + '`')
+          }
+
+          path += (j === 0 ? token.prefix : token.delimiter) + segment
+        }
+
+        continue
+      }
+
+      segment = token.asterisk ? encodeAsterisk(value) : encode(value)
+
+      if (!matches[i].test(segment)) {
+        throw new TypeError('Expected "' + token.name + '" to match "' + token.pattern + '", but received "' + segment + '"')
+      }
+
+      path += token.prefix + segment
+    }
+
+    return path
+  }
+}
+
+/**
+ * Escape a regular expression string.
+ *
+ * @param  {string} str
+ * @return {string}
+ */
+function escapeString (str) {
+  return str.replace(/([.+*?=^!:${}()[\]|\/\\])/g, '\\$1')
+}
+
+/**
+ * Escape the capturing group by escaping special characters and meaning.
+ *
+ * @param  {string} group
+ * @return {string}
+ */
+function escapeGroup (group) {
+  return group.replace(/([=!:$\/()])/g, '\\$1')
+}
+
+/**
+ * Attach the keys as a property of the regexp.
+ *
+ * @param  {!RegExp} re
+ * @param  {Array}   keys
+ * @return {!RegExp}
+ */
+function attachKeys (re, keys) {
+  re.keys = keys
+  return re
+}
+
+/**
+ * Get the flags for a regexp from the options.
+ *
+ * @param  {Object} options
+ * @return {string}
+ */
+function flags (options) {
+  return options && options.sensitive ? '' : 'i'
+}
+
+/**
+ * Pull out keys from a regexp.
+ *
+ * @param  {!RegExp} path
+ * @param  {!Array}  keys
+ * @return {!RegExp}
+ */
+function regexpToRegexp (path, keys) {
+  // Use a negative lookahead to match only capturing groups.
+  var groups = path.source.match(/\((?!\?)/g)
+
+  if (groups) {
+    for (var i = 0; i < groups.length; i++) {
+      keys.push({
+        name: i,
+        prefix: null,
+        delimiter: null,
+        optional: false,
+        repeat: false,
+        partial: false,
+        asterisk: false,
+        pattern: null
+      })
+    }
+  }
+
+  return attachKeys(path, keys)
+}
+
+/**
+ * Transform an array into a regexp.
+ *
+ * @param  {!Array}  path
+ * @param  {Array}   keys
+ * @param  {!Object} options
+ * @return {!RegExp}
+ */
+function arrayToRegexp (path, keys, options) {
+  var parts = []
+
+  for (var i = 0; i < path.length; i++) {
+    parts.push(pathToRegexp(path[i], keys, options).source)
+  }
+
+  var regexp = new RegExp('(?:' + parts.join('|') + ')', flags(options))
+
+  return attachKeys(regexp, keys)
+}
+
+/**
+ * Create a path regexp from string input.
+ *
+ * @param  {string}  path
+ * @param  {!Array}  keys
+ * @param  {!Object} options
+ * @return {!RegExp}
+ */
+function stringToRegexp (path, keys, options) {
+  return tokensToRegExp(parse(path, options), keys, options)
+}
+
+/**
+ * Expose a function for taking tokens and returning a RegExp.
+ *
+ * @param  {!Array}          tokens
+ * @param  {(Array|Object)=} keys
+ * @param  {Object=}         options
+ * @return {!RegExp}
+ */
+function tokensToRegExp (tokens, keys, options) {
+  if (!isarray(keys)) {
+    options = /** @type {!Object} */ (keys || options)
+    keys = []
+  }
+
+  options = options || {}
+
+  var strict = options.strict
+  var end = options.end !== false
+  var route = ''
+
+  // Iterate over the tokens and create our regexp string.
+  for (var i = 0; i < tokens.length; i++) {
+    var token = tokens[i]
+
+    if (typeof token === 'string') {
+      route += escapeString(token)
+    } else {
+      var prefix = escapeString(token.prefix)
+      var capture = '(?:' + token.pattern + ')'
+
+      keys.push(token)
+
+      if (token.repeat) {
+        capture += '(?:' + prefix + capture + ')*'
+      }
+
+      if (token.optional) {
+        if (!token.partial) {
+          capture = '(?:' + prefix + '(' + capture + '))?'
+        } else {
+          capture = prefix + '(' + capture + ')?'
+        }
+      } else {
+        capture = prefix + '(' + capture + ')'
+      }
+
+      route += capture
+    }
+  }
+
+  var delimiter = escapeString(options.delimiter || '/')
+  var endsWithDelimiter = route.slice(-delimiter.length) === delimiter
+
+  // In non-strict mode we allow a slash at the end of match. If the path to
+  // match already ends with a slash, we remove it for consistency. The slash
+  // is valid at the end of a path match, not in the middle. This is important
+  // in non-ending mode, where "/test/" shouldn't match "/test//route".
+  if (!strict) {
+    route = (endsWithDelimiter ? route.slice(0, -delimiter.length) : route) + '(?:' + delimiter + '(?=$))?'
+  }
+
+  if (end) {
+    route += '$'
+  } else {
+    // In non-ending mode, we need the capturing groups to match as much as
+    // possible by using a positive lookahead to the end or next path segment.
+    route += strict && endsWithDelimiter ? '' : '(?=' + delimiter + '|$)'
+  }
+
+  return attachKeys(new RegExp('^' + route, flags(options)), keys)
+}
+
+/**
+ * Normalize the given path string, returning a regular expression.
+ *
+ * An empty array can be passed in for the keys, which will hold the
+ * placeholder key descriptions. For example, using `/user/:id`, `keys` will
+ * contain `[{ name: 'id', delimiter: '/', optional: false, repeat: false }]`.
+ *
+ * @param  {(string|RegExp|Array)} path
+ * @param  {(Array|Object)=}       keys
+ * @param  {Object=}               options
+ * @return {!RegExp}
+ */
+function pathToRegexp (path, keys, options) {
+  if (!isarray(keys)) {
+    options = /** @type {!Object} */ (keys || options)
+    keys = []
+  }
+
+  options = options || {}
+
+  if (path instanceof RegExp) {
+    return regexpToRegexp(path, /** @type {!Array} */ (keys))
+  }
+
+  if (isarray(path)) {
+    return arrayToRegexp(/** @type {!Array} */ (path), /** @type {!Array} */ (keys), options)
+  }
+
+  return stringToRegexp(/** @type {string} */ (path), /** @type {!Array} */ (keys), options)
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/path-to-regexp/node_modules/isarray/index.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/path-to-regexp/node_modules/isarray/index.js ***!
+  \*******************************************************************/
+/***/ ((module) => {
+
+module.exports = Array.isArray || function (arr) {
+  return Object.prototype.toString.call(arr) == '[object Array]';
 };
 
 
@@ -75548,7 +76936,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var hoist_non_react_statics__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! hoist-non-react-statics */ "./node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js");
 /* harmony import */ var hoist_non_react_statics__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(hoist_non_react_statics__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_is__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-is */ "./node_modules/react-is/index.js");
+/* harmony import */ var react_is__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-is */ "./node_modules/react-redux/node_modules/react-is/index.js");
 /* harmony import */ var _utils_Subscription__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/Subscription */ "./node_modules/react-redux/es/utils/Subscription.js");
 /* harmony import */ var _utils_useIsomorphicLayoutEffect__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/useIsomorphicLayoutEffect */ "./node_modules/react-redux/es/utils/useIsomorphicLayoutEffect.js");
 /* harmony import */ var _Context__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Context */ "./node_modules/react-redux/es/components/Context.js");
@@ -75683,14 +77071,14 @@ function connectAdvanced(
 /*
   selectorFactory is a func that is responsible for returning the selector function used to
   compute new props from state, props, and dispatch. For example:
-      export default connectAdvanced((dispatch, options) => (state, props) => ({
+     export default connectAdvanced((dispatch, options) => (state, props) => ({
       thing: state.things[props.thingId],
       saveThing: fields => dispatch(actionCreators.saveThing(props.thingId, fields)),
     }))(YourComponent)
-    Access to dispatch is provided to the factory so selectorFactories can bind actionCreators
+   Access to dispatch is provided to the factory so selectorFactories can bind actionCreators
   outside of their selector as an optimization. Options passed to connectAdvanced are passed to
   the selectorFactory, along with displayName and WrappedComponent, as the second argument.
-    Note that selectorFactory is responsible for all caching/memoization of inbound and outbound
+   Note that selectorFactory is responsible for all caching/memoization of inbound and outbound
   props. Do not use connectAdvanced directly without memoizing results between calls to your
   selector, otherwise the Connect component will re-render on every state or props change.
 */
@@ -77188,6 +78576,259 @@ function warning(message) {
 
 /***/ }),
 
+/***/ "./node_modules/react-redux/node_modules/react-is/cjs/react-is.development.js":
+/*!************************************************************************************!*\
+  !*** ./node_modules/react-redux/node_modules/react-is/cjs/react-is.development.js ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+/** @license React v17.0.2
+ * react-is.development.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+if (true) {
+  (function() {
+'use strict';
+
+// ATTENTION
+// When adding new symbols to this file,
+// Please consider also adding to 'react-devtools-shared/src/backend/ReactSymbols'
+// The Symbol used to tag the ReactElement-like types. If there is no native Symbol
+// nor polyfill, then a plain number is used for performance.
+var REACT_ELEMENT_TYPE = 0xeac7;
+var REACT_PORTAL_TYPE = 0xeaca;
+var REACT_FRAGMENT_TYPE = 0xeacb;
+var REACT_STRICT_MODE_TYPE = 0xeacc;
+var REACT_PROFILER_TYPE = 0xead2;
+var REACT_PROVIDER_TYPE = 0xeacd;
+var REACT_CONTEXT_TYPE = 0xeace;
+var REACT_FORWARD_REF_TYPE = 0xead0;
+var REACT_SUSPENSE_TYPE = 0xead1;
+var REACT_SUSPENSE_LIST_TYPE = 0xead8;
+var REACT_MEMO_TYPE = 0xead3;
+var REACT_LAZY_TYPE = 0xead4;
+var REACT_BLOCK_TYPE = 0xead9;
+var REACT_SERVER_BLOCK_TYPE = 0xeada;
+var REACT_FUNDAMENTAL_TYPE = 0xead5;
+var REACT_SCOPE_TYPE = 0xead7;
+var REACT_OPAQUE_ID_TYPE = 0xeae0;
+var REACT_DEBUG_TRACING_MODE_TYPE = 0xeae1;
+var REACT_OFFSCREEN_TYPE = 0xeae2;
+var REACT_LEGACY_HIDDEN_TYPE = 0xeae3;
+
+if (typeof Symbol === 'function' && Symbol.for) {
+  var symbolFor = Symbol.for;
+  REACT_ELEMENT_TYPE = symbolFor('react.element');
+  REACT_PORTAL_TYPE = symbolFor('react.portal');
+  REACT_FRAGMENT_TYPE = symbolFor('react.fragment');
+  REACT_STRICT_MODE_TYPE = symbolFor('react.strict_mode');
+  REACT_PROFILER_TYPE = symbolFor('react.profiler');
+  REACT_PROVIDER_TYPE = symbolFor('react.provider');
+  REACT_CONTEXT_TYPE = symbolFor('react.context');
+  REACT_FORWARD_REF_TYPE = symbolFor('react.forward_ref');
+  REACT_SUSPENSE_TYPE = symbolFor('react.suspense');
+  REACT_SUSPENSE_LIST_TYPE = symbolFor('react.suspense_list');
+  REACT_MEMO_TYPE = symbolFor('react.memo');
+  REACT_LAZY_TYPE = symbolFor('react.lazy');
+  REACT_BLOCK_TYPE = symbolFor('react.block');
+  REACT_SERVER_BLOCK_TYPE = symbolFor('react.server.block');
+  REACT_FUNDAMENTAL_TYPE = symbolFor('react.fundamental');
+  REACT_SCOPE_TYPE = symbolFor('react.scope');
+  REACT_OPAQUE_ID_TYPE = symbolFor('react.opaque.id');
+  REACT_DEBUG_TRACING_MODE_TYPE = symbolFor('react.debug_trace_mode');
+  REACT_OFFSCREEN_TYPE = symbolFor('react.offscreen');
+  REACT_LEGACY_HIDDEN_TYPE = symbolFor('react.legacy_hidden');
+}
+
+// Filter certain DOM attributes (e.g. src, href) if their values are empty strings.
+
+var enableScopeAPI = false; // Experimental Create Event Handle API.
+
+function isValidElementType(type) {
+  if (typeof type === 'string' || typeof type === 'function') {
+    return true;
+  } // Note: typeof might be other than 'symbol' or 'number' (e.g. if it's a polyfill).
+
+
+  if (type === REACT_FRAGMENT_TYPE || type === REACT_PROFILER_TYPE || type === REACT_DEBUG_TRACING_MODE_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || type === REACT_LEGACY_HIDDEN_TYPE || enableScopeAPI ) {
+    return true;
+  }
+
+  if (typeof type === 'object' && type !== null) {
+    if (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_BLOCK_TYPE || type[0] === REACT_SERVER_BLOCK_TYPE) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function typeOf(object) {
+  if (typeof object === 'object' && object !== null) {
+    var $$typeof = object.$$typeof;
+
+    switch ($$typeof) {
+      case REACT_ELEMENT_TYPE:
+        var type = object.type;
+
+        switch (type) {
+          case REACT_FRAGMENT_TYPE:
+          case REACT_PROFILER_TYPE:
+          case REACT_STRICT_MODE_TYPE:
+          case REACT_SUSPENSE_TYPE:
+          case REACT_SUSPENSE_LIST_TYPE:
+            return type;
+
+          default:
+            var $$typeofType = type && type.$$typeof;
+
+            switch ($$typeofType) {
+              case REACT_CONTEXT_TYPE:
+              case REACT_FORWARD_REF_TYPE:
+              case REACT_LAZY_TYPE:
+              case REACT_MEMO_TYPE:
+              case REACT_PROVIDER_TYPE:
+                return $$typeofType;
+
+              default:
+                return $$typeof;
+            }
+
+        }
+
+      case REACT_PORTAL_TYPE:
+        return $$typeof;
+    }
+  }
+
+  return undefined;
+}
+var ContextConsumer = REACT_CONTEXT_TYPE;
+var ContextProvider = REACT_PROVIDER_TYPE;
+var Element = REACT_ELEMENT_TYPE;
+var ForwardRef = REACT_FORWARD_REF_TYPE;
+var Fragment = REACT_FRAGMENT_TYPE;
+var Lazy = REACT_LAZY_TYPE;
+var Memo = REACT_MEMO_TYPE;
+var Portal = REACT_PORTAL_TYPE;
+var Profiler = REACT_PROFILER_TYPE;
+var StrictMode = REACT_STRICT_MODE_TYPE;
+var Suspense = REACT_SUSPENSE_TYPE;
+var hasWarnedAboutDeprecatedIsAsyncMode = false;
+var hasWarnedAboutDeprecatedIsConcurrentMode = false; // AsyncMode should be deprecated
+
+function isAsyncMode(object) {
+  {
+    if (!hasWarnedAboutDeprecatedIsAsyncMode) {
+      hasWarnedAboutDeprecatedIsAsyncMode = true; // Using console['warn'] to evade Babel and ESLint
+
+      console['warn']('The ReactIs.isAsyncMode() alias has been deprecated, ' + 'and will be removed in React 18+.');
+    }
+  }
+
+  return false;
+}
+function isConcurrentMode(object) {
+  {
+    if (!hasWarnedAboutDeprecatedIsConcurrentMode) {
+      hasWarnedAboutDeprecatedIsConcurrentMode = true; // Using console['warn'] to evade Babel and ESLint
+
+      console['warn']('The ReactIs.isConcurrentMode() alias has been deprecated, ' + 'and will be removed in React 18+.');
+    }
+  }
+
+  return false;
+}
+function isContextConsumer(object) {
+  return typeOf(object) === REACT_CONTEXT_TYPE;
+}
+function isContextProvider(object) {
+  return typeOf(object) === REACT_PROVIDER_TYPE;
+}
+function isElement(object) {
+  return typeof object === 'object' && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
+}
+function isForwardRef(object) {
+  return typeOf(object) === REACT_FORWARD_REF_TYPE;
+}
+function isFragment(object) {
+  return typeOf(object) === REACT_FRAGMENT_TYPE;
+}
+function isLazy(object) {
+  return typeOf(object) === REACT_LAZY_TYPE;
+}
+function isMemo(object) {
+  return typeOf(object) === REACT_MEMO_TYPE;
+}
+function isPortal(object) {
+  return typeOf(object) === REACT_PORTAL_TYPE;
+}
+function isProfiler(object) {
+  return typeOf(object) === REACT_PROFILER_TYPE;
+}
+function isStrictMode(object) {
+  return typeOf(object) === REACT_STRICT_MODE_TYPE;
+}
+function isSuspense(object) {
+  return typeOf(object) === REACT_SUSPENSE_TYPE;
+}
+
+exports.ContextConsumer = ContextConsumer;
+exports.ContextProvider = ContextProvider;
+exports.Element = Element;
+exports.ForwardRef = ForwardRef;
+exports.Fragment = Fragment;
+exports.Lazy = Lazy;
+exports.Memo = Memo;
+exports.Portal = Portal;
+exports.Profiler = Profiler;
+exports.StrictMode = StrictMode;
+exports.Suspense = Suspense;
+exports.isAsyncMode = isAsyncMode;
+exports.isConcurrentMode = isConcurrentMode;
+exports.isContextConsumer = isContextConsumer;
+exports.isContextProvider = isContextProvider;
+exports.isElement = isElement;
+exports.isForwardRef = isForwardRef;
+exports.isFragment = isFragment;
+exports.isLazy = isLazy;
+exports.isMemo = isMemo;
+exports.isPortal = isPortal;
+exports.isProfiler = isProfiler;
+exports.isStrictMode = isStrictMode;
+exports.isSuspense = isSuspense;
+exports.isValidElementType = isValidElementType;
+exports.typeOf = typeOf;
+  })();
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/react-redux/node_modules/react-is/index.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/react-redux/node_modules/react-is/index.js ***!
+  \*****************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+
+if (false) {} else {
+  module.exports = __webpack_require__(/*! ./cjs/react-is.development.js */ "./node_modules/react-redux/node_modules/react-is/cjs/react-is.development.js");
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/react-router-dom/esm/react-router-dom.js":
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
@@ -77584,7 +79225,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var mini_create_react_context__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! mini-create-react-context */ "./node_modules/mini-create-react-context/dist/esm/index.js");
 /* harmony import */ var tiny_invariant__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! tiny-invariant */ "./node_modules/tiny-invariant/dist/tiny-invariant.esm.js");
 /* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
-/* harmony import */ var path_to_regexp__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! path-to-regexp */ "./node_modules/react-router/node_modules/path-to-regexp/index.js");
+/* harmony import */ var path_to_regexp__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! path-to-regexp */ "./node_modules/path-to-regexp/index.js");
 /* harmony import */ var path_to_regexp__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(path_to_regexp__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var react_is__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-is */ "./node_modules/react-is/index.js");
 /* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
@@ -78340,455 +79981,6 @@ if (true) {
 
 
 //# sourceMappingURL=react-router.js.map
-
-
-/***/ }),
-
-/***/ "./node_modules/react-router/node_modules/isarray/index.js":
-/*!*****************************************************************!*\
-  !*** ./node_modules/react-router/node_modules/isarray/index.js ***!
-  \*****************************************************************/
-/***/ ((module) => {
-
-module.exports = Array.isArray || function (arr) {
-  return Object.prototype.toString.call(arr) == '[object Array]';
-};
-
-
-/***/ }),
-
-/***/ "./node_modules/react-router/node_modules/path-to-regexp/index.js":
-/*!************************************************************************!*\
-  !*** ./node_modules/react-router/node_modules/path-to-regexp/index.js ***!
-  \************************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-var isarray = __webpack_require__(/*! isarray */ "./node_modules/react-router/node_modules/isarray/index.js")
-
-/**
- * Expose `pathToRegexp`.
- */
-module.exports = pathToRegexp
-module.exports.parse = parse
-module.exports.compile = compile
-module.exports.tokensToFunction = tokensToFunction
-module.exports.tokensToRegExp = tokensToRegExp
-
-/**
- * The main path matching regexp utility.
- *
- * @type {RegExp}
- */
-var PATH_REGEXP = new RegExp([
-  // Match escaped characters that would otherwise appear in future matches.
-  // This allows the user to escape special characters that won't transform.
-  '(\\\\.)',
-  // Match Express-style parameters and un-named parameters with a prefix
-  // and optional suffixes. Matches appear as:
-  //
-  // "/:test(\\d+)?" => ["/", "test", "\d+", undefined, "?", undefined]
-  // "/route(\\d+)"  => [undefined, undefined, undefined, "\d+", undefined, undefined]
-  // "/*"            => ["/", undefined, undefined, undefined, undefined, "*"]
-  '([\\/.])?(?:(?:\\:(\\w+)(?:\\(((?:\\\\.|[^\\\\()])+)\\))?|\\(((?:\\\\.|[^\\\\()])+)\\))([+*?])?|(\\*))'
-].join('|'), 'g')
-
-/**
- * Parse a string for the raw tokens.
- *
- * @param  {string}  str
- * @param  {Object=} options
- * @return {!Array}
- */
-function parse (str, options) {
-  var tokens = []
-  var key = 0
-  var index = 0
-  var path = ''
-  var defaultDelimiter = options && options.delimiter || '/'
-  var res
-
-  while ((res = PATH_REGEXP.exec(str)) != null) {
-    var m = res[0]
-    var escaped = res[1]
-    var offset = res.index
-    path += str.slice(index, offset)
-    index = offset + m.length
-
-    // Ignore already escaped sequences.
-    if (escaped) {
-      path += escaped[1]
-      continue
-    }
-
-    var next = str[index]
-    var prefix = res[2]
-    var name = res[3]
-    var capture = res[4]
-    var group = res[5]
-    var modifier = res[6]
-    var asterisk = res[7]
-
-    // Push the current path onto the tokens.
-    if (path) {
-      tokens.push(path)
-      path = ''
-    }
-
-    var partial = prefix != null && next != null && next !== prefix
-    var repeat = modifier === '+' || modifier === '*'
-    var optional = modifier === '?' || modifier === '*'
-    var delimiter = res[2] || defaultDelimiter
-    var pattern = capture || group
-
-    tokens.push({
-      name: name || key++,
-      prefix: prefix || '',
-      delimiter: delimiter,
-      optional: optional,
-      repeat: repeat,
-      partial: partial,
-      asterisk: !!asterisk,
-      pattern: pattern ? escapeGroup(pattern) : (asterisk ? '.*' : '[^' + escapeString(delimiter) + ']+?')
-    })
-  }
-
-  // Match any characters still remaining.
-  if (index < str.length) {
-    path += str.substr(index)
-  }
-
-  // If the path exists, push it onto the end.
-  if (path) {
-    tokens.push(path)
-  }
-
-  return tokens
-}
-
-/**
- * Compile a string to a template function for the path.
- *
- * @param  {string}             str
- * @param  {Object=}            options
- * @return {!function(Object=, Object=)}
- */
-function compile (str, options) {
-  return tokensToFunction(parse(str, options), options)
-}
-
-/**
- * Prettier encoding of URI path segments.
- *
- * @param  {string}
- * @return {string}
- */
-function encodeURIComponentPretty (str) {
-  return encodeURI(str).replace(/[\/?#]/g, function (c) {
-    return '%' + c.charCodeAt(0).toString(16).toUpperCase()
-  })
-}
-
-/**
- * Encode the asterisk parameter. Similar to `pretty`, but allows slashes.
- *
- * @param  {string}
- * @return {string}
- */
-function encodeAsterisk (str) {
-  return encodeURI(str).replace(/[?#]/g, function (c) {
-    return '%' + c.charCodeAt(0).toString(16).toUpperCase()
-  })
-}
-
-/**
- * Expose a method for transforming tokens into the path function.
- */
-function tokensToFunction (tokens, options) {
-  // Compile all the tokens into regexps.
-  var matches = new Array(tokens.length)
-
-  // Compile all the patterns before compilation.
-  for (var i = 0; i < tokens.length; i++) {
-    if (typeof tokens[i] === 'object') {
-      matches[i] = new RegExp('^(?:' + tokens[i].pattern + ')$', flags(options))
-    }
-  }
-
-  return function (obj, opts) {
-    var path = ''
-    var data = obj || {}
-    var options = opts || {}
-    var encode = options.pretty ? encodeURIComponentPretty : encodeURIComponent
-
-    for (var i = 0; i < tokens.length; i++) {
-      var token = tokens[i]
-
-      if (typeof token === 'string') {
-        path += token
-
-        continue
-      }
-
-      var value = data[token.name]
-      var segment
-
-      if (value == null) {
-        if (token.optional) {
-          // Prepend partial segment prefixes.
-          if (token.partial) {
-            path += token.prefix
-          }
-
-          continue
-        } else {
-          throw new TypeError('Expected "' + token.name + '" to be defined')
-        }
-      }
-
-      if (isarray(value)) {
-        if (!token.repeat) {
-          throw new TypeError('Expected "' + token.name + '" to not repeat, but received `' + JSON.stringify(value) + '`')
-        }
-
-        if (value.length === 0) {
-          if (token.optional) {
-            continue
-          } else {
-            throw new TypeError('Expected "' + token.name + '" to not be empty')
-          }
-        }
-
-        for (var j = 0; j < value.length; j++) {
-          segment = encode(value[j])
-
-          if (!matches[i].test(segment)) {
-            throw new TypeError('Expected all "' + token.name + '" to match "' + token.pattern + '", but received `' + JSON.stringify(segment) + '`')
-          }
-
-          path += (j === 0 ? token.prefix : token.delimiter) + segment
-        }
-
-        continue
-      }
-
-      segment = token.asterisk ? encodeAsterisk(value) : encode(value)
-
-      if (!matches[i].test(segment)) {
-        throw new TypeError('Expected "' + token.name + '" to match "' + token.pattern + '", but received "' + segment + '"')
-      }
-
-      path += token.prefix + segment
-    }
-
-    return path
-  }
-}
-
-/**
- * Escape a regular expression string.
- *
- * @param  {string} str
- * @return {string}
- */
-function escapeString (str) {
-  return str.replace(/([.+*?=^!:${}()[\]|\/\\])/g, '\\$1')
-}
-
-/**
- * Escape the capturing group by escaping special characters and meaning.
- *
- * @param  {string} group
- * @return {string}
- */
-function escapeGroup (group) {
-  return group.replace(/([=!:$\/()])/g, '\\$1')
-}
-
-/**
- * Attach the keys as a property of the regexp.
- *
- * @param  {!RegExp} re
- * @param  {Array}   keys
- * @return {!RegExp}
- */
-function attachKeys (re, keys) {
-  re.keys = keys
-  return re
-}
-
-/**
- * Get the flags for a regexp from the options.
- *
- * @param  {Object} options
- * @return {string}
- */
-function flags (options) {
-  return options && options.sensitive ? '' : 'i'
-}
-
-/**
- * Pull out keys from a regexp.
- *
- * @param  {!RegExp} path
- * @param  {!Array}  keys
- * @return {!RegExp}
- */
-function regexpToRegexp (path, keys) {
-  // Use a negative lookahead to match only capturing groups.
-  var groups = path.source.match(/\((?!\?)/g)
-
-  if (groups) {
-    for (var i = 0; i < groups.length; i++) {
-      keys.push({
-        name: i,
-        prefix: null,
-        delimiter: null,
-        optional: false,
-        repeat: false,
-        partial: false,
-        asterisk: false,
-        pattern: null
-      })
-    }
-  }
-
-  return attachKeys(path, keys)
-}
-
-/**
- * Transform an array into a regexp.
- *
- * @param  {!Array}  path
- * @param  {Array}   keys
- * @param  {!Object} options
- * @return {!RegExp}
- */
-function arrayToRegexp (path, keys, options) {
-  var parts = []
-
-  for (var i = 0; i < path.length; i++) {
-    parts.push(pathToRegexp(path[i], keys, options).source)
-  }
-
-  var regexp = new RegExp('(?:' + parts.join('|') + ')', flags(options))
-
-  return attachKeys(regexp, keys)
-}
-
-/**
- * Create a path regexp from string input.
- *
- * @param  {string}  path
- * @param  {!Array}  keys
- * @param  {!Object} options
- * @return {!RegExp}
- */
-function stringToRegexp (path, keys, options) {
-  return tokensToRegExp(parse(path, options), keys, options)
-}
-
-/**
- * Expose a function for taking tokens and returning a RegExp.
- *
- * @param  {!Array}          tokens
- * @param  {(Array|Object)=} keys
- * @param  {Object=}         options
- * @return {!RegExp}
- */
-function tokensToRegExp (tokens, keys, options) {
-  if (!isarray(keys)) {
-    options = /** @type {!Object} */ (keys || options)
-    keys = []
-  }
-
-  options = options || {}
-
-  var strict = options.strict
-  var end = options.end !== false
-  var route = ''
-
-  // Iterate over the tokens and create our regexp string.
-  for (var i = 0; i < tokens.length; i++) {
-    var token = tokens[i]
-
-    if (typeof token === 'string') {
-      route += escapeString(token)
-    } else {
-      var prefix = escapeString(token.prefix)
-      var capture = '(?:' + token.pattern + ')'
-
-      keys.push(token)
-
-      if (token.repeat) {
-        capture += '(?:' + prefix + capture + ')*'
-      }
-
-      if (token.optional) {
-        if (!token.partial) {
-          capture = '(?:' + prefix + '(' + capture + '))?'
-        } else {
-          capture = prefix + '(' + capture + ')?'
-        }
-      } else {
-        capture = prefix + '(' + capture + ')'
-      }
-
-      route += capture
-    }
-  }
-
-  var delimiter = escapeString(options.delimiter || '/')
-  var endsWithDelimiter = route.slice(-delimiter.length) === delimiter
-
-  // In non-strict mode we allow a slash at the end of match. If the path to
-  // match already ends with a slash, we remove it for consistency. The slash
-  // is valid at the end of a path match, not in the middle. This is important
-  // in non-ending mode, where "/test/" shouldn't match "/test//route".
-  if (!strict) {
-    route = (endsWithDelimiter ? route.slice(0, -delimiter.length) : route) + '(?:' + delimiter + '(?=$))?'
-  }
-
-  if (end) {
-    route += '$'
-  } else {
-    // In non-ending mode, we need the capturing groups to match as much as
-    // possible by using a positive lookahead to the end or next path segment.
-    route += strict && endsWithDelimiter ? '' : '(?=' + delimiter + '|$)'
-  }
-
-  return attachKeys(new RegExp('^' + route, flags(options)), keys)
-}
-
-/**
- * Normalize the given path string, returning a regular expression.
- *
- * An empty array can be passed in for the keys, which will hold the
- * placeholder key descriptions. For example, using `/user/:id`, `keys` will
- * contain `[{ name: 'id', delimiter: '/', optional: false, repeat: false }]`.
- *
- * @param  {(string|RegExp|Array)} path
- * @param  {(Array|Object)=}       keys
- * @param  {Object=}               options
- * @return {!RegExp}
- */
-function pathToRegexp (path, keys, options) {
-  if (!isarray(keys)) {
-    options = /** @type {!Object} */ (keys || options)
-    keys = []
-  }
-
-  options = options || {}
-
-  if (path instanceof RegExp) {
-    return regexpToRegexp(path, /** @type {!Array} */ (keys))
-  }
-
-  if (isarray(path)) {
-    return arrayToRegexp(/** @type {!Array} */ (path), /** @type {!Array} */ (keys), options)
-  }
-
-  return stringToRegexp(/** @type {string} */ (path), /** @type {!Array} */ (keys), options)
-}
 
 
 /***/ }),
@@ -83620,7 +84812,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inherits */ "./node_modules/@babel/runtime/helpers/esm/inherits.js");
 /* harmony import */ var _index_4bd03571_esm_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./index-4bd03571.esm.js */ "./node_modules/react-select/dist/index-4bd03571.esm.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @emotion/react */ "./node_modules/@emotion/react/dist/emotion-element-a8309070.browser.esm.js");
+/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @emotion/react */ "./node_modules/@emotion/react/dist/emotion-element-99289b21.browser.esm.js");
 /* harmony import */ var _emotion_cache__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @emotion/cache */ "./node_modules/@emotion/cache/dist/emotion-cache.browser.esm.js");
 /* harmony import */ var memoize_one__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! memoize-one */ "./node_modules/memoize-one/dist/memoize-one.esm.js");
 /* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
@@ -89322,7 +90514,7 @@ if (false) {} else {
   \***************************************************/
 /***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
 
-/* provided dependency */ var process = __webpack_require__(/*! process/browser */ "./node_modules/process/browser.js");
+/* provided dependency */ var process = __webpack_require__(/*! process/browser.js */ "./node_modules/process/browser.js");
 (function (global, undefined) {
     "use strict";
 
@@ -89526,7 +90718,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
 /* harmony import */ var _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _css_loader_dist_cjs_js_ruleSet_1_rules_8_oneOf_1_use_1_postcss_loader_dist_cjs_js_ruleSet_1_rules_8_oneOf_1_use_2_react_draft_wysiwyg_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../css-loader/dist/cjs.js??ruleSet[1].rules[8].oneOf[1].use[1]!../../postcss-loader/dist/cjs.js??ruleSet[1].rules[8].oneOf[1].use[2]!./react-draft-wysiwyg.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[8].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[8].oneOf[1].use[2]!./node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css");
+/* harmony import */ var _css_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_1_postcss_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_2_react_draft_wysiwyg_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../css-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[1]!../../postcss-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[2]!./react-draft-wysiwyg.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[9].oneOf[1].use[2]!./node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css");
 
             
 
@@ -89535,11 +90727,11 @@ var options = {};
 options.insert = "head";
 options.singleton = false;
 
-var update = _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_css_loader_dist_cjs_js_ruleSet_1_rules_8_oneOf_1_use_1_postcss_loader_dist_cjs_js_ruleSet_1_rules_8_oneOf_1_use_2_react_draft_wysiwyg_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+var update = _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_css_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_1_postcss_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_2_react_draft_wysiwyg_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
 
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_css_loader_dist_cjs_js_ruleSet_1_rules_8_oneOf_1_use_1_postcss_loader_dist_cjs_js_ruleSet_1_rules_8_oneOf_1_use_2_react_draft_wysiwyg_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_css_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_1_postcss_loader_dist_cjs_js_ruleSet_1_rules_9_oneOf_1_use_2_react_draft_wysiwyg_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
 
 /***/ }),
 
@@ -89831,7 +91023,7 @@ module.exports = function (list, options) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "default": () => (/* binding */ invariant)
 /* harmony export */ });
 var isProduction = "development" === 'production';
 var prefix = 'Invariant failed';
@@ -89842,10 +91034,12 @@ function invariant(condition, message) {
     if (isProduction) {
         throw new Error(prefix);
     }
-    throw new Error(prefix + ": " + (message || ''));
+    var provided = typeof message === 'function' ? message() : message;
+    var value = provided ? prefix + ": " + provided : prefix;
+    throw new Error(value);
 }
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (invariant);
+
 
 
 /***/ }),
@@ -90158,915 +91352,6 @@ function __classPrivateFieldSet(receiver, state, value, kind, f) {
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
     return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
 }
-
-
-/***/ }),
-
-/***/ "./node_modules/ua-parser-js/src/ua-parser.js":
-/*!****************************************************!*\
-  !*** ./node_modules/ua-parser-js/src/ua-parser.js ***!
-  \****************************************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_RESULT__;/*!@license
- * UAParser.js v0.7.28
- * Lightweight JavaScript-based User-Agent string parser
- * https://github.com/faisalman/ua-parser-js
- *
- * Copyright © 2012-2021 Faisal Salman <f@faisalman.com>
- * Licensed under MIT License
- */
-
-(function (window, undefined) {
-
-    'use strict';
-
-    //////////////
-    // Constants
-    /////////////
-
-
-    var LIBVERSION  = '0.7.28',
-        EMPTY       = '',
-        UNKNOWN     = '?',
-        FUNC_TYPE   = 'function',
-        UNDEF_TYPE  = 'undefined',
-        OBJ_TYPE    = 'object',
-        STR_TYPE    = 'string',
-        MAJOR       = 'major', // deprecated
-        MODEL       = 'model',
-        NAME        = 'name',
-        TYPE        = 'type',
-        VENDOR      = 'vendor',
-        VERSION     = 'version',
-        ARCHITECTURE= 'architecture',
-        CONSOLE     = 'console',
-        MOBILE      = 'mobile',
-        TABLET      = 'tablet',
-        SMARTTV     = 'smarttv',
-        WEARABLE    = 'wearable',
-        EMBEDDED    = 'embedded',
-        UA_MAX_LENGTH = 255;
-
-
-    ///////////
-    // Helper
-    //////////
-
-
-    var util = {
-        extend : function (regexes, extensions) {
-            var mergedRegexes = {};
-            for (var i in regexes) {
-                if (extensions[i] && extensions[i].length % 2 === 0) {
-                    mergedRegexes[i] = extensions[i].concat(regexes[i]);
-                } else {
-                    mergedRegexes[i] = regexes[i];
-                }
-            }
-            return mergedRegexes;
-        },
-        has : function (str1, str2) {
-            return typeof str1 === STR_TYPE ? str2.toLowerCase().indexOf(str1.toLowerCase()) !== -1 : false;
-        },
-        lowerize : function (str) {
-            return str.toLowerCase();
-        },
-        major : function (version) {
-            return typeof(version) === STR_TYPE ? version.replace(/[^\d\.]/g,'').split(".")[0] : undefined;
-        },
-        trim : function (str, len) {
-            str = str.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
-            return typeof(len) === UNDEF_TYPE ? str : str.substring(0, UA_MAX_LENGTH);
-        }
-    };
-
-
-    ///////////////
-    // Map helper
-    //////////////
-
-
-    var mapper = {
-
-        rgx : function (ua, arrays) {
-
-            var i = 0, j, k, p, q, matches, match;
-
-            // loop through all regexes maps
-            while (i < arrays.length && !matches) {
-
-                var regex = arrays[i],       // even sequence (0,2,4,..)
-                    props = arrays[i + 1];   // odd sequence (1,3,5,..)
-                j = k = 0;
-
-                // try matching uastring with regexes
-                while (j < regex.length && !matches) {
-
-                    matches = regex[j++].exec(ua);
-
-                    if (!!matches) {
-                        for (p = 0; p < props.length; p++) {
-                            match = matches[++k];
-                            q = props[p];
-                            // check if given property is actually array
-                            if (typeof q === OBJ_TYPE && q.length > 0) {
-                                if (q.length == 2) {
-                                    if (typeof q[1] == FUNC_TYPE) {
-                                        // assign modified match
-                                        this[q[0]] = q[1].call(this, match);
-                                    } else {
-                                        // assign given value, ignore regex match
-                                        this[q[0]] = q[1];
-                                    }
-                                } else if (q.length == 3) {
-                                    // check whether function or regex
-                                    if (typeof q[1] === FUNC_TYPE && !(q[1].exec && q[1].test)) {
-                                        // call function (usually string mapper)
-                                        this[q[0]] = match ? q[1].call(this, match, q[2]) : undefined;
-                                    } else {
-                                        // sanitize match using given regex
-                                        this[q[0]] = match ? match.replace(q[1], q[2]) : undefined;
-                                    }
-                                } else if (q.length == 4) {
-                                        this[q[0]] = match ? q[3].call(this, match.replace(q[1], q[2])) : undefined;
-                                }
-                            } else {
-                                this[q] = match ? match : undefined;
-                            }
-                        }
-                    }
-                }
-                i += 2;
-            }
-        },
-
-        str : function (str, map) {
-
-            for (var i in map) {
-                // check if array
-                if (typeof map[i] === OBJ_TYPE && map[i].length > 0) {
-                    for (var j = 0; j < map[i].length; j++) {
-                        if (util.has(map[i][j], str)) {
-                            return (i === UNKNOWN) ? undefined : i;
-                        }
-                    }
-                } else if (util.has(map[i], str)) {
-                    return (i === UNKNOWN) ? undefined : i;
-                }
-            }
-            return str;
-        }
-    };
-
-
-    ///////////////
-    // String map
-    //////////////
-
-
-    var maps = {
-
-        browser : {
-            // Safari < 3.0
-            oldSafari : {
-                version : {
-                    '1.0'   : '/8',
-                    '1.2'   : '/1',
-                    '1.3'   : '/3',
-                    '2.0'   : '/412',
-                    '2.0.2' : '/416',
-                    '2.0.3' : '/417',
-                    '2.0.4' : '/419',
-                    '?'     : '/'
-                }
-            },
-            oldEdge : {
-                version : {
-                    '0.1'   : '12.',
-                    '21'    : '13.',
-                    '31'    : '14.',
-                    '39'    : '15.',
-                    '41'    : '16.',
-                    '42'    : '17.',
-                    '44'    : '18.'
-                }
-            }
-        },
-
-        os : {
-            windows : {
-                version : {
-                    'ME'        : '4.90',
-                    'NT 3.11'   : 'NT3.51',
-                    'NT 4.0'    : 'NT4.0',
-                    '2000'      : 'NT 5.0',
-                    'XP'        : ['NT 5.1', 'NT 5.2'],
-                    'Vista'     : 'NT 6.0',
-                    '7'         : 'NT 6.1',
-                    '8'         : 'NT 6.2',
-                    '8.1'       : 'NT 6.3',
-                    '10'        : ['NT 6.4', 'NT 10.0'],
-                    'RT'        : 'ARM'
-                }
-            }
-        }
-    };
-
-
-    //////////////
-    // Regex map
-    /////////////
-
-
-    var regexes = {
-
-        browser : [[
-
-            /\b(?:crmo|crios)\/([\w\.]+)/i                                      // Chrome for Android/iOS
-            ], [VERSION, [NAME, 'Chrome']], [
-            /edg(?:e|ios|a)?\/([\w\.]+)/i                                       // Microsoft Edge
-            ], [VERSION, [NAME, 'Edge']], [
-            // breaking change (reserved for next major release):
-            ///edge\/([\w\.]+)/i                                                  // Old Edge (Trident)
-            //], [[VERSION, mapper.str, maps.browser.oldEdge.version], [NAME, 'Edge']], [
-
-            // Presto based
-            /(opera\smini)\/([\w\.-]+)/i,                                       // Opera Mini
-            /(opera\s[mobiletab]{3,6})\b.+version\/([\w\.-]+)/i,                // Opera Mobi/Tablet
-            /(opera)(?:.+version\/|[\/\s]+)([\w\.]+)/i,                         // Opera
-            ], [NAME, VERSION], [
-            /opios[\/\s]+([\w\.]+)/i                                            // Opera mini on iphone >= 8.0
-            ], [VERSION, [NAME, 'Opera Mini']], [
-            /\sopr\/([\w\.]+)/i                                                 // Opera Webkit
-            ], [VERSION, [NAME, 'Opera']], [
-
-            // Mixed
-            /(kindle)\/([\w\.]+)/i,                                             // Kindle
-            /(lunascape|maxthon|netfront|jasmine|blazer)[\/\s]?([\w\.]*)/i,     // Lunascape/Maxthon/Netfront/Jasmine/Blazer
-            // Trident based
-            /(avant\s|iemobile|slim)(?:browser)?[\/\s]?([\w\.]*)/i,             // Avant/IEMobile/SlimBrowser
-            /(ba?idubrowser)[\/\s]?([\w\.]+)/i,                                 // Baidu Browser
-            /(?:ms|\()(ie)\s([\w\.]+)/i,                                        // Internet Explorer
-
-            // Webkit/KHTML based
-            /(flock|rockmelt|midori|epiphany|silk|skyfire|ovibrowser|bolt|iron|vivaldi|iridium|phantomjs|bowser|quark|qupzilla|falkon)\/([\w\.-]+)/i,
-                                                                                // Flock/RockMelt/Midori/Epiphany/Silk/Skyfire/Bolt/Iron/Iridium/PhantomJS/Bowser/QupZilla/Falkon
-            /(rekonq|puffin|brave|whale|qqbrowserlite|qq)\/([\w\.]+)/i,         // Rekonq/Puffin/Brave/Whale/QQBrowserLite/QQ, aka ShouQ
-            /(weibo)__([\d\.]+)/i                                               // Weibo
-            ], [NAME, VERSION], [
-            /(?:[\s\/]uc?\s?browser|(?:juc.+)ucweb)[\/\s]?([\w\.]+)/i           // UCBrowser
-            ], [VERSION, [NAME, 'UCBrowser']], [
-            /(?:windowswechat)?\sqbcore\/([\w\.]+)\b.*(?:windowswechat)?/i      // WeChat Desktop for Windows Built-in Browser
-            ], [VERSION, [NAME, 'WeChat(Win) Desktop']], [
-            /micromessenger\/([\w\.]+)/i                                        // WeChat
-            ], [VERSION, [NAME, 'WeChat']], [
-            /konqueror\/([\w\.]+)/i                                             // Konqueror
-            ], [VERSION, [NAME, 'Konqueror']], [
-            /trident.+rv[:\s]([\w\.]{1,9})\b.+like\sgecko/i                     // IE11
-            ], [VERSION, [NAME, 'IE']], [
-            /yabrowser\/([\w\.]+)/i                                             // Yandex
-            ], [VERSION, [NAME, 'Yandex']], [
-            /(avast|avg)\/([\w\.]+)/i                                           // Avast/AVG Secure Browser
-            ], [[NAME, /(.+)/, '$1 Secure Browser'], VERSION], [
-            /focus\/([\w\.]+)/i                                                 // Firefox Focus
-            ], [VERSION, [NAME, 'Firefox Focus']], [
-            /opt\/([\w\.]+)/i                                                   // Opera Touch
-            ], [VERSION, [NAME, 'Opera Touch']], [
-            /coc_coc_browser\/([\w\.]+)/i                                       // Coc Coc Browser
-            ], [VERSION, [NAME, 'Coc Coc']], [
-            /dolfin\/([\w\.]+)/i                                                // Dolphin
-            ], [VERSION, [NAME, 'Dolphin']], [
-            /coast\/([\w\.]+)/i                                                 // Opera Coast
-            ], [VERSION, [NAME, 'Opera Coast']],
-            [/xiaomi\/miuibrowser\/([\w\.]+)/i                                  // MIUI Browser
-            ], [VERSION, [NAME, 'MIUI Browser']], [
-            /fxios\/([\w\.-]+)/i                                                // Firefox for iOS
-            ], [VERSION, [NAME, 'Firefox']], [
-            /(qihu|qhbrowser|qihoobrowser|360browser)/i                         // 360
-            ], [[NAME, '360 Browser']], [
-            /(oculus|samsung|sailfish)browser\/([\w\.]+)/i
-            ], [[NAME, /(.+)/, '$1 Browser'], VERSION], [                       // Oculus/Samsung/Sailfish Browser
-            /(comodo_dragon)\/([\w\.]+)/i                                       // Comodo Dragon
-            ], [[NAME, /_/g, ' '], VERSION], [
-            /\s(electron)\/([\w\.]+)\ssafari/i,                                 // Electron-based App
-            /(tesla)(?:\sqtcarbrowser|\/(20[12]\d\.[\w\.-]+))/i,                // Tesla
-            /m?(qqbrowser|baiduboxapp|2345Explorer)[\/\s]?([\w\.]+)/i           // QQBrowser/Baidu App/2345 Browser
-            ], [NAME, VERSION], [
-            /(MetaSr)[\/\s]?([\w\.]+)/i,                                        // SouGouBrowser
-            /(LBBROWSER)/i                                                      // LieBao Browser
-            ], [NAME], [
-
-            // WebView
-            /;fbav\/([\w\.]+);/i                                                // Facebook App for iOS & Android with version
-            ], [VERSION, [NAME, 'Facebook']], [
-            /FBAN\/FBIOS|FB_IAB\/FB4A/i                                         // Facebook App for iOS & Android without version
-            ], [[NAME, 'Facebook']], [
-            /safari\s(line)\/([\w\.]+)/i,                                       // Line App for iOS
-            /\b(line)\/([\w\.]+)\/iab/i,                                        // Line App for Android
-            /(chromium|instagram)[\/\s]([\w\.-]+)/i                             // Chromium/Instagram
-            ], [NAME, VERSION], [
-            /\bgsa\/([\w\.]+)\s.*safari\//i                                     // Google Search Appliance on iOS
-            ], [VERSION, [NAME, 'GSA']], [
-
-            /headlesschrome(?:\/([\w\.]+)|\s)/i                                 // Chrome Headless
-            ], [VERSION, [NAME, 'Chrome Headless']], [
-
-            /\swv\).+(chrome)\/([\w\.]+)/i                                      // Chrome WebView
-            ], [[NAME, 'Chrome WebView'], VERSION], [
-
-            /droid.+\sversion\/([\w\.]+)\b.+(?:mobile\ssafari|safari)/i         // Android Browser
-            ], [VERSION, [NAME, 'Android Browser']], [
-
-            /(chrome|omniweb|arora|[tizenoka]{5}\s?browser)\/v?([\w\.]+)/i      // Chrome/OmniWeb/Arora/Tizen/Nokia
-            ], [NAME, VERSION], [
-
-            /version\/([\w\.]+)\s.*mobile\/\w+\s(safari)/i                      // Mobile Safari
-            ], [VERSION, [NAME, 'Mobile Safari']], [
-            /version\/([\w\.]+)\s.*(mobile\s?safari|safari)/i                   // Safari & Safari Mobile
-            ], [VERSION, NAME], [
-            /webkit.+?(mobile\s?safari|safari)(\/[\w\.]+)/i                     // Safari < 3.0
-            ], [NAME, [VERSION, mapper.str, maps.browser.oldSafari.version]], [
-
-            /(webkit|khtml)\/([\w\.]+)/i
-            ], [NAME, VERSION], [
-
-            // Gecko based
-            /(navigator|netscape)\/([\w\.-]+)/i                                 // Netscape
-            ], [[NAME, 'Netscape'], VERSION], [
-            /ile\svr;\srv:([\w\.]+)\).+firefox/i                                // Firefox Reality
-            ], [VERSION, [NAME, 'Firefox Reality']], [
-            /ekiohf.+(flow)\/([\w\.]+)/i,                                       // Flow
-            /(swiftfox)/i,                                                      // Swiftfox
-            /(icedragon|iceweasel|camino|chimera|fennec|maemo\sbrowser|minimo|conkeror)[\/\s]?([\w\.\+]+)/i,
-                                                                                // IceDragon/Iceweasel/Camino/Chimera/Fennec/Maemo/Minimo/Conkeror
-            /(firefox|seamonkey|k-meleon|icecat|iceape|firebird|phoenix|palemoon|basilisk|waterfox)\/([\w\.-]+)$/i,
-                                                                                // Firefox/SeaMonkey/K-Meleon/IceCat/IceApe/Firebird/Phoenix
-            /(firefox)\/([\w\.]+)\s[\w\s\-]+\/[\w\.]+$/i,                       // Other Firefox-based
-            /(mozilla)\/([\w\.]+)\s.+rv\:.+gecko\/\d+/i,                        // Mozilla
-
-            // Other
-            /(polaris|lynx|dillo|icab|doris|amaya|w3m|netsurf|sleipnir)[\/\s]?([\w\.]+)/i,
-                                                                                // Polaris/Lynx/Dillo/iCab/Doris/Amaya/w3m/NetSurf/Sleipnir
-            /(links)\s\(([\w\.]+)/i,                                            // Links
-            /(gobrowser)\/?([\w\.]*)/i,                                         // GoBrowser
-            /(ice\s?browser)\/v?([\w\._]+)/i,                                   // ICE Browser
-            /(mosaic)[\/\s]([\w\.]+)/i                                          // Mosaic
-            ], [NAME, VERSION]
-        ],
-
-        cpu : [[
-
-            /(?:(amd|x(?:(?:86|64)[_-])?|wow|win)64)[;\)]/i                     // AMD64 (x64)
-            ], [[ARCHITECTURE, 'amd64']], [
-
-            /(ia32(?=;))/i                                                      // IA32 (quicktime)
-            ], [[ARCHITECTURE, util.lowerize]], [
-
-            /((?:i[346]|x)86)[;\)]/i                                            // IA32 (x86)
-            ], [[ARCHITECTURE, 'ia32']], [
-
-            /\b(aarch64|armv?8e?l?)\b/i                                         // ARM64
-            ], [[ARCHITECTURE, 'arm64']], [
-
-            /\b(arm(?:v[67])?ht?n?[fl]p?)\b/i                                   // ARMHF
-            ], [[ARCHITECTURE, 'armhf']], [
-
-            // PocketPC mistakenly identified as PowerPC
-            /windows\s(ce|mobile);\sppc;/i
-            ], [[ARCHITECTURE, 'arm']], [
-
-            /((?:ppc|powerpc)(?:64)?)(?:\smac|;|\))/i                           // PowerPC
-            ], [[ARCHITECTURE, /ower/, '', util.lowerize]], [
-
-            /(sun4\w)[;\)]/i                                                    // SPARC
-            ], [[ARCHITECTURE, 'sparc']], [
-
-            /((?:avr32|ia64(?=;))|68k(?=\))|\barm(?:64|(?=v(?:[1-7]|[5-7]1)l?|;|eabi))|(?=atmel\s)avr|(?:irix|mips|sparc)(?:64)?\b|pa-risc)/i
-                                                                                // IA64, 68K, ARM/64, AVR/32, IRIX/64, MIPS/64, SPARC/64, PA-RISC
-            ], [[ARCHITECTURE, util.lowerize]]
-        ],
-
-        device : [[
-
-            //////////////////////////
-            // MOBILES & TABLETS
-            // Ordered by popularity
-            /////////////////////////
-
-            // Samsung
-            /\b(sch-i[89]0\d|shw-m380s|sm-[pt]\w{2,4}|gt-[pn]\d{2,4}|sgh-t8[56]9|nexus\s10)/i
-            ], [MODEL, [VENDOR, 'Samsung'], [TYPE, TABLET]], [
-            /\b((?:s[cgp]h|gt|sm)-\w+|galaxy\snexus)/i,
-            /\ssamsung[\s-]([\w-]+)/i,
-            /sec-(sgh\w+)/i
-            ], [MODEL, [VENDOR, 'Samsung'], [TYPE, MOBILE]], [
-
-            // Apple
-            /\((ip(?:hone|od)[\s\w]*);/i                                        // iPod/iPhone
-            ], [MODEL, [VENDOR, 'Apple'], [TYPE, MOBILE]], [
-            /\((ipad);[\w\s\),;-]+apple/i,                                      // iPad
-            /applecoremedia\/[\w\.]+\s\((ipad)/i,
-            /\b(ipad)\d\d?,\d\d?[;\]].+ios/i
-            ], [MODEL, [VENDOR, 'Apple'], [TYPE, TABLET]], [
-
-            // Huawei
-            /\b((?:agr|ags[23]|bah2?|sht?)-a?[lw]\d{2})/i,
-            ], [MODEL, [VENDOR, 'Huawei'], [TYPE, TABLET]], [
-            /d\/huawei([\w\s-]+)[;\)]/i,
-            /\b(nexus\s6p|vog-[at]?l\d\d|ane-[at]?l[x\d]\d|eml-a?l\d\da?|lya-[at]?l\d[\dc]|clt-a?l\d\di?|ele-l\d\d)/i,
-            /\b(\w{2,4}-[atu][ln][01259][019])[;\)\s]/i
-            ], [MODEL, [VENDOR, 'Huawei'], [TYPE, MOBILE]], [
-
-            // Xiaomi
-            /\b(poco[\s\w]+)(?:\sbuild|\))/i,                                   // Xiaomi POCO
-            /\b;\s(\w+)\sbuild\/hm\1/i,                                         // Xiaomi Hongmi 'numeric' models
-            /\b(hm[\s\-_]?note?[\s_]?(?:\d\w)?)\sbuild/i,                       // Xiaomi Hongmi
-            /\b(redmi[\s\-_]?(?:note|k)?[\w\s_]+)(?:\sbuild|\))/i,              // Xiaomi Redmi
-            /\b(mi[\s\-_]?(?:a\d|one|one[\s_]plus|note lte)?[\s_]?(?:\d?\w?)[\s_]?(?:plus)?)\sbuild/i  // Xiaomi Mi
-            ], [[MODEL, /_/g, ' '], [VENDOR, 'Xiaomi'], [TYPE, MOBILE]], [
-            /\b(mi[\s\-_]?(?:pad)(?:[\w\s_]+))(?:\sbuild|\))/i                  // Mi Pad tablets
-            ],[[MODEL, /_/g, ' '], [VENDOR, 'Xiaomi'], [TYPE, TABLET]], [
-
-            // OPPO
-            /;\s(\w+)\sbuild.+\soppo/i,
-            /\s(cph[12]\d{3}|p(?:af|c[al]|d\w|e[ar])[mt]\d0|x9007)\b/i
-            ], [MODEL, [VENDOR, 'OPPO'], [TYPE, MOBILE]], [
-
-            // Vivo
-            /\svivo\s(\w+)(?:\sbuild|\))/i,
-            /\s(v[12]\d{3}\w?[at])(?:\sbuild|;)/i
-            ], [MODEL, [VENDOR, 'Vivo'], [TYPE, MOBILE]], [
-
-            // Realme
-            /\s(rmx[12]\d{3})(?:\sbuild|;)/i
-            ], [MODEL, [VENDOR, 'Realme'], [TYPE, MOBILE]], [
-
-            // Motorola
-            /\s(milestone|droid(?:[2-4x]|\s(?:bionic|x2|pro|razr))?:?(\s4g)?)\b[\w\s]+build\//i,
-            /\smot(?:orola)?[\s-](\w*)/i,
-            /((?:moto[\s\w\(\)]+|xt\d{3,4}|nexus\s6)(?=\sbuild|\)))/i
-            ], [MODEL, [VENDOR, 'Motorola'], [TYPE, MOBILE]], [
-            /\s(mz60\d|xoom[\s2]{0,2})\sbuild\//i
-            ], [MODEL, [VENDOR, 'Motorola'], [TYPE, TABLET]], [
-
-            // LG
-            /((?=lg)?[vl]k\-?\d{3})\sbuild|\s3\.[\s\w;-]{10}lg?-([06cv9]{3,4})/i
-            ], [MODEL, [VENDOR, 'LG'], [TYPE, TABLET]], [
-            /(lm-?f100[nv]?|nexus\s[45])/i,
-            /lg[e;\s\/-]+((?!browser|netcast)\w+)/i,
-            /\blg(\-?[\d\w]+)\sbuild/i
-            ], [MODEL, [VENDOR, 'LG'], [TYPE, MOBILE]], [
-
-            // Lenovo
-            /(ideatab[\w\-\s]+)/i,
-            /lenovo\s?(s(?:5000|6000)(?:[\w-]+)|tab(?:[\s\w]+)|yt[\d\w-]{6}|tb[\d\w-]{6})/i        // Lenovo tablets
-            ], [MODEL, [VENDOR, 'Lenovo'], [TYPE, TABLET]], [
-
-            // Nokia
-            /(?:maemo|nokia).*(n900|lumia\s\d+)/i,
-            /nokia[\s_-]?([\w\.-]*)/i
-            ], [[MODEL, /_/g, ' '], [VENDOR, 'Nokia'], [TYPE, MOBILE]], [
-
-            // Google
-            /droid.+;\s(pixel\sc)[\s)]/i                                        // Google Pixel C
-            ], [MODEL, [VENDOR, 'Google'], [TYPE, TABLET]], [
-            /droid.+;\s(pixel[\s\daxl]{0,6})(?:\sbuild|\))/i                    // Google Pixel
-            ], [MODEL, [VENDOR, 'Google'], [TYPE, MOBILE]], [
-
-            // Sony
-            /droid.+\s([c-g]\d{4}|so[-l]\w+|xq-a\w[4-7][12])(?=\sbuild\/|\).+chrome\/(?![1-6]{0,1}\d\.))/i
-            ], [MODEL, [VENDOR, 'Sony'], [TYPE, MOBILE]], [
-            /sony\stablet\s[ps]\sbuild\//i,
-            /(?:sony)?sgp\w+(?:\sbuild\/|\))/i
-            ], [[MODEL, 'Xperia Tablet'], [VENDOR, 'Sony'], [TYPE, TABLET]], [
-
-            // OnePlus
-            /\s(kb2005|in20[12]5|be20[12][59])\b/i,
-            /\ba000(1)\sbuild/i,                                                // OnePlus
-            /\boneplus\s(a\d{4})[\s)]/i
-            ], [MODEL, [VENDOR, 'OnePlus'], [TYPE, MOBILE]], [
-
-            // Amazon
-            /(alexa)webm/i,
-            /(kf[a-z]{2}wi)(\sbuild\/|\))/i,                                    // Kindle Fire without Silk
-            /(kf[a-z]+)(\sbuild\/|\)).+silk\//i                                 // Kindle Fire HD
-            ], [MODEL, [VENDOR, 'Amazon'], [TYPE, TABLET]], [
-            /(sd|kf)[0349hijorstuw]+(\sbuild\/|\)).+silk\//i                    // Fire Phone
-            ], [[MODEL, 'Fire Phone'], [VENDOR, 'Amazon'], [TYPE, MOBILE]], [
-
-            // BlackBerry
-            /\((playbook);[\w\s\),;-]+(rim)/i                                   // BlackBerry PlayBook
-            ], [MODEL, VENDOR, [TYPE, TABLET]], [
-            /((?:bb[a-f]|st[hv])100-\d)/i,
-            /\(bb10;\s(\w+)/i                                                   // BlackBerry 10
-            ], [MODEL, [VENDOR, 'BlackBerry'], [TYPE, MOBILE]], [
-
-            // Asus
-            /(?:\b|asus_)(transfo[prime\s]{4,10}\s\w+|eeepc|slider\s\w+|nexus\s7|padfone|p00[cj])/i
-            ], [MODEL, [VENDOR, 'ASUS'], [TYPE, TABLET]], [
-            /\s(z[es]6[027][01][km][ls]|zenfone\s\d\w?)\b/i
-            ], [MODEL, [VENDOR, 'ASUS'], [TYPE, MOBILE]], [
-
-            // HTC
-            /(nexus\s9)/i                                                       // HTC Nexus 9
-            ], [MODEL, [VENDOR, 'HTC'], [TYPE, TABLET]], [
-            /(htc)[;_\s-]{1,2}([\w\s]+(?=\)|\sbuild)|\w+)/i,                    // HTC
-
-            // ZTE
-            /(zte)-(\w*)/i,
-            /(alcatel|geeksphone|nexian|panasonic|(?=;\s)sony)[_\s-]?([\w-]*)/i // Alcatel/GeeksPhone/Nexian/Panasonic/Sony
-            ], [VENDOR, [MODEL, /_/g, ' '], [TYPE, MOBILE]], [
-
-            // Acer
-            /droid[x\d\.\s;]+\s([ab][1-7]\-?[0178a]\d\d?)/i
-            ], [MODEL, [VENDOR, 'Acer'], [TYPE, TABLET]], [
-
-            // Meizu
-            /droid.+;\s(m[1-5]\snote)\sbuild/i,
-            /\bmz-([\w-]{2,})/i
-            ], [MODEL, [VENDOR, 'Meizu'], [TYPE, MOBILE]], [
-
-            // MIXED
-            /(blackberry|benq|palm(?=\-)|sonyericsson|acer|asus|dell|meizu|motorola|polytron)[\s_-]?([\w-]*)/i,
-                                                                                // BlackBerry/BenQ/Palm/Sony-Ericsson/Acer/Asus/Dell/Meizu/Motorola/Polytron
-            /(hp)\s([\w\s]+\w)/i,                                               // HP iPAQ
-            /(asus)-?(\w+)/i,                                                   // Asus
-            /(microsoft);\s(lumia[\s\w]+)/i,                                    // Microsoft Lumia
-            /(lenovo)[_\s-]?([\w-]+)/i,                                         // Lenovo
-            /linux;.+(jolla);/i,                                                // Jolla
-            /droid.+;\s(oppo)\s?([\w\s]+)\sbuild/i                              // OPPO
-            ], [VENDOR, MODEL, [TYPE, MOBILE]], [
-
-            /(archos)\s(gamepad2?)/i,                                           // Archos
-            /(hp).+(touchpad(?!.+tablet)|tablet)/i,                             // HP TouchPad
-            /(kindle)\/([\w\.]+)/i,                                             // Kindle
-            /\s(nook)[\w\s]+build\/(\w+)/i,                                     // Nook
-            /(dell)\s(strea[kpr\s\d]*[\dko])/i,                                 // Dell Streak
-            /[;\/]\s?(le[\s\-]+pan)[\s\-]+(\w{1,9})\sbuild/i,                   // Le Pan Tablets
-            /[;\/]\s?(trinity)[\-\s]*(t\d{3})\sbuild/i,                         // Trinity Tablets
-            /\b(gigaset)[\s\-]+(q\w{1,9})\sbuild/i,                             // Gigaset Tablets
-            /\b(vodafone)\s([\w\s]+)(?:\)|\sbuild)/i                            // Vodafone
-            ], [VENDOR, MODEL, [TYPE, TABLET]], [
-
-            /\s(surface\sduo)\s/i                                               // Surface Duo
-            ], [MODEL, [VENDOR, 'Microsoft'], [TYPE, TABLET]], [
-            /droid\s[\d\.]+;\s(fp\du?)\sbuild/i
-            ], [MODEL, [VENDOR, 'Fairphone'], [TYPE, MOBILE]], [
-            /\s(u304aa)\sbuild/i                                                // AT&T
-            ], [MODEL, [VENDOR, 'AT&T'], [TYPE, MOBILE]], [
-            /sie-(\w*)/i                                                        // Siemens
-            ], [MODEL, [VENDOR, 'Siemens'], [TYPE, MOBILE]], [
-            /[;\/]\s?(rct\w+)\sbuild/i                                          // RCA Tablets
-            ], [MODEL, [VENDOR, 'RCA'], [TYPE, TABLET]], [
-            /[;\/\s](venue[\d\s]{2,7})\sbuild/i                                 // Dell Venue Tablets
-            ], [MODEL, [VENDOR, 'Dell'], [TYPE, TABLET]], [
-            /[;\/]\s?(q(?:mv|ta)\w+)\sbuild/i                                   // Verizon Tablet
-            ], [MODEL, [VENDOR, 'Verizon'], [TYPE, TABLET]], [
-            /[;\/]\s(?:barnes[&\s]+noble\s|bn[rt])([\w\s\+]*)\sbuild/i          // Barnes & Noble Tablet
-            ], [MODEL, [VENDOR, 'Barnes & Noble'], [TYPE, TABLET]], [
-            /[;\/]\s(tm\d{3}\w+)\sbuild/i
-            ], [MODEL, [VENDOR, 'NuVision'], [TYPE, TABLET]], [
-            /;\s(k88)\sbuild/i                                                  // ZTE K Series Tablet
-            ], [MODEL, [VENDOR, 'ZTE'], [TYPE, TABLET]], [
-            /;\s(nx\d{3}j)\sbuild/i                                             // ZTE Nubia
-            ], [MODEL, [VENDOR, 'ZTE'], [TYPE, MOBILE]], [
-            /[;\/]\s?(gen\d{3})\sbuild.*49h/i                                   // Swiss GEN Mobile
-            ], [MODEL, [VENDOR, 'Swiss'], [TYPE, MOBILE]], [
-            /[;\/]\s?(zur\d{3})\sbuild/i                                        // Swiss ZUR Tablet
-            ], [MODEL, [VENDOR, 'Swiss'], [TYPE, TABLET]], [
-            /[;\/]\s?((zeki)?tb.*\b)\sbuild/i                                   // Zeki Tablets
-            ], [MODEL, [VENDOR, 'Zeki'], [TYPE, TABLET]], [
-            /[;\/]\s([yr]\d{2})\sbuild/i,
-            /[;\/]\s(dragon[\-\s]+touch\s|dt)(\w{5})\sbuild/i                   // Dragon Touch Tablet
-            ], [[VENDOR, 'Dragon Touch'], MODEL, [TYPE, TABLET]], [
-            /[;\/]\s?(ns-?\w{0,9})\sbuild/i                                     // Insignia Tablets
-            ], [MODEL, [VENDOR, 'Insignia'], [TYPE, TABLET]], [
-            /[;\/]\s?((nxa|Next)-?\w{0,9})\sbuild/i                             // NextBook Tablets
-            ], [MODEL, [VENDOR, 'NextBook'], [TYPE, TABLET]], [
-            /[;\/]\s?(xtreme\_)?(v(1[045]|2[015]|[3469]0|7[05]))\sbuild/i
-            ], [[VENDOR, 'Voice'], MODEL, [TYPE, MOBILE]], [                    // Voice Xtreme Phones
-            /[;\/]\s?(lvtel\-)?(v1[12])\sbuild/i                                // LvTel Phones
-            ], [[VENDOR, 'LvTel'], MODEL, [TYPE, MOBILE]], [
-            /;\s(ph-1)\s/i
-            ], [MODEL, [VENDOR, 'Essential'], [TYPE, MOBILE]], [                // Essential PH-1
-            /[;\/]\s?(v(100md|700na|7011|917g).*\b)\sbuild/i                    // Envizen Tablets
-            ], [MODEL, [VENDOR, 'Envizen'], [TYPE, TABLET]], [
-            /[;\/]\s?(trio[\s\w\-\.]+)\sbuild/i                                 // MachSpeed Tablets
-            ], [MODEL, [VENDOR, 'MachSpeed'], [TYPE, TABLET]], [
-            /[;\/]\s?tu_(1491)\sbuild/i                                         // Rotor Tablets
-            ], [MODEL, [VENDOR, 'Rotor'], [TYPE, TABLET]], [
-            /(shield[\w\s]+)\sbuild/i                                           // Nvidia Shield Tablets
-            ], [MODEL, [VENDOR, 'Nvidia'], [TYPE, TABLET]], [
-            /(sprint)\s(\w+)/i                                                  // Sprint Phones
-            ], [VENDOR, MODEL, [TYPE, MOBILE]], [
-            /(kin\.[onetw]{3})/i                                                // Microsoft Kin
-            ], [[MODEL, /\./g, ' '], [VENDOR, 'Microsoft'], [TYPE, MOBILE]], [
-            /droid\s[\d\.]+;\s(cc6666?|et5[16]|mc[239][23]x?|vc8[03]x?)\)/i     // Zebra
-            ], [MODEL, [VENDOR, 'Zebra'], [TYPE, TABLET]], [
-            /droid\s[\d\.]+;\s(ec30|ps20|tc[2-8]\d[kx])\)/i
-            ], [MODEL, [VENDOR, 'Zebra'], [TYPE, MOBILE]], [
-
-            ///////////////////
-            // CONSOLES
-            ///////////////////
-
-            /\s(ouya)\s/i,                                                      // Ouya
-            /(nintendo)\s([wids3utch]+)/i                                       // Nintendo
-            ], [VENDOR, MODEL, [TYPE, CONSOLE]], [
-            /droid.+;\s(shield)\sbuild/i                                        // Nvidia
-            ], [MODEL, [VENDOR, 'Nvidia'], [TYPE, CONSOLE]], [
-            /(playstation\s[345portablevi]+)/i                                  // Playstation
-            ], [MODEL, [VENDOR, 'Sony'], [TYPE, CONSOLE]], [
-            /[\s\(;](xbox(?:\sone)?(?!;\sxbox))[\s\);]/i                        // Microsoft Xbox
-            ], [MODEL, [VENDOR, 'Microsoft'], [TYPE, CONSOLE]], [
-
-            ///////////////////
-            // SMARTTVS
-            ///////////////////
-
-            /smart-tv.+(samsung)/i                                              // Samsung
-            ], [VENDOR, [TYPE, SMARTTV]], [
-            /hbbtv.+maple;(\d+)/i
-            ], [[MODEL, /^/, 'SmartTV'], [VENDOR, 'Samsung'], [TYPE, SMARTTV]], [
-            /(?:linux;\snetcast.+smarttv|lg\snetcast\.tv-201\d)/i,              // LG SmartTV
-            ], [[VENDOR, 'LG'], [TYPE, SMARTTV]], [
-            /(apple)\s?tv/i                                                     // Apple TV
-            ], [VENDOR, [MODEL, 'Apple TV'], [TYPE, SMARTTV]], [
-            /crkey/i                                                            // Google Chromecast
-            ], [[MODEL, 'Chromecast'], [VENDOR, 'Google'], [TYPE, SMARTTV]], [
-            /droid.+aft([\w])(\sbuild\/|\))/i                                   // Fire TV
-            ], [MODEL, [VENDOR, 'Amazon'], [TYPE, SMARTTV]], [
-            /\(dtv[\);].+(aquos)/i                                              // Sharp
-            ], [MODEL, [VENDOR, 'Sharp'], [TYPE, SMARTTV]], [
-            /hbbtv\/\d+\.\d+\.\d+\s+\([\w\s]*;\s*(\w[^;]*);([^;]*)/i            // HbbTV devices
-            ], [[VENDOR, util.trim], [MODEL, util.trim], [TYPE, SMARTTV]], [
-            /[\s\/\(](android\s|smart[-\s]?|opera\s)tv[;\)\s]/i                 // SmartTV from Unidentified Vendors
-            ], [[TYPE, SMARTTV]], [
-
-            ///////////////////
-            // WEARABLES
-            ///////////////////
-
-            /((pebble))app\/[\d\.]+\s/i                                         // Pebble
-            ], [VENDOR, MODEL, [TYPE, WEARABLE]], [
-            /droid.+;\s(glass)\s\d/i                                            // Google Glass
-            ], [MODEL, [VENDOR, 'Google'], [TYPE, WEARABLE]], [
-            /droid\s[\d\.]+;\s(wt63?0{2,3})\)/i
-            ], [MODEL, [VENDOR, 'Zebra'], [TYPE, WEARABLE]], [
-
-            ///////////////////
-            // EMBEDDED
-            ///////////////////
-
-            /(tesla)(?:\sqtcarbrowser|\/20[12]\d\.[\w\.-]+)/i                   // Tesla
-            ], [VENDOR, [TYPE, EMBEDDED]], [
-
-            ////////////////////
-            // MIXED (GENERIC)
-            ///////////////////
-
-            /droid .+?; ([^;]+?)(?: build|\) applewebkit).+? mobile safari/i    // Android Phones from Unidentified Vendors
-            ], [MODEL, [TYPE, MOBILE]], [
-            /droid .+?;\s([^;]+?)(?: build|\) applewebkit).+?(?! mobile) safari/i  // Android Tablets from Unidentified Vendors
-            ], [MODEL, [TYPE, TABLET]], [
-            /\s(tablet|tab)[;\/]/i,                                             // Unidentifiable Tablet
-            /\s(mobile)(?:[;\/]|\ssafari)/i                                     // Unidentifiable Mobile
-            ], [[TYPE, util.lowerize]], [
-            /(android[\w\.\s\-]{0,9});.+build/i                                 // Generic Android Device
-            ], [MODEL, [VENDOR, 'Generic']], [
-            /(phone)/i
-            ], [[TYPE, MOBILE]]
-        ],
-
-        engine : [[
-
-            /windows.+\sedge\/([\w\.]+)/i                                       // EdgeHTML
-            ], [VERSION, [NAME, 'EdgeHTML']], [
-
-            /webkit\/537\.36.+chrome\/(?!27)([\w\.]+)/i                         // Blink
-            ], [VERSION, [NAME, 'Blink']], [
-
-            /(presto)\/([\w\.]+)/i,                                             // Presto
-            /(webkit|trident|netfront|netsurf|amaya|lynx|w3m|goanna)\/([\w\.]+)/i, // WebKit/Trident/NetFront/NetSurf/Amaya/Lynx/w3m/Goanna
-            /ekioh(flow)\/([\w\.]+)/i,                                          // Flow
-            /(khtml|tasman|links)[\/\s]\(?([\w\.]+)/i,                          // KHTML/Tasman/Links
-            /(icab)[\/\s]([23]\.[\d\.]+)/i                                      // iCab
-            ], [NAME, VERSION], [
-
-            /rv\:([\w\.]{1,9})\b.+(gecko)/i                                     // Gecko
-            ], [VERSION, NAME]
-        ],
-
-        os : [[
-
-            // Windows
-            /microsoft\s(windows)\s(vista|xp)/i                                 // Windows (iTunes)
-            ], [NAME, VERSION], [
-            /(windows)\snt\s6\.2;\s(arm)/i,                                     // Windows RT
-            /(windows\sphone(?:\sos)*)[\s\/]?([\d\.\s\w]*)/i,                   // Windows Phone
-            /(windows\smobile|windows)[\s\/]?([ntce\d\.\s]+\w)(?!.+xbox)/i
-            ], [NAME, [VERSION, mapper.str, maps.os.windows.version]], [
-            /(win(?=3|9|n)|win\s9x\s)([nt\d\.]+)/i
-            ], [[NAME, 'Windows'], [VERSION, mapper.str, maps.os.windows.version]], [
-
-            // iOS/macOS
-            /ip[honead]{2,4}\b(?:.*os\s([\w]+)\slike\smac|;\sopera)/i,          // iOS
-            /cfnetwork\/.+darwin/i
-            ], [[VERSION, /_/g, '.'], [NAME, 'iOS']], [
-            /(mac\sos\sx)\s?([\w\s\.]*)/i,
-            /(macintosh|mac(?=_powerpc)\s)(?!.+haiku)/i                         // Mac OS
-            ], [[NAME, 'Mac OS'], [VERSION, /_/g, '.']], [
-
-            // Mobile OSes                                                      // Android/WebOS/Palm/QNX/Bada/RIM/MeeGo/Contiki/Sailfish OS
-            /(android|webos|palm\sos|qnx|bada|rim\stablet\sos|meego|sailfish|contiki)[\/\s-]?([\w\.]*)/i,
-            /(blackberry)\w*\/([\w\.]*)/i,                                      // Blackberry
-            /(tizen|kaios)[\/\s]([\w\.]+)/i,                                    // Tizen/KaiOS
-            /\((series40);/i                                                    // Series 40
-            ], [NAME, VERSION], [
-            /\(bb(10);/i                                                        // BlackBerry 10
-            ], [VERSION, [NAME, 'BlackBerry']], [
-            /(?:symbian\s?os|symbos|s60(?=;)|series60)[\/\s-]?([\w\.]*)/i       // Symbian
-            ], [VERSION, [NAME, 'Symbian']], [
-            /mozilla.+\(mobile;.+gecko.+firefox/i                               // Firefox OS
-            ], [[NAME, 'Firefox OS']], [
-            /web0s;.+rt(tv)/i,
-            /\b(?:hp)?wos(?:browser)?\/([\w\.]+)/i                              // WebOS
-            ], [VERSION, [NAME, 'webOS']], [
-
-            // Google Chromecast
-            /crkey\/([\d\.]+)/i                                                 // Google Chromecast
-            ], [VERSION, [NAME, 'Chromecast']], [
-            /(cros)\s[\w]+\s([\w\.]+\w)/i                                       // Chromium OS
-            ], [[NAME, 'Chromium OS'], VERSION],[
-
-            // Console
-            /(nintendo|playstation)\s([wids345portablevuch]+)/i,                // Nintendo/Playstation
-            /(xbox);\s+xbox\s([^\);]+)/i,                                       // Microsoft Xbox (360, One, X, S, Series X, Series S)
-
-            // GNU/Linux based
-            /(mint)[\/\s\(\)]?(\w*)/i,                                          // Mint
-            /(mageia|vectorlinux)[;\s]/i,                                       // Mageia/VectorLinux
-            /(joli|[kxln]?ubuntu|debian|suse|opensuse|gentoo|arch(?=\slinux)|slackware|fedora|mandriva|centos|pclinuxos|redhat|zenwalk|linpus|raspbian)(?:\sgnu\/linux)?(?:\slinux)?[\/\s-]?(?!chrom|package)([\w\.-]*)/i,
-                                                                                // Joli/Ubuntu/Debian/SUSE/Gentoo/Arch/Slackware
-                                                                                // Fedora/Mandriva/CentOS/PCLinuxOS/RedHat/Zenwalk/Linpus
-            /(hurd|linux)\s?([\w\.]*)/i,                                        // Hurd/Linux
-            /(gnu)\s?([\w\.]*)/i,                                               // GNU
-
-            // BSD based
-            /\s([frentopc-]{0,4}bsd|dragonfly)\s?(?!amd|[ix346]{1,2}86)([\w\.]*)/i,  // FreeBSD/NetBSD/OpenBSD/PC-BSD/DragonFly
-            /(haiku)\s(\w+)/i                                                   // Haiku
-            ], [NAME, VERSION], [
-
-            // Other
-            /(sunos)\s?([\w\.\d]*)/i                                            // Solaris
-            ], [[NAME, 'Solaris'], VERSION], [
-            /((?:open)?solaris)[\/\s-]?([\w\.]*)/i,                             // Solaris
-            /(aix)\s((\d)(?=\.|\)|\s)[\w\.])*/i,                                // AIX
-            /(plan\s9|minix|beos|os\/2|amigaos|morphos|risc\sos|openvms|fuchsia)/i,  // Plan9/Minix/BeOS/OS2/AmigaOS/MorphOS/RISCOS/OpenVMS/Fuchsia
-            /(unix)\s?([\w\.]*)/i                                               // UNIX
-            ], [NAME, VERSION]
-        ]
-    };
-
-
-    /////////////////
-    // Constructor
-    ////////////////
-    var UAParser = function (ua, extensions) {
-
-        if (typeof ua === 'object') {
-            extensions = ua;
-            ua = undefined;
-        }
-
-        if (!(this instanceof UAParser)) {
-            return new UAParser(ua, extensions).getResult();
-        }
-
-        var _ua = ua || ((typeof window !== 'undefined' && window.navigator && window.navigator.userAgent) ? window.navigator.userAgent : EMPTY);
-        var _rgxmap = extensions ? util.extend(regexes, extensions) : regexes;
-
-        this.getBrowser = function () {
-            var _browser = { name: undefined, version: undefined };
-            mapper.rgx.call(_browser, _ua, _rgxmap.browser);
-            _browser.major = util.major(_browser.version); // deprecated
-            return _browser;
-        };
-        this.getCPU = function () {
-            var _cpu = { architecture: undefined };
-            mapper.rgx.call(_cpu, _ua, _rgxmap.cpu);
-            return _cpu;
-        };
-        this.getDevice = function () {
-            var _device = { vendor: undefined, model: undefined, type: undefined };
-            mapper.rgx.call(_device, _ua, _rgxmap.device);
-            return _device;
-        };
-        this.getEngine = function () {
-            var _engine = { name: undefined, version: undefined };
-            mapper.rgx.call(_engine, _ua, _rgxmap.engine);
-            return _engine;
-        };
-        this.getOS = function () {
-            var _os = { name: undefined, version: undefined };
-            mapper.rgx.call(_os, _ua, _rgxmap.os);
-            return _os;
-        };
-        this.getResult = function () {
-            return {
-                ua      : this.getUA(),
-                browser : this.getBrowser(),
-                engine  : this.getEngine(),
-                os      : this.getOS(),
-                device  : this.getDevice(),
-                cpu     : this.getCPU()
-            };
-        };
-        this.getUA = function () {
-            return _ua;
-        };
-        this.setUA = function (ua) {
-            _ua = (typeof ua === STR_TYPE && ua.length > UA_MAX_LENGTH) ? util.trim(ua, UA_MAX_LENGTH) : ua;
-            return this;
-        };
-        this.setUA(_ua);
-        return this;
-    };
-
-    UAParser.VERSION = LIBVERSION;
-    UAParser.BROWSER = {
-        NAME    : NAME,
-        MAJOR   : MAJOR, // deprecated
-        VERSION : VERSION
-    };
-    UAParser.CPU = {
-        ARCHITECTURE : ARCHITECTURE
-    };
-    UAParser.DEVICE = {
-        MODEL   : MODEL,
-        VENDOR  : VENDOR,
-        TYPE    : TYPE,
-        CONSOLE : CONSOLE,
-        MOBILE  : MOBILE,
-        SMARTTV : SMARTTV,
-        TABLET  : TABLET,
-        WEARABLE: WEARABLE,
-        EMBEDDED: EMBEDDED
-    };
-    UAParser.ENGINE = {
-        NAME    : NAME,
-        VERSION : VERSION
-    };
-    UAParser.OS = {
-        NAME    : NAME,
-        VERSION : VERSION
-    };
-
-    ///////////
-    // Export
-    //////////
-
-
-    // check js environment
-    if (typeof(exports) !== UNDEF_TYPE) {
-        // nodejs env
-        if ("object" !== UNDEF_TYPE && module.exports) {
-            exports = module.exports = UAParser;
-        }
-        exports.UAParser = UAParser;
-    } else {
-        // requirejs env (optional)
-        if (true) {
-            !(__WEBPACK_AMD_DEFINE_RESULT__ = (function () {
-                return UAParser;
-            }).call(exports, __webpack_require__, exports, module),
-		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-        } else {}
-    }
-
-    // jQuery/Zepto specific (optional)
-    // Note:
-    //   In AMD env the global scope should be kept clean, but jQuery is an exception.
-    //   jQuery always exports to global scope, unless jQuery.noConflict(true) is used,
-    //   and we should catch that.
-    var $ = typeof window !== 'undefined' && (window.jQuery || window.Zepto);
-    if ($ && !$.ua) {
-        var parser = new UAParser();
-        $.ua = parser.getResult();
-        $.ua.get = function () {
-            return parser.getUA();
-        };
-        $.ua.set = function (uastring) {
-            parser.setUA(uastring);
-            var result = parser.getResult();
-            for (var prop in result) {
-                $.ua[prop] = result[prop];
-            }
-        };
-    }
-
-})(typeof window === 'object' ? window : this);
 
 
 /***/ }),
@@ -92600,7 +92885,7 @@ function combine (array, callback) {
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/","#USER","/localtunnel"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_shasum":"c67b90dc0568e5c1cf2b0b858c43ba28e2eda575","_spec":"axios@0.21.4","_where":"/Users/hero/Code/estate/SERVER_PHP","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundleDependencies":false,"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"deprecated":false,"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
+module.exports = JSON.parse('{"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/","/localtunnel"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_shasum":"c67b90dc0568e5c1cf2b0b858c43ba28e2eda575","_spec":"axios@0.21.4","_where":"C:\\\\xampp\\\\htdocs\\\\SITTERX\\\\SERVER_PHP\\\\node_modules\\\\localtunnel","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundleDependencies":false,"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"deprecated":false,"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
 
 /***/ })
 
@@ -92818,7 +93103,8 @@ module.exports = JSON.parse('{"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBu
 /******/ 			"/js/post": 0,
 /******/ 			"css/product.detail": 0,
 /******/ 			"css/home": 0,
-/******/ 			"css/user.post": 0
+/******/ 			"css/user.post": 0,
+/******/ 			"css/library/bootstrap.home": 0
 /******/ 		};
 /******/ 		
 /******/ 		__webpack_require__.f.j = (chunkId, promises) => {
@@ -92830,7 +93116,7 @@ module.exports = JSON.parse('{"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBu
 /******/ 					if(installedChunkData) {
 /******/ 						promises.push(installedChunkData[2]);
 /******/ 					} else {
-/******/ 						if(!/^css\/(home|product\.detail|user\.post)$/.test(chunkId)) {
+/******/ 						if(!/^css\/((|library\/bootstrap\.)home|product\.detail|user\.post)$/.test(chunkId)) {
 /******/ 							// setup Promise in chunk cache
 /******/ 							var promise = new Promise((resolve, reject) => (installedChunkData = installedChunks[chunkId] = [resolve, reject]));
 /******/ 							promises.push(installedChunkData[2] = promise);
@@ -92905,10 +93191,11 @@ module.exports = JSON.parse('{"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBu
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/product.detail","css/home","css/user.post"], () => (__webpack_require__("./resources/js/post.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/product.detail","css/home","css/user.post"], () => (__webpack_require__("./resources/sass/page/user.post.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/product.detail","css/home","css/user.post"], () => (__webpack_require__("./resources/sass/page/home.scss")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/product.detail","css/home","css/user.post"], () => (__webpack_require__("./resources/sass/page/product.detail.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/product.detail","css/home","css/user.post","css/library/bootstrap.home"], () => (__webpack_require__("./resources/js/post.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/product.detail","css/home","css/user.post","css/library/bootstrap.home"], () => (__webpack_require__("./resources/sass/bootstrap.home.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/product.detail","css/home","css/user.post","css/library/bootstrap.home"], () => (__webpack_require__("./resources/sass/page/user.post.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/product.detail","css/home","css/user.post","css/library/bootstrap.home"], () => (__webpack_require__("./resources/sass/page/home.scss")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/product.detail","css/home","css/user.post","css/library/bootstrap.home"], () => (__webpack_require__("./resources/sass/page/product.detail.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

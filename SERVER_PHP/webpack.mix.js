@@ -19,6 +19,20 @@ const mix = require('laravel-mix');
 
 
 mix
+.sass('resources/sass/bootstrap.home.scss', 'public/css/library/')
+
+
+
+
+
+
+
+
+
+
+
+
+
     .js('resources/js/post.js', 'public/js').react()
     // .js('resources/js/comment.js', 'public/js').react()
     // .js('resources/js/validate.login.user.js', 'public/js')
