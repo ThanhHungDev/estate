@@ -402,7 +402,7 @@
         <div class="news__wrapper">
             <div class="news__item">
                 <div class="news__item-left">
-                    <div class="img__cover" style="background-image: url({{ $post->background }});
+                    <div class="img__cover" style="background-image: url({{ Route('IMAGE_CONVERTOR', [ 'quality' => SupportAgent::getQuanlityByDevice(), 'imagePath' => trim($post->background, '/') . Config::get('image.EXTENTION_CONVERTOR') ]) }});
                     background-repeat: no-repeat;
                     background-size:cover; "></div>
                 </div>
