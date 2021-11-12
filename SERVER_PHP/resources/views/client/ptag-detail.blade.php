@@ -43,7 +43,7 @@
 
 
 
-        //// home page review custommer
+        
         var rating__custommer = document.getElementById("rating__custommer");
         if(rating__custommer){
             

@@ -96,12 +96,12 @@
         })();
     </script>
     <script>
-        window.IS_ROBOT = "{{ Agent::isRobot() ? 1 : null }}";
+              window.IS_ROBOT        = "{{ Agent::isRobot() ? 1 : null }}";
         const CONFIG_COMPANY_NAME    = "{{ Config::get('app.company_name') }}";
         const CONFIG_COMPANY_ADDRESS = "{{ implode(',', [ Config::get('app.company_address_street'), Config::get('app.company_address_locality'), Config::get('app.company_address_region'), Config::get('app.company_address_country')]) }}";
 
-        const MAP_LAT  = "{{ Config::get('app.map_lat') }}";
-        const MAP_LONG = "{{ Config::get('app.map_long') }}";
+        const MAP_LAT           = "{{ Config::get('app.map_lat') }}";
+        const MAP_LONG          = "{{ Config::get('app.map_long') }}";
         const GOOGLE_PLACES_API = `{{ env('GOOGLE_PLACES_API') }}`;
     </script>
     

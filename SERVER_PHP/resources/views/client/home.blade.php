@@ -70,13 +70,13 @@
 
 
 
-        //// home page review custommer
+        
         var rating__custommer = document.getElementById("rating__custommer");
         if(rating__custommer){
             
             rating__custommer.addEventListener('lazybeforeunveil', function(e){
                 console.log("rating__custommer");
-                /// slider home page
+                
                 $("#rating__comment-owl").owlCarousel({
                     items : 3,
                     slideSpeed : 700,
@@ -87,7 +87,7 @@
                     loop: true,
                     lazyLoad: true,
                     responsiveRefreshRate : true,
-                    navText: false,/// ["<",">"],
+                    navText: false,
                     responsive:{
                         0:{
                             items: 1
