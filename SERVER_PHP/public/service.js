@@ -1,5 +1,5 @@
-const CACHE_NAME = 'HERO-CACHE-v3' /// tên nhóm caches để khi xóa cache thì chỉ cần thay đổi nó thôi
-const CACHE_OLD_DELETE = [ 'HERO-CACHE-v1', 'HERO-CACHE-v2' ]
+const CACHE_NAME = 'HERO-CACHE-v8' /// tên nhóm caches để khi xóa cache thì chỉ cần thay đổi nó thôi
+const CACHE_OLD_DELETE = [ 'HERO-CACHE-v1', 'HERO-CACHE-v2', 'HERO-CACHE-v3', 'HERO-CACHE-v4', 'HERO-CACHE-v5', 'HERO-CACHE-v6', 'HERO-CACHE-v7' ]
 // A list of local resources we always want to be cached.
 const PRECACHE_URLS = [
     
@@ -17,7 +17,7 @@ const PRECACHE_URLS = [
 
 // The install handler takes care of precaching the resources we always need.
 self.addEventListener('install', function(event) {
-    console.log('server worker install:' + CACHE_NAME);
+    console.log('Install cache:' + CACHE_NAME);
     // Perform install steps
     event.waitUntil(
         caches.open(CACHE_NAME)
@@ -43,14 +43,14 @@ self.addEventListener('install', function(event) {
 // // Đoạn code trên sẽ lặp qua cache và xóa đi các cache không nằm trong CACHE_OLD_DELETE.
 // // The activate handler takes care of cleaning up old caches.
 self.addEventListener('activate', function(event){
-    console.log('server worker activate: ' + CACHE_NAME);
+    console.log('Server activate cache: ' + CACHE_NAME);
 
     event.waitUntil(
         caches.keys().then(function(cacheNames) {
-            console.log( ` cache name of ${CACHE_NAME} ` , cacheNames )
+            console.log( `Cache name of ${CACHE_NAME} ` , cacheNames )
             return cacheNames.filter(function(cacheName){ return CACHE_OLD_DELETE.indexOf(cacheName) >= 0 })
         }).then(function(cachesToDelete){
-            console.log( ` cache delete of ${CACHE_NAME} ` , cachesToDelete )
+            console.log( `Cache delete of ${CACHE_NAME} ` , cachesToDelete )
             return Promise.all(cachesToDelete.map(function(cacheToDelete) {
                 return caches.delete(cacheToDelete)
             }));
@@ -86,17 +86,24 @@ self.addEventListener('fetch', event => {
     if (!event.request.url.startsWith(self.location.origin)) { return; }
     /// không cache mấy cái như document vì lỡ có add mới như comment đi, rồi fetch lên phát không thấy có mới, cái này là lo xa cho những thanh niên không biết có cache trong hệ thống
     const destination = event.request.destination
-    const DESTINATIONS_ACCEPT = [ 'style', 'script', 'image', 'font' ] /// 'document'
+    const DESTINATIONS_ACCEPT = [ 'style', 'script', 'image', 'font', 'document'] /// 
     if (DESTINATIONS_ACCEPT.indexOf(destination) < 0) { return; }
     
     event.respondWith(
         caches.match(event.request)
         .then(function(response) {
             // Cache hit - return response
-            if (response) {
+            if( destination == 'document' ){
+                console.log(navigator.onLine + `khi offline html: ${CACHE_NAME} `, navigator)
+                /// khi offline html thì cho return response
+                if (!navigator.onLine && response ){
+                    return response
+                }
+            }else if ( response ) {
                 // console.log(`Cache hit: ${CACHE_NAME} ` + JSON.stringify(response.url) )
                 return response
             }
+            
 
             // IMPORTANT: Clone the request. A request is a stream and
             // can only be consumed once. Since we are consuming this

@@ -56,7 +56,6 @@
     <script>
         
         if ('serviceWorker' in navigator) {
-            console.log("có hộ trợ run service");
             navigator.serviceWorker.register('/service.js');
         }
     </script>
