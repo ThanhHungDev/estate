@@ -30,7 +30,6 @@
     
     <script type="text/javascript" src="{{ asset('js/library/lightgallery.min.js' . Config::get('app.version')) }}"></script>
     <script type="text/javascript">
-        /// setting show image
         lightGallery(document.getElementById('photos__responsive-images'));
         
 
@@ -38,7 +37,7 @@
         const CATEGORIES = `{!! json_encode($categories ?? []) !!}`;
         const PROVINCES  = `{!! json_encode(Config::get('province')) !!}`;
         const JWT_TOKEN  = `{{ SupportDB::getJwtAuthentication() }}`;
-        // const KEY_CAPTCHA = "{{ env('GOOGLE_RECAPTCHA_KEY')  }}";
+        const KEY_CAPTCHA = "{{ env('GOOGLE_RECAPTCHA_KEY')  }}";
     </script>
     <script src="{{ asset('js/post.js'. Config::get('app.version')) }}"></script>
 @endsection

@@ -23,7 +23,7 @@
         const CATEGORIES = `{!! json_encode($categories ?? []) !!}`;
         const PROVINCES  = `{!! json_encode(Config::get('province')) !!}`;
         const JWT_TOKEN  = `{{ SupportDB::getJwtAuthentication() }}`;
-        // const KEY_CAPTCHA = "{{ env('GOOGLE_RECAPTCHA_KEY')  }}";
+        const KEY_CAPTCHA = "{{ env('GOOGLE_RECAPTCHA_KEY')  }}";
 
         function showLightGaleries(e){
             
