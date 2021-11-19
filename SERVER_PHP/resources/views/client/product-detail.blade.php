@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/library/lightgallery.css' . Config::get('app.version')) }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/product.detail.css' . Config::get('app.version')) }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/library/slick.css' . Config::get('app.version')) }}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/library/bootstrap.product.css' . Config::get('app.version'))}}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/library/bootstrap.min.css' . Config::get('app.version'))}}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/library/slick-theme.css' . Config::get('app.version')) }}" />
     <link rel='stylesheet' id='realestate-open-sans-css'  href='https://fonts.googleapis.com/css?family=Open+Sans%3A300%2C400%2C600%2C700%2C800&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
     <link rel='stylesheet' id='realestate-libre-baskerville-css'  href='https://fonts.googleapis.com/css?family=Libre+Baskerville%3A400italic&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
