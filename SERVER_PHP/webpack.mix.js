@@ -19,7 +19,8 @@ const mix = require('laravel-mix');
 
 
 mix
-.sass('resources/sass/bootstrap.home.scss', 'public/css/library/')
+// .sass('resources/sass/bootstrap.home.scss', 'public/css/library/')
+.sass('resources/sass/bootstrap.post.scss', 'public/css/library/')
 
 
 

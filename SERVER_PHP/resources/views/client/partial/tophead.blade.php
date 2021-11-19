@@ -17,6 +17,7 @@
         <li>
             <a target="_blank" href="mailto:{{ env('COMPANY_MAIL') }}" class="infor">
                 <i class="fad fa-info-square"></i>
+                {{-- @svg('font/font-awe/svgs/duotone/info-square.svg') --}}
                 <span>{{ env('COMPANY_MAIL') }}</span>
             </a>
         </li>

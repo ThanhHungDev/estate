@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -34,5 +35,12 @@ class AppServiceProvider extends ServiceProvider
         //     View::share('allTopic', $allTopic);
         //     View::share('allTag', $allTag);
         // }
+
+        Blade::directive('svg', function($arguments) {
+            // Funky madness to accept multiple arguments into the directive
+            $path = trim($arguments, "'");
+            $path = trim($path, "\"");
+            return "<i class='icon__fa-svg'>".file_get_contents(public_path($path)) ."</i>";
+        });
     }
 }

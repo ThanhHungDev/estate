@@ -22,6 +22,7 @@
 
 @section('stylesheets')
     {{-- cái này là của laravel --}}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/library/bootstrap.post.css' . Config::get('app.version'))}}"/>
     <link type="text/css" rel="stylesheet" href="{{ asset('css/user.post.css' . Config::get('app.version')) }}" /> 
 @endsection
 

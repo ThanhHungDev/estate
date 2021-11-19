@@ -166,8 +166,8 @@
     <div class="categories wow fadeInLeft" data-wow-duration="1s">
         <div class="categories__wrapper">
             <h3 id="categories" class="categories__title" tabindex="1" title="💥 Mẫu giao diện theo ngành hàng" >
-                <span class="text-color-pink">{{ Config::get('app.name') }}</span>
-                Gồm có các dịch vụ sau
+                {{-- <span class="text-color-pink">{{ Config::get('app.name') }}</span> --}}
+                Dịch vụ bất động sản 
             </h3>
             <div class="container">
                 <div class="row categories__row">

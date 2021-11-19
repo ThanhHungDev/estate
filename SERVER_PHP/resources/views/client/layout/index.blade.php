@@ -60,6 +60,7 @@
         }
     </script>
     @endif
+    @if (!Route::is('USER_POST'))
     <script>
         (function() {
             var supportsPassive = eventListenerOptionsSupported();
@@ -94,7 +95,9 @@
                 return supported;
             }
         })();
-    </script>
+    </script>    
+    @endif
+    
     <script>
               window.IS_ROBOT        = "{{ Agent::isRobot() ? 1 : null }}";
         const CONFIG_COMPANY_NAME    = "{{ Config::get('app.company_name') }}";
