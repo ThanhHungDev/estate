@@ -104,13 +104,16 @@ class SupportDB{
     }
     
 
-    public static function getJwtAuthentication(){
+    public static function getJwtAuthentication( $user = null ){
         $token = Session::get(Config::get("constant.TOKEN_COOKIE_NAME"), null );
         if( !!$token ){
             return $token;
         }
+        if( !$user ){
+            /// nếu user null nghĩa là chưa truyền vào thì lấy mặc định user là auth
+            $user = Auth::user();
+        }
         /// check user logged 
-        $user = Auth::user();
         if( !$user ){
             /// user not loged => return null
             return null;

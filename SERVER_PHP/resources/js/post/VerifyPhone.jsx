@@ -57,7 +57,7 @@ function VerifyPhone( props ){
             setIsProgress(true)
             userAPI.verifyPhone({ phone_verify: `${AUTH_PHONE_FIREBASE.phoneNumber}` })
             .then( response => {
-                console.log(response)
+                console.log(response, "response props.AUTH")
                 firebase.auth().signOut()
                 // .then(() => {
                 //     // Sign-out successful.
@@ -75,6 +75,8 @@ function VerifyPhone( props ){
             })
             .catch(error => {
                 console.log("ERROR:: ",error);
+
+                console.log(error, props.AUTH)
             });
         }
     }, []);
@@ -154,8 +156,10 @@ function VerifyPhone( props ){
                 return userAPI.verifyPhone({ phone_verify: `${backupPhone}` })
             })
             .then( response => {
-                console.log(response)
-                
+                console.log(response, "đang vào hàm sendVerifyCode")
+                if( response.code == 200 ){
+                    /// dispatch jwt new
+                }
                 firebase.auth().signOut()
                 location.reload()
             })
@@ -201,6 +205,11 @@ function VerifyPhone( props ){
                                 <div className="progress-loadding"></div>
                             </div>
                         }
+                        <button type="submit" 
+                            onClick={ sendVerifyCode }
+                            className="btn btn-login aqua-gradient-rgba">
+                                Không nhận được mã code
+                            </button>
                     </div>
                 </div>
             </div>

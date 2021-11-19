@@ -185,8 +185,10 @@ class UserController extends Controller
         $user->phone_verify = $request->input('phone_verify');
         $user->save();
 
+        /// reset jwt cũ
+        SupportDB::resetJwtAuthentication();
         /// tạo 1 token đưa về client lưu vào localStorage
-        $tokenNew = JWTAuth::fromUser($user);
+        $tokenNew = SupportDB::getJwtAuthentication($user);
 
         $response = array(
             'status' => Response::HTTP_OK,
