@@ -20,6 +20,7 @@
 @endsection
 
 @section('stylesheets')
+<link rel="stylesheet" type="text/css" href="{{ asset('css/library/bootstrap.min.css' . Config::get('app.version'))}}"/>
 <link rel="stylesheet" type="text/css" href="{{ asset('css/profile.css' . Config::get('app.version'))}}"/>
 <link rel="stylesheet" type="text/css" href="{{ asset('css/library/lightgallery.css' . Config::get('app.version')) }}" />
 @endsection

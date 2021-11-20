@@ -75,7 +75,7 @@ function VerifyPhone( props ){
             })
             .catch(error => {
                 console.log("ERROR:: ",error);
-
+                setIsProgress(null)
                 console.log(error, props.AUTH)
             });
         }
@@ -135,10 +135,11 @@ function VerifyPhone( props ){
             })
             .catch(function (error) {
                 console.log(error)
+                setIsProgress(null)
                 setAlert(error.message)
             });
         }else if(!isvalidRecaptcha) {
-            
+            setIsProgress(null)
             setAlert("bạn cần xác thực recaptcha")
         }
     }
@@ -206,8 +207,8 @@ function VerifyPhone( props ){
                             </div>
                         }
                         <button type="submit" 
-                            onClick={ sendVerifyCode }
-                            className="btn btn-login aqua-gradient-rgba">
+                            onClick={ () => { location.reload() } }
+                            className="btn btn-login bg-gradient-purple">
                                 Không nhận được mã code
                             </button>
                     </div>
