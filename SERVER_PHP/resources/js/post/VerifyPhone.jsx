@@ -94,6 +94,7 @@ function VerifyPhone( props ){
             strInValid = "Số điẹn thoại buộc phải nhập"
         }
         setInvalidPhone(strInValid)
+        isProgress && setIsProgress(null)
     }
     function validateCode(){
         /// thay đổi liên tục
@@ -135,11 +136,9 @@ function VerifyPhone( props ){
             })
             .catch(function (error) {
                 console.log(error)
-                setIsProgress(null)
                 setAlert(error.message)
             });
         }else if(!isvalidRecaptcha) {
-            setIsProgress(null)
             setAlert("bạn cần xác thực recaptcha")
         }
     }
@@ -236,7 +235,7 @@ function VerifyPhone( props ){
                         ref={refPhone}
                         onChange={ validatePhone }
                         className="input-control" 
-                        placeholder="+81 ... Nhập số điện thoại" />
+                        placeholder="+84 ... Nhập số điện thoại" />
                     </div>
                     <div className="error">{ invalidPhone }</div>
                     <div id="recaptcha-container"></div>
