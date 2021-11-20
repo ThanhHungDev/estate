@@ -125,7 +125,13 @@ function DwellingHouse( props ){
         })
         .catch(error => {
             setProgress(false)
-            console.log("ERROR:: ",error)
+            if (error.response) {
+                console.log(error.response.data)
+                console.log(error.response.status)
+                console.log(error.response.headers)
+            }else{
+                console.log("ERROR:: ",error)
+            }
             setError( error )
         });
     }
