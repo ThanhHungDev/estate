@@ -14,15 +14,8 @@
     "/js/reactPlayerKaltura.js": "/js/reactPlayerKaltura.js",
     "/js/reactPlayerFilePlayer.js": "/js/reactPlayerFilePlayer.js",
     "/js/reactPlayerPreview.js": "/js/reactPlayerPreview.js",
+    "/css/product.detail.css": "/css/product.detail.css",
     "/css/home.css": "/css/home.css",
     "/css/user.post.css": "/css/user.post.css",
-    "/css/library/bootstrap.product.css": "/css/library/bootstrap.product.css",
-    "/css/library/bootstrap.post.css": "/css/library/bootstrap.post.css",
-    "/css/library/bootstrap.home.css": "/css/library/bootstrap.home.css",
-    "/css/product.detail.css": "/css/product.detail.css",
-    "/css/contact.css": "/css/contact.css",
-    "/css/forgot.css": "/css/forgot.css",
-    "/css/register.css": "/css/register.css",
-    "/css/login.css": "/css/login.css",
-    "/css/profile.css": "/css/profile.css"
+    "/css/library/bootstrap.product.css": "/css/library/bootstrap.product.css"
 }
