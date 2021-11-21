@@ -19,8 +19,8 @@ const mix = require('laravel-mix');
 
 
 mix
-.sass('resources/sass/bootstrap/bootstrap.home.scss', 'public/css/library/')
-.sass('resources/sass/bootstrap/bootstrap.post.scss', 'public/css/library/')
+// .sass('resources/sass/bootstrap/bootstrap.home.scss', 'public/css/library/')
+// .sass('resources/sass/bootstrap/bootstrap.post.scss', 'public/css/library/')
 .sass('resources/sass/bootstrap/bootstrap.product.scss', 'public/css/library/')
 
 
@@ -60,11 +60,11 @@ mix
 
     // .sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/page/home.scss', 'public/css')
-    .sass('resources/sass/page/profile.scss', 'public/css')
-    .sass('resources/sass/page/login.scss', 'public/css')
-    .sass('resources/sass/page/register.scss', 'public/css')
-    .sass('resources/sass/page/forgot.scss', 'public/css')
-    .sass('resources/sass/page/contact.scss', 'public/css')
+    // .sass('resources/sass/page/profile.scss', 'public/css')
+    // .sass('resources/sass/page/login.scss', 'public/css')
+    // .sass('resources/sass/page/register.scss', 'public/css')
+    // .sass('resources/sass/page/forgot.scss', 'public/css')
+    // .sass('resources/sass/page/contact.scss', 'public/css')
     .sass('resources/sass/page/product.detail.scss', 'public/css')
     // .sass('resources/sass/page/contact.scss', 'public/css')
     // .sass('resources/admin/sass/page/admin.scss', 'public/css')
