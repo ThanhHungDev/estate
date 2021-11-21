@@ -1,6 +1,13 @@
 @import "../variable";
 @import "../reboot";
 
+@import "../library/awesome/awe_reboot";
+@import "../library/awesome/brands";
+@import '../library/awesome/duotone';
+@import '../library/awesome/light';
+@import '../library/awesome/regular';
+@import '../library/awesome/solid';
+
 @import "../library/grid";
 @import "../library/button";
 @import "../library/alert";
@@ -17,3 +24,5 @@
 
 
 @import "./login/login";
+
+
