@@ -6,6 +6,33 @@ class ReadMoney{
     public static $STR_DIGIT = [ " không ", " một ", " hai ", " ba ", " bốn ", " năm ", " sáu ", " bảy ", " tám ", " chín " ];
     public static $TYPE_MONEY = ["", " nghìn", " triệu", " tỷ", " nghìn tỷ", " triệu tỷ"];
 
+
+    public static function readDigitToMoney( $money = 0 ){
+
+        $BILLION = 1000000000;
+        $MILLION = 1000000;
+        $THOUSAND = 1000;
+
+        $money = intval($money);
+        if( !$money ){
+            /// tiền = 0 thì trả ra là không đồng
+            return '0 đồng';
+        }
+        $DIVISION__BILLION = $money / $BILLION;
+        if( intval($DIVISION__BILLION) >= 1 ){
+            return intval($DIVISION__BILLION * 100 ) / 100 . " Tỷ";
+        }
+        $DIVISION__MILLION = $money / $MILLION;
+        if( intval($DIVISION__MILLION) >= 1 ){
+            return intval($DIVISION__MILLION * 100 ) / 100 . " Triệu";
+        }
+        $DIVISION__THOUSAND = $money / $THOUSAND;
+        if( intval($DIVISION__THOUSAND) >= 1 ){
+            return intval($DIVISION__THOUSAND * 100 ) / 100 . " Ngàn đồng";
+        }
+        return "$money đồng";
+    }
+
     public static function readDigit3Number($number){
         $hundredsDigit   = 0;
         $tensDigit       = 0;

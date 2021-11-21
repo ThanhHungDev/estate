@@ -1,20 +1,20 @@
-@import "../library/awesome/awe_reboot";
-@import "../library/awesome/brands";
-@import '../library/awesome/duotone';
-@import '../library/awesome/light';
-@import '../library/awesome/regular';
-@import '../library/awesome/solid';
+// @import "../library/awesome/awe_reboot";
+// @import "../library/awesome/brands";
+// @import '../library/awesome/duotone';
+// @import '../library/awesome/light';
+// @import '../library/awesome/regular';
+// @import '../library/awesome/solid';
 .icon__fa-svg{
-    width: 14px;
-    -webkit-font-smoothing: antialiased;
     display: inline-block;
+    height: 14px;
+    -webkit-font-smoothing: antialiased;
     font-style: normal;
     font-variant: normal;
     text-rendering: auto;
     line-height: 1;
     background-color: transparent;
-    color: #158765;
-    svg text {
+    svg {
+        vertical-align: middle;
         font-family: 'Font Awesome 5 Free';
     }
 }
@@ -28,15 +28,18 @@
     background-color: $green_dark;
     color: $white;
     @include clearfix();
+
+    svg{
+        height: 100%;
+        fill: #20c997;
+        &:hover{
+            fill: darken($color: #20c997, $amount: 15);
+        }
+    }
 }
 .social{
     display: inline-block;
     padding: 0 20px;
-
-    svg{
-        width: 16px;
-        vertical-align: middle;
-    }
 
     &__link{
         display: inline-block;
@@ -59,23 +62,19 @@ ul.contact{
             display: inline-block;
 
             &.map{
-                i {
-                    color: #bb868b;
-
-                    
+                svg {
+                    fill: #bb868b;  
                 }
-                &:hover i{
-                    color: #927c7e;
+                &:hover svg{
+                    fill: #927c7e;
                 }
             }
             &.phone{
-                i {
-                    color: #bba886;
-
-                    
+                svg{
+                    fill: #bba886;
                 }
-                &:hover i{
-                    color: #92907c;
+                &:hover svg{
+                    fill: #92907c;
                 }
             }
             span{

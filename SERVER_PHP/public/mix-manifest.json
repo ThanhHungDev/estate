@@ -17,5 +17,6 @@
     "/css/product.detail.css": "/css/product.detail.css",
     "/css/home.css": "/css/home.css",
     "/css/user.post.css": "/css/user.post.css",
-    "/css/library/bootstrap.product.css": "/css/library/bootstrap.product.css"
+    "/css/library/bootstrap.product.css": "/css/library/bootstrap.product.css",
+    "/css/library/bootstrap.home.css": "/css/library/bootstrap.home.css"
 }

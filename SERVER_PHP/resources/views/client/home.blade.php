@@ -45,14 +45,6 @@
 <script type="text/javascript" src="{{ asset('js/library/slick.min.js' . Config::get('app.version')) }}"></script>
 <script type="text/javascript" src="{{ asset('js/library/lightgallery.min.js' . Config::get('app.version')) }}"></script>
 <script>
-    
-    function showLightGaleries(e){
-        $(e).closest('.item').find(".lightgallery img").click();
-    }
-    var lightgalleries = document.getElementsByClassName("lightgallery");
-    for (var i = 0; i < lightgalleries.length; i++){
-        lightGallery(lightgalleries[i]);
-    }
 
 	$(document).ready(function(){
         $('#slider').slick({
@@ -66,49 +58,6 @@
             slidesToScroll: 1,
         });
         $('#slider .js__onload--show').removeClass('d-none');
-
-
-
-
-        
-        var rating__custommer = document.getElementById("rating__custommer");
-        if(rating__custommer){
-            
-            rating__custommer.addEventListener('lazybeforeunveil', function(e){
-                console.log("rating__custommer");
-                
-                $("#rating__comment-owl").owlCarousel({
-                    items : 3,
-                    slideSpeed : 700,
-                    nav: true,
-                    autoplay: true,
-                    autoplayHoverPause: true,
-                    dots: true,
-                    loop: true,
-                    lazyLoad: true,
-                    responsiveRefreshRate : true,
-                    navText: false,
-                    responsive:{
-                        0:{
-                            items: 1
-                        },
-                        320:{
-                            items: 1
-                        },
-                        480:{
-                            items: 2
-                        },
-                        768:{
-                            items: 3
-                        },
-                        992:{
-                            items: 3
-                        }
-                    }
-                
-                });
-            });
-        }
 
     });
 </script>
@@ -203,180 +152,62 @@
 
 
 
-
     <div class="selectus wow fadeInUp" data-wow-duration="1s">
         <div class="selectus__wrapper">
             <h3 id="selectus" class="selectus__title" tabindex="0" title="💥 Vì Sao bạn nên chọn {{ Config::get('app.name') }}" >
-                Sản phẩm Mua Bán Nhà Đất Tp Bảo Lộc đang có
+                Các bất động sản đang có
             </h3>
         </div>
     </div>
-
-    <div class="productions">
-        <div class="row-hero productions-fixrow">
+    <div class="estate">
+        <div class="estate__row">
             @foreach ($products as $key => $product)
-            <div class="col-hero-xxl-2-4 col-hero-xl-3 col-hero-md-4 col-hero-sm-4 productions-fixcol">
-                <div class="item" itemtype="https://schema.org/Product" itemscope >
-                    <meta class="d-none" itemprop="position" content="{{ $key }}" />
-                    <meta class="d-none" itemprop="url" content="{{ Route('PRODUCT_VIEW', ['slug' => $product->slug ]) }}" />
-                    <meta class="d-none" itemprop="gtin14" content="{{ $product->id }}" />
-                    <meta class="d-none" itemprop="name" content="{{ $product->title }}" />
-                    @php $pics = $product->getImages()->get(); @endphp
-                    @if (!$pics->isEmpty())
-                    @foreach ($pics as $key => $pic)
-                    <link class="d-none" itemprop="image" href="{{ Route('IMAGE_RESIZE_RATIO', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => $product->thumbnail ]) }}" />
-                    @endforeach
-                    @else
-                    <link class="d-none" itemprop="image" href="{{ Route('IMAGE_RESIZE_RATIO', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => env('IMAGE_DEFAULT_PRODUCT') ]) }}" />
-                    @endif
-                    <meta class="d-none" itemprop="description" content="{{ $product->excerpt }}" />
-                    <meta class="d-none" itemprop="sku" content="{{ $product->slug }}" />
-                    <div class="d-none" itemprop="brand" itemtype="https://schema.org/Brand" itemscope>
-                        <meta itemprop="name" content="{{ Config::get('app.company_name') }}" />
-                    </div>
-                    <div class="d-none" itemprop="aggregateRating" itemtype="https://schema.org/AggregateRating" itemscope>
-                        <meta itemprop="reviewCount" content="{{ SupportString::createRateValueByDate($product->id) }}" />
-                        <meta itemprop="ratingValue" content="{{ $product->rate_value }}" />
-                        <meta itemprop="bestRating" content="5" />
-                        <meta itemprop="worstRating" content="1" />
-                    </div>
-                    
-                    <div class="d-none" itemprop="review" itemtype="https://schema.org/Review" itemscope>
-                        <meta itemprop="datePublished" content="{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $product->created_at)->format('Y-m-d') }}" />
-                        <meta itemprop="reviewBody" content="{{ $product->rate_review_body }}" />
-                        <div itemprop="author" itemtype="https://schema.org/Person" itemscope>
-                            <meta itemprop="name" content="{{ $product->rateAuthor ? $product->rateAuthor->name : 'chưa xác định' }}" />
-                        </div>
-                        <div itemprop="reviewRating" itemtype="https://schema.org/Rating" itemscope>
-                            <meta itemprop="ratingCount" content="{{ SupportString::createRateValueByDate($product->id) }}" />
-                            <meta itemprop="bestRating" content="5" />
-                            <meta itemprop="worstRating" content="1" />
-                            <meta itemprop="ratingValue" content="{{ $product->rate_value }}" />
-                        </div>
-                    </div>
-                    <div itemprop="offers" itemtype="https://schema.org/Offer" itemscope>
-                        <meta itemprop="priceValidUntil" content="2022-08-25" />
-                        <meta itemprop="price" content="{{ str_replace([".", "e", ","], "", $product->price ) }}" />
-                        <meta itemprop="offerCount" content="2" />
-                        <meta itemprop="priceCurrency" content="VND" />
-                        <link property="availability" href="https://schema.org/InStock" />
-                    </div>
-                    
-                    {{-- box-shadow: 0 1px 10px 0 rgb(0 0 0 / 12%); --}}
-                    <div class="item__action">
-                        <div class="item__image">
-                            <img class="product-image lazyload"
-                                width="350" height="250"
-                                src="{{ Config::get('app.lazyload') }}" 
-                                {{-- src="{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => $product->thumbnail ]) }}" --}}
-                                onerror="this.onerror=null;this.src='{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => '/images/failed.jpg' ]) }}'"
-                                data-src="{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => trim($product->thumbnail, "/") ]) }}"
-                                alt="{{ $product->title }}"
-                            />
-                            <div class="hover__show-links">
-                                <button type="button" onclick="showLightGaleries(this)"
-                                class="btn-hero btn__view-detail px-4 py-1 itext-md">xem ảnh</button>
-                            </div>
-                            <div class="counter__galeries">{{ $pics->count(); }} <i class="far fa-image"></i> - {{ $product->view }} <i class="far fa-eye"></i></div>
-                        </div>
-                        <button type="button" class="item__action-react d-none"><i class="far fa-heart"></i></button>
-                    </div>
-                    
-                    <div class="lightgallery d-none">
-                        @foreach ($pics as $key => $pic)
-                        <a class="img__dtl-item" href="{{ asset($pic->src) }}">
-                            <img class="lazyload"
-                                src="{{ Config::get('app.lazyload') }}"
-                                onerror="this.onerror=null;this.src='{{ asset(Config::get('app.image_error')) }}';"
-                                data-src="{{ asset($pic->src) }}"
-                                alt="{{ $product->title }}"
-                            />
-                        </a>
-                        @endforeach
-                    </div>
-                    <div class="detail">
-                        <h4 class="">
-                            <a class="productmain__item-price" href="{{ Route('PRODUCT_VIEW', ['slug' => $product->slug ]) }}">
-                                <span title="Giá : {{ $product->getTooltipPrice() }}" class="price simple-tooltip text-truncate"> {{ $product->getStringPrice() }} &nbsp;</span>
-                                <small title="Vị trí: {{ $product->getLocation() }}" class="people-time simple-tooltip text-truncate">{{ $product->getShortLocation() }}</small>
-                            </a>
-                        </h4>
-                        
-                        <div class="detail__info media">
-                            <a class="detail__info-img" onclick="showLightGaleries(this)">
-                                <img class="product-image lazyload"
-                                    width="80" height="56"
-                                    src="{{ Config::get('app.lazyload') }}" 
-                                    {{-- src="{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => $product->thumbnail ]) }}" --}}
-                                    onerror="this.onerror=null;this.src='{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => '/images/failed.jpg' ]) }}'"
-                                    data-src="{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => trim($product->thumbnail, "/") ]) }}"
-                                    alt="{{ $product->title }}"
-                                />
-                                <div class="counter__galeries">{{ $pics->count(); }} <i class="far fa-image"></i> - {{ $product->view }} <i class="far fa-eye"></i></div>
-                            </a>
-                            <div class="clearfix visible-sm"></div>
-                            <div class="media-body">
-                                <h3 class="detail-name">
-                                    <a href="{{ Route('PRODUCT_VIEW', ['slug' => $product->slug ]) }}" class="detail-name-link" title="">{{ $product->getTitleLocateCategory(100)  }}</a>
-                                </h3>
-                                <ul class="list-inline productmain__item-property">
-                                    {!! $product->getListExtensions() !!}
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="tag">
-                            <div class="tag__row">
-                                <div class="tag__col simple-tooltip" title="Diện tích: {{ $product->area }} mét vuông">
-                                    <i class="fal fa-line-height"></i>
-                                    {{ $product->area }} m²
-                                </div>
-                                <div class="tag__col simple-tooltip" title="Hướng: {{ $product->getDirection() }}">
-                                    <i class="fal fa-road"></i>
-                                    {{ $product->getDirection() }} &nbsp;
-                                </div>
-                                <div class="tag__col simple-tooltip" title="Mặt tiền: {{ $product->getHorizontal() }}">
-                                    <i class="fal fa-compass"></i>
-                                    {{-- <i class="fad fa-house-flood"></i> --}}
-                                    {{ $product->getHorizontal() }} &nbsp;
-                                </div>
-                                <div class="tag__col simple-tooltip" title="Loại hình: {{ $product->category->name }}">
-                                    <i class="fal fa-building"></i>
-                                    {{ $product->category->name }} &nbsp;
-                                </div>
-                                <div class="tag__col simple-tooltip" title="{{ $product->getNegotiate() }}">
-                                    <i class="fal fa-user-shield"></i>
-                                    {{ $product->getNegotiate() }} &nbsp;
-                                </div>
-                            </div>
-                        </div>
-                        <div class="detail__footer">
-                            <div class="detail__footer-row">
-                                <strong class="detail__footer-time">
-                                    <i class="fad fa-calendar-alt"></i>
-                                    <span> {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $product->updated_at)->diffForHumans() }}</span>
-                                </strong>
-                                {{-- <span class="detail__footer-divider hidden-hero-decrement-xs">|</span>
-                                <strong class="detail__footer-time hidden-hero-decrement-xs">
-                                    <i class="fad fa-eye"></i>
-                                    <span>4</span>
-                                </strong> --}}
-                                <a class="detail__footer-messager" href="tel:{{ Config::get('app.phone') }}">
-                                    <i class="fal fa-comment-alt-lines"></i>
-                                    Tư vấn
-                                </a>
-                                {{-- <a class="detail__footer-messager hidden-hero-increment-md" href="{{ Route('PRODUCT_VIEW', ['slug' => $product->slug ]) }}">
-                                    <i class="fal fa-thumbs-up"></i>
-                                    Thích
-                                </a> --}}
-                            </div>
-                        </div>
-                    </div>
+            @php $pics = $product->getImages()->get(); @endphp
+            <div class="estate__col">
+                <div class="position-relative">
+                    <span class="view">
+                        <strong class="position-relative">
+                            <i class="counter">{{ $product->view }}</i>
+                            @svg('font/font-awe/svgs/duotone/external-link-square-alt.svg')
+                        </strong>
+                    </span>
+                    <span class="photo">
+                        <strong class="position-relative">
+                            @svg('font/font-awe/svgs/duotone/camera-home-page.svg')
+                            @php $countPics = $pics->count() @endphp
+                            <i class="counter">{{ $countPics > 99 ? '99+' : $countPics }}</i>
+                        </strong>
+                    </span>
+                    <img class="product-image lazyload"
+                        width="350" height="350"
+                        src="{{ Config::get('app.lazyload') }}" 
+                        {{-- src="{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => $product->thumbnail ]) }}" --}}
+                        onerror="this.onerror=null;this.src='{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => '/images/failed.jpg' ]) }}'"
+                        data-src="{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => trim($product->thumbnail, "/") ]) }}"
+                        alt="{{ $product->title }}"
+                    />
                 </div>
+                <h3 class="title">
+                    <a href="{{ Route('PRODUCT_VIEW', ['slug' => $product->slug ]) }}" class="title-link" title="">{{ $product->getTitleLocateCategory(100)  }}</a>
+                </h3>
+                <p class="price text-truncate text-color-red">
+                    @svg('font/font-awe/svgs/duotone/usd-square.svg')
+                    {{ $product->getPriceUnit('---') }}
+                </p>
+                <p class="location text-truncate text-color-grey">
+                    @svg('font/font-awe/svgs/duotone/compass.svg')
+                    {{ $product->getLocation('---') }}
+                </p>
+                <p class="calendar text-truncate text-color-grey">
+                    @svg('font/font-awe/svgs/duotone/history.svg')
+                    {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $product->updated_at)->diffForHumans() }}
+                </p>
             </div>
             @endforeach
+            
         </div>
-        
     </div>
+
 
 
 

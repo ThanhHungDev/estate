@@ -108,12 +108,26 @@ class Product extends Model
         }
         return null;
     }
-    public function getLocation(){
+
+    public function getPriceUnit( $ellipsis = null ){
+        if( $this->price ){
+            $price = str_replace([".", "e", ","], "", $this->price );
+            $unitPrice = SupportString::getRecordByValueConfig(Config::get("unit.PRICE"), $this->unit_price);
+
+            if( $unitPrice['VALUE'] == Config::get("unit.PRICE.DEFAULT.VALUE") ){
+                return ReadMoney::readDigitToMoney($price) . " " . $unitPrice['TEXT_CLIENT'];
+            }
+            return ReadMoney::readDigitToMoney( $price * $this->square ) . " " . $unitPrice['TEXT'];
+        }
+        return $ellipsis;
+    }
+
+    public function getLocation($ellipsis = null){
         
         if( $this->commune_id ){
             return $this->commune->district->name . " " . $this->commune->name;
         }
-        return null;
+        return $ellipsis;
     }
     public function getShortLocation(){
         
