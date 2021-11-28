@@ -18,12 +18,14 @@ class Product extends Model
         'content', 'background', 'thumbnail', 'public', 'site_name', 'ldjson', 'showto', 'howto',
         'image_seo', 'description_seo', 'type', 'stylesheet', 'javascript',
         'direction', 'direction_balcony', 'horizontal', 'square', 'price', 'unit_price', 'negotiate', 'extensions',
+        'likes', //// danh sách user id đang likes
         'project_id', 'vertical', 'area', 'posttype',
     ];
 
     protected $casts = [
-        'ldjson' => 'array',
+        'ldjson'     => 'array',
         'extensions' => 'array',
+        'likes'      => 'array',
     ];
 
     public function getType(){
