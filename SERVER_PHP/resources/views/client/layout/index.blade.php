@@ -8,6 +8,7 @@
     <meta name="robots" content="index, follow" />
     <title> @yield('title') </title>
     <meta name="description" content="@yield('description')">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     @yield('meta-seo')
 
@@ -60,7 +61,7 @@
         }
     </script>
     @endif
-    @if (!Route::is('USER_POST'))
+    @if (Agent::isRobot())
     <script>
         (function() {
             var supportsPassive = eventListenerOptionsSupported();
@@ -119,7 +120,8 @@
         </div>
         @include('client.partial.footer')
     </div>
-
+    @yield('modal')
+    
 
 
     <script type="text/javascript" src="{{ asset('js/library/jquery.min.js' . Config::get('app.version')) }}"></script>

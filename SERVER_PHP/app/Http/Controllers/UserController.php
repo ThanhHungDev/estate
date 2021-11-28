@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use App\Http\Requests\REGISTER_REQUEST;
+use App\Http\Resources\LikeResource;
 use App\Models\Channel;
 use App\Models\Category;
 use App\Models\Product;
@@ -265,5 +266,41 @@ class UserController extends Controller
         $profile = Auth::user();
 
         return view('client.user.firebase', compact(['profile']));
+    }
+
+
+
+    public function updateProductLikes(Request $request){
+        $productID = $request->input('product_id', 0);
+        $product = Product::find(intval($productID));
+        if( !$product ){
+            /// nếu không tìm thấy product thì hiện thị lỗi not found
+            return  response()
+                    ->error(
+                        'Không tìm thấy sản phẩm bạn đang thích', 
+                        ['error' => 'product_not_found'],
+                        Response::HTTP_NOT_FOUND
+                    )
+                    ->setStatusCode(Response::HTTP_NOT_FOUND);
+        }
+        $authId = Auth::user()->id;
+        /// tăng số lượng trên array product
+        $filters = array_filter($product->getLikes(), function( $userId ) use ($authId){
+            return $userId != $authId;
+        });
+        if( !$product->getCounterLikeActive() ){
+            /// chưa có user id nào trùng với auth thì add thêm mới (like)
+            $filters[] = $authId;
+        }
+        $product->likes = $filters;
+        $product->save();
+        
+        return response()
+                    ->success(
+                        'thành công',
+                        new LikeResource($product),
+                        Response::HTTP_OK
+                    )
+                    ->setStatusCode(Response::HTTP_OK);
     }
 }

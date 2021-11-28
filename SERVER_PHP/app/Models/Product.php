@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Helpers\ReadMoney;
 use App\Helpers\SupportString;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 
@@ -17,8 +18,7 @@ class Product extends Model
     protected $fillable = ['id', 'user_id', 'category_id', 'commune_id', 'rating_id', 'rate_value', 'rate_review_body', 'title', 'slug', 'excerpt', 
         'content', 'background', 'thumbnail', 'public', 'site_name', 'ldjson', 'showto', 'howto',
         'image_seo', 'description_seo', 'type', 'stylesheet', 'javascript',
-        'direction', 'direction_balcony', 'horizontal', 'square', 'price', 'unit_price', 'negotiate', 'extensions',
-        'likes', //// danh sách user id đang likes
+        'direction', 'direction_balcony', 'horizontal', 'square', 'price', 'unit_price', 'negotiate', 'extensions','likes',
         'project_id', 'vertical', 'area', 'posttype',
     ];
 
@@ -166,6 +166,50 @@ class Product extends Model
             return "Có thể thương lượng";
         }
         return "---";
+    }
+
+    public function getStrCounterLike(){
+        $counter = $this->getCounterLike();
+        if( $counter ){
+            return "($counter)";
+        }
+        return null;
+    }
+
+    public function getCounterLike(){
+        
+        $likes = $this->getLikes();
+        return count($likes);
+    }
+
+    public function getCounterLikeActive(){
+        
+        if( !Auth::user() || !Auth::user()->id ){
+            return false;
+        }
+        $authId = Auth::user()->id;
+        $likes = $this->getLikes();
+        /// tăng số lượng trên array product
+        $filters = array_filter($likes, function( $userId ) use ($authId){
+            return $userId != $authId;
+        });
+        return count($filters) != count($likes);
+    }
+
+    public function getClassCounterLikeActive( $classActive = 'active' ){
+        
+        if( $this->getCounterLikeActive() ){
+            return $classActive;
+        }
+        return null;
+    }
+
+    public function getLikes(){
+        
+        if( $this->likes ){
+            return $this->likes;
+        }
+        return [];
     }
     
 

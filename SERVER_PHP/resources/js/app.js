@@ -151,3 +151,67 @@ window.changeDistrict = function (e){
         })
     }
 }
+
+window.toggleLikePost = function (e, userId, productId ){
+    
+    if( !userId ){
+        /// hiện thị model login nếu chưa đăng nhập
+        $("#modal__notification").modal({
+            escapeClose: true,
+            clickClose: false,
+            showClose: true
+        })
+        return false
+    }else{
+        var $btn = $(e)
+        $btn.toggleClass('active')
+
+        /// gọi ajax lưu lại like
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            }
+        });
+        $.ajax({
+            type: "PATCH",
+            url: window.AJAX_TOGGLE_LIKE_PRODUCT,
+            data : {
+                product_id: productId,
+            },
+            dataType:"JSON",
+            success: function(response){
+                console.log(response)
+                if( response.status == 200 ){
+                    /// đã toggle class ở trên rồi nên chỉ cần thay đổi số lượng tăng hoặc giảm
+                    const COUNTER = $btn.val('data-counter')
+                    $btn.find('.js__counter').text( !!response.data.counter ? `(${response.data.counter})` : '' )
+                }else{
+                    console.log(response)
+                    $btn.toggleClass('active')
+                    /// show modal error
+                    showErrorModal( response )
+                }
+            },
+            error: function(xhr, status, error){
+                var err = JSON.parse(xhr.responseText);
+                console.log(err)
+                $btn.toggleClass('active')
+                showErrorModal( err )
+            },
+        });
+    }
+    
+}
+
+function showErrorModal(err){
+    /// show modal error
+    var $modalError = $("#modal__error")
+    $modalError.find('.js__title').html('Đã có lỗi sảy ra!')
+    $modalError.find('.js__header--content').html('Không thể thích sản phẩm này')
+    $modalError.find('.js__body--content').html(`Bấm thích không thành công vì lý do: <span class="text-color-red">${err.message}</span>`)
+    $modalError.modal({
+        escapeClose: true,
+        clickClose: true,
+        showClose: true
+    })
+}

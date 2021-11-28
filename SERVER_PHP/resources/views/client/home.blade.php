@@ -45,7 +45,7 @@
 <script type="text/javascript" src="{{ asset('js/library/slick.min.js' . Config::get('app.version')) }}"></script>
 <script type="text/javascript" src="{{ asset('js/library/lightgallery.min.js' . Config::get('app.version')) }}"></script>
 <script>
-
+    window.AJAX_TOGGLE_LIKE_PRODUCT = "{{ Route('USER_AJAX_LIKE_PRODUCT') }}";
 	$(document).ready(function(){
         $('#slider').slick({
             dots: true,
@@ -58,7 +58,6 @@
             slidesToScroll: 1,
         });
         $('#slider .js__onload--show').removeClass('d-none');
-
     });
 </script>
 @endsection
@@ -178,14 +177,16 @@
                             <i class="counter">{{ $countPics > 99 ? '99+' : $countPics }}</i>
                         </strong>
                     </span>
-                    <img class="product-image lazyload"
-                        width="350" height="350"
-                        src="{{ Config::get('app.lazyload') }}" 
-                        {{-- src="{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => $product->thumbnail ]) }}" --}}
-                        onerror="this.onerror=null;this.src='{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => '/images/failed.jpg' ]) }}'"
-                        data-src="{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => trim($product->thumbnail, "/") ]) }}"
-                        alt="{{ $product->title }}"
-                    />
+                    <a href="{{ Route('PRODUCT_VIEW', ['slug' => $product->slug ]) }}" class="d-block" title="">
+                        <img class="product-image lazyload"
+                            width="350" height="350"
+                            src="{{ Config::get('app.lazyload') }}" 
+                            {{-- src="{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => $product->thumbnail ]) }}" --}}
+                            onerror="this.onerror=null;this.src='{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => '/images/failed.jpg' ]) }}'"
+                            data-src="{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => trim($product->thumbnail, "/") ]) }}"
+                            alt="{{ $product->title }}"
+                        />
+                    </a>
                 </div>
                 <h3 class="title">
                     <a href="{{ Route('PRODUCT_VIEW', ['slug' => $product->slug ]) }}" class="title-link" title="">{{ $product->getTitleLocateCategory(100)  }}</a>
@@ -202,6 +203,20 @@
                     @svg('font/font-awe/svgs/duotone/history.svg')
                     {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $product->updated_at)->diffForHumans() }}
                 </p>
+                <div class="estate__col--bottom">
+                    <button class="hero-btn btn__action {{ $product->getClassCounterLikeActive() }}" 
+                        {{-- data-counter để tính toán số lượng like trong js --}}
+                        data-counter="{{ $product->getCounterLike() }}"
+                        onclick="toggleLikePost(this, {{ Auth::user()->id ?? 0 }} , {{ $product->id ?? 0 }})">
+                        @svg('font/font-awe/svgs/regular/thumbs-up.svg') 
+                        <span>Thích</span>
+                        <span class="js__counter">{{ $product->getStrCounterLike() }}</span>
+                    </button>
+                    <a class="hero-btn btn__action btn__action--like" href="/">
+                        @svg('font/font-awe/svgs/regular/comment-alt-dots.svg')
+                        <span>Tư vấn</span>                        
+                    </a>
+                </div>
             </div>
             @endforeach
             
@@ -292,4 +307,46 @@
     </div> --}}
 
 </div>
+@endsection
+
+
+
+@section('modal')
+    <!-- Modal HTML embedded directly into document -->
+    <div id="modal__notification" class="modal modal__notification">
+        <div class="modal__header">
+            @svg('font/font-awe/svgs/duotone/bell-on.svg')
+            <span class="title">Yêu cầu đăng nhập!</span>
+        </div>
+        <div class="modal__body">
+            <p class="h5 text-color-orange">Bạn chưa đăng nhập! </p>
+            <div class="notification">
+                Sau khi đăng nhập thành công bạn mới có thể thực hiện <span class="text-color-red">thích</span> bài đăng.
+            </div>
+        </div>
+        <div class="modal__footer">
+            <a class="btn btn__close" rel="modal:close">
+                Huỷ thực hiện
+            </a>
+            <a class="btn btn__login" href="{{ Route('LOGIN') }}?rredirect=1">
+                Đăng nhập
+            </a>
+        </div>
+    </div>
+    <!-- Modal HTML embedded directly into document -->
+    <div id="modal__error" class="modal modal__notification">
+        <div class="modal__header">
+            @svg('font/font-awe/svgs/duotone/bug.svg')
+            <span class="title js__title"></span>
+        </div>
+        <div class="modal__body">
+            <p class="h5 text-color-orange js__header--content"></p>
+            <div class="notification js__body--content"></div>
+        </div>
+        <div class="modal__footer">
+            <a class="btn btn__close" rel="modal:close">
+                Đóng
+            </a>
+        </div>
+    </div>
 @endsection

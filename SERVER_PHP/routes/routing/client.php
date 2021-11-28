@@ -61,8 +61,9 @@ Route::group(['prefix' => '/','middleware' => [ 'LOGIN_REDIRECT', 'HTML_MINIFIER
 
         Route::get('/information', [ App\Http\Controllers\UserController::class, 'profile' ])->name('USER_INFORMATION');
         Route::get('/ajax-demo', [ App\Http\Controllers\UserController::class, 'getUserInfo' ])->name('USER_AJAX');
-
+        Route::patch('/product/likes', [ App\Http\Controllers\UserController::class, 'updateProductLikes' ])->name('USER_AJAX_LIKE_PRODUCT');
         Route::resource('product', App\Http\Controllers\Api\ProductController::class, ['only' => ['show', 'store', 'update' ]]);
+        
     });
 
     // Route::get('/article/{slug?}',[ App\Http\Controllers\ClientController::class, 'viewPostArticle' ])->name('VIEW_POST_ARTICLE');
