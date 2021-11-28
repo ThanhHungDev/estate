@@ -704,8 +704,9 @@ ul.pagination{
 .modal.modal__notification{
     border-radius: 0;
     // height: 100%;
-    padding: 0 15px 15px;
-    @include Screen(SM){ padding: 15px 30px; }
+    // padding: 0 15px 15px;
+    // @include Screen(SM){ padding: 15px 30px; }
+    padding: 15px 30px;
   
     .modal__header{
         display: flex;
