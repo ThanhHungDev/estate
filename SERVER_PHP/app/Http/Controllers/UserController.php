@@ -292,7 +292,8 @@ class UserController extends Controller
             /// chưa có user id nào trùng với auth thì add thêm mới (like)
             $filters[] = $authId;
         }
-        $product->likes = $filters;
+        $product->timestamps = false;
+        $product->likes      = $filters;
         $product->save();
         
         return response()
