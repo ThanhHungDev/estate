@@ -62,6 +62,7 @@ class SupportHtml{
             'LOGOUT'             => Route('LOGOUT'),
             'LOGIN'              => Route('LOGIN'),
             'USER_POST'          => Route('USER_POST', ['path' => null ], false ),
+            'CHAT'               => Route('CHAT', ['id' => null ], false ),
         ];
         $configApp['CONSTANT'] = Config::get('constant');
         $configApp['EVENT']    = self::getEventsRealTime();

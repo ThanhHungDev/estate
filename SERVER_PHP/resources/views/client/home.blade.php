@@ -15,7 +15,6 @@
 <link rel="preload" as="style" href="{{ asset('css/home.css' . Config::get('app.version'))}}"/>
 <link rel="preload" as="style" href="{{ asset('css/library/slick.css' . Config::get('app.version')) }}"/>
 <link rel="preload" as="style" href="{{ asset('css/library/slick-theme.css' . Config::get('app.version')) }}"/>
-<link rel="preload" as="style" href="{{ asset('css/library/lightgallery.css' . Config::get('app.version')) }}" />
 @foreach ($sliders as $key => $slider)
 <link rel="preload" as="image" href="{{ $slider->src }}"/>
 @endforeach
@@ -26,7 +25,6 @@
 <link rel="preload" as="script" href="{{ asset('/js/library/carousel.min.js' . Config::get('app.version')) }}"/>
 <link rel="preload" as="script" href="{{ asset('js/library/wow.min.js' . Config::get('app.version')) }}"/>
 <link rel="preload" as="script" href="{{ asset('js/library/slick.min.js' . Config::get('app.version')) }}"/>
-<link rel="preload" as="script" href="{{ asset('js/library/lightgallery.min.js' . Config::get('app.version')) }}"/>
 @endsection
 
 @section('stylesheets')
@@ -34,7 +32,6 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css' . Config::get('app.version'))}}"/>
 <link rel="stylesheet" type="text/css" href="{{ asset('css/library/slick.css' . Config::get('app.version')) }}"/>
 <link rel="stylesheet" type="text/css" href="{{ asset('css/library/slick-theme.css' . Config::get('app.version')) }}"/>
-<link rel="stylesheet" type="text/css" href="{{ asset('css/library/lightgallery.css' . Config::get('app.version')) }}" />
 @endsection
 
 
@@ -43,7 +40,6 @@
 <script type="text/javascript" src="{{ asset('/js/library/carousel.min.js' . Config::get('app.version')) }}"></script>
 <script type="text/javascript" src="{{ asset('js/library/wow.min.js' . Config::get('app.version')) }}"></script>
 <script type="text/javascript" src="{{ asset('js/library/slick.min.js' . Config::get('app.version')) }}"></script>
-<script type="text/javascript" src="{{ asset('js/library/lightgallery.min.js' . Config::get('app.version')) }}"></script>
 <script>
     window.AJAX_TOGGLE_LIKE_PRODUCT = "{{ Route('USER_AJAX_LIKE_PRODUCT') }}";
 	$(document).ready(function(){
@@ -212,7 +208,7 @@
                         <span>Thích</span>
                         <span class="js__counter">{{ $product->getStrCounterLike() }}</span>
                     </button>
-                    <a class="hero-btn btn__action btn__action--like" href="/">
+                    <a class="btn__advise" href="{{ Route('CHAT', ['id' => $product->user_id ]) }}">
                         @svg('font/font-awe/svgs/regular/comment-alt-dots.svg')
                         <span>Tư vấn</span>                        
                     </a>

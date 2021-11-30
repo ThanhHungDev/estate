@@ -44,6 +44,13 @@ class ClientController extends Controller
         return view('client.home', compact(['categories', 'posts', 'sliders', 'reviews', 'workprocess', 'products']));
     }
 
+
+
+    public function chat( Request $request, $id = 0 ){
+
+        return view('client.chat', compact(['id']));
+    }
+
     public function contact( Request $request){
 
         return view('client.contact' );

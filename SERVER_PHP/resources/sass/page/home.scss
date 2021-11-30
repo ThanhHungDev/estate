@@ -479,7 +479,22 @@
 
 
 
-
+    .btn__advise{
+        border-radius: 4px;
+        padding: .075rem .55rem;
+        font-size: 12px;
+        border-width: 1px !important;
+        border-color: transparent;
+        background-color: transparent;
+        color: $custom-green-dark;
+        cursor: pointer;
+        text-decoration: underline;
+        .icon__fa-svg{
+            width: 13px;
+            vertical-align: 0.13em;
+            fill: $custom-green-dark;
+        }
+    }
     .btn__action{
         border-radius: 4px;
         padding: .075rem .55rem;
