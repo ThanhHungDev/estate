@@ -29,7 +29,7 @@
             
             <div class="information">
                 <div class="information__item information__address">
-                    <i class="information__item__icon fas fa-map-marker-alt"></i>
+                    @svg('font/font-awe/svgs/solid/map-marker-alt.svg')
                     <h3 class="information__item__des">
                         {{ implode(',', [ Config::get("app.company_address_street"), Config::get("app.company_address_locality")]) }}
                         <strong class="text-base font-bold">
@@ -38,7 +38,7 @@
                     </h3>
                 </div>
                 <div class="information__item information__phone">
-                    <i class="information__item__icon fal fa-phone-alt"></i>
+                    @svg('font/font-awe/svgs/light/phone-alt.svg')
                     <h3 class="information__item__des">
                         <a href="tel:{{ Config::get('app.phone') }}">
                             {{ Config::get('app.phone') }}
@@ -46,7 +46,7 @@
                     </h3>
                 </div>
                 <div class="information__item information__email">
-                    <i class="information__item__icon fal fa-envelope"></i>
+                    @svg('font/font-awe/svgs/light/envelope.svg')
                     <h3 class="information__item__des">
                         <a href="mail:{{ Config::get("app.company_mail") }}">
                             {{ Config::get("app.company_mail") }}

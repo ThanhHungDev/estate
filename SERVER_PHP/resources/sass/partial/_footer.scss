@@ -66,13 +66,16 @@
                         font-size: 13px;
                         font-weight: 100;
                     }
-                    &__icon{
+                    .icon__fa-svg{
                         color: rgb(173, 181, 189);
                         position: absolute;
                         left: 0;
                         top: 50%;
-                        font-size: 24px;
-                        @include render-transform(translateY(-50%));
+                        width: 24px;
+						fill: #adb5bd;
+						svg{
+							@include render-transform(translateY(-50%));
+						}
                     }
                     &.information__email .information__item__des>a{
                         color: #2bbbad;

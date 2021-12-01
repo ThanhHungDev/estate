@@ -488,7 +488,10 @@
         background-color: transparent;
         color: $custom-green-dark;
         cursor: pointer;
-        text-decoration: underline;
+
+        &:hover{
+            text-decoration: underline;
+        }
         .icon__fa-svg{
             width: 13px;
             vertical-align: 0.13em;

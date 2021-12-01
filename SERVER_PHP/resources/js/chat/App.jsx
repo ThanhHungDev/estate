@@ -10,7 +10,6 @@ import Chats from './page/Chats'
 function App( props ){
 
     const { auth, CONFIG } = props
-    console.log(auth, "authauthauthauth")
     return (
         <div className="AppComponent chat" id="Application">
             <BrowserRouter basename={CONFIG.WEB.CHAT}>

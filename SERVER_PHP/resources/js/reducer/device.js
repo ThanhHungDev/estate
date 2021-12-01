@@ -26,7 +26,7 @@ function getHeightDevice(){
     return height < MIN_HEIGHT_DEVICE ? MIN_HEIGHT_DEVICE : height
 }
 
-function calcHeightSubtractHeight(){
+function calcHeightSubtractHeight( ){
 
     let height = getHeightDevice()
 
