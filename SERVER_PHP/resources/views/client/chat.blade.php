@@ -8,9 +8,11 @@
 
 @endsection
 
+
 @section('stylesheets')
-<link rel="stylesheet" type="text/css" href="{{ asset('css/library/bootstrap.home.css' . Config::get('app.version'))}}"/>
-<link rel="stylesheet" type="text/css" href="{{ asset('css/home.css' . Config::get('app.version'))}}"/>
+    {{-- cái này là của laravel --}}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/library/bootstrap.chat.css' . Config::get('app.version'))}}"/>
+    <link type="text/css" rel="stylesheet" href="{{ asset('css/user.chat.css' . Config::get('app.version')) }}" /> 
 @endsection
 
 
@@ -25,7 +27,7 @@
 <script type="text/javascript" src="{{ asset('js/chat.js' . Config::get('app.version')) }}"></script>
 @endsection
 @section('content')
-<div class="content pb-4" id="react__root">
-    page chat {{ $id }}
+<div class="content custommer">
+    <div id="react__root" class="chat__root-react"></div>
 </div>
 @endsection

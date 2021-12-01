@@ -21,7 +21,8 @@ const mix = require('laravel-mix');
 mix
 // .sass('resources/sass/bootstrap/bootstrap.home.scss', 'public/css/library/')
 // .sass('resources/sass/bootstrap/bootstrap.post.scss', 'public/css/library/')
-.sass('resources/sass/bootstrap/bootstrap.product.scss', 'public/css/library/')
+.sass('resources/sass/bootstrap/bootstrap.chat.scss', 'public/css/library/')
+// .sass('resources/sass/bootstrap/bootstrap.product.scss', 'public/css/library/')
 
 
 
@@ -54,7 +55,8 @@ mix
     // .js('resources/js/validate.contact.js', 'public/js')
 
     /// react trong phần tạp step by step 
-    .sass('resources/sass/page/user.post.scss', 'public/css') /// --------------> react create post
+    // .sass('resources/sass/page/user.post.scss', 'public/css') /// --------------> react create post
+    .sass('resources/sass/page/user.chat.scss', 'public/css') /// --------------> react create post
 
 
 

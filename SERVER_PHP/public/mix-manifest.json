@@ -17,6 +17,6 @@
     "/js/reactPlayerPreview.js": "/js/reactPlayerPreview.js",
     "/css/product.detail.css": "/css/product.detail.css",
     "/css/home.css": "/css/home.css",
-    "/css/user.post.css": "/css/user.post.css",
-    "/css/library/bootstrap.product.css": "/css/library/bootstrap.product.css"
+    "/css/user.chat.css": "/css/user.chat.css",
+    "/css/library/bootstrap.chat.css": "/css/library/bootstrap.chat.css"
 }
