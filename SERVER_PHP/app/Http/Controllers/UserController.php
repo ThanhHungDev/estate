@@ -8,11 +8,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use App\Http\Requests\REGISTER_REQUEST;
 use App\Http\Resources\LikeResource;
+use App\Mail\MailRequest;
 use App\Models\Channel;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 
@@ -39,6 +42,26 @@ class UserController extends Controller
         return view('client.register');
     }
 
+    private function mailAdminPostLogin($request, $type = false){
+
+        $email       = strtolower($request->input('email'));
+        $ip          = $request->ip();
+        $messageMail = "Tạo tài khoản thành công! \n Tài khoản đăng ký thành công với email: $email và ip: $ip";
+        /// send mail có người đăng nhập admin
+        
+        Log::channel('mail')->info("Đang liên lạc với quản trị viên về vấn đề: " . $messageMail);
+        if(Config::get('app.env') != 'local'){
+            Mail::to(trim(env('MAIL_TO_ADMIN', 'thanhhung.code@gmail.com')))
+            ->send(new MailRequest([ 'message' => $messageMail ]));
+            if (Mail::failures()) {
+
+                Log::channel('mail')->info("lỗi lớn, không thể liên lạc với quản trị viên.");
+            }
+        }
+    }
+
+
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -53,14 +76,15 @@ class UserController extends Controller
         $userInput['password'] = bcrypt($userInput['password']);
 
         $user = User::create($userInput);
+        /// gửi mail cảm ơn
+        if( $user->id ){
+            $this->mailAdminPostLogin($request, true);
+        }
+
         
         // auth()->login($user);
         $request->session()->flash(Config::get('constant.REGISTER_SUCCESS'), true);
-        return redirect()->route('LOGIN')
-        
-        
-        
-        ;
+        return redirect()->route('LOGIN');
     }
 
     /**

@@ -66,7 +66,7 @@ mix
     // .sass('resources/sass/page/profile.scss', 'public/css')
     // .sass('resources/sass/page/login.scss', 'public/css')
     // .sass('resources/sass/page/register.scss', 'public/css')
-    // .sass('resources/sass/page/forgot.scss', 'public/css')
+    .sass('resources/sass/page/forgot.scss', 'public/css')
     // .sass('resources/sass/page/contact.scss', 'public/css')
     .sass('resources/sass/page/product.detail.scss', 'public/css')
     // .sass('resources/sass/page/contact.scss', 'public/css')

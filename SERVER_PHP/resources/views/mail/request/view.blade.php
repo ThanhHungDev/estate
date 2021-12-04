@@ -1,7 +1,7 @@
 Chào <i>Admin</i>,
 <p>
     Đây là công ty {{ Config::get('app.company_name') }}. 
-    Chúng tôi là đơn vị thiết kế website uy tín chuyên nghiệp.
+    Chúng tôi là đơn vị cung cấp dịch vụ bất động sản uy tín chuyên nghiệp.
 </p>
 <p>Hiện tại đang có lỗi lớn cần khắc phục:</p>
 <div>

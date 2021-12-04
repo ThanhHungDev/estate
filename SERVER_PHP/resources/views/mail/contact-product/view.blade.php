@@ -1,7 +1,7 @@
 Chào <i>{{ $input['name'] }}</i>,
 <p>
     Đây là công ty {{ Config::get('app.company_name') }}. 
-    Chúng tôi là đơn vị mua bán nhà đất uy tín chuyên nghiệp top 1 bảo lộc.
+    Chúng tôi là đơn vị cung cấp dịch vụ bất động sản uy tín chuyên nghiệp.
 </p>
 
  

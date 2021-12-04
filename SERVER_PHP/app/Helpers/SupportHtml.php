@@ -61,6 +61,8 @@ class SupportHtml{
             'PATCH_VERIFY_PHONE' => Route('PATCH_VERIFY_PHONE'),
             'LOGOUT'             => Route('LOGOUT'),
             'LOGIN'              => Route('LOGIN'),
+            'REGISTER'           => Route('REGISTER'),
+            'FORGOT'             => Route('FORGOT'),
             'USER_POST'          => Route('USER_POST', ['path' => null ], false ),
             'CHAT'               => Route('CHAT', ['id' => null ], false ),
         ];

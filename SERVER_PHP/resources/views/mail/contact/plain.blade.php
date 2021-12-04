@@ -1,7 +1,7 @@
 Xin chào {{ $input['name'] }},
 
     Đây là công ty {{ Config::get('app.company_name') }}. 
-    Chúng tôi là đơn vị mua bán nhà đất uy tín chuyên nghiệp top 1 bảo lộc.
+    Chúng tôi là đơn vị cung cấp dịch vụ bất động sản uy tín chuyên nghiệp.
 
     Chúng tôi được gửi yêu cầu đến email {{ $input['email'] }}
     Cảm ơn bạn đã tin tưởng và cùng đồng hành.

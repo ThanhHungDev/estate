@@ -134,7 +134,7 @@
                 }
             }
             .btn-login {
-                margin-top: 30px;
+                margin-top: 15px;
                 color: #fff;
                 background: #1c5732;
                 display: block;
@@ -146,6 +146,26 @@
                 padding: 18px 0;
                 border: none;
                 cursor: pointer;
+                position: relative;
+    
+                &.disable{
+                    cursor: unset;
+                    z-index: -1;
+                    opacity: 0.5;
+                    @include render-gradient(0deg, rgba(21, 31, 18, 1), rgba(21, 31, 18, 1));
+
+                    &:after{
+                        position: absolute;
+                        content: '';
+                        color: transparent;
+                        top: 0;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        z-index: 11;
+                        cursor: unset;
+                    }
+                }
             }
         }
     }

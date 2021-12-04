@@ -35,7 +35,7 @@ function Login( props ){
     }, [ values, touched ])
 
 
-    const { device } = props
+    const { CONFIG, device } = props
     return (
         <div className="select__login" className="page page__login" style={{ minHeight: (device.calcHeightSubtractHeight + 45) + "px" }}>
             <div className="page__login__bg"></div>
@@ -65,20 +65,22 @@ function Login( props ){
                     { hasErr('password') && <label className="error" htmlFor="password">{ errors.getError("password") }</label> }
                     
                     <div className="forgot-password">
-                        <a href="//localhost:3000/forgot" className="forgot-link">Quên password <i className="fad fa-question-circle"></i> </a>
+                        <a href={ CONFIG.WEB.FORGOT } className="forgot-link">Quên password <i className="fad fa-question-circle"></i> </a>
                     </div>
+
                     <label className="container-checkbox">
                         ghi nhớ đăng nhập
                         <input name="remember" type="checkbox" />
                         <span className="checkmark"></span>
                     </label>
-                    <button type="submit" className="btn btn-login aqua-gradient-rgba">
+
+                    <button type="submit" className={"btn btn-login aqua-gradient-rgba " + (errors.hasError && 'disable') }>
                         Đăng nhập
                     </button>
                 </div>
                 <h4 className="description">
-                    chưa có tài khoản? Bạn muốn 
-                    <a href="//localhost:3000/register" className="register-inline">
+                    chưa có tài khoản? Bạn muốn &nbsp;
+                    <a href={ CONFIG.WEB.REGISTER } className="register-inline">
                         đăng ký
                     </a>
                 </h4>
@@ -90,7 +92,8 @@ function Login( props ){
 
 let mapStateToProps = (state) => {
     return {
-        device: state.device
+        device: state.device,
+        CONFIG    : state.config,
     }
 }
 export default connect(mapStateToProps)(Login)
