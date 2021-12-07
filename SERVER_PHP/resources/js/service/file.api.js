@@ -1,9 +1,11 @@
 import axios from 'axios'
 
 let CONFIG = {}
-if( typeof CONFIG_APP != 'undefined' ){
+if( typeof window.CONFIG_APP != 'undefined' ){
     /// thì sao? 
-    CONFIG = JSON.parse(CONFIG_APP)
+    try {
+        CONFIG = JSON.parse(window.CONFIG_APP)
+    } catch (error) {}
 }
 
 const Api =

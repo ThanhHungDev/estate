@@ -32,6 +32,7 @@ class CreateUsersTable extends Migration
             $table->unsignedInteger('commune_id')->unsigned()->nullable();/// cột này là địa chỉ liên hệ theo phường
             $table->string('street')->nullable(); /// địa chỉ đường
             $table->string('home_number')->nullable(); /// địa chỉ số nhà 
+            $table->integer('active')->default(Config::get("constant.ACTIVITY.DEACTIVE")); /// khi user đang 
             $table->rememberToken();
             $table->timestamps();
         });

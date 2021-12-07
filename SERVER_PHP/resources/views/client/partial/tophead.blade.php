@@ -1,4 +1,4 @@
-<div class="tophead">
+<div class="tophead @if (SupportRouter::isRouterActive('CHAT')) pc @endif">
     <div class="social">
         <a class="social__link" href="{{ env('SITE_FB')}}" title="follow facebook với chúng tôi">
             @svg('font/font-awe/svgs/brands/facebook-f.svg')

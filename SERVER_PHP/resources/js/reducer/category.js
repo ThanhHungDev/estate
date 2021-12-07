@@ -1,8 +1,10 @@
 
 let CATE = {}
-if( typeof CATEGORIES != 'undefined' ){
+if( typeof window.CATEGORIES != 'undefined' ){
     /// thì sao? 
-    CATE = JSON.parse(CATEGORIES)
+    try {
+        CATE = JSON.parse(window.CATEGORIES)
+    } catch (error) {}
 }
 
 

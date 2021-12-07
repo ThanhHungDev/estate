@@ -35,6 +35,7 @@ Route::group(['prefix' => '/','middleware' => [ 'LOGIN_REDIRECT', 'HTML_MINIFIER
     Route::get('/forgot', [ App\Http\Controllers\ClientController::class, 'forgot' ])->name('FORGOT');
     
     Route::get('/policy', [ App\Http\Controllers\ClientController::class, 'policy' ])->name('POLICY');
+    Route::get('/policy-fast-login', [ App\Http\Controllers\ClientController::class, 'policy' ])->name('POLICY');
     Route::get('/term', [ App\Http\Controllers\ClientController::class, 'term' ])->name('TERM');
 
 

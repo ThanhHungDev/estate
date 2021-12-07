@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta http-equiv="content-language" content="vi" />
     <meta name="robots" content="index, follow" />
@@ -14,6 +14,7 @@
 
     <link rel="alternate" type="application/rss+xml" title="{{ Config::get('app.alternate_name') }}" href="" />
 
+    @if (!Agent::isRobot() && Config::get('app.env') != 'local')
     {{-- <link rel="preload" as="font" href="/font/font-awe/webfonts/fa-brands-400.woff2" /> --}}
     <link rel="preload" as="style" href="{{ asset('css/library/tipped.css' . Config::get('app.version'))}}"/>
     <link rel="preload" as="image" href="{{ asset('logo.png' . Config::get('app.version')) }}"/>
@@ -23,6 +24,7 @@
     <link rel="preload" as="script" href="{{ asset('js/library/modal.jquery.min.js' . Config::get('app.version')) }}"/>
     <link rel="preload" as="script" href="{{ asset('js/app.js' . Config::get('app.version')) }}"/>
     @yield('preload')
+    @endif
     <link rel="stylesheet" href="{{ asset('css/library/tipped.css' . Config::get('app.version'))}}"/>
     
     @yield('stylesheets')
@@ -118,7 +120,10 @@
         <div class="page-content-layout">
             @yield('content')
         </div>
-        @include('client.partial.footer')
+        {{-- nếu trang chat thì không cần hiện footer page --}}
+        @if (!SupportRouter::isRouterActive('CHAT'))
+            @include('client.partial.footer')
+        @endif
     </div>
     @yield('modal')
     

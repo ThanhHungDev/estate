@@ -1009,7 +1009,7 @@ window.calcTotalPriceProduct = function(){
     $('input[name=square]').val(formatNumberToDot(square, ''))
     $('input[name=price]').val(formatNumberToDot(price, ''))
     
-    if(CONFIG_APP.UNIT.PRICE.DEFAULT.VALUE == unitPrice ){
+    if(window.CONFIG_APP.UNIT.PRICE.DEFAULT.VALUE == unitPrice ){
         $output.html(`${DocTienBangChu(price)}`)
     }else if( !square.toString().trim() || !price.toString().trim() || !$output.get() ){
         

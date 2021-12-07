@@ -21,7 +21,7 @@ if( !$district_id ){
     $configApp['VIDEO']    = Config::get('video.UPLOAD');
     @endphp
     <script>
-        const CONFIG_APP = {!! json_encode($configApp) !!};
+        window.CONFIG_APP = {!! json_encode($configApp) !!};
     </script>
 
     <script src="{{ asset('js/library/jquery.min.js') }}"></script>

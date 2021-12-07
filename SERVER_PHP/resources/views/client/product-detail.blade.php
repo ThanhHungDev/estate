@@ -20,9 +20,9 @@
     <script type="text/javascript" src="{{ asset('js/product.detail.js' . Config::get('app.version')) }}"></script>
     <script type="text/javascript" src="{{ asset('js/library/lightgallery.min.js' . Config::get('app.version')) }}"></script>
     <script>
-        const CONFIG_APP = `{!! json_encode(SupportHtml::getConfigReact()) !!}`;
-        const CATEGORIES = `{!! json_encode($categories ?? []) !!}`;
-        const PROVINCES  = `{!! json_encode(Config::get('province')) !!}`;
+        window.CONFIG_APP = `{!! json_encode(SupportHtml::getConfigReact()) !!}`;
+        window.CATEGORIES = `{!! json_encode($categories ?? []) !!}`;
+        window.PROVINCES  = `{!! json_encode(Config::get('province')) !!}`;
         window.JWT_TOKEN  = `{{ SupportDB::getJwtAuthentication() }}`;
         const KEY_CAPTCHA = "{{ env('GOOGLE_RECAPTCHA_KEY')  }}";
 

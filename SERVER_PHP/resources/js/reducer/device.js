@@ -40,17 +40,40 @@ function calcHeightSubtractHeight( ){
     }
     let heightMenu = 0
     try {
-        heightMenu = tophead.offsetHeight + menuSticky.offsetHeight + 50
+        heightMenu = (tophead.offsetHeight || 0) + (menuSticky?.offsetHeight || 0 ) + 50
     } catch (error) {}
 
     return height - heightMenu
 }
+
+
+function calcHeightSubtractHeader( ){
+
+    const height = getHeightDevice()
+
+    let tophead = document.getElementsByClassName('tophead')
+    if(tophead.length){
+        tophead = tophead[0]
+    }
+    let menuSticky = document.getElementsByClassName('headerpage')
+    if(menuSticky.length){
+        menuSticky = menuSticky[0]
+    }
+    let heightMenu = 0
+    try {
+        heightMenu = (tophead.offsetHeight || 0) + (menuSticky?.offsetHeight || 0 )
+    } catch (error) {}
+
+    return height - heightMenu
+}
+
 
 let DEVICE = {
     isPcDevice              : isPcDevice(),
     widthDevice             : getWidthDevice(),
     heightDevice            : getHeightDevice() + 150,
     calcHeightSubtractHeight: calcHeightSubtractHeight(),
+    calcHeightSubtractHeader: calcHeightSubtractHeader(),
 }
 
 export default function (state = DEVICE, action) {

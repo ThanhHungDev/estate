@@ -1,4 +1,4 @@
-<div id="header__sticky" class="headerpage bg__product--detail">
+<div id="header__sticky" class="headerpage bg__product--detail @if (SupportRouter::isRouterActive('CHAT')) pc @endif">
     <div class="header">
         <a class="logo" href="{{ Route('HOME_PAGE') }}">
             <img 

@@ -1,9 +1,11 @@
 
 import TYPE from "../action/type"
 let LOCATION = {}
-if( typeof PROVINCES != 'undefined' ){
+if( typeof window.PROVINCES != 'undefined' ){
     /// thì sao? 
-    LOCATION.province = JSON.parse(PROVINCES)
+    try {
+        LOCATION.province = JSON.parse(window.PROVINCES)
+    } catch (error) {}
 }
 
 

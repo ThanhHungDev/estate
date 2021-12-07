@@ -39,9 +39,10 @@
     &__form{
         display: block;
         max-width: 450px;
-        margin: 40px auto;
+        margin: 0 auto;
         position: relative;
         z-index: 2;
+        @include Screen(MD){ margin: 40px auto; }
     }
 }
 

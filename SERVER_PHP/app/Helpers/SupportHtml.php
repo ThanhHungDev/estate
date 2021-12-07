@@ -63,6 +63,7 @@ class SupportHtml{
             'LOGIN'              => Route('LOGIN'),
             'REGISTER'           => Route('REGISTER'),
             'FORGOT'             => Route('FORGOT'),
+            'POLICY'             => Route('POLICY'),
             'USER_POST'          => Route('USER_POST', ['path' => null ], false ),
             'CHAT'               => Route('CHAT', ['id' => null ], false ),
         ];
