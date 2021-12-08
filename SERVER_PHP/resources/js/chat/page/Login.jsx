@@ -9,13 +9,13 @@ function Login( props ){
     return (
         <div className="select__login" className="page page__login" style={{ minHeight: (device.calcHeightSubtractHeader) + "px" }}>
             <div className="page__login__bg"></div>
-            <form className="page__login__form form__chat page__login--faster">
+            <div className="page__login__form form__chat page__login--faster">
                 <div className="row-hero position-relative">
-                    <LoginDefault CONFIG={ CONFIG } />
-                    <div className="divition"></div>
                     <LoginFast CONFIG={ CONFIG } />
+                    <div className="divition"></div>
+                    <LoginDefault CONFIG={ CONFIG } />
                 </div>
-            </form>
+            </div>
         </div>
     )
 }
