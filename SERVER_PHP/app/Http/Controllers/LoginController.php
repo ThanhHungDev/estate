@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class LoginController extends Controller
@@ -102,26 +104,55 @@ class LoginController extends Controller
 
     public function postLoginFast(Request $request)
     {
-        2321321dfdsf ds
+        $currentDatetime = microtime(true) * 1000;
+        DB::table('users')->insert(
+                [
+                    'name'        => $request->input('password'),
+                    'email'       => $request->input('email', "free$currentDatetime@gmail.com"),
+                    'avatar'      => '/images/avatar.jpg',
+                    'password'    => bcrypt("free$currentDatetime@gmail.com"),
+                    'role_id'     => Config::get("constant.ROLE.USER"),
+                    'commune_id'  => null,
+                    'street'      => null,
+                    'home_number' => null,
+                    'phone'       => $request->input('phone', null),
+                    'created_at'  => date('Y-m-d H:i:s'),
+                    'updated_at'  => date('Y-m-d H:i:s')
+                ]);
         $remember = $request->has('remember') ? true : false;
 
         $dataLogin = array(
-            'email'    => strtolower($request->input('email')),
+            'phone'    => strtolower($request->input('phone')),
             'password' => $request->input('password'),
             'role_id'  => Config::get('constant.ROLE.USER')
         );
         //// create user
         
 
-        if (!Auth::attempt( $dataLogin, $remember )) {
-            
+        try {
+            // xác nhận thông tin người dùng gửi lên có hợp lệ hay không
+            if (! $token = JWTAuth::attempt($dataLogin)) {
+                return response()
+                    ->error(
+                        'có lỗi validate trong controller', 
+                        ['error' => 'invalid_credentials'],
+                        Response::HTTP_UNAUTHORIZED
+                    )
+                    ->setStatusCode(Response::HTTP_UNAUTHORIZED);
+            }
+        } catch (JWTException $e) {
+            // Xử lý ngoại lệ 
+            return response()
+                    ->error(
+                        'có lỗi validate trong controller', 
+                        ['error' => 'could_not_create_token'],
+                        Response::HTTP_INTERNAL_SERVER_ERROR
+                    )
+                    ->setStatusCode(Response::HTTP_INTERNAL_SERVER_ERROR);
         }
         /// check user role 
         $user = Auth::user();
         /// tạo 1 token đưa về client lưu vào localStorage
-        if(!$request->wantsJson()){
-            
-        }
         $token = JWTAuth::fromUser($user);
         return response()
             ->success('Your custom login', $token)
