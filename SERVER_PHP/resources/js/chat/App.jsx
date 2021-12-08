@@ -1,10 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom"
-import PrivateRoute from './PrivateRoute'
 import Register from './page/Register'
 import Login from './page/Login'
 import Chats from './page/Chats'
+import PrivateRoute from './PrivateRoute'
+import ProtectedRoute from './ProtectedRoute'
 
 
 
@@ -19,9 +20,9 @@ function App( props ){
                 
                 <Switch>
                     <Route exact path="/dang-ky" component={ Register } />
-                    <Route exact path="/dang-nhap" component={ Login } />
+                    <ProtectedRoute auth={ !!auth.JWT } exact path="/dang-nhap" component={ Login } />
                     <PrivateRoute auth={ !!auth.JWT } path='/dashboard' component={ Chats } />
-                    <PrivateRoute auth={ false } path='/' component={ Chats } />
+                    <PrivateRoute auth={ !!auth.JWT } path='/' component={ Chats } />
                 </Switch>
             </BrowserRouter>
         </div>

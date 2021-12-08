@@ -47,6 +47,7 @@ class SupportHtml{
         ];
         $configApp['API'] = [
             'UPDATE_VERIFY_PHONE'      => Route('API.USER.PATCH_VERIFY_PHONE'),
+            'LOGIN'                    => Route('API_LOGIN'),
             'DISTRICTS'                => Route('DISTRICTS'),
             'COMMUNES'                 => Route('COMMUNES'),
             'PROVINCES'                => Route('PROVINCES'),
@@ -61,6 +62,8 @@ class SupportHtml{
             'PATCH_VERIFY_PHONE' => Route('PATCH_VERIFY_PHONE'),
             'LOGOUT'             => Route('LOGOUT'),
             'LOGIN'              => Route('LOGIN'),
+            'POST_LOGIN'         => Route('POST_LOGIN'),
+            'POST_LOGIN_FAST'    => Route('POST_LOGIN_FAST'),
             'REGISTER'           => Route('REGISTER'),
             'FORGOT'             => Route('FORGOT'),
             'POLICY'             => Route('POLICY'),

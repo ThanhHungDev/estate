@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
+import { connect } from 'react-redux'
 import Validator from "hero-validate"
 import V from "../../validator/user.login"
 import loginAPI from "../../../service/login.api"
+import { setterJwt } from '../../../action/jwt.action'
 
 /// create rule for your form
 Validator.setLocale(Validator.languages.vi)
@@ -9,7 +11,7 @@ Validator.setMessages(V.messages)
 
 function LoginDefault( props ){
 
-
+    const [ alert, setAlert ] = useState(null)
     const [values, setValues]   = useState({ 
         email   : "",
         password: "",
@@ -26,21 +28,25 @@ function LoginDefault( props ){
         event.persist()
         setValues({ ...values, [event.target.name]: event.target.value })
         setTouched({ ...touched, [event.target.name]: true })
+        setAlert(null)
     }
 
     /// hook react
     useEffect(() => {
-        
+
         setErrors( Validator.validate(values, V.rules) )
     }, [ values, touched ])
 
     const loginDefault = () => {
         
         loginAPI
-        .loginDefault(values)
+        .loginDefault({ ... values, remember: true }) /// thêm cái remember để lưu nhớ lại
         .then( response => {
             const { data } = response
-            console.log( data )
+            window.JWT_TOKEN = data
+            //// setter for token
+            props.dispatch(setterJwt(data))
+            window.location.reload()
         })
         .catch(error => {
             if (error.response) {
@@ -50,6 +56,9 @@ function LoginDefault( props ){
             }else{
                 console.log("ERROR:: ",error)
             }
+            setValues({ ...values, password: "" })
+            setTouched({ ...touched, password: false })
+            setAlert('Tài khoản hoặc mật khẩu không chính xác!')
         })
     }
 
@@ -57,7 +66,18 @@ function LoginDefault( props ){
     const { CONFIG } = props
     return (
         <div className="col-hero-12 col-hero-sm-6 mt-2">
-            <h2 className="form__title">Đăng nhập tài khoản</h2>
+            <h2 className="form__title">
+                Đăng nhập tài khoản
+                <span className="d-block text-xs font-medium pt-2">
+                <i className="text-color-secondary-color-dark">Đã có tài khoản</i>  và sẽ được hộ trợ tốt nhất
+                </span>
+            </h2>
+            {
+                alert && 
+                <div className="alert alert-warning mt-3">
+                    <p><b>{ alert }</b></p>
+                </div>
+            }
             <div className="form-group my-0">
                 <div className={"input-group " + ( hasErr("email") ? "input-group-error" : "" )} >
                     <i className="icon fad fa-users"></i>
@@ -99,5 +119,4 @@ function LoginDefault( props ){
 }
 
 
-export default LoginDefault
-
+export default connect()(LoginDefault)

@@ -31,6 +31,7 @@ Route::group(['prefix' => '/','middleware' => [ 'LOGIN_REDIRECT', 'HTML_MINIFIER
 
     Route::get('/login', [ App\Http\Controllers\LoginController::class, 'login' ])->name('LOGIN');
     Route::post('/login', [ App\Http\Controllers\LoginController::class, 'postLogin' ])->name('POST_LOGIN');
+    Route::post('/login/faster', [ App\Http\Controllers\LoginController::class, 'postLoginFast' ])->name('POST_LOGIN_FAST');
 
     Route::get('/forgot', [ App\Http\Controllers\ClientController::class, 'forgot' ])->name('FORGOT');
     

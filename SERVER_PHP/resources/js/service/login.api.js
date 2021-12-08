@@ -24,12 +24,12 @@ interceptors.setup(Api)
 export default {
     loginDefault(params) {
         console.log("vào loginDefault", params)
-        return Api.post(CONFIG.API.PATCH_VERIFY_PHONE, params)
+        return Api.post(CONFIG.WEB.POST_LOGIN, params)
         .then(res => res.data )
     },
     loginFast(params) {
         console.log("vào loginFast", params)
-        return Api.post(CONFIG.API.PATCH_VERIFY_PHONE, params)
+        return Api.post(CONFIG.WEB.POST_LOGIN_FAST, params)
         .then(res => res.data )
     },
 }

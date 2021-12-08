@@ -208,7 +208,7 @@
                         <span>Thích</span>
                         <span class="js__counter">{{ $product->getStrCounterLike() }}</span>
                     </button>
-                    <a class="btn__advise" href="{{ Route('CHAT', ['id' => $product->user_id ]) }}" target="_blank" rel="noopener noreferrer">
+                    <a class="btn__advise" href="{{ Route('CHAT', ['id' => $product->user_id ]) }}">
                         @svg('font/font-awe/svgs/regular/comment-alt-dots.svg')
                         <span>Tư vấn</span>                        
                     </a>

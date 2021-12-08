@@ -5,15 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LOGIN_REQUEST;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\REGISTER_REQUEST;
-use App\Models\User;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
-use Tymon\JWTAuth\Exceptions\JWTException;
-use Tymon\JWTAuth\Exceptions\TokenExpiredException;
-use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 use Tymon\JWTAuth\Facades\JWTAuth;
-use Tymon\JWTAuth\Facades\JWTFactory;
 
 class LoginController extends Controller
 {
@@ -85,8 +80,14 @@ class LoginController extends Controller
             /// check user role 
             $user = Auth::user();
             /// tạo 1 token đưa về client lưu vào localStorage
-            $token = JWTAuth::fromUser($user);
+            if($request->wantsJson()){
+                $token = JWTAuth::fromUser($user);
+                return response()
+                    ->success('Your custom login', $token)
+                    ->setStatusCode(Response::HTTP_OK);
+            }
             
+
             if( $user->role_id == Config::get('constant.ROLE.USER')){
 
                 return redirect()->route('USER_DASHBOARD');
@@ -96,6 +97,35 @@ class LoginController extends Controller
             }
         }
         return redirect()->back()->with(Config::get('constant.LOGIN_ERROR'), 'đăng nhập thất bại!!! ');
+    }
+
+
+    public function postLoginFast(Request $request)
+    {
+        2321321dfdsf ds
+        $remember = $request->has('remember') ? true : false;
+
+        $dataLogin = array(
+            'email'    => strtolower($request->input('email')),
+            'password' => $request->input('password'),
+            'role_id'  => Config::get('constant.ROLE.USER')
+        );
+        //// create user
+        
+
+        if (!Auth::attempt( $dataLogin, $remember )) {
+            
+        }
+        /// check user role 
+        $user = Auth::user();
+        /// tạo 1 token đưa về client lưu vào localStorage
+        if(!$request->wantsJson()){
+            
+        }
+        $token = JWTAuth::fromUser($user);
+        return response()
+            ->success('Your custom login', $token)
+            ->setStatusCode(Response::HTTP_OK);
     }
 
 }
