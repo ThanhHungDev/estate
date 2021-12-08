@@ -1,4 +1,4 @@
-const CACHE_NAME = 'HERO-CACHE-v11' /// tên nhóm caches để khi xóa cache thì chỉ cần thay đổi nó thôi
+const CACHE_NAME = 'HERO-CACHE-v12' /// tên nhóm caches để khi xóa cache thì chỉ cần thay đổi nó thôi
 const CACHE_OLD_DELETE = [ 
     'HERO-CACHE-v1', 
     'HERO-CACHE-v2', 
@@ -9,6 +9,7 @@ const CACHE_OLD_DELETE = [
     'HERO-CACHE-v7', 
     'HERO-CACHE-v8', 
     'HERO-CACHE-v10',
+    'HERO-CACHE-v11',
 ]
 // A list of local resources we always want to be cached.
 const PRECACHE_URLS = [

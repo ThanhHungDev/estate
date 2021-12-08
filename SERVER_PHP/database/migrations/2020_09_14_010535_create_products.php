@@ -33,6 +33,7 @@ class CreateProducts extends Migration
             $table->string('background', 510)->nullable();
             $table->string('thumbnail', 510)->nullable();
             $table->integer('like')->default(1);
+            $table->json('likes')->default("[]");
             $table->integer('view')->default(1);
             $table->float('rate_value')->default(3.5);
             $table->text('rate_review_body')->nullable();
