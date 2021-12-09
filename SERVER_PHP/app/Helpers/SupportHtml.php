@@ -45,6 +45,9 @@ class SupportHtml{
         $configApp['REALTIME'] = [
             'GET_COMMENT' =>  "$assetRealtime/api/comment?inkey=",
         ];
+        $configApp['LOCALSTORAGE'] = [
+            'FREE__USER' => 'FREE__USER'
+        ];
         $configApp['API'] = [
             'UPDATE_VERIFY_PHONE'      => Route('API.USER.PATCH_VERIFY_PHONE'),
             'LOGIN'                    => Route('API_LOGIN'),

@@ -106,7 +106,7 @@ class LoginController extends Controller
     public function postLoginFast(Request $request)
     {
         $currentDatetime = microtime(true) * 1000;
-        $username        = $request->input('phone');
+        $username        = str_replace("+84", "0", $request->input('phone'));
         $email           = "free$currentDatetime@gmail.com";
         $phone           = '';
         $remember        = $request->has('remember') ? true : false;
@@ -156,6 +156,7 @@ class LoginController extends Controller
         $user = Auth::user();
         /// tạo 1 token đưa về client lưu vào localStorage
         $token = JWTAuth::fromUser($user);
+        /// set cookie cho trình duyệt 
         return response()
             ->success('Your custom login', $token)
             ->setStatusCode(Response::HTTP_OK);

@@ -82,7 +82,7 @@ function VerifyPhone( props ){
     }, []);
 
     function isVietnamesePhoneNumber(number) {
-        return /([\+84|84|\+81|81]+(3|5|7|8|9|1[2|6|8|9]))+([0-9]{8,9})\b/.test(number);
+        return /([\+84|84]+(3|5|7|8|9|1[2|6|8|9]))+([0-9]{8,9})\b/.test(number);
     }
     function validatePhone(){
         /// thay đổi liên tục

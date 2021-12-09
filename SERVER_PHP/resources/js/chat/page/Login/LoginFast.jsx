@@ -46,6 +46,8 @@ function LoginFast( props ){
             window.JWT_TOKEN = data
             //// setter for token
             props.dispatch(setterJwt(data))
+            /// lưu mọi thứ vào local storage
+            localStorage.setItem(CONFIG.LOCALSTORAGE.FREE__USER, data)
             window.location.reload()
         })
         .catch(error => {
