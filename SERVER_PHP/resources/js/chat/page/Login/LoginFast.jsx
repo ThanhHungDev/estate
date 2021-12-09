@@ -13,8 +13,8 @@ function LoginFast( props ){
 
     const [ alert, setAlert ] = useState(null)
     const [values, setValues]   = useState({ 
-        name   : "",
-        username: "",
+        name : "",
+        phone: "",
     })
     const [ touched, setTouched ] = useState({})
     const [ errors, setErrors ]   = useState(Validator.getEmpty())
@@ -56,7 +56,7 @@ function LoginFast( props ){
             }else{
                 console.log("ERROR:: ",error)
             }
-            setTouched({ name: "", username: "", })
+            setTouched({ name: false, phone: false })
             setAlert('Đã sảy ra lỗi, vui lòng thử lại sau!')
         })
     }

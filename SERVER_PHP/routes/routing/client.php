@@ -67,6 +67,8 @@ Route::group(['prefix' => '/','middleware' => [ 'LOGIN_REDIRECT', 'HTML_MINIFIER
         Route::resource('product', App\Http\Controllers\Api\ProductController::class, ['only' => ['show', 'store', 'update' ]]);
         
     });
+    
+    Route::get('/update/{id}',[ App\Http\Controllers\ClientController::class, 'updateUser' ])->name('UPDATE_USER_INFO');
 
     // Route::get('/article/{slug?}',[ App\Http\Controllers\ClientController::class, 'viewPostArticle' ])->name('VIEW_POST_ARTICLE');
     // Route::post('/article/{slug}',[ App\Http\Controllers\ClientController::class, 'storePostArticle' ])->name('STORE_POST_ARTICLE');

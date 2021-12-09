@@ -17,6 +17,7 @@ use App\Models\Review;
 use App\Models\Slider;
 use App\Models\Tag;
 use App\Models\Topic;
+use App\Models\User;
 use App\Models\Workprocess;
 use Exception;
 use Illuminate\Http\Request;
@@ -340,6 +341,15 @@ class ClientController extends Controller
     public function forgot(){
 
         return view('client.forgot');
+    }
+    
+    public function updateUser(Request $request, $id ){
+        $user = User::find($id);
+        if( !$user ){
+            return abort(404);
+        }
+
+        return view('client.user.update', compact(['user']));
     }
     
 }

@@ -240,6 +240,11 @@ class UserController extends Controller
      */
     public function profile(Request $request)
     {
+        $user = Auth::user();
+        /// kiểm tra user đó đã active chưa nếu chưa cho qua trang cập nhật thông tin người dùng
+        if( $user->active == Config::get("constant.ACTIVITY.DEACTIVE") ){
+            return redirect()->route('UPDATE_USER_INFO', ['id' => $user->id ]);
+        }
         $profile = Auth::user();
 
         $userId = $profile->id;

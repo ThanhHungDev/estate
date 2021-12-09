@@ -23,7 +23,7 @@ class USER_LOGGED
             if(
                 $user->role_id == Config::get('constant.ROLE.USER')
             ){
-
+            
                 return $next($request);
             }else{
                 Auth::logout();
