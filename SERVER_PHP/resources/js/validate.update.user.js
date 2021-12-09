@@ -33,8 +33,10 @@ function validateForm(formJquery){
                 maxlength: 50,
                 minlength: 6,
             },
-            username: {
-                check_email_phone: true,
+            email: {
+                // check_email_phone: true,
+                required: true,
+                email   : true
             },
             password : {
                 required : true,
@@ -51,8 +53,9 @@ function validateForm(formJquery){
                 maxlength: "phần tên không vượt quá {0} kí tự",
                 minlength: "phần tên nhỏ hơn {0} kí tự"
             },
-            username: {
-                check_email_phone: "bắt buộc nhập email hoặc số điện thoại",
+            email: {
+                required: "bắt buộc nhập email",
+                email   : "định dạng không phải email"
             },
             password : {
                 required : "bắt buộc nhập mật khẩu",

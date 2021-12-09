@@ -25,13 +25,22 @@
         @endif
         <div class="input-group">
             <i class="icon fad fa-envelope"></i>
-            <input name="username" type="text" autoCorrect="off" autoCapitalize="none" 
-            class="input-control jquery__append-out" placeholder="Địa chỉ email hoặc số điện thoại." 
-            value="{{ old('username', $auth->getUsername()) }}"/>
+            <input name="email" type="text" autoCorrect="off" autoCapitalize="none" 
+            class="input-control jquery__append-out" placeholder="Địa chỉ email." 
+            value="{{ old('email') }}"/>
         </div>
-        @if($errors->has('username'))
-            <div class="for-email text-color-danger text-left">{{ $errors->first('username') }}</div>
+        @if($errors->has('email'))
+            <div class="for-email text-color-danger text-left">{{ $errors->first('email') }}</div>
         @endif
+        @if (old('phone', $auth->phone))
+        <div class="input-group opacity-medium">
+            <i class="icon fad fa-phone"></i>
+            <input name="phone" type="text" autoCorrect="off" autoCapitalize="none" 
+            class="input-control" readonly="true"
+            value="{{ old('phone', $auth->phone) }}"/>
+        </div>
+        @endif
+        
         <div class="input-group">
             <i class="icon fad fa-lock-open-alt"></i>
             <input id="password" name="password" type="password" autoCorrect="off" autoCapitalize="none" 

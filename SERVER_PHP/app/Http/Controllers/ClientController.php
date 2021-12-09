@@ -372,22 +372,16 @@ class ClientController extends Controller
             return redirect()->back()->with(Config::get('constant.UPDATE_USER_ERROR'), 'Không có quyền cập nhật thành viên khác!!! ');
         }
         ///setting data insert table post
-        // $userInput = $request->only( 'name', 'email', 'password' );
-        $userInput = request(['name', 'username', 'password']);
+        $userInput = request(['name', 'email', 'password']);
         $userInput['password'] = bcrypt($userInput['password']);
         /// check xem username mới có bị trùng không? 
         $duplicate = User::where('id' , '!=', $auth->id )->where(function($query) use ($userInput){
-            $query->where('email', '=', $userInput['username']);
-            $query->where('phone', '=', $userInput['username']);
+            $query->where('email', '=', $userInput['email']);
+            // $query->where('phone', '=', $userInput['username']);
         })->first();
         if( !!$duplicate ){
             /// nếu có tồn tại rồi thì return lỗi
             return redirect()->back()->with(Config::get('constant.UPDATE_USER_ERROR'), 'Không có quyền cập nhật thành viên khác!!! ');
-        }
-        if (filter_var($userInput['username'], FILTER_VALIDATE_EMAIL)) {
-            $userInput['email'] = $userInput['username'];
-        }else{
-            $userInput['phone'] = $userInput['username'];
         }
         $userInput['active'] = Config::get("constant.ACTIVITY.ACTIVE");
         $user = $user->update($userInput);
