@@ -106,7 +106,7 @@ class LoginController extends Controller
     public function postLoginFast(Request $request)
     {
         $currentDatetime = microtime(true) * 1000;
-        $username        = str_replace("+84", "0", $request->input('phone'));
+        $username        = str_replace("+84", "0", $request->input('mobile'));
         $email           = "free$currentDatetime@gmail.com";
         $phone           = '';
         $remember        = $request->has('remember') ? true : false;
@@ -141,6 +141,11 @@ class LoginController extends Controller
                 'updated_at'  => date('Y-m-d H:i:s'),
             ];
             $user = User::create($object);
+        }else if( $user->active == Config::get("constant.ACTIVITY.ACTIVE") ){
+            /// tài khoản đã được active nên bạn cần phải xác minh password để bảo vệ
+            return response()
+            ->success('Redirect login!', $user)
+            ->setStatusCode(Response::HTTP_FOUND);
         }
 
         if (!Auth::attempt( $dataLogin, $remember )) {

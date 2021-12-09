@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CLIENT_VALIDATE_CONTACT;
 use App\Http\Requests\CLIENT_VALIDATE_CONTACT_PRODUCT;
+use App\Http\Requests\UPDATE_USER_REQUEST;
 use App\Mail\MailContact;
 use App\Mail\MailContactProduct;
 use App\Models\Category;
@@ -343,13 +344,59 @@ class ClientController extends Controller
         return view('client.forgot');
     }
     
-    public function updateUser(Request $request, $id ){
+    public function getUpdateUser(Request $request, $id ){
         $user = User::find($id);
         if( !$user ){
             return abort(404);
         }
-
-        return view('client.user.update', compact(['user']));
+        $auth = Auth::user();
+        if( !$auth ){
+            return abort(404);
+        }
+        if( $user->id != $auth->id ){
+            return abort(404);
+        }
+        return view('client.user.update', compact(['auth']));
     }
     
+    public function updateUser(UPDATE_USER_REQUEST $request, $id ){
+        $user = User::find($id);
+        if( !$user ){
+            return redirect()->back()->with(Config::get('constant.UPDATE_USER_ERROR'), 'Không tìm thấy người dùng!!! ');
+        }
+        $auth = Auth::user();
+        if( !$auth ){
+            return redirect()->back()->with(Config::get('constant.UPDATE_USER_ERROR'), 'Không có quyền cập nhật!!! ');
+        }
+        if( $user->id != $auth->id ){
+            return redirect()->back()->with(Config::get('constant.UPDATE_USER_ERROR'), 'Không có quyền cập nhật thành viên khác!!! ');
+        }
+        ///setting data insert table post
+        // $userInput = $request->only( 'name', 'email', 'password' );
+        $userInput = request(['name', 'username', 'password']);
+        $userInput['password'] = bcrypt($userInput['password']);
+        /// check xem username mới có bị trùng không? 
+        $duplicate = User::where('id' , '!=', $auth->id )->where(function($query) use ($userInput){
+            $query->where('email', '=', $userInput['username']);
+            $query->where('phone', '=', $userInput['username']);
+        })->first();
+        if( !!$duplicate ){
+            /// nếu có tồn tại rồi thì return lỗi
+            return redirect()->back()->with(Config::get('constant.UPDATE_USER_ERROR'), 'Không có quyền cập nhật thành viên khác!!! ');
+        }
+        if (filter_var($userInput['username'], FILTER_VALIDATE_EMAIL)) {
+            $userInput['email'] = $userInput['username'];
+        }else{
+            $userInput['phone'] = $userInput['username'];
+        }
+        $userInput['active'] = Config::get("constant.ACTIVITY.ACTIVE");
+        $user = $user->update($userInput);
+        if( !$user ){
+            return redirect()->back()->with(Config::get('constant.UPDATE_USER_ERROR'), 'Cập nhật không thành công!!! ');
+        }
+        // auth()->login($user);
+        $request->session()->flash(Config::get('constant.UPDATE_USER_SUCCESS'), true);
+        return redirect()->route('USER_DASHBOARD');
+    }
+
 }

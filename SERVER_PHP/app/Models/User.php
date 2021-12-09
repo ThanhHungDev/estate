@@ -125,6 +125,14 @@ class User extends Authenticatable implements JWTSubject
         return null;
     }
 
+    public function getUsername(){
+
+        if( !$this->phone ){
+            return $this->phone;
+        }
+        return $this->phone;
+    }
+
     // /*
     //  * từ bảng user là 1 -> 1 role,
     //  * nghĩa là ta có 1 user (id, role_id,...) thì ta join = với roles(id, name , type) trong đó type quy định là user hay admin
