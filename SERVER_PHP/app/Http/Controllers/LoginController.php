@@ -144,7 +144,7 @@ class LoginController extends Controller
         }else if( $user->active == Config::get("constant.ACTIVITY.ACTIVE") ){
             /// tài khoản đã được active nên bạn cần phải xác minh password để bảo vệ
             return response()
-            ->success('Redirect login!', $user)
+            ->success('Redirect login!', $user, Response::HTTP_FOUND)
             ->setStatusCode(Response::HTTP_FOUND);
         }
 
