@@ -14,7 +14,7 @@ function LoginFast( props ){
     const [ alert, setAlert ] = useState(null)
     const [values, setValues]   = useState({ 
         name : "",
-        phone: "",
+        mobile: "",
     })
     const [ touched, setTouched ] = useState({})
     const [ errors, setErrors ]   = useState(Validator.getEmpty())
@@ -58,7 +58,7 @@ function LoginFast( props ){
             }else{
                 console.log("ERROR:: ",error)
             }
-            setTouched({ name: false, phone: false })
+            setTouched({ name: false, mobile: false })
             setAlert('Đã sảy ra lỗi, vui lòng thử lại sau!')
         })
     }
@@ -89,15 +89,15 @@ function LoginFast( props ){
                 </div>
                 { hasErr('name') && <label className="error" htmlFor="name">{ errors.getError("name") }</label> }
 
-                <div className={"input-group " + ( hasErr("phone") ? "input-group-error" : "" )} >
+                <div className={"input-group " + ( hasErr("mobile") ? "input-group-error" : "" )} >
                     <i className="icon fad fa-user-shield"></i>
                     <input type="text" autoCorrect="off" autoCapitalize="none"
                         className="input-control"
-                        name="phone" value={ values.phone } onChange={ handleChange }
+                        name="mobile" value={ values.mobile } onChange={ handleChange }
                         placeholder="Nhập số điện thoại hoặc email"
                     />
                 </div>
-                { hasErr('phone') && <label className="error" htmlFor="phone">{ errors.getError("phone") }</label> }
+                { hasErr('mobile') && <label className="error" htmlFor="mobile">{ errors.getError("mobile") }</label> }
 
                 <div className="forgot-password">
                     <a href={ CONFIG.WEB.POLICY } target="_blank" rel="noopener noreferrer" className="forgot-link">Điều khoản sử dụng <i className="fad fa-question-circle"></i> </a>

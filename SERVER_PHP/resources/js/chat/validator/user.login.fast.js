@@ -1,10 +1,7 @@
 export default {
     rules : {
         name: "min_length:5|max_length:70",
-        phone: {
-            string: true,
-            min_length: 6,
-            max_length: 20,
+        mobile: {
             validatePhoneEmail: function (value) {
                 /// check is email
                 const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
