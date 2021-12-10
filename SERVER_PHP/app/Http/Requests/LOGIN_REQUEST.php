@@ -24,7 +24,7 @@ class LOGIN_REQUEST extends FormRequest
     public function rules()
     {
         return [
-            'email'    => 'required|email',
+            'email'    => 'required',
             'password' => 'required|min:6|max:30'
         ];
     }
@@ -32,7 +32,7 @@ class LOGIN_REQUEST extends FormRequest
     public function messages(){
         return [
             'email.required'    => 'email phải được nhập',
-            'email.email'       => 'email không phải là định dạng email',
+            // 'email.email'       => 'email không phải là định dạng email',
             'email.unique'      => 'email đã tồn tại',
             'password.required' => 'mật khẩu phải được nhập',
             'password.min'      => 'mật khẩu phải chứa ít nhất 6 kí tự',

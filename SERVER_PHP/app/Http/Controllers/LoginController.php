@@ -61,12 +61,17 @@ class LoginController extends Controller
     public function postLogin(LOGIN_REQUEST $request)
     {
         $remember = $request->has('remember') ? true : false;
-
+        
         $dataLogin = array(
             'email'    => strtolower($request->input('email')),
             'password' => $request->input('password'),
             'role_id'  => Config::get('constant.ROLE.USER')
         );
+        if (!filter_var($dataLogin['email'], FILTER_VALIDATE_EMAIL)) {
+            /// là dữ liệu phone
+            $dataLogin['phone'] = strtolower($request->input('email'));
+            unset($dataLogin['email']);
+        }
 
         if (Auth::attempt( $dataLogin, $remember )) {
             
@@ -146,6 +151,11 @@ class LoginController extends Controller
             return response()
             ->success('Redirect login!', $user, Response::HTTP_FOUND)
             ->setStatusCode(Response::HTTP_FOUND);
+        } else {
+            /// tài khoản đã được active nên bạn cần phải xác minh password để bảo vệ
+            return response()
+            ->success('Redirect login!', $user, Response::HTTP_SEE_OTHER)
+            ->setStatusCode(Response::HTTP_SEE_OTHER);
         }
 
         if (!Auth::attempt( $dataLogin, $remember )) {

@@ -25,7 +25,18 @@
 /// phần react cần
 @import "./chat/index";
 @import "./login/login.scss";
+@import "../library/modal_jquery";
+@import "../library/modal_react";
 
 body{
     overflow-x: hidden;
+}
+.Overlay{
+    .page__login .form__chat{
+        background-color: unset;
+        border-radius: unset;
+        box-shadow: unset;
+        padding: 0;
+        margin: 0;
+    }
 }

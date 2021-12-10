@@ -4,6 +4,8 @@ import Validator from "hero-validate"
 import V from "../../validator/user.login.fast"
 import loginAPI from "../../../service/login.api"
 import { setterJwt } from '../../../action/jwt.action'
+import ModalLoginToDefault from './ModalLoginToDefault'
+import ModalLoginToUpdate from './ModalLoginToUpdate'
 
 /// create rule for your form
 Validator.setLocale(Validator.languages.vi)
@@ -11,6 +13,8 @@ Validator.setMessages(V.messages)
 
 function LoginFast( props ){
 
+    const [ modelOpenDefault, setModelOpenDefault ] = useState(false)
+    const [ modelOpenUpdate, setModelOpenUpdate ] = useState(false)
     const [ alert, setAlert ] = useState(null)
     const [values, setValues]   = useState({ 
         name : "",
@@ -55,6 +59,13 @@ function LoginFast( props ){
                 console.log(error.response.data)
                 console.log(error.response.status)
                 console.log(error.response.headers)
+                if(error.response.status == 302){
+                    /// chuyến hướng login
+                    console.log("có vào chuyển hướng hiện modal nè")
+                    setModelOpenDefault( true )
+                }else{
+                    setModelOpenUpdate( true )
+                }
             }else{
                 console.log("ERROR:: ",error)
             }
@@ -106,6 +117,8 @@ function LoginFast( props ){
                 <button onClick={ loginFast }
                     className={"btn btn-login aqua-gradient-rgba " + (errors.hasError && 'disable') }>Trò Chuyện Nhanh</button>
             </div>
+            <ModalLoginToDefault modelOpen={modelOpenDefault} setModelOpen={setModelOpenDefault} CONFIG={CONFIG} datas={ values } dispatch={ props.dispatch } />
+            <ModalLoginToUpdate modelOpen={modelOpenUpdate} setModelOpen={setModelOpenUpdate} CONFIG={CONFIG} datas={ values } dispatch={ props.dispatch } />
         </div>
     )
 }
