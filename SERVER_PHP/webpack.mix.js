@@ -57,7 +57,7 @@ mix
 
     /// react trong phần tạp step by step 
     // .sass('resources/sass/page/user.post.scss', 'public/css') /// --------------> react create post
-    .sass('resources/sass/page/user.chat.scss', 'public/css') /// --------------> react create post
+    .sass('resources/sass/page/user.chat.scss', 'public/css') /// --------------> react create chat
 
 
 
