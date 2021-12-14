@@ -44,6 +44,7 @@ class SupportHtml{
         $configApp['aliases'] = [];
         $configApp['REALTIME'] = [
             'GET_COMMENT' =>  "$assetRealtime/api/comment?inkey=",
+            'GET_MESSAGE' =>  "$assetRealtime/api/message?user=",
         ];
         $configApp['LOCALSTORAGE'] = [
             'FREE__USER' => 'FREE__USER'

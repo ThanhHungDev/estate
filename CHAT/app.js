@@ -48,20 +48,22 @@ app.get('/.well-known/acme-challenge/GqChRTvrheO91S86JrAdTgYg4_Eabx_rmSI8v_MPIQA
 // })
 
 // // error handler
-app.use(function(err, req, res, next) {
+// app.use(function(err, req, res, next) {
 	
-	console.error(err.stack)
-    // set locals, only providing error in development
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
+// 	console.error("hùng vô đay")
+//     // set locals, only providing error in development
+//     res.locals.message = err.message;
+//     res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-    if (req.isApi) {
-        return res.status(err.status || 500).json(res.locals)
-    }
-	// render the error page
-	res.status(err.status || 500);
-	return res.render('error')
+//     if (req.isApi) {
+//         return res.status(err.status || 500).json(res.locals)
+//     }else if(/application\/json;/.test(req.get('accept'))) {
+//         return res.status(err.status || 500).json(res.locals)
+//     }
+// 	// render the error page
+// 	res.status(err.status || 500);
+// 	return res.render('error')
     
-});
+// });
 
 module.exports = app;

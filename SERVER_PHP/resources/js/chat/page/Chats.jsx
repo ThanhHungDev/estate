@@ -2,16 +2,17 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Message from './Chat/Message'
 import Sidebar from './Chat/Sidebar'
-
+import useWindowSize from "../hook/resize"
 
 
 function Chats( props ){
 
-    const { CONFIG, device } = props
+    const { CONFIG, match } = props
+    const device = useWindowSize()
     return (
         <div className="chats-page wrapper-page-chat d-flex" style={{ height: (device.calcHeightSubtractHeader) + "px" }}>
-            <Sidebar />
-            <Message />
+            <Sidebar id={match.params.id}/>
+            <Message id={match.params.id}/>
         </div>
     )
 }
@@ -19,7 +20,6 @@ function Chats( props ){
 
 let mapStateToProps = (state) => {
     return {
-        device: state.device,
         auth  : state.auth,
         CONFIG: state.config,
     }

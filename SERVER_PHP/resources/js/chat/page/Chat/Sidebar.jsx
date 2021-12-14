@@ -6,7 +6,8 @@ import SearchBox from './Sidebar/SearchBox'
 
 
 function Sidebar( props ){
-    const { device, conversations } = props
+    const { conversations } = props
+    console.log(conversations, "conversationsconversations sidebar")
     // check is have channel active ? 
     const isActiveExist = !!conversations && conversations.some( conv => conv.isActive )
     if(isActiveExist){
@@ -21,16 +22,8 @@ function Sidebar( props ){
                 <SearchBox />
                 <div className="sidebar__content--conversation">
                 {
-                    !!conversations && conversations.map( conv => <Conversation /> )
+                    !!conversations && conversations.map( conv => <Conversation key={conv._id} conversation={conv} /> )
                 }
-                <Conversation />
-                <Conversation />
-                <Conversation />
-                <Conversation />
-                <Conversation />
-                <Conversation />
-                <Conversation />
-                <Conversation />
                 </div>
             </div>
         </div>
@@ -41,8 +34,7 @@ function Sidebar( props ){
 let mapStateToProps = (state) => {
     return {
         CONFIG       : state.config,
-        device       : state.device,
-        conversations: state.conversations,
+        conversations: state.conversation,
     }
 }
 export default connect(mapStateToProps)(Sidebar)

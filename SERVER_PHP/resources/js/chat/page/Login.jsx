@@ -1,11 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import useWindowSize from '../hook/resize'
 import LoginDefault from './Login/LoginDefault'
 import LoginFast from './Login/LoginFast'
 
 function Login( props ){
 
-    const { CONFIG, device } = props
+    const { CONFIG, state } = props
+    console.log(state, "fromfromfromfrom")
+    const device = useWindowSize()
     return (
         <div className="select__login" className="page page__login" style={{ minHeight: (device.calcHeightSubtractHeader) + "px" }}>
             <div className="page__login__bg"></div>
@@ -23,7 +26,6 @@ function Login( props ){
 
 let mapStateToProps = (state) => {
     return {
-        device: state.device,
         CONFIG: state.config,
     }
 }

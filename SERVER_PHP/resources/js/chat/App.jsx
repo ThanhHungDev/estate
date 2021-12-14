@@ -13,7 +13,7 @@ import ProtectedRoute from './ProtectedRoute'
 function App( props ){
 
     const { auth, CONFIG } = props
-
+    console.log("vào đây")
     return (
         <div className="AppComponent chat" id="Application">
             <BrowserRouter basename={CONFIG.WEB.CHAT}>
@@ -21,7 +21,7 @@ function App( props ){
                 <Switch>
                     <Route exact path="/dang-ky" component={ Register } />
                     <ProtectedRoute auth={ !!auth.JWT } exact path="/dang-nhap" component={ Login } />
-                    <PrivateRoute auth={ !!auth.JWT } path='/dashboard' component={ Chats } />
+                    <PrivateRoute auth={ !!auth.JWT } path='/:id' component={ Chats } />
                     <PrivateRoute auth={ !!auth.JWT } path='/' component={ Chats } />
                 </Switch>
             </BrowserRouter>

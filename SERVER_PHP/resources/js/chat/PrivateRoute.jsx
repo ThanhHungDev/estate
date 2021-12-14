@@ -6,7 +6,7 @@ export default function PrivateRoute ({component: Component, auth, ...rest}) {
         <Route
             {...rest}
             render={
-                (props) => auth === true
+                props => auth === true
                 ? <Component {...props} />
                 : <Redirect to={{pathname: '/dang-nhap', state: {from: props.location}}} />
             }

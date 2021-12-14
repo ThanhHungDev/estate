@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CLIENT_VALIDATE_CONTACT;
 use App\Http\Requests\CLIENT_VALIDATE_CONTACT_PRODUCT;
 use App\Http\Requests\UPDATE_USER_REQUEST;
+use App\Http\Resources\UserResource;
 use App\Mail\MailContact;
 use App\Mail\MailContactProduct;
 use App\Models\Category;
+use App\Models\Channel;
 use App\Models\Commune;
 use App\Models\District;
 use App\Models\Post;
@@ -49,8 +51,20 @@ class ClientController extends Controller
 
 
     public function chat( Request $request, $id = 0 ){
-
-        return view('client.chat', compact(['id']));
+        $auth = Auth::user();
+        // if( !$auth ){
+        //     return redirect()->route('LOGIN');
+        // }
+        $userId = isset($auth->id) ? $auth->id : 0;
+        /// get list channel trong mongo
+        $conversations = (new Channel())->getConversationsByUser($userId);
+        $usersId = $conversations->pluck('user')->toArray();
+        $users = User::whereIn('id', $usersId)->get();
+        foreach($conversations as $conv){
+            $userById = $users->where('id', $conv->user)->first();
+            $conv->user = new UserResource($userById);
+        }
+        return view('client.chat', compact(['id', 'conversations']));
     }
 
     public function contact( Request $request){

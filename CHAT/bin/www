@@ -51,6 +51,23 @@ initUsers(app)
 /// set root api
 initAPIs(app)
 
+// // error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.status = err.status;
+  res.locals.stack = err.stack;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  if (req.isApi || /application\/json;/.test(req.get('accept'))) {
+    return res.status(err.status || 500).json(res.locals)
+  }
+	// render the error page
+	res.status(err.status || 500);
+	return res.render('error')
+    
+});
+
 // server.listen(port); /// comment lại 
 server.listen(port,  () => {
 

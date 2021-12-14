@@ -22,11 +22,13 @@ class Channel extends Eloquent {
 
         return $this->raw(function ($collection) use ( $userId ) {
             return $collection->aggregate([
-                [
-                    '$project' => [
-                        'user' => 1
-                    ]
-                ],
+                // [
+                //     '$project' => [
+                //         '_id' => 1,
+                //         'user' => 1,
+                //         'name' => 1,
+                //     ]
+                // ],
                 [ 
                     '$match' => [
                         'user' => $userId
@@ -45,5 +47,9 @@ class Channel extends Eloquent {
             ]);
         });
     }
+    // public function user(){
+
+    //     return $this->belongsTo( User::class, 'user');
+    // }
 }
 

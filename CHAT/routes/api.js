@@ -5,12 +5,14 @@ const express = require("express")
 const router  = express.Router()
 
 const userApiController    = require("../controller/Api/user.controller"),
-      commentApiController = require("../controller/Api/comment.controller")
+      commentApiController = require("../controller/Api/comment.controller"),
+      messageApiController = require("../controller/Api/message.controller")
 
 const generalMiddleware = require('../middlewares/general.middleware'),
       authMiddleware    = require('../middlewares/jwt.middleware'),
       userMiddleware    = require('../middlewares/user.middleware'),
-      commentMiddleware = require('../middlewares/comment.middleware')
+      commentMiddleware = require('../middlewares/comment.middleware'),
+      messageMiddleware = require('../middlewares/message.middleware')
 /**
  * Init all APIs on your application
  * @param {*} app from express
@@ -22,18 +24,21 @@ let initAPIs = app => {
     /////////////////// Route không cần login ////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////
     router.post('/register', [ userMiddleware.REGISTER ], userApiController.register)
-    router.post('/login', [ userMiddleware.LOGIN ], userApiController.login)
+    router.post('/login', [ userMiddleware.LOGIN ], userApiController.login) 
 
     /// lấy danh sách comment không cần login
     router.get('/comment', [ commentMiddleware.GET_COMMENT_INKEY ], commentApiController.index )
     ////////////////////////////////////////////////////////////////////////////
-    router.use([ authMiddleware.isAuth])
+    router.use([ generalMiddleware.formatJsonApi, generalMiddleware.setAllowOrigin, authMiddleware.isAuth ])
     ////////////////////////////////////////////////////////////////////////////
     /////////// route cần verify thành công jwt ////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////
     router.get('/users', userApiController.getUser )
 
     router.post('/comment', [ commentMiddleware.CREATE_COMMENT ], commentApiController.store )
+
+    /// lấy danh sách message của 1 user đã login
+    router.get('/message', [ messageMiddleware.GET_MESSAGE_BY_USER ], messageApiController.load )
     
     return app.use( "/api", router )
 }

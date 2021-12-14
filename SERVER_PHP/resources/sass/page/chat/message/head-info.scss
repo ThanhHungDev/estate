@@ -1,0 +1,117 @@
+
+.component-head-info{
+  display: flex;
+  box-sizing: content-box;
+  min-height: 74px;
+
+  .btn-back-mobile{
+    background-color: transparent;
+    font-size: 24px;
+    outline: none;
+    border: none;
+    padding: 0;
+    display: unset;
+  }
+
+  .user-active-chat{
+    flex-grow: 999;
+    position: relative;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    border-bottom: 1px solid $gray-400;
+    max-height: 80px;
+
+    .state-avatar{
+      box-sizing: content-box;
+      position: absolute;
+      top: 50%;
+      display: block;
+      padding: 0;
+      margin: 0;
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+      min-height: 40px;
+      overflow: hidden;
+      border-radius: 50%;
+      border: 1px solid #e4e4e4;
+      @include render-transform(translateY(-50%));
+
+      img{
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        min-height: 40px;
+      }
+    }
+
+    .text-info{
+      display: block;
+      padding: 7px 7px 7px 55px;
+      // color: $custom-primary-color-dark;
+      font-family: 'KozGoPro';
+      text-transform: uppercase;
+  
+      .name{
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: inherit;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 18px;
+        color: #404040;
+        &:hover{
+          color: #009cff;
+          cursor: pointer;
+        }
+      }
+      .time-online{
+        display: block;
+        font-size: 12px;
+        color: $gray-600;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-transform: capitalize;
+
+        &.active-now{
+          color: $custom-green;
+        }
+      }
+    }
+  }
+}
+
+@include Responsive(SM){
+  .component-head-info{
+    border-bottom: 1px solid $gray-400;
+    max-height: 40px;
+
+    .btn-back-mobile{
+      display: unset;
+    }
+
+    .avatar-link{
+      display: none;
+    }
+    .user-active-chat{
+      padding: 0;
+      border-bottom: none;
+
+      .text-info{
+        display: flex;
+        padding: 7px 6px 6px 0px;
+        .name{
+          flex-grow: 999;
+        }
+        .time-online{
+          display: inline-block;
+          vertical-align: middle;
+          padding-top: 8px;
+        }
+      }
+    }
+  }
+}
