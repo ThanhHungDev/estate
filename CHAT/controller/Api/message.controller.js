@@ -16,8 +16,16 @@ module.exports.load = asyncHandler(async (req, res ) => {
     // console.log(req.query.user, "vào đây req.query.user")
     // console.log(req.user, "auth nè")
     /// bước 1 lấy toàn bộ channel của nó ra
-    const channel = await Channel.findOne( { user: req.user.id.toString() } )
-    if( !channel ) throw createError(responseLibrary.HTTP_NOT_FOUND, "khong tìm thấy channel")
+    let channel = await Channel.findOne( { user: req.user.id.toString() } )
+    if( !channel ){
+        /// create channel and response empty
+        // channel = await Channel({
+        //     name: renderNameChannelByUser(userObject, admin),
+        //     user: [ user.id.toString(), CONFIG.ID_ADMIN.toString()],
+        //     sort: 0
+        // }).save()
+        throw createError(responseLibrary.HTTP_NOT_FOUND, "khong tìm thấy channel")
+    }
     
     /// response 
     let hasNext = true

@@ -1,4 +1,4 @@
-<form action="{{ Route('STORE_UPDATE', ['id' => $auth->id ]) }}" method="POST" class="page__register__form form js-validate-form">
+<form action="{{ Route('STORE_UPDATE', ['id' => $auth->id ]) }}@if (Request::get('token')){{ '?token='.Request::get('token') }}@endif" method="POST" class="page__register__form form js-validate-form">
     {!! csrf_field() !!}
     @if (Session::has(Config::get('constant.UPDATE_USER_ERROR')))
     <div class="alert alert-warning">

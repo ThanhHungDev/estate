@@ -15,7 +15,22 @@ class Channel extends Eloquent {
 
     protected $collection = 'channels';
     protected $connection = 'mongodb';
+    protected $fillable = [
+        'name',
+        'user',
+        'sort',
+        'backup'
+    ];
     
+
+
+    public function countConversationsByUser( $userId = 0 ){
+
+        $userId .= "";
+
+        return $this->where('user', $userId)->count();
+    }
+
     public function getConversationsByUser( $userId = 0, $linit = self::LIMIT ){
 
         $userId .= "";

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\SupportDB;
 use App\Http\Requests\CLIENT_VALIDATE_CONTACT;
 use App\Http\Requests\CLIENT_VALIDATE_CONTACT_PRODUCT;
 use App\Http\Requests\UPDATE_USER_REQUEST;
@@ -29,6 +30,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class ClientController extends Controller
 {
@@ -55,9 +57,24 @@ class ClientController extends Controller
         // if( !$auth ){
         //     return redirect()->route('LOGIN');
         // }
-        $userId = isset($auth->id) ? $auth->id : 0;
+        $authId = isset($auth->id) ? $auth->id : 0;
+        $modelChannel = new Channel();
+        $channelAdmin = $modelChannel->countConversationsByUser($authId);
+        if( !$channelAdmin ){
+            /// thêm channel mới gồm channel của admin và channel của $id truyền vào nếu cần
+            $admin = [ "" . Config::get('constant.ID_ADMIN'), "" . $authId ];
+            sort($admin, SORT_STRING);
+            $insert = [
+                'name' => implode( "-", $admin),
+                'user' => $admin,
+                'sort' => 0,
+                'backup' => false,
+            ];
+            $admin = Channel::create($insert);
+        }
+
         /// get list channel trong mongo
-        $conversations = (new Channel())->getConversationsByUser($userId);
+        $conversations = $modelChannel->getConversationsByUser($authId);
         $usersId = $conversations->pluck('user')->toArray();
         $users = User::whereIn('id', $usersId)->get();
         foreach($conversations as $conv){
@@ -365,7 +382,10 @@ class ClientController extends Controller
         }
         $auth = Auth::user();
         if( !$auth ){
-            return abort(404);
+            $token = $request->input('token');
+            if( !$token ) return abort(404);
+            JWTAuth::setToken($token);
+            $auth = JWTAuth::parseToken()->authenticate();
         }
         if( $user->id != $auth->id ){
             return abort(404);
@@ -380,7 +400,10 @@ class ClientController extends Controller
         }
         $auth = Auth::user();
         if( !$auth ){
-            return redirect()->back()->with(Config::get('constant.UPDATE_USER_ERROR'), 'Không có quyền cập nhật!!! ');
+            $token = $request->input('token');
+            if( !$token ) return abort(404);
+            JWTAuth::setToken($token);
+            $auth = JWTAuth::parseToken()->authenticate();
         }
         if( $user->id != $auth->id ){
             return redirect()->back()->with(Config::get('constant.UPDATE_USER_ERROR'), 'Không có quyền cập nhật thành viên khác!!! ');
@@ -398,9 +421,17 @@ class ClientController extends Controller
             return redirect()->back()->with(Config::get('constant.UPDATE_USER_ERROR'), 'Không có quyền cập nhật thành viên khác!!! ');
         }
         $userInput['active'] = Config::get("constant.ACTIVITY.ACTIVE");
-        $user = $user->update($userInput);
-        if( !$user ){
+        $isUpdate = $user->update($userInput);
+        if( !$isUpdate ){
             return redirect()->back()->with(Config::get('constant.UPDATE_USER_ERROR'), 'Cập nhật không thành công!!! ');
+        }
+        SupportDB::resetJwtAuthentication();
+        Auth::logout();
+        if (!Auth::attempt( [
+            'email' => $request->input('email'),
+            'password' => $request->input('password'),
+        ], true )) {
+            return redirect()->route('LOGIN');
         }
         // auth()->login($user);
         $request->session()->flash(Config::get('constant.UPDATE_USER_SUCCESS'), true);

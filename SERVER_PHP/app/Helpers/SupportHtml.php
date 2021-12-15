@@ -68,6 +68,7 @@ class SupportHtml{
             'LOGIN'              => Route('LOGIN'),
             'POST_LOGIN'         => Route('POST_LOGIN'),
             'POST_LOGIN_FAST'    => Route('POST_LOGIN_FAST'),
+            'UPDATE_USER_INFO'   => trim(Route('UPDATE_USER_INFO', [ 'id' => '__________' ]), "__________"),
             'REGISTER'           => Route('REGISTER'),
             'FORGOT'             => Route('FORGOT'),
             'POLICY'             => Route('POLICY'),

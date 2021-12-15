@@ -17,6 +17,8 @@ function LoginFast( props ){
     const [ modelOpenUpdate, setModelOpenUpdate ] = useState(false)
     const [ alert, setAlert ] = useState(null)
     const [values, setValues]   = useState({ 
+        id: "",
+        token: "",
         name : "",
         mobile: "",
     })
@@ -56,9 +58,11 @@ function LoginFast( props ){
         })
         .catch(error => {
             if (error.response) {
-                console.log(error.response.data)
-                console.log(error.response.status)
-                console.log(error.response.headers)
+                const { data, status, headers } = error.response
+                console.log( data )
+                console.log( status )
+                console.log( headers )
+                setValues({ ...values, id: data.data.id, token: data.data.token })
                 if(error.response.status == 302){
                     /// chuyến hướng login
                     console.log("có vào chuyển hướng hiện modal nè")

@@ -29,8 +29,8 @@ function ModalLoginToUpdate({ modelOpen, setModelOpen, CONFIG, datas, dispatch }
             <div className="modal__body page__login">
                 <h3 className="h5">Bảo mật tài khoản người dùng!</h3>
                 <div className="font-weight-light py-3 text-color-gray">
-                    Tài khoản <span className="text-color-violet">{ datas.mobile }</span> đã được <span className="text-color-red"> kích hoạt </span>. 
-                    Để bảo vệ tài khoản người dùng. Vui lòng cung cấp mật khẩu!
+                    Tài khoản <span className="text-color-violet">{ datas.mobile }</span> đã được <span className="text-color-red"> sử dụng trước đó </span>. 
+                    Để bảo vệ tài khoản người dùng. Vui lòng cập nhật tài khoản!
                 </div>
                 
             </div>
@@ -38,7 +38,7 @@ function ModalLoginToUpdate({ modelOpen, setModelOpen, CONFIG, datas, dispatch }
                 <a className="btn btn__close mr-1" onClick={ () => { setModelOpen(!modelOpen) } }>
                     Bõ qua
                 </a>
-                <a className="btn btn__login ml-1" onClick={ () => { setModelOpen(!modelOpen) } }>
+                <a className="btn btn__login ml-1" href={ `${CONFIG.WEB.UPDATE_USER_INFO}${datas.id}?token=${datas.token}`  }>
                     Trang update
                 </a>
             </div>

@@ -10,7 +10,6 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
-use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class LoginController extends Controller
@@ -153,8 +152,10 @@ class LoginController extends Controller
             ->setStatusCode(Response::HTTP_FOUND);
         } else {
             /// tài khoản đã được active nên bạn cần phải xác minh password để bảo vệ
+            /// bước 1 tạo user token 
+            $user->token = JWTAuth::fromUser($user);
             return response()
-            ->success('Redirect login!', $user, Response::HTTP_SEE_OTHER)
+            ->success('Redirect login account free!', $user, Response::HTTP_SEE_OTHER)
             ->setStatusCode(Response::HTTP_SEE_OTHER);
         }
 
