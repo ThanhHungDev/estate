@@ -59,9 +59,9 @@ class ClientController extends Controller
         // }
         $authId = isset($auth->id) ? $auth->id : 0;
         $modelChannel = new Channel();
-        $channelAdmin = $modelChannel->countConversationsByUser($authId);
+        $channelAdmin = $modelChannel->countConversationsByUser($authId, Config::get('constant.ID_ADMIN'));
         if( !$channelAdmin ){
-            /// thêm channel mới gồm channel của admin và channel của $id truyền vào nếu cần
+            /// thêm channel admin mới
             $admin = [ "" . Config::get('constant.ID_ADMIN'), "" . $authId ];
             sort($admin, SORT_STRING);
             $insert = [
@@ -71,6 +71,21 @@ class ClientController extends Controller
                 'backup' => false,
             ];
             $admin = Channel::create($insert);
+        }
+        
+        /// check channel của auth và $id đã có chưa
+        $channelUser = $modelChannel->countConversationsByUser($authId, $id);
+        if( !$channelUser && !!$id ){
+            /// thêm channel user mới nếu id đó > 0
+            $user = [ "$authId", "$id" ];
+            sort($user, SORT_STRING);
+            $insert = [
+                'name' => implode( "-", $user),
+                'user' => $user,
+                'sort' => 1,
+                'backup' => false,
+            ];
+            $channelUser = Channel::create($insert);
         }
 
         /// get list channel trong mongo

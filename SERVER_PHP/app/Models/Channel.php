@@ -24,11 +24,10 @@ class Channel extends Eloquent {
     
 
 
-    public function countConversationsByUser( $userId = 0 ){
+    public function countConversationsByUser( ...$ids ){
 
-        $userId .= "";
-
-        return $this->where('user', $userId)->count();
+        $ids = array_map(function($id){ return "$id"; }, $ids );
+        return $this->where('user', 'all', $ids)->count();
     }
 
     public function getConversationsByUser( $userId = 0, $linit = self::LIMIT ){
