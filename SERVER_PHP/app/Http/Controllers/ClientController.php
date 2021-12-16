@@ -72,7 +72,9 @@ class ClientController extends Controller
             ];
             $admin = Channel::create($insert);
         }
-        
+        /// check $id là có trong bảng users không
+        $isExist = User::find($id);
+        if( !$isExist ) return abort(404);
         /// check channel của auth và $id đã có chưa
         $channelUser = $modelChannel->countConversationsByUser($authId, $id);
         if( !$channelUser && !!$id ){
