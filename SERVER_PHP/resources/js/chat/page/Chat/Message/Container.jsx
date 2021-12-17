@@ -8,13 +8,16 @@ const STATE__STATUS = {
     
 }
 const Container = props => {
+
     const [ error, setError ] = useState('')
     const [ status, setStatus ] = useState(STATE__STATUS.LOADDING)
+    const [ messages, setMessages ] = useState([])
     useEffect(()=>{
         console.log("Container message  call api nà", props.id )
         messageAPI.getMessageUser({ id: props.id })
         .then( response => {
             setStatus(STATE__STATUS.SUSSESS)
+            console.log("daataa nè", response)
             // const users = response.users
             // const comments = response.data.map( com => {
             //     const childrens = com.childrens.map( child => { return { ... child, user: { ... users.find( u => u.id == child.user )  } } })
@@ -40,6 +43,7 @@ const Container = props => {
     return (
         <div className="message__content">
             <HeadInfo id={props.id}/>
+
         </div>
     )
 }

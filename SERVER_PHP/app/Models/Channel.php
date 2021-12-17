@@ -48,16 +48,16 @@ class Channel extends Eloquent {
                         'user' => $userId
                     ]
                 ],
-                [
-                    '$unwind' => '$user'
-                ],
-                [ 
-                    '$match' => [
-                        'user' => [
-                            '$nin' => [ $userId ]
-                        ]
-                    ]
-                ]
+                // [
+                //     '$unwind' => '$user'
+                // ],
+                // [ 
+                //     '$match' => [
+                //         'user' => [
+                //             '$nin' => [ $userId ]
+                //         ]
+                //     ]
+                // ]
             ]);
         });
     }

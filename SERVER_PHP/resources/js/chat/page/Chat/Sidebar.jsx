@@ -6,7 +6,7 @@ import SearchBox from './Sidebar/SearchBox'
 
 
 function Sidebar( props ){
-    const { conversations } = props
+    const { conversations, id } = props
     console.log(conversations, "conversationsconversations sidebar")
     // check is have channel active ? 
     const isActiveExist = !!conversations && conversations.some( conv => conv.isActive )
@@ -22,7 +22,7 @@ function Sidebar( props ){
                 <SearchBox />
                 <div className="sidebar__content--conversation">
                 {
-                    !!conversations && conversations.map( conv => <Conversation key={conv._id} conversation={conv} /> )
+                    !!conversations && conversations.map( conv => <Conversation key={conv._id} active={ conv.users.some(u => u.id == id ) } online={ !!conv.online } conversation={conv} /> )
                 }
                 </div>
             </div>

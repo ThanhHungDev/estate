@@ -92,11 +92,18 @@ class ClientController extends Controller
 
         /// get list channel trong mongo
         $conversations = $modelChannel->getConversationsByUser($authId);
-        $usersId = $conversations->pluck('user')->toArray();
-        $users = User::whereIn('id', $usersId)->get();
+        // $usersId = $conversations->pluck('user')->toArray();
+        // $ids = [];
+        // foreach($usersId as $id ){
+        //     $arrID = json_decode(json_encode($id), true);
+        //     $ids = array_merge($ids, $arrID);
+        // }
+        // $users = User::whereIn('id', $ids)->get();
         foreach($conversations as $conv){
-            $userById = $users->where('id', $conv->user)->first();
-            $conv->user = new UserResource($userById);
+            $arrID = json_decode(json_encode($conv->user), true);
+            /// ignore auth
+            $arrID = array_filter($arrID, function($id) use ($authId){ return $authId != $id; });
+            $conv->users = User::whereIn('id', $arrID)->get();
         }
         return view('client.chat', compact(['id', 'conversations']));
     }

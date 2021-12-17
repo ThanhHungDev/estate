@@ -7,11 +7,14 @@ import ButtonBack from "./ButtonBack.jsx"
 const HeadInfo = props => {
 
 		const { CONFIG, conversations } = props
-		const active = conversations.find(conv => conv.user.id == props.id )
+		const active = conversations.find(conv => {
+			const [ user ] = conv.users
+			return user.id == props.id
+		})
 		if ( !active ) return null
-
-		const { id, avatar, name, online } = active.user
-
+		const [ user ] = active.users
+		const { id, avatar, name, online } = user
+		console.log( props.id, "đây là head")
 		return (
 			<div className="component-head-info" >
 				<ButtonBack />
@@ -23,7 +26,7 @@ const HeadInfo = props => {
 					</a>
 					<div className="text-info">
 						<a href="/" className="name">{ name }</a>
-						<span className={(online ? "active-now" : '') + " time-online"}>
+						<span className={`time-online ${online && "active-now"}`}>
 							{ online ? "Đang trực tuyến" : "Đang ngoại tuyến" }
 						</span>
 					</div>

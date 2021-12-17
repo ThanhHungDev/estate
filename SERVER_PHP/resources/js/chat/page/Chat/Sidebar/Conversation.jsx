@@ -3,15 +3,17 @@ import { Link } from "react-router-dom";
 
 
 function Conversation(props) {
-    const { conversation } = props
-    return <Link to={"/" + conversation.user.id }>
+    const { conversation, active, online } = props
+    const [ user ] = conversation?.users
+
+    return <Link to={"/" + user.id }>
         <div className="conversation">
-            <div className="conversation__active conversation__online conversation__item">
+            <div className={`${ active && 'conversation__active' } ${ online && 'conversation__online' } conversation__item`}>
                 <figure className="conversation__item-avatar">
                     <img src="http://babysitter.trust-growth.co.jp/uploads/avatar.jpg" alt=""/>
                 </figure>
                 <div className="conversation__info">
-                    <span className="conversation__info-name">{conversation.user.name}</span>
+                    <span className="conversation__info-name">{ user.name }</span>
                 </div>
             </div>
         </div>
