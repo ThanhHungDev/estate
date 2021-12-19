@@ -7,8 +7,7 @@ import MyInfo from './Message/MyInfo'
 
 function Message( props ){
 
-    console.log(conversations, "conversationsconversations Message")
-    const { conversations, id } = props
+    const { auth, CONFIG, conversations, id } = props
     const { isPcDevice } = useWindowSize()
     const isActiveExist = !!id
     /// message nó sẽ không hiện thị khi chế độ moblie không có active
@@ -19,7 +18,7 @@ function Message( props ){
             {
                 isPcDevice && !isActiveExist
                 ? <MyInfo />
-                : <Container id={id} />
+                : <Container id={id} conversations={conversations} CONFIG={CONFIG} auth={ auth }/>
             }
         </div>
     )
@@ -28,6 +27,7 @@ function Message( props ){
 
 let mapStateToProps = (state) => {
     return {
+        auth         : state.auth,
         CONFIG       : state.config,
         conversations: state.conversation,
     }

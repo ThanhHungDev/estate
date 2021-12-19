@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import messageAPI from "../../../../service/message.api"
-import HeadInfo from "./HeadInfo"
+import Messages from "./Messages"
 const STATE__STATUS = {
     LOADDING: 0,
     SUSSESS : 1,
@@ -14,16 +14,12 @@ const Container = props => {
     const [ messages, setMessages ] = useState([])
     useEffect(()=>{
         console.log("Container message  call api nà", props.id )
-        messageAPI.getMessageUser({ id: props.id })
+        //// list channel name
+        messageAPI.getInitMessage({ id: props.id })
         .then( response => {
             setStatus(STATE__STATUS.SUSSESS)
             console.log("daataa nè", response)
-            // const users = response.users
-            // const comments = response.data.map( com => {
-            //     const childrens = com.childrens.map( child => { return { ... child, user: { ... users.find( u => u.id == child.user )  } } })
-            //     return { ... com, childrens, user: { ... users.find( u => u.id == com.user )  } }
-            // })
-            // dispatch(setterComment(comments))
+            setMessages(response.data)
         })
         .catch(error => {
             console.log("ERROR:: ",error)
@@ -40,12 +36,11 @@ const Container = props => {
     if( status == STATE__STATUS.ERROR ) return <div className="message__content--error">
         { error }
     </div>
-    return (
-        <div className="message__content">
-            <HeadInfo id={props.id}/>
-
-        </div>
-    )
+    const active = props.conversations.find(conv => {
+		const [ user ] = conv.users
+		return user.id == props.id
+	})
+    return <Messages id={props.id} active={active} conversations={props.conversations} CONFIG={props.CONFIG} auth={ props.auth }/>
 }
 
 export default Container

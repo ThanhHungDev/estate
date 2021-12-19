@@ -39,6 +39,7 @@ let initAPIs = app => {
 
     /// lấy danh sách message của 1 user đã login
     router.get('/message', [ messageMiddleware.GET_MESSAGE_BY_USER ], messageApiController.load )
+    router.get('/message/init', [ messageMiddleware.GET_MESSAGE_BY_USER ], messageApiController.getInit )
     
     return app.use( "/api", router )
 }

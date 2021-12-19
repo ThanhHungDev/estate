@@ -45,6 +45,7 @@ class SupportHtml{
         $configApp['REALTIME'] = [
             'GET_COMMENT' =>  "$assetRealtime/api/comment?inkey=",
             'GET_MESSAGE' =>  "$assetRealtime/api/message?user=",
+            'GET_INIT_MESSAGE' =>  "$assetRealtime/api/message/init?user=",
         ];
         $configApp['LOCALSTORAGE'] = [
             'FREE__USER' => 'FREE__USER'
@@ -81,6 +82,12 @@ class SupportHtml{
         $configApp['UNIT']     = Config::get('unit');
         $configApp['IMAGE']    = Config::get('image.UPLOAD');
         $configApp['VIDEO']    = Config::get('video.UPLOAD');
+        foreach (Config::get('emoji') as $sign => $symbol ) {
+            $configApp['EMOJIS'][] = [
+                "symbol" => $symbol,
+                "sign" => $sign
+            ];
+        }
         
         return $configApp;
     }

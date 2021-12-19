@@ -9,6 +9,29 @@ const Channel = require("../../models/channel.model")
 const Message = require("../../models/message.model")
 // const sizeof = require('object-sizeof')
 
+
+module.exports.getInit = asyncHandler(async (req, res ) => {
+
+    const { limit, user } = req.query
+    const LIMIT = parseInt(limit) || 1000
+    // console.log(req.query.user, "vào đây req.query.user")
+    // console.log(req.user, "auth nè")
+    /// bước 1 lấy toàn bộ channel của nó ra
+    const channels = await Channel.find( { user: req.user.id, backup: false } )
+    if( !channels.length ) throw createError(responseLibrary.HTTP_NOT_FOUND, "khong tìm thấy channel")
+    const data = await Promise.all(channels.map(channel => Message.messageInChannel(mongoose.Types.ObjectId(channel._id), req.user.id) ))
+
+    const response = {
+        code   : 200,
+        data   : data,
+        onlines: res.io.USER_ONLINES || [],
+        message: "danh sách data"
+    }
+    return res.status(response.code).json(response)
+})
+
+
+
 module.exports.load = asyncHandler(async (req, res ) => {
     let messages;
     const { limit, next } = req.query
@@ -16,7 +39,7 @@ module.exports.load = asyncHandler(async (req, res ) => {
     // console.log(req.query.user, "vào đây req.query.user")
     // console.log(req.user, "auth nè")
     /// bước 1 lấy toàn bộ channel của nó ra
-    let channel = await Channel.findOne( { user: req.user.id.toString() } )
+    let channel = await Channel.findOne( { user: req.user.id } )
     if( !channel ){
         /// create channel and response empty
         // channel = await Channel({

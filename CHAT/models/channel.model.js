@@ -9,11 +9,9 @@ const ChannelSchema = new Schema(
             type: String,
             required: [true, 'Channel Name is required']
         },
-        user: [
-            {
-                type: String
-            }
-        ],
+        user: {
+            type: Array
+        },
         backup: {
             type: Boolean,
             default: false /// channel xóa thì không xóa hẳn, thông thường là cột delete
@@ -32,7 +30,7 @@ const ChannelSchema = new Schema(
  * @param { String } _userId là id của bảng users trong posgre
  * @returns 
  */
-ChannelSchema.statics.channelsMessageByUser = ( _userId ) => {
+ChannelSchema.statics.channelsMessageByUser = function ( _userId ) {
 
     return this
     .aggregate([

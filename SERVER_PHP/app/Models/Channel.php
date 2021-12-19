@@ -26,13 +26,11 @@ class Channel extends Eloquent {
 
     public function countConversationsByUser( ...$ids ){
 
-        $ids = array_map(function($id){ return "$id"; }, $ids );
+        $ids = array_map(function($id){ return (int)$id; }, $ids );
         return $this->where('user', 'all', $ids)->count();
     }
 
     public function getConversationsByUser( $userId = 0, $linit = self::LIMIT ){
-
-        $userId .= "";
 
         return $this->raw(function ($collection) use ( $userId ) {
             return $collection->aggregate([
@@ -45,7 +43,7 @@ class Channel extends Eloquent {
                 // ],
                 [ 
                     '$match' => [
-                        'user' => $userId
+                        'user' => (int)$userId
                     ]
                 ],
                 // [

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom"
 import Register from './page/Register'
@@ -8,12 +8,34 @@ import PrivateRoute from './PrivateRoute'
 import ProtectedRoute from './ProtectedRoute'
 
 
+/// soccket 
+import socketIOClient from "socket.io-client"
+import { createSocketListenner } from './library/socket'
+import { setterSocket } from '../action/socket.action'
 
 
 function App( props ){
 
     const { auth, CONFIG } = props
-    console.log("vào đây")
+
+    useEffect( () => {
+        const param = {
+            autoConnect: false,
+            query: {
+                token: auth?.jwt ?? '',
+                pathname: CONFIG.LOCATION.pathname ?? "/",
+            }
+        }
+        const socket = socketIOClient(CONFIG.REALTIME_URL, param)
+        createSocketListenner(socket, props, CONFIG)
+        socket.open()// synonym to socket.connect()
+        console.log("connected ở đây không thành công đâu " + socket.connected)
+        return () => {
+            socket.disconnect()
+            props.dispatch(setterSocket(null))
+        }
+    }, [])
+
     return (
         <div className="AppComponent chat" id="Application">
             <BrowserRouter basename={CONFIG.WEB.CHAT}>

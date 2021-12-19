@@ -6,6 +6,7 @@ var USER_ONLINES = []
 ///////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////
 const Comment = require("./models/comment.model")
+const Channel = require("./models/channel.model")
 
 
 const CONFIG = require("./config")
@@ -77,6 +78,17 @@ io
         io.USER_ONLINES = USER_ONLINES
         socket.leaveAll()
     })
+
+
+
+
+
+
+
+
+    /**
+     * begin Comment 
+     */
     .on( CONFIG.EVENT.JOIN__COMMENT, async data => {
         // USER_ONLINES.map( user => {}user.socketId == socket.id ? { ...})
         const { inkey } = data
@@ -241,6 +253,31 @@ io
             io.sockets.in(inkey).emit(CONFIG.EVENT.RESPONSE__REPORT__COMMENT, response )
             return
         }
+    })
+
+    /**
+     * end Comment 
+     */
+
+
+
+
+
+    /**
+     * begin Chatting
+     */
+     .on( CONFIG.EVENT.JOIN__CHATTING, async data => {
+        const { jwt } = socket
+        /// get list channel not delete then join
+        const channels = await Channel.find({ user: jwt.id })
+        channels.map( channel => {
+            socket.join( channel.name )
+            // const room = socket.adapter.rooms[channel.name]
+            // if (room && room.length) {
+                io.sockets.in(channel.name).emit(CONFIG.EVENT.RESPONSE__JOIN__CHATTING, { code: RESPONSE.HTTP_OK, data: { socket: socket.id, user: jwt.id, channel: channel } })
+            // }
+        })
+        return;
     })
 })
 // end of socket.io logic

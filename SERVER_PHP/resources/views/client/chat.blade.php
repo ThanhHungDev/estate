@@ -18,11 +18,12 @@
 
 @section('javascripts')
 <script>
-          window.CONFIG_APP    = `{!! json_encode(SupportHtml::getConfigReact()) !!}`;
+          
           window.CATEGORIES    = `{!! json_encode($categories ?? []) !!}`;
           window.PROVINCES     = `{!! json_encode(Config::get('province')) !!}`;
           window.JWT_TOKEN     = `{{ SupportDB::getJwtAuthentication() }}`;
-          window.CONVERSATIONS = `{!! json_encode($conversations) !!}`;
+          window.CONVERSATIONS = `{!! addslashes(json_encode($conversations)) !!}`;
+          window.CONFIG_APP    = `{!! json_encode(SupportHtml::getConfigReact()) !!}`;
     const KEY_CAPTCHA          = "{{ env('GOOGLE_RECAPTCHA_KEY')  }}";
 </script>
 <script type="text/javascript" src="{{ asset('js/chat.js' . Config::get('app.version')) }}"></script>

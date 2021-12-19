@@ -28,4 +28,9 @@ export default {
         return Api.get(`${CONFIG.REALTIME.GET_MESSAGE}${params.id}`)
         .then(res => res.data )
     },
+    getInitMessage( params ) {
+        console.log("vào getInitMessage", params)
+        return Api.get(`${CONFIG.REALTIME.GET_INIT_MESSAGE}${params.id}`)
+        .then(res => res.data )
+    },
 }

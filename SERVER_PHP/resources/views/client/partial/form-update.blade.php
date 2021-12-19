@@ -27,7 +27,7 @@
             <i class="icon fad fa-envelope"></i>
             <input name="email" type="text" autoCorrect="off" autoCapitalize="none" 
             class="input-control jquery__append-out" placeholder="Địa chỉ email." 
-            value="{{ old('email') }}"/>
+            value="{{ old('email', $auth->phone ? null : $auth->email ) }}"/>
         </div>
         @if($errors->has('email'))
             <div class="for-email text-color-danger text-left">{{ $errors->first('email') }}</div>

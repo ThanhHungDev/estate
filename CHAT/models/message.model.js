@@ -39,6 +39,46 @@ const MessageSchema = new Schema(
     }
 )
 
+/**
+ * 
+ * @param { String } channelID là id của bảng users trong posgre
+ * @returns 
+ */
+MessageSchema.statics.messageInChannel = function(channelID, authId) {
+
+    return this
+    .aggregate([
+        { 
+            $match: { 
+                backup: false,
+                channel: channelID
+            } 
+        },
+        {
+            $project: { 
+                type: {
+                    $cond: {
+                        if: { $eq: [ authId, "$user" ] },
+                        then: true,  
+                        else: false
+                    }
+                }, 
+                body   : true,
+                read      : true,
+                readAdmin : true,
+                style     : true,
+                attachment: true,
+                channel   : true,
+                createdAt : true,
+                updatedAt : true,
+            }
+        },
+        { $sort: { _id : -1 }},
+        { $limit : 200 },
+        { $sort: { _id : 1 }},
+    ])
+}
+
 MessageSchema.methods.toResources = function() {
     
     return {

@@ -13,6 +13,7 @@ use App\Models\Category;
 use App\Models\Channel;
 use App\Models\Commune;
 use App\Models\District;
+use App\Models\Message;
 use App\Models\Post;
 use App\Models\Product;
 use App\Models\ProductTagActive;
@@ -62,8 +63,8 @@ class ClientController extends Controller
         $channelAdmin = $modelChannel->countConversationsByUser($authId, Config::get('constant.ID_ADMIN'));
         if( !$channelAdmin ){
             /// thêm channel admin mới
-            $admin = [ "" . Config::get('constant.ID_ADMIN'), "" . $authId ];
-            sort($admin, SORT_STRING);
+            $admin = [ Config::get('constant.ID_ADMIN'), $authId ];
+            sort($admin, SORT_NUMERIC);
             $insert = [
                 'name' => implode( "-", $admin),
                 'user' => $admin,
@@ -73,39 +74,35 @@ class ClientController extends Controller
             $admin = Channel::create($insert);
         }
         /// check $id là có trong bảng users không
-        $isExist = User::find($id);
-        if( !$isExist ) return abort(404);
-        /// check channel của auth và $id đã có chưa
-        $channelUser = $modelChannel->countConversationsByUser($authId, $id);
-        if( !$channelUser && !!$id ){
-            /// thêm channel user mới nếu id đó > 0
-            $user = [ "$authId", "$id" ];
-            sort($user, SORT_STRING);
-            $insert = [
-                'name' => implode( "-", $user),
-                'user' => $user,
-                'sort' => 1,
-                'backup' => false,
-            ];
-            $channelUser = Channel::create($insert);
+        $isExist = User::find((int)$id);
+        if( !!$isExist ){
+            /// check channel của auth và $id đã có chưa
+            $channelUser = $modelChannel->countConversationsByUser($authId, $id);
+            if( !$channelUser && !!$id ){
+                /// thêm channel user mới nếu id đó > 0
+                $user = [ $authId, $id ];
+                sort($user, SORT_NUMERIC);
+                $insert = [
+                    'name' => implode( "-", $user),
+                    'user' => $user,
+                    'sort' => 1,
+                    'backup' => false,
+                ];
+                $channelUser = Channel::create($insert);
+            }
         }
-
+        
         /// get list channel trong mongo
         $conversations = $modelChannel->getConversationsByUser($authId);
-        // $usersId = $conversations->pluck('user')->toArray();
-        // $ids = [];
-        // foreach($usersId as $id ){
-        //     $arrID = json_decode(json_encode($id), true);
-        //     $ids = array_merge($ids, $arrID);
-        // }
-        // $users = User::whereIn('id', $ids)->get();
+        $messages = [];
         foreach($conversations as $conv){
             $arrID = json_decode(json_encode($conv->user), true);
             /// ignore auth
             $arrID = array_filter($arrID, function($id) use ($authId){ return $authId != $id; });
             $conv->users = User::whereIn('id', $arrID)->get();
+            $conv->messages = Message::where('channel', new \MongoDB\BSON\ObjectID($conv->_id))->get()->toArray();
         }
-        return view('client.chat', compact(['id', 'conversations']));
+        return view('client.chat', compact(['id', 'conversations', 'messages']));
     }
 
     public function contact( Request $request){
