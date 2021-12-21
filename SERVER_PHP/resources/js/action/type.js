@@ -11,5 +11,8 @@ const TYPE =  {
     SOCCKET  : {
         SET_SOCKET_IO: "SET_SOCKET_IO"
     },
+    MESSAGE: {
+        CONCAT: "CONCAT_MESSAGES_DATA",
+    }
 }
 export default TYPE;

@@ -18,7 +18,7 @@ function Message( props ){
             {
                 isPcDevice && !isActiveExist
                 ? <MyInfo />
-                : <Container id={id} conversations={conversations} CONFIG={CONFIG} auth={ auth }/>
+                : <Container id={id} conversations={conversations} CONFIG={CONFIG} auth={ auth } dispatch={ props.dispatch }/>
             }
         </div>
     )

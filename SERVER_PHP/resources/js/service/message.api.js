@@ -25,7 +25,8 @@ interceptors.checkToken(Api)
 export default {
     getMessageUser( params ) {
         console.log("vào getMessageUser", params)
-        return Api.get(`${CONFIG.REALTIME.GET_MESSAGE}${params.id}`)
+        // const queryString = new URLSearchParams(params).toString();
+        return Api.get(`${CONFIG.REALTIME.GET_MESSAGE}${params.id}&channelid=${params.channelid}&next=${params.next}`)
         .then(res => res.data )
     },
     getInitMessage( params ) {

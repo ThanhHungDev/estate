@@ -4,7 +4,11 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 
 import Reducer from '../reducer/chat.reducer'
+
+import * as moment from 'moment'
+moment.locale('vi')
 import App from "./App"
+
 
 const store = createStore(Reducer)
 store.subscribe(function(){

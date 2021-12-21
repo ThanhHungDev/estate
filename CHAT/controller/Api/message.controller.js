@@ -34,12 +34,12 @@ module.exports.getInit = asyncHandler(async (req, res ) => {
 
 module.exports.load = asyncHandler(async (req, res ) => {
     let messages;
-    const { limit, next } = req.query
+    const { limit, next, channelid } = req.query
     const LIMIT = parseInt(limit) || 1000
     // console.log(req.query.user, "vào đây req.query.user")
     // console.log(req.user, "auth nè")
     /// bước 1 lấy toàn bộ channel của nó ra
-    let channel = await Channel.findOne( { user: req.user.id } )
+    let channel = await Channel.findOne( { user: req.user.id, _id: mongoose.Types.ObjectId(channelid) } )
     if( !channel ){
         /// create channel and response empty
         // channel = await Channel({

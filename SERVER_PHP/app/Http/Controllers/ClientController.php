@@ -100,7 +100,8 @@ class ClientController extends Controller
             /// ignore auth
             $arrID = array_filter($arrID, function($id) use ($authId){ return $authId != $id; });
             $conv->users = User::whereIn('id', $arrID)->get();
-            $conv->messages = Message::where('channel', new \MongoDB\BSON\ObjectID($conv->_id))->get()->toArray();
+            // $conv->messages = Message::where('channel', new \MongoDB\BSON\ObjectID($conv->_id))->take(4)->get()->toArray();
+            $conv->messages = (new Message())->getMessageByChannelId($conv->_id);
         }
         return view('client.chat', compact(['id', 'conversations', 'messages']));
     }
