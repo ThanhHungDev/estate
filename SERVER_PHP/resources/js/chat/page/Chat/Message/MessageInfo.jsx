@@ -13,8 +13,7 @@ const MessageInfo = props => {
     if( error ){
         return (
             <div className="messread error">
-                <time>{error}</time>
-                <i className='hero-icon hero-shield-alert-outline'></i>
+                <time className="d-inline">{error}</time> <i className="hero-icon fal fa-exclamation-circle"></i>
             </div>
         )
         
@@ -22,23 +21,20 @@ const MessageInfo = props => {
         return (
             <div className="messread">
                 {/* đang gửi */}
-                <time>送信...</time>
-                <i className='hero-icon hero-check-circle-outline'></i>
+                <time className="d-inline">đang gửi...</time> <i className="hero-icon fal fa-circle"></i>
             </div>
         )
     }else if( !read ){
         {/* đã gửi */}
         return (
             <div className="messread">
-                <Moment format="LLLL">{createdAt}</Moment>
-                <i className='hero-icon hero-check-circle-outline'></i>
+                <Moment className="d-inline" format="LLLL">{createdAt}</Moment> <i className="hero-icon far fa-check-circle"></i>
             </div>
         )
     }else{
         return (
             <div className="messread">
-                <Moment format="LLLL">{updatedAt}</Moment>
-                <i className='hero-icon hero-check-circle'></i>
+                <Moment className="d-inline" format="LLLL">{updatedAt}</Moment> <i className="hero-icon fas fa-check-circle"></i>
             </div>
         )
     }

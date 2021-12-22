@@ -12,4 +12,5 @@ return [
     'JOIN__CHATTING',
     'TYPING',
     'ADD__MESSAGE',
+    'READ__MESSAGE__ALL'
 ];

@@ -79,7 +79,10 @@ module.exports.load = asyncHandler(async (req, res ) => {
 
     const response = {
         code   : 200,
-        data   : messages.map(m => m.toResources()),
+        data   : messages.map(m => {
+            m.type = m.user == req.user.id
+            return m.toResources()
+        }),
         channel: channel.toResources(),
         message: "danh sách channel"
     }

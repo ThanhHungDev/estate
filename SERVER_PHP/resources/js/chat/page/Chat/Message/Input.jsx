@@ -22,7 +22,7 @@ const showListEmoji = event => {
 const Input = props => {
 
     const { active, conversations, auth, socket, CONFIG } = props
-    if (!auth.JWT || !socket || !conversations.length) return null
+    if (!auth.JWT || !conversations.length) return null
 
     const [ isSend, setIsSend ] = useState(false)
     useEffect(()=>{
@@ -33,8 +33,8 @@ const Input = props => {
                 retrieveImageFromClipboardAsBlob(event)
             },
             false
-        );
-    }, [])
+        )
+    }, [isSend])
 
     const handleSendMessageDown = event => {
         /// dettect if key = enter and not (shift + enter) => send
@@ -48,15 +48,22 @@ const Input = props => {
         event.keyCode == 32 && handleTypeEmoji(props)
     }
 
+    const handleSendMessageUp = event => {
+        if(isSend){
+            setIsSend(false)
+            document.getElementById("js-input-chat").value = ""
+        }
+    }
+
     const handleSendChatClick = () => {
         //// send class is write message
         document.getElementById("js-is-write-message").classList.add("follow-conversation")
         ///send typing ( trong active là 1 conversation nên sẽ có channel id và channel name ... )
-        socket.emit(CONFIG.EVENT.TYPING, props.active)
+        !!socket && socket.emit(CONFIG.EVENT.TYPING, props.active)
     }
 
     return (
-        <div id="js-is-write-message" className="blockinput follow-conversation">
+        <div id="js-is-write-message" className="blockinput">
             <Typing active={active} />
             <div id="js-image--block" className="image-block"></div>
             <input id="image-file" type="file" className="d-none" accept=".xls,.xlsx,.csv,image/*,.pdf,.doc,.docx" onChange={ saveFile } />
@@ -64,9 +71,9 @@ const Input = props => {
                 rows='1'
                 id="js-input-chat"
                 onKeyDown={ handleSendMessageDown }
-                onKeyUp={ () => { isSend && setIsSend(true) && ( document.getElementById("js-input-chat").value = "" ) } }
+                onKeyUp={ handleSendMessageUp }
                 onClick={ handleSendChatClick }
-                placeholder="Nhập tin nhắn"
+                placeholder={!!socket ? "Nhập tin nhắn" : "không thể kết nối với máy chủ"}
             ></textarea>
             <i className="fa-icon fas fa-paper-plane" onClick={ () => { sendMessageToChannel(props) } }></i>
             <i

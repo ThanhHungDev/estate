@@ -7,6 +7,7 @@ var USER_ONLINES = []
 ///////////////////////////////////////////////////////////////
 const Comment = require("./models/comment.model")
 const Channel = require("./models/channel.model")
+const Message = require("./models/message.model")
 
 
 const CONFIG = require("./config")
@@ -14,6 +15,7 @@ const io = require( "socket.io" )()
 const authMiddleware = require("./middlewares/jwt.middleware")
 const USER = require("./models/user.model")
 const RESPONSE = require("./helpers/response.library")
+const messageMiddleware = require('./middlewares/message.middleware')
 
 // Add your socket.io logic here!
 io
@@ -279,8 +281,55 @@ io
         })
         return;
     })
-    .on( CONFIG.EVENT.ADD__MESSAGE, async message => {
-        console.log( message )
+
+    .on( CONFIG.EVENT.ADD__MESSAGE, async data => {
+        const { jwt } = socket
+        const { message, style, attachment, channel, keyUpdate } = data
+        data.createdAt = new Date()
+        // data.token = jwt
+        data.socket = socket.id
+        try {
+            const error = await messageMiddleware.VALIDATE_SOCKET_SEND_MESSAGE(data)
+            if(error) throw error
+            const conversation = await Channel.findOne({ _id: channel, backup: false }) /// .lean()
+            if( !conversation ) throw new Error("Channel không tìm thấy!")
+            if(!conversation.user.includes(jwt.id)) throw new Error("Channel không matching đúng với user!")
+            console.log({
+                user      : jwt.id,
+                body      : message,
+                channel   : conversation._id,
+                style     : style,
+                attachment: attachment,
+            }, "-----")
+            const mess = await new Message({
+                user      : jwt.id,
+                body      : message,
+                channel   : conversation._id,
+                style     : style,
+                attachment: attachment,
+            }).save()
+            /// add infor data
+            data.user = jwt.id
+            data._id = mess._id
+            data.channel = conversation._id
+            const response = {
+                code: RESPONSE.HTTP_OK,
+                data  : data,
+                message: "socket add message thành công"
+            }
+            io.in(conversation.name).emit(CONFIG.EVENT.RESPONSE__ADD__MESSAGE, response)
+        } catch (error) {
+            console.log(error)
+            /// response 
+            const response = {
+                code   : RESPONSE.HTTP_INTERNAL_SERVER_ERROR,
+                error  : error,
+                old    : data,
+                message: "socket add message không thành công"
+            }
+            socket.emit(CONFIG.EVENT.RESPONSE__ADD__MESSAGE, response )
+            return
+        }
     })
     .on( CONFIG.EVENT.TYPING, async active => {
         
@@ -295,7 +344,7 @@ io
                 socketid: socket.id
             }
             /// sẽ không emit cho client đã gửi nên phải dùng sự kiện bracast
-            io.in(active.name).emit(CONFIG.EVENT.RESPONSE__TYPING, response )
+            socket.broadcast.in(active.name).emit(CONFIG.EVENT.RESPONSE__TYPING, response )
             return
         } catch (error) {
             /// response 
@@ -305,7 +354,7 @@ io
                 old    : active,
                 message: "socket typing không thành công"
             }
-            socket.in(active.name).emit(CONFIG.EVENT.RESPONSE__TYPING, response )
+            socket.emit(CONFIG.EVENT.RESPONSE__TYPING, response )
             return
         }
     })

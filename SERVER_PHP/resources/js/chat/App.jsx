@@ -29,7 +29,7 @@ function App( props ){
         const socket = socketIOClient(CONFIG.REALTIME_URL, param)
         createSocketListenner(socket, props, CONFIG)
         socket.open()// synonym to socket.connect()
-        console.log("connected ở đây không thành công đâu " + socket.connected)
+        // console.log("connected ở đây không thành công đâu " + socket.connected)
         return () => {
             socket.disconnect()
             props.dispatch(setterSocket(null))

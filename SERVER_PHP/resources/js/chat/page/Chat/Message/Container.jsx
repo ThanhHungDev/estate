@@ -40,10 +40,10 @@ const Container = ({ id, conversations, CONFIG, auth, dispatch }) => {
             <div className="progress-loadding"></div>
         </div>
     </div>
-    if( status == STATE__STATUS.ERROR ) return <div className="message__content--error">
-        { error }
-    </div>
-    return <Messages id={id} active={active} conversations={conversations} CONFIG={CONFIG} auth={ auth } dispatch={ dispatch }/>
+    // if( status == STATE__STATUS.ERROR ) return <div className="message__content--error">
+    //     { error }
+    // </div>
+    return <Messages id={id} active={active} conversations={conversations} CONFIG={CONFIG} auth={ auth }/>
 }
 
 export default Container

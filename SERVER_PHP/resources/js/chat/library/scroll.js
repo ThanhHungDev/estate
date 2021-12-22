@@ -1,112 +1,61 @@
+import $ from "jquery"
 
-export function handleScrollMessage(event, props){
+/// hàm để handle người dùng scroll
+export function handleScrollMessage(props ){
 
+    const domScroll = document.getElementById("js-scroll-to-bottom")
     const domWriter = document.getElementById("js-is-write-message")
-        
     //// trước khi kiểm tra tin nhắn chưa đọc thì phải handle scroll đã
-    handleClassFollowingInput(event)
-    /// sau khi handle xong thì nếu có class follow-conversation => người dùng đang đứng ở cuối chat
-    /// => mình sẽ kiểm tra tin nhắn chưa đọc
+    /// trường hợp mới mở block tin nhắn mà chiều cao làm cho nó flow tin nhắn thì phải cho chạy trước
+    handleClassFollowingInput(domScroll)
+    /// dữ liệu ban đầu
+    const { auth, active, conversations, CONFIG, socket } = props
+    const { messages }                                    = active
+    const hasNoneRead                                     = messages.some(message => !message.read && !message.type)
+    /// nếu có class follow-conversation => người dùng đang theo dõi chat
     if( domWriter && domWriter.classList.contains("follow-conversation") ){
-        /// nếu tồn tại scroll message block, 
-        /// đồng thời đang scroll ở cuối cùng 
-        /// thì emit đã đọc message
-        let { auth, conversations } = props
-        let channelActiveChat       = conversations.find(channel => channel.isActive)
-        let messages                = channelActiveChat && channelActiveChat.message
-
-        if( messages.some(message => !message.read && !message.type) ){
-            
-            let access      = auth.tokens.access,
-                channelId   = channelActiveChat.id 
-            emitReadAllMessageChannel(access, channelId)
-        }
+        console.warn('trường hợp did mouse mà đang follow tin nhắn')
+        hasNoneRead && socket.emit(CONFIG.EVENT.READ__MESSAGE__ALL, active)
     }
 }
 
-
-export function handleScrollListMessageEventUpdate(props){
-
-    let domScroll = document.getElementById("js-scroll-to-bottom"),
-        domWriter = document.getElementById("js-is-write-message")
-
-    if( domWriter && domScroll && domScroll.scrollHeight <= domScroll.clientHeight){
-
-        console.log("khi được update nhưng vì không đủ mesage để scroll thì mình emit luôn không cần scroll")
-        let { auth, conversations } = props
-        
-        let channelActiveChat = conversations.find(channel => channel.isActive)
-        let messages = channelActiveChat && channelActiveChat.message
-
-        if(!messages || !messages.length){
-            return false
-        }
-        let messFirstNoneRead = messages.find( mess => !mess.read && !mess.type )
-        if( messFirstNoneRead ){
-            /// không thể scroll => emit tin nhắn
-            let access    = auth.tokens.access,
-                channelId = channelActiveChat.id
-            emitReadAllMessageChannel(access, channelId)
-        }
-    }else if(
-        domScroll && 
-        domWriter && 
-        domWriter.classList.contains('follow-conversation')
-    ){
-        console.log("scroll đến cuối componentDidUpdate")
-        scrollToBottomBlockMessage()
-    }
-}
-
-export function handleDrawedBlockMessageNoneRead(props){
-
-    /// khi vẽ block message ra, thì cho block scroll đến message chưa đọc đầu tiên
-    /// message first none read
-    let { auth, conversations, device } = props
+export function didMouseScroll(props){
     
-    let channelActiveChat = conversations.find(channel => channel.isActive)
-    let messages = channelActiveChat && channelActiveChat.message
-
-    if(!messages || !messages.length){
-        return false
-    }
-    let messFirstNoneRead = messages.find( mess => !mess.read && !mess.type )
-    if( messFirstNoneRead ){
-        //// có trường hợp khi block message không có scroll (tức là số lượng tin nhắn < block scroll thì không thể scroll )
-        //// điều này dẫn đến việc không thể chạy vào sự kiện lắn nghe scroll để emit tin nhắn đã đọc được
-        //// cần if else tại đây 
-        let domScroll = document.getElementById("js-scroll-to-bottom")
-        
-        if(domScroll && domScroll.scrollHeight <= domScroll.clientHeight){
-            
-            /// không thể scroll => emit tin nhắn
-            let access    = auth.tokens.access,
-                channelId = channelActiveChat.id
-            emitReadAllMessageChannel(access, channelId)
-        }else{
-            const DELTA_HEIGHT_DOM_NONE_READ = device.calcHeightMessageBlock - 150
-            //// khi có thể scroll thì cứ scrol đến tin nhắn chưa đọc
-            scrollToMessageNoneReadBlockMessage(messFirstNoneRead, DELTA_HEIGHT_DOM_NONE_READ)
+    const domScroll = document.getElementById("js-scroll-to-bottom")
+    const domWriter = document.getElementById("js-is-write-message")
+    /// dữ liệu ban đầu
+    const { auth, active, conversations, CONFIG, socket } = props
+    const { messages }                                    = active
+    if(!messages || !messages.length) return false
+    const noneRead = messages.find( mess => !mess.read && !mess.type )
+    /// nếu tất cả tin nhắn đều đã đọc thì scroll đến cuối của list tin nhắn
+    if( !noneRead ) scrollToBottomBlockMessage()
+    /// tồn tại tin nhắn chưa đọc
+    else {
+        if( domScroll && domScroll.scrollHeight <= domScroll.clientHeight ){
+            /// trường hợp này là đang update tin nhắn mà vì không đủ mesage để scroll thì mình emit luôn không cần scroll
+            console.warn('trường hợp này là đang update tin nhắn mà vì không đủ mesage để scroll thì mình emit luôn không cần scroll')
+            socket.emit(CONFIG.EVENT.READ__MESSAGE__ALL, active)
+        } else if( domWriter && !domWriter.classList.contains('follow-conversation') ){
+            console.warn("ban đầu mới vẽ ra thì chưa có class follow-conversation nên là không follow thì chỉ scroll đến cái chưa đọc")
+            scrollToMessageNoneReadBlockMessage(noneRead, 150)
+        }else if( domWriter && domWriter.classList.contains('follow-conversation') ){
+            console.warn("có follow thì cho scroll đến cuối => khi scroll đến cuối thì sẽ bị triger emit socket đã đọc")
+            scrollToBottomBlockMessage()
         }
-    }else{
-        /// không có mess chưa đọc thì luôn luôn trỏ tới cuối cùng
-        console.log("không có mess chưa đọc thì luôn luôn trỏ tới cuối cùng scroll đến cuối componentDidMount")
-        scrollToBottomBlockMessage()
     }
 }
 
-function handleClassFollowingInput(evtScroll){
+function handleClassFollowingInput(elementScroll){
 
-    let domWriter = document.getElementById("js-is-write-message")
-        
-    let elementScroll = evtScroll.target
+    const domWriter     = document.getElementById("js-is-write-message")
+
     if (elementScroll.scrollHeight - elementScroll.scrollTop === elementScroll.clientHeight) {
         // do something at end of scroll
         domWriter && domWriter.classList.add("follow-conversation")
-        
     }else if(domWriter && domWriter.classList.contains('follow-conversation')){
         // do something at end of scroll
-        domWriter.classList.remove("follow-conversation")
+        domWriter && domWriter.classList.remove("follow-conversation")
     }
 }
 
@@ -116,7 +65,7 @@ function scrollToBottomBlockMessage(){
         !document.getElementById('js-is-loading-more') ||
         (document.getElementById('js-is-loading-more') && !document.getElementById('js-is-loading-more').classList.contains('follow'))
     ){
-        let domScroll = document.getElementById("js-scroll-to-bottom")
+        const domScroll = document.getElementById("js-scroll-to-bottom")
 
         domScroll.scrollTop = domScroll.scrollHeight
         if( $(domScroll).find("img").length ){
@@ -128,19 +77,10 @@ function scrollToBottomBlockMessage(){
     }
     
 }
-function scrollToMessageNoneReadBlockMessage(messFirstNoneRead, DELTA_HEIGHT_DOM_NONE_READ = 0){
+function scrollToMessageNoneReadBlockMessage(mess, DELTA_HEIGHT_DOM_NONE_READ = 0){
 
-    let domScroll = document.getElementById("js-scroll-to-bottom")
-
+    const domScroll = document.getElementById("js-scroll-to-bottom")
     //// scroll to message none read
-    let eleNoneRead = document.getElementById("mess__" + messFirstNoneRead._id + messFirstNoneRead.keyUpdate)
-    if( eleNoneRead ){
-        
-        let scrollTopNoneRead = eleNoneRead.offsetTop - DELTA_HEIGHT_DOM_NONE_READ
-        if( scrollTopNoneRead < 0 ){
-            scrollTopNoneRead = 0
-        }
-        // console.log("scroll đến dom chưa đọc", scrollTopNoneRead)
-        domScroll.scrollTop = scrollTopNoneRead
-    }
+    const eleNoneRead = document.getElementById("mess__" + mess._id + mess.keyUpdate)
+    eleNoneRead && ( domScroll.scrollTop = eleNoneRead.offsetTop < DELTA_HEIGHT_DOM_NONE_READ ? eleNoneRead.offsetTop - DELTA_HEIGHT_DOM_NONE_READ : 0 )
 }

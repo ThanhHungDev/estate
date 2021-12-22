@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\Auth;
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
 class Message extends Eloquent {
@@ -35,7 +36,7 @@ class Message extends Eloquent {
                 ],
                 [
                     '$project' => [
-                        'type' => 1,
+                        'user' => 1,
                         'body' => 1,
                         'read' => 1,
                         'readAdmin' => 1,

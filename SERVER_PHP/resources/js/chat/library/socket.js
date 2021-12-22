@@ -6,15 +6,18 @@ export function createSocketListenner(socket, props, CONFIG){
         /// lưu lại trạng thái connect mới của socket
         props.dispatch(setterSocket(socket))
         if (socket.connected) {
-            console.log("connected ở đây sẽ thành công " + socket.connected)
+            // console.log("connected ở đây sẽ thành công " + socket.connected)
             /// thử emit lên mới 1 sự kiện trong JOIN__CHATTING
             socket.emit(CONFIG.EVENT.JOIN__CHATTING)
         }
     })
-    .on( CONFIG.EVENT.RESPONSE__JOIN__CHATTING, function (response) {
+    .on( CONFIG.EVENT.RESPONSE__JOIN__CHATTING, response => {
         console.log("Thành công join chat!", response)
         const { code, data } = response
         //// data is comment resource
+    })
+    .on( CONFIG.EVENT.RESPONSE__ADD__MESSAGE, response => {
+        console.log("vào response add message!", response)
     })
     .on( CONFIG.EVENT.RESPONSE__TYPING, function (response) {
         console.log("Thành công typing!", response)

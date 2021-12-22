@@ -63,7 +63,7 @@ MessageSchema.statics.messageInChannel = function(channelID, authId) {
                         else: false
                     }
                 }, 
-                body   : true,
+                body      : true,
                 read      : true,
                 readAdmin : true,
                 style     : true,
@@ -83,6 +83,7 @@ MessageSchema.methods.toResources = function() {
     
     return {
         _id       : this._id,
+        type      : this.type,
         read      : this.read,
         attachment: this.attachment,
         user      : this.user,

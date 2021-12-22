@@ -18,3 +18,19 @@ module.exports.GET_MESSAGE_BY_USER = async function( req, res, next ){
     }
     next()
 }
+
+
+module.exports.VALIDATE_SOCKET_SEND_MESSAGE = async data => {
+
+    const validate = new Validator(data, {
+        message: "maxLength:1000",
+    },{
+        'message.maxLength' : "Vượt quá giới hạn số ký tự",
+    })
+     
+    const matched = await validate.check()
+    if (!matched) {
+        return validate.errors[Object.keys(validate.errors)[0]]
+    }
+    return false
+}
