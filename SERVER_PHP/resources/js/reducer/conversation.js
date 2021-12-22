@@ -4,18 +4,24 @@ import TYPE from "../action/type"
 
 export default function (state = JSON.parse(window.CONVERSATIONS), action) {
     switch (action.type) {
-        case TYPE.MESSAGE.CONCAT :
-            console.log("vào hệ thống ", action.payload) 
-            /// _id là channel id, messages là danh sách message của api trả về
+        case TYPE.MESSAGE.CONCAT :{
+            /// _id là conversation id, messages là danh sách message của api trả về
             const { _id, messages } = action.payload
             
-            return state.map(channel => {
-                if (channel._id == _id){
-                    channel.messages = [ ... messages, ... channel.messages ]
+            return state.map(conversation => {
+                if (conversation._id == _id){
+                    conversation.messages = [ ... messages, ... conversation.messages ]
                 }
-                return channel
+                return conversation
             })
-            
+        }
+        case TYPE.MESSAGE.NEW__MESSAGE: {
+            const { _id, message } = action.payload
+            return state.map(conversation => {
+                if (conversation._id == _id) conversation.messages = [...conversation.messages, message ]
+                return conversation
+            })
+        }
 
         default:
             return state;

@@ -80,7 +80,7 @@ class ClientController extends Controller
             $channelUser = $modelChannel->countConversationsByUser($authId, $id);
             if( !$channelUser && !!$id ){
                 /// thêm channel user mới nếu id đó > 0
-                $user = [ $authId, $id ];
+                $user = [ (int)$authId, (int)$id ];
                 sort($user, SORT_NUMERIC);
                 $insert = [
                     'name' => implode( "-", $user),

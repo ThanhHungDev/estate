@@ -266,7 +266,7 @@ io
     /**
      * begin Chatting
      */
-     .on( CONFIG.EVENT.JOIN__CHATTING, async data => {
+    .on( CONFIG.EVENT.JOIN__CHATTING, async data => {
         const { jwt } = socket
         /// get list channel not delete then join
         const channels = await Channel.find({ user: jwt.id })
@@ -278,6 +278,36 @@ io
             // }
         })
         return;
+    })
+    .on( CONFIG.EVENT.ADD__MESSAGE, async message => {
+        console.log( message )
+    })
+    .on( CONFIG.EVENT.TYPING, async active => {
+        
+        console.log(`${CONFIG.EVENT.TYPING} : socket typing ${socket.id}` )
+        try {
+            
+            /// response lại comment
+            const response = {
+                code    : RESPONSE.HTTP_OK,
+                data    : active,
+                message : "socket typing thành công",
+                socketid: socket.id
+            }
+            /// sẽ không emit cho client đã gửi nên phải dùng sự kiện bracast
+            io.in(active.name).emit(CONFIG.EVENT.RESPONSE__TYPING, response )
+            return
+        } catch (error) {
+            /// response 
+            const response = {
+                code   : RESPONSE.HTTP_INTERNAL_SERVER_ERROR,
+                error  : error,
+                old    : active,
+                message: "socket typing không thành công"
+            }
+            socket.in(active.name).emit(CONFIG.EVENT.RESPONSE__TYPING, response )
+            return
+        }
     })
 })
 // end of socket.io logic

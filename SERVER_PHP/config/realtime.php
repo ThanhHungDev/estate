@@ -11,4 +11,5 @@ return [
     /// chatting
     'JOIN__CHATTING',
     'TYPING',
+    'ADD__MESSAGE',
 ];

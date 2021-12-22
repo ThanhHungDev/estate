@@ -13,6 +13,7 @@ const TYPE =  {
     },
     MESSAGE: {
         CONCAT: "CONCAT_MESSAGES_DATA",
+        NEW__MESSAGE: "NEW__MESSAGE_DATA",
     }
 }
 export default TYPE;

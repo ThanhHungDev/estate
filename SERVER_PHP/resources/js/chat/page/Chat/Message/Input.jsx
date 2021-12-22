@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { connect } from "react-redux"
 import Emojis from "./Emojis.jsx"
 import Typing from "./Typing.jsx"
@@ -7,9 +7,8 @@ import {
     retrieveImageFromClipboardAsBlob,
 } from "../../../library/file.upload.js"
 import { 
-    handleSendMessageDown,
-    handleSendMessageUp,
-    handleSendMessageSubmit,
+    handleTypeEmoji,
+    sendMessageToChannel,
 } from "../../../library/keyboard.helper"
 
 const showListEmoji = event => {
@@ -22,6 +21,10 @@ const showListEmoji = event => {
 
 const Input = props => {
 
+    const { active, conversations, auth, socket, CONFIG } = props
+    if (!auth.JWT || !socket || !conversations.length) return null
+
+    const [ isSend, setIsSend ] = useState(false)
     useEffect(()=>{
         window.addEventListener(
             "paste",
@@ -33,13 +36,17 @@ const Input = props => {
         );
     }, [])
 
-    // const handleSendEmojiReact = () => {
-    //     const DF_TYPE_EMOJI = "EMOJI"
-    
-    //     let message = " 💝 "
-    //     let style = DF_TYPE_EMOJI
-    //     submitMessageChat(message, style, null)
-    // }
+    const handleSendMessageDown = event => {
+        /// dettect if key = enter and not (shift + enter) => send
+        const isSendMessage = (event.keyCode == 13 && !event.shiftKey) && (event.keyCode == 13 && !event.altKey)
+        if (isSendMessage) {
+            sendMessageToChannel(props)
+            setIsSend(true)
+            return false
+        }
+        /// if keyCode is space check emoji exist key then replace
+        event.keyCode == 32 && handleTypeEmoji(props)
+    }
 
     const handleSendChatClick = () => {
         //// send class is write message
@@ -47,12 +54,6 @@ const Input = props => {
         ///send typing ( trong active là 1 conversation nên sẽ có channel id và channel name ... )
         socket.emit(CONFIG.EVENT.TYPING, props.active)
     }
-
-    const { conversations, auth, socket, CONFIG } = props
-    if (!auth.JWT || !socket || !conversations.length) return null
-
-    const active = conversations.find(conv => conv.isActive)
-
 
     return (
         <div id="js-is-write-message" className="blockinput follow-conversation">
@@ -63,11 +64,11 @@ const Input = props => {
                 rows='1'
                 id="js-input-chat"
                 onKeyDown={ handleSendMessageDown }
-                onKeyUp={ handleSendMessageUp }
+                onKeyUp={ () => { isSend && setIsSend(true) && ( document.getElementById("js-input-chat").value = "" ) } }
                 onClick={ handleSendChatClick }
                 placeholder="Nhập tin nhắn"
             ></textarea>
-            <i className="fa-icon fas fa-paper-plane" onClick={ handleSendMessageSubmit }></i>
+            <i className="fa-icon fas fa-paper-plane" onClick={ () => { sendMessageToChannel(props) } }></i>
             <i
                 className="fa-icon far fa-smile emoticon"
                 onClick={ showListEmoji }

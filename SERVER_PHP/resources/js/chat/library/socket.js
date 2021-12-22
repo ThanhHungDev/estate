@@ -16,6 +16,27 @@ export function createSocketListenner(socket, props, CONFIG){
         const { code, data } = response
         //// data is comment resource
     })
+    .on( CONFIG.EVENT.RESPONSE__TYPING, function (response) {
+        console.log("Thành công typing!", response)
+        /// có 2 trường hợp 1 là lỗi, 2 là thành công, trong thành công phải xem có phải người đang gửi và nhận là 1 người không
+        const { code, data, socketid } = response
+        /// lỗi => log error
+        if( code != 200 ) return false
+        else if( code == 200 && socketid != socket.id ){
+            timeoutTyping && clearTimeout(timeoutTyping)
+            const typing = document.getElementById("js-typing")
+            if(typing){
+                typing.getAttribute("channel") == data._id && typing.classList.add("show")
+                /// scroll bottom
+                var timeoutTyping = setTimeout(function() {
+                    const domTyping = document.getElementById("js-typing")
+                    domTyping && domTyping.getAttribute("channel") == data._id && domTyping.classList.remove("show")
+                }, 3000)
+            }
+            return false
+        }
+    })
+    
     .on('error', (err) => {
         console.log("************ Error ************")
         console.log("************ Error ************")

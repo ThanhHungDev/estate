@@ -6,7 +6,7 @@ import MessageItem from "./MessageItem"
 
 import { handleScrollMessage } from "../../../library/scroll"
 
-
+// id active conversations CONFIG auth dispatch
 const Messages = props => {
     const { auth, active, conversations, CONFIG } = props
     const [ user ] = active?.users
@@ -28,7 +28,7 @@ const Messages = props => {
                     )
                 }
             </div>
-            <Input active={ active }/>
+            <Input active={ active } />
         </div>
     )
 }
