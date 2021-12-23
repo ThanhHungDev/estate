@@ -15,3 +15,11 @@ export function addNewMessage( _id, message ){
         payload : { _id, message }
     }
 }
+
+export function updateMessageRealtime( _id, message ){
+    console.log(message , `${_id} updateMessageRealtime`)
+    return {
+        type : TYPE.MESSAGE.UPDATE__MESSAGE,
+        payload : { _id, message }
+    }
+}

@@ -82,7 +82,6 @@ export function sendMessageToChannel(props){
     })
     /// add tạm vô hệ thống để tạo độ nhạy của dữ liệu
     props.dispatch(addNewMessage(channel, { 
-        type: true, /// true là chính nó
         read: false, /// chưa đọc
         body: message, /// tin nhắn
         style, /// định dạng kiểu

@@ -307,19 +307,21 @@ io
             data._id = mess._id
             data.channel = conversation._id
             const response = {
-                code: RESPONSE.HTTP_OK,
-                data  : data,
-                message: "socket add message thành công"
+                code    : RESPONSE.HTTP_OK,
+                data    : data,
+                message : "socket add message thành công",
+                socketid: socket.id
             }
             io.in(conversation.name).emit(CONFIG.EVENT.RESPONSE__ADD__MESSAGE, response)
         } catch (error) {
             console.log(error)
             /// response 
             const response = {
-                code   : RESPONSE.HTTP_INTERNAL_SERVER_ERROR,
-                error  : error,
-                old    : data,
-                message: "socket add message không thành công"
+                code    : RESPONSE.HTTP_INTERNAL_SERVER_ERROR,
+                error   : error,
+                old     : data,
+                message : "socket add message không thành công",
+                socketid: socket.id
             }
             socket.emit(CONFIG.EVENT.RESPONSE__ADD__MESSAGE, response )
             return

@@ -14,7 +14,7 @@ export function handleScrollMessage(props ){
     const hasNoneRead                                     = messages.some(mess => !mess.read && mess?.user != auth?.id )
     /// nếu có class follow-conversation => người dùng đang theo dõi chat
     if( domWriter && domWriter.classList.contains("follow-conversation") ){
-        console.warn('trường hợp did mouse mà đang follow tin nhắn')
+        // console.warn('trường hợp did mouse mà đang follow tin nhắn')
         hasNoneRead && socket.emit(CONFIG.EVENT.READ__MESSAGE__ALL, active)
     }
 }
@@ -34,13 +34,13 @@ export function didMouseScroll(props){
     else {
         if( domScroll && domScroll.scrollHeight <= domScroll.clientHeight ){
             /// trường hợp này là đang update tin nhắn mà vì không đủ mesage để scroll thì mình emit luôn không cần scroll
-            console.warn('trường hợp này là đang update tin nhắn mà vì không đủ mesage để scroll thì mình emit luôn không cần scroll')
+            // console.warn('trường hợp này là đang update tin nhắn mà vì không đủ mesage để scroll thì mình emit luôn không cần scroll')
             socket.emit(CONFIG.EVENT.READ__MESSAGE__ALL, active)
         } else if( domWriter && !domWriter.classList.contains('follow-conversation') ){
-            console.warn("ban đầu mới vẽ ra thì chưa có class follow-conversation nên là không follow thì chỉ scroll đến cái chưa đọc")
+            // console.warn("ban đầu mới vẽ ra thì chưa có class follow-conversation nên là không follow thì chỉ scroll đến cái chưa đọc")
             scrollToMessageNoneReadBlockMessage(noneRead, 150)
         }else if( domWriter && domWriter.classList.contains('follow-conversation') ){
-            console.warn("có follow thì cho scroll đến cuối => khi scroll đến cuối thì sẽ bị triger emit socket đã đọc")
+            // console.warn("có follow thì cho scroll đến cuối => khi scroll đến cuối thì sẽ bị triger emit socket đã đọc")
             scrollToBottomBlockMessage()
         }
     }

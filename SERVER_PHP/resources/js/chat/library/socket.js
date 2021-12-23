@@ -1,3 +1,7 @@
+import { 
+    addNewMessage,
+    updateMessageRealtime,
+} from '../../action/message.action'
 import { setterSocket } from '../../action/socket.action'
 
 export function createSocketListenner(socket, props, CONFIG){
@@ -12,12 +16,40 @@ export function createSocketListenner(socket, props, CONFIG){
         }
     })
     .on( CONFIG.EVENT.RESPONSE__JOIN__CHATTING, response => {
-        console.log("Thành công join chat!", response)
+        // console.log("Thành công join chat!", response)
         const { code, data } = response
         //// data is comment resource
     })
     .on( CONFIG.EVENT.RESPONSE__ADD__MESSAGE, response => {
         console.log("vào response add message!", response)
+        const { code, data, socketid } = response
+        const { user, message, style, attachment, channel, keyUpdate, createdAt, _id } = data
+        if( code != 200 ) return false
+        else if( code == 200 && socketid == socket.id ){
+            /// socket người nhận
+            props.dispatch(updateMessageRealtime(channel, {
+                _id, user, style, attachment,
+                channel,
+                keyUpdate,
+                createdAt,
+                body     : message,
+                read     : false,
+                readAdmin: false,
+            }))
+            return false
+        }else if ( code == 200 && socketid != socket.id ){
+            /// socket người gửi
+            props.dispatch(addNewMessage(channel, {
+                _id, user, style, attachment,
+                channel,
+                keyUpdate,
+                createdAt,
+                body     : message,
+                read     : false,
+                readAdmin: false,
+            }))
+            return false
+        }
     })
     .on( CONFIG.EVENT.RESPONSE__TYPING, function (response) {
         console.log("Thành công typing!", response)

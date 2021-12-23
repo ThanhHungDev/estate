@@ -23,6 +23,19 @@ export default function (state = JSON.parse(window.CONVERSATIONS), action) {
             })
         }
 
+        case TYPE.MESSAGE.UPDATE__MESSAGE:{
+            const { _id, message } = action.payload
+            return state.map(conversation => {
+                if (conversation._id == _id){
+                    conversation.messages = conversation.messages.map( m => {
+                        if( m.keyUpdate == message.keyUpdate ) return { ...m, ... message }
+                        return m
+                    })
+                }
+                return conversation
+            })
+        }
+        
         default:
             return state;
     }
