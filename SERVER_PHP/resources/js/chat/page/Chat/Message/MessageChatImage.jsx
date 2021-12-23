@@ -2,14 +2,15 @@
 import React from "react"
 
 const MessageChatImage = props => {
-
+    const STYLE__IMAGE  = 'IMAGE'
     //// over time => none download
     const TIME_DIE_FILE   = 24 * 60 * 60 * 1000
-    const { attachments } = props
+    const { style, attachment } = props?.message
+    if( style != STYLE__IMAGE ) return null
     return (
         <div className="IMAGE" >
             {
-                attachments.map(( attach , index) => {
+                attachment.map(( attach , index) => {
 
                     const { time, url, type } = attach,
                           fileLive            = time - TIME_DIE_FILE < (new Date).getTime()

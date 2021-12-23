@@ -11,7 +11,7 @@ export function handleScrollMessage(props ){
     /// dữ liệu ban đầu
     const { auth, active, conversations, CONFIG, socket } = props
     const { messages }                                    = active
-    const hasNoneRead                                     = messages.some(message => !message.read && !message.type)
+    const hasNoneRead                                     = messages.some(mess => !mess.read && mess?.user != auth?.id )
     /// nếu có class follow-conversation => người dùng đang theo dõi chat
     if( domWriter && domWriter.classList.contains("follow-conversation") ){
         console.warn('trường hợp did mouse mà đang follow tin nhắn')
@@ -27,7 +27,7 @@ export function didMouseScroll(props){
     const { auth, active, conversations, CONFIG, socket } = props
     const { messages }                                    = active
     if(!messages || !messages.length) return false
-    const noneRead = messages.find( mess => !mess.read && !mess.type )
+    const noneRead = messages.find( mess => !mess.read && mess?.user != auth?.id )
     /// nếu tất cả tin nhắn đều đã đọc thì scroll đến cuối của list tin nhắn
     if( !noneRead ) scrollToBottomBlockMessage()
     /// tồn tại tin nhắn chưa đọc
@@ -61,19 +61,13 @@ function handleClassFollowingInput(elementScroll){
 
 function scrollToBottomBlockMessage(){
 
-    if(
-        !document.getElementById('js-is-loading-more') ||
-        (document.getElementById('js-is-loading-more') && !document.getElementById('js-is-loading-more').classList.contains('follow'))
-    ){
-        const domScroll = document.getElementById("js-scroll-to-bottom")
-
-        domScroll.scrollTop = domScroll.scrollHeight
-        if( $(domScroll).find("img").length ){
-            $(domScroll).find("img").one("load", function() {
-                
-                domScroll.scrollTop = domScroll.scrollHeight
-            })
-        }
+    const domScroll = document.getElementById("js-scroll-to-bottom")
+    domScroll.scrollTop = domScroll.scrollHeight
+    if( $(domScroll).find("img").length ){
+        $(domScroll).find("img").one("load", function() {
+            
+            domScroll.scrollTop = domScroll.scrollHeight
+        })
     }
     
 }
@@ -81,6 +75,6 @@ function scrollToMessageNoneReadBlockMessage(mess, DELTA_HEIGHT_DOM_NONE_READ = 
 
     const domScroll = document.getElementById("js-scroll-to-bottom")
     //// scroll to message none read
-    const eleNoneRead = document.getElementById("mess__" + mess._id + mess.keyUpdate)
+    const eleNoneRead = document.getElementById(`mess__${mess._id}${mess.keyUpdate}`)
     eleNoneRead && ( domScroll.scrollTop = eleNoneRead.offsetTop < DELTA_HEIGHT_DOM_NONE_READ ? eleNoneRead.offsetTop - DELTA_HEIGHT_DOM_NONE_READ : 0 )
 }

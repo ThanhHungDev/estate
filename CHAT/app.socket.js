@@ -294,13 +294,7 @@ io
             const conversation = await Channel.findOne({ _id: channel, backup: false }) /// .lean()
             if( !conversation ) throw new Error("Channel không tìm thấy!")
             if(!conversation.user.includes(jwt.id)) throw new Error("Channel không matching đúng với user!")
-            console.log({
-                user      : jwt.id,
-                body      : message,
-                channel   : conversation._id,
-                style     : style,
-                attachment: attachment,
-            }, "-----")
+
             const mess = await new Message({
                 user      : jwt.id,
                 body      : message,

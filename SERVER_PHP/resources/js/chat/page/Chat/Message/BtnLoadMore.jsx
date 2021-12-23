@@ -4,9 +4,6 @@ const BtnLoadMore = props => {
     const conversation = props.active
 
     const loadMoreMessage = async () => {
-        if(document.getElementById('js-is-loading-more')){
-            document.getElementById('js-is-loading-more').classList.add('follow')
-        }
 
         const { conversations, auth } = this.props
 		const active = conversations.find(channel => channel.isActive)
@@ -36,7 +33,7 @@ const BtnLoadMore = props => {
 
     return (
         <div className="loadmore">
-            <button id="js-is-loading-more" className="btn btn-success loadmore__message-btn " 
+            <button className="btn btn-success loadmore__message-btn " 
             disabled={ false }
             onClick={ loadMoreMessage }>
                 Tải thêm <i className="fal fa-download"></i>

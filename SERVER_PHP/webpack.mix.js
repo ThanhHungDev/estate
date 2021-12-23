@@ -77,7 +77,7 @@ mix
 
 mix
     .browserSync({
-        proxy: 'http://estate.com',
+        proxy: 'http://127.0.0.1:8000',
         notify: false
     })
     .disableNotifications();
