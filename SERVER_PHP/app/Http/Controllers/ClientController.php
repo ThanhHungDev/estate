@@ -55,10 +55,8 @@ class ClientController extends Controller
 
     public function chat( Request $request, $id = 0 ){
         $auth = Auth::user();
-        // if( !$auth ){
-        //     return redirect()->route('LOGIN');
-        // }
         $authId = isset($auth->id) ? $auth->id : 0;
+        if( $authId == $id ) return abort(404);
         $modelChannel = new Channel();
         $channelAdmin = $modelChannel->countConversationsByUser($authId, Config::get('constant.ID_ADMIN'));
         if( !$channelAdmin ){

@@ -6,7 +6,7 @@ function Conversation(props) {
     const { conversation, active, online } = props
     const [ user ] = conversation?.users
 
-    return <Link to={"/" + user.id }>
+    return <Link to={"/" + user?.id }>
         <div className="conversation">
             <div className={`${ active && 'conversation__active' } ${ online && 'conversation__online' } conversation__item`}>
                 <figure className="conversation__item-avatar">

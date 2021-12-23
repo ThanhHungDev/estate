@@ -26,7 +26,7 @@ const MessageItem = props => {
     return (
         <div id={`mess__${_id}${keyUpdate}`} className="component-message-chat">
 
-            <div className={`${!type && 'messright'} mess__content`}>
+            <div className={`${ type && 'messright'} mess__content`}>
                 <figure className="mess__content-avatar">
                     <img src={ type ? auth?.avatar : active?.users[0]?.avatar } alt={ type ? auth?.name : active?.users[0]?.name } />
                 </figure>
