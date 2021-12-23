@@ -35,6 +35,22 @@ export default function (state = JSON.parse(window.CONVERSATIONS), action) {
                 return conversation
             })
         }
+
+        case TYPE.MESSAGE.READ : {
+            const { _id, user } = action.payload
+            return state.map(conversation => {
+                if (conversation._id == _id ) {
+                    conversation.messages = conversation.messages.map(mess => {
+                        if (mess.user == user) mess.read = true
+                        return mess
+                    })
+                    return conversation
+                }
+                return conversation
+            })
+        }
+
+        
         
         default:
             return state;

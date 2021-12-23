@@ -9,13 +9,14 @@ const Comment = require("./models/comment.model")
 const Channel = require("./models/channel.model")
 const Message = require("./models/message.model")
 
-
+const mongoose = require('mongoose')
 const CONFIG = require("./config")
 const io = require( "socket.io" )()
 const authMiddleware = require("./middlewares/jwt.middleware")
 const USER = require("./models/user.model")
 const RESPONSE = require("./helpers/response.library")
 const messageMiddleware = require('./middlewares/message.middleware')
+
 
 // Add your socket.io logic here!
 io
@@ -354,6 +355,44 @@ io
             return
         }
     })
+    .on( CONFIG.EVENT.READ__MESSAGE__ALL, async conversation => {
+        
+        console.log(`${CONFIG.EVENT.READ__MESSAGE__ALL} : socket read all ${socket.id}` )
+        const { jwt } = socket
+        const { _id } = conversation
+        try {
+            const channel = await Channel.findOne({ _id: mongoose.Types.ObjectId(_id) })
+            if( !channel ) throw new Error("channel not found!")
+            const update = await Message.updateMany({
+                channel: channel._id,
+                user: { $ne: jwt.id }
+            }, { read: true } )
+            if( !update ) throw new Error("update error!")
+            /// response lại comment
+            const response = {
+                code    : RESPONSE.HTTP_OK,
+                data    : conversation,
+                user    : jwt.id,
+                message : "socket read message all thành công",
+                socketid: socket.id
+            }
+            io.in(channel.name).emit(CONFIG.EVENT.RESPONSE__READ__MESSAGE__ALL, response)
+            return
+        } catch (error) {
+            /// response 
+            const response = {
+                code   : RESPONSE.HTTP_INTERNAL_SERVER_ERROR,
+                error  : error.message,
+                old    : conversation,
+                message: "socket read message all không thành công"
+            }
+            socket.emit(CONFIG.EVENT.RESPONSE__READ__MESSAGE__ALL, response )
+            return
+        }
+    })
+
+
+    
 })
 // end of socket.io logic
 

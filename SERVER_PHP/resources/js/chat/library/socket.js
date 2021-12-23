@@ -1,6 +1,7 @@
 import { 
     addNewMessage,
     updateMessageRealtime,
+    readAllMessageInChannel,
 } from '../../action/message.action'
 import { setterSocket } from '../../action/socket.action'
 
@@ -20,6 +21,18 @@ export function createSocketListenner(socket, props, CONFIG){
         const { code, data } = response
         //// data is comment resource
     })
+    .on( CONFIG.EVENT.RESPONSE__READ__MESSAGE__ALL, response => {
+        // console.log("Thành công nhận read messge chat!", response)
+        console.log(CONFIG.EVENT.RESPONSE__READ__MESSAGE__ALL, response)
+        const { code, data, user, socketid } = response
+        if( code != 200 ){
+            console.error(`Errror in ${CONFIG.EVENT.RESPONSE__READ__MESSAGE__ALL}`, data )
+            return false
+        } else if( code == 200 ){
+            props.dispatch(readAllMessageInChannel(data._id, user ))
+        }
+    })
+    
     .on( CONFIG.EVENT.RESPONSE__ADD__MESSAGE, response => {
         console.log("vào response add message!", response)
         const { code, data, socketid } = response

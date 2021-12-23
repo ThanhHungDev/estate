@@ -23,3 +23,10 @@ export function updateMessageRealtime( _id, message ){
         payload : { _id, message }
     }
 }
+
+export function readAllMessageInChannel(_id, user){
+    return {
+        type   : TYPE.MESSAGE.READ,
+        payload: { _id, user }
+    }
+}

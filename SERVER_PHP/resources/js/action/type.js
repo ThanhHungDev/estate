@@ -15,6 +15,7 @@ const TYPE =  {
         CONCAT         : "CONCAT_MESSAGES_DATA",
         NEW__MESSAGE   : "NEW__MESSAGE_DATA",
         UPDATE__MESSAGE: "UPDATE__MESSAGE_DATA",
+        READ           : "READ",
     }
 }
 export default TYPE;
