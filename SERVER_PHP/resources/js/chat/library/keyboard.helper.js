@@ -68,9 +68,9 @@ const getDataSendMessage = props => {
 }
 
 export function sendMessageToChannel(props){
-    console.log( "sendMessageToChannel", props)
-    const { message, style, attachment } = getDataSendMessage(props)
-    const { CONFIG, socket, active } = props
+    
+    const { message, style, attachment, auth } = getDataSendMessage(props)
+    const { CONFIG, socket, active }           = props
     const channel = active._id /// lấy channel active id từ component cha
     const keyUpdate = (new Date).getTime()/// random
     socket.emit(CONFIG.EVENT.ADD__MESSAGE, { 
@@ -88,6 +88,7 @@ export function sendMessageToChannel(props){
         style, /// định dạng kiểu
         attachment, /// các file đi kèm
         keyUpdate,/// random
+        user: auth.id,
     }))
     return false
 }
