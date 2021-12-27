@@ -58,7 +58,7 @@ class ClientController extends Controller
         $authId = isset($auth->id) ? $auth->id : 0;
         if( !$authId ) return redirect()->route('LOGIN', ['rredirect' => 1 ]);
         if( $authId == $id ) return abort(404);
-        if( !is_integer($id) ) return abort(404);
+        if( !is_numeric($id) ) return abort(404);
         $modelChannel = new Channel();
         $channelAdmin = $modelChannel->countConversationsByUser($authId, Config::get('constant.ID_ADMIN'));
         if( !$channelAdmin ){
