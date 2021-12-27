@@ -90,7 +90,7 @@ class ClientController extends Controller
                 ];
                 $channelUser = Channel::create($insert);
             }
-        }
+        }else if( !!$id ) return abort(404);
         
         /// get list channel trong mongo
         $conversations = $modelChannel->getConversationsByUser($authId);
