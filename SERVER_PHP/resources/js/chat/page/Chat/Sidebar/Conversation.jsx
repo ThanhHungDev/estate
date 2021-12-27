@@ -13,7 +13,7 @@ function Conversation(props) {
                     <img src="http://babysitter.trust-growth.co.jp/uploads/avatar.jpg" alt=""/>
                 </figure>
                 <div className="conversation__info">
-                    <span className="conversation__info-name">{ user.name }</span>
+                    <span className="conversation__info-name">{ user?.name }</span>
                 </div>
             </div>
         </div>

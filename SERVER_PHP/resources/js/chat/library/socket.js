@@ -2,6 +2,7 @@ import {
     addNewMessage,
     updateMessageRealtime,
     readAllMessageInChannel,
+    handleUserOnline,
 } from '../../action/message.action'
 import { setterSocket } from '../../action/socket.action'
 
@@ -17,9 +18,15 @@ export function createSocketListenner(socket, props, CONFIG){
         }
     })
     .on( CONFIG.EVENT.RESPONSE__JOIN__CHATTING, response => {
-        // console.log("Thành công join chat!", response)
-        const { code, data } = response
-        //// data is comment resource
+        const { code, data, socketid } = response
+        console.log("Thành công join chat!", response)
+        if( code != 200 ){
+            console.error(`Errror in ${CONFIG.EVENT.RESPONSE__READ__MESSAGE__ALL}`, data )
+            return false
+        } else if( code == 200 ){
+            // ta sẽ luôn luôn có 1 mảng các user on/offline dựa vào cột active thuộc các phần tử data
+            props.dispatch(handleUserOnline( data ))
+        }
     })
     .on( CONFIG.EVENT.RESPONSE__READ__MESSAGE__ALL, response => {
         // console.log("Thành công nhận read messge chat!", response)

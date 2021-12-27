@@ -30,3 +30,12 @@ export function readAllMessageInChannel(_id, user){
         payload: { _id, user }
     }
 }
+
+
+export function handleUserOnline( onlines ){
+    console.log(onlines , " handleUserOnline ")
+    return {
+        type : TYPE.MESSAGE.ONLINES,
+        payload : onlines
+    }
+}

@@ -77,9 +77,25 @@ io
     .on( CONFIG.EVENT.DISCONNECT, async function () {
 
         console.log( "disconnect set user offline")
+        const offline = USER_ONLINES.find(item => item.socketId == socket.id )
+        offline.active = false
         USER_ONLINES = USER_ONLINES.filter(item => item.socketId != socket.id )
         io.USER_ONLINES = USER_ONLINES
         socket.leaveAll()
+        /// check is page chat => emit user offline
+        if( socket.isChat ){
+            const { jwt } = socket
+            const channels = await Channel.find({ user: jwt.id })
+            channels.map( channel => {
+                const response = {
+                    code    : RESPONSE.HTTP_OK,
+                    data    : [ offline ],
+                    message : "socket disconect thành công",
+                    socketid: socket.id
+                }
+                io.in(channel.name).emit(CONFIG.EVENT.RESPONSE__JOIN__CHATTING, response )
+            })
+        }
     })
 
 
@@ -270,14 +286,32 @@ io
      * begin Chatting
      */
     .on( CONFIG.EVENT.JOIN__CHATTING, async data => {
+        socket.isChat = true
         const { jwt } = socket
         /// get list channel not delete then join
         const channels = await Channel.find({ user: jwt.id })
+        const users = channels.map( conv => conv.user )
+        const merged = [].concat.apply([], users)
+        //// get user onlines
+        const onlines = [ ... (io.USER_ONLINES || []).map( onl => { 
+            onl.active = true
+            return { ... onl }
+        }) ]
+        //// get user online of user
+        const uonlines = onlines.filter( o => merged.includes(o.id) )
+        const response = {
+            code    : RESPONSE.HTTP_OK,
+            data    : uonlines.filter( o => o.id != jwt.id ), /// không tính chính nó
+            message : "socket join thành công",
+            socketid: socket.id
+        }
+        socket.emit(CONFIG.EVENT.RESPONSE__JOIN__CHATTING, response )
         channels.map( channel => {
             socket.join( channel.name )
             // const room = socket.adapter.rooms[channel.name]
             // if (room && room.length) {
-                io.sockets.in(channel.name).emit(CONFIG.EVENT.RESPONSE__JOIN__CHATTING, { code: RESPONSE.HTTP_OK, data: { socket: socket.id, user: jwt.id, channel: channel } })
+                response.data = uonlines.filter( o => o.id == jwt.id )
+                socket.broadcast.in(channel.name).emit(CONFIG.EVENT.RESPONSE__JOIN__CHATTING, response )
             // }
         })
         return;

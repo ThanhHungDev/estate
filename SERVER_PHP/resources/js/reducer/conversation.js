@@ -41,7 +41,9 @@ export default function (state = JSON.parse(window.CONVERSATIONS), action) {
             return state.map(conversation => {
                 if (conversation._id == _id ) {
                     conversation.messages = conversation.messages.map(mess => {
-                        if (mess.user == user) mess.read = true
+                        /// đúng ra chỗ này phải xử lý == nhưng hiểu như sau: 
+                        // thằng A gửi message lên cho thằng B thằng B nhận được => emit lên cho server nên auth của thằng B => phải dùng dấu != 
+                        if (mess.user != user) mess.read = true
                         return mess
                     })
                     return conversation
@@ -49,6 +51,23 @@ export default function (state = JSON.parse(window.CONVERSATIONS), action) {
                 return conversation
             })
         }
+
+
+        case TYPE.MESSAGE.ONLINES : {
+            const onlines = action.payload
+            
+            return state.map(conversation => {
+                console.log(conversation.user, "conversation.userconversation.userconversation.user")
+                if(onlines.some( onl => onl.active && conversation.user.includes(onl.id))){
+                    conversation.online = true
+                }
+                if(onlines.some( onl => !onl.active && conversation.user.includes(onl.id))){
+                    conversation.online = false
+                }
+                return conversation
+            })
+        }
+        
 
         
         
