@@ -1,16 +1,19 @@
 
 .component-head-info{
   display: flex;
-  box-sizing: content-box;
-  min-height: 74px;
+  box-sizing: border-box;
+  border-bottom: 1px solid $gray-400;
+  min-height: initial;
+  @include Screen(MD){
+    min-height: 74px;
+  }
 
   .btn-back-mobile{
-    background-color: transparent;
-    font-size: 24px;
-    outline: none;
-    border: none;
-    padding: 0;
-    display: block;
+    // background-color: transparent;
+    // font-size: 24px;
+    // border: none;
+    // padding: 0;
+    // display: block;
   }
 
   .user-active-chat{
@@ -18,8 +21,7 @@
     position: relative;
     padding: 10px 20px;
     box-sizing: border-box;
-    border-bottom: 1px solid $gray-400;
-    max-height: 80px;
+    
 
     .state-avatar{
       box-sizing: content-box;
@@ -78,38 +80,6 @@
 
         &.active-now{
           color: $custom-green;
-        }
-      }
-    }
-  }
-}
-
-@include Responsive(SM){
-  .component-head-info{
-    border-bottom: 1px solid $gray-400;
-    max-height: 40px;
-
-    .btn-back-mobile{
-      display: unset;
-    }
-
-    .avatar-link{
-      display: none;
-    }
-    .user-active-chat{
-      padding: 0;
-      border-bottom: none;
-
-      .text-info{
-        display: flex;
-        padding: 7px 6px 6px 0px;
-        .name{
-          flex-grow: 999;
-        }
-        .time-online{
-          display: inline-block;
-          vertical-align: middle;
-          padding-top: 8px;
         }
       }
     }

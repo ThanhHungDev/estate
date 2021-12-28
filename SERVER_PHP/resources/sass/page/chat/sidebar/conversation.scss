@@ -77,16 +77,18 @@
             overflow: hidden;
             text-overflow: ellipsis;
             font-size: 15px;
+            font-weight: 600;
             color: #404040;
-            font-weight: 500;
             line-height: 1.3;
         }
         &-messlast {
-            color: #971a1a;
+            color: $gray-700;
             line-height: 1.3;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
+            font-size: 13px;
+            font-weight: 300;
             overflow: hidden;
         }
         &-adminmail {

@@ -9,7 +9,7 @@ const ButtonBack = props => {
     const backLink = event => {
         history.push(`/`);
     }
-    return <button className="btn-back-mobile" onClick={ backLink }>
+    return <button className="btn btn-back-mobile" onClick={ backLink }>
         <i className="hero-icon fas fa-angle-double-left"></i>
     </button>
 }
