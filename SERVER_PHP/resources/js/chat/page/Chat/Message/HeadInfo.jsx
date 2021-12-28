@@ -5,8 +5,9 @@ import ButtonBack from "./ButtonBack.jsx"
 
 const HeadInfo = props => {
 
-	const { user, CONFIG } = props
-	const { id, avatar, name, online } = user
+	const { user, active, CONFIG } = props
+	const { id, avatar, name } = user
+	const { online } = active
 	return (
 		<div className="component-head-info" >
 			<ButtonBack />

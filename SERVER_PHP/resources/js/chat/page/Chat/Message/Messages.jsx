@@ -28,7 +28,7 @@ const Messages = props => {
     
     return (
         <div className="message__content animated fadeIn  delay-2s">
-            <HeadInfo id={props.id} user={user} CONFIG={CONFIG}/>
+            <HeadInfo id={props.id} user={user} active={active} CONFIG={CONFIG}/>
             
             <div className="wrapper-list-message" id="js-scroll-to-bottom" onScroll={ event => !!socket && handleScrollMessage( props ) }>
                 <BtnLoadMore active={active} /> 

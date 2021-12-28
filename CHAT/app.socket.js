@@ -288,6 +288,8 @@ io
     .on( CONFIG.EVENT.JOIN__CHATTING, async data => {
         socket.isChat = true
         const { jwt } = socket
+        /// khi connect được thiết lập buộc lòng kiểm tra xem cái thông số message cuối có trùng không? nếu không trùng thì phải fetch lại từ đầu
+        // 424324fsdfds
         /// get list channel not delete then join
         const channels = await Channel.find({ user: jwt.id })
         const users = channels.map( conv => conv.user )
