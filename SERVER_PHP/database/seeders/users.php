@@ -18,7 +18,7 @@ class users extends Seeder
         ///user supper admin
         $users = [
             [
-                'name'         => 'Trương Thanh Hùng',
+                'name'         => 'Quản trị viên',
                 'email'        => 'admin@gmail.com',
                 'avatar'       => '/images/avatar.jpg',
                 'password'     => bcrypt('admin123'),

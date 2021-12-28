@@ -7,7 +7,7 @@ use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
 class Message extends Eloquent {
 
-    const LIMIT = 1;
+    const LIMIT = 10;
 
     protected $collection = 'messages';
     protected $connection = 'mongodb';

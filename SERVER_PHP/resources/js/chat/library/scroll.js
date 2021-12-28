@@ -2,7 +2,7 @@ import $ from "jquery"
 
 /// hàm để handle người dùng scroll
 export function handleScrollMessage(props ){
-
+    console.log("có vào đây không handleScrollMessa")
     const domScroll = document.getElementById("js-scroll-to-bottom")
     const domWriter = document.getElementById("js-is-write-message")
     //// trước khi kiểm tra tin nhắn chưa đọc thì phải handle scroll đã
@@ -20,7 +20,7 @@ export function handleScrollMessage(props ){
 }
 
 export function didMouseScroll(props){
-    
+    console.log("có vào đây không didMouseScrol")
     const domScroll = document.getElementById("js-scroll-to-bottom")
     const domWriter = document.getElementById("js-is-write-message")
     /// dữ liệu ban đầu
@@ -29,18 +29,23 @@ export function didMouseScroll(props){
     if(!messages || !messages.length) return false
     const noneRead = messages.find( mess => !mess.read && mess?.user != auth?.id )
     /// nếu tất cả tin nhắn đều đã đọc thì scroll đến cuối của list tin nhắn
-    if( !noneRead ) scrollToBottomBlockMessage()
+    if( !noneRead ){
+        // console.warn("do cái này")
+        scrollToBottomBlockMessage()
+    }
     /// tồn tại tin nhắn chưa đọc
     else {
         if( domScroll && domScroll.scrollHeight <= domScroll.clientHeight ){
             /// trường hợp này là đang update tin nhắn mà vì không đủ mesage để scroll thì mình emit luôn không cần scroll
-            // console.warn('trường hợp này là đang update tin nhắn mà vì không đủ mesage để scroll thì mình emit luôn không cần scroll')
+            console.warn('trường hợp này là đang update tin nhắn mà vì không đủ mesage để scroll thì mình emit luôn không cần scroll')
             socket.emit(CONFIG.EVENT.READ__MESSAGE__ALL, active)
-        } else if( domWriter && !domWriter.classList.contains('follow-conversation') ){
-            // console.warn("ban đầu mới vẽ ra thì chưa có class follow-conversation nên là không follow thì chỉ scroll đến cái chưa đọc")
+        } else if( domWriter && !domWriter.classList.contains('didmouse') ){
+            console.warn("ban đầu mới vẽ ra thì chưa có class follow-conversation nên là không follow thì chỉ scroll đến cái chưa đọc")
+            /// nghĩa là khi update không còn chạy vào đây nữa + nếu update thì sẽ có class didmouse
             scrollToMessageNoneReadBlockMessage(noneRead, 150)
+            return
         }else if( domWriter && domWriter.classList.contains('follow-conversation') ){
-            // console.warn("có follow thì cho scroll đến cuối => khi scroll đến cuối thì sẽ bị triger emit socket đã đọc")
+            console.warn("có follow thì cho scroll đến cuối => khi scroll đến cuối thì sẽ bị triger emit socket đã đọc")
             scrollToBottomBlockMessage()
         }
     }
@@ -60,7 +65,7 @@ function handleClassFollowingInput(elementScroll){
 }
 
 function scrollToBottomBlockMessage(){
-
+    console.warn("scrollToBottomBlockMessage")
     const domScroll = document.getElementById("js-scroll-to-bottom")
     domScroll.scrollTop = domScroll.scrollHeight
     if( $(domScroll).find("img").length ){
@@ -72,9 +77,10 @@ function scrollToBottomBlockMessage(){
     
 }
 function scrollToMessageNoneReadBlockMessage(mess, DELTA_HEIGHT_DOM_NONE_READ = 0){
-
+    
     const domScroll = document.getElementById("js-scroll-to-bottom")
     //// scroll to message none read
     const eleNoneRead = document.getElementById(`mess__${mess._id}${mess.keyUpdate}`)
-    eleNoneRead && ( domScroll.scrollTop = eleNoneRead.offsetTop < DELTA_HEIGHT_DOM_NONE_READ ? eleNoneRead.offsetTop - DELTA_HEIGHT_DOM_NONE_READ : 0 )
+    const index = (eleNoneRead?.offsetTop < DELTA_HEIGHT_DOM_NONE_READ) ? 0 : (eleNoneRead?.offsetTop - DELTA_HEIGHT_DOM_NONE_READ)
+    eleNoneRead && ( domScroll.scrollTop = index )
 }

@@ -17,10 +17,15 @@ const Messages = props => {
     const { auth, active, conversations, CONFIG, socket } = props
     const [ user ] = active?.users
     const { messages } = active
+    // const refMouse = useRef(false)
 
     useEffect(() => {
         !!socket && didMouseScroll(props)
+        //// cập nhật là sau lần đầu tiên render thì add class vào dom
+        document.getElementById("js-is-write-message") && document.getElementById("js-is-write-message").classList.add('didmouse')
+        // refMouse.current = true
     })
+    
     return (
         <div className="message__content animated fadeIn  delay-2s">
             <HeadInfo id={props.id} user={user} CONFIG={CONFIG}/>

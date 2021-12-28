@@ -1,20 +1,18 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import useWindowSize from '../../hook/resize'
 import Conversation from './Sidebar/Conversation'
 import SearchBox from './Sidebar/SearchBox'
 
 
 
 function Sidebar( props ){
-    const { conversations, id } = props
-    console.log(conversations, "conversationsconversations sidebar")
+    const { conversations, id, auth } = props
+    const { isPcDevice } = useWindowSize()
     // check is have channel active ? 
-    const isActiveExist = !!conversations && conversations.some( conv => conv.isActive )
-    if(isActiveExist){
-        /// have channel active
-        /// no show sidebar
-        return null
-    }
+    const isActiveExist = !!id
+    /// sidebar nó sẽ không hiện thị khi chế độ moblie có active
+    if(!isPcDevice && isActiveExist) return null
 
     return (
         <div className="sidebar">
@@ -22,7 +20,7 @@ function Sidebar( props ){
                 <SearchBox />
                 <div className="sidebar__content--conversation">
                 {
-                    !!conversations && conversations.map( conv => <Conversation key={conv._id} active={ conv.users.some(u => u.id == id ) } online={ !!conv.online } conversation={conv} /> )
+                    !!conversations && conversations.map( conv => <Conversation key={conv._id} active={ conv.users.some(u => u.id == id ) } online={ !!conv.online } conversation={conv} auth={auth}/> )
                 }
                 </div>
             </div>
@@ -33,6 +31,7 @@ function Sidebar( props ){
 
 let mapStateToProps = (state) => {
     return {
+        auth         : state.auth,
         CONFIG       : state.config,
         conversations: state.conversation,
     }

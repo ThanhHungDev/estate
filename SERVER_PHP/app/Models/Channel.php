@@ -46,6 +46,12 @@ class Channel extends Eloquent {
                         'user' => (int)$userId
                     ]
                 ],
+                [
+                    '$sort' => [
+                        'sort' => 1,
+                        '_id' => 1,
+                    ]
+                ]
                 // [
                 //     '$unwind' => '$user'
                 // ],
@@ -56,6 +62,7 @@ class Channel extends Eloquent {
                 //         ]
                 //     ]
                 // ]
+
             ]);
         });
     }

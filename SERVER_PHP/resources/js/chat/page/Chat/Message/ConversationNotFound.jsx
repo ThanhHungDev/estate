@@ -1,6 +1,6 @@
 import React from "react"
 
-const MyInfo = props => {
+const ConversationNotFound = props => {
     const { auth }                = props,
           { avatar, email, name } = auth
     return (
@@ -18,26 +18,10 @@ const MyInfo = props => {
                 </div>
             </div>
             <div className="contract">
-                <div className="fieldset">
-                    <div className="legend"> đây là chỗ này </div>
-                    <ol>
-                        <li> chỉ mục 1 </li>
-                        <li> chỉ mục 2 </li>
-                        <li> chỉ mục 3
-                            <ul>
-                                <li> mô tả 1 </li>
-                                <li> mô tả 2 </li>
-                                <li> mô tả 3 </li>
-                                <li> mô tả 4 </li>
-                            </ul>
-                            <a className="fieldset__link" href="#">xem hướng dẫn</a>
-                        </li>
-                        <li>sfdsfsf</li>
-                    </ol>
-                </div>
+                hiện tại không tìm thấy user bạn mong muốn
             </div>
         </div>
     )
 }
 
-export default MyInfo
+export default ConversationNotFound

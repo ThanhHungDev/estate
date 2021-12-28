@@ -56,9 +56,9 @@ class ClientController extends Controller
     public function chat( Request $request, $id = 0 ){
         $auth = Auth::user();
         $authId = isset($auth->id) ? $auth->id : 0;
-        if( !$authId ) return redirect()->route('LOGIN', ['rredirect' => 1 ]);
+        // if( !$authId ) return redirect()->route('LOGIN', ['rredirect' => 1 ]);
         if( $authId == $id ) return abort(404);
-        if( !is_numeric($id) ) return abort(404);
+        // if( !is_numeric($id) ) return abort(404);
         $modelChannel = new Channel();
         $channelAdmin = $modelChannel->countConversationsByUser($authId, Config::get('constant.ID_ADMIN'));
         if( !$channelAdmin ){
@@ -75,7 +75,7 @@ class ClientController extends Controller
         }
         /// check $id là có trong bảng users không
         $isExist = User::find((int)$id);
-        if( !!$isExist ){
+        if( !!$isExist && $authId && $id ){
             /// check channel của auth và $id đã có chưa
             $channelUser = $modelChannel->countConversationsByUser($authId, $id);
             if( !$channelUser && !!$id ){
@@ -83,14 +83,14 @@ class ClientController extends Controller
                 $user = [ (int)$authId, (int)$id ];
                 sort($user, SORT_NUMERIC);
                 $insert = [
-                    'name' => implode( "-", $user),
-                    'user' => $user,
-                    'sort' => 1,
+                    'name'   => implode( "-", $user),
+                    'user'   => $user,
+                    'sort'   => 1,
                     'backup' => false,
                 ];
                 $channelUser = Channel::create($insert);
             }
-        }else if( !!$id ) return abort(404);
+        }
         
         /// get list channel trong mongo
         $conversations = $modelChannel->getConversationsByUser($authId);
