@@ -10,6 +10,7 @@ import {
     handleScrollMessage,
     didMouseScroll,
 } from "../../../library/scroll"
+import usePrevious from "../../../hook/previous"
 
 
 // id active conversations CONFIG auth dispatch
@@ -17,14 +18,15 @@ const Messages = props => {
     const { auth, active, conversations, CONFIG, socket } = props
     const [ user ] = active?.users
     const { messages } = active
-    // const refMouse = useRef(false)
+    const oldmess = usePrevious(messages)
+    const oldconv = usePrevious(active._id)
 
     useEffect(() => {
-        !!socket && didMouseScroll(props)
-        //// cập nhật là sau lần đầu tiên render thì add class vào dom
-        document.getElementById("js-is-write-message") && document.getElementById("js-is-write-message").classList.add('didmouse')
-        // refMouse.current = true
-    })
+        // console.warn("có vào hàm useEffect didMouseScroll ", messages)
+        /// trường hợp 1 là trong cùng 1 channel đang đứng mà số lượng mess mới = cũ thì cho scoll đến dom 
+        /// trường hợp 2 là khác channel thì cũng cho scroll đến dom 
+        !!socket && didMouseScroll(props,  oldmess.length != messages.length && oldconv == active._id )
+    }, [ messages, socket, active._id ])
     
     return (
         <div className="message__content animated fadeIn  delay-2s">

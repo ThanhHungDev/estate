@@ -57,7 +57,6 @@ export default function (state = JSON.parse(window.CONVERSATIONS), action) {
             const onlines = action.payload
             
             return state.map(conversation => {
-                console.log(conversation.user, "conversation.userconversation.userconversation.user")
                 if(onlines.some( onl => onl.active && conversation.user.includes(onl.id))){
                     conversation.online = true
                 }

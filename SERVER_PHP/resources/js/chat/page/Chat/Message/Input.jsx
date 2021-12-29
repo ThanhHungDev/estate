@@ -57,7 +57,8 @@ const Input = props => {
 
     const handleSendChatClick = () => {
         //// send class is write message
-        document.getElementById("js-is-write-message").classList.add("follow-conversation")
+        document.getElementById("js-is-write-message").classList.add("follow-conversation") 
+        sdfsfsdfds
         ///send typing ( trong active là 1 conversation nên sẽ có channel id và channel name ... )
         !!socket && socket.emit(CONFIG.EVENT.TYPING, props.active)
     }
