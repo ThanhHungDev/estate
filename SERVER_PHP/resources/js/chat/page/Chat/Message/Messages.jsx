@@ -25,7 +25,7 @@ const Messages = props => {
         // console.warn("có vào hàm useEffect didMouseScroll ", messages)
         /// trường hợp 1 là trong cùng 1 channel đang đứng mà số lượng mess mới = cũ thì cho scoll đến dom 
         /// trường hợp 2 là khác channel thì cũng cho scroll đến dom 
-        !!socket && didMouseScroll(props, (oldmess.length != messages.length && oldconv._id == active._id) || !( !!oldconv._id && oldconv._id != active._id ) )
+        !!socket && didMouseScroll(props, oldmess.length != messages.length && oldconv._id == active._id )
     }, [ messages, socket, active._id ])
     
     return (
