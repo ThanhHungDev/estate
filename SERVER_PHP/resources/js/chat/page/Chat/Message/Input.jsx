@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { connect } from "react-redux"
 import Emojis from "./Emojis.jsx"
 import Typing from "./Typing.jsx"
@@ -10,6 +10,7 @@ import {
     handleTypeEmoji,
     sendMessageToChannel,
 } from "../../../library/keyboard.helper"
+import FollowContext from "../../../hook/follow"
 
 const showListEmoji = event => {
 
@@ -25,6 +26,9 @@ const Input = props => {
     if (!auth.JWT || !conversations.length) return null
 
     const [ isSend, setIsSend ] = useState(false)
+    //Retrieve context data
+    const follow = useContext(FollowContext)
+
     useEffect(()=>{
         window.addEventListener(
             "paste",
@@ -57,13 +61,13 @@ const Input = props => {
 
     const handleSendChatClick = () => {
         //// send class is write message
-        document.getElementById("js-is-write-message").classList.add("follow-conversation") 
+        follow.setFollow(true)
         ///send typing ( trong active là 1 conversation nên sẽ có channel id và channel name ... )
         !!socket && socket.emit(CONFIG.EVENT.TYPING, props.active)
     }
 
     return (
-        <div id="js-is-write-message" className="blockinput">
+        <div className="blockinput">
             <Typing active={active} />
             <div id="js-image--block" className="image-block"></div>
             <input id="image-file" type="file" className="d-none" accept=".xls,.xlsx,.csv,image/*,.pdf,.doc,.docx" onChange={ saveFile } />

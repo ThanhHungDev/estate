@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import Message from './Chat/Message'
 import Sidebar from './Chat/Sidebar'
 import useWindowSize from "../hook/resize"
+import { FollowProvider } from '../hook/follow'
 
 
 function Chats( props ){
@@ -11,8 +12,10 @@ function Chats( props ){
     const device = useWindowSize()
     return (
         <div className="chats-page wrapper-page-chat d-flex" style={{ height: (device.calcHeightSubtractHeader) + "px" }}>
-            <Sidebar id={match.params.id}/>
-            <Message id={match.params.id}/>
+            <FollowProvider>
+                <Sidebar id={match.params.id}/>
+                <Message id={match.params.id}/>
+            </FollowProvider>
         </div>
     )
 }

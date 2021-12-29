@@ -1,19 +1,29 @@
 import $ from "jquery"
 
 /// hàm để handle người dùng scroll
-export function handleScrollMessage(props ){
-    console.log("có vào đây không handleScrollMessa")
+export function handleScrollMessage(props, follow ){
+    const { value, setFollow } = follow
     const domScroll = document.getElementById("js-scroll-to-bottom")
-    const domWriter = document.getElementById("js-is-write-message")
-    //// trước khi kiểm tra tin nhắn chưa đọc thì phải handle scroll đã
-    /// trường hợp mới mở block tin nhắn mà chiều cao làm cho nó flow tin nhắn thì phải cho chạy trước
-    handleClassFollowingInput(domScroll)
+    console.log("có vào đây không handleScrollMessage ", domScroll.scrollHeight - domScroll.scrollTop , domScroll.clientHeight)
+    //// trước khi kiểm tra tin nhắn chưa đọc thì phải check xem scroll đã ở cuối chưa, nếu chưa ở cuối thì thay đổi giá trị follow thành false và ngược
+    if (domScroll.scrollHeight - domScroll.scrollTop - domScroll.clientHeight < 10 ) {
+        // do something at end of scroll
+        console.error("end of scroll")
+        !value && setFollow(true)
+    }else if( value ){
+        // khi đang không ở dưới cùng mà cái value follow bị == true => sai thì cập nhật lại cho đúng là false
+        console.error("top of scroll")
+        setFollow(false)
+    }
+    console.error("see of scroll", value)
+    234324fsdfds
+    đang làm đến đây
     /// dữ liệu ban đầu
     const { auth, active, conversations, CONFIG, socket } = props
     const { messages }                                    = active
     const hasNoneRead                                     = messages.some(mess => !mess.read && mess?.user != auth?.id )
-    /// nếu có class follow-conversation => người dùng đang theo dõi chat
-    if( domWriter && domWriter.classList.contains("follow-conversation") ){
+    /// nếu giá trị follow == true => người dùng đang theo dõi chat
+    if( value ){
         console.warn('trường hợp did mouse mà đang follow tin nhắn')
         hasNoneRead && socket.emit(CONFIG.EVENT.READ__MESSAGE__ALL, active)
     }
@@ -55,19 +65,6 @@ export function didMouseScroll(props, isUpdate = false ){
     }
 }
 
-function handleClassFollowingInput(elementScroll){
-
-    const domWriter     = document.getElementById("js-is-write-message")
-
-    if (elementScroll.scrollHeight - elementScroll.scrollTop === elementScroll.clientHeight) {
-        // do something at end of scroll
-        domWriter && domWriter.classList.add("follow-conversation")
-    }else if(domWriter && domWriter.classList.contains('follow-conversation')){
-        // do something at end of scroll
-        domWriter && domWriter.classList.remove("follow-conversation")
-    }
-}
-
 function scrollToBottomBlockMessage(){
     console.warn("scrollToBottomBlockMessage")
     const domScroll = document.getElementById("js-scroll-to-bottom")
@@ -80,7 +77,7 @@ function scrollToBottomBlockMessage(){
     }
     
 }
-// function scrollToMessageNoneReadBlockMessage(mess, DELTA_HEIGHT_DOM_NONE_READ = 0){
+
 function scrollToMessageNoneReadBlockMessage(mess){
     
     const domScroll = document.getElementById("js-scroll-to-bottom")

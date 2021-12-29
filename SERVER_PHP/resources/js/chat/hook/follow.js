@@ -1,15 +1,10 @@
-import { useRef } from 'react'
-
-const useFollow = () => {
-
-    const ref = useRef()
-    const setFollow = value => ref.current = value
-    const toggleFollow = () => ref.current = !value
-
-    return {
-        value,
-        setFollow,
-        toggleFollow,
-    }
+import React, { createContext, useState } from 'react'
+// Initiate Context
+const FollowContext = createContext()
+// Provide Context
+export const FollowProvider = ({ children }) => {
+    const [ value, setFollow ] = useState(false)
+    return <FollowContext.Provider value={{ value, setFollow }}>{children}</FollowContext.Provider>
 }
-export default useFollow
+
+export default FollowContext
