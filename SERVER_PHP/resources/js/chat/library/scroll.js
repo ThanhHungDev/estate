@@ -56,10 +56,10 @@ export function didMouseScroll(props, isUpdate = false ){
 }
 
 function handleClassFollowingInput(elementScroll){
+    const DELTA     = 10
+    const domWriter = document.getElementById("js-is-write-message")
 
-    const domWriter     = document.getElementById("js-is-write-message")
-
-    if (elementScroll.scrollHeight - elementScroll.scrollTop === elementScroll.clientHeight) {
+    if (elementScroll.scrollHeight - elementScroll.scrollTop - elementScroll.clientHeight < DELTA ) {
         // do something at end of scroll
         domWriter && domWriter.classList.add("follow-conversation")
     }else if(domWriter && domWriter.classList.contains('follow-conversation')){
