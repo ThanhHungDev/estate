@@ -14,7 +14,7 @@ export function handleScrollMessage(props ){
     const hasNoneRead                                     = messages.some(mess => !mess.read && mess?.user != auth?.id )
     /// nếu có class follow-conversation => người dùng đang theo dõi chat
     if( domWriter && domWriter.classList.contains("follow-conversation") ){
-        // console.warn('trường hợp did mouse mà đang follow tin nhắn')
+        console.warn('trường hợp did mouse mà đang follow tin nhắn')
         hasNoneRead && socket.emit(CONFIG.EVENT.READ__MESSAGE__ALL, active)
     }
 }
@@ -23,7 +23,7 @@ export function didMouseScroll(props, isUpdate = false ){
     
     const domScroll = document.getElementById("js-scroll-to-bottom")
     const domWriter = document.getElementById("js-is-write-message")
-    console.error("có vào đây không didMouseScrol", isUpdate)
+    // console.error("có vào đây không didMouseScrol", isUpdate)
     /// dữ liệu ban đầu
     const { auth, active, conversations, CONFIG, socket } = props
     const { messages }                                    = active
@@ -31,7 +31,7 @@ export function didMouseScroll(props, isUpdate = false ){
     const noneRead = messages.find( mess => !mess.read && mess?.user != auth?.id )
     /// nếu tất cả tin nhắn đều đã đọc thì scroll đến cuối của list tin nhắn
     if( !noneRead ){
-        // console.warn("do cái này")
+        console.warn("do cái này")
         scrollToBottomBlockMessage()
     }
     /// tồn tại tin nhắn chưa đọc
@@ -49,6 +49,8 @@ export function didMouseScroll(props, isUpdate = false ){
         }else if( isUpdate && domWriter && domWriter.classList.contains('follow-conversation') ){
             console.warn("có follow thì cho scroll đến cuối => khi scroll đến cuối thì sẽ bị triger emit socket đã đọc")
             scrollToBottomBlockMessage()
+        }else{
+            console.warn("không đúng cái nào cả ", isUpdate)
         }
     }
 }
