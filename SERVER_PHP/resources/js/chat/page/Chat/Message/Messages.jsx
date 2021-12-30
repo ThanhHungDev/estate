@@ -34,7 +34,7 @@ const Messages = props => {
             <HeadInfo id={props.id} user={user} active={active} CONFIG={CONFIG}/>
             
             <div className="wrapper-list-message" id="js-scroll-to-bottom" onScroll={ event => !!socket && handleScrollMessage( props ) }>
-                <BtnLoadMore active={active} /> 
+                <BtnLoadMore active={active} dispatch={props.dispatch} CONFIG={CONFIG}/> 
                 { 
                     !!messages && messages.map( message =>
                         <MessageItem

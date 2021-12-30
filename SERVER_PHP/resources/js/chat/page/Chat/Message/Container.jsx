@@ -25,7 +25,7 @@ const Container = ({ id, conversations, CONFIG, auth, dispatch }) => {
         })
         .catch(error => {
             console.log("ERROR:: ",error)
-            dispatch(concatMesssagesToChannel(active._id, response.data, CONFIG.CONSTANT.STATE__STATUS.ERROR))
+            dispatch(concatMesssagesToChannel(active._id, [], CONFIG.CONSTANT.STATE__STATUS.ERROR))
         })
     }, [ id ])
 

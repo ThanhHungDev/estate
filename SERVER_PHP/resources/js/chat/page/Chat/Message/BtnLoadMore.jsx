@@ -1,35 +1,28 @@
-import React from "react"
+import React, { useState } from "react"
+import messageAPI from "../../../../service/message.api"
+import { concatMesssagesToChannel } from "../../../../action/message.action"
 
 const BtnLoadMore = props => {
-    const conversation = props.active
+    const [ fetch, setFetch ] = useState(false)
 
     const loadMoreMessage = async () => {
 
-        const { conversations, auth } = this.props
-		const active = conversations.find(channel => channel.isActive)
-
-		if (!active) {
-			return null
-		}
-		const { message } = active 
-        /// tin nhắn cuối lấy _id
-        const lastestMessage = message[0]
-        const idLastestMess = lastestMessage._id
-
-        console.log(idLastestMess);
-
-        let { disable, hidden } = this.state
-        this.setState({ disable: !disable });
-		
-        const messages = await fetchApiMessage(active.id, idLastestMess, auth.id, 1000 )
-        if( !messages ){
-            this.setState({ disable: false, hidden: !hidden });
-            return;
-        }
-        this.props.dispatch(addListLoadmoreToChannel(active.id, messages))
-        this.setState({ disable: false });
-        return;
+        const { active,dispatch,CONFIG } = props
+		if (!active) return false
+		const { messages } = active
+        setFetch( true )
+        messageAPI.getMessageUser({ id: active?.users[0]?.id, channelid: active._id,  next: messages[0]?._id || '' })
+        .then( response => {
+            dispatch(concatMesssagesToChannel(active._id, response.data, CONFIG.CONSTANT.STATE__STATUS.SUCCESS))
+            setFetch( false )
+        })
+        .catch(error => {
+            console.log("ERROR:: ",error)
+            dispatch(concatMesssagesToChannel(active._id, [], CONFIG.CONSTANT.STATE__STATUS.ERROR))
+            setFetch( false )
+        })
 	}
+    if(fetch) return null
 
     return (
         <div className="loadmore">
