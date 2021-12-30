@@ -31,26 +31,37 @@ export function didMouseScroll(props, isUpdate = false ){
     const noneRead = messages.find( mess => !mess.read && mess?.user != auth?.id )
     /// nếu tất cả tin nhắn đều đã đọc thì scroll đến cuối của list tin nhắn
     if( !noneRead ){
-        console.warn("do cái này")
+        // console.warn("do cái này")
         scrollToBottomBlockMessage()
     }
     /// tồn tại tin nhắn chưa đọc
     else {
         if( domScroll && domScroll.scrollHeight <= domScroll.clientHeight ){
             /// trường hợp này là đang update tin nhắn mà vì không đủ mesage để scroll thì mình emit luôn không cần scroll
-            console.warn('trường hợp này là đang update tin nhắn mà vì không đủ mesage để scroll thì mình emit luôn không cần scroll')
+            // console.warn('trường hợp này là đang update tin nhắn mà vì không đủ mesage để scroll thì mình emit luôn không cần scroll')
             socket.emit(CONFIG.EVENT.READ__MESSAGE__ALL, active)
-        } else if( !isUpdate && domWriter && !domWriter.classList.contains('follow-conversation') ){
+            return
+        } else if( 
+            !isUpdate 
+            &&  (
+                (domWriter && !domWriter.classList.contains('follow-conversation'))
+                || !domWriter
+            )
+        ){
             /// nếu là lần đầu tiên khi mới tạo list message thì phải scroll đến dom chưa đọc, nhưng lõ may người dùng đang scroll đến tin nhắn nào đó thì không cho scroll
-            console.warn("ban đầu mới vẽ ra thì chưa có class follow-conversation nên là không follow thì chỉ scroll đến cái chưa đọc")
+            // console.warn("ban đầu mới vẽ ra thì chưa có class follow-conversation nên là không follow thì chỉ scroll đến cái chưa đọc", messages)
             /// nghĩa là khi update không còn chạy vào đây nữa + nếu update thì sẽ có class didmouse
-            scrollToMessageNoneReadBlockMessage(noneRead)
+            const eleNoneRead = document.getElementById(`mess__${noneRead._id}${noneRead.keyUpdate}`)
+            eleNoneRead && eleNoneRead.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"})
+            // eleNoneRead && console.log("có scroll đến cái chưa đọc")
             return
         }else if( isUpdate && domWriter && domWriter.classList.contains('follow-conversation') ){
-            console.warn("có follow thì cho scroll đến cuối => khi scroll đến cuối thì sẽ bị triger emit socket đã đọc")
+            // console.warn("có follow thì cho scroll đến cuối => khi scroll đến cuối thì sẽ bị triger emit socket đã đọc")
             scrollToBottomBlockMessage()
+            return
         }else{
-            console.warn("không đúng cái nào cả ", isUpdate)
+            // console.warn("không đúng cái nào cả ", isUpdate)
+            return
         }
     }
 }
@@ -79,14 +90,4 @@ function scrollToBottomBlockMessage(){
         })
     }
     
-}
-// function scrollToMessageNoneReadBlockMessage(mess, DELTA_HEIGHT_DOM_NONE_READ = 0){
-function scrollToMessageNoneReadBlockMessage(mess){
-    
-    const domScroll = document.getElementById("js-scroll-to-bottom")
-    //// scroll to message none read
-    const eleNoneRead = document.getElementById(`mess__${mess._id}${mess.keyUpdate}`)
-    // const index = (eleNoneRead?.offsetTop < DELTA_HEIGHT_DOM_NONE_READ) ? 0 : (eleNoneRead?.offsetTop - DELTA_HEIGHT_DOM_NONE_READ)
-    // eleNoneRead && ( domScroll.scrollTop = index )
-    eleNoneRead && eleNoneRead.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"})
 }

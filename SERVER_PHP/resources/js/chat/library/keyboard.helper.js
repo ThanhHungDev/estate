@@ -73,6 +73,7 @@ export function sendMessageToChannel(props){
     const { CONFIG, socket, active, auth } = props
     const channel = active._id /// lấy channel active id từ component cha
     const keyUpdate = (new Date).getTime()/// random
+    if(!attachment && !message && !style ) return false
     socket.emit(CONFIG.EVENT.ADD__MESSAGE, { 
         keyUpdate, /// random
         message, // function calc

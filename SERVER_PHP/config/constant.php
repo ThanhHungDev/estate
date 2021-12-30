@@ -203,5 +203,11 @@ return [
     'ACTIVITY' => [
         'DEACTIVE' => 1,
         'ACTIVE' => 2,
+    ],
+    /// message fetch in react
+    'STATE__STATUS' => [ 
+        'LOADDING' => 0,
+        'SUSSESS'  => 1,
+        'ERROR'    => 2,
     ]
 ];

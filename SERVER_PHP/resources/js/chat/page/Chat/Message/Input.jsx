@@ -34,7 +34,7 @@ const Input = props => {
             },
             false
         )
-    }, [isSend])
+    }, [isSend, active._id]) 
 
     const handleSendMessageDown = event => {
         /// dettect if key = enter and not (shift + enter) => send

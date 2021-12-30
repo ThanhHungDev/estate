@@ -98,10 +98,11 @@ class ClientController extends Controller
         foreach($conversations as $conv){
             $arrID = json_decode(json_encode($conv->user), true);
             /// ignore auth
-            $arrID = array_filter($arrID, function($id) use ($authId){ return $authId != $id; });
+            $arrID       = array_filter($arrID, function($id) use ($authId){ return $authId != $id; });
             $conv->users = User::whereIn('id', $arrID)->get();
             // $conv->messages = Message::where('channel', new \MongoDB\BSON\ObjectID($conv->_id))->take(4)->get()->toArray();
             $conv->messages = (new Message())->getMessageByChannelId($conv->_id);
+            $conv->status   = Config::get('constant.STATE__STATUS.LOADDING'); /// status biểu thị cho việc fetch thêm message cho hệ thống
         }
         return view('client.chat', compact(['id', 'conversations', 'messages']));
     }

@@ -6,11 +6,12 @@ export default function (state = JSON.parse(window.CONVERSATIONS), action) {
     switch (action.type) {
         case TYPE.MESSAGE.CONCAT :{
             /// _id là conversation id, messages là danh sách message của api trả về
-            const { _id, messages } = action.payload
+            const { _id, messages, status } = action.payload
             
             return state.map(conversation => {
                 if (conversation._id == _id){
                     conversation.messages = [ ... messages, ... conversation.messages ]
+                    conversation.status   = status
                 }
                 return conversation
             })
