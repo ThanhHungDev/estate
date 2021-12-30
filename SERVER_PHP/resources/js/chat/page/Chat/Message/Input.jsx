@@ -14,6 +14,7 @@ import {
 const showListEmoji = event => {
 
     if (document.getElementById("js-emojis")) {
+        console.log("có vào đây rồi")
         document.getElementById("js-emojis").classList.add("show-temp");
     }
 }
@@ -34,6 +35,23 @@ const Input = props => {
             },
             false
         )
+        window.onclick = function (event) {
+            if (event.target) {
+                if (event.target.classList.contains('component-emoji')) {
+                    return;
+                }
+            }
+            const emojis = document.getElementById("js-emojis")
+            if (emojis) {
+                emojis.classList.remove("show")
+                setTimeout(function () {
+                    if (emojis.classList.contains("show-temp")) {
+                        emojis.classList.remove("show-temp")
+                        emojis.classList.add("show")
+                    }
+                }, 0);
+            }
+        };
     }, [isSend, active._id]) 
 
     const handleSendMessageDown = event => {
@@ -66,7 +84,7 @@ const Input = props => {
         <div id="js-is-write-message" className="blockinput">
             <Typing active={active} />
             <div id="js-image--block" className="image-block"></div>
-            <input id="image-file" type="file" className="d-none" accept=".xls,.xlsx,.csv,image/*,.pdf,.doc,.docx" onChange={ saveFile } />
+            <input id="image-file" type="file" className="d-none" accept=".xls,.xlsx,.csv,image/*,.pdf,.doc,.docx" onChange={ () => saveFile(props) } />
             <textarea
                 rows='1'
                 id="js-input-chat"

@@ -28,10 +28,10 @@ const getDataSendMessage = props => {
 
     const imagesDom = document.getElementById("js-image--block")
     const images    = imagesDom.getElementsByClassName("remove-image")
-    const message   = document.getElementById("js-input-chat").value
+    const message   = document.getElementById("js-input-chat").value.trim()
     /// check if dom remove-image have image => send messge image
     /// setter text messge of image
-    if (images.length) message = message.trim()
+    console.log("vào đây")
     /// if not have message => not send to server
     if(!images.length && !message) return false
     /// private message spam

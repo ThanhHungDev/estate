@@ -30,7 +30,8 @@ return [
         'AVATAR'     => 'avatar',
         'POST'       => 'post',
         'BACKGROUND' => 'background',
-        'MIXED'      => 'mixed'
+        'MIXED'      => 'mixed',
+        'CHAT'       => 'chat',
     ],
     'EXTENTION_CONVERTOR' => '.webp',
 

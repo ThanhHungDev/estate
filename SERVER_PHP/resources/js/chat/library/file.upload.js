@@ -1,3 +1,23 @@
+const handleErrorUploadFile = () => {
+    const reWriteUrl = document.getElementById("js-image--block").getElementsByClassName("js-sign-url")
+    if (reWriteUrl.length) {
+        reWriteUrl[0].remove()
+    }
+}
+
+const getTypeFile = filename  => {
+    let accept = /(\.jpg|\.jpeg|\.bmp|\.gif|\.png|\.image)$/i
+    if(accept.exec(filename)){
+        return "img"
+    }
+    accept = /(\.xls|\.xlsx|\.csv|\.pdf|\.doc|\.docx)$/i
+    if(accept.exec(filename)){ 
+
+        return "file"
+    }
+    return null
+}
+
 const saveBlobToServer = file => {
     const SIZE_LIMIT = 5 * 1024 * 1024
 
@@ -5,13 +25,13 @@ const saveBlobToServer = file => {
         handleErrorUploadFile()
     }
     
-    let dataFile = file
-    let form = new FormData()
-    form.append('file', dataFile)
-    form.append('user_id', 1)
+    const dataFile = file
+    const form = new FormData()
+    form.append('file[]', dataFile)
+    form.append("type", 'chat')
 
     $.ajax({
-        url        : CONFIG.SERVER_PHP.URL + '/api/upload',
+        url        : '/api/v1/file',
         type       : 'post',
         enctype    : 'multipart/form-data',
         data       : form,
@@ -19,20 +39,17 @@ const saveBlobToServer = file => {
         contentType: false,
         processData: false,
         success: function( response ){
-            
-            if (response.code != 200) {
+
+            if (response.status != 200) {
                 alert("upload fail: " + response.message)
                 handleErrorUploadFile()
             }
-            let reWriteUrl = document.getElementById("js-image--block").getElementsByClassName("js-sign-url")
+            const reWriteUrl = document.getElementById("js-image--block").getElementsByClassName("js-sign-url")
             if (reWriteUrl.length) {
-                reWriteUrl[0].setAttribute("data-url", response.data.url)
+                const [ img ] = response.data
+                reWriteUrl[0].setAttribute("data-url", img.root)
 
-                let typeFile = response.data.file_name,
-                extentionType = null
-                if( typeFile ){
-                    extentionType = getTypeFile( typeFile )
-                }
+                const extentionType = img.root ? getTypeFile( img.root ) : null
                 if( !extentionType ){
                     reWriteUrl[0].remove()
                 }else{
@@ -42,8 +59,7 @@ const saveBlobToServer = file => {
             }
         },
         error: function(error){
-            console.log(error)
-            alert("upload fail: " + error.message)
+            alert("upload fail ", error.message)
             handleErrorUploadFile()
         }
     })
@@ -64,7 +80,7 @@ const imageFileCallback = function (imgLoading) {
     document.getElementById("js-image--block").appendChild(wrapperImage)
 }
 
-const retrieveImage = file => {
+const retrieveImage = (file, props) => {
 
     // console.log( file )
     let callback = imageFileCallback
@@ -87,7 +103,7 @@ const retrieveImage = file => {
         console.log(error)
     }
 }
-const retrieveFile = file => {
+const retrieveFile = (file, props) => {
 
     let callback = imageFileCallback
     // Retrieve image on clipboard as blob
@@ -137,21 +153,21 @@ export function retrieveImageFromClipboardAsBlob(pasteEvent){
 }
 
 
-export function saveFile(){
+export function saveFile( props ){
+    /// ta lấy file ra
+    const file        = document.getElementById("image-file").files[0]
 
-    let file        = document.getElementById("image-file").files[0]
-
-    let acceptIMAGE = /(\.jpg|\.jpeg|\.bmp|\.gif|\.png|\.image)$/i
+    const acceptIMAGE = /(\.jpg|\.jpeg|\.bmp|\.gif|\.png|\.image)$/i
     if(acceptIMAGE.exec(file.name)){
-        
-        retrieveImage( file )
+        /// nếu là img thì upload img
+        retrieveImage( file, props )
         return false
     }
 
     const acceptFILE = /(\.xls|\.xlsx|\.csv|\.pdf|\.doc|\.docx)$/i
     if(acceptFILE.exec(file.name)){ 
-
-        retrieveFile( file )
+        /// nếu là file thì upload file
+        retrieveFile( file, props )
         return false
     }
     // this file is not supported!

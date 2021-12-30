@@ -66,7 +66,7 @@ class FileController extends Controller
             'file.array'    => 'lỗi file không phải array',
             'file.min'      => 'array ít nhất là 1',
             'file.max'      => 'array nhiều nhất là 4',
-            'file.*.mimes'  => 'Không đúng định dạng cần thiết',
+            'file.*.mimes'  => 'Không đúng định dạng cần thiết 1',
             'file.*.max'    => 'file không được vượt quá 50MB',
         );
         /// check người dùng đẩy lên upload có phải image hông
@@ -88,7 +88,7 @@ class FileController extends Controller
                 'file.array'    => 'lỗi file không phải array',
                 'file.min'      => 'array ít nhất là 1',
                 'file.max'      => 'array nhiều nhất là 4',
-                'file.*.mimes'  => 'Không đúng định dạng cần thiết',
+                'file.*.mimes'  => 'Không đúng định dạng cần thiết 2',
                 'file.*.image'  => 'Không đúng định dạng ảnh',
                 'file.*.max'    => 'file không được vượt quá 50MB',
             );
@@ -103,7 +103,7 @@ class FileController extends Controller
                 'file.array'    => 'lỗi file không phải array',
                 'file.min'      => 'array ít nhất là 1',
                 'file.max'      => 'array nhiều nhất là 4',
-                'file.*.mimes'  => 'Không đúng định dạng cần thiết',
+                'file.*.mimes'  => 'Không đúng định dạng cần thiết 3',
                 'file.*.image'  => 'Không đúng định dạng ảnh',
                 'file.*.max'    => 'file không được vượt quá 2048Byte',
             );
