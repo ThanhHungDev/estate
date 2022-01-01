@@ -58,6 +58,12 @@ const Input = props => {
         /// dettect if key = enter and not (shift + enter) => send
         const isSendMessage = (event.keyCode == 13 && !event.shiftKey) && (event.keyCode == 13 && !event.altKey)
         if (isSendMessage) {
+            const { socket } = props
+            if( !socket ){
+                alert("kết nối máy chủ thất bại, vui lòng refesh lại trang!")
+                setIsSend(true)
+                return false
+            }
             sendMessageToChannel(props)
             setIsSend(true)
             return false
@@ -66,7 +72,7 @@ const Input = props => {
         event.keyCode == 32 && handleTypeEmoji(props)
     }
 
-    const handleSendMessageUp = event => {
+    const handleSendMessageUp = () => {
         if(isSend){
             setIsSend(false)
             document.getElementById("js-input-chat").value = ""
