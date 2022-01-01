@@ -36,8 +36,8 @@ mix
 
 
 
-    // .js('resources/js/post.js', 'public/js').react()
-    .js('resources/js/chat.js', 'public/js').react()
+    .js('resources/js/post.js', 'public/js').react()
+    // .js('resources/js/chat.js', 'public/js').react()
     // .js('resources/js/comment.js', 'public/js').react()
     // .js('resources/js/validate.login.user.js', 'public/js')
     // .js('resources/js/validate.register.user.js', 'public/js')
@@ -56,8 +56,8 @@ mix
     // .js('resources/js/validate.contact.js', 'public/js')
 
     /// react trong phần tạp step by step 
-    // .sass('resources/sass/page/user.post.scss', 'public/css') /// --------------> react create post
-    .sass('resources/sass/page/user.chat.scss', 'public/css') /// --------------> react create chat
+    .sass('resources/sass/page/user.post.scss', 'public/css') /// --------------> react create post
+    // .sass('resources/sass/page/user.chat.scss', 'public/css') /// --------------> react create chat
 
 
 

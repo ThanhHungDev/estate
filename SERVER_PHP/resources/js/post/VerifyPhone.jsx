@@ -59,19 +59,8 @@ function VerifyPhone( props ){
             .then( response => {
                 console.log(response, "response props.AUTH")
                 firebase.auth().signOut()
-                // .then(() => {
-                //     // Sign-out successful.
-                // }).catch((error) => {
-                //     // An error happened.
-                // });
                 location.reload()
                 setIsProgress(null)
-                /// thành công thì refresh trang
-                // const { user, phone, jwt } = response.data
-                // /// lưu jwt vào localStorage
-                // localStorage.setItem('jwt', jwt)
-                // /// dispatch auth
-                // props.dispatch(setterAuth(jwt_decode(jwt)))
             })
             .catch(error => {
                 console.log("ERROR:: ",error);
@@ -82,7 +71,7 @@ function VerifyPhone( props ){
     }, []);
 
     function isVietnamesePhoneNumber(number) {
-        return /([\+84|84]+(3|5|7|8|9|1[2|6|8|9]))+([0-9]{8,9})\b/.test(number);
+        return /([\+84|84|0]+(3|5|7|8|9|1[2|6|8|9]))+([0-9]{8,10})\b/.test(number)
     }
     function validatePhone(){
         /// thay đổi liên tục
@@ -111,6 +100,9 @@ function VerifyPhone( props ){
     function sendSignInPhone(event) {
         
         const number = refPhone.current.value
+
+        //// phone 
+        const phone = number[0] != '0' ? number : `+84${number.substring(1)}`
         validatePhone()
         console.log(invalidPhone)
         
@@ -126,7 +118,7 @@ function VerifyPhone( props ){
             /// gửi reqquest lên firebase
             firebase
             .auth()
-            .signInWithPhoneNumber(number, window.recapchaVerifier)
+            .signInWithPhoneNumber(phone, window.recapchaVerifier)
             .then(function (confirmationResult) {
                 window.confirmationResult = confirmationResult
                 console.log(confirmationResult)
