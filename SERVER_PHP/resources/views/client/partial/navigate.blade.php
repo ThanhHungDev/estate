@@ -20,12 +20,12 @@
                 <span class="title">Tin Tức</span>
             </a>
         </li>
-        <li class="navigate__link {{ SupportRouter::fillClassActive('active', 'CONTACT_PAGE') }}">
-            <a href="{{ Route('CONTACT_PAGE') }}">
-                <span class="title">Liên Hệ</span>
+        @auth
+        <li class="navigate__link {{ SupportRouter::fillClassActive('active', 'CHAT') }}">
+            <a href="{{ Route('CHAT') }}">
+                <span class="title">Chat</span>
             </a>
         </li>
-        @auth
         <li class="navigate__link {{ SupportRouter::fillClassActive('active', 'USER_DASHBOARD') }}">
             <a href="{{ Route('USER_DASHBOARD') }}">
                 <span class="title">Profile</span>
@@ -37,6 +37,11 @@
             </a>
         </li>
         @else
+        <li class="navigate__link {{ SupportRouter::fillClassActive('active', 'CONTACT_PAGE') }}">
+            <a href="{{ Route('CONTACT_PAGE') }}">
+                <span class="title">Liên Hệ</span>
+            </a>
+        </li>
         <li class="navigate__link {{ SupportRouter::fillClassActive('active', 'REGISTER') }}">
             <a href="{{ Route('REGISTER') }}">
                 <span class="title">Đăng ký</span>
