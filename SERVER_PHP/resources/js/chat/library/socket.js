@@ -114,4 +114,7 @@ export function createSocketListenner(socket, props, CONFIG){
         props.dispatch(setterSocket(null))
     })
     /// check if comment none fetch or comment length empty
+    socket.on('reconnect', (attemptNumber) => {
+        alert("đang reconnect thành công rồi nè")
+    });
 }

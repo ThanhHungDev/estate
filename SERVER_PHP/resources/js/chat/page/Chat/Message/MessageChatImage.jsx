@@ -24,7 +24,7 @@ const MessageChatImage = props => {
                         <div key={ index } className="wrapper-attachment">
                             <img src={ imgsrc } alt=''/>
                             <a href={ url } className="download-file-attachment" target="_blank" download>
-                                <i className="hero-icon hero-cloud-download-outline"></i>
+                                <i class="far fa-cloud-download-alt"></i>
                             </a>
                         </div>
                     )

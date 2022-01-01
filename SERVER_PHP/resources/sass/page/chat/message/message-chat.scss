@@ -79,13 +79,14 @@
       
       i{
         text-align: center;
-        background-color: $white;
+        background-color: #ffffff88;
         color: $custom-primary-color-dark;
         border-radius: 50%;
-        border: 1px solid $custom-primary-color-dark;
+        border: 1px solid lighten($color: $custom-primary-color-dark, $amount: 40%);
         width: 25px;
         height: 25px;
         font-size: 15px;
+        padding-top: 3px;
       }
     }
   }

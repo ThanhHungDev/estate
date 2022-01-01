@@ -161,6 +161,8 @@ export function saveFile( props ){
     if(acceptIMAGE.exec(file.name)){
         /// nếu là img thì upload img
         retrieveImage( file, props )
+        console.log("có reset file")
+        file.value = null
         return false
     }
 
@@ -168,6 +170,7 @@ export function saveFile( props ){
     if(acceptFILE.exec(file.name)){ 
         /// nếu là file thì upload file
         retrieveFile( file, props )
+        file.value = null
         return false
     }
     // this file is not supported!
