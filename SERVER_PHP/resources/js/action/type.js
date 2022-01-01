@@ -17,6 +17,7 @@ const TYPE =  {
         UPDATE__MESSAGE: "UPDATE__MESSAGE_DATA",
         READ           : "READ",
         ONLINES        : "ONLINES",
+        RECONNECT      : "RECONNECT",
     }
 }
 export default TYPE;

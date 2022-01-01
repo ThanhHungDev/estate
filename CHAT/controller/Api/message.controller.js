@@ -19,11 +19,11 @@ module.exports.getInit = asyncHandler(async (req, res ) => {
     /// bước 1 lấy toàn bộ channel của nó ra
     const channels = await Channel.find( { user: req.user.id, backup: false } )
     if( !channels.length ) throw createError(responseLibrary.HTTP_NOT_FOUND, "khong tìm thấy channel")
-    const data = await Promise.all(channels.map(channel => Message.messageInChannel(mongoose.Types.ObjectId(channel._id), req.user.id) ))
+    const lists = await Promise.all(channels.map(channel => Message.messageInChannel(mongoose.Types.ObjectId(channel._id), req.user.id) ))
 
     const response = {
-        code   : 200,
-        data   : data,
+        code   : 200, 
+        data   : lists,
         onlines: res.io.USER_ONLINES || [],
         message: "danh sách data"
     }

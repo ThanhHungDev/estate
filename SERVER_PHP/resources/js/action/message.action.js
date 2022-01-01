@@ -39,3 +39,11 @@ export function handleUserOnline( onlines ){
         payload : onlines
     }
 }
+
+export function handleReconnect( messConv ){
+    console.log(messConv , " handleReconnect ")
+    return {
+        type : TYPE.MESSAGE.RECONNECT,
+        payload : messConv
+    }
+}

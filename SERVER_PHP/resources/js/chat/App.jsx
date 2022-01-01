@@ -54,8 +54,9 @@ function App( props ){
 
 let mapStateToProps = (state) => {
     return {
-        auth  : state.auth,
-        CONFIG: state.config,
+        auth         : state.auth,
+        CONFIG       : state.config,
+        conversations: state.conversation,
     }
 }
 export default connect(mapStateToProps)(App)

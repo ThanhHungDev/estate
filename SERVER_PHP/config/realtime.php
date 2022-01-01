@@ -12,5 +12,6 @@ return [
     'JOIN__CHATTING',
     'TYPING',
     'ADD__MESSAGE',
-    'READ__MESSAGE__ALL'
+    'READ__MESSAGE__ALL',
+    'RECONNECT__CHATTING'
 ];

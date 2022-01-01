@@ -3,6 +3,7 @@ import {
     updateMessageRealtime,
     readAllMessageInChannel,
     handleUserOnline,
+    handleReconnect,
 } from '../../action/message.action'
 import { setterSocket } from '../../action/socket.action'
 
@@ -91,6 +92,25 @@ export function createSocketListenner(socket, props, CONFIG){
             return false
         }
     })
+    .on( CONFIG.EVENT.RESPONSE__RECONNECT__CHATTING, function (response) {
+        console.log("Thành công get data messsage!", response)
+        /// có 2 trường hợp 1 là lỗi, 2 là thành công, trong thành công phải xem có phải người đang gửi và nhận là 1 người không
+        const { code, data, socketid } = response
+        const { conversations } = props
+        /// lỗi => log error
+        if( code != 200 ) return false
+        else if( code == 200 ){
+            const lists = {}
+            /// xử lý data
+            data.map( mess => {
+                const [ message ] = mess
+                lists[message.channel] = mess
+            })
+            props.dispatch(handleReconnect(lists))
+            return false
+        }
+    })
+    
     
     .on('error', (err) => {
         console.log("************ Error ************")
@@ -110,11 +130,16 @@ export function createSocketListenner(socket, props, CONFIG){
         // console.error(error instanceof Error); // true
         console.error("connect_error " + socket.connected, error.message); // not authorized
         // console.error(error.data); // { content: "Please retry later" }
-        socket.disconnect()
+        // socket.disconnect()
         props.dispatch(setterSocket(null))
     })
     /// check if comment none fetch or comment length empty
     socket.on('reconnect', (attemptNumber) => {
-        alert("đang reconnect thành công rồi nè")
+        // alert("đang reconnect thành công rồi nè")
+        const { conversations } = props
+        const channels = conversations.map( conv => conv._id )
+        // console.log("connected ở đây sẽ thành công " + socket.connected)
+        /// thử emit lên mới 1 sự kiện trong JOIN__CHATTING
+        socket.emit(CONFIG.EVENT.RECONNECT__CHATTING, channels )
     });
 }

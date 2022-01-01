@@ -56,13 +56,7 @@ MessageSchema.statics.messageInChannel = function(channelID, authId) {
         },
         {
             $project: { 
-                type: {
-                    $cond: {
-                        if: { $eq: [ authId, "$user" ] },
-                        then: true,  
-                        else: false
-                    }
-                }, 
+                user      : true,
                 body      : true,
                 read      : true,
                 readAdmin : true,

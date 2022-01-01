@@ -427,6 +427,34 @@ io
         }
     })
 
+    .on( CONFIG.EVENT.RECONNECT__CHATTING, async channels => {
+        const { jwt } = socket
+        console.log(`${CONFIG.EVENT.RECONNECT__CHATTING} : socket re${socket.id}` )
+        try {
+            const convMess = await Promise.all(channels.map( channel => Message.messageInChannel(mongoose.Types.ObjectId(channel), jwt.id) ))
+            const response = {
+                code    : RESPONSE.HTTP_OK,
+                data    : convMess,
+                user    : jwt.id,
+                message : "socket reconnect message thành công",
+                socketid: socket.id
+            }
+            socket.emit(CONFIG.EVENT.RESPONSE__RECONNECT__CHATTING, response)
+            return
+        } catch (error) {
+            const response = {
+                code   : RESPONSE.HTTP_INTERNAL_SERVER_ERROR,
+                error  : error.message,
+                old    : channels,
+                message: "socket reconnect message khoong thành công"
+            }
+            socket.emit(CONFIG.EVENT.RESPONSE__RECONNECT__CHATTING, response )
+            return
+        }
+    })
+
+
+    
 
     
 })

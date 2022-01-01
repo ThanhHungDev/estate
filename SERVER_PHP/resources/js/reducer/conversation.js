@@ -67,6 +67,15 @@ export default function (state = JSON.parse(window.CONVERSATIONS), action) {
                 return conversation
             })
         }
+
+        case TYPE.MESSAGE.RECONNECT : {
+            const lists = action.payload
+            
+            return state.map(conversation => {
+                conversation.messages = lists[conversation._id]
+                return conversation
+            })
+        }
         
 
         
