@@ -13,9 +13,9 @@ Chào <i>Admin</i>,
     <p>
         <a href="mailto:{{ Config::get('app.company_mail') }}">{{ Config::get('app.company_mail') }}</a>
     </p>
-    <img src="{{ asset(env('LOGO')) }}" alt="ebudezain" />
+    <img src="{{ env('APP_URL') . env('LOGO') }}" alt="ebudezain" />
 
     <p>
-        <b>Website: </b> <span> {{ asset('/') }} </span>        
+        <b>Website: </b> <span> {{ env('APP_URL') }} </span>        
     </p>
 </div>

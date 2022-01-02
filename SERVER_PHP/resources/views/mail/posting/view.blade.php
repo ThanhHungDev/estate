@@ -24,7 +24,7 @@ Chào <i>Admin</i>,
     <p>
         <a href="mailto:{{ Config::get('app.company_mail') }}">{{ Config::get('app.company_mail') }}</a>
     </p>
-    <img src="{{ asset(env('LOGO')) }}" alt="ebudezain" />
+    <img src="{{ env('APP_URL') . env('LOGO') }}" alt="ebudezain" />
     <p>
         <b>Địa Chỉ: </b> <span> {{ implode(',', [ Config::get("app.company_address_street"), Config::get("app.company_address_locality"), Config::get("app.company_address_region"), Config::get("app.company_address_country")]) }} </span>        
     </p>
@@ -32,6 +32,6 @@ Chào <i>Admin</i>,
         <b>Liên hệ: </b> <span> {{ Config::get("app.phone_one") }} </span>        
     </p>
     <p>
-        <b>Website: </b> <span> {{ asset('/') }} </span>        
+        <b>Website: </b> <span> {{ env('APP_URL') }} </span>        
     </p>
 </div>
