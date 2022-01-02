@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LOGIN_REQUEST;
 use App\Models\User;
+use App\Services\CreateUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Response;
@@ -14,7 +15,10 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class LoginController extends Controller
 {
-    
+    private $serviceCreateUser = null;
+    public function __construct(CreateUser $_service) {
+        $this->serviceCreateUser = $_service;
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -144,7 +148,23 @@ class LoginController extends Controller
                 'created_at'  => date('Y-m-d H:i:s'),
                 'updated_at'  => date('Y-m-d H:i:s'),
             ];
-            $user = User::create($object);
+            try {
+                DB::beginTransaction();
+                $user = User::create($object);
+                $this->serviceCreateUser->queueMailAdmin($user);
+                /// thêm channel admin mới vì chắc chắn là user này chưa có channel với admin
+                $this->serviceCreateUser->createChannelAdmin($user);
+                DB::commit();
+            } catch (\Throwable $th) {
+                DB::rollback();
+                return response()
+                    ->error(
+                        'có lỗi lưu trữ '. $th->getMessage(), 
+                        ['error' => 'save__error'],
+                        Response::HTTP_INTERNAL_SERVER_ERROR
+                    )
+                    ->setStatusCode(Response::HTTP_INTERNAL_SERVER_ERROR);
+            }
         }else if( $user->active == Config::get("constant.ACTIVITY.ACTIVE") ){
             /// tài khoản đã được active nên bạn cần phải xác minh password để bảo vệ
             return response()

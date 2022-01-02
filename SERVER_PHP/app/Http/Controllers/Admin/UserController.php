@@ -8,15 +8,17 @@ use App\Models\Permission;
 use App\Models\PermissionRole;
 use App\Models\Role;
 use App\Models\User;
-use App\Repositories\PermissionRole\PermissionRoleEloquentRepository;
+use App\Services\CreateUser;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
+    private $serviceCreateUser = null;
+    public function __construct(CreateUser $_service) {
+        $this->serviceCreateUser = $_service;
+    }
     /**
      * Show form save data of component ( insert or edit )
      *
@@ -68,10 +70,13 @@ class UserController extends Controller
             }
 
             $user = User::create($userInput);
-            $userID = $user->id;
+            /// gửi mail cảm ơn
+            $this->serviceCreateUser->queueMailAdmin($user);
+            /// thêm channel admin mới vì chắc chắn là user này chưa có channel với admin
+            $this->serviceCreateUser->createChannelAdmin($user);
 
             $request->session()->flash(Config::get('constant.SAVE_SUCCESS'), true);
-            return redirect()->route('ADMIN_STORE_USER',  ['id' => $userID ]);
+            return redirect()->route('ADMIN_STORE_USER',  ['id' => $user->id ]);
 
         }catch (\Exception $e){
             return redirect()->back()

@@ -4,19 +4,16 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Requests\ADMIN_VALIDATE_LOGIN;
-use App\Mail\MailRequest;
+use App\Jobs\QueueMailler;
 use App\Models\Iplogin;
 use App\Models\RequestTime;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
-    
     /**
      * ADMIN_DASHBOARD
      */
@@ -124,17 +121,9 @@ class AdminController extends Controller
         }else{
             $messageMail = "Cảnh báo đăng nhập! \n Có người đang cố truy cập vào admin với email: $email và password: $password ip: $ip";
         }
-        /// send mail có người đăng nhập admin
-        
-        Log::channel('mail')->info("Đang liên lạc với quản trị viên về vấn đề: " . $messageMail);
-        if(Config::get('app.env') != 'local'){
-            Mail::to(trim(env('MAIL_TO_ADMIN', 'thanhhung.code@gmail.com')))
-            ->send(new MailRequest([ 'message' => $messageMail ]));
-            if (Mail::failures()) {
-
-                Log::channel('mail')->info("lỗi lớn, không thể liên lạc với quản trị viên.");
-            }
-        }
+        $jobmailler = (new QueueMailler(trim(env('MAIL_TO_ADMIN', 'thanhhung.code@gmail.com')), [ 'message' => $messageMail ] ))
+                        ->delay(Carbon::now()->addSeconds(5));
+        dispatch($jobmailler);
     }
 
 }

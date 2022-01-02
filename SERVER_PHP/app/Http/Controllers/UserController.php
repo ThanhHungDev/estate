@@ -8,20 +8,23 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use App\Http\Requests\REGISTER_REQUEST;
 use App\Http\Resources\LikeResource;
-use App\Mail\MailRequest;
-use App\Models\Channel;
 use App\Models\Category;
+use App\Models\Channel;
 use App\Models\Product;
 use App\Models\User;
+use App\Services\CreateUser;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 
 
 class UserController extends Controller
 {
+    private $serviceCreateUser = null;
+    public function __construct(CreateUser $_service) {
+        $this->serviceCreateUser = $_service;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -42,26 +45,6 @@ class UserController extends Controller
         return view('client.register');
     }
 
-    private function mailAdminPostLogin($request, $type = false){
-
-        $email       = strtolower($request->input('email'));
-        $ip          = $request->ip();
-        $messageMail = "Tạo tài khoản thành công! \n Tài khoản đăng ký thành công với email: $email và ip: $ip";
-        /// send mail có người đăng nhập admin
-        
-        Log::channel('mail')->info("Đang liên lạc với quản trị viên về vấn đề: " . $messageMail);
-        if(Config::get('app.env') != 'local'){
-            Mail::to(trim(env('MAIL_TO_ADMIN', 'thanhhung.code@gmail.com')))
-            ->send(new MailRequest([ 'message' => $messageMail ]));
-            if (Mail::failures()) {
-
-                Log::channel('mail')->info("lỗi lớn, không thể liên lạc với quản trị viên.");
-            }
-        }
-    }
-
-
-    
     /**
      * Store a newly created resource in storage.
      *
@@ -75,10 +58,17 @@ class UserController extends Controller
         $userInput = request(['name', 'email', 'password']);
         $userInput['password'] = bcrypt($userInput['password']);
 
-        $user = User::create($userInput);
-        /// gửi mail cảm ơn
-        if( $user->id ){
-            $this->mailAdminPostLogin($request, true);
+        try {
+            DB::beginTransaction();
+            $user = User::create($userInput);
+            /// gửi mail cảm ơn
+            $this->serviceCreateUser->queueMailAdmin($user);
+            /// thêm channel admin mới vì chắc chắn là user này chưa có channel với admin
+            $this->serviceCreateUser->createChannelAdmin($user);
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollback();
+            return redirect()->back()->with(Config::get('constant.REGISTER_ERROR'), 'Đăng ký thất bại!!! ');
         }
 
         
@@ -249,9 +239,10 @@ class UserController extends Controller
 
         $userId = $profile->id;
 
-        // $conversations = (new Channel())->getConversationsByUser($profile->id);
+        $conversations = (new Channel())->getConversationsByUser($profile->id);
         // /// từ conversations dùng laravel lấy hết user id friend bạn bè
-        // $idFriends = $conversations->pluck('user')->toArray();
+        $idFriends = $conversations->pluck('user')->toArray();
+        dd($idFriends);
         $idFriends = [
             Config::get('constant.ID_ADMIN')
         ];

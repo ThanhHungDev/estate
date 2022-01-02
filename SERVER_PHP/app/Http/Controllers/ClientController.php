@@ -60,19 +60,19 @@ class ClientController extends Controller
         if( $authId == $id ) return abort(404);
         // if( !is_numeric($id) ) return abort(404);
         $modelChannel = new Channel();
-        $channelAdmin = $modelChannel->countConversationsByUser($authId, Config::get('constant.ID_ADMIN'));
-        if( !$channelAdmin ){
-            /// thêm channel admin mới
-            $admin = [ Config::get('constant.ID_ADMIN'), $authId ];
-            sort($admin, SORT_NUMERIC);
-            $insert = [
-                'name' => implode( "-", $admin),
-                'user' => $admin,
-                'sort' => 0,
-                'backup' => false,
-            ];
-            $admin = Channel::create($insert);
-        }
+        // $channelAdmin = $modelChannel->countConversationsByUser($authId, Config::get('constant.ID_ADMIN'));
+        // if( !$channelAdmin ){
+        //     /// thêm channel admin mới
+        //     $admin = [ Config::get('constant.ID_ADMIN'), $authId ];
+        //     sort($admin, SORT_NUMERIC);
+        //     $insert = [
+        //         'name' => implode( "-", $admin),
+        //         'user' => $admin,
+        //         'sort' => 0,
+        //         'backup' => false,
+        //     ];
+        //     $admin = Channel::create($insert);
+        // }
         /// check $id là có trong bảng users không
         $isExist = User::find((int)$id);
         if( !!$isExist && $authId && $id ){
