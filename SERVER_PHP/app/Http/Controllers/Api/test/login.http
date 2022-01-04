@@ -1,20 +1,20 @@
 
 POST /api/v1/login HTTP/1.1
-Host: localhost:80
+Host: 127.0.0.1
 User-Agent: rest-client
 Accept-Language: en-GB,en-US;q=0.8,en;q=0.6,zh-CN;q=0.4
 content-type: application/json
 
 {
-    "email": "truongpham260620@gmail.com",
+    "email": "userpost@gmail.com",
     "password": "123456"
 }
 ################################
-
+http://localhost/api/v1/login
 
 
 GET /api/v1/users HTTP/1.1
-Host: localhost:80
+Host: localhost
 User-Agent: rest-client
 Accept-Language: en-GB,en-US;q=0.8,en;q=0.6,zh-CN;q=0.4
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL2FwaVwvdjFcL2xvZ2luIiwiaWF0IjoxNjI2MTAxMjIzLCJleHAiOjE2MjYxMDQ4MjMsIm5iZiI6MTYyNjEwMTIyMywianRpIjoieElvMXU3akh2THpSeWxWZCIsInN1YiI6MiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.Ykk7ghisbW9r8uQpmW1zyNVM0CygPw9e0G-QyUhnvrc
