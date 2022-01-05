@@ -20,10 +20,12 @@ class _HomePageState extends State<HomePage> {
       child: BlocListener<AuthenticationBloc, AuthenticationState>(
         cubit: BlocProvider.of<AuthenticationBloc>(context),
         listener: (context, state) {
-          print("có vào listenner");
+          print("có vào listenner AuthenticationBloc");
           if (state is AuthenticationAuthenticated) {
             /// điều hướng ở đây
-            Navigator.pushNamed(context, '/chat');
+            // Navigator.pushNamed(context, '/chat');
+            /// push không cho back
+            Navigator.pushReplacementNamed(context, '/chat');
           }
         },
         child: BlocBuilder<AuthenticationBloc, AuthenticationState>(

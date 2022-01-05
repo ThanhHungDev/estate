@@ -1,6 +1,5 @@
 import 'package:bds/blocs/authentication/authentication_bloc.dart';
 import 'package:bds/blocs/socket/socket_bloc.dart';
-import 'package:bds/models/UserResource.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -27,50 +26,37 @@ class _ChatPageState extends State<ChatPage> {
     }
 
     print("có data nè " + auth.user.id.toString() + " ${auth.user.email}");
-    return BlocProvider(
-      create: (context) => SocketBloc(auth.user.jwt)..add(StartedSocketEvent()),
-      child: _renderChat(context),
-    );
-  }
-
-  Scaffold _renderChat(BuildContext context) {
+    final blocSocket = BlocProvider.of<SocketBloc>(context);
+    blocSocket.add(StartedSocketEvent(auth.user.jwt));
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('AppBar Demo'),
-          actions: <Widget>[
-            IconButton(
-              icon: const Icon(Icons.add_alert),
-              tooltip: 'Show Snackbar',
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('This is a snackbar')));
-              },
-            ),
-            IconButton(
-              icon: const Icon(Icons.navigate_next),
-              tooltip: 'Go to the next page',
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute<void>(
-                  builder: (BuildContext context) {
-                    return Scaffold(
-                      appBar: AppBar(
-                        title: const Text('Next page'),
-                      ),
-                      body: const Center(
-                        child: Text(
-                          'This is the next page',
-                          style: TextStyle(fontSize: 24),
-                        ),
-                      ),
-                    );
-                  },
-                ));
-              },
-            ),
-          ],
-        ),
-        body: Center(
-          child: Text("hung đẹp trai chat"),
-        ));
+      appBar: AppBar(
+        title: const Text('List chat'),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.add_alert),
+            tooltip: 'Show Snackbar',
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('This is a snackbar')));
+            },
+          )
+        ],
+      ),
+      body: BlocListener<SocketBloc, SocketState>(
+          cubit: blocSocket,
+          listener: (context, state) {
+            print("có vào listenner SocketBloc");
+          },
+          child: BlocBuilder<SocketBloc, SocketState>(
+            cubit: BlocProvider.of<SocketBloc>(context),
+            builder: (context, state) {
+              print("có vào builder socket" + state.toString());
+              return Container(
+                child:
+                    Text("vaof chat nef " + (blocSocket.socket?.id).toString()),
+              );
+            },
+          )),
+    );
   }
 }

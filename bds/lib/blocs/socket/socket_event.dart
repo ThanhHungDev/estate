@@ -11,4 +11,7 @@ class ConnectSocketEvent extends SocketEvent {}
 
 class ConnectedSocketEvent extends SocketEvent {}
 
-class StartedSocketEvent extends SocketEvent {}
+class StartedSocketEvent extends SocketEvent {
+  final String jwt;
+  StartedSocketEvent(this.jwt);
+}

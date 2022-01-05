@@ -7,7 +7,7 @@ class App extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    const title = "chat bot";
+    const title = "Hùng demo bất động sản nha";
     return MaterialApp(
       title: 'Page login',
       theme: ThemeData(
