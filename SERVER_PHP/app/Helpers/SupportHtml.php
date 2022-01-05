@@ -55,7 +55,6 @@ class SupportHtml{
             'LOGIN'                    => Route('API_LOGIN'),
             'DISTRICTS'                => Route('DISTRICTS'),
             'COMMUNES'                 => Route('COMMUNES'),
-            'PROVINCES'                => Route('PROVINCES'),
             'API_UPLOAD_FILE'          => Route('API_UPLOAD_FILE'),
             'APARTMENT_PROJECTS'       => Route('APARTMENT_PROJECTS'),
             'APARTMENT_PROJECT_DETAIL' => Route('APARTMENT_PROJECT_DETAIL', [ 'id' => null ]),

@@ -75,7 +75,6 @@ class User extends Authenticatable implements JWTSubject
             'phone_verify' => $this->phone_verify,
             'commune_id'   => $this->commune_id,
             'district_id'  => $district ? $district->id : 0,
-            'province_id'  => $province ? $province->id : 0,
             'commune'      => $commune  ? $commune->toArray()  : null,
             'district'     => $district ? $district->toArray() : null,
             'province'     => $province ? $province->toArray() : null,

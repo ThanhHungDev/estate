@@ -1,10 +1,11 @@
 
 import TYPE from "../action/type"
-let LOCATION = {}
-if( typeof window.PROVINCES != 'undefined' ){
+const LOCATION = {}
+if( typeof window.DISTRICT != 'undefined' || typeof window.COMMUNES != 'undefined' ){
     /// thì sao? 
     try {
-        LOCATION.province = JSON.parse(window.PROVINCES)
+        LOCATION.district = JSON.parse(window.DISTRICT)
+        LOCATION.commune = JSON.parse(window.COMMUNES)
     } catch (error) {}
 }
 

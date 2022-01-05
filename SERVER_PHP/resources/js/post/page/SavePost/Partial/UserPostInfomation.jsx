@@ -18,7 +18,6 @@ const UserPostInfomation = forwardRef((props, ref) => {
     const [ values, setValues ] = useState({
         name        : AUTH.name? "" : "",
         phone_verify: AUTH.phone_verify??"",
-        province    : AUTH.province_id ?? 0,
         district    : AUTH.district_id ?? 0,
         commune     : AUTH.commune_id ?? 0,
         home_number : AUTH.home_number ?? '',

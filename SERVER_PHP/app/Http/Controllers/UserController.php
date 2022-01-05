@@ -241,8 +241,7 @@ class UserController extends Controller
 
         $conversations = (new Channel())->getConversationsByUser($profile->id);
         // /// từ conversations dùng laravel lấy hết user id friend bạn bè
-        $idFriends = $conversations->pluck('user')->toArray();
-        dd($idFriends);
+        $idFriends = $conversations->pluck('user')->toArray();  
         $idFriends = [
             Config::get('constant.ID_ADMIN')
         ];

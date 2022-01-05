@@ -33,10 +33,6 @@ Route::group([ 'prefix'=>'/v1' ], function () {
         ->name('APARTMENT_PROJECT_DETAIL');
     });
 
-    // Lấy danh sách provinces
-    Route::get('provinces', [ App\Http\Controllers\Api\ProvinceController::class, 'provinces' ])
-    ->name('PROVINCES');
-
     // Lấy danh sách districts
     Route::get('districts', [ App\Http\Controllers\Api\DistrictController::class, 'districts' ])
     ->name('DISTRICTS');

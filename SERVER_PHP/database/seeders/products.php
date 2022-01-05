@@ -119,7 +119,7 @@ class products extends Seeder
                 'content'         => 'content ' . $product['location'] . $product['price-memo'] . $product['bed-room'] . $product['wc'] . $product['direction'] . $product['short-intro'], 
                 'price'           => '1.000.000.000',
                 'area'            => rand ( 1 , 100 ) . "00",
-                'commune_id'      => 24814,
+                'commune_id'      => 26575,
                 'description_seo' => 'description_seo ' . $product['title'],
                 'view'            => rand(10 , 50),
                 'background'      => $product['image'],

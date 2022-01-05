@@ -45,8 +45,12 @@ Route::group(['prefix' => '/','middleware' => [ 'LOGIN_REDIRECT', 'HTML_MINIFIER
     Route::get('/register', [ App\Http\Controllers\UserController::class, 'create' ])->name('REGISTER');
     Route::post('/register', [ App\Http\Controllers\UserController::class, 'store' ])->name('STORE_REGISTER');
 
+    Route::get('/dang-tin/{path?}', [ App\Http\Controllers\MarketController::class, 'push' ])
+        ->where('path', '[a-zA-Z0-9-/]+')
+        ->name('MARKET');
+
     // include_once("user.php");
-    Route::group(['prefix' => '/user','middleware' => [ 'USER_LOGGED' ]], function () {
+    Route::group(['prefix' => '/user', 'middleware' => [ 'USER_LOGGED' ]], function () {
         
         Route::get('/notifications', [ App\Http\Controllers\UserController::class, 'notifications' ])->name('VIEW_NOTIFICATION');
         Route::get('/messages', [ App\Http\Controllers\UserController::class, 'messages' ])->name('VIEW_CHAT');

@@ -151,10 +151,10 @@ class users extends Seeder
             ],
         ];
         
-        for ($i=0; $i < 1000; $i++) { 
+        for ($i=0; $i < 100; $i++) { 
             $users[] = [
                 'name'         => 'Phạm người mua' . $i,
-                'email'        => 'usercustom25456rdgfdg'.$i.'@gmail.com',
+                'email'        => 'user'.$i.'@gmail.com',
                 'avatar'       => '/images/avatar.jpg',
                 'password'     => bcrypt('123456'),
                 'role_id'      => Config::get("constant.ROLE.USER"),

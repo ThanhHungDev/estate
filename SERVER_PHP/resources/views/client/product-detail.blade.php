@@ -22,7 +22,8 @@
     <script>
         window.CONFIG_APP = `{!! json_encode(SupportHtml::getConfigReact()) !!}`;
         window.CATEGORIES = `{!! json_encode($categories ?? []) !!}`;
-        window.PROVINCES  = `{!! json_encode(Config::get('province')) !!}`;
+        window.DISTRICT     = `{!! json_encode(Config::get('district')) !!}`;
+        window.COMMUNES     = `{!! json_encode(Config::get('communes')) !!}`;
         window.JWT_TOKEN  = `{{ SupportDB::getJwtAuthentication() }}`;
         const KEY_CAPTCHA = "{{ env('GOOGLE_RECAPTCHA_KEY')  }}";
 

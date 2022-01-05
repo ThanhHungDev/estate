@@ -18,7 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(workprocess::class);
         $this->call(reviews::class);
         $this->call(users::class);
-        $this->call(provinces::class);
         $this->call(districts::class);
         $this->call(communes::class);
         $this->call(categories::class);

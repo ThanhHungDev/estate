@@ -33,11 +33,12 @@
         lightGallery(document.getElementById('photos__responsive-images'));
         
 
-        window.CONFIG_APP = `{!! json_encode(SupportHtml::getConfigReact()) !!}`;
-        window.CATEGORIES = `{!! json_encode($categories ?? []) !!}`;
-        window.PROVINCES  = `{!! json_encode(Config::get('province')) !!}`;
-        window.JWT_TOKEN  = `{{ SupportDB::getJwtAuthentication() }}`;
-        const KEY_CAPTCHA = "{{ env('GOOGLE_RECAPTCHA_KEY')  }}";
+              window.CONFIG_APP = `{!! json_encode(SupportHtml::getConfigReact()) !!}`;
+              window.CATEGORIES = `{!! json_encode($categories ?? []) !!}`;
+              window.DISTRICT   = `{!! json_encode(Config::get('district')) !!}`;
+              window.COMMUNES   = `{!! json_encode(Config::get('communes')) !!}`;
+              window.JWT_TOKEN  = `{{ SupportDB::getJwtAuthentication() }}`;
+        const KEY_CAPTCHA       = "{{ env('GOOGLE_RECAPTCHA_KEY')  }}";
     </script>
     <script src="{{ asset('js/post.js'. Config::get('app.version')) }}"></script>
 @endsection

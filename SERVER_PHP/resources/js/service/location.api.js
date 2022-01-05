@@ -20,11 +20,6 @@ const Api =
 
 
 export default {
-    getProvinces() {
-        console.log("vào getProvinces")
-        return Api.get(CONFIG.API.PROVINCES)
-        .then(res => res.data )
-    },
     getDistricts() {
         console.log("vào getDistricts")
         return Api.get(CONFIG.API.DISTRICTS)

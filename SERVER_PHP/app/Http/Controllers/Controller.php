@@ -20,10 +20,6 @@ class Controller extends BaseController
                   ->orWhere('column_name', '=', 'x___slug');
         })->where('table_schema', 'public')->select(['table_name', 'column_name'])->get();
         
-        // 
-        // table_name:"provinces"
-        // column_name:"slug"
-
         foreach( $schemas as $schema ){
             if( 
                 DB::table(DB::raw($schema->table_name))

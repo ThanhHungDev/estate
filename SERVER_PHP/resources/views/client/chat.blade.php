@@ -20,7 +20,8 @@
 <script>
           
           window.CATEGORIES    = `{!! json_encode($categories ?? []) !!}`;
-          window.PROVINCES     = `{!! json_encode(Config::get('province')) !!}`;
+          window.DISTRICT     = `{!! json_encode(Config::get('district')) !!}`;
+          window.COMMUNES     = `{!! json_encode(Config::get('communes')) !!}`;
           window.JWT_TOKEN     = `{{ SupportDB::getJwtAuthentication() }}`;
           window.CONVERSATIONS = `{!! addslashes(json_encode($conversations)) !!}`;
           window.CONFIG_APP    = `{!! json_encode(SupportHtml::getConfigReact()) !!}`;
