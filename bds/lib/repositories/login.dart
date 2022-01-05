@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:bds/models/UserResource.dart';
 import 'package:dio/dio.dart';
 import 'package:bds/globals.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginRepository {
   final postLogin = "$APP_URL/api/v1/login";
@@ -30,12 +31,15 @@ class LoginRepository {
         return UserResource.fromJwt(json['data']);
       } else {
         print(response);
+        return null;
       }
     } on DioError catch (error) {
-      if (error.type == DioErrorType.connectTimeout) {
-        throw Exception("Connection  Timeout Exception");
-      }
-      throw Exception(error.message);
+      // if (error.type == DioErrorType.connectTimeout) {
+      //   throw Exception("Connection  Timeout Exception");
+      // }
+      // throw Exception(error.message);
+      print(error.message);
+      return null;
     }
   }
 }

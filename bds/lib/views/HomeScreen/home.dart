@@ -1,4 +1,4 @@
-import 'package:bds/blocs/login/login_bloc.dart';
+import 'package:bds/blocs/authentication/authentication_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,32 +13,36 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  LoginBloc __loginBloc = LoginBloc();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: SingleChildScrollView(
-      child: BlocBuilder<LoginBloc, LoginState>(
-        cubit: __loginBloc,
-        builder: (context, state) {
-          if (state is LoginInitial) {
-            return __buildFormLogin();
-          } else if (state is LoginLoading) {
-            return __buildFormLoading();
-          } else if (state is LoginLoaded) {
-            return Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              child: Center(
-                child: Text(state.user.id.toString()),
-              ),
-            );
-          } else {
-            return Container(
-              child: Text("tao chịu"),
-            );
+      child: BlocListener<AuthenticationBloc, AuthenticationState>(
+        cubit: BlocProvider.of<AuthenticationBloc>(context),
+        listener: (context, state) {
+          print("có vào listenner");
+          if (state is AuthenticationAuthenticated) {
+            /// điều hướng ở đây
+            Navigator.pushNamed(context, '/chat');
           }
         },
+        child: BlocBuilder<AuthenticationBloc, AuthenticationState>(
+          cubit: BlocProvider.of<AuthenticationBloc>(context),
+          builder: (context, state) {
+            print("có vào builder" + state.toString());
+            if (state is AuthenticationUninitialized ||
+                state is AppStarted ||
+                state is AuthenticationUnauthenticated) {
+              return __buildFormLogin();
+            } else if (state is AuthenticationLoading) {
+              return __buildFormLoading();
+            } else {
+              return Container(
+                child: Text("tao chịu" + state.toString()),
+              );
+            }
+          },
+        ),
       ),
     ));
   }
@@ -46,7 +50,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void dispose() {
     super.dispose();
-    __loginBloc.close();
+    // BlocProvider.of<LoginBloc>(context).close();
   }
 
   Widget __buildFormLogin() {
@@ -87,7 +91,8 @@ class _HomePageState extends State<HomePage> {
           final email = emailController.text;
           final password = passwordController.text;
           // final loginBloc = BlocProvider.of<LoginBloc>(context);
-          __loginBloc.add(FetchLoginEvent(email, password));
+          BlocProvider.of<AuthenticationBloc>(context)
+              .add(LoggedIn(email, password));
         },
         child: Text("Login",
             textAlign: TextAlign.center,

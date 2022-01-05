@@ -6,3 +6,9 @@ abstract class SocketEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class ConnectSocketEvent extends SocketEvent {}
+
+class ConnectedSocketEvent extends SocketEvent {}
+
+class StartedSocketEvent extends SocketEvent {}

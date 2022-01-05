@@ -45,4 +45,7 @@ class UserResource {
       payload['role_id'],
     );
   }
+  bool period() {
+    return Jwt.isExpired(this.jwt);
+  }
 }
