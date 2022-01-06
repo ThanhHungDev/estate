@@ -1,6 +1,5 @@
 import 'package:bds/blocs/authentication/authentication_bloc.dart';
 import 'package:bds/blocs/socket/socket_bloc.dart';
-import 'package:bds/views/ChatScreen/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
