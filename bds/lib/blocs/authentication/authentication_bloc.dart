@@ -1,3 +1,4 @@
+import 'package:bds/models/ErrorResource.dart';
 import 'package:bds/models/UserResource.dart';
 import 'package:bds/repositories/login.dart';
 import 'package:bloc/bloc.dart';
@@ -14,7 +15,6 @@ class AuthenticationBloc
   @override
   Stream<AuthenticationState> mapEventToState(
       AuthenticationEvent event) async* {
-    print("có vào bloc trước");
     if (event is AppStarted) {
       yield* _appStarted();
     } else if (event is LoggedIn) {
@@ -34,15 +34,15 @@ class AuthenticationBloc
 
   Stream<AuthenticationState> _initStartup() async* {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (prefs.getString('auth') == null) {
+    final auth = prefs.getString('auth'); // nếu không có thì trả về là null
+    if (auth == null) {
       yield AuthenticationUnauthenticated();
       return;
     }
     final user = UserResource.fromJwt(prefs.getString('auth'));
-
-    /// check hết hạn chưa nếu hết hạn rồi thì xóa cũ đi rồi yield ra trạng thái không login
+    // check hết hạn chưa nếu hết hạn rồi thì xóa cũ đi rồi yield ra trạng thái không login
     if (user.period()) {
-      /// xóa cái cũ đi
+      // xóa cái cũ đi
       await prefs.setString('auth', null);
       yield AuthenticationUnauthenticated();
       return;
@@ -52,11 +52,11 @@ class AuthenticationBloc
 
   Stream<AuthenticationState> _loggedIn(LoggedIn event) async* {
     yield AuthenticationLoading();
-    final UserResource auth =
+    final auth =
         await (new LoginRepository()).login(event.email, event.password);
-    if (auth == null) {
-      /// quăng ra lỗi
-      yield AuthenticationError();
+    if (auth is ErrorResource) {
+      // quăng ra lỗi
+      yield AuthenticationError(auth);
       return;
     }
 
@@ -71,14 +71,14 @@ class AuthenticationBloc
 
     /// lưu trạng thái này vào local references
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('auth', null);
+    await prefs.remove('auth');
   }
 
   Future<void> _cleanIfFirstUseAfterUninstall() async {
     final prefs = await SharedPreferences.getInstance();
-
-    if (prefs.getBool('first_run') ?? true) {
-      await prefs.setString('auth', null);
+    final firstRun = prefs.getBool('first_run');
+    if (firstRun ?? true) {
+      await prefs.remove('auth');
       await prefs.setBool('first_run', false);
     }
   }

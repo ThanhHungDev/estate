@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
         child: BlocBuilder<AuthenticationBloc, AuthenticationState>(
           cubit: BlocProvider.of<AuthenticationBloc>(context),
           builder: (context, state) {
-            print("có vào builder" + state.toString());
+            print("có vào builder auth " + state.toString());
             if (state is AuthenticationUninitialized ||
                 state is AppStarted ||
                 state is AuthenticationUnauthenticated) {

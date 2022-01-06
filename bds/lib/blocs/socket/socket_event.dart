@@ -9,9 +9,14 @@ abstract class SocketEvent extends Equatable {
 
 class ConnectSocketEvent extends SocketEvent {}
 
-class ConnectedSocketEvent extends SocketEvent {}
+class ConnectedSocketEvent extends SocketEvent {
+  // final IO.Socket socket;
+  // ConnectedSocketEvent(this.socket);
+}
 
 class StartedSocketEvent extends SocketEvent {
   final String jwt;
   StartedSocketEvent(this.jwt);
 }
+
+class DisconnectSocketEvent extends SocketEvent {}

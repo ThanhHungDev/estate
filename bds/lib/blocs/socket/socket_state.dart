@@ -12,3 +12,5 @@ class SocketInitial extends SocketState {}
 class ConnectingSocketState extends SocketState {}
 
 class ConnectedSocketState extends SocketState {}
+
+class DisconnectSocketState extends SocketState {}

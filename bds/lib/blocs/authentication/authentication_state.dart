@@ -18,6 +18,9 @@ class AuthenticationAuthenticated extends AuthenticationState {
 
 class AuthenticationLoading extends AuthenticationState {}
 
-class AuthenticationError extends AuthenticationState {}
+class AuthenticationError extends AuthenticationState {
+  final ErrorResource error;
+  AuthenticationError(this.error);
+}
 
 class AuthenticationLoggingOut extends AuthenticationState {}
