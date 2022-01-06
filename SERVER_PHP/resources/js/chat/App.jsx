@@ -26,6 +26,7 @@ function App( props ){
                 pathname: CONFIG.LOCATION.pathname ?? "/",
             }
         }
+        console.log("CONFIG.REALTIME_URLCONFIG.REALTIME_URLCONFIG.REALTIME_URLCONFIG.REALTIME_URL", CONFIG.REALTIME_URL)
         const socket = socketIOClient(CONFIG.REALTIME_URL, param)
         createSocketListenner(socket, props, CONFIG)
         socket.open()// synonym to socket.connect()

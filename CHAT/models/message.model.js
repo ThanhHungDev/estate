@@ -44,7 +44,7 @@ const MessageSchema = new Schema(
  * @param { String } channelID là id của bảng users trong posgre
  * @returns 
  */
-MessageSchema.statics.messageInChannel = function(channelID, authId) {
+MessageSchema.statics.messageInChannel = function(channelID, limit = 20 ) {
 
     return this
     .aggregate([
@@ -68,7 +68,7 @@ MessageSchema.statics.messageInChannel = function(channelID, authId) {
             }
         },
         { $sort: { _id : -1 }},
-        { $limit : 200 },
+        { $limit : limit },
         { $sort: { _id : 1 }},
     ])
 }

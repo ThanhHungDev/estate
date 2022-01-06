@@ -38,6 +38,9 @@ class _HomePageState extends State<HomePage> {
               return __buildFormLogin();
             } else if (state is AuthenticationLoading) {
               return __buildFormLoading();
+            } else if (state is AuthenticationAuthenticated &&
+                state.user.period()) {
+              return __buildFormLogin();
             } else {
               return Container(
                 child: Text("tao chịu" + state.toString()),

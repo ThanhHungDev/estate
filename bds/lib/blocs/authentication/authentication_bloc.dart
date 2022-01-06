@@ -1,5 +1,5 @@
 import 'package:bds/models/ErrorResource.dart';
-import 'package:bds/models/UserResource.dart';
+import 'package:bds/models/AuthResource.dart';
 import 'package:bds/repositories/login.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -39,11 +39,11 @@ class AuthenticationBloc
       yield AuthenticationUnauthenticated();
       return;
     }
-    final user = UserResource.fromJwt(prefs.getString('auth'));
+    final user = AuthResource.fromJwt(prefs.getString('auth'));
     // check hết hạn chưa nếu hết hạn rồi thì xóa cũ đi rồi yield ra trạng thái không login
     if (user.period()) {
       // xóa cái cũ đi
-      await prefs.setString('auth', null);
+      await prefs.remove('auth');
       yield AuthenticationUnauthenticated();
       return;
     }

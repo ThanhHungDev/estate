@@ -1,6 +1,5 @@
 library globals;
 
-import 'package:bds/models/EventSocket.dart';
 import 'package:flutter/material.dart';
 
 const APP_IP = "192.168.100.45";

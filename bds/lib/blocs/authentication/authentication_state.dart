@@ -12,7 +12,7 @@ class AuthenticationUninitialized extends AuthenticationState {}
 class AuthenticationUnauthenticated extends AuthenticationState {}
 
 class AuthenticationAuthenticated extends AuthenticationState {
-  final UserResource user;
+  final AuthResource user;
   AuthenticationAuthenticated(this.user);
 }
 

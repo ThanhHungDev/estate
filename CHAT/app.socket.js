@@ -431,7 +431,7 @@ io
         const { jwt } = socket
         console.log(`${CONFIG.EVENT.RECONNECT__CHATTING} : socket re${socket.id}` )
         try {
-            const convMess = await Promise.all(channels.map( channel => Message.messageInChannel(mongoose.Types.ObjectId(channel), jwt.id) ))
+            const convMess = await Promise.all(channels.map( channel => Message.messageInChannel(mongoose.Types.ObjectId(channel)) ))
             const response = {
                 code    : RESPONSE.HTTP_OK,
                 data    : convMess,

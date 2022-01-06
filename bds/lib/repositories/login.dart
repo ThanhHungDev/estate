@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:bds/models/ErrorResource.dart';
-import 'package:bds/models/UserResource.dart';
+import 'package:bds/models/AuthResource.dart';
 import 'package:dio/dio.dart';
 import 'package:bds/globals.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
@@ -29,7 +29,7 @@ class LoginRepository {
       _dio.clear();
       Map<String, dynamic> json = response.data;
       if (response != null && response.statusCode == HttpStatus.ok) {
-        return UserResource.fromJwt(json['data']);
+        return AuthResource.fromJwt(json['data']);
       }
 
       /// lỗi "status": 401, "message": "c\u00f3 l\u1ed7i validate trong controller", "errors": { "error": "invalid_credentials" }

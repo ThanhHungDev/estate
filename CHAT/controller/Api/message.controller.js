@@ -13,19 +13,23 @@ const Message = require("../../models/message.model")
 module.exports.getInit = asyncHandler(async (req, res ) => {
 
     const { limit, user } = req.query
-    const LIMIT = parseInt(limit) || 1000
+    const LIMIT = parseInt(limit) || 3
     // console.log(req.query.user, "vào đây req.query.user")
     // console.log(req.user, "auth nè")
     /// bước 1 lấy toàn bộ channel của nó ra
-    const channels = await Channel.find( { user: req.user.id, backup: false } )
+    const channels = await Channel.find( { user: req.user.id, backup: false } ).lean()
     if( !channels.length ) throw createError(responseLibrary.HTTP_NOT_FOUND, "khong tìm thấy channel")
-    const lists = await Promise.all(channels.map(channel => Message.messageInChannel(mongoose.Types.ObjectId(channel._id), req.user.id) ))
+    const lists = await Promise.all(channels.map(channel => Message.messageInChannel(mongoose.Types.ObjectId(channel._id), LIMIT) ))
 
     const response = {
-        code   : 200, 
-        data   : lists,
+        code   : 200,
+        conversations: channels.map( (conv, index) => {
+            conv.messages = [ ... lists[index] ]
+            return { ...conv }
+        }),
+        user: req.user.id,
         onlines: res.io.USER_ONLINES || [],
-        message: "danh sách data"
+        message: "danh sách data 2",
     }
     return res.status(response.code).json(response)
 })

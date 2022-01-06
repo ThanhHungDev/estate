@@ -1,30 +1,28 @@
+import 'package:bds/models/UserResource.dart';
 
-// // _id
-// // :
-// // "61d18f61dbba43728c2af333"
-// // backup
-// // :
-// // false
+class Conversation {
+  final String _id;
+  final bool backup;
+  final String name;
+  final int sort;
+  final List<int> user;
+  final List<UserResource> users;
+  final String updatedAt;
+  final String createdAt;
 
-// // created_at
-// // :
-// // "2022-01-02T11:41:21.264000Z"
+  Conversation(
+    this._id,
+    this.backup,
+    this.name,
+    this.sort,
+    this.user,
+    this.users,
+    this.updatedAt,
+    this.createdAt,
+  ) : super();
+}
 
-// // messages
-// // :
-// // []
-// // name
-// // :
-// // "1-1011"
-// // sort
-// // :
-// // 0
-// // status
-// // :
-// // undefined
-// // updated_at
-// // :
-// // "2022-01-02T11:41:21.264000Z"
+
 
 // // user
 // // :

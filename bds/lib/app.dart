@@ -4,11 +4,13 @@ import 'package:bds/views/HomeScreen/home.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
+  static final navigatorKey = GlobalKey<NavigatorState>();
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     const title = "Hùng demo bất động sản nha";
     return MaterialApp(
+      navigatorKey: navigatorKey,
       title: 'Page login',
       theme: ThemeData(
         primarySwatch: Colors.blue,

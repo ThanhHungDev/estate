@@ -1,5 +1,7 @@
 import 'package:bds/blocs/authentication/authentication_bloc.dart';
+import 'package:bds/blocs/conversation/conversation_bloc.dart';
 import 'package:bds/blocs/socket/socket_bloc.dart';
+import 'package:bds/repositories/conversation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,6 +15,7 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
+  List<dynamic> conversations;
   @override
   void initState() {
     print("trang chat được khởi tạo initState ");
@@ -20,13 +23,16 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   @override
-  void didChangeDependencies() {
+  void didChangeDependencies() async {
     print("trang chat được build xong didChangeDependencies");
+    await (new ConversationRepository()).getConversations();
+    // call api ở đây
     super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
+    print("trang chat được build sau initState");
     final AuthenticationAuthenticated auth =
         BlocProvider.of<AuthenticationBloc>(context).state;
     final isAuth = auth is AuthenticationAuthenticated;
@@ -37,10 +43,17 @@ class _ChatPageState extends State<ChatPage> {
       ));
     }
     print("có data nè " + auth.user.id.toString() + " ${auth.user.email}");
-
-    return BlocProvider(
-      lazy: false,
-      create: (context) => SocketBloc()..add(StartedSocketEvent(auth.user.jwt)),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<SocketBloc>(
+          lazy: false,
+          create: (BuildContext context) =>
+              SocketBloc()..add(StartedSocketEvent(auth.user.jwt)),
+        ),
+        BlocProvider<ConversationBloc>(
+          create: (BuildContext context) => ConversationBloc(),
+        ),
+      ],
       child: Scaffold(
           appBar: AppBar(
             title: const Text('List chat'),
