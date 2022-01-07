@@ -78,7 +78,20 @@ export default function (state = JSON.parse(window.CONVERSATIONS), action) {
         }
         
 
-        
+        case TYPE.CONVERSATION_SEARCH: {
+            return state.map(conv => {
+                const search = action.payload.trim()
+                if(!search){
+                    return { ...conv, hidden: false }
+                }
+                console.log( conv )
+                const name = conv.users[0]?.name
+                if(!!name && name.toLowerCase().includes(action.payload.toLowerCase())){
+                    return { ...conv, hidden: false }
+                }
+                return { ...conv, hidden: true }
+            })
+        }
         
         default:
             return state;

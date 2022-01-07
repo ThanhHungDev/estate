@@ -393,7 +393,7 @@ io
     })
     .on( CONFIG.EVENT.READ__MESSAGE__ALL, async conversation => {
         
-        console.log(`${CONFIG.EVENT.READ__MESSAGE__ALL} : socket read all ${socket.id}` )
+        console.log(`${CONFIG.EVENT.READ__MESSAGE__ALL} : socket read all  ${socket.id}` )
         const { jwt } = socket
         const { _id } = conversation
         try {

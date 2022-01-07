@@ -5,6 +5,8 @@ import CountNoneRead from "./CountNoneRead"
 
 function Conversation(props) {
     const { conversation, active, online, auth } = props
+    // nếu conversation trong đây có thuộc tính hidden = true là của search box đó. thì return null luôn
+    if( conversation.hidden ) return null
     const [ user ] = conversation?.users
     const last = conversation?.messages?.slice(-1)[0]
     const waitRead = (conversation?.messages || []).filter(message => !message.read && message.user != auth.id ).length
