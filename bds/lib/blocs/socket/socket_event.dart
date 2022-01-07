@@ -20,3 +20,5 @@ class StartedSocketEvent extends SocketEvent {
 }
 
 class DisconnectSocketEvent extends SocketEvent {}
+
+class EmitSocketEvent extends SocketEvent {}

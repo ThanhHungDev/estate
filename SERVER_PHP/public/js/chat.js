@@ -2377,7 +2377,6 @@ function App(props) {
         pathname: (_CONFIG$LOCATION$path = CONFIG.LOCATION.pathname) !== null && _CONFIG$LOCATION$path !== void 0 ? _CONFIG$LOCATION$path : "/"
       }
     };
-    console.log("CONFIG.REALTIME_URLCONFIG.REALTIME_URLCONFIG.REALTIME_URLCONFIG.REALTIME_URL", CONFIG.REALTIME_URL);
     var socket = socket_io_client__WEBPACK_IMPORTED_MODULE_7___default()(CONFIG.REALTIME_URL, param);
     (0,_library_socket__WEBPACK_IMPORTED_MODULE_8__.createSocketListenner)(socket, props, CONFIG);
     socket.open(); // synonym to socket.connect()

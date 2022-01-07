@@ -1,3 +1,7 @@
+import 'dart:io';
+
+import 'package:bds/models/ConversationResource.dart';
+import 'package:bds/models/ErrorResource.dart';
 import 'package:bds/repositories/interceptor.dart';
 import 'package:dio/dio.dart';
 import 'package:bds/globals.dart';
@@ -18,11 +22,15 @@ class ConversationRepository {
   Future<dynamic> getConversations() async {
     try {
       Response response = await (_dio..interceptors.add(AuthTokenInterceptor()))
-          .get(uriApiGetConversations, queryParameters: {"userc": "23424"});
+          .get(uriApiGetConversations, queryParameters: {"user": "23424"});
       _dio.clear();
-      print(response.toString());
+      Map<String, dynamic> json = response.data;
+      if (json['code'] != HttpStatus.ok) {
+        return ErrorResource(json['code'], json['message']);
+      }
+      return ConversationResource.fromList(json['data']);
     } on DioError catch (error) {
-      print("sdfsdf" + error.message);
+      return ErrorResource(HttpStatus.internalServerError, error.message);
     }
   }
 }

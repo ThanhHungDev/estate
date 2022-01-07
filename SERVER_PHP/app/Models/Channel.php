@@ -31,16 +31,8 @@ class Channel extends Eloquent {
     }
 
     public function getConversationsByUser( $userId = 0, $linit = self::LIMIT ){
-
         return $this->raw(function ($collection) use ( $userId ) {
             return $collection->aggregate([
-                // [
-                //     '$project' => [
-                //         '_id' => 1,
-                //         'user' => 1,
-                //         'name' => 1,
-                //     ]
-                // ],
                 [ 
                     '$match' => [
                         'user' => (int)$userId
@@ -51,24 +43,9 @@ class Channel extends Eloquent {
                         'sort' => 1,
                         '_id' => 1,
                     ]
-                ]
-                // [
-                //     '$unwind' => '$user'
-                // ],
-                // [ 
-                //     '$match' => [
-                //         'user' => [
-                //             '$nin' => [ $userId ]
-                //         ]
-                //     ]
-                // ]
-
+                ],
             ]);
         });
     }
-    // public function user(){
-
-    //     return $this->belongsTo( User::class, 'user');
-    // }
 }
 

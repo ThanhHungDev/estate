@@ -1,34 +1,28 @@
 import 'package:bds/blocs/authentication/authentication_bloc.dart';
 import 'package:bds/blocs/conversation/conversation_bloc.dart';
-import 'package:bds/blocs/socket/socket_bloc.dart';
-import 'package:bds/views/ChatScreen/Conversations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ConversationPage extends StatefulWidget {
+class MessagePage extends StatefulWidget {
   final String title;
   // contructor
-  ConversationPage({Key key, this.title}) : super(key: key);
+  MessagePage({Key key, this.title}) : super(key: key);
 
   @override
-  _ConversationPageState createState() => _ConversationPageState();
+  _MessagePageState createState() => _MessagePageState();
 }
 
-class _ConversationPageState extends State<ConversationPage> {
+class _MessagePageState extends State<MessagePage> {
   @override
   void initState() {
-    print("trang chat được khởi tạo initState ");
-    final AuthenticationAuthenticated auth =
-        BlocProvider.of<AuthenticationBloc>(context).state;
-    BlocProvider.of<SocketBloc>(context)
-      ..add(StartedSocketEvent(auth.user.jwt));
-    BlocProvider.of<ConversationBloc>(context)..add(GetConversationEvent());
+    print("trang detail được khởi tạo initState ");
     super.initState();
   }
 
   @override
   void didChangeDependencies() async {
-    print("trang chat được build xong didChangeDependencies");
+    print("trang detail được build xong didChangeDependencies");
+
     super.didChangeDependencies();
   }
 
@@ -44,7 +38,7 @@ class _ConversationPageState extends State<ConversationPage> {
 
   @override
   Widget build(BuildContext context) {
-    print("trang chat được build sau initState");
+    print("trang detal được build sau initState");
     final AuthenticationAuthenticated auth =
         BlocProvider.of<AuthenticationBloc>(context).state;
     final isAuth = auth is AuthenticationAuthenticated;
@@ -54,10 +48,10 @@ class _ConversationPageState extends State<ConversationPage> {
         child: Text("hung đẹp trai không vào chat được"),
       ));
     }
-    print("có data nè " + auth.user.id.toString() + " ${auth.user.email}");
+    print("detail data nè " + auth.user.id.toString() + " ${auth.user.email}");
     return Scaffold(
       appBar: AppBar(
-        title: const Text('List chat'),
+        title: const Text('Chat detail'),
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.add_alert),
@@ -70,11 +64,7 @@ class _ConversationPageState extends State<ConversationPage> {
         ],
       ),
       body: BlocListener<ConversationBloc, ConversationState>(
-        listener: (context, state) {
-          // if (state is ConversationInitial) {
-
-          // }
-        },
+        listener: (context, state) {},
         child: BlocBuilder<ConversationBloc, ConversationState>(
           builder: (context, state) {
             if (state is ConversationInitial) {
@@ -85,9 +75,10 @@ class _ConversationPageState extends State<ConversationPage> {
                   child: Text("Fetch dữ liệu bị sai"),
                 ),
               );
-            } else if (state is GetConversationSuccess) {
-              return Conversations(conversations: state.conversations);
             }
+            // else if (state is GetConversationSuccess) {
+            //   return ;
+            // }
             return Container(
               child: Text("không biết"),
             );

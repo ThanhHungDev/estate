@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget __buildFormLogin() {
     TextEditingController emailController =
-        TextEditingController(text: 'userpost@gmail.com');
+        TextEditingController(text: 'usercustom@gmail.com');
     TextEditingController passwordController =
         TextEditingController(text: '123456');
     TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);

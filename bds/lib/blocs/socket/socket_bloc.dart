@@ -22,6 +22,8 @@ class SocketBloc extends Bloc<SocketEvent, SocketState> {
     } else if (event is DisconnectSocketEvent) {
       print("mất kết nối với máy chủ");
       yield DisconnectSocketState();
+    } else if (event is EmitSocketEvent) {
+      print("emit thử");
     }
   }
 

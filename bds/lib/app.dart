@@ -1,5 +1,6 @@
 import 'package:bds/views/ChatScreen/chat.dart';
 import 'package:bds/views/HomeScreen/home.dart';
+import 'package:bds/views/MessageScreen/message.dart';
 // import 'package:bds/views/LoadingPage/loading.dart';
 import 'package:flutter/material.dart';
 
@@ -26,12 +27,14 @@ class App extends StatelessWidget {
             break;
           case '/chat':
             return MaterialPageRoute(
-                builder: (context) => ChatPage(
+                builder: (context) => ConversationPage(
                       title: title,
                     ));
+          case '/detail':
+            return MaterialPageRoute(builder: (context) => MessagePage());
           default:
             return MaterialPageRoute(
-                builder: (context) => ChatPage(
+                builder: (context) => ConversationPage(
                       title: title,
                     ));
         }
