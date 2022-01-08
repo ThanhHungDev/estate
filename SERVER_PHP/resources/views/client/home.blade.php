@@ -106,40 +106,39 @@
 
 
 
-
-    <div class="categories wow fadeInLeft" data-wow-duration="1s">
-        <div class="categories__wrapper">
-            <h3 id="categories" class="categories__title" tabindex="1" title="💥 Mẫu giao diện theo ngành hàng" >
-                {{-- <span class="text-color-pink">{{ Config::get('app.name') }}</span> --}}
-                Dịch vụ bất động sản 
-            </h3>
-            <div class="container">
-                <div class="row categories__row">
-                    @isset($categories)
-                        @if (!$categories->isEmpty())
-                            @foreach ($categories as $cat)
-                            <div class="categories__item">
-                                <a class="categories__item-link-img" href="{{ Route('CATEGORY_VIEW', ['slug' => $cat->slug ]) }}">
-                                    <img 
-                                    class="lazyload"
-                                    src="{{ Config::get('app.lazyload_base64') }}"
-                                    onerror="this.onerror=null;this.src='{{ asset('/images/failed.jpg') }}';"
-                                    data-src="{{ Route('IMAGE_CONVERTOR', [ 'quality' => SupportAgent::getQuanlityByDevice(), 'imagePath' => trim($cat->thumbnail, '/') . Config::get('image.EXTENTION_CONVERTOR') ]) }}" 
-                                    {{-- src="{{ Route('IMAGE_CONVERTOR', [ 'quality' => SupportAgent::getQuanlityByDevice(), 'imagePath' => trim($cat->thumbnail, '/') . Config::get('image.EXTENTION_CONVERTOR') ]) }}"  --}}
-                                    alt="{{ $cat->name }}" width="300" height="300"/>
-                                </a>
-                                <a href="{{ Route('CATEGORY_VIEW', ['slug' => $cat->slug ]) }}">
-                                    <h5 class="categories__item-link-text">{{ $cat->name }}</h5>
-                                </a>
-                            </div>
-                            @endforeach
-                        @endif
-                    @endisset
-                    
+    @isset($categories)
+        @foreach ($categories as $cat)
+        <div class="categories wow fadeInLeft" data-wow-duration="1s">
+            <div class="categories__wrapper">
+                <h3 id="categories" class="categories__title {{ $cat->id }}" tabindex="1" title="💥 {{ $cat->name }}" >{{ $cat->name }}</h3>
+                <div class="container">
+                    <div class="row categories__row">
+                        @php $childs = $cat->childs @endphp
+                        @isset($childs)
+                            @if (!$childs->isEmpty())
+                                @foreach ($childs as $child)
+                                <div class="categories__item">
+                                    <a class="categories__item-link-img" href="{{ Route('CATEGORY_VIEW', ['slug' => $child->slug ]) }}">
+                                        <img 
+                                        class="lazyload"
+                                        src="{{ Config::get('app.lazyload_base64') }}"
+                                        onerror="this.onerror=null;this.src='{{ asset('/images/failed.jpg') }}';"
+                                        data-src="{{ Route('IMAGE_CONVERTOR', [ 'quality' => SupportAgent::getQuanlityByDevice(), 'imagePath' => trim($child->thumbnail, '/') . Config::get('image.EXTENTION_CONVERTOR') ]) }}" 
+                                        alt="{{ $child->name }}" width="300" height="300"/>
+                                    </a>
+                                    <a href="{{ Route('CATEGORY_VIEW', ['slug' => $child->slug ]) }}">
+                                        <h5 class="categories__item-link-text">{{ $child->name }}</h5>
+                                    </a>
+                                </div>
+                                @endforeach
+                            @endif
+                        @endisset
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+        @endforeach
+    @endisset
 
 
 

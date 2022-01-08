@@ -42,7 +42,7 @@ class ClientController extends Controller
 
         $limit = Config::get('constant.LIMIT');
 
-        $categories  = Category::where('parent', Config::get('constant.CATEGORY__PARENT'))->orderBy('id', 'DESC')->get();
+        $categories  = Category::where('parent', Config::get('constant.CATEGORY__PARENT'))->orderBy('id', 'ASC')->get();
         $posts       = Post::orderBy('id', 'DESC')->take(6)->get();
         $sliders     = Slider::orderBy('id', 'DESC')->get();
         $reviews     = Review::orderBy('id', 'DESC')->get();

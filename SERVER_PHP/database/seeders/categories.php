@@ -431,6 +431,26 @@ class categories extends Seeder
                     'background' => '/images/categories/van-nien-thanh.jpeg'
                 ],
     
+                [
+                    'parent' => Config::get('constant.CATEGORY__PARENT'),
+                    'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
+                    'name' => "Tuyển Dụng - Tìm Việc",
+                    'background' => '/images/categories/thuyen-dung-tìm-viẹc.jpeg'
+                ],
+                
+                [
+                    'parent' => 11,
+                    'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
+                    'name' => "Tuyển Dụng",
+                    'background' => '/images/categories/tuyen-dung.jpeg'
+                ],
+    
+                [
+                    'parent' => 11,
+                    'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
+                    'name' => "Tìm Việc",
+                    'background' => '/images/categories/tim-viec.jpeg'
+                ],
                 
     
                 [
@@ -539,26 +559,15 @@ class categories extends Seeder
     
                 
     
-                [
-                    'parent' => Config::get('constant.CATEGORY__PARENT'),
-                    'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
-                    'name' => "Tuyển Dụng - Tìm Việc",
-                    'background' => '/images/categories/thuyen-dung-tìm-viẹc.jpeg'
-                ],
                 
-                [
-                    'parent' => 16,
-                    'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
-                    'name' => "Tuyển Dụng",
-                    'background' => '/images/categories/tuyen-dung.jpeg'
-                ],
-    
-                [
-                    'parent' => 16,
-                    'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
-                    'name' => "Tìm Việc",
-                    'background' => '/images/categories/tim-viec.jpeg'
-                ],
+
+
+
+
+
+
+
+
     
                 
     
@@ -570,21 +579,21 @@ class categories extends Seeder
                 ],
                 
                 [
-                    'parent' => 17,
+                    'parent' => 16,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Dịch Vụ",
                     'background' => '/images/categories/cham-soc-khach-hang.jpeg'
                 ],
     
                 [
-                    'parent' => 17,
+                    'parent' => 16,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Sửa Chữa",
                     'background' => '/images/categories/thiet-bi-sua-chua.jpeg'
                 ],
     
                 [
-                    'parent' => 17,
+                    'parent' => 16,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Cài Đặt",
                     'background' => '/images/categories/cai-dat.jpeg'
@@ -600,21 +609,21 @@ class categories extends Seeder
                 ],
                 
                 [
-                    'parent' => 18,
+                    'parent' => 17,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Nông Sản",
                     'background' => '/images/categories/nong-san.jpeg'
                 ],
     
                 [
-                    'parent' => 18,
+                    'parent' => 17,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Lâm Sản",
                     'background' => '/images/categories/lam-san.jpeg'
                 ],
     
                 [
-                    'parent' => 18,
+                    'parent' => 17,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Thủy Sản",
                     'background' => '/images/categories/thuy-san.jpeg'
@@ -630,21 +639,21 @@ class categories extends Seeder
                 ],
                 
                 [
-                    'parent' => 19,
+                    'parent' => 18,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Đào Tạo",
                     'background' => '/images/categories/training.jpeg'
                 ],
     
                 [
-                    'parent' => 19,
+                    'parent' => 18,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Giáo Dục",
                     'background' => '/images/categories/giao-duc.jpeg'
                 ],
     
                 [
-                    'parent' => 19,
+                    'parent' => 18,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Khóa Học",
                     'background' => '/images/categories/khoa-hoc.jpeg'
@@ -672,9 +681,10 @@ class categories extends Seeder
 
                 
             ];
-        $reversed = array_reverse( $categories );
+        
         $inserts = [];
-        foreach( $reversed as $key => $value ){
+        /// lần chạy đầu chỉ chạy cho parrent thôi lần thứ 2 chạy cho child
+        foreach( $categories as $key => $value ){
          
             $value['slug']       = SupportString::createSlug($value['name']);
             $value['thumbnail']  = $value['background'];
@@ -683,6 +693,10 @@ class categories extends Seeder
 
             $inserts[] = $value;
         }
-        DB::table('categories')->insert($inserts);
+        // $reversed = array_reverse( $categories );
+        $parents = array_filter($inserts, function($item){ return $item['parent'] == Config::get('constant.CATEGORY__PARENT'); });
+        $childs = array_filter($inserts, function($item){ return $item['parent'] != Config::get('constant.CATEGORY__PARENT'); });
+        DB::table('categories')->insert($parents);
+        DB::table('categories')->insert($childs);
     }
 }

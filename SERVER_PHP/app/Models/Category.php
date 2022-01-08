@@ -29,6 +29,11 @@ class Category extends Model
         return null;
     }
 
+    public function childs(){
+
+        return $this->hasMany( Category::class, 'parent');
+    }
+
     /**
      * là mối quan hệ dạng 1 nhiều ví dụ : 
      * product -> categories thì thứ tự sẽ là như dưới
