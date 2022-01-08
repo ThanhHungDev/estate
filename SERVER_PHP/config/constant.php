@@ -209,5 +209,10 @@ return [
         'LOADDING' => 0,
         'SUSSESS'  => 1,
         'ERROR'    => 2,
-    ]
+    ],
+    'CATEGORY__PARENT' => 0,
+    'CATEGORY__VERIFY' => [
+        'REQUIRED' => 1,
+        'OPTIONAL' => 2,
+    ],
 ];

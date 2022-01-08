@@ -45,18 +45,18 @@ Route::group(['prefix' => '/','middleware' => [ 'LOGIN_REDIRECT', 'HTML_MINIFIER
     Route::get('/register', [ App\Http\Controllers\UserController::class, 'create' ])->name('REGISTER');
     Route::post('/register', [ App\Http\Controllers\UserController::class, 'store' ])->name('STORE_REGISTER');
 
-    Route::get('/dang-tin/{path?}', [ App\Http\Controllers\MarketController::class, 'push' ])
+    Route::get('/dang-tin/{path?}', [ App\Http\Controllers\ArticleController::class, 'push' ])
         ->where('path', '[a-zA-Z0-9-/]+')
-        ->name('MARKET');
+        ->name('USER_POST');
 
     // include_once("user.php");
     Route::group(['prefix' => '/user', 'middleware' => [ 'USER_LOGGED' ]], function () {
         
         Route::get('/notifications', [ App\Http\Controllers\UserController::class, 'notifications' ])->name('VIEW_NOTIFICATION');
         Route::get('/messages', [ App\Http\Controllers\UserController::class, 'messages' ])->name('VIEW_CHAT');
-        Route::get('/post/{path?}', [ App\Http\Controllers\UserController::class, 'post' ])
-        ->where('path', '[a-zA-Z0-9-/]+')
-        ->name('USER_POST');
+        // Route::get('/post/{path?}', [ App\Http\Controllers\UserController::class, 'post' ])
+        // ->where('path', '[a-zA-Z0-9-/]+')
+        // ->name('USER_POST');
 
         Route::patch('/verify/phone', [ App\Http\Controllers\UserController::class, 'patchVerifyPhone' ])->name('PATCH_VERIFY_PHONE');
         
@@ -75,14 +75,6 @@ Route::group(['prefix' => '/','middleware' => [ 'LOGIN_REDIRECT', 'HTML_MINIFIER
     Route::get('/update/{id}',[ App\Http\Controllers\ClientController::class, 'getUpdateUser' ])->name('UPDATE_USER_INFO');
     Route::post('/update/{id}', [ App\Http\Controllers\ClientController::class, 'updateUser' ])->name('STORE_UPDATE');
     
-
-    // Route::get('/article/{slug?}',[ App\Http\Controllers\ClientController::class, 'viewPostArticle' ])->name('VIEW_POST_ARTICLE');
-    // Route::post('/article/{slug}',[ App\Http\Controllers\ClientController::class, 'storePostArticle' ])->name('STORE_POST_ARTICLE');
-
-    // Route::get('/news/{slug?}',[ App\Http\Controllers\ClientController::class, 'viewNews' ])->name('VIEW_POST_NEWS');
-    // Route::get('/news/{slug}',[ App\Http\Controllers\ClientController::class, 'postNews' ])->name('STORE_POST_NEWS');
-
-    // Route::get('/{slug}',[ App\Http\Controllers\ClientController::class, 'postDetail' ])->name('POST_VIEW');
     Route::get('/tin-tuc/{slug}',[ App\Http\Controllers\ClientController::class, 'postDetail' ])->name('POST_VIEW');
 
     Route::get('/tim-mua-bao-loc/{slug}',[ App\Http\Controllers\ClientController::class, 'categoryDetail' ])->name('CATEGORY_VIEW');

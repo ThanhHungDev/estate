@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
 
 class CreateCategories extends Migration
@@ -17,6 +18,8 @@ class CreateCategories extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id')->unsigned()->nullable();
             $table->string('name')->nullable();
+            $table->integer('parent')->default(Config::get('constant.CATEGORY__PARENT'));
+            $table->integer('verify')->default(Config::get('constant.CATEGORY__VERIFY.REQUIRED')); /// thuộc tính này xác định có cần login mới được đăng bài không
             $table->string('slug')->nullable();
             $table->string('excerpt')->nullable();
             $table->text('content')->nullable();
