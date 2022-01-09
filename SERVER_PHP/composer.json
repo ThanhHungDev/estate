@@ -17,8 +17,8 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.3",
         "nao-pon/flysystem-google-drive": "~1.1",
-        "tymon/jwt-auth": "^1.0",
-        "voku/simple_html_dom": "^4.7"
+        "paquettg/php-html-parser": "^3.1",
+        "tymon/jwt-auth": "^1.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

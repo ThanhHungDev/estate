@@ -4,7 +4,6 @@ namespace App\Helpers;
 use Jenssegers\Agent\Agent;
 use Illuminate\Support\Facades\Config;
 use stdClass;
-use voku\helper\HtmlDomParser;
 
 class SupportString{
 
@@ -51,7 +50,7 @@ class SupportString{
         $faker = \Faker\Factory::create();
         // Create a DOM object
         try {
-            $dom = HtmlDomParser::str_get_html($data);
+            $dom = \voku\helper\HtmlDomParser::str_get_html($data);
         
             /// random d-none
             $none = $faker->regexify('[A-Za-z]{20}');
