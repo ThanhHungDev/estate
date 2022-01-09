@@ -16,9 +16,11 @@ class categories extends Seeder
     //     let subs = ''
     //     for( var i = 0; i < $lisubmenu.length; i++ ){
     //         const title = $($lisubmenu[i]).find('a.subNodeLink--unread').text().trim()
+    //         const href = $($lisubmenu[i]).find('a.subNodeLink--unread').attr('href')
     //         if( !title ) continue ;
     //         subs += `
     //                     [
+    //                         'fetch_link' => '${href}',
     //                         'parent' => ${begin},
     //                         'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
     //                         'name' => "${title}",
@@ -34,6 +36,7 @@ class categories extends Seeder
     //     // có sẵn 5 cái rồi nên ngồi dêtct từ cái số 4 ==> sub thì lấy từ cái số 6
     //     for( var i = 4; i < $nodes.length ; i++){
     //         const title = $($nodes[i]).find('.node-body .node-title a').text();
+    //         const href = $($nodes[i]).find('.node-body .node-title a').attr('href');
     //         if( title == 'Bất Động Sản' ) continue ;
     //         if( !title ) continue ;
     //         const $submenus = $($nodes[i]).find('.node-meta .node-subNodeMenu a.menuTrigger')
@@ -42,6 +45,7 @@ class categories extends Seeder
     //         const subs = getMenus(submenus, i + 2);
     //         node += `
     //                     [
+    //                         'fetch_link' => '${href}',
     //                         'parent' => Config::get('constant.CATEGORY__PARENT'),
     //                         'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
     //                         'name' => "${title}",
@@ -63,126 +67,147 @@ class categories extends Seeder
     {
         $categories = [
                 [
+                    'fetch_link' => null,
                     'parent' => Config::get('constant.CATEGORY__PARENT'),
                     'verify' => Config::get('constant.CATEGORY__VERIFY.REQUIRED'),
                     'name' => "Bất Động Sản",
                     'background' => '/images/categories/topbds_vn.jpeg'
                 ],
                 [
+                    'fetch_link' => null,
                     'parent' => 1,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.REQUIRED'),
                     'name' => "Căn hộ chung cư",
                     'background' => '/images/categories/can-ho-chung-cu.jpeg'
                 ],
                 [
+                    'fetch_link' => null,
                     'parent' => 1,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.REQUIRED'),
                     'name' => "Nhà riêng",
                     'background' => '/images/categories/nha-rieng.jpeg'
                 ],
                 [
+                    'fetch_link' => null,
                     'parent' => 1,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.REQUIRED'),
                     'name' => "Nhà biệt thự, liền kề",
                     'background' => '/images/categories/biet-thu.jpeg'
                 ],
                 [
+                    'fetch_link' => null,
                     'parent' => 1,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.REQUIRED'),
                     'name' => "Nhà mặt phố",
                     'background' => '/images/categories/nha-pho.jpeg'
                 ],
                 [
+                    'fetch_link' => null,
                     'parent' => 1,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.REQUIRED'),
                     'name' => "Đất nền dự án",
                     'background' => '/images/categories/dat-nen-phan-lo.jpeg'
                 ],
                 [
+                    'fetch_link' => null,
                     'parent' => 1,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.REQUIRED'),
                     'name' => "Bán đất",
                     'background' => '/images/categories/ban-dat.jpeg'
                 ],
                 [
+                    'fetch_link' => null,
                     'parent' => 1,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.REQUIRED'),
                     'name' => "Trang trại, khu nghỉ dưỡng",
                     'background' => '/images/categories/trai.jpeg'
                 ],
                 [
+                    'fetch_link' => null,
                     'parent' => 1,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.REQUIRED'),
                     'name' => "Kho, nhà xưởng",
                     'background' => '/images/categories/kho-xuong.jpeg'
                 ],
                 [
+                    'fetch_link' => null,
                     'parent' => 1,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.REQUIRED'),
                     'name' => "Phòng trọ",
                     'background' => '/images/categories/phong-tro.jpeg'
                 ],
                 [ 
+                    'fetch_link' => null,
                     'parent' => 1,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.REQUIRED'),
                     'name' => "Văn Phòng",
                     'background' => '/images/categories/van-phong.jpeg'
                 ],
                 [
+                    'fetch_link' => null,
                     'parent' => 1,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.REQUIRED'),
                     'name' => "Mặt bằng kinh doanh",
                     'background' => '/images/categories/mat-bang-kinh-doanh-mat-tien.jpeg'
                 ],
                 [
+                    'fetch_link' => null,
                     'parent' => 1,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.REQUIRED'),
                     'name' => "Bất động sản khác",
                     'background' => '/images/categories/bat-dong-san-khac.jpeg'
                 ],
                 [
+                    'fetch_link' => null,
                     'parent' => Config::get('constant.CATEGORY__PARENT'),
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Review - Phê bình",
                     'background' => '/images/categories/review.jpeg'
                 ],
                 [
+                    'fetch_link' => null,
                     'parent' => 2,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Review - Phê bình món ăn",
                     'background' => '/images/categories/review-food.jpeg'
                 ],
                 [
+                    'fetch_link' => null,
                     'parent' => 2,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Review - Phê bình khách sạn",
                     'background' => '/images/categories/review-hotel.jpeg'
                 ],
                 [
+                    'fetch_link' => null,
                     'parent' => Config::get('constant.CATEGORY__PARENT'),
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Thời Trang - Phụ Kiện",
                     'background' => '/images/categories/fashion.jpeg'
                 ],
                 [
+                    'fetch_link' => null,
                     'parent' => 3,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Thời trang nam",
                     'background' => '/images/categories/fas-male.jpeg'
                 ],
                 [
+                    'fetch_link' => null,
                     'parent' => 3,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Thời trang nữ",
                     'background' => '/images/categories/fas-female.jpeg'
                 ],
                 [
+                    'fetch_link' => null,
                     'parent' => 3,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Thời trang mẹ và bé",
                     'background' => '/images/categories/me-be.jpeg'
                 ],
                 [
+                    'fetch_link' => null,
                     'parent' => 3,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Phụ kiện thời trang",
@@ -190,30 +215,35 @@ class categories extends Seeder
                 ],
 
                 [
+                    'fetch_link' => null,
                     'parent' => Config::get('constant.CATEGORY__PARENT'),
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Điện Thoại - Linh Kiện",
                     'background' => '/images/categories/dt-linh-kien.jpeg'
                 ],
                 [
+                    'fetch_link' => null,
                     'parent' => 4,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Iphone",
                     'background' => '/images/categories/iphone.jpeg'
                 ],
                 [
+                    'fetch_link' => null,
                     'parent' => 4,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Android",
                     'background' => '/images/categories/android.jpeg'
                 ],
                 [
+                    'fetch_link' => null,
                     'parent' => 4,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Điện Thoại Phổ Thông",
                     'background' => '/images/categories/dt-pho-thong.jpeg'
                 ],
                 [
+                    'fetch_link' => null,
                     'parent' => 4,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Linh kiện điện thoại",
@@ -221,30 +251,36 @@ class categories extends Seeder
                 ],
 
                 [
+                    'fetch_link' => null,
+                    'fetch_link' => null,
                     'parent' => Config::get('constant.CATEGORY__PARENT'),
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Làm Đẹp",
                     'background' => '/images/categories/beauty.jpeg'
                 ],
                 [
+                    'fetch_link' => null,
                     'parent' => 5,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Mỹ phẩm",
                     'background' => '/images/categories/my-pham.jpeg'
                 ],
                 [
+                    'fetch_link' => null,
                     'parent' => 5,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Spa",
                     'background' => '/images/categories/spa.jpeg'
                 ],
                 [
+                    'fetch_link' => null,
                     'parent' => 5,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Nước Hoa",
                     'background' => '/images/categories/nuoc-hoa.jpeg'
                 ],
                 [
+                    'fetch_link' => null,
                     'parent' => 5,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Massage",
@@ -267,9 +303,10 @@ class categories extends Seeder
                 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                
+
                 
                 [
+                    'fetch_link' => '/forums/may-tinh-laptop-phu-kien.6/',
                     'parent' => Config::get('constant.CATEGORY__PARENT'),
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Máy Tính - Laptop - Phụ Kiện",
@@ -277,6 +314,7 @@ class categories extends Seeder
                 ],
                 
                 [
+                    'fetch_link' => '/forums/may-tinh.120/',
                     'parent' => 6,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Máy Tính",
@@ -284,6 +322,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'fetch_link' => '/forums/laptop.121/',
                     'parent' => 6,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Laptop",
@@ -291,6 +330,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'fetch_link' => '/forums/phu-kien.122/',
                     'parent' => 6,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Phụ Kiện",
@@ -300,6 +340,7 @@ class categories extends Seeder
                 
     
                 [
+                    'fetch_link' => '/forums/dien-tu-thiet-bi-so.58/',
                     'parent' => Config::get('constant.CATEGORY__PARENT'),
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Điện Tử - Thiết Bị Số",
@@ -307,6 +348,7 @@ class categories extends Seeder
                 ],
                 
                 [
+                    'fetch_link' => '/forums/do-dien-tu.138/',
                     'parent' => 7,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Đồ Điện Tử",
@@ -314,6 +356,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'fetch_link' => '/forums/thiet-bi-so.139/',
                     'parent' => 7,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Thiết Bị Số",
@@ -321,6 +364,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'fetch_link' => '/forums/linh-kien.140/',
                     'parent' => 7,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Linh Kiện",
@@ -330,6 +374,7 @@ class categories extends Seeder
                 
     
                 [
+                    'fetch_link' => '/forums/dien-may.123/',
                     'parent' => Config::get('constant.CATEGORY__PARENT'),
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Điện Máy",
@@ -337,6 +382,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'fetch_link' => '/forums/dien-gia-dung.124/',
                     'parent' => 8,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Điện Gia Dụng",
@@ -344,6 +390,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'fetch_link' => '/forums/dien-lanh.125/',
                     'parent' => 8,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Điện Lạnh",
@@ -351,6 +398,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'fetch_link' => '/forums/sua-chua-thi-cong.126/',
                     'parent' => 8,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Sửa Chữa - Thi Công",
@@ -360,6 +408,7 @@ class categories extends Seeder
                 
     
                 [
+                    'fetch_link' => '/forums/xe-co.21/',
                     'parent' => Config::get('constant.CATEGORY__PARENT'),
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Xe Cộ",
@@ -367,6 +416,7 @@ class categories extends Seeder
                 ],
                 
                 [
+                    'fetch_link' => '/forums/xe-2-banh.141/',
                     'parent' => 9,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Xe 2 Bánh",
@@ -374,6 +424,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'fetch_link' => '/forums/xe-4-banh.142/',
                     'parent' => 9,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Xe 4 Bánh",
@@ -381,6 +432,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'fetch_link' => '/forums/cho-thue.143/',
                     'parent' => 9,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Cho Thuê",
@@ -388,6 +440,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'fetch_link' => '/forums/phu-tung-dich-vu.100/',
                     'parent' => 9,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Phụ Tùng - Dịch Vụ",
@@ -395,6 +448,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'fetch_link' => '/forums/thao-luan.75/',
                     'parent' => 9,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Thảo Luận",
@@ -404,6 +458,7 @@ class categories extends Seeder
                 
     
                 [
+                    'fetch_link' => '/forums/phong-thuy-do-co-cay-canh-thu-nuoi.64/',
                     'parent' => Config::get('constant.CATEGORY__PARENT'),
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Phong Thủy - Đồ Cổ - Cây Cảnh - Thú Nuôi",
@@ -411,6 +466,7 @@ class categories extends Seeder
                 ],
                 
                 [
+                    'fetch_link' => '/forums/thu-nuoi.128/',
                     'parent' => 10,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Thú Nuôi",
@@ -418,6 +474,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'fetch_link' => '/forums/do-phong-thuy.129/',
                     'parent' => 10,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Đồ Phong Thủy",
@@ -425,6 +482,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'fetch_link' => '/forums/cay-canh.86/',
                     'parent' => 10,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Cây cảnh",
@@ -432,6 +490,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'fetch_link' => '/forums/tuyen-dung-tim-viec.7/',
                     'parent' => Config::get('constant.CATEGORY__PARENT'),
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Tuyển Dụng - Tìm Việc",
@@ -439,6 +498,7 @@ class categories extends Seeder
                 ],
                 
                 [
+                    'fetch_link' => '/forums/tuyen-dung.152/',
                     'parent' => 11,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Tuyển Dụng",
@@ -446,6 +506,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'fetch_link' => '/forums/tim-viec.153/',
                     'parent' => 11,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Tìm Việc",
@@ -454,6 +515,7 @@ class categories extends Seeder
                 
     
                 [
+                    'fetch_link' => '/forums/thanh-ly-ve-chai-tap-hoa.62/',
                     'parent' => Config::get('constant.CATEGORY__PARENT'),
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Thanh Lý - Ve Chai - Tạp Hóa",
@@ -461,6 +523,7 @@ class categories extends Seeder
                 ],
                 
                 [
+                    'fetch_link' => '/forums/thanh-ly.160/',
                     'parent' => 12,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Thanh Lý",
@@ -468,6 +531,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'fetch_link' => '/forums/ve-chai.82/',
                     'parent' => 12,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Ve chai",
@@ -475,6 +539,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'fetch_link' => '/forums/tap-hoa.8/',
                     'parent' => 12,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Tạp Hóa",
@@ -484,6 +549,7 @@ class categories extends Seeder
                 
     
                 [
+                    'fetch_link' => '/forums/noi-that-ngoai-that.79/',
                     'parent' => Config::get('constant.CATEGORY__PARENT'),
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Nội Thất - Ngoại Thất",
@@ -491,6 +557,7 @@ class categories extends Seeder
                 ],
                 
                 [
+                    'fetch_link' => '/forums/noi-that.149/',
                     'parent' => 13,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Nội Thất",
@@ -498,6 +565,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'fetch_link' => '/forums/ngoai-that.150/',
                     'parent' => 13,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Ngoại Thất",
@@ -505,6 +573,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'fetch_link' => '/forums/thi-cong.151/',
                     'parent' => 13,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Thi Công",
@@ -514,6 +583,7 @@ class categories extends Seeder
                 
     
                 [
+                    'fetch_link' => '/forums/du-lich-am-thuc.74/',
                     'parent' => Config::get('constant.CATEGORY__PARENT'),
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Du Lịch - Ẩm Thực",
@@ -521,6 +591,7 @@ class categories extends Seeder
                 ],
                 
                 [
+                    'fetch_link' => '/forums/dia-diem-du-lich.65/',
                     'parent' => 14,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Địa Điểm Du Lịch",
@@ -528,6 +599,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'fetch_link' => '/forums/dia-diem-an-uong.157/',
                     'parent' => 14,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Địa Điểm Ăn Uống",
@@ -537,6 +609,7 @@ class categories extends Seeder
                 
     
                 [
+                    'fetch_link' => '/forums/cho-game.60/',
                     'parent' => Config::get('constant.CATEGORY__PARENT'),
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Chợ Game",
@@ -544,6 +617,7 @@ class categories extends Seeder
                 ],
                 
                 [
+                    'fetch_link' => '/forums/mua-ban-thiet-bi.154/',
                     'parent' => 15,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Mua Bán Thiết Bị",
@@ -551,6 +625,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'fetch_link' => '/forums/nap-game.155/',
                     'parent' => 15,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Nạp Game",
@@ -572,6 +647,7 @@ class categories extends Seeder
                 
     
                 [
+                    'fetch_link' => '/forums/dich-vu-sua-chua-cai-dat.99/',
                     'parent' => Config::get('constant.CATEGORY__PARENT'),
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Dịch Vụ - Sửa Chửa - Cài Đặt",
@@ -579,6 +655,7 @@ class categories extends Seeder
                 ],
                 
                 [
+                    'fetch_link' => '/forums/dich-vu.161/',
                     'parent' => 16,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Dịch Vụ",
@@ -586,6 +663,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'fetch_link' => '/forums/sua-chua.162/',
                     'parent' => 16,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Sửa Chữa",
@@ -593,6 +671,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'fetch_link' => '/forums/cai-dat.163/',
                     'parent' => 16,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Cài Đặt",
@@ -602,6 +681,7 @@ class categories extends Seeder
                 
     
                 [
+                    'fetch_link' => '/forums/nong-lam-thuy-san.164/',
                     'parent' => Config::get('constant.CATEGORY__PARENT'),
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Nông - Lâm - Thủy Sản",
@@ -609,6 +689,7 @@ class categories extends Seeder
                 ],
                 
                 [
+                    'fetch_link' => '/forums/nong-san.165/',
                     'parent' => 17,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Nông Sản",
@@ -616,6 +697,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'fetch_link' => '/forums/lam-thuy.166/',
                     'parent' => 17,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Lâm Sản",
@@ -623,6 +705,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'fetch_link' => '/forums/thuy-san.167/',
                     'parent' => 17,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Thủy Sản",
@@ -632,6 +715,7 @@ class categories extends Seeder
                 
     
                 [
+                    'fetch_link' => '/forums/dao-tao-khoa-hoc.168/',
                     'parent' => Config::get('constant.CATEGORY__PARENT'),
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Đào Tạo - Khóa Học",
@@ -639,6 +723,7 @@ class categories extends Seeder
                 ],
                 
                 [
+                    'fetch_link' => '/forums/dao-tao.169/',
                     'parent' => 18,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Đào Tạo",
@@ -646,6 +731,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'fetch_link' => '/forums/giao-duc.170/',
                     'parent' => 18,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Giáo Dục",
@@ -653,6 +739,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'fetch_link' => '/forums/khoa-hoc.171/',
                     'parent' => 18,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Khóa Học",
@@ -662,6 +749,7 @@ class categories extends Seeder
                 
     
                 // [
+                //     'fetch_link' => '/forums/to-chuc-su-kien.172/',
                 //     'parent' => Config::get('constant.CATEGORY__PARENT'),
                 //     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                 //     'name' => "Tổ Chức Sự Kiện",
@@ -669,6 +757,7 @@ class categories extends Seeder
                 // ],
                 
                 // [
+                //     'fetch_link' => '/forums/don-vi-to-chuc.177/',
                 //     'parent' => 20,
                 //     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                 //     'name' => "Đơn Vị Tổ Chức",
