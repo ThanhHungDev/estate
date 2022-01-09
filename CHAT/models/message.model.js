@@ -80,7 +80,7 @@ MessageSchema.methods.toResources = function() {
         type      : this.type,
         read      : this.read,
         attachment: this.attachment,
-        user      : this.user,
+        user      : parseInt(this.user) || 0,
         body      : this.body,
         channel   : this.channel,
         style     : this.style,

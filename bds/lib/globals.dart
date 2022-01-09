@@ -2,7 +2,7 @@ library globals;
 
 import 'package:flutter/material.dart';
 
-const APP_IP = "192.168.100.45";
+const APP_IP = "192.168.1.7";
 const APP_URL = "http://$APP_IP";
 const REALTIME_URL = "http://$APP_IP:8081";
 // ipconfig getifaddr en0

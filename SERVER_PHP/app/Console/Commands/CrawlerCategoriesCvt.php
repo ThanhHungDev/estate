@@ -10,7 +10,7 @@ use PHPHtmlParser\Dom;
 
 class CrawlerCategoriesCvt extends Command
 {
-    private $ROOT = 'https://cvt.vn/';
+    private $ROOT      = 'https://cvt.vn/';
     private $MAX_CHILD = 10;
     /**
      * The name and signature of the console command.

@@ -1,12 +1,14 @@
 import 'package:bds/blocs/authentication/authentication_bloc.dart';
 import 'package:bds/blocs/conversation/conversation_bloc.dart';
+import 'package:bds/views/MessageScreen/Messages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MessagePage extends StatefulWidget {
   final String title;
+  final String id;
   // contructor
-  MessagePage({Key key, this.title}) : super(key: key);
+  MessagePage({Key key, this.title, this.id}) : super(key: key);
 
   @override
   _MessagePageState createState() => _MessagePageState();
@@ -76,11 +78,15 @@ class _MessagePageState extends State<MessagePage> {
                 ),
               );
             }
-            // else if (state is GetConversationSuccess) {
-            //   return ;
-            // }
+
+            final data = (state as GetConversationSuccess);
+            final idConversation = widget.id;
+            final conversation = data.conversations
+                .where((conv) => conv.id == idConversation)
+                .toList()[0];
+            print(conversation);
             return Container(
-              child: Text("không biết"),
+              child: ChatScreen(conversation),
             );
           },
         ),

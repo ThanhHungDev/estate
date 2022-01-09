@@ -28,11 +28,14 @@ class _ConversationsState extends State<Conversations> {
             ),
             trailing: noneRead,
             onTap: () {
-              Navigator.pushNamed(
-                context,
-                '/detail',
-                arguments: {'id': conversation.id},
-              );
+              print(conversation.id.toString());
+              Navigator.of(context)
+                  .pushNamed('/detail', arguments: {'id': conversation.id});
+              // Navigator.pushNamed(
+              //   context,
+              //   '/detail',
+              //   <String, String>{'': .toString()},
+              // );
             },
           ),
         );

@@ -18,6 +18,7 @@ class App extends StatelessWidget {
       ),
       initialRoute: "/",
       onGenerateRoute: (RouteSettings settings) {
+        final arguments = settings.arguments as Map;
         switch (settings.name) {
           case '/':
             return MaterialPageRoute(
@@ -31,7 +32,12 @@ class App extends StatelessWidget {
                       title: title,
                     ));
           case '/detail':
-            return MaterialPageRoute(builder: (context) => MessagePage());
+            {
+              return MaterialPageRoute(
+                  builder: (context) =>
+                      MessagePage(title: title, id: arguments['id']));
+            }
+
           default:
             return MaterialPageRoute(
                 builder: (context) => ConversationPage(
