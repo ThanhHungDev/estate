@@ -18,6 +18,7 @@ class CreateProducts extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->string('fetch_link')->nullable(); /// for crawler
             $table->unsignedInteger('category_id')->unsigned();
             $table->unsignedInteger('user_id')->unsigned()->nullable();
             $table->unsignedInteger('rating_id')->unsigned()->nullable();

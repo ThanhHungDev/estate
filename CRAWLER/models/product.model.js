@@ -2,38 +2,29 @@
 const Sequelize  = require("sequelize"),
       connection = require("./PostgreConnection")
 
-    const USER = connection.define('USER', {
+    const PRODUCT = connection.define('PRODUCT', {
         id: {
             type: Sequelize.INTEGER,
             autoIncrement: true,
             primaryKey: true
         },
-        avatar: {
-            type: Sequelize.STRING
+        category_id: { 
+            type: Sequelize.INTEGER 
         },
-        name: {
-            type: Sequelize.STRING
+        user_id: { 
+            type: Sequelize.INTEGER 
         },
         fetch_link: { 
             type: Sequelize.STRING 
         },
-        email: {
-            type: Sequelize.STRING
-        },
-        role_id: { 
-            type: Sequelize.INTEGER 
-        },
-        role: { 
-            type: Sequelize.INTEGER 
-        },
-        sale_type: { 
-            type: Sequelize.INTEGER 
-        },
-        background: { 
+        title: { 
             type: Sequelize.STRING 
         },
-        phone_verify: { 
-            type: Sequelize.STRING 
+        excerpt: { 
+            type: Sequelize.TEXT 
+        },
+        content: {
+            type: Sequelize.TEXT
         },
         created_at: {
             type: Sequelize.DATE
@@ -44,14 +35,11 @@ const Sequelize  = require("sequelize"),
     }, {
         underscored: true,
         timestamps: false,
-        tableName: "users"
+        tableName: "products"
     })
-    USER.prototype.toJSONFor = function () {
+    PRODUCT.prototype.toJSONFor = function () {
         return {
             id    : this.id,
-            avatar: this.avatar,
-            name  : this.name,
-            email : this.email
         }
     }
-module.exports = USER
+module.exports = PRODUCT
