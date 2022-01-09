@@ -4,28 +4,77 @@
  * Module dependencies.
  */
 
-var app = require('../app');
-var debug = require('debug')('crawler:server');
-var http = require('http');
+var app       = require('../app');
+var debug     = require('debug')('chat:server');
+var http      = require('http');
+// var eventIO   = require('../app.socket');
+// var dbConnect = require('../app.mongo.connect');
+var CONFIG = require("../config")
+var dotenv    = require('dotenv')                 /// thêm dot env vào hệ thống
+dotenv.config() /// load file .env
+
+const initIndex = require('../routes/index'),
+      initUsers = require('../routes/users'),
+      initAPIs  = require("../routes/api");
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.ASSET_REALTIME_PORT || '8082');
 app.set('port', port);
 
 /**
  * Create HTTP server.
  */
-
+console.log(CONFIG.CORS_IO )
 var server = http.createServer(app);
+// eventIO.attach(server, {
+//   origins: CONFIG.CORS_IO
+// })
 
-/**
- * Listen on provided port, on all network interfaces.
- */
+/// pass socket to api
+app.use(function(req, res, next){
+  // res.io = eventIO
+  next()
+})
+// // respond with "hello world" when a GET request is made to the homepage
+// app.get('/onlines', function (req, res) {
+  
+//   return res.status(200).json({ message: 'hello onlines', onlines: res.io.USER_ONLINES || [] })
+// })
 
-server.listen(port);
+/// set root index
+initIndex(app)
+/// set root users
+initUsers(app)
+/// set root api
+initAPIs(app)
+
+// // error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.status = err.status;
+  res.locals.stack = err.stack;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  if (req.isApi || /application\/json;/.test(req.get('accept'))) {
+    return res.status(err.status || 500).json(res.locals)
+  }
+	// render the error page
+	res.status(err.status || 500);
+	return res.render('error')
+    
+});
+
+// server.listen(port); /// comment lại 
+server.listen(port,  () => {
+
+  console.log(`server run: http://localhost:${port}`)  
+  // dbConnect.myConnection()
+});
+
 server.on('error', onError);
 server.on('listening', onListening);
 
