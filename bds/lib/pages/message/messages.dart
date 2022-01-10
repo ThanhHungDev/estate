@@ -53,7 +53,7 @@ class ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
   Widget _buildTextComposer() {
     return new IconTheme(
       data: IconThemeData(color: Theme.of(context).accentColor),
-      child: Input(),
+      child: Input(conversation: widget.conversation),
     );
   }
 
@@ -63,7 +63,7 @@ class ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
     return SafeArea(
       child: Column(
         children: <Widget>[
-          new Flexible(
+          new Expanded(
             child: new ListView.builder(
               controller: _controller,
               padding: new EdgeInsets.all(8.0),

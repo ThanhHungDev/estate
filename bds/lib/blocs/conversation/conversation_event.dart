@@ -8,3 +8,9 @@ abstract class ConversationEvent extends Equatable {
 }
 
 class GetConversationEvent extends ConversationEvent {}
+
+class AddMessageConversationEvent extends ConversationEvent {
+  final String conversationid;
+  final Message message;
+  AddMessageConversationEvent({this.conversationid, this.message});
+}

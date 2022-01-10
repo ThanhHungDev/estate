@@ -14,4 +14,6 @@ class GetConversationError extends ConversationState {}
 class GetConversationSuccess extends ConversationState {
   final List<Conversation> conversations;
   GetConversationSuccess(this.conversations) : super();
+  @override
+  List<Object> get props => [conversations];
 }

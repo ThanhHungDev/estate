@@ -14,3 +14,5 @@ class ConnectingSocketState extends SocketState {}
 class ConnectedSocketState extends SocketState {}
 
 class DisconnectSocketState extends SocketState {}
+
+class AddMesssageSocketState extends SocketState {}

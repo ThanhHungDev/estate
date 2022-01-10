@@ -3259,7 +3259,7 @@ function createSocketListenner(socket, props, CONFIG) {
         data = response.data,
         socketid = response.socketid;
     var user = data.user,
-        message = data.message,
+        body = data.body,
         style = data.style,
         attachment = data.attachment,
         channel = data.channel,
@@ -3276,7 +3276,7 @@ function createSocketListenner(socket, props, CONFIG) {
         channel: channel,
         keyUpdate: keyUpdate,
         createdAt: createdAt,
-        body: message,
+        body: body,
         read: false,
         readAdmin: false
       }));
@@ -3291,7 +3291,7 @@ function createSocketListenner(socket, props, CONFIG) {
         channel: channel,
         keyUpdate: keyUpdate,
         createdAt: createdAt,
-        body: message,
+        body: body,
         read: false,
         readAdmin: false
       }));

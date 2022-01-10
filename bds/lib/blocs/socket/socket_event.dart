@@ -21,4 +21,10 @@ class StartedSocketEvent extends SocketEvent {
 
 class DisconnectSocketEvent extends SocketEvent {}
 
+class AddNewMessageSocketEvent extends SocketEvent {
+  final String conversationid;
+  final Message message;
+  AddNewMessageSocketEvent({this.conversationid, this.message});
+}
+
 class EmitSocketEvent extends SocketEvent {}

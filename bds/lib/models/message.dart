@@ -25,15 +25,17 @@ class Message {
 
   factory Message.fromJson(Map<String, dynamic> json) => Message(
         id: json["_id"],
-        read: json["read"],
-        readAdmin: json["readAdmin"],
+        read: json["read"] ?? false,
+        readAdmin: json["readAdmin"] ?? false,
         attachment: List<dynamic>.from(json["attachment"].map((att) => att)),
         user: json["user"],
         body: json["body"],
         channel: json["channel"],
         style: json["style"],
         createdAt: DateTime.parse(json["createdAt"]),
-        updatedAt: DateTime.parse(json["updatedAt"]),
+        updatedAt: json["updatedAt"] == null
+            ? DateTime.parse(json["createdAt"])
+            : DateTime.parse(json["updatedAt"]),
       );
 
   Map<String, dynamic> toJson() => {

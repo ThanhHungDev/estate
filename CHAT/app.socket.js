@@ -344,6 +344,7 @@ io
             }).save()
             /// add infor data
             data.user = jwt.id
+            data.body = message
             data._id = mess._id
             data.channel = conversation._id
             const response = {
@@ -352,7 +353,7 @@ io
                 message : "socket add message thành công",
                 socketid: socket.id
             }
-            io.in(conversation.name).emit(CONFIG.EVENT.RESPONSE__ADD__MESSAGE, response)
+            io.to(conversation.name).emit(CONFIG.EVENT.RESPONSE__ADD__MESSAGE, response)
         } catch (error) {
             console.log(error)
             /// response 

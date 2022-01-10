@@ -1,7 +1,15 @@
+import 'package:bds/blocs/authentication/authentication_bloc.dart';
+import 'package:bds/blocs/socket/socket_bloc.dart';
+import 'package:bds/event_socket.dart';
+import 'package:bds/models/User.dart';
+import 'package:bds/models/conversation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Input extends StatefulWidget {
-  const Input() : super();
+  final Conversation conversation;
+  final User auth;
+  const Input({this.conversation, this.auth}) : super();
 
   @override
   _InputState createState() => _InputState();
@@ -19,12 +27,36 @@ class _InputState extends State<Input> {
   }
 
   void _handleSubmitted() {
-    String text = _inputController.text;
+    final socket = BlocProvider.of<SocketBloc>(context).socket;
+
+    if (socket.connected) {
+      final message = _inputController.text;
+      final style = "";
+      final attachment = [];
+      final channel = widget.conversation.id;
+      final keyUpdate = DateTime.now().toString();
+      print("đã gửi " + message);
+
+      /// random
+      if (attachment.length == 0 &&
+          message.toString().length == 0 &&
+          style.toString().length == 0) {
+        print("không gửi");
+      } else {
+        socket.emit(EventSocket.ADD__MESSAGE, {
+          'keyUpdate': keyUpdate, // random
+          'message': message, // function calc
+          'style': style, // function calc
+          'attachment': attachment, // function calc
+          'channel': channel,
+        });
+        //emit xong phải đẩy vào hệ thống 1 messgae mơi nữa
+      }
+    }
     _inputController.clear();
     setState(() {
       _canSend = false;
     });
-    print("gửi dữ liệu lên bloc ${text}");
   }
 
   Widget _buildTextInput() {

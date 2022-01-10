@@ -2,6 +2,7 @@
     package="com.example.bds">
    <application
         android:label="bds"
+        android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

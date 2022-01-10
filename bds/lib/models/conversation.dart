@@ -25,6 +25,20 @@ class Conversation {
     this.users,
   }) : super();
 
+  factory Conversation.clone(Conversation conv) {
+    return Conversation(
+      id: conv.id,
+      name: conv.name,
+      user: conv.user,
+      sort: conv.sort,
+      backup: conv.backup,
+      updatedAt: conv.updatedAt,
+      createdAt: conv.createdAt,
+      messages: conv.messages,
+      users: conv.users,
+    );
+  }
+
   static List<Conversation> fromList(List<dynamic> json) {
     List<Conversation> convs = [];
     for (var i = 0; i < json.length; i++) {

@@ -14,10 +14,12 @@ void main() {
       ),
       BlocProvider<SocketBloc>(
         // lazy: false,
-        create: (BuildContext context) => SocketBloc(),
+        create: (BuildContext context) =>
+            SocketBloc(convBloc: ConversationBloc()),
       ),
       BlocProvider<ConversationBloc>(
-        create: (BuildContext context) => ConversationBloc(),
+        create: (BuildContext context) =>
+            BlocProvider.of<SocketBloc>(context).convBloc,
       ),
     ],
     child: App(),

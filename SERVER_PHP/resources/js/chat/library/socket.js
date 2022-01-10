@@ -44,7 +44,7 @@ export function createSocketListenner(socket, props, CONFIG){
     .on( CONFIG.EVENT.RESPONSE__ADD__MESSAGE, response => {
         console.log("vào response add message!", response)
         const { code, data, socketid } = response
-        const { user, message, style, attachment, channel, keyUpdate, createdAt, _id } = data
+        const { user, body, style, attachment, channel, keyUpdate, createdAt, _id } = data
         if( code != 200 ) return false
         else if( code == 200 && socketid == socket.id ){
             /// socket người nhận
@@ -53,7 +53,7 @@ export function createSocketListenner(socket, props, CONFIG){
                 channel,
                 keyUpdate,
                 createdAt,
-                body     : message,
+                body,
                 read     : false,
                 readAdmin: false,
             }))
@@ -65,7 +65,7 @@ export function createSocketListenner(socket, props, CONFIG){
                 channel,
                 keyUpdate,
                 createdAt,
-                body     : message,
+                body,
                 read     : false,
                 readAdmin: false,
             }))

@@ -1,3 +1,4 @@
+import 'package:bds/models/message.dart';
 import 'package:bds/models/conversation.dart';
 import 'package:bds/models/error.dart';
 import 'package:bds/repositories/conversation.dart';
@@ -19,6 +20,18 @@ class ConversationBloc extends Bloc<ConversationEvent, ConversationState> {
         yield GetConversationError();
         return;
       }
+      yield GetConversationSuccess(conversations);
+    } else if (event is AddMessageConversationEvent) {
+      final conversations =
+          (state as GetConversationSuccess).conversations.map((conv) {
+        if (conv.id == event.conversationid) {
+          // message đang bị ngược => tin nhắn mới nhất nằm ở vị trí 0
+          conv.messages.insert(0, event.message);
+          return Conversation.clone(conv);
+        }
+        return Conversation.clone(conv);
+      }).toList();
+
       yield GetConversationSuccess(conversations);
     }
   }

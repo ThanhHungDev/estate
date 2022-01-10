@@ -1,4 +1,8 @@
+import 'dart:io';
+
+import 'package:bds/blocs/conversation/conversation_bloc.dart';
 import 'package:bds/event_socket.dart';
+import 'package:bds/models/message.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
@@ -8,7 +12,8 @@ part 'socket_state.dart';
 
 class SocketBloc extends Bloc<SocketEvent, SocketState> {
   IO.Socket socket;
-  SocketBloc() : super(SocketInitial()) {
+  final ConversationBloc convBloc;
+  SocketBloc({this.convBloc}) : super(SocketInitial()) {
     print("contructor socket nè");
   }
 
@@ -24,6 +29,13 @@ class SocketBloc extends Bloc<SocketEvent, SocketState> {
       yield DisconnectSocketState();
     } else if (event is EmitSocketEvent) {
       print("emit thử");
+    } else if (event is AddNewMessageSocketEvent) {
+      print("có người nhắn tin, tin nhắn mới :D ");
+      // yield AddMesssageSocketState();
+      convBloc.add(AddMessageConversationEvent(
+        conversationid: event.conversationid,
+        message: event.message,
+      ));
     }
   }
 
@@ -51,59 +63,85 @@ class SocketBloc extends Bloc<SocketEvent, SocketState> {
   }
 
   Future<void> _createSocketListenner(jwt) async {
-    try {
-      this.socket = IO.io(
-        GLOBALS.REALTIME_URL,
-        IO.OptionBuilder()
-            .setTransports(['websocket'])
-            .setQuery({'token': jwt})
-            .setTimeout(3000)
-            // .disableAutoConnect()
-            // .disableReconnection()
-            .build(),
-      );
-      // socket.onConnecting((data) => add(_OnlineConnectingEvent()));
-      this.socket.onConnect((data) {
-        print("Successfully socket connected! ====>" +
-            socket.id +
-            " " +
-            EventSocket.ADD__MESSAGE);
-        // lưu lại trạng thái connect mới của socket
-        if (socket.connected) {
-          print("connected ở đây sẽ thành công " + socket.connected.toString());
-          // thử emit lên mới 1 sự kiện trong JOIN__CHATTING
-          socket.emit(EventSocket.JOIN__CHATTING, {"data": "app"});
-        }
-        return this.add(ConnectedSocketEvent());
-      });
-      this.socket.onDisconnect((error) {
-        print(
-            "onDisconnect ${socket.connected.toString()} ${error.toString()}");
-        return this.add(DisconnectSocketEvent());
-      });
-      this.socket.onError((error) {
-        print("************ Error ************");
-        print("************ Error ************");
-        print(error);
-        print("************ Error ************");
-      });
-      this.socket.onConnectError((error) {
-        print(
-            "connect_error ${socket.connected.toString()} ${error.toString()}"); // not authorized
-      });
-      this.socket.onConnectTimeout((error) {
-        print(
-            "onConnectTimeout ${socket.connected.toString()} ${error.toString()}");
-      });
-      this.socket.on("reconnect", (data) {
-        print(
-            "reconnect success ${socket.connected.toString()} ${data.toString()}");
-        socket.emit(EventSocket.RECONNECT__CHATTING, []);
-      });
-      this.socket.on('add__message', (_) => print(_));
-    } catch (e) {
-      print(e);
-    }
+    socket = IO.io(
+      GLOBALS.REALTIME_URL,
+      IO.OptionBuilder()
+          .setTransports(['websocket'])
+          .setQuery({'token': jwt})
+          .setExtraHeaders({'token': jwt}) // optional
+          .setTimeout(3000)
+          .disableAutoConnect()
+          // .disableReconnection()
+          .build(),
+    );
+    // socket.onConnecting((data) => add(_OnlineConnectingEvent()));
+    socket.onConnect((data) {
+      print("Successfully socket connected! ====>" +
+          socket.id +
+          " " +
+          EventSocket.ADD__MESSAGE);
+      // lưu lại trạng thái connect mới của socket
+      if (socket.connected) {
+        print("connected ở đây sẽ thành công " + socket.connected.toString());
+        // thử emit lên mới 1 sự kiện trong JOIN__CHATTING
+        socket.emit(EventSocket.JOIN__CHATTING);
+      }
+      return this.add(ConnectedSocketEvent());
+    });
+    socket.onDisconnect((error) {
+      print("onDisconnect ${socket.connected.toString()} ${error.toString()}");
+      return this.add(DisconnectSocketEvent());
+    });
+    socket.onError((error) {
+      print("************ Error ************");
+      print("************ Error ************");
+      print(error);
+      print("************ Error ************");
+    });
+    socket.onConnectError((error) {
+      print(
+          "connect_error ${socket.connected.toString()} ${error.toString()}"); // not authorized
+    });
+    socket.onConnectTimeout((error) {
+      print(
+          "onConnectTimeout ${socket.connected.toString()} ${error.toString()}");
+    });
+    socket.on("reconnect", (data) {
+      print(
+          "reconnect success ${socket.connected.toString()} ${data.toString()}");
+      socket.emit(EventSocket.RECONNECT__CHATTING, []);
+    });
+    socket.on(EventSocket.RESPONSE__ADD__MESSAGE, (response) {
+      final Map<String, dynamic> json = response as Map<String, dynamic>;
+      print(json.toString());
+      final int code = json['code'];
+      // { user, message, style, attachment, channel, keyUpdate, createdAt, _id }
+      final Map<String, dynamic> data = json['data'];
+      final String socketid = json['socketid'];
+
+      /// socket add vào hệ thống 1 message mới
+      if (code != HttpStatus.ok) {
+        print("đang bị lỗi gì đó nên không cần làm gì cả");
+      } else if (code == HttpStatus.ok &&
+          socketid.toString() == socket.id.toString()) {
+        print("==============g cần làm gì cả");
+        return this.add(
+          AddNewMessageSocketEvent(
+            conversationid: data['channel'],
+            message: Message.fromJson(data),
+          ),
+        );
+      } else if (code == HttpStatus.ok &&
+          socketid.toString() != socket.id.toString()) {
+        print("===nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnm gì cả");
+        return this.add(
+          AddNewMessageSocketEvent(
+            conversationid: data['channel'],
+            message: Message.fromJson(data),
+          ),
+        );
+      }
+    });
   }
 
   @override
