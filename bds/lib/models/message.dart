@@ -1,4 +1,4 @@
-class MessageResource {
+class Message {
   String id;
   bool read;
   bool readAdmin;
@@ -10,7 +10,7 @@ class MessageResource {
   DateTime createdAt;
   DateTime updatedAt;
 
-  MessageResource({
+  Message({
     this.id,
     this.read,
     this.readAdmin,
@@ -23,8 +23,7 @@ class MessageResource {
     this.updatedAt,
   }) : super();
 
-  factory MessageResource.fromJson(Map<String, dynamic> json) =>
-      MessageResource(
+  factory Message.fromJson(Map<String, dynamic> json) => Message(
         id: json["_id"],
         read: json["read"],
         readAdmin: json["readAdmin"],

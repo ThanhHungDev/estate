@@ -1,4 +1,4 @@
-import 'package:bds/models/EventSocket.dart';
+import 'package:bds/event_socket.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
@@ -51,51 +51,59 @@ class SocketBloc extends Bloc<SocketEvent, SocketState> {
   }
 
   Future<void> _createSocketListenner(jwt) async {
-    socket = IO.io(
-      GLOBALS.REALTIME_URL,
-      IO.OptionBuilder()
-          .setTransports(['websocket'])
-          .setQuery({'token': jwt})
-          .setExtraHeaders({'token': jwt}) // optional
-          .setTimeout(3000)
-          .disableAutoConnect()
-          // .disableReconnection()
-          .build(),
-    );
-    // socket.onConnecting((data) => add(_OnlineConnectingEvent()));
-    socket.onConnect((data) {
-      print("Successfully socket connected! ====>" + socket.id);
-      // lưu lại trạng thái connect mới của socket
-      if (socket.connected) {
-        print("connected ở đây sẽ thành công " + socket.connected.toString());
-        // thử emit lên mới 1 sự kiện trong JOIN__CHATTING
-        socket.emit(EventSocket.JOIN__CHATTING);
-      }
-      return this.add(ConnectedSocketEvent());
-    });
-    socket.onDisconnect((error) {
-      return this.add(DisconnectSocketEvent());
-      print("onDisconnect ${socket.connected.toString()} ${error.toString()}");
-    });
-    socket.onError((error) {
-      print("************ Error ************");
-      print("************ Error ************");
-      print(error);
-      print("************ Error ************");
-    });
-    socket.onConnectError((error) {
-      print(
-          "connect_error ${socket.connected.toString()} ${error.toString()}"); // not authorized
-    });
-    socket.onConnectTimeout((error) {
-      print(
-          "onConnectTimeout ${socket.connected.toString()} ${error.toString()}");
-    });
-    socket.on("reconnect", (data) {
-      print(
-          "reconnect success ${socket.connected.toString()} ${data.toString()}");
-      socket.emit(EventSocket.RECONNECT__CHATTING, []);
-    });
+    try {
+      this.socket = IO.io(
+        GLOBALS.REALTIME_URL,
+        IO.OptionBuilder()
+            .setTransports(['websocket'])
+            .setQuery({'token': jwt})
+            .setTimeout(3000)
+            // .disableAutoConnect()
+            // .disableReconnection()
+            .build(),
+      );
+      // socket.onConnecting((data) => add(_OnlineConnectingEvent()));
+      this.socket.onConnect((data) {
+        print("Successfully socket connected! ====>" +
+            socket.id +
+            " " +
+            EventSocket.ADD__MESSAGE);
+        // lưu lại trạng thái connect mới của socket
+        if (socket.connected) {
+          print("connected ở đây sẽ thành công " + socket.connected.toString());
+          // thử emit lên mới 1 sự kiện trong JOIN__CHATTING
+          socket.emit(EventSocket.JOIN__CHATTING, {"data": "app"});
+        }
+        return this.add(ConnectedSocketEvent());
+      });
+      this.socket.onDisconnect((error) {
+        print(
+            "onDisconnect ${socket.connected.toString()} ${error.toString()}");
+        return this.add(DisconnectSocketEvent());
+      });
+      this.socket.onError((error) {
+        print("************ Error ************");
+        print("************ Error ************");
+        print(error);
+        print("************ Error ************");
+      });
+      this.socket.onConnectError((error) {
+        print(
+            "connect_error ${socket.connected.toString()} ${error.toString()}"); // not authorized
+      });
+      this.socket.onConnectTimeout((error) {
+        print(
+            "onConnectTimeout ${socket.connected.toString()} ${error.toString()}");
+      });
+      this.socket.on("reconnect", (data) {
+        print(
+            "reconnect success ${socket.connected.toString()} ${data.toString()}");
+        socket.emit(EventSocket.RECONNECT__CHATTING, []);
+      });
+      this.socket.on('add__message', (_) => print(_));
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override

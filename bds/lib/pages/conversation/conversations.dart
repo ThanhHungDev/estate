@@ -1,9 +1,9 @@
-import 'package:bds/models/ConversationResource.dart';
-import 'package:bds/views/ConversationScreen/CounterNoneRead.dart';
+import 'package:bds/models/conversation.dart';
+import 'package:bds/pages/conversation/none_read.dart';
 import 'package:flutter/material.dart';
 
 class Conversations extends StatefulWidget {
-  final List<ConversationResource> conversations;
+  final List<Conversation> conversations;
   const Conversations({Key key, @required this.conversations})
       : super(key: key);
 
@@ -18,11 +18,11 @@ class _ConversationsState extends State<Conversations> {
       itemCount: widget.conversations.length,
       itemBuilder: (context, index) {
         final conversation = widget.conversations[index];
-        final noneRead = CounterNoneRead(messages: conversation.messages);
+        final noneRead = NoneRead(messages: conversation.messages);
         return Card(
           child: ListTile(
             title: Text(conversation.getConversationName()),
-            subtitle: Text(conversation.getStrLastestMesssage()),
+            subtitle: Text(conversation.getStrEndMesssage()),
             leading: CircleAvatar(
               backgroundImage: NetworkImage(conversation.getAvatar()),
             ),

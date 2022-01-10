@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:bds/models/ConversationResource.dart';
-import 'package:bds/models/ErrorResource.dart';
+import 'package:bds/models/conversation.dart';
+import 'package:bds/models/error.dart';
 import 'package:bds/repositories/interceptor.dart';
 import 'package:dio/dio.dart';
 import 'package:bds/globals.dart';
@@ -26,11 +26,11 @@ class ConversationRepository {
       _dio.clear();
       Map<String, dynamic> json = response.data;
       if (json['code'] != HttpStatus.ok) {
-        return ErrorResource(json['code'], json['message']);
+        return Error(json['code'], json['message']);
       }
-      return ConversationResource.fromList(json['data']);
+      return Conversation.fromList(json['data']);
     } on DioError catch (error) {
-      return ErrorResource(HttpStatus.internalServerError, error.message);
+      return Error(HttpStatus.internalServerError, error.message);
     }
   }
 }

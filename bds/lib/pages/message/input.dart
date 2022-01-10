@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class InputComposer extends StatefulWidget {
-  const InputComposer() : super();
+class Input extends StatefulWidget {
+  const Input() : super();
 
   @override
-  _InputComposerState createState() => _InputComposerState();
+  _InputState createState() => _InputState();
 }
 
-class _InputComposerState extends State<InputComposer> {
+class _InputState extends State<Input> {
   bool _canSend = false;
   final TextEditingController _inputController = new TextEditingController();
 
@@ -51,8 +51,9 @@ class _InputComposerState extends State<InputComposer> {
           ),
           new Container(
             child: new IconButton(
-                icon: new Icon(Icons.send),
-                onPressed: _canSend ? () => _handleSubmitted() : null),
+              icon: new Icon(Icons.send),
+              onPressed: _canSend ? () => _handleSubmitted() : null,
+            ),
           ),
         ],
       ),

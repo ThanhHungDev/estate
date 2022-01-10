@@ -1,12 +1,12 @@
-import 'package:bds/models/AuthResource.dart';
-import 'package:bds/models/ConversationResource.dart';
-import 'package:bds/views/MessageScreen/InputComposer.dart';
-import 'package:bds/views/MessageScreen/MessageItem.dart';
+import 'package:bds/models/conversation.dart';
+import 'package:bds/models/user.dart';
+import 'package:bds/pages/message/input.dart';
+import 'package:bds/pages/message/message_item.dart';
 import 'package:flutter/material.dart';
 
 class ChatScreen extends StatefulWidget {
-  final ConversationResource conversation;
-  final AuthResource auth;
+  final Conversation conversation;
+  final User auth;
   ChatScreen({this.conversation, this.auth}) : super();
   //modified
   @override //new
@@ -19,6 +19,7 @@ class ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
 
   @override
   void dispose() {
+    _controller.removeListener(_scrollListener);
     super.dispose();
   }
 
@@ -27,6 +28,12 @@ class ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
     _controller = ScrollController();
     _controller.addListener(_scrollListener);
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    print("trang list message được build xong didChangeDependencies");
+    super.didChangeDependencies();
   }
 
   _scrollListener() {
@@ -46,37 +53,38 @@ class ChatScreenState extends State<ChatScreen> with TickerProviderStateMixin {
   Widget _buildTextComposer() {
     return new IconTheme(
       data: IconThemeData(color: Theme.of(context).accentColor),
-      child: InputComposer(),
+      child: Input(),
     );
   }
 
   @override //new
   Widget build(BuildContext context) {
-    return new Column(
-      children: <Widget>[
-        new Flexible(
-          child: new ListView.builder(
-            controller: _controller,
-            padding: new EdgeInsets.all(8.0),
-            reverse: true,
-            itemBuilder: (_, int index) {
-              return MessageItem(
-                message: widget.conversation.messages[index],
-                auth: widget.auth,
-                user: widget.conversation.users[0],
-              );
-            },
-            itemCount: widget.conversation.messages.length,
+    print(widget.auth);
+    return SafeArea(
+      child: Column(
+        children: <Widget>[
+          new Flexible(
+            child: new ListView.builder(
+              controller: _controller,
+              padding: new EdgeInsets.all(8.0),
+              reverse: true,
+              shrinkWrap: true,
+              itemBuilder: (BuildContext context, int index) {
+                return MessageItem(
+                  message: widget.conversation.messages[index],
+                  auth: widget.auth,
+                  user: widget.conversation.users[0],
+                );
+              },
+              itemCount: widget.conversation.messages.length,
+            ),
           ),
-        ),
-        Container(
-          decoration: new BoxDecoration(color: Theme.of(context).cardColor),
-          child: SafeArea(
-            bottom: true,
+          Container(
+            decoration: new BoxDecoration(color: Theme.of(context).cardColor),
             child: _buildTextComposer(),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

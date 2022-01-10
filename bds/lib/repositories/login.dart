@@ -1,6 +1,6 @@
 import 'dart:io';
-import 'package:bds/models/ErrorResource.dart';
-import 'package:bds/models/AuthResource.dart';
+import 'package:bds/models/error.dart';
+import 'package:bds/models/user.dart';
 import 'package:dio/dio.dart';
 import 'package:bds/globals.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
@@ -29,18 +29,18 @@ class LoginRepository {
       _dio.clear();
       Map<String, dynamic> json = response.data;
       if (response != null && response.statusCode == HttpStatus.ok) {
-        return AuthResource.fromJwt(json['data']);
+        return User.fromJwt(json['data']);
       }
 
       /// lỗi "status": 401, "message": "c\u00f3 l\u1ed7i validate trong controller", "errors": { "error": "invalid_credentials" }
-      return ErrorResource(json['status'], json['message']);
+      return Error(json['status'], json['message']);
     } on DioError catch (error) {
       // if (error.type == DioErrorType.connectTimeout) {
       //   throw Exception("Connection  Timeout Exception");
       // }
       // throw Exception(error.message);
       print(error.message);
-      return ErrorResource(HttpStatus.internalServerError,
+      return Error(HttpStatus.internalServerError,
           'Có lỗi hệ thống, vui lòng thử lại sau!');
     }
   }

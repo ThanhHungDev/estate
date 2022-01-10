@@ -286,6 +286,7 @@ io
      * begin Chatting
      */
     .on( CONFIG.EVENT.JOIN__CHATTING, async data => {
+        console.log(data)
         socket.isChat = true
         const { jwt } = socket
         /// khi connect được thiết lập buộc lòng kiểm tra xem cái thông số message cuối có trùng không? nếu không trùng thì phải fetch lại từ đầu
@@ -316,10 +317,12 @@ io
                 socket.broadcast.in(channel.name).emit(CONFIG.EVENT.RESPONSE__JOIN__CHATTING, response )
             // }
         })
+        console.log("socket.adapter.rooms", socket.adapter.rooms)
         return;
     })
 
     .on( CONFIG.EVENT.ADD__MESSAGE, async data => {
+        console.log(CONFIG.EVENT.ADD__MESSAGE, socket.id)
         const { jwt } = socket
         const { message, style, attachment, channel, keyUpdate } = data
         data.createdAt = new Date()

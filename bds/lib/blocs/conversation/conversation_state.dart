@@ -12,6 +12,6 @@ class ConversationInitial extends ConversationState {}
 class GetConversationError extends ConversationState {}
 
 class GetConversationSuccess extends ConversationState {
-  final List<ConversationResource> conversations;
+  final List<Conversation> conversations;
   GetConversationSuccess(this.conversations) : super();
 }

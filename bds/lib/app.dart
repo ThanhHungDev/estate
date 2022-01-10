@@ -1,7 +1,7 @@
-import 'package:bds/views/ConversationScreen/chat.dart';
-import 'package:bds/views/HomeScreen/home.dart';
-import 'package:bds/views/MessageScreen/message.dart';
-// import 'package:bds/views/LoadingPage/loading.dart';
+import 'package:bds/pages/conversation/chat.dart';
+import 'package:bds/pages/home/home.dart';
+import 'package:bds/pages/message/message.dart';
+// import 'package:bds/pages/LoadingPage/loading.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {

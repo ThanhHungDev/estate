@@ -1,13 +1,13 @@
 import 'package:bds/blocs/authentication/authentication_bloc.dart';
-import 'package:bds/models/MessageResource.dart';
+import 'package:bds/models/message.dart';
 import 'package:flutter/material.dart';
 import 'package:bds/globals.dart' as GLOBALS;
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CounterNoneRead extends StatelessWidget {
-  final int MAX__COUNTER = 9;
-  final List<MessageResource> messages;
-  CounterNoneRead({Key key, @required this.messages}) : super(key: key);
+class NoneRead extends StatelessWidget {
+  static int maxCounter = 9;
+  final List<Message> messages;
+  NoneRead({Key key, @required this.messages}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +20,6 @@ class CounterNoneRead extends StatelessWidget {
     if (noneRead.length == 0) {
       return Container(child: Text(''));
     }
-    final counter = noneRead.length > MAX__COUNTER
-        ? "$MAX__COUNTER+"
-        : "${noneRead.length}";
 
     return Container(
       width: 40,
@@ -43,7 +40,11 @@ class CounterNoneRead extends StatelessWidget {
           print("click nè");
         },
         child: Center(
-          child: Text(counter),
+          child: Text(
+            noneRead.length > maxCounter
+                ? "$maxCounter+"
+                : "${noneRead.length}",
+          ),
         ),
       ),
     );

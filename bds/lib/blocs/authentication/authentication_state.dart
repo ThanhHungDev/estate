@@ -12,14 +12,14 @@ class AuthenticationUninitialized extends AuthenticationState {}
 class AuthenticationUnauthenticated extends AuthenticationState {}
 
 class AuthenticationAuthenticated extends AuthenticationState {
-  final AuthResource user;
+  final User user;
   AuthenticationAuthenticated(this.user);
 }
 
 class AuthenticationLoading extends AuthenticationState {}
 
 class AuthenticationError extends AuthenticationState {
-  final ErrorResource error;
+  final Error error;
   AuthenticationError(this.error);
 }
 
