@@ -1,5 +1,5 @@
 import 'package:bds/models/ConversationResource.dart';
-import 'package:bds/views/ChatScreen/CounterNoneRead.dart';
+import 'package:bds/views/ConversationScreen/CounterNoneRead.dart';
 import 'package:flutter/material.dart';
 
 class Conversations extends StatefulWidget {
@@ -31,11 +31,6 @@ class _ConversationsState extends State<Conversations> {
               print(conversation.id.toString());
               Navigator.of(context)
                   .pushNamed('/detail', arguments: {'id': conversation.id});
-              // Navigator.pushNamed(
-              //   context,
-              //   '/detail',
-              //   <String, String>{'': .toString()},
-              // );
             },
           ),
         );

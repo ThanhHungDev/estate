@@ -80,13 +80,19 @@ class _MessagePageState extends State<MessagePage> {
             }
 
             final data = (state as GetConversationSuccess);
+            if (data.conversations.length == 0) {
+              return Container(
+                child: Center(
+                  child: Text("không có conversation trong hệ thống"),
+                ),
+              );
+            }
             final idConversation = widget.id;
             final conversation = data.conversations
                 .where((conv) => conv.id == idConversation)
                 .toList()[0];
-            print(conversation);
             return Container(
-              child: ChatScreen(conversation),
+              child: ChatScreen(conversation: conversation, auth: auth.user),
             );
           },
         ),

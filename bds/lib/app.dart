@@ -1,4 +1,4 @@
-import 'package:bds/views/ChatScreen/chat.dart';
+import 'package:bds/views/ConversationScreen/chat.dart';
 import 'package:bds/views/HomeScreen/home.dart';
 import 'package:bds/views/MessageScreen/message.dart';
 // import 'package:bds/views/LoadingPage/loading.dart';

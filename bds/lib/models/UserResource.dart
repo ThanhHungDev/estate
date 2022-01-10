@@ -1,3 +1,5 @@
+import 'package:bds/globals.dart' as GLOBALS;
+
 class UserResource {
   final int id;
   final String name;
@@ -12,4 +14,6 @@ class UserResource {
         email: json["email"],
         avatar: json["avatar"],
       );
+
+  String getAvatar() => GLOBALS.APP_URL + avatar;
 }

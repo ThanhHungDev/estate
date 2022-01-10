@@ -1,7 +1,7 @@
 import 'package:bds/blocs/authentication/authentication_bloc.dart';
 import 'package:bds/blocs/conversation/conversation_bloc.dart';
 import 'package:bds/blocs/socket/socket_bloc.dart';
-import 'package:bds/views/ChatScreen/Conversations.dart';
+import 'package:bds/views/ConversationScreen/Conversations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
