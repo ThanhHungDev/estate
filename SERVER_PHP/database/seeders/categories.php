@@ -374,7 +374,7 @@ class categories extends Seeder
                 
     
                 [
-                    'fetch_link' => '/forums/dien-may.123/',
+                    'fetch_link' => '/forums/dien-may.92/',
                     'parent' => Config::get('constant.CATEGORY__PARENT'),
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Điện Máy",

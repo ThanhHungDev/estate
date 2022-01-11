@@ -16,7 +16,7 @@
 
     @if (!Agent::isRobot() && Config::get('app.env') != 'local')
     {{-- <link rel="preload" as="font" href="/font/font-awe/webfonts/fa-brands-400.woff2" /> --}}
-    <link rel="preload" as="style" href="{{ asset('css/library/tipped.css' . Config::get('app.version'))}}"/>
+    {{-- <link rel="preload" as="style" href="{{ asset('css/library/tipped.css' . Config::get('app.version'))}}"/> --}}
     <link rel="preload" as="image" href="{{ asset('logo.png' . Config::get('app.version')) }}"/>
     <link rel="preload" as="script" href="{{ asset('js/library/lazysizes.min.js' . Config::get('app.version')) }}"/>
     <link rel="preload" as="script" href="{{ asset('js/library/jquery.min.js' . Config::get('app.version')) }}"/>
@@ -25,7 +25,7 @@
     <link rel="preload" as="script" href="{{ asset('js/app.js' . Config::get('app.version')) }}"/>
     @yield('preload')
     @endif
-    <link rel="stylesheet" href="{{ asset('css/library/tipped.css' . Config::get('app.version'))}}"/>
+    {{-- <link rel="stylesheet" href="{{ asset('css/library/tipped.css' . Config::get('app.version'))}}"/> --}}
     
     @yield('stylesheets')
     

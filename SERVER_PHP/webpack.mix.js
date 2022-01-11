@@ -22,7 +22,7 @@ mix
 // .sass('resources/sass/bootstrap/bootstrap.home.scss', 'public/css/library/')
 // .sass('resources/sass/bootstrap/bootstrap.post.scss', 'public/css/library/')
 .sass('resources/sass/bootstrap/bootstrap.chat.scss', 'public/css/library/')
-// .sass('resources/sass/bootstrap/bootstrap.product.scss', 'public/css/library/')
+.sass('resources/sass/bootstrap/bootstrap.product.scss', 'public/css/library/')
 
 
 

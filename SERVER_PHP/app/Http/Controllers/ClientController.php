@@ -53,26 +53,29 @@ class ClientController extends Controller
 
 
 
-    public function chat( Request $request, $id = 0 ){
+    public function chat( Request $request, $id = null ){
         $auth = Auth::user();
-        $authId = isset($auth->id) ? $auth->id : 0;
+        $authId = isset($auth->id) ? $auth->id : null;
         // if( !$authId ) return redirect()->route('LOGIN', ['rredirect' => 1 ]);
         if( $authId == $id ) return abort(404);
         // if( !is_numeric($id) ) return abort(404);
         $modelChannel = new Channel();
-        $channelAdmin = $modelChannel->countConversationsByUser($authId, Config::get('constant.ID_ADMIN'));
-        if( !$channelAdmin ){
-            /// thêm channel admin mới
-            $admin = [ Config::get('constant.ID_ADMIN'), $authId ];
-            sort($admin, SORT_NUMERIC);
-            $insert = [
-                'name' => implode( "-", $admin),
-                'user' => $admin,
-                'sort' => 0,
-                'backup' => false,
-            ];
-            $admin = Channel::create($insert);
+        if( $authId ){
+            $channelAdmin = $modelChannel->countConversationsByUser($authId, Config::get('constant.ID_ADMIN'));
+            if( !$channelAdmin ){
+                /// thêm channel admin mới
+                $admin = [ Config::get('constant.ID_ADMIN'), $authId ];
+                sort($admin, SORT_NUMERIC);
+                $insert = [
+                    'name' => implode( "-", $admin),
+                    'user' => $admin,
+                    'sort' => 0,
+                    'backup' => false,
+                ];
+                $admin = Channel::create($insert);
+            }
         }
+        
         /// check $id là có trong bảng users không
         $isExist = User::find((int)$id);
         if( !!$isExist && $authId && $id ){
@@ -256,9 +259,7 @@ class ClientController extends Controller
 
     public function categoryDetail( Request $request, $slug = null ){
         $category = Category::where('slug', $slug)->first();
-        if( !$category ){
-            abort(404);
-        }
+        if( !$category ) return abort(404);
         $products = $category->products;
 
         $categories = Category::orderBy('id', 'DESC')->get();

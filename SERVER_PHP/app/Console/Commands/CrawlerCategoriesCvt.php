@@ -43,8 +43,25 @@ class CrawlerCategoriesCvt extends Command
      */
     public function handle()
     {
+        $categories = Category::whereNotNull('fetch_link')->where('fetched', "=", 0 )->where('parent', '=', Config::get('constant.CATEGORY__PARENT'))->get();
+        foreach( $categories as $cate ){
+            $dom = new Dom;
+            $dom->loadFromUrl($this->ROOT . $cate->fetch_link);
+            /// find max url 
+            $this->info( $this->signature . "\n get html from url " . $cate->fetch_link);
+            $description = $dom->find('.p-description')[0];
+            if(!$description) continue;
+            $cate->description_seo = $description->text;
+            $cate->image_seo = $cate->background; // hay thumbnail đều được
+            $cate->site_name = $cate->name;
+            $cate->content = $description->innerHtml;
+            $cate->excerpt = $description->text;
+            $cate->fetched = 1;
+            $cate->save();
+        }
+        $this->info( $this->signature . "\n done! crawler parent!!!");
         ///
-        $categories = Category::whereNotNull('fetch_link')->where('parent', '!=', Config::get('constant.CATEGORY__PARENT'))->get();
+        $categories = Category::whereNotNull('fetch_link')->where('fetched', "=", 0 )->where('parent', '!=', Config::get('constant.CATEGORY__PARENT'))->get();
         foreach($categories as $cate){
             
             // $content = file_get_contents($this->ROOT . $cate->fetch_link);
@@ -73,8 +90,19 @@ class CrawlerCategoriesCvt extends Command
             }
 
             $this->info( $this->signature . "\n get html from url $max $typelink ");
-            $cate->content = $dom->outerHtml;
-            $cate->fetched = 1;
+            $prods = $dom->find('.structItemContainer-group--sticky');
+            if( !count($prods) ) {
+                $content = $dom->outerHtml;
+                $this->error( "Tồn tại 1 prod không tìm thấy danh sách prod");
+            }else{
+                $content = ($prods[0])->innerHtml;
+            }
+            $cate->content         = $content;
+            $cate->description_seo = $cate->name;
+            $cate->image_seo       = $cate->background;        // hay thumbnail đều được
+            $cate->site_name       = $cate->name;
+            $cate->excerpt         = $cate->name;
+            $cate->fetched         = 1;
             $cate->save();
         }
         $this->info( $this->signature . "\n done! end program!!!");

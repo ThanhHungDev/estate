@@ -77,7 +77,7 @@ Route::group(['prefix' => '/','middleware' => [ 'LOGIN_REDIRECT', 'HTML_MINIFIER
     
     Route::get('/tin-tuc/{slug}',[ App\Http\Controllers\ClientController::class, 'postDetail' ])->name('POST_VIEW');
 
-    Route::get('/tim-mua-bao-loc/{slug}',[ App\Http\Controllers\ClientController::class, 'categoryDetail' ])->name('CATEGORY_VIEW');
+    Route::get('/chu-de/{slug}',[ App\Http\Controllers\ClientController::class, 'categoryDetail' ])->name('CATEGORY_VIEW');
     Route::get('/chu-de-bai-viet-nha-dat/{slug}',[ App\Http\Controllers\ClientController::class, 'topicDetail' ])->name('TOPIC_VIEW');
     Route::get('/tim-mua/{slug}',[ App\Http\Controllers\ClientController::class, 'ptagDetail' ])->name('PTAG_VIEW_SEARCH');
     Route::get('/tim-kiem',[ App\Http\Controllers\ClientController::class, 'searchProduct' ])->name('PRODUCT_SEARCH');

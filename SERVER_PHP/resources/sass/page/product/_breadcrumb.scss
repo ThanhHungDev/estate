@@ -26,6 +26,8 @@
     @include ScreenMax( SM ){ font-size: 20px; }
   }
   .tz-Breadcrumb .tzOverlayBreadcrumb .tz-breadcrumb-navxt {
+    max-width: 1100px;
+    margin: 0 auto;
     font-size: 11px;
     color: #f0f9fb;
     font-weight: 400;
