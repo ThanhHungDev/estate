@@ -11,7 +11,7 @@ use PHPHtmlParser\Dom;
 class CrawlerCategoriesCvt extends Command
 {
     private $ROOT      = 'https://cvt.vn/';
-    private $MAX_CHILD = 10;
+    private $MAX_CHILD = 2;
     /**
      * The name and signature of the console command.
      *
@@ -90,7 +90,7 @@ class CrawlerCategoriesCvt extends Command
             }
 
             $this->info( $this->signature . "\n get html from url $max $typelink ");
-            $prods = $dom->find('.structItemContainer-group--sticky');
+            $prods = $dom->find('.structItemContainer');
             if( !count($prods) ) {
                 $content = $dom->outerHtml;
                 $this->error( "Tồn tại 1 prod không tìm thấy danh sách prod");

@@ -59,7 +59,7 @@ class CrawlerProduct extends Command
             foreach( $lists as $item ){
                 $user = $this->crawlerUserProductItem($item);
                 $htmlprod = $item->find('.structItem-title a')[0];
-                $title = $htmlprod->text;
+                $title = htmlspecialchars_decode($htmlprod->text);
                 $linkprod = $htmlprod->getAttribute('href');
                 // check link đã được lưu chưa? 
                 /// nếu rồi thì thôi không new nữa
@@ -70,14 +70,19 @@ class CrawlerProduct extends Command
                 }
                 $domprod = new Dom;
                 $domprod->loadFromUrl($this->ROOT . $linkprod);
-                $wrapper = $domprod->find('.bbWrapper')[0];
+                $wrapper = $domprod->find('.bbWrapper');
+                if( !count($wrapper) ){
+                    $this->info( "Không đọc được nội dung!!!\n");
+                    continue;
+                }
                 $content = $wrapper->innerHtml;
         
                 $productInput['user_id']     = $user->id;
                 $productInput['category_id'] = $cate->id;
                 $productInput['title']       = $title . "--" . time();
-                $productInput['slug']        = SupportString::createSlug($title);
-                $productInput['content']     = SupportString::createEmoji($content);
+                if(strlen($productInput['title']) > 150 ) $productInput['title'] = substr($productInput['title'], 0, 150 );
+                $productInput['slug']        = SupportString::createSlug($productInput['title']);
+                $productInput['content']     = SupportString::createEmoji(mb_convert_encoding($content,'UTF-8','Windows-1252'));
                 $productInput['fetch_link']  = $linkprod;
                 ///
                 $productInput['text_content']    = SupportString::cleanText($content);
@@ -119,7 +124,6 @@ class CrawlerProduct extends Command
                 }
             }
             sleep(2);
-            die;
         }
     }
 
