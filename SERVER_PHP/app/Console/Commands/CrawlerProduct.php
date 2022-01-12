@@ -8,6 +8,7 @@ use App\Models\CrawlerCategory;
 use App\Models\Picture;
 use App\Models\Product;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
@@ -81,8 +82,15 @@ class CrawlerProduct extends Command
                 ///
                 $productInput['text_content']    = SupportString::cleanText($content);
                 $productInput['description_seo'] = SupportString::createDescription($title, $content);
-                $productInput['description_seo'] = SupportString::createDescription($title, $content);
-                $productInput['description_seo'] = SupportString::createDescription($title, $content);
+                $domtime = $domprod->find(".p-body-header .u-concealed .u-dt");
+                
+                if(count($domtime)){
+                    $time = $domtime[0]->getAttribute('datetime');
+                    echo $time . "\n";
+                    $productInput['created_at'] = Carbon::parse($time);
+                    $productInput['updated_at'] = Carbon::parse($time);
+                }
+                
         
                 $images = [
                     [ 'root' => '/img/default.jpg']
@@ -111,6 +119,7 @@ class CrawlerProduct extends Command
                 }
             }
             sleep(2);
+            die;
         }
     }
 
@@ -119,7 +128,7 @@ class CrawlerProduct extends Command
         $userdom         = $dom->find('.structItem-cell--main .username');
         $id              = $userdom->getAttribute('data-user-id');
         $link            = $userdom->getAttribute('href');
-        $username        = $userdom->firstChild();
+        $username        = trim(SupportString::createLinkSlug($userdom->firstChild()));
         $email           = strtolower($username) . "@cvt.com";
         $phone           = '';
         $object = [
@@ -147,7 +156,8 @@ class CrawlerProduct extends Command
                 echo "đã tạo mới \n";
                 DB::commit();
             } catch (\Throwable $th) {
-                echo "tọa mới bị lỗi\n";
+                echo $th->getMessage() . "\n";
+                echo "tọa mới bị lỗi\n" . $object['email'];
                 DB::rollback();
             }
         }else{
