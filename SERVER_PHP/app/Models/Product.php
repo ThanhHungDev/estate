@@ -20,6 +20,7 @@ class Product extends Model
         'image_seo', 'description_seo', 'type', 'stylesheet', 'javascript',
         'direction', 'direction_balcony', 'horizontal', 'square', 'price', 'unit_price', 'negotiate', 'extensions','likes',
         'project_id', 'vertical', 'area', 'posttype',
+        'fetch_link',
     ];
 
     protected $casts = [

@@ -19,7 +19,8 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('fetch_link')->nullable(); /// for crawler
+            $table->string('crawler_id')->nullable(); /// for crawler
+            $table->string('crawler_link')->nullable(); /// for crawler
             $table->timestamp('email_verified_at')->nullable();
             $table->string('avatar')->default(Config::get("image.AVATAR"));
             $table->string('background')->default(Config::get("image.BACKGROUND"));
