@@ -46,7 +46,7 @@ class CrawlerCategories extends Command
     public function handle()
     {
         // cập nhật data cho 1 category
-        // $this->crawlerCalegoryParent();
+        $this->crawlerCalegoryParent();
         // crawler data cho page category child
         $this->crawlerCategoryChild();
     }
