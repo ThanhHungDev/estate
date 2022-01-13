@@ -76,6 +76,12 @@ class CrawlerProduct extends Command
                     continue;
                 }
                 $content = $wrapper->innerHtml;
+
+                // find image
+                $imgs = $domprod->find('img');
+                foreach($imgs as $img ){
+                    
+                }
         
                 $productInput['user_id']     = $user->id;
                 $productInput['category_id'] = $cate->id;
@@ -98,7 +104,7 @@ class CrawlerProduct extends Command
                 
         
                 $images = [
-                    [ 'root' => '/img/default.jpg']
+                    [ 'root' => '/img/imagenotfound.jpg']
                 ];
                 $firstImages = $images[0];
                 $productInput['background'] = $firstImages['root'];

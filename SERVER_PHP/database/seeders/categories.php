@@ -20,7 +20,7 @@ class categories extends Seeder
     //         if( !title ) continue ;
     //         subs += `
     //                     [
-    //                         'fetch_link' => '${href}',
+    //                         'domain' => Config::get('crawler.CVT'),
     //                         'parent' => ${begin},
     //                         'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
     //                         'name' => "${title}",
@@ -45,7 +45,7 @@ class categories extends Seeder
     //         const subs = getMenus(submenus, i + 2);
     //         node += `
     //                     [
-    //                         'fetch_link' => '${href}',
+    //                         'domain' => Config::get('crawler.CVT'),
     //                         'parent' => Config::get('constant.CATEGORY__PARENT'),
     //                         'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
     //                         'name' => "${title}",
@@ -67,6 +67,7 @@ class categories extends Seeder
     {
         $categories = [
                 [
+                    'domain' => null,
                     'fetch_link' => null,
                     'parent' => Config::get('constant.CATEGORY__PARENT'),
                     'verify' => Config::get('constant.CATEGORY__VERIFY.REQUIRED'),
@@ -74,6 +75,7 @@ class categories extends Seeder
                     'background' => '/images/categories/topbds_vn.jpeg'
                 ],
                 [
+                    'domain' => null,
                     'fetch_link' => null,
                     'parent' => 1,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.REQUIRED'),
@@ -81,6 +83,7 @@ class categories extends Seeder
                     'background' => '/images/categories/can-ho-chung-cu.jpeg'
                 ],
                 [
+                    'domain' => null,
                     'fetch_link' => null,
                     'parent' => 1,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.REQUIRED'),
@@ -88,6 +91,7 @@ class categories extends Seeder
                     'background' => '/images/categories/nha-rieng.jpeg'
                 ],
                 [
+                    'domain' => null,
                     'fetch_link' => null,
                     'parent' => 1,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.REQUIRED'),
@@ -95,6 +99,7 @@ class categories extends Seeder
                     'background' => '/images/categories/biet-thu.jpeg'
                 ],
                 [
+                    'domain' => null,
                     'fetch_link' => null,
                     'parent' => 1,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.REQUIRED'),
@@ -102,6 +107,7 @@ class categories extends Seeder
                     'background' => '/images/categories/nha-pho.jpeg'
                 ],
                 [
+                    'domain' => null,
                     'fetch_link' => null,
                     'parent' => 1,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.REQUIRED'),
@@ -109,6 +115,7 @@ class categories extends Seeder
                     'background' => '/images/categories/dat-nen-phan-lo.jpeg'
                 ],
                 [
+                    'domain' => null,
                     'fetch_link' => null,
                     'parent' => 1,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.REQUIRED'),
@@ -116,6 +123,7 @@ class categories extends Seeder
                     'background' => '/images/categories/ban-dat.jpeg'
                 ],
                 [
+                    'domain' => null,
                     'fetch_link' => null,
                     'parent' => 1,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.REQUIRED'),
@@ -123,6 +131,7 @@ class categories extends Seeder
                     'background' => '/images/categories/trai.jpeg'
                 ],
                 [
+                    'domain' => null,
                     'fetch_link' => null,
                     'parent' => 1,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.REQUIRED'),
@@ -130,6 +139,7 @@ class categories extends Seeder
                     'background' => '/images/categories/kho-xuong.jpeg'
                 ],
                 [
+                    'domain' => null,
                     'fetch_link' => null,
                     'parent' => 1,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.REQUIRED'),
@@ -137,6 +147,7 @@ class categories extends Seeder
                     'background' => '/images/categories/phong-tro.jpeg'
                 ],
                 [ 
+                    'domain' => null,
                     'fetch_link' => null,
                     'parent' => 1,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.REQUIRED'),
@@ -144,6 +155,7 @@ class categories extends Seeder
                     'background' => '/images/categories/van-phong.jpeg'
                 ],
                 [
+                    'domain' => null,
                     'fetch_link' => null,
                     'parent' => 1,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.REQUIRED'),
@@ -151,6 +163,7 @@ class categories extends Seeder
                     'background' => '/images/categories/mat-bang-kinh-doanh-mat-tien.jpeg'
                 ],
                 [
+                    'domain' => null,
                     'fetch_link' => null,
                     'parent' => 1,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.REQUIRED'),
@@ -158,6 +171,7 @@ class categories extends Seeder
                     'background' => '/images/categories/bat-dong-san-khac.jpeg'
                 ],
                 [
+                    'domain' => null,
                     'fetch_link' => null,
                     'parent' => Config::get('constant.CATEGORY__PARENT'),
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -165,6 +179,7 @@ class categories extends Seeder
                     'background' => '/images/categories/review.jpeg'
                 ],
                 [
+                    'domain' => null,
                     'fetch_link' => null,
                     'parent' => 2,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -172,6 +187,7 @@ class categories extends Seeder
                     'background' => '/images/categories/review-food.jpeg'
                 ],
                 [
+                    'domain' => null,
                     'fetch_link' => null,
                     'parent' => 2,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -179,6 +195,7 @@ class categories extends Seeder
                     'background' => '/images/categories/review-hotel.jpeg'
                 ],
                 [
+                    'domain' => null,
                     'fetch_link' => null,
                     'parent' => Config::get('constant.CATEGORY__PARENT'),
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -186,6 +203,7 @@ class categories extends Seeder
                     'background' => '/images/categories/fashion.jpeg'
                 ],
                 [
+                    'domain' => null,
                     'fetch_link' => null,
                     'parent' => 3,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -193,6 +211,7 @@ class categories extends Seeder
                     'background' => '/images/categories/fas-male.jpeg'
                 ],
                 [
+                    'domain' => null,
                     'fetch_link' => null,
                     'parent' => 3,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -200,6 +219,7 @@ class categories extends Seeder
                     'background' => '/images/categories/fas-female.jpeg'
                 ],
                 [
+                    'domain' => null,
                     'fetch_link' => null,
                     'parent' => 3,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -207,6 +227,7 @@ class categories extends Seeder
                     'background' => '/images/categories/me-be.jpeg'
                 ],
                 [
+                    'domain' => null,
                     'fetch_link' => null,
                     'parent' => 3,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -215,6 +236,7 @@ class categories extends Seeder
                 ],
 
                 [
+                    'domain' => null,
                     'fetch_link' => null,
                     'parent' => Config::get('constant.CATEGORY__PARENT'),
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -222,6 +244,7 @@ class categories extends Seeder
                     'background' => '/images/categories/dt-linh-kien.jpeg'
                 ],
                 [
+                    'domain' => null,
                     'fetch_link' => null,
                     'parent' => 4,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -229,6 +252,7 @@ class categories extends Seeder
                     'background' => '/images/categories/iphone.jpeg'
                 ],
                 [
+                    'domain' => null,
                     'fetch_link' => null,
                     'parent' => 4,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -236,6 +260,7 @@ class categories extends Seeder
                     'background' => '/images/categories/android.jpeg'
                 ],
                 [
+                    'domain' => null,
                     'fetch_link' => null,
                     'parent' => 4,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -243,6 +268,7 @@ class categories extends Seeder
                     'background' => '/images/categories/dt-pho-thong.jpeg'
                 ],
                 [
+                    'domain' => null,
                     'fetch_link' => null,
                     'parent' => 4,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -251,7 +277,9 @@ class categories extends Seeder
                 ],
 
                 [
+                    'domain' => null,
                     'fetch_link' => null,
+                    'domain' => null,
                     'fetch_link' => null,
                     'parent' => Config::get('constant.CATEGORY__PARENT'),
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -259,6 +287,7 @@ class categories extends Seeder
                     'background' => '/images/categories/beauty.jpeg'
                 ],
                 [
+                    'domain' => null,
                     'fetch_link' => null,
                     'parent' => 5,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -266,6 +295,7 @@ class categories extends Seeder
                     'background' => '/images/categories/my-pham.jpeg'
                 ],
                 [
+                    'domain' => null,
                     'fetch_link' => null,
                     'parent' => 5,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -273,6 +303,7 @@ class categories extends Seeder
                     'background' => '/images/categories/spa.jpeg'
                 ],
                 [
+                    'domain' => null,
                     'fetch_link' => null,
                     'parent' => 5,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -280,6 +311,7 @@ class categories extends Seeder
                     'background' => '/images/categories/nuoc-hoa.jpeg'
                 ],
                 [
+                    'domain' => null,
                     'fetch_link' => null,
                     'parent' => 5,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -306,6 +338,7 @@ class categories extends Seeder
 
                 
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/may-tinh-laptop-phu-kien.6/',
                     'parent' => Config::get('constant.CATEGORY__PARENT'),
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -314,6 +347,7 @@ class categories extends Seeder
                 ],
                 
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/may-tinh.120/',
                     'parent' => 6,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -322,6 +356,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/laptop.121/',
                     'parent' => 6,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -330,6 +365,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/phu-kien.122/',
                     'parent' => 6,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -340,6 +376,7 @@ class categories extends Seeder
                 
     
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/dien-tu-thiet-bi-so.58/',
                     'parent' => Config::get('constant.CATEGORY__PARENT'),
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -348,6 +385,7 @@ class categories extends Seeder
                 ],
                 
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/do-dien-tu.138/',
                     'parent' => 7,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -356,6 +394,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/thiet-bi-so.139/',
                     'parent' => 7,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -364,6 +403,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/linh-kien.140/',
                     'parent' => 7,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -374,6 +414,7 @@ class categories extends Seeder
                 
     
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/dien-may.92/',
                     'parent' => Config::get('constant.CATEGORY__PARENT'),
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -382,6 +423,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/dien-gia-dung.124/',
                     'parent' => 8,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -390,6 +432,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/dien-lanh.125/',
                     'parent' => 8,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -398,6 +441,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/sua-chua-thi-cong.126/',
                     'parent' => 8,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -408,6 +452,7 @@ class categories extends Seeder
                 
     
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/xe-co.21/',
                     'parent' => Config::get('constant.CATEGORY__PARENT'),
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -416,6 +461,7 @@ class categories extends Seeder
                 ],
                 
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/xe-2-banh.141/',
                     'parent' => 9,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -424,6 +470,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/xe-4-banh.142/',
                     'parent' => 9,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -432,6 +479,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/cho-thue.143/',
                     'parent' => 9,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -440,6 +488,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/phu-tung-dich-vu.100/',
                     'parent' => 9,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -448,6 +497,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/thao-luan.75/',
                     'parent' => 9,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -458,6 +508,7 @@ class categories extends Seeder
                 
     
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/phong-thuy-do-co-cay-canh-thu-nuoi.64/',
                     'parent' => Config::get('constant.CATEGORY__PARENT'),
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -466,6 +517,7 @@ class categories extends Seeder
                 ],
                 
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/thu-nuoi.128/',
                     'parent' => 10,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -474,6 +526,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/do-phong-thuy.129/',
                     'parent' => 10,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -482,6 +535,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/cay-canh.86/',
                     'parent' => 10,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -490,6 +544,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/tuyen-dung-tim-viec.7/',
                     'parent' => Config::get('constant.CATEGORY__PARENT'),
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -498,6 +553,7 @@ class categories extends Seeder
                 ],
                 
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/tuyen-dung.152/',
                     'parent' => 11,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -506,6 +562,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/tim-viec.153/',
                     'parent' => 11,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -515,6 +572,7 @@ class categories extends Seeder
                 
     
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/thanh-ly-ve-chai-tap-hoa.62/',
                     'parent' => Config::get('constant.CATEGORY__PARENT'),
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -523,6 +581,7 @@ class categories extends Seeder
                 ],
                 
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/thanh-ly.160/',
                     'parent' => 12,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -531,6 +590,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/ve-chai.82/',
                     'parent' => 12,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -539,6 +599,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/tap-hoa.8/',
                     'parent' => 12,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -549,6 +610,7 @@ class categories extends Seeder
                 
     
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/noi-that-ngoai-that.79/',
                     'parent' => Config::get('constant.CATEGORY__PARENT'),
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -557,6 +619,7 @@ class categories extends Seeder
                 ],
                 
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/noi-that.149/',
                     'parent' => 13,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -565,6 +628,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/ngoai-that.150/',
                     'parent' => 13,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -573,6 +637,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/thi-cong.151/',
                     'parent' => 13,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -583,6 +648,7 @@ class categories extends Seeder
                 
     
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/du-lich-am-thuc.74/',
                     'parent' => Config::get('constant.CATEGORY__PARENT'),
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -591,6 +657,7 @@ class categories extends Seeder
                 ],
                 
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/dia-diem-du-lich.65/',
                     'parent' => 14,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -599,6 +666,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/dia-diem-an-uong.157/',
                     'parent' => 14,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -609,6 +677,7 @@ class categories extends Seeder
                 
     
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/cho-game.60/',
                     'parent' => Config::get('constant.CATEGORY__PARENT'),
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -617,6 +686,7 @@ class categories extends Seeder
                 ],
                 
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/mua-ban-thiet-bi.154/',
                     'parent' => 15,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -625,6 +695,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/nap-game.155/',
                     'parent' => 15,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -647,6 +718,7 @@ class categories extends Seeder
                 
     
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/dich-vu-sua-chua-cai-dat.99/',
                     'parent' => Config::get('constant.CATEGORY__PARENT'),
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -655,6 +727,7 @@ class categories extends Seeder
                 ],
                 
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/dich-vu.161/',
                     'parent' => 16,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -663,6 +736,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/sua-chua.162/',
                     'parent' => 16,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -671,6 +745,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/cai-dat.163/',
                     'parent' => 16,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -681,6 +756,7 @@ class categories extends Seeder
                 
     
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/nong-lam-thuy-san.164/',
                     'parent' => Config::get('constant.CATEGORY__PARENT'),
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -689,6 +765,7 @@ class categories extends Seeder
                 ],
                 
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/nong-san.165/',
                     'parent' => 17,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -697,6 +774,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/lam-thuy.166/',
                     'parent' => 17,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -705,6 +783,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/thuy-san.167/',
                     'parent' => 17,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -715,6 +794,7 @@ class categories extends Seeder
                 
     
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/dao-tao-khoa-hoc.168/',
                     'parent' => Config::get('constant.CATEGORY__PARENT'),
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -723,6 +803,7 @@ class categories extends Seeder
                 ],
                 
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/dao-tao.169/',
                     'parent' => 18,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -731,6 +812,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/giao-duc.170/',
                     'parent' => 18,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
@@ -739,6 +821,7 @@ class categories extends Seeder
                 ],
     
                 [
+                    'domain' => Config::get('crawler.CVT'),
                     'fetch_link' => '/forums/khoa-hoc.171/',
                     'parent' => 18,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),

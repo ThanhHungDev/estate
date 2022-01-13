@@ -16,7 +16,7 @@ class CreateCrawlerCategories extends Migration
         Schema::create('crawlercategories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('fetch_link')->nullable();
-            $table->integer('fetched')->default(0);
+            $table->string('domain')->nullable(); /// for check cvt style
             $table->text('content')->nullable();
             $table->timestamps();
         });

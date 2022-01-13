@@ -16,8 +16,8 @@ class CreateCategories extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('fetched')->default(0);
             $table->string('fetch_link')->nullable(); /// for crawler
+            $table->string('domain')->nullable(); /// for check cvt style
             $table->unsignedInteger('user_id')->unsigned()->nullable();
             $table->string('name')->nullable();
             $table->integer('parent')->default(Config::get('constant.CATEGORY__PARENT'));
