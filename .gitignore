@@ -12,6 +12,7 @@
 /SERVER_PHP/Homestead.yaml
 /SERVER_PHP/npm-debug.log
 /SERVER_PHP/yarn-error.log
+/SERVER_PHP/public/cvt/*
 
 /SERVER_PHP/composer.lock
 SERVER_PHP/public/sitemap.xml

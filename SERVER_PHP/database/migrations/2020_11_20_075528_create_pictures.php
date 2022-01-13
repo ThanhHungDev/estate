@@ -17,7 +17,7 @@ class CreatePictures extends Migration
         Schema::create('pictures', function (Blueprint $table) {
             
             $table->increments('id');
-            $table->string('src'); /// đường dẫn đến hình ảnh
+            $table->text('src'); /// đường dẫn đến hình ảnh
             $table->string('alt')->nullable(); /// alt là cái tham số cho seo nên có thể null
             $table->string('key')->nullable(); /// là id của cái bảng mà nó nắm
             $table->string('title')->nullable(); /// title là cái tham số cho seo nên có thể null

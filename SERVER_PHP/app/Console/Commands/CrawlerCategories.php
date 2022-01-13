@@ -19,7 +19,7 @@ class CrawlerCategories extends Command
      *
      * @var string
      */
-    protected $signature = 'command:crawler';
+    protected $signature = 'command:cvt';
 
     /**
      * The console command description.

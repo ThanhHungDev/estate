@@ -21,6 +21,7 @@ class Product extends Model
         'direction', 'direction_balcony', 'horizontal', 'square', 'price', 'unit_price', 'negotiate', 'extensions','likes',
         'project_id', 'vertical', 'area', 'posttype',
         'fetch_link',
+        'created_at', 'updated_at',
     ];
 
     protected $casts = [
