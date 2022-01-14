@@ -195,40 +195,40 @@ class categories extends Seeder
                     'background' => '/images/categories/review-hotel.jpeg'
                 ],
                 [
-                    'domain' => null,
-                    'fetch_link' => null,
+                    'domain' => Config::get('crawler.CVT'),
+                    'fetch_link' => '/forums/thoi-trang-phu-kien.59/',
                     'parent' => Config::get('constant.CATEGORY__PARENT'),
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Thời Trang - Phụ Kiện",
                     'background' => '/images/categories/fashion.jpeg'
                 ],
                 [
-                    'domain' => null,
-                    'fetch_link' => null,
+                    'domain' => Config::get('crawler.CVT'),
+                    'fetch_link' => '/forums/thoi-trang-nam.130/',
                     'parent' => 3,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Thời trang nam",
                     'background' => '/images/categories/fas-male.jpeg'
                 ],
                 [
-                    'domain' => null,
-                    'fetch_link' => null,
+                    'domain' => Config::get('crawler.CVT'),
+                    'fetch_link' => '/forums/thoi-trang-nu.131/',
                     'parent' => 3,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Thời trang nữ",
                     'background' => '/images/categories/fas-female.jpeg'
                 ],
                 [
-                    'domain' => null,
-                    'fetch_link' => null,
+                    'domain' => Config::get('crawler.CVT'),
+                    'fetch_link' => '/forums/me-va-be.132/',
                     'parent' => 3,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Thời trang mẹ và bé",
                     'background' => '/images/categories/me-be.jpeg'
                 ],
                 [
-                    'domain' => null,
-                    'fetch_link' => null,
+                    'domain' => Config::get('crawler.CVT'),
+                    'fetch_link' => '/forums/phu-kien.110/',
                     'parent' => 3,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Phụ kiện thời trang",
@@ -236,40 +236,40 @@ class categories extends Seeder
                 ],
 
                 [
-                    'domain' => null,
-                    'fetch_link' => null,
+                    'domain' => Config::get('crawler.CVT'),
+                    'fetch_link' => '/forums/dien-thoai-linh-kien.5/',
                     'parent' => Config::get('constant.CATEGORY__PARENT'),
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Điện Thoại - Linh Kiện",
                     'background' => '/images/categories/dt-linh-kien.jpeg'
                 ],
                 [
-                    'domain' => null,
-                    'fetch_link' => null,
+                    'domain' => Config::get('crawler.CVT'),
+                    'fetch_link' => '/forums/iphone.115/',
                     'parent' => 4,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Iphone",
                     'background' => '/images/categories/iphone.jpeg'
                 ],
                 [
-                    'domain' => null,
-                    'fetch_link' => null,
+                    'domain' => Config::get('crawler.CVT'),
+                    'fetch_link' => '/forums/android.116/',
                     'parent' => 4,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Android",
                     'background' => '/images/categories/android.jpeg'
                 ],
                 [
-                    'domain' => null,
-                    'fetch_link' => null,
+                    'domain' => Config::get('crawler.CVT'),
+                    'fetch_link' => '/forums/dong-pho-thong.117/',
                     'parent' => 4,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Điện Thoại Phổ Thông",
                     'background' => '/images/categories/dt-pho-thong.jpeg'
                 ],
                 [
-                    'domain' => null,
-                    'fetch_link' => null,
+                    'domain' => Config::get('crawler.CVT'),
+                    'fetch_link' => '/forums/linh-kien.118/',
                     'parent' => 4,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Linh kiện điện thoại",
@@ -277,42 +277,40 @@ class categories extends Seeder
                 ],
 
                 [
-                    'domain' => null,
-                    'fetch_link' => null,
-                    'domain' => null,
-                    'fetch_link' => null,
+                    'domain' => Config::get('crawler.CVT'),
+                    'fetch_link' => '/forums/lam-dep.109/',
                     'parent' => Config::get('constant.CATEGORY__PARENT'),
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Làm Đẹp",
                     'background' => '/images/categories/beauty.jpeg'
                 ],
                 [
-                    'domain' => null,
-                    'fetch_link' => null,
+                    'domain' => Config::get('crawler.CVT'),
+                    'fetch_link' => '/forums/my-pham.133/',
                     'parent' => 5,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Mỹ phẩm",
                     'background' => '/images/categories/my-pham.jpeg'
                 ],
                 [
-                    'domain' => null,
-                    'fetch_link' => null,
+                    'domain' => Config::get('crawler.CVT'),
+                    'fetch_link' => '/forums/spa.134/',
                     'parent' => 5,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Spa",
                     'background' => '/images/categories/spa.jpeg'
                 ],
                 [
-                    'domain' => null,
-                    'fetch_link' => null,
+                    'domain' => Config::get('crawler.CVT'),
+                    'fetch_link' => '/forums/nuoc-hoa.137/',
                     'parent' => 5,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Nước Hoa",
                     'background' => '/images/categories/nuoc-hoa.jpeg'
                 ],
                 [
-                    'domain' => null,
-                    'fetch_link' => null,
+                    'domain' => Config::get('crawler.CVT'),
+                    'fetch_link' => '/forums/massage.135/',
                     'parent' => 5,
                     'verify' => Config::get('constant.CATEGORY__VERIFY.OPTIONAL'),
                     'name' => "Massage",
