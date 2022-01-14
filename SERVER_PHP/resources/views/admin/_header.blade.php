@@ -1,6 +1,6 @@
 
 
-<div class="header">
+<div class="header pagecontainer">
     
     <div class="main__header">
         <span class="header__toggle_sidebar" onclick="toggle_sidebar()">

@@ -64,7 +64,7 @@
             <div class="col-12 homeslider">
                 <div id="slider" class="slider">
                     @foreach ($sliders as $key => $slider)
-                    <div class="js__onload--show {{ !$key ?? 'd-none'}}">
+                    <div class="js__onload--show {{ $key ? 'd-none' : null }}">
                         <div class="slider__item">
                             <div class="slider__item-img">
                                 <img src="{{ $slider->src }}" alt="{{ $slider->alt }}" width="200" height="175"/>
@@ -122,7 +122,7 @@
                                         <img 
                                         class="lazyload"
                                         src="{{ Config::get('app.lazyload_base64') }}"
-                                        onerror="this.onerror=null;this.src='{{ asset('/images/failed.jpg') }}';"
+                                        onerror="this.onerror=null;this.src='{{ asset('images/failed.jpg') }}';"
                                         data-src="{{ Route('IMAGE_CONVERTOR', [ 'quality' => SupportAgent::getQuanlityByDevice(), 'imagePath' => trim($child->thumbnail, '/') . Config::get('image.EXTENTION_CONVERTOR') ]) }}" 
                                         alt="{{ $child->name }}" width="300" height="300"/>
                                     </a>
@@ -177,7 +177,7 @@
                             width="350" height="350"
                             src="{{ Config::get('app.lazyload') }}" 
                             {{-- src="{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => $product->thumbnail ]) }}" --}}
-                            onerror="this.onerror=null;this.src='{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => '/images/failed.jpg' ]) }}'"
+                            onerror="this.onerror=null;this.src='{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => 'images/failed.jpg' ]) }}'"
                             data-src="{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => trim($product->thumbnail, "/") ]) }}"
                             alt="{{ $product->title }}"
                         />

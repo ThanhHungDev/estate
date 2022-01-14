@@ -34,6 +34,10 @@ class Category extends Model
         return $this->hasMany( Category::class, 'parent');
     }
 
+    public function parentCategory(){
+        return $this->belongsTo( Category::class, 'parent');
+    }
+
     /**
      * là mối quan hệ dạng 1 nhiều ví dụ : 
      * product -> categories thì thứ tự sẽ là như dưới

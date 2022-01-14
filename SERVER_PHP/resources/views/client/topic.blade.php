@@ -155,52 +155,6 @@
                     </div>
 
 
-                    <div class="product__data">
-                        
-                        <div class="block">
-                            <h3 class="block__title"> Nhận Tư Vấn Mua nhà đất bảo lộc Miễn Phí </h3>
-                            <div class="form">
-                                <form id="contact" class="form__wrapper" action="{{ Route('MAIL_CONTACT_PRODUCT') }}" method="POST">
-                                    {!! csrf_field() !!}
-                                    <input name="slug" type="hidden" value="{{ $topic->slug }}" />
-                                    @if (Session::has(Config::get('constant.SAVE_ERROR')))
-                                    <div class="alert alert-danger">
-                                        {{ Session::get(Config::get('constant.SAVE_ERROR')) }}
-                                    </div>
-                                    @elseif (Session::has(Config::get('constant.SAVE_SUCCESS')))
-                                    <div class="alert alert-success">
-                                        Đã liên lạc với quản trị viên. Chúng tôi sẽ liên lạc với bạn sớm nhất có thể.
-                                    </div>
-                                    @endif
-                                    @if(!empty($errors->all()))
-                                        @foreach ($errors->all() as $error)
-                                        <div class="alert alert-warning">
-                                            {{ $error }}
-                                        </div>
-                                        @endforeach
-                                    @endif
-                                    <div class="contact">
-                                        <div class="contact__left">
-                                            <input name="name" type="text" placeholder="Tên" class="contact__left-input" value="{{ old('name' ) }}"/>
-                                            <input name="mobile" type="text" placeholder="Số điện thoại" class="contact__left-input" value="{{ old('mobile' ) }}"/>
-                                        </div>
-                                        <div class="contact__right">
-                                            <textarea name="message" class="contact__right-textarea" cols="54" rows="2" title="Tin nhắn" placeholder="Tin nhắn yêu cầu tư vấn (không bắt buộc nhập)">{{ old('message' ) }}</textarea>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="bottom">
-                                        <div id="google__recaptcha" class="lazyload">
-                                            <!-- Google reCaptcha -->
-                                            <div class="g-recaptcha" id="feedback-recaptcha" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY')  }}"></div>
-                                            <!-- End Google reCaptcha -->
-                                            <button class="btn-send-mail-contact">Gửi liên lạc</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
 
 
 
@@ -261,7 +215,7 @@
                                                 <div class="item__image">
                                                     <img class="product-image"
                                                         src="{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => $product->thumbnail ]) }}"
-                                                        onerror="this.onerror=null;this.src='{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => '/images/failed.jpg' ]) }}'"
+                                                        onerror="this.onerror=null;this.src='{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => 'images/failed.jpg' ]) }}'"
                                                         alt="{{ $product->title }}">
                                                     <div class="hover__show-links">
                                                         <button type="button" onclick="showLightGaleries(this)"
@@ -293,7 +247,7 @@
                                                     <a class="detail__info-img" onclick="showLightGaleries(this)">
                                                         <img class="product-image"
                                                         src="{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => $product->thumbnail ]) }}"
-                                                        onerror="this.onerror=null;this.src='{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => '/images/failed.jpg' ]) }}'"
+                                                        onerror="this.onerror=null;this.src='{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => 'images/failed.jpg' ]) }}'"
                                                         alt="{{ $product->title }}"/>
                                                         <div class="counter__galeries">{{ $pics->count(); }} <i class="far fa-image"></i> - {{ $product->view }} <i class="far fa-eye"></i></div>
                                                     </a>

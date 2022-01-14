@@ -24,6 +24,7 @@ use App\Models\Tag;
 use App\Models\Topic;
 use App\Models\User;
 use App\Models\Workprocess;
+use Database\Seeders\categories;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -258,14 +259,24 @@ class ClientController extends Controller
     }
 
     public function categoryDetail( Request $request, $slug = null ){
-        $category = Category::where('slug', $slug)->first();
+        $products = null;
+        $category = $parent = Category::where('slug', $slug)->first();
         if( !$category ) return abort(404);
-        $products = $category->products;
-
+        // check luồng : 1. child or parent để lấy ra category tương ứng và prods
+        if( $category->parent ) $parent = $category->parentCategory;
+        $relateCategories = $parent->childs()->where('id', '!=' , $category->id )->get();
+        
+        if( $category->parent ) $products = $category->products()->take(Config::get('constant.LIMIT'))->get();
+        $relateBuilder = Product::whereIn('category_id', $relateCategories->pluck('id')->toArray());
+        if( $products ){
+            $relateBuilder = $relateBuilder
+                                ->whereNotIn('id', $products->pluck('id')->toArray() );
+        }
+        $relates = $relateBuilder->take(Config::get('constant.LIMIT'))->get();
         $categories = Category::orderBy('id', 'DESC')->get();
-        $districts = District::where('province_id', 68)->get();
-        $communes  = Commune::whereIn('district_id', $districts->pluck('id')->toArray())->get();
-        return view('client.category', compact(['category', 'products', 'categories',  'districts', 'communes']));
+        $districts = Config::get('district');
+        $communes  = Config::get('commune');
+        return view('client.category-detail', compact(['category', 'parent', 'products', 'relates', 'categories', 'relateCategories',  'districts', 'communes']));
     }
     public function topicDetail( Request $request, $slug = null ){
         $topic = Topic::where('slug', $slug)->first();

@@ -216,6 +216,7 @@ return [
 
         App\Providers\GoogleDriveServiceProvider::class,
         Jenssegers\Agent\AgentServiceProvider::class,
+        // Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
     /*
@@ -284,6 +285,7 @@ return [
         'RemoteAddress' => App\Helpers\RemoteAddress::class,
         'SupportJson' => App\Helpers\SupportJson::class,
         'SupportAgent' => App\Helpers\SupportAgent::class,
+        // 'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 
 ];

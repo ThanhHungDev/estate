@@ -90,6 +90,7 @@ class QueueCrawlerProduct implements ShouldQueue
                 
             }
             if (!pathinfo(strtolower($image->basename), PATHINFO_EXTENSION)) $image->basename .= ".jpeg";
+            if(strpos($image->basename, "?") !== false) $image->basename = preg_replace('/\?.*/', '', $image->basename);
             $image->link = $publicPath . '/' . $image->basename;
             $file        = $savedDir . '/' . $image->basename;
             /// check file exist
@@ -97,6 +98,7 @@ class QueueCrawlerProduct implements ShouldQueue
                 // remove file
                 File::delete($file);
             }
+            echo "Download image root : $image->url parse basename to : $image->basename \n";
             $curl_handles[$key] = curl_init($image->url);
             $file_pointers[$key] = fopen($file, "w");
             curl_setopt($curl_handles[$key], CURLOPT_FILE, $file_pointers[$key]);

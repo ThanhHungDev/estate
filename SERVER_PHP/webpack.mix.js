@@ -64,6 +64,7 @@ mix
 
     // .sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/page/home.scss', 'public/css')
+    .sass('resources/sass/page/category.scss', 'public/css')
     // .sass('resources/sass/page/profile.scss', 'public/css')
     // .sass('resources/sass/page/login.scss', 'public/css')
     // .sass('resources/sass/page/register.scss', 'public/css')

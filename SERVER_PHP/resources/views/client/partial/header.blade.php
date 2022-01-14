@@ -1,5 +1,5 @@
 <div id="header__sticky" class="headerpage bg__product--detail @if (SupportRouter::isRouterActive('CHAT')) pc @endif">
-    <div class="header">
+    <div class="header pagecontainer">
         <a class="logo" href="{{ Route('HOME_PAGE') }}">
             <img 
                 width="44"
