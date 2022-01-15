@@ -11124,6 +11124,13 @@ ul.contact li a span {
   font-size: 13px;
 }
 
+.text-tile-cate {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
 .ratings i {
   font-size: 16px;
   color: red;

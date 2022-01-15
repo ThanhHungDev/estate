@@ -59,8 +59,8 @@
         <div class="row">
             @foreach ($products as $key => $product)
             <div class="col-6">
-                <div class="p-1">
-                    <div class="row p-2 bg-white border rounded">
+                <div class="p-1 h-100">
+                    <div class="row p-2 h-100 bg-white border rounded">
                         <div class="col-md-3 mt-1">
                             <img class="img-fluid img-responsive rounded product-image"
                                 src="{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => $product->thumbnail ]) }}"
@@ -68,7 +68,7 @@
                                 alt="{{ $product->title }}" />
                         </div>
                         <div class="col-md-6 mt-1">
-                            <h5 class="text-truncate">{{ $product->title }}</h5>
+                            <h5 class="text-tile-cate">{{ $product->title }}</h5>
                             <div class="d-flex flex-row">
                                 <div class="ratings mr-2"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><span>310</span>
                             </div>
@@ -81,7 +81,10 @@
                                 <h4 class="mr-1">$13.99</h4><span class="strike-text">$20.99</span>
                             </div>
                             <h6 class="text-success">Free shipping</h6>
-                            <div class="d-flex flex-column mt-4"><button class="btn btn-primary btn-sm" type="button">Details</button><button class="btn btn-outline-primary btn-sm mt-2" type="button">Add to wishlist</button></div>
+                            <div class="d-flex flex-column mt-4">
+                                <a class="btn btn-primary btn-sm" href="{{ Route('PRODUCT_VIEW', ['slug' => $product->slug ]) }}">xem chi tieets</a>
+                                <button class="btn btn-outline-primary btn-sm mt-2" type="button">Add to wishlist</button>
+                            </div>
                         </div>
                     </div>
                 </div>
