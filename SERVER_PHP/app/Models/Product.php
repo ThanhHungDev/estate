@@ -38,6 +38,10 @@ class Product extends Model
         return 'PAGE';
     }
 
+    public function user(){
+        return $this->belongsTo(\App\Models\User::class, 'user_id');
+    }
+
     public function getTitleLocateCategory( $limit = 10, $ellipsis = '...' ){
 
         $title = $this->title;

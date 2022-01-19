@@ -87,6 +87,7 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
     'REALTIME_URL' => env('REALTIME_URL'),
+    'PEER_URL' => env('PEER_URL'),
 
     'asset_url' => env('ASSET_URL', null),
 

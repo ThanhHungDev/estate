@@ -7957,6 +7957,47 @@ ul.contact li a span {
   color: #0d47a1;
 }
 
+ul.pagination {
+  display: block;
+  padding: 5px;
+  margin: 0;
+}
+ul.pagination li {
+  display: inline;
+  font-size: 12px;
+  font-weight: bold;
+}
+ul.pagination li.disabled {
+  /*background-color: #cccccc;*/
+  color: #ddd;
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  margin: 2px;
+}
+ul.pagination li.active {
+  background-color: #687282;
+  padding: 8px 10px;
+  margin: 2px;
+  color: white;
+}
+ul.pagination li a {
+  color: black;
+  padding: 8px 10px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  border: 1px solid #ddd;
+  margin: 2px;
+}
+ul.pagination li a.active {
+  background-color: #4CAF50;
+  padding: 8px 10px;
+  margin: 2px;
+  color: white;
+}
+ul.pagination li a:hover {
+  background-color: #999999;
+}
+
 .container-fluid-hero {
   width: 100%;
   padding-right: 15px;
@@ -11037,6 +11078,167 @@ ul.contact li a span {
 .btn-hero.btn-hero-outline-grey-x:disabled, .btn-hero.btn-hero-outline-grey-x.disabled, fieldset:disabled .btn-hero.btn-hero-outline-grey-x {
   pointer-events: none;
   opacity: 0.65;
+}
+
+.cproduct {
+  margin: 0 auto;
+}
+.cproduct:after {
+  clear: both;
+  content: ".";
+  display: block;
+  height: 0;
+  line-height: 0;
+  visibility: hidden;
+  overflow: hidden;
+}
+.cproduct-title {
+  background: url(/images/background/bg_title.png) center bottom no-repeat rgba(0, 0, 0, 0);
+  display: block;
+  font-family: RCB;
+  font-size: 20px;
+  padding-bottom: 25px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 40px;
+}
+.cproduct__wrapper {
+  width: 50%;
+  float: left;
+  padding: 6px;
+}
+.cproduct__wrapper:after {
+  clear: both;
+  content: ".";
+  display: block;
+  height: 0;
+  line-height: 0;
+  visibility: hidden;
+  overflow: hidden;
+}
+@media (max-width: 768px) {
+  .cproduct {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  .cproduct__wrapper {
+    width: 100%;
+  }
+}
+.cproduct__item {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  border-radius: 4px;
+  border: 1px solid #b9c6cc;
+}
+.cproduct__item:hover {
+  border: 1px solid #607d8b;
+  box-shadow: 0 0.1rem 0.25rem 0 #a0b1b9;
+}
+.cproduct__item-topic {
+  font-size: 14px;
+  font-weight: 700;
+  color: #343a40;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.cproduct__item-topic time {
+  display: inline;
+  font-weight: 100;
+  font-size: 12px;
+}
+.cproduct__item-title {
+  padding-top: 5px;
+}
+.cproduct__item-title a {
+  font-size: 1rem;
+  text-transform: capitalize;
+  min-height: 2.4rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.cproduct__item-title a b {
+  color: #f80;
+}
+.cproduct__item-des a {
+  font-size: 0.85rem;
+  font-weight: normal;
+  line-height: 1.4;
+  min-height: 2.5rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+.cproduct__item-left {
+  width: 20%;
+  position: relative;
+}
+.cproduct__item-left .img__cover {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+.cproduct__item-center {
+  width: 60%;
+}
+.cproduct__item-center a {
+  color: #607d8b;
+}
+.cproduct__item-center a:hover {
+  color: #0d3617;
+}
+.cproduct__item-right {
+  width: 20%;
+}
+.cproduct__item-wrapper {
+  border-left: 1px solid #dee2e6;
+}
+.cproduct__item-member {
+  font-size: 14px;
+  padding: 5px 0;
+}
+.cproduct__item-member a {
+  padding-right: 20px;
+  color: #5dd879;
+}
+.cproduct__item .btn__advise {
+  border-radius: 4px;
+  padding: 0.075rem 0.55rem;
+  font-size: 12px;
+  border-width: 1px !important;
+  border: 1px solid #d63384;
+  background-color: transparent;
+  color: #d63384;
+}
+.cproduct__item .btn__advise:hover {
+  background-color: #d63384;
+  border: 2px solid #d63384;
+  color: #fff;
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+}
+.cproduct__item .btn__advise:focus, .cproduct__item .btn__advise.focus {
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+  outline: 0;
+}
+.cproduct__item .btn__advise:disabled, .cproduct__item .btn__advise.disabled, fieldset:disabled .cproduct__item .btn__advise {
+  pointer-events: none;
+  opacity: 0.65;
+}
+.cproduct__item .btn__advise:hover .icon__fa-svg {
+  fill: #fff;
+}
+.cproduct__item .btn__advise .icon__fa-svg {
+  width: 12px;
+  vertical-align: 0.13em;
+  fill: #d63384;
 }
 
 .categories {

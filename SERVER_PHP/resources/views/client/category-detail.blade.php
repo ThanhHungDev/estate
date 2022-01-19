@@ -56,40 +56,63 @@
 
     @if (!!$products && !$products->isEmpty())
     <div class="pagecontainer mx-auto px-15px">
-        <div class="row">
+        <div class="cproduct">
+            <h3 class="cproduct-title" title="💥 Bài viết trong chủ đề">Bài viết trong chủ đề</h3>
+            
             @foreach ($products as $key => $product)
-            <div class="col-6">
-                <div class="p-1 h-100">
-                    <div class="row p-2 h-100 bg-white border rounded">
-                        <div class="col-md-3 mt-1">
-                            <img class="img-fluid img-responsive rounded product-image"
-                                src="{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => $product->thumbnail ]) }}"
-                                onerror="this.onerror=null;this.src='{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => 'images/failed.jpg' ]) }}'"
-                                alt="{{ $product->title }}" />
-                        </div>
-                        <div class="col-md-6 mt-1">
-                            <h5 class="text-tile-cate">{{ $product->title }}</h5>
-                            <div class="d-flex flex-row">
-                                <div class="ratings mr-2"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><span>310</span>
-                            </div>
-                            <div class="mt-1 mb-1 spec-1"><span>100% cotton</span><span class="dot"></span><span>Light weight</span><span class="dot"></span><span>Best finish<br></span></div>
-                            <div class="mt-1 mb-1 spec-1"><span>Unique design</span><span class="dot"></span><span>For men</span><span class="dot"></span><span>Casual<br></span></div>
-                            <p class="text-justify text-truncate para mb-0">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.<br><br></p>
-                        </div>
-                        <div class="align-items-center align-content-center col-md-3 border-left mt-1">
-                            <div class="d-flex flex-row align-items-center">
-                                <h4 class="mr-1">$13.99</h4><span class="strike-text">$20.99</span>
-                            </div>
-                            <h6 class="text-success">Free shipping</h6>
-                            <div class="d-flex flex-column mt-4">
-                                <a class="btn btn-primary btn-sm" href="{{ Route('PRODUCT_VIEW', ['slug' => $product->slug ]) }}">xem chi tieets</a>
-                                <button class="btn btn-outline-primary btn-sm mt-2" type="button">Add to wishlist</button>
-                            </div>
+            <div class="cproduct__wrapper">
+                <div class="cproduct__item">
+                    <div class="cproduct__item-left p-2">
+                        <img class="img-fluid img-responsive rounded product-image"
+                            src="{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => $product->thumbnail ]) }}"
+                            onerror="this.onerror=null;this.src='{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => 'images/failed.jpg' ]) }}'"
+                            alt="{{ $product->title }}" />
+                    </div>
+                    <div class="cproduct__item-center py-2">
+                        <h4 class="cproduct__item-topic">
+                            <a href="{{ Route('PRODUCT_VIEW', ['slug' => $product->slug ]) }}">
+                                {{ $category->name }}
+                                <time datetime="2008-02-14 20:00">
+                                    - 
+                                    <i class="d-none">{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $product->created_at)->diffForHumans() }}</i>
+                                    <i>{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $product->updated_at)->diffForHumans() }}</i>
+                                </time>
+                                <span>
+                                    
+                                </span>
+                            </a>
+                        </h4>
+                        <h3 class="cproduct__item-title">
+                            <a href="{{ Route('PRODUCT_VIEW', ['slug' => $product->slug ]) }}">{{ $product->title }}</a>
+                        </h3>
+                        <p class="cproduct__item-member">
+                            <a href="{{ Route('MEMBER_VIEW', ['id' => $product->user->id ]) }}">
+                                {{ $product->user->name }}
+                            </a>
+                            <a class="btn__advise" href="{{ Route('CHAT', ['id' => Auth::user() && $product->user_id == Auth::user()->id ? null : $product->user_id ]) }}">
+                                @svg('font/font-awe/svgs/regular/comment-alt-dots.svg')
+                                <span>Tư vấn</span>                        
+                            </a>
+                        </p>
+                        <p class="cproduct__item-des">
+                            <a href="{{ Route('PRODUCT_VIEW', ['slug' => $product->slug ]) }}"> {{ $product->excerpt }} </a>
+                        </p>
+                    </div>
+                    <div class="cproduct__item-right py-3 px-2">
+                        <div class="cproduct__item-wrapper h-100 px-2">
+                            <ul class="p-0 text-xs text-center">
+                                <li class="">{{ $product->view }} <br /> lượt xem</li>
+                                <li class="mt-4"><button>1000 thích</button></li>
+                                <li class="pt-5px"><button>chi tiết</button></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
             @endforeach
+        </div>
+        <div class="pagi py-2 text-right">
+            {{ $products->onEachSide(3)->links("pagination::default") }}
         </div>
     </div>
     @endif
@@ -135,6 +158,9 @@
                 </div>
             </div>
             @endforeach
+        </div>
+        <div class="pagi py-2 text-right">
+            {{ $relates->onEachSide(3)->links("pagination::default") }}
         </div>
     </div>
     @endif

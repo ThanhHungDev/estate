@@ -317,7 +317,7 @@ io
                 socket.broadcast.in(channel.name).emit(CONFIG.EVENT.RESPONSE__JOIN__CHATTING, response )
             // }
         })
-        console.log("socket.adapter.rooms", socket.adapter.rooms)
+        // console.log("socket.adapter.rooms", socket.adapter.rooms)
         return;
     })
 

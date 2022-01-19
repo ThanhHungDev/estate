@@ -208,6 +208,14 @@ class ClientController extends Controller
         return view('client.news-detail', compact(['post', 'products', 'categories', 'topics', 'districts', 'communes']));
     }
 
+    public function memberDetail( Request $request, $id = 0 ){
+
+        $member = User::find($id);
+        if( !$member ) return abort(404);
+
+        return view('client.member-detail', compact(['member']));
+    }
+
     public function productDetail( Request $request, $slug = null ){
 
         $categories = Category::orderBy('id', 'DESC')->get();
@@ -266,13 +274,13 @@ class ClientController extends Controller
         if( $category->parent ) $parent = $category->parentCategory;
         $relateCategories = $parent->childs()->where('id', '!=' , $category->id )->get();
         
-        if( $category->parent ) $products = $category->products()->take(Config::get('constant.LIMIT'))->get();
+        if( $category->parent ) $products = $category->products()->with('user')->paginate( Config::get('constant.LIMIT'), ['*'], 'page' )->appends(request()->query());
         $relateBuilder = Product::whereIn('category_id', $relateCategories->pluck('id')->toArray());
         if( $products ){
             $relateBuilder = $relateBuilder
                                 ->whereNotIn('id', $products->pluck('id')->toArray() );
         }
-        $relates = $relateBuilder->take(Config::get('constant.LIMIT'))->get();
+        $relates = $relateBuilder->paginate( Config::get('constant.LIMIT'), ['*'], 'rpage' )->appends(request()->query());
         $categories = Category::orderBy('id', 'DESC')->get();
         $districts = Config::get('district');
         $communes  = Config::get('commune');

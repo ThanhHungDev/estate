@@ -1,0 +1,147 @@
+
+
+
+.cproduct{
+    margin: 0 auto;
+    @include clearfix();
+    &-title{
+        background: url(/images/background/bg_title.png) center bottom no-repeat rgba(0,0,0,0);
+        display: block;
+        font-family: RCB;
+        font-size: 20px;
+        padding-bottom: 25px;
+        text-transform: uppercase;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    
+    &__wrapper{
+        width: 50%;
+        float: left;
+        padding: 6px;
+        @include clearfix();
+        
+    }
+    @include ScreenMax( SM ){
+        max-width: 500px;
+        margin: 0 auto;
+
+        &__wrapper{ width: 100%; }
+    }
+    
+
+    &__item{
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+        border-radius: 4px;
+        // background-color: $green_dark;
+        border: 1px solid color-level($custom-blue-grey, -7);
+        &:hover{
+            border: 1px solid $custom-blue-grey;
+            box-shadow: 0 0.1rem 0.25rem 0 color-level($custom-blue-grey, -5);
+        }
+
+        &-topic{
+            font-size: 14px;
+            font-weight: 700;
+            color: $gray-800;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            
+
+            time{
+                display: inline;
+                font-weight: 100;
+                font-size: 12px;
+            }
+        }
+        &-title{
+            padding-top: 5px;
+            a{
+                
+                font-size: 1rem; 
+                text-transform: capitalize;
+                min-height: 2.4rem;
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                b {
+                    color: #f80;
+                }
+            }
+        }
+        &-des a{
+
+            font-size: .85rem;
+            font-weight: normal;
+            // text-transform: capitalize;
+            line-height: 1.4;
+            min-height: 2.5rem; //// tuỳ chỉnh ở đây nếu bạn muốn copy
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+
+        &-left{
+            width: 20%;
+            position: relative;
+            .img__cover{
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                margin: auto;
+            }
+        }
+        &-center{
+            width: 60%;
+            a{
+                color: $custom-blue-grey;
+                &:hover{
+                    color: $custom-green-dark;
+                }
+            }
+        }
+        &-right{ 
+            width: 20%;
+            
+        }
+        &-wrapper{
+            border-left: 1px solid $gray-300;
+        }
+        &-member{
+            font-size: 14px;
+            padding: 5px 0;
+            
+            a{
+                padding-right: 20px;
+                color: lighten($color: $green, $amount: 20% );
+            }
+        }
+        .btn__advise{
+            border-radius: 4px;
+            padding: .075rem .55rem;
+            font-size: 12px;
+            border-width: 1px !important;
+            border: 1px solid $pink;
+            background-color: transparent;
+            color: $pink;
+            @include btn-interaction($pink, $pink, $white);
+            &:hover{
+                .icon__fa-svg{
+                    fill: #fff;
+                }
+            }
+            .icon__fa-svg{
+                width: 12px;
+                vertical-align: 0.13em;
+                fill: $pink;
+            }
+        }
+    }
+}

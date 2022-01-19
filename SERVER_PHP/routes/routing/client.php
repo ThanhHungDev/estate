@@ -82,6 +82,7 @@ Route::group(['prefix' => '/','middleware' => [ 'LOGIN_REDIRECT', 'HTML_MINIFIER
     Route::get('/tim-mua/{slug}',[ App\Http\Controllers\ClientController::class, 'ptagDetail' ])->name('PTAG_VIEW_SEARCH');
     Route::get('/tim-kiem',[ App\Http\Controllers\ClientController::class, 'searchProduct' ])->name('PRODUCT_SEARCH');
     Route::get('/tim-kiem-bai-viet',[ App\Http\Controllers\ClientController::class, 'searchPost' ])->name('POST_SEARCH');
+    Route::get('/thanh-vien/{id}',[ App\Http\Controllers\ClientController::class, 'memberDetail' ])->name('MEMBER_VIEW');
     Route::get('/tro-chuyen/{id?}',[ App\Http\Controllers\ClientController::class, 'chat' ])->name('CHAT');
     Route::get('/{slug}',[ App\Http\Controllers\ClientController::class, 'productDetail' ])->name('PRODUCT_VIEW');
 });
