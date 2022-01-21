@@ -2,8 +2,8 @@
 import React from "react"
 
 import ButtonBack from "./ButtonBack.jsx"
-import ButtonVideoCall from "./ButtonVideoCall.jsx"
-import ButtonVoiceCall from "./ButtonVoiceCall.jsx"
+// import ButtonVideoCall from "./ButtonVideoCall.jsx"
+// import ButtonVoiceCall from "./ButtonVoiceCall.jsx"
 
 const HeadInfo = props => {
 
@@ -26,8 +26,8 @@ const HeadInfo = props => {
 					</span>
 				</div>
 			</div>
-			<ButtonVoiceCall />
-			<ButtonVideoCall />
+			{/* <ButtonVoiceCall />
+			<ButtonVideoCall /> */}
 		</div>
 	)
 }

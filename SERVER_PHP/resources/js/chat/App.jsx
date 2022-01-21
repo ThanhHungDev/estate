@@ -12,7 +12,7 @@ import ProtectedRoute from './ProtectedRoute'
 import socketIOClient from "socket.io-client"
 import { createSocketListenner } from './library/socket'
 import { setterSocket } from '../action/socket.action'
-import Peer from 'peerjs'
+// import Peer from 'peerjs'
 
 
 function App( props ){
@@ -31,13 +31,13 @@ function App( props ){
         createSocketListenner(socket, props, CONFIG) 
         socket.open()// synonym to socket.connect()
         // console.log("connected ở đây không thành công đâu " + socket.connected)
-        console.log("cos chayj voaf ")
-        const peer = new Peer('td064exm0gc00000', {
-            host: '127.0.0.1',
-            port: 9000,
-            path: '/myapp'
-        })
-        peer.on('open', id => console.warn(id, "fgdfgfdg"))
+        // console.log("cos chayj voaf ")
+        // const peer = new Peer('td064exm0gc00000', {
+        //     host: '127.0.0.1',
+        //     port: 9000,
+        //     path: '/myapp'
+        // })
+        // peer.on('open', id => console.warn(id, "fgdfgfdg"))
         return () => {
             socket.disconnect()
             props.dispatch(setterSocket(null))

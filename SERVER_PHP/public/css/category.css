@@ -11240,6 +11240,68 @@ ul.pagination li a:hover {
   vertical-align: 0.13em;
   fill: #d63384;
 }
+.cproduct__item .btn__react--viewer {
+  border-radius: 4px;
+  padding: 0.075rem 0.55rem;
+  font-size: 12px;
+  border-width: 1px !important;
+  border: 1px solid #343a40;
+  background-color: transparent;
+  color: #343a40;
+}
+.cproduct__item .btn__react--viewer:hover {
+  background-color: #343a40;
+  border: 2px solid #343a40;
+  color: #fff;
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+}
+.cproduct__item .btn__react--viewer:focus, .cproduct__item .btn__react--viewer.focus {
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+  outline: 0;
+}
+.cproduct__item .btn__react--viewer:disabled, .cproduct__item .btn__react--viewer.disabled, fieldset:disabled .cproduct__item .btn__react--viewer {
+  pointer-events: none;
+  opacity: 0.65;
+}
+.cproduct__item .btn__react--viewer:hover .icon__fa-svg {
+  fill: #fff;
+}
+.cproduct__item .btn__react--viewer .icon__fa-svg {
+  width: 12px;
+  vertical-align: 0.13em;
+  fill: #343a40;
+}
+.cproduct__item .btn__react--like {
+  border-radius: 4px;
+  padding: 0.075rem 0.55rem;
+  font-size: 12px;
+  border-width: 1px !important;
+  border: 1px solid #d63384;
+  background-color: transparent;
+  color: #d63384;
+}
+.cproduct__item .btn__react--like:hover {
+  background-color: #d63384;
+  border: 2px solid #d63384;
+  color: #fff;
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+}
+.cproduct__item .btn__react--like:focus, .cproduct__item .btn__react--like.focus {
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+  outline: 0;
+}
+.cproduct__item .btn__react--like:disabled, .cproduct__item .btn__react--like.disabled, fieldset:disabled .cproduct__item .btn__react--like {
+  pointer-events: none;
+  opacity: 0.65;
+}
+.cproduct__item .btn__react--like:hover .icon__fa-svg {
+  fill: #fff;
+}
+.cproduct__item .btn__react--like .icon__fa-svg {
+  width: 12px;
+  vertical-align: 0.13em;
+  fill: #d63384;
+}
 
 .categories {
   padding-top: 1.5rem;

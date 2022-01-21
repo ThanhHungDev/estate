@@ -77,9 +77,6 @@
                                     <i class="d-none">{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $product->created_at)->diffForHumans() }}</i>
                                     <i>{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $product->updated_at)->diffForHumans() }}</i>
                                 </time>
-                                <span>
-                                    
-                                </span>
                             </a>
                         </h4>
                         <h3 class="cproduct__item-title">
@@ -102,8 +99,8 @@
                         <div class="cproduct__item-wrapper h-100 px-2">
                             <ul class="p-0 text-xs text-center">
                                 <li class="">{{ $product->view }} <br /> lượt xem</li>
-                                <li class="mt-4"><button>1000 thích</button></li>
-                                <li class="pt-5px"><button>chi tiết</button></li>
+                                <li class="mt-4"><button class="btn btn__react--like">1000 thích</button></li>
+                                <li class="pt-5px"><button class="btn btn__react--viewer">chi tiết</button></li>
                             </ul>
                         </div>
                     </div>
