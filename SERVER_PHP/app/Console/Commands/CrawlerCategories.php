@@ -13,7 +13,7 @@ use PHPHtmlParser\Dom;
 
 class CrawlerCategories extends Command
 {
-    private $MAX_CHILD = 4;
+    private $MAX_CHILD = 10;
     /**
      * The name and signature of the console command.
      *

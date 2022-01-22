@@ -16,6 +16,7 @@
 // @import "./_navigation.scss";
 // @import "./_navplus.scss"; 
 @import "../library/modal_jquery";
+@import "../library/modal_react";
 
 @import "../partial/tophead"; 
 @import "../partial/header"; 
@@ -667,61 +668,3 @@
 
 
 
-
-
-.modal.modal__notification{
-    border-radius: 0;
-    // height: 100%;
-    // padding: 0 15px 15px;
-    // @include Screen(SM){ padding: 15px 30px; }
-    padding: 15px 30px;
-  
-    .modal__header{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 0;
-        border-bottom: 1px solid color-level($custom-green-dark, -10);
-  
-        .icon__fa-svg{
-            width: 20px;
-            height: 20px;
-            vertical-align: 0.5em;
-        }
-        i.close{
-            color: $custom-green-dark;
-            font-size: 18px;
-            padding: 5px 15px;
-        }
-        .title{
-            font-size: 18px;
-            font-weight: 700;
-            text-transform: capitalize;
-            color: $custom-green-dark;
-            flex: 1;
-            padding: 0 15px;
-        }
-    }
-    .modal__body{
-        padding: 20px 0;
-    }
-    .modal__footer{
-        text-align: center;
-        border-top: 1px solid color-level($custom-green-dark, -10);
-        padding-top: 15px;
-        .btn__close{
-            border-radius: 0;
-            border: 2px solid $custom-success-color-dark !important;
-            background-color: transparent !important;
-            color: $custom-success-color-dark !important;
-            @include btn-interaction(color-level($custom-success-color-dark, -8), $white, $white)
-        }
-        .btn__login{
-            background-color: $custom-success-color-dark;
-            color: $white;
-            border: 2px solid $custom-success-color-dark;
-            border-radius: 0;
-            @include btn-interaction($white, color-level($custom-success-color-dark, -8), $custom-success-color-dark)
-        }
-    }
-}

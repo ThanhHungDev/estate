@@ -115,33 +115,19 @@
 
                 .slider{
                     background-color: white;
+                    border-radius: 4px;
+                    background-color: white;
 
                     &__item{
-                        width: 100%;
-                        // max-width: 550px;
-                        img{
-                            width: 100%;
-                            height: auto;
-                        }
-                    }
-
-                    &__nav{
-                        padding: 10px;
-                        border-radius: 4px;
-                        background-color: white;
-
-                        &--item{
-                            padding: 0 2px;
-                            .wrapper{
-                                
-                                border-radius: 6px;
-                                overflow: hidden;
-                                border: 3px solid transparent;
-                                &:hover{
-                                    border: 3px solid $custom-green;
-                                }
-                            }
+                        padding: 0 2px;
+                        .wrapper{
                             
+                            border-radius: 6px;
+                            overflow: hidden;
+                            border: 3px solid transparent;
+                            &:hover{
+                                border: 3px solid $custom-green;
+                            }
                         }
                     }
                 }
@@ -197,6 +183,10 @@
                             transition: all 0.3s linear 0s;
                             color: #6c757d;
                             font-size: 16px;
+                        }
+                        .wrapper__img{
+                            max-width: 500px;
+                            margin: 0 auto;
                         }
                     }
 

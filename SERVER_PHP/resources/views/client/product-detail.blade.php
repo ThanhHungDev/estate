@@ -38,22 +38,10 @@
         $(document).ready(function(){
             $('#slider').slick({
                 infinite: true,
-                slidesToShow: 3,
-                centerMode: true,
-                asNavFor: '#slider__nav'
-            });
-            $('#slider__nav').slick({
                 slidesToShow: 5,
-                asNavFor: '#slider',
                 centerMode: true,
                 focusOnSelect: true
             });
-            
-            @if (Session::has(Config::get('constant.SAVE_ERROR')) || !empty($errors->all()) )
-                $('html, body').animate({
-                    scrollTop: $('#contact').offset().top
-                }, 'slow');
-            @endif
         });
         
 
@@ -126,16 +114,6 @@
                                 @foreach ($pics as $key => $pic)
                                 <div>
                                     <div class="slider__item">
-                                        <img src="{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => $pic->src ]) }}"/>
-                                    </div>
-                                </div>
-                                @endforeach
-                            </div>
-                            <div id="slider__nav" class="slider__nav">
-                                @php $pics = $product->getImages()->get(); @endphp
-                                @foreach ($pics as $key => $pic)
-                                <div>
-                                    <div class="slider__nav--item">
                                         <div class="wrapper">
                                             <img src="{{ Route('IMAGE_RESIZE', [ 'size' => 'home-product' , 'type' => 'fit', 'imagePath' => $pic->src ]) }}"/>
                                         </div>

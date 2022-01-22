@@ -44,6 +44,7 @@ class DummyProductCvt extends Command
                                         'category_id', 
                                         'title',
                                         'slug',
+                                        'excerpt',
                                         'content',
                                         'fetch_link',
                                         'text_content',
@@ -54,7 +55,7 @@ class DummyProductCvt extends Command
                                         'thumbnail',
                                         ])
                                         ->whereNotNull('fetch_link')
-                                ->get()->toArray();
+                                        ->get()->toArray();
         Storage::disk('config')->delete('dummyproduct.php');
         $hugn = var_export($products, true) ;
         Storage::disk('config')->put('dummyproduct.php', "<?php return $hugn;");

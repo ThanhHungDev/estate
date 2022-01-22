@@ -7269,6 +7269,109 @@ option:focus {
     -webkit-transform: scaleY(1);
   }
 }
+.Overlay {
+  z-index: 111111;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: black;
+  background-color: rgba(0, 0, 0, 0.75);
+  text-align: center;
+}
+
+.modal.modal__notification {
+  border-radius: 0;
+  padding: 0 15px 15px;
+}
+@media (min-width: 576px) {
+  .modal.modal__notification {
+    padding: 15px 30px;
+  }
+}
+.modal.modal__notification .modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #cfd7d1;
+}
+.modal.modal__notification .modal__header i.icon {
+  font-size: 18px;
+  padding: 10px 8px;
+  border-radius: 50%;
+  color: #0d3617;
+  background-color: #e2e7e3;
+  width: 38px;
+  height: 38px;
+  text-align: center;
+}
+.modal.modal__notification .modal__header i.close {
+  color: #0d3617;
+  font-size: 18px;
+  padding: 5px 15px;
+}
+.modal.modal__notification .modal__header .title {
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: capitalize;
+  color: #0d3617;
+  flex: 1;
+  padding: 0 15px;
+}
+.modal.modal__notification .modal__body {
+  padding: 20px 0;
+}
+.modal.modal__notification .modal__footer {
+  text-align: center;
+}
+.modal.modal__notification .modal__footer .btn__close {
+  border-radius: 0;
+  border: 2px solid #007e33 !important;
+  background-color: transparent !important;
+  color: #007e33 !important;
+}
+.modal.modal__notification .modal__footer .btn__close:hover {
+  background-color: #a3d1b6;
+  border: 2px solid #fff;
+  color: #fff;
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+}
+.modal.modal__notification .modal__footer .btn__close:focus, .modal.modal__notification .modal__footer .btn__close.focus {
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+  outline: 0;
+}
+.modal.modal__notification .modal__footer .btn__close:disabled, .modal.modal__notification .modal__footer .btn__close.disabled, fieldset:disabled .modal.modal__notification .modal__footer .btn__close {
+  pointer-events: none;
+  opacity: 0.65;
+}
+.modal.modal__notification .modal__footer .btn__login {
+  background-color: #007e33;
+  color: #fff;
+  border: 2px solid #007e33;
+  border-radius: 0;
+}
+.modal.modal__notification .modal__footer .btn__login:hover {
+  background-color: #fff;
+  border: 2px solid #a3d1b6;
+  color: #007e33;
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+}
+.modal.modal__notification .modal__footer .btn__login:focus, .modal.modal__notification .modal__footer .btn__login.focus {
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+  outline: 0;
+}
+.modal.modal__notification .modal__footer .btn__login:disabled, .modal.modal__notification .modal__footer .btn__login.disabled, fieldset:disabled .modal.modal__notification .modal__footer .btn__login {
+  pointer-events: none;
+  opacity: 0.65;
+}
+
 .icon__fa-svg {
   display: inline-block;
   height: 14px;
@@ -12321,82 +12424,4 @@ ul.pagination li a:hover {
   width: 13px;
   vertical-align: 0.13em;
   fill: #0d3617;
-}
-
-.modal.modal__notification {
-  border-radius: 0;
-  padding: 15px 30px;
-}
-.modal.modal__notification .modal__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 0;
-  border-bottom: 1px solid #cfd7d1;
-}
-.modal.modal__notification .modal__header .icon__fa-svg {
-  width: 20px;
-  height: 20px;
-  vertical-align: 0.5em;
-}
-.modal.modal__notification .modal__header i.close {
-  color: #0d3617;
-  font-size: 18px;
-  padding: 5px 15px;
-}
-.modal.modal__notification .modal__header .title {
-  font-size: 18px;
-  font-weight: 700;
-  text-transform: capitalize;
-  color: #0d3617;
-  flex: 1;
-  padding: 0 15px;
-}
-.modal.modal__notification .modal__body {
-  padding: 20px 0;
-}
-.modal.modal__notification .modal__footer {
-  text-align: center;
-  border-top: 1px solid #cfd7d1;
-  padding-top: 15px;
-}
-.modal.modal__notification .modal__footer .btn__close {
-  border-radius: 0;
-  border: 2px solid #007e33 !important;
-  background-color: transparent !important;
-  color: #007e33 !important;
-}
-.modal.modal__notification .modal__footer .btn__close:hover {
-  background-color: #a3d1b6;
-  border: 2px solid #fff;
-  color: #fff;
-  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
-}
-.modal.modal__notification .modal__footer .btn__close:focus, .modal.modal__notification .modal__footer .btn__close.focus {
-  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
-  outline: 0;
-}
-.modal.modal__notification .modal__footer .btn__close:disabled, .modal.modal__notification .modal__footer .btn__close.disabled, fieldset:disabled .modal.modal__notification .modal__footer .btn__close {
-  pointer-events: none;
-  opacity: 0.65;
-}
-.modal.modal__notification .modal__footer .btn__login {
-  background-color: #007e33;
-  color: #fff;
-  border: 2px solid #007e33;
-  border-radius: 0;
-}
-.modal.modal__notification .modal__footer .btn__login:hover {
-  background-color: #fff;
-  border: 2px solid #a3d1b6;
-  color: #007e33;
-  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
-}
-.modal.modal__notification .modal__footer .btn__login:focus, .modal.modal__notification .modal__footer .btn__login.focus {
-  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
-  outline: 0;
-}
-.modal.modal__notification .modal__footer .btn__login:disabled, .modal.modal__notification .modal__footer .btn__login.disabled, fieldset:disabled .modal.modal__notification .modal__footer .btn__login {
-  pointer-events: none;
-  opacity: 0.65;
 }

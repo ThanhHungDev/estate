@@ -11106,28 +11106,18 @@ ul.contact li a span {
 }
 .content__product .product__slider .slider {
   background-color: white;
-}
-.content__product .product__slider .slider__item {
-  width: 100%;
-}
-.content__product .product__slider .slider__item img {
-  width: 100%;
-  height: auto;
-}
-.content__product .product__slider .slider__nav {
-  padding: 10px;
   border-radius: 4px;
   background-color: white;
 }
-.content__product .product__slider .slider__nav--item {
+.content__product .product__slider .slider__item {
   padding: 0 2px;
 }
-.content__product .product__slider .slider__nav--item .wrapper {
+.content__product .product__slider .slider__item .wrapper {
   border-radius: 6px;
   overflow: hidden;
   border: 3px solid transparent;
 }
-.content__product .product__slider .slider__nav--item .wrapper:hover {
+.content__product .product__slider .slider__item .wrapper:hover {
   border: 3px solid #4caf50;
 }
 .content__product .product__data {
@@ -11176,6 +11166,10 @@ ul.contact li a span {
   transition: all 0.3s linear 0s;
   color: #6c757d;
   font-size: 16px;
+}
+.content__product .product__data .block__data--content .wrapper__img {
+  max-width: 500px;
+  margin: 0 auto;
 }
 .content__product .product__data .block .form {
   background-color: #fff;

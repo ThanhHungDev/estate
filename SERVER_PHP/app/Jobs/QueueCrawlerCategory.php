@@ -66,7 +66,10 @@ class QueueCrawlerCategory implements ShouldQueue
         
         // check product tồn  tại chưa
         $isExisted = Product::where('fetch_link', '=', $linkprod )->first();
-        if( !!$isExisted ) return null;
+        if( !!$isExisted ) {
+            echo "product $linkprod existed!!";
+            return null;
+        }
 
         $job = (new QueueCrawlerProduct($this->category, $user->toArray(), $linkprod, $title))
                         ->delay(Carbon::now()->addSeconds(5))

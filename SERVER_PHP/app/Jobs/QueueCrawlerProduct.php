@@ -141,6 +141,9 @@ class QueueCrawlerProduct implements ShouldQueue
         if( !!$isExisted ){
             echo "=>>>>>>>>>>>>>>> Cảnh báo không crawler product vì đã trùng \n";
             return null;
+        } else if( strpos($this->linkprod, "threads/") === false ){
+            echo "=>>>>>>>>>>>>>>> Cảnh báo không crawler product vì đã quét nhầm link $this->linkprod \n";
+            return null;
         }
 
         $domprod = new Dom;
@@ -153,7 +156,6 @@ class QueueCrawlerProduct implements ShouldQueue
         $images = $this->crawlerImage($imgwrappers);
         // thay thế image div cũ thành image dom mới
         foreach($imgwrappers as $key => $wrapper ){
-            $img = $wrapper->find('img')[0];
             $tag = new \PHPHtmlParser\Dom\Tag('img');
             $tag->setAttribute('src', $images[$key]->link);
             /// download img về máy bằng queue
@@ -162,7 +164,11 @@ class QueueCrawlerProduct implements ShouldQueue
             $tag->setAttribute('title', $images[$key]->title);
             $tag->selfClosing();
             $html = new HtmlNode($tag);
-            $wrapper->getParent()->replaceChild($wrapper->id(), $html);
+            // $wrapper->getParent()->replaceChild($wrapper->id(), $html);
+            $wrapper->replaceChild($wrapper->find('img')->id(), $html);
+            $wrapper->setAttribute('class', "dummy__data--wrapper");
+            $wrapper->setAttribute('title', "");
+            $wrapper->setAttribute('data-src', "");
         }
 
         /// sau khi thay thế image thì lấy content ra 
@@ -174,6 +180,7 @@ class QueueCrawlerProduct implements ShouldQueue
         $productInput['user_id']         = $this->user['id'];
         $productInput['category_id']     = $this->category['parent'];
         $productInput['title']           = $this->title;
+        $productInput['excerpt']         = $this->title;
         $productInput['slug']            = SupportString::createSlug($this->title);
         $productInput['content']         = SupportString::createEmoji(mb_convert_encoding($content,'UTF-8'));
         $productInput['fetch_link']      = $this->linkprod;
