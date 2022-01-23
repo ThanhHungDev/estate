@@ -33,8 +33,8 @@ app.use(cors({
 }))
 
 /// tạo ssl
-app.get('/.well-known/acme-challenge/giPuYD4U_9L22rlim5GPVIXxoA3vzSOvmctw49XZ3VM', function (req, res) {
-    res.send('giPuYD4U_9L22rlim5GPVIXxoA3vzSOvmctw49XZ3VM.LAt3oi4VAM7TgqpMC_3NdaCZTlCcbxl6OBzQx9aVDT8')
+app.get('/.well-known/acme-challenge/5asQWrZXRfdUmDnWuT0mwc93nlw8HavxmT77Pz5aHoo', function (req, res) {
+    res.send('5asQWrZXRfdUmDnWuT0mwc93nlw8HavxmT77Pz5aHoo.LAt3oi4VAM7TgqpMC_3NdaCZTlCcbxl6OBzQx9aVDT8')
 })
 
 // catch 404 and forward to error handler
