@@ -11152,6 +11152,7 @@ ul.contact li a span {
   line-height: 1.5em;
   color: #777777;
   font-size: 14px;
+  overflow-wrap: anywhere;
   color: #777777;
   display: block;
   font-size: 13px;

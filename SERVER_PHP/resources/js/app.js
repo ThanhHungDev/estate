@@ -95,7 +95,7 @@ $(document).ready(function () {
         // $(this).toggleClass("active")
         $("body").toggleClass("neo-scroll")
     })
-
+    setterButtonReactLikeActive()
 
 });
 
@@ -152,55 +152,68 @@ window.changeDistrict = function (e){
     }
 }
 
-window.toggleLikePost = function (e, userId, productId ){
-    
-    if( !userId ){
-        /// hiện thị model login nếu chưa đăng nhập
-        $("#modal__notification").modal({
-            escapeClose: true,
-            clickClose: false,
-            showClose: true
-        })
-        return false
-    }else{
-        var $btn = $(e)
-        $btn.toggleClass('active')
 
-        /// gọi ajax lưu lại like
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+function setterButtonReactLikeActive(){
+    if(typeof Storage !== "undefined") {
+        const likes = JSON.parse(localStorage.getItem('LIKES')) || [];
+        console.log(likes)
+        const $btns = $(".js__counter").parent()
+        $btns.each( function(index, btn){
+            if(likes.some(function(liker){ return liker == $(btn).attr('data-react-like') })){
+                $(btn).addClass('active')
             }
-        });
-        $.ajax({
-            type: "PATCH",
-            url: window.AJAX_TOGGLE_LIKE_PRODUCT,
-            data : {
-                product_id: productId,
-            },
-            dataType:"JSON",
-            success: function(response){
-                console.log(response)
-                if( response.status == 200 ){
-                    /// đã toggle class ở trên rồi nên chỉ cần thay đổi số lượng tăng hoặc giảm
-                    const COUNTER = $btn.val('data-counter')
-                    $btn.find('.js__counter').text( !!response.data.counter ? `(${response.data.counter})` : '' )
-                }else{
-                    console.log(response)
-                    $btn.toggleClass('active')
-                    /// show modal error
-                    showErrorModal( response )
-                }
-            },
-            error: function(xhr, status, error){
-                var err = JSON.parse(xhr.responseText);
-                console.log(err)
-                $btn.toggleClass('active')
-                showErrorModal( err )
-            },
-        });
+        })
     }
-    
+}
+window.toggleLikePost = function (e, productId ){
+    if(typeof Storage === "undefined") {
+        alert("Trình duyệt không hộ trợ tính năng like, vui lòng thử lại trinh duyệt khác!!!")
+        return false;
+    }
+    const $btn = $(e)
+    $btn.toggleClass('active')
+    /// gọi ajax lưu lại like
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+        }
+    });
+    const likes = JSON.parse(localStorage.getItem('LIKES')) || [];
+    const increment = likes.some(function(liker){ return liker == $btn.attr('data-react-like') }) ? -1 : 1
+    $.ajax({
+        type: "PATCH",
+        url: window.AJAX_TOGGLE_LIKE_PRODUCT,
+        data : {
+            product_id: productId,
+            increment: increment
+        },
+        dataType:"JSON",
+        success: function(response){
+            console.log(response)
+            if( response.status == 200 ){
+                /// đã toggle class ở trên rồi nên chỉ cần thay đổi số lượng tăng hoặc giảm
+                $btn.find('.js__counter').text( !!response.data.like ? `(${response.data.like})` : '' )
+                // save LIKES Storage
+                if(response.data.active){
+                    likes.push($btn.attr('data-react-like'))
+                    localStorage.setItem('LIKES', JSON.stringify(likes))
+                }else{
+                    const likesFil = likes.filter(function(liker){
+                        return liker != $btn.attr('data-react-like')
+                    })
+                    localStorage.setItem('LIKES', JSON.stringify(likesFil))
+                }
+            }else{
+                console.log(response)
+                $btn.toggleClass('active')
+            }
+        },
+        error: function(xhr, status, error){
+            var err = JSON.parse(xhr.responseText)
+            console.log(err)
+            $btn.toggleClass('active')
+        },
+    });
 }
 
 function showErrorModal(err){

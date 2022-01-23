@@ -103,7 +103,7 @@ class QueueCrawlerProduct implements ShouldQueue
             $file_pointers[$key] = fopen($file, "w");
             curl_setopt($curl_handles[$key], CURLOPT_FILE, $file_pointers[$key]);
             curl_setopt($curl_handles[$key], CURLOPT_HEADER, 0);
-            curl_setopt($curl_handles[$key], CURLOPT_CONNECTTIMEOUT, 60);
+            curl_setopt($curl_handles[$key], CURLOPT_CONNECTTIMEOUT, 30);
             curl_multi_add_handle($multi_handle,$curl_handles[$key]);
         }
         // Download the files
@@ -153,7 +153,12 @@ class QueueCrawlerProduct implements ShouldQueue
 
 
         $imgwrappers = $domprod->find('.bbImageWrapper');
-        $images = $this->crawlerImage($imgwrappers);
+        try {
+            $images = $this->crawlerImage($imgwrappers);
+        } catch (\Throwable $th) {
+            echo "=>>>>>>>>>>>>>>> Cảnh báo không crawler product vì download ảnh lỗi $this->linkprod \n";
+            return null;
+        }
         // thay thế image div cũ thành image dom mới
         foreach($imgwrappers as $key => $wrapper ){
             $tag = new \PHPHtmlParser\Dom\Tag('img');

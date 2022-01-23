@@ -247,10 +247,18 @@ class ClientController extends Controller
             $query->orWhere("id", $product->category_id );
         })->take(3)->get();
 
+        // get all product relate with viewer max
+        $prodsRelate = Product::where('category_id', $product->category_id)
+                                ->where('id', '!=', $product->id)
+                                ->orderBy('created_at', 'DESC')
+                                ->orderBy('id', 'DESC')
+                                ->take(Config::get('constant.LIMIT'))
+                                ->get();
+
         $districts = District::where('province_id', 68)->get();
         $communes  = Commune::whereIn('district_id', $districts->pluck('id')->toArray())->get();
         
-        return view('client.product-detail', compact(['product', 'relates', 'categories', 'districts', 'communes']));
+        return view('client.product-detail', compact(['product', 'relates', 'categories', 'districts', 'communes', 'prodsRelate']));
     }
 
     
@@ -274,11 +282,19 @@ class ClientController extends Controller
         if( $category->parent ) $parent = $category->parentCategory;
         $relateCategories = $parent->childs()->where('id', '!=' , $category->id )->get();
         
-        if( $category->parent ) $products = $category->products()->with('user')->paginate( Config::get('constant.LIMIT'), ['*'], 'page' )->appends(request()->query());
+        if( $category->parent ) 
+            $products = $category->products()
+                                    ->with('user')
+                                    ->orderBy('created_at', 'DESC')
+                                    ->orderBy('id', 'DESC')
+                                    ->paginate( Config::get('constant.LIMIT'), ['*'], 'page' )
+                                    ->appends(request()->query());
         $relateBuilder = Product::whereIn('category_id', $relateCategories->pluck('id')->toArray());
         if( $products ){
             $relateBuilder = $relateBuilder
-                                ->whereNotIn('id', $products->pluck('id')->toArray() );
+                                ->whereNotIn('id', $products->pluck('id')->toArray() )
+                                ->orderBy('created_at', 'DESC')
+                                ->orderBy('id', 'DESC');
         }
         $relates = $relateBuilder->paginate( Config::get('constant.LIMIT'), ['*'], 'rpage' )->appends(request()->query());
         $categories = Category::orderBy('id', 'DESC')->get();

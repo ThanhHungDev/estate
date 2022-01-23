@@ -17,38 +17,33 @@
                     </time>
                 </a>
             </h4>
-            <h3 class="cproduct__item-title">
-                <a href="{{ Route('PRODUCT_VIEW', ['slug' => $product->slug ]) }}">{{ $product->title }}</a>
+            <h3 class="cproduct__item-title ">
+                <a class="d-block text-truncate" href="{{ Route('PRODUCT_VIEW', ['slug' => $product->slug ]) }}">{{ $product->title }}</a>
             </h3>
             <p class="cproduct__item-member">
                 <a href="{{ Route('MEMBER_VIEW', ['id' => $product->user->id ]) }}">
                     {{ $product->user->name }}
                 </a>
-                <a class="btn__advise" href="{{ Route('CHAT', ['id' => Auth::user() && $product->user_id == Auth::user()->id ? null : $product->user_id ]) }}">
+                <a class="btn btn__advise" href="{{ Route('CHAT', ['id' => Auth::user() && $product->user_id == Auth::user()->id ? null : $product->user_id ]) }}">
                     @svg('font/font-awe/svgs/regular/comment-alt-dots.svg')
                     <span>Tư vấn</span>                        
                 </a>
+                <button class="ml-2 btn btn__react--like"
+                    data-react-like="{{ $product->id ?? 0 }}"
+                    onclick="toggleLikePost(this, {{ $product->id ?? 0 }})">
+                    <span>Thích</span>
+                    <span class="js__counter">{{ $product->like ? "($product->like)" : null }}</span>
+                </button>
+                <a href="{{ Route('PRODUCT_VIEW', ['slug' => $product->slug ]) }}" class="ml-2 btn btn__react--viewer">chi tiết</a>
             </p>
-            <p class="cproduct__item-des">
+            {{-- <p class="cproduct__item-des">
                 <a href="{{ Route('PRODUCT_VIEW', ['slug' => $product->slug ]) }}"> {{ $product->excerpt }} </a>
-            </p>
+            </p> --}}
         </div>
         <div class="cproduct__item-right py-3 px-2">
             <div class="cproduct__item-wrapper h-100 px-2">
                 <ul class="p-0 text-xs text-center">
                     <li class="">{{ $product->view }} <br /> lượt xem</li>
-                    <li class="mt-4">
-                        <button class="hero-btn btn__react--like {{ $product->getClassCounterLikeActive() }}" 
-                            {{-- data-counter để tính toán số lượng like trong js --}}
-                            data-counter="{{ $product->getCounterLike() }}"
-                            onclick="toggleLikePost(this, {{ Auth::user()->id ?? 0 }} , {{ $product->id ?? 0 }})">
-                            <span>Thích</span>
-                            <span class="js__counter">{{ $product->getStrCounterLike() }}</span>
-                        </button>
-                    </li>
-                    <li class="pt-5px">
-                        <a href="{{ Route('PRODUCT_VIEW', ['slug' => $product->slug ]) }}" class="btn btn__react--viewer">chi tiết</a>
-                    </li>
                 </ul>
             </div>
         </div>

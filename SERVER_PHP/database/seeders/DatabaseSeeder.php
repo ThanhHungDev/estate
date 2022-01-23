@@ -32,6 +32,6 @@ class DatabaseSeeder extends Seeder
         $this->call(posts::class);
         $this->call(post_tag_actives::class);
         $this->call(ratings::class);
-        $this->call(dummy::class);
+        // $this->call(dummy::class);
     }
 }

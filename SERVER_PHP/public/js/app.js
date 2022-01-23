@@ -93,6 +93,7 @@ $(document).ready(function () {
 
     $("body").toggleClass("neo-scroll");
   });
+  setterButtonReactLikeActive();
 });
 
 function filterLocation(data, field, value) {
@@ -141,53 +142,74 @@ window.changeDistrict = function (e) {
   }
 };
 
-window.toggleLikePost = function (e, userId, productId) {
-  if (!userId) {
-    /// hiện thị model login nếu chưa đăng nhập
-    $("#modal__notification").modal({
-      escapeClose: true,
-      clickClose: false,
-      showClose: true
-    });
-    return false;
-  } else {
-    var $btn = $(e);
-    $btn.toggleClass('active'); /// gọi ajax lưu lại like
-
-    $.ajaxSetup({
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      }
-    });
-    $.ajax({
-      type: "PATCH",
-      url: window.AJAX_TOGGLE_LIKE_PRODUCT,
-      data: {
-        product_id: productId
-      },
-      dataType: "JSON",
-      success: function success(response) {
-        console.log(response);
-
-        if (response.status == 200) {
-          /// đã toggle class ở trên rồi nên chỉ cần thay đổi số lượng tăng hoặc giảm
-          var COUNTER = $btn.val('data-counter');
-          $btn.find('.js__counter').text(!!response.data.counter ? "(".concat(response.data.counter, ")") : '');
-        } else {
-          console.log(response);
-          $btn.toggleClass('active'); /// show modal error
-
-          showErrorModal(response);
-        }
-      },
-      error: function error(xhr, status, _error) {
-        var err = JSON.parse(xhr.responseText);
-        console.log(err);
-        $btn.toggleClass('active');
-        showErrorModal(err);
+function setterButtonReactLikeActive() {
+  if (typeof Storage !== "undefined") {
+    var likes = JSON.parse(localStorage.getItem('LIKES')) || [];
+    console.log(likes);
+    var $btns = $(".js__counter").parent();
+    $btns.each(function (index, btn) {
+      if (likes.some(function (liker) {
+        return liker == $(btn).attr('data-react-like');
+      })) {
+        $(btn).addClass('active');
       }
     });
   }
+}
+
+window.toggleLikePost = function (e, productId) {
+  if (typeof Storage === "undefined") {
+    alert("Trình duyệt không hộ trợ tính năng like, vui lòng thử lại trinh duyệt khác!!!");
+    return false;
+  }
+
+  var $btn = $(e);
+  $btn.toggleClass('active'); /// gọi ajax lưu lại like
+
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+  var likes = JSON.parse(localStorage.getItem('LIKES')) || [];
+  var increment = likes.some(function (liker) {
+    return liker == $btn.attr('data-react-like');
+  }) ? -1 : 1;
+  $.ajax({
+    type: "PATCH",
+    url: window.AJAX_TOGGLE_LIKE_PRODUCT,
+    data: {
+      product_id: productId,
+      increment: increment
+    },
+    dataType: "JSON",
+    success: function success(response) {
+      console.log(response);
+
+      if (response.status == 200) {
+        /// đã toggle class ở trên rồi nên chỉ cần thay đổi số lượng tăng hoặc giảm
+        $btn.find('.js__counter').text(!!response.data.like ? "(".concat(response.data.like, ")") : ''); // save LIKES Storage
+
+        if (response.data.active) {
+          likes.push($btn.attr('data-react-like'));
+          localStorage.setItem('LIKES', JSON.stringify(likes));
+        } else {
+          var likesFil = likes.filter(function (liker) {
+            return liker != $btn.attr('data-react-like');
+          });
+          localStorage.setItem('LIKES', JSON.stringify(likesFil));
+        }
+      } else {
+        console.log(response);
+        $btn.toggleClass('active');
+      }
+    },
+    error: function error(xhr, status, _error) {
+      var err = JSON.parse(xhr.responseText);
+      console.log(err);
+      $btn.toggleClass('active');
+    }
+  });
 };
 
 function showErrorModal(err) {

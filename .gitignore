@@ -19,6 +19,7 @@ SERVER_PHP/public/sitemap.xml
 SERVER_PHP/public/sitemap/*.xml
 SERVER_PHP/public/resizes/*
 /SERVER_PHP/public/compress/*
+/SERVER_PHP/public/cvt/*
 
 
 

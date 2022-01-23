@@ -59,9 +59,9 @@ class DummyUserCvt extends Command
         ])
         ->whereNotNull('crawler_link')
                                 ->get()->toArray();
-        Storage::disk('config')->delete('dummyuser.php');
-        $hugn = var_export($users, true) ;
-        Storage::disk('config')->put('dummyuser.php', "<?php return $hugn;");
+        Storage::disk('config')->delete('dummyuser.json');
+        $json = json_encode($users);
+        Storage::disk('config')->put('dummyuser.json', "$json");
         dd( "chạy data user cvt");
     }
 }

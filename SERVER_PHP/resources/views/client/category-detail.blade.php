@@ -71,6 +71,7 @@
         </div>
     </div>
     @endif
+    
 
     
     @if (!!$relates && !$relates->isEmpty())
@@ -92,44 +93,3 @@
 </div>
 @endsection
 
-
-
-@section('modal')
-    <!-- Modal HTML embedded directly into document -->
-    <div id="modal__notification" class="modal modal__notification">
-        <div class="modal__header">
-            @svg('font/font-awe/svgs/duotone/bell-on.svg')
-            <span class="title">Yêu cầu đăng nhập!</span>
-        </div>
-        <div class="modal__body">
-            <p class="h5 text-color-orange">Bạn chưa đăng nhập! </p>
-            <div class="notification">
-                Sau khi đăng nhập thành công bạn mới có thể thực hiện <span class="text-color-red">thích</span> bài đăng.
-            </div>
-        </div>
-        <div class="modal__footer">
-            <a class="btn btn__close" rel="modal:close">
-                Huỷ thực hiện
-            </a>
-            <a class="btn btn__login" href="{{ Route('LOGIN') }}?rredirect=1">
-                Đăng nhập
-            </a>
-        </div>
-    </div>
-    <!-- Modal HTML embedded directly into document -->
-    <div id="modal__error" class="modal modal__notification">
-        <div class="modal__header">
-            @svg('font/font-awe/svgs/duotone/bug.svg')
-            <span class="title js__title"></span>
-        </div>
-        <div class="modal__body">
-            <p class="h5 text-color-orange js__header--content"></p>
-            <div class="notification js__body--content"></div>
-        </div>
-        <div class="modal__footer">
-            <a class="btn btn__close" rel="modal:close">
-                Đóng
-            </a>
-        </div>
-    </div>
-@endsection
