@@ -49,6 +49,8 @@ Route::group(['prefix' => '/','middleware' => [ 'LOGIN_REDIRECT', 'HTML_MINIFIER
         ->where('path', '[a-zA-Z0-9-/]+')
         ->name('USER_POST');
 
+    Route::patch('/user/product/likes', [ App\Http\Controllers\ReactController::class, 'updateProductLikes' ])->name('USER_AJAX_LIKE_PRODUCT');
+
     // include_once("user.php");
     Route::group(['prefix' => '/user', 'middleware' => [ 'USER_LOGGED' ]], function () {
         
@@ -67,7 +69,6 @@ Route::group(['prefix' => '/','middleware' => [ 'LOGIN_REDIRECT', 'HTML_MINIFIER
 
         Route::get('/information', [ App\Http\Controllers\UserController::class, 'profile' ])->name('USER_INFORMATION');
         Route::get('/ajax-demo', [ App\Http\Controllers\UserController::class, 'getUserInfo' ])->name('USER_AJAX');
-        Route::patch('/product/likes', [ App\Http\Controllers\UserController::class, 'updateProductLikes' ])->name('USER_AJAX_LIKE_PRODUCT');
         Route::resource('product', App\Http\Controllers\Api\ProductController::class, ['only' => ['show', 'store', 'update' ]]);
         
     });

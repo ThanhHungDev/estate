@@ -49,9 +49,9 @@ class DummyImageCvt extends Command
             'gallery'
         ])
                                 ->get()->toArray();
-        Storage::disk('config')->delete('dummyimage.php');
-        $hugn = var_export($images, true) ;
-        Storage::disk('config')->put('dummyimage.php', "<?php return $hugn;");
+        Storage::disk('config')->delete('dummyimage.json');
+        $json = json_encode($images);
+        Storage::disk('config')->put('dummyimage.json', "$json");
         dd( "chạy data image cvt");
     }
 }

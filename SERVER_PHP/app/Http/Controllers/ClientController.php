@@ -282,11 +282,19 @@ class ClientController extends Controller
         if( $category->parent ) $parent = $category->parentCategory;
         $relateCategories = $parent->childs()->where('id', '!=' , $category->id )->get();
         
-        if( $category->parent ) $products = $category->products()->with('user')->paginate( Config::get('constant.LIMIT'), ['*'], 'page' )->appends(request()->query());
+        if( $category->parent ) 
+            $products = $category->products()
+                                    ->with('user')
+                                    ->orderBy('created_at', 'DESC')
+                                    ->orderBy('id', 'DESC')
+                                    ->paginate( Config::get('constant.LIMIT'), ['*'], 'page' )
+                                    ->appends(request()->query());
         $relateBuilder = Product::whereIn('category_id', $relateCategories->pluck('id')->toArray());
         if( $products ){
             $relateBuilder = $relateBuilder
-                                ->whereNotIn('id', $products->pluck('id')->toArray() );
+                                ->whereNotIn('id', $products->pluck('id')->toArray() )
+                                ->orderBy('created_at', 'DESC')
+                                ->orderBy('id', 'DESC');
         }
         $relates = $relateBuilder->paginate( Config::get('constant.LIMIT'), ['*'], 'rpage' )->appends(request()->query());
         $categories = Category::orderBy('id', 'DESC')->get();

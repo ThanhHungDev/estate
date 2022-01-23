@@ -198,14 +198,12 @@
                     @svg('font/font-awe/svgs/duotone/history.svg')
                     {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $product->updated_at)->diffForHumans() }}
                 </p>
-                <div class="estate__col--bottom">
-                    <button class="hero-btn btn__action {{ $product->getClassCounterLikeActive() }}" 
-                        {{-- data-counter để tính toán số lượng like trong js --}}
-                        data-counter="{{ $product->getCounterLike() }}"
-                        onclick="toggleLikePost(this, {{ Auth::user()->id ?? 0 }} , {{ $product->id ?? 0 }})">
-                        @svg('font/font-awe/svgs/regular/thumbs-up.svg') 
+                <div class="estate__col--bottom"> 
+                    <button class="ml-2 btn btn__action"
+                        data-react-like="{{ $product->id ?? 0 }}"
+                        onclick="toggleLikePost(this, {{ $product->id ?? 0 }})">
                         <span>Thích</span>
-                        <span class="js__counter">{{ $product->getStrCounterLike() }}</span>
+                        <span class="js__counter">{{ $product->like ? "($product->like)" : null }}</span>
                     </button>
                     <a class="btn__advise" href="{{ Route('CHAT', ['id' => Auth::user() && $product->user_id == Auth::user()->id ? null : $product->user_id ]) }}">
                         @svg('font/font-awe/svgs/regular/comment-alt-dots.svg')
@@ -305,43 +303,3 @@
 @endsection
 
 
-
-@section('modal')
-    <!-- Modal HTML embedded directly into document -->
-    <div id="modal__notification" class="modal modal__notification">
-        <div class="modal__header">
-            @svg('font/font-awe/svgs/duotone/bell-on.svg')
-            <span class="title">Yêu cầu đăng nhập!</span>
-        </div>
-        <div class="modal__body">
-            <p class="h5 text-color-orange">Bạn chưa đăng nhập! </p>
-            <div class="notification">
-                Sau khi đăng nhập thành công bạn mới có thể thực hiện <span class="text-color-red">thích</span> bài đăng.
-            </div>
-        </div>
-        <div class="modal__footer">
-            <a class="btn btn__close" rel="modal:close">
-                Huỷ thực hiện
-            </a>
-            <a class="btn btn__login" href="{{ Route('LOGIN') }}?rredirect=1">
-                Đăng nhập
-            </a>
-        </div>
-    </div>
-    <!-- Modal HTML embedded directly into document -->
-    <div id="modal__error" class="modal modal__notification">
-        <div class="modal__header">
-            @svg('font/font-awe/svgs/duotone/bug.svg')
-            <span class="title js__title"></span>
-        </div>
-        <div class="modal__body">
-            <p class="h5 text-color-orange js__header--content"></p>
-            <div class="notification js__body--content"></div>
-        </div>
-        <div class="modal__footer">
-            <a class="btn btn__close" rel="modal:close">
-                Đóng
-            </a>
-        </div>
-    </div>
-@endsection

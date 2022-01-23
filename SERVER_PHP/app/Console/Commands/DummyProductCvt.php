@@ -40,7 +40,7 @@ class DummyProductCvt extends Command
      */
     public function handle()
     {
-        // ini_set('memory_limit', '-1');
+        ini_set('memory_limit', '-1');
         $products = Product::select([ 'user_id', 
                                         'category_id', 
                                         'title',
@@ -57,9 +57,9 @@ class DummyProductCvt extends Command
                                         ])
                                         ->whereNotNull('fetch_link')
                                         ->get()->toArray();
-        Storage::disk('config')->delete('dummyproduct.php');
-        $hugn = var_export($products, true) ;
-        Storage::disk('config')->put('dummyproduct.php', "<?php return $hugn;");
+        Storage::disk('config')->delete('dummyproduct.json');
+        $json = json_encode($products);
+        Storage::disk('config')->put('dummyproduct.json', "$json");
         dd( "chạy data product cvt");
     }
 }

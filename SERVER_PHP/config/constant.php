@@ -215,4 +215,7 @@ return [
         'REQUIRED' => 1,
         'OPTIONAL' => 2,
     ],
+    'REACT' => [
+        'LIKE' => "LIKE__PRODUCT"
+    ]
 ];
