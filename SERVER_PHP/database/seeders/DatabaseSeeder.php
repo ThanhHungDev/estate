@@ -33,5 +33,8 @@ class DatabaseSeeder extends Seeder
         $this->call(post_tag_actives::class);
         $this->call(ratings::class);
         // $this->call(dummy::class);
+        // php artisan db:seed --class=dummy_user
+        // php artisan db:seed --class=dummy_image
+        // php artisan db:seed --class=dummy_product
     }
 }

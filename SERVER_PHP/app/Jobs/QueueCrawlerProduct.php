@@ -56,7 +56,7 @@ class QueueCrawlerProduct implements ShouldQueue
         }
         
         if( count($imgSrcs ) ){
-            $publicPath = '/cvt';
+            $publicPath = '/cvt/'. date('y-m-d');
             return $this->multipleDownload($imgSrcs, $publicPath);
         }
         // nếu bài đăng không có image thì lấy tạm image mặc định 
