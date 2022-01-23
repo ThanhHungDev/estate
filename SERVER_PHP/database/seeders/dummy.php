@@ -20,12 +20,12 @@ class dummy extends Seeder
         }
         DB::table('users')->insert($dusers);
         DB::table('pictures')->insert(Config::get('dummyimage'));
-        $products = Config::get('dummyproduct');
-        $dproducts = [];
-        foreach($products as $product ){
-            $product['excerpt'] = $product['description_seo'];
-            $dproducts[] = $product;
-        }
-        DB::table('products')->insert($dproducts);
+        // $products = Config::get('dummyproduct');
+        // $dproducts = [];
+        // foreach($products as $product ){
+        //     $product['excerpt'] = $product['description_seo'];
+        //     $dproducts[] = $product;
+        // }
+        // DB::table('products')->insert($dproducts);
     }
 }

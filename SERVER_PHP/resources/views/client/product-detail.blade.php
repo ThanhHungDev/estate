@@ -27,20 +27,20 @@
         window.JWT_TOKEN  = `{{ SupportDB::getJwtAuthentication() }}`;
         const KEY_CAPTCHA = "{{ env('GOOGLE_RECAPTCHA_KEY')  }}";
 
-        function showLightGaleries(e){
+        // function showLightGaleries(e){
             
-            $(e).closest('.item').find(".lightgallery img").click()
-        }
-        var lightgalleries = document.getElementsByClassName("lightgallery");
-        for (var i = 0; i < lightgalleries.length; i++){
-            lightGallery(lightgalleries[i]);
-        }
+        //     $(e).closest('.item').find(".lightgallery img").click()
+        // }
+        // var lightgalleries = document.getElementsByClassName("lightgallery");
+        // for (var i = 0; i < lightgalleries.length; i++){
+        //     lightGallery(lightgalleries[i]);
+        // }
         $(document).ready(function(){
             $('#slider').slick({
                 infinite: true,
                 slidesToShow: 5,
                 centerMode: true,
-                focusOnSelect: true
+                focusOnSelect: true,
             });
         });
         
@@ -71,9 +71,6 @@
                         <div class="product__title">
                             <h2 class="product__title--negotive" itemprop="name">
                                 {{ $product->getTitleLocateCategory(100)  }}
-                                <span class="for-negotive ">
-                                    {{ $product->getStringNegotiate() }}
-                                </span>
                             </h2>
                             <div title="Giá: {{ $product->getTooltipPrice() }}" class="product__title--price simple-tooltip"> {{ $product->getStringPrice() }}&nbsp; </div>
                             <div class="product__title--address">
@@ -109,7 +106,7 @@
                         @php $pics = $product->getImages()->get(); @endphp
                         @if (!$pics->isEmpty())
                         <div class="product__slider">
-                            <div id="slider" class="slider">
+                            <div id="slider" class="slider w-100">
                                 
                                 @foreach ($pics as $key => $pic)
                                 <div>
@@ -269,31 +266,6 @@
 
 
                 <div class="product__right">
-                    @if (!$categories->isEmpty())
-                    <aside class="categories">
-                        <h3 class="category__title">Danh mục</h3>
-                        <ul>
-                            @foreach ($categories as $key => $category)
-                            <li class="category__title-item">
-                                <a class="text-truncate" href="{{ Route('CATEGORY_VIEW', ['slug' => $category->slug ]) }}">{{ $category->name }}</a>
-                            </li>
-                            @endforeach
-                        </ul>
-                    </aside>
-                    @endif
-
-                    @if (!$product->ptags->isEmpty())
-                    <aside class="categories">
-                        <h3 class="category__title">Tag Liên quan</h3>
-                        <ul>
-                            @foreach ($product->ptags as $key => $tag)
-                            <li class="category__title-item">
-                                <a class="text-truncate" href="{{ Route('PTAG_VIEW_SEARCH', ['slug' => $tag->slug ]) }}">{{ $tag->name }}</a>
-                            </li>
-                            @endforeach
-                        </ul>
-                    </aside>
-                    @endif
 
                     <aside class="categories">
                         <h3 class="category__title">Tìm kiếm</h3>
@@ -323,6 +295,47 @@
                             </form>
                         </div>
                     </aside>
+
+                    @if (!$prodsRelate->isEmpty())
+                    <aside class="categories">
+                        <h3 class="category__title">Bài đăng cùng chủ đề</h3>
+                        <ul>
+                            @foreach ($prodsRelate as $key => $prod)
+                            <li class="category__title-item">
+                                <a class="d-block" href="{{ Route('PRODUCT_VIEW', ['slug' => $prod->slug ]) }}">{{ $prod->title }}</a>
+                            </li>
+                            @endforeach
+                        </ul>
+                    </aside>
+                    @endif
+
+                    @if (!$categories->isEmpty())
+                    <aside class="categories">
+                        <h3 class="category__title">Danh mục</h3>
+                        <ul>
+                            @foreach ($categories as $key => $category)
+                            <li class="category__title-item">
+                                <a class="text-truncate" href="{{ Route('CATEGORY_VIEW', ['slug' => $category->slug ]) }}">{{ $category->name }}</a>
+                            </li>
+                            @endforeach
+                        </ul>
+                    </aside>
+                    @endif
+
+                    @if (!$product->ptags->isEmpty())
+                    <aside class="categories">
+                        <h3 class="category__title">Tag Liên quan</h3>
+                        <ul>
+                            @foreach ($product->ptags as $key => $tag)
+                            <li class="category__title-item">
+                                <a class="text-truncate" href="{{ Route('PTAG_VIEW_SEARCH', ['slug' => $tag->slug ]) }}">{{ $tag->name }}</a>
+                            </li>
+                            @endforeach
+                        </ul>
+                    </aside>
+                    @endif
+
+                    
                     
                 </div>
             </div>

@@ -247,10 +247,18 @@ class ClientController extends Controller
             $query->orWhere("id", $product->category_id );
         })->take(3)->get();
 
+        // get all product relate with viewer max
+        $prodsRelate = Product::where('category_id', $product->category_id)
+                                ->where('id', '!=', $product->id)
+                                ->orderBy('created_at', 'DESC')
+                                ->orderBy('id', 'DESC')
+                                ->take(Config::get('constant.LIMIT'))
+                                ->get();
+
         $districts = District::where('province_id', 68)->get();
         $communes  = Commune::whereIn('district_id', $districts->pluck('id')->toArray())->get();
         
-        return view('client.product-detail', compact(['product', 'relates', 'categories', 'districts', 'communes']));
+        return view('client.product-detail', compact(['product', 'relates', 'categories', 'districts', 'communes', 'prodsRelate']));
     }
 
     

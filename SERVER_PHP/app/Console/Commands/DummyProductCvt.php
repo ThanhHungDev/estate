@@ -40,6 +40,7 @@ class DummyProductCvt extends Command
      */
     public function handle()
     {
+        // ini_set('memory_limit', '-1');
         $products = Product::select([ 'user_id', 
                                         'category_id', 
                                         'title',
