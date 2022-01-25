@@ -71,7 +71,7 @@
         </div>
         <div id=”status”></div>
 
-<a href=”http://dotnet.edu.vn/javascript:void(0);” onclick=”fbLogin()” id=”fbLink”><img src=”fblogin.png”/></a>
+<a href=”” onclick=”fbLogin()” id=”fbLink”><img src=”fblogin.png”/></a>
 
 <div id=”userData”></div>
     </div>
