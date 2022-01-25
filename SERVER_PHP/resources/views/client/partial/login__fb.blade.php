@@ -10,6 +10,7 @@
         
         // Check whether the user already logged in
         FB.getLoginStatus(function(response) {
+            console.log(response, "responseresponseresponse FB.getLoginStatus")
             if (response.status === 'connected') {
                 //display user data
                 getFbUserData();
@@ -28,7 +29,9 @@
     
     // Facebook login with JavaScript SDK
     function fbLogin() {
+        console.log("vào fbLogin")
         FB.login(function (response) {
+            console.log("vào fbLogin succeess")
             if (response.authResponse) {
                 // Get and display the user profile data
                 getFbUserData();
@@ -40,8 +43,10 @@
     
     // Fetch the user profile data from facebook
     function getFbUserData(){
+        console.log("vào getFbUserData")
         FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture'},
         function (response) {
+            console.log(response, "responseresponseresponseFB.api('/me', {local")
             document.getElementById('fbLink').setAttribute("onclick","fbLogout()");
             document.getElementById('fbLink').innerHTML = 'Logout from Facebook';
             document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.first_name + '!';
@@ -51,7 +56,9 @@
     
     // Logout from facebook
     function fbLogout() {
+        console.log("vào fbLogout")
         FB.logout(function() {
+            console.log("vào fbLogout success")
             document.getElementById('fbLink').setAttribute("onclick","fbLogin()");
             document.getElementById('fbLink').innerHTML = '<img src="fblogin.png"/>';
             document.getElementById('userData').innerHTML = '';
