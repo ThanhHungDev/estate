@@ -22,5 +22,6 @@
     "/css/library/bootstrap.product.css": "/css/library/bootstrap.product.css",
     "/css/library/bootstrap.chat.css": "/css/library/bootstrap.chat.css",
     "/css/product.detail.css": "/css/product.detail.css",
-    "/css/forgot.css": "/css/forgot.css"
+    "/css/forgot.css": "/css/forgot.css",
+    "/css/login.css": "/css/login.css"
 }

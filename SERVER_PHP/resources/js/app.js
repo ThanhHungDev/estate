@@ -155,9 +155,11 @@ window.changeDistrict = function (e){
 
 function setterButtonReactLikeActive(){
     if(typeof Storage !== "undefined") {
+        
+        const $btns = $(".js__counter").parent()
+        if( !$btns.length ) return false
         const likes = JSON.parse(localStorage.getItem('LIKES')) || [];
         console.log(likes)
-        const $btns = $(".js__counter").parent()
         $btns.each( function(index, btn){
             if(likes.some(function(liker){ return liker == $(btn).attr('data-react-like') })){
                 $(btn).addClass('active')

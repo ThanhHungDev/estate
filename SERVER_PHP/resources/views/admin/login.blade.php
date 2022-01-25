@@ -64,14 +64,14 @@
                 <h1 class="title pb-5"> Chào Quản Trị Viên </h1>
                 <div class="input-group">
                     <i class="hero-icon hero-email-check-outline"></i>
-                    <input name="email" ref="email" type="text" autoCorrect="off" autoCapitalize="none" class="input-control" placeholder="Email Address" />
+                    <input name="email" ref="email" type="text" autoCorrect="off" autoCapitalize="none" class="input-control" placeholder="Địa chỉ email" />
                 </div>
                 @if($errors->has('email'))
                     <div class="text-danger text-left">{{ $errors->first('email') }}</div>
                 @endif
                 <div class="input-group">
                     <i class="hero-icon hero-lock-outline"></i>
-                    <input name="password" ref="password" type="password" autoCorrect="off" autoCapitalize="none" class="input-control" placeholder="Password" />
+                    <input name="password" ref="password" type="password" autoCorrect="off" autoCapitalize="none" class="input-control" placeholder="Mật khẩu" />
                 </div>
                 @if($errors->has('password'))
                     <div class="text-danger text-left">{{ $errors->first('password') }}</div>

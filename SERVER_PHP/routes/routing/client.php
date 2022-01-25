@@ -1,4 +1,7 @@
-<?php 
+<?php
+
+use App\Helpers\SpeedSMSAPI;
+use App\Helpers\SupportString;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => '/','middleware' => [ 'LOGIN_REDIRECT', 'HTML_MINIFIER' ]], function () { ///'READ_CACHE',
@@ -45,10 +48,19 @@ Route::group(['prefix' => '/','middleware' => [ 'LOGIN_REDIRECT', 'HTML_MINIFIER
     Route::get('/register', [ App\Http\Controllers\UserController::class, 'create' ])->name('REGISTER');
     Route::post('/register', [ App\Http\Controllers\UserController::class, 'store' ])->name('STORE_REGISTER');
 
-    Route::get('/dang-tin/{path?}', [ App\Http\Controllers\ArticleController::class, 'push' ])
-        ->where('path', '[a-zA-Z0-9-/]+')
-        ->name('USER_POST');
+    // Route::get('/dang-tin/{path?}', [ App\Http\Controllers\ArticleController::class, 'push' ])
+    //     ->where('path', '[a-zA-Z0-9-/]+')
+    //     ->name('USER_POST');
+    // Route::any('/test-sms', function () {
+        
 
+    //     $smsAPI = SpeedSMSAPI::getInstance();
+    //     $content = env("SPEEDSMS_TITLE") . SupportString::createCodeVerify();
+    //     $phones = ["+84343086424"]; 
+    //     $sender = env('SPEEDSMS_BRANDNAME', 'localhost');
+    //     $response = $smsAPI::sendSMS($phones, $content, SpeedSMSAPI::SMS_TYPE_BRANDNAME, $sender);
+    //     dd( $response );
+    // });
     Route::patch('/user/product/likes', [ App\Http\Controllers\ReactController::class, 'updateProductLikes' ])->name('USER_AJAX_LIKE_PRODUCT');
 
     // include_once("user.php");
@@ -56,9 +68,9 @@ Route::group(['prefix' => '/','middleware' => [ 'LOGIN_REDIRECT', 'HTML_MINIFIER
         
         Route::get('/notifications', [ App\Http\Controllers\UserController::class, 'notifications' ])->name('VIEW_NOTIFICATION');
         Route::get('/messages', [ App\Http\Controllers\UserController::class, 'messages' ])->name('VIEW_CHAT');
-        // Route::get('/post/{path?}', [ App\Http\Controllers\UserController::class, 'post' ])
-        // ->where('path', '[a-zA-Z0-9-/]+')
-        // ->name('USER_POST');
+        Route::get('/post/{path?}', [ App\Http\Controllers\UserController::class, 'post' ])
+        ->where('path', '[a-zA-Z0-9-/]+')
+        ->name('USER_POST');
 
         Route::patch('/verify/phone', [ App\Http\Controllers\UserController::class, 'patchVerifyPhone' ])->name('PATCH_VERIFY_PHONE');
         

@@ -42,7 +42,6 @@
         margin: 0 auto;
         position: relative;
         z-index: 2;
-        @include Screen(MD){ margin: 40px auto; }
     }
 }
 

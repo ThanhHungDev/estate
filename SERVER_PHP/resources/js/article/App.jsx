@@ -27,7 +27,7 @@ function App( props ){
         )
     }
     if( !auth.phone_verify ){ 
-        return <VerifyPhone />
+        return <VerifyPhone AUTH={auth} CONFIG={CONFIG}/>
     }
     return (
         <div className="AppComponent post" id="Application">

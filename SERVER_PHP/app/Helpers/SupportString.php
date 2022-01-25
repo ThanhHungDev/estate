@@ -3,8 +3,6 @@ namespace App\Helpers;
 
 use Jenssegers\Agent\Agent;
 use Illuminate\Support\Facades\Config;
-use stdClass;
-
 class SupportString{
 
     public static function cleanText(string $text) {
@@ -38,148 +36,6 @@ class SupportString{
         return null;
     }
 
-    public static function uglifyHTML($data){
-
-        if( !self::checkUglifyHtml() ){
-            $uglify        = new stdClass();
-            $uglify->style = "";
-            $uglify->html  =  $data;
-            return  $uglify;
-        }
-
-        $faker = \Faker\Factory::create();
-        // Create a DOM object
-        try {
-            $dom = \voku\helper\HtmlDomParser::str_get_html($data);
-        
-            /// random d-none
-            $none = $faker->regexify('[A-Za-z]{20}');
-
-            $tags = [ 'span', 'i', 'strong', 'b', 'u', 'small', 'label', 'big', 'sup' ];
-            
-            $stringIntro = [
-                'hùng đẹp trai',
-                'hùng ebudezain',
-                'hùng thông minh lắm',
-                'đọc dữ liệu hộ bố',
-                'ahihi đồ ngốc trương thanh hùng nè',
-                'tôi thích vậy đó',
-                'bài viết được viết bởi trương thanh hùng https://ebudezain.com/',
-                'đọc dữ liệu qq',
-                'hugnf đẹp đã ở đây',
-                'hãy như hùng',
-                'lầy vl'
-            ];
-
-            try {
-                foreach ($dom->find('div') as $e) {
-                    // $e->class .= ' ahihi';
-                    $randomDiv = rand(2, 4);
-                    
-                    // $classAttr = $e->class;
-                    $calcOutertext = $e->outertext;
-                    for ($i=0; $i < $randomDiv; $i++) { 
-                        $intro = $stringIntro[rand(0, 6)];
-                        $tag = $tags[rand(0, count($tags) - 1 )];
-                        $className1 = $faker->regexify('[A-Za-z ]{50}') . ' ' . $faker->regexify('[A-Za-z ]{50}');
-                        $className2 = $faker->regexify('[A-Za-z ]{50}');
-                        $className3 = $faker->regexify('[A-Za-z ]{50}');
-                        $className4 = $faker->regexify('[A-Za-z0-9 ]{50}');
-                        $className5 = $faker->regexify('[A-Za-z0-9 ]{50}');
-                        # code...
-                        // if( !!$classAttr ){
-                        //     $classAttr = $className4 . ' ' . $classAttr . ' ' . $className5;
-                        // }
-                        $calcOutertext = "<div class=\"$className1\"><$tag class=\"$className2 $none $className3\">$intro</$tag>" . $calcOutertext . "</div>";
-                    }
-                    $e->outertext = $calcOutertext;
-                    // $e->class = $classAttr;
-                }
-            } catch (\Throwable $th) {
-                //throw $th;
-            }
-            
-            try {
-                foreach ($dom->find("p") as $e) {
-                    // $e->class .= ' ahihi';
-                    $randomDiv = rand(1, 10);
-                    
-                    
-                    $classAttr = $e->class;
-                    $calcOutertext = $e->outertext;
-                    for ($i=0; $i < $randomDiv; $i++) { 
-                        # code...
-                        $tag = $tags[rand(0, count($tags) - 1)];
-                        $intro = $stringIntro[rand(0, 6)];
-
-                        $className1 = $faker->regexify('[A-Za-z ]{50}') . ' ' . $faker->regexify('[A-Za-z ]{50}');
-                        $className2 = $faker->regexify('[A-Za-z0-9 ]{50}');
-                        $className3 = $faker->regexify('[A-Za-z0-9 ]{50}');
-                        $className4 = $faker->regexify('[A-Za-z0-9 ]{20}');
-                        $className5 = $faker->regexify('[A-Za-z0-9 ]{20}');
-                        # code...
-                        
-                        if( !!$classAttr ){
-                            $classAttr = $className4 . ' ' . $classAttr . ' ' . $className5;
-                        }
-                        $calcOutertext = "<div class=\"$className1\"><$tag class=\"$className2 $none $className3\">$intro</$tag>" . $calcOutertext . "</div>";
-                    }
-                    $e->outertext = $calcOutertext;
-                    $e->class = $faker->regexify('[A-Za-z0-9 ]{50}') . " $classAttr";
-                }
-            } catch (\Throwable $th) {
-                //throw $th;
-            }
-            
-            
-            try {
-                // / sửa thẻ h từ 2 đến 5
-                for ($hpos = 1 ; $hpos  < 5; $hpos ++) { 
-                    foreach ($dom->find("h$hpos") as $e) {
-                        // $e->class .= ' ahihi';
-                        $randomDiv = rand(1, 5);
-                        
-
-                        $classAttr = $e->class;
-                        $calcOutertext = $e->outertext;
-
-                        for ($i=0; $i < $randomDiv; $i++) { 
-                            # code...
-                            $intro = $stringIntro[rand(0, 6)];
-                            $tag = $tags[rand(0, count($tags) - 1)];
-                            
-                            $className1 = $faker->regexify('[A-Za-z0-9 ]{100}');
-                            $className2 = $faker->regexify('[A-Za-z0-9 ]{50}');
-                            $className3 = $faker->regexify('[A-Za-z0-9 ]{50}');
-                            $className4 = $faker->regexify('[A-Za-z0-9 ]{50}');
-                            $className5 = $faker->regexify('[A-Za-z0-9 ]{50}');
-                            # code...
-                            if( !!$classAttr ){
-                                $classAttr = $className4 . ' ' . $classAttr . ' ' . $className5;
-                            }
-                            $calcOutertext = "<div class=\"$className1\"><$tag class=\"$className2 $none $className3\">$intro</$tag>" . $calcOutertext . "</div>";
-                        }
-                        $e->outertext = $calcOutertext;
-                        $e->class = $classAttr;
-                    }
-                }
-            } catch (\Throwable $th) {
-                //throw $th;
-            }
-        } catch (\Throwable $th) {
-            echo $th->getMessage();
-            die;
-            $uglify        = new stdClass();
-            $uglify->style = "";
-            $uglify->html  =  $data;
-            return  $uglify;
-        }
-        
-        $uglify        = new stdClass();
-        $uglify->style = "<style>.$none{ display: none; }</style>";
-        $uglify->html  =  $dom->html();
-        return  $uglify;
-    }
 
     public static function checkUglifyHtml(){
         $agent = new Agent();
@@ -368,6 +224,19 @@ class SupportString{
             }
         }
         return null;
+    }
+
+
+    public static function createCodeVerify(){
+        $CHARACTERS = '0123456789';
+        
+        return     substr($CHARACTERS, rand(0, strlen($CHARACTERS) - 1), 1)
+                    . substr($CHARACTERS, rand(0, strlen($CHARACTERS) - 1), 1)
+                    . substr($CHARACTERS, rand(0, strlen($CHARACTERS) - 1), 1)
+                    . substr($CHARACTERS, rand(0, strlen($CHARACTERS) - 1), 1)
+                    . substr($CHARACTERS, rand(0, strlen($CHARACTERS) - 1), 1)
+                    . substr($CHARACTERS, rand(0, strlen($CHARACTERS) - 1), 1)
+                ;
     }
 }
 

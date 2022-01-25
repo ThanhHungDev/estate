@@ -28,7 +28,7 @@
         <div class="input-group">
             <i class="icon fad fa-envelope"></i>
             <input name="email" ref="email" type="text" autoCorrect="off" autoCapitalize="none" 
-                class="input-control jquery__append-out" placeholder="Email Address" 
+                class="input-control jquery__append-out" placeholder="Địa chỉ email" 
                 value="{{ old('email') }}"/>
         </div>
         @if($errors->has('email'))
@@ -37,7 +37,7 @@
         <div class="input-group">
             <i class="icon fad fa-lock-open-alt"></i>
             <input name="password" ref="password" type="password" 
-                autoCorrect="off" autoCapitalize="none" placeholder="Password"
+                autoCorrect="off" autoCapitalize="none" placeholder="Mật khẩu"
                 class="input-control jquery__append-out" 
                 value="{{ old('password') }}"/>
         </div>
@@ -48,7 +48,7 @@
             <a href="{{ Route('FORGOT') }}" class="forgot-link">Quên password <i class="fad fa-question-circle"></i> </a>
         </div>
         <label class="container-checkbox">
-            ghi nhớ đăng nhập
+            Ghi nhớ đăng nhập
             <input name="remember" type="checkbox" {{ old('remember') ? 'checked' : '' }} >
             <span class="checkmark"></span>
         </label>
@@ -56,8 +56,22 @@
             Đăng nhập
         </button>
     </div>
+    <div class="otherlogin">
+        <p class="text-xs text-color-grey text-center py-2">Hoặc đăng nhập bằng: </p>
+        <div class="otherlogin__btn">
+            <a href="{{ 1 }}" class="otherlogin__btn--item otherlogin__btn--phone">
+                <i class="fas fa-phone"></i>
+            </a>
+            <a href="{{ 1 }}" class="otherlogin__btn--item otherlogin__btn--google">
+                <i class="fab fa-google"></i>
+            </a>
+            <a href="{{ 1 }}" class="otherlogin__btn--item otherlogin__btn--facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+        </div>
+    </div>
     <h4 class="description">
-        chưa có tài khoản? Bạn muốn
+        Chưa có tài khoản? Bạn muốn
         <a href="{{ Route('REGISTER') }}" class="register-inline">
             đăng ký
         </a>

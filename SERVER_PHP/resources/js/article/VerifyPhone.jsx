@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react"
-import { connect } from "react-redux"
 // import jwt_decode from "jwt-decode"
 // Firebase App (the core Firebase SDK) is always required and must be listed first
 import firebase from "firebase/app"
@@ -13,12 +12,12 @@ import 'firebase/auth';
 // Add the Firebase products that you want to use
 import firebaseConfig from "../firebase.config"
 import userAPI from "../service/user.api"
-import { setterAuth } from "../action/index"
-
-firebase.initializeApp(firebaseConfig);
 
 
-function VerifyPhone( props ){
+
+firebase.initializeApp(firebaseConfig)
+
+function VerifyPhone({ CONFIG, AUTH }){
     const [ screenCode, setScreenCode ] = useState(null)
     const [ invalidCode, setInvalidCode ] = useState(null)
     const [ invalidPhone, setInvalidPhone ] = useState(null)
@@ -31,33 +30,18 @@ function VerifyPhone( props ){
     let refPhone = React.createRef()
     let refCode = React.createRef()
 
-
-
-    /// init
-    // Initialize Firebase
-    
-    // Tương tự như componentDidMount và componentDidUpdate:
-    useEffect(() => {
-        window.recapchaVerifier = new firebase.auth.RecaptchaVerifier("recaptcha-container",
-        {
-            callback: function(response) {
-                console.log("có thể bấm")
-                setIsvalidRecaptcha(true)
-            }
-        })
-        recapchaVerifier.render();
-
-        let AUTH_PHONE_FIREBASE = localStorage.getItem('AUTH_PHONE_FIREBASE')
-        if( AUTH_PHONE_FIREBASE ){
-            AUTH_PHONE_FIREBASE = JSON.parse(AUTH_PHONE_FIREBASE)
-        }
-        //// hàm chạy 1 lần duy nhất gọi đến api update
-        if( !props.AUTH.phone_verify &&  AUTH_PHONE_FIREBASE){
+    // hàm này để chạy 1 lần duy nhất khi mới khởi tạo component kiểm tra đã từng login và đã từng được verify phone thì update luôn
+    const updateVerifyPhone = AUTH => {
+        // nếu Auth chưa login thì AUTH có dạng này: {JWT: ''}
+        if(!AUTH.JWT) return false
+        const AUTH_PHONE_FIREBASE = JSON.parse(localStorage.getItem('AUTH_PHONE_FIREBASE')) || null
+        // hàm chạy 1 lần duy nhất gọi đến api update
+        if( !AUTH.phone_verify &&  AUTH_PHONE_FIREBASE){
             /// ẩn button send đồng thời show progress bar loading
             setIsProgress(true)
             userAPI.verifyPhone({ phone_verify: `${AUTH_PHONE_FIREBASE.phoneNumber}` })
             .then( response => {
-                console.log(response, "response props.AUTH")
+                console.log(response, "response AUTH")
                 firebase.auth().signOut()
                 location.reload()
                 setIsProgress(null)
@@ -65,9 +49,31 @@ function VerifyPhone( props ){
             .catch(error => {
                 console.log("ERROR:: ",error);
                 setIsProgress(null)
-                console.log(error, props.AUTH)
+                console.log(error, AUTH)
             });
         }
+    }
+    /// init
+    // Initialize Firebase
+    
+    // Tương tự như componentDidMount và componentDidUpdate:
+    useEffect(() => {
+        window.recapchaVerifier = new firebase.auth.RecaptchaVerifier("recaptcha-container",
+        {
+            'callback': (response) => {
+                // reCAPTCHA solved, allow.
+                console.log("có thể bấm")
+                setIsvalidRecaptcha(true)
+            },
+            'expired-callback': () => {
+                // Response expired. Ask user to solve reCAPTCHA again.
+                console.log("recapcha hết hạn")
+                setIsvalidRecaptcha(false)
+                window.recapchaVerifier.reset()
+            }
+        })
+        window.recapchaVerifier.render()
+        updateVerifyPhone(AUTH)
     }, []);
 
     function isVietnamesePhoneNumber(number) {
@@ -108,7 +114,7 @@ function VerifyPhone( props ){
         
         if( !invalidPhone && isvalidRecaptcha ){
             console.log("có xác thực")
-            /// lưu trữ trạng thái phone trước khi reset về dạng không có nhập phone nào
+            // lưu trữ trạng thái phone trước khi reset về dạng không có nhập phone nào
             setBackupPhone(refPhone.current.value)
             refPhone.current.value = ''
             //// cho recaptcha tạo mới lại
@@ -129,6 +135,26 @@ function VerifyPhone( props ){
             .catch(function (error) {
                 console.log(error)
                 setAlert(error.message)
+                const { code, message } = error
+                
+                if (code == 'auth/invalid-email') {
+                    var msg = 'Email id is not Valid';
+                    callback(msg);
+                } else if (errorCode == 'auth/user-disabled') {
+                    var msg = 'User is in disable state';
+                    callback(msg);
+                } else if (errorCode == 'auth/user-not-found') {
+                    var msg = 'User not found';
+                    callback(msg);
+                } else if (errorCode == 'auth/wrong-password') {
+                    var msg = 'Invalid Password';
+                    callback(msg);
+                } else if (errorCode == 'auth/network-request-failed') {
+                    var msg = 'Network Error';
+                    callback(msg);
+                } else {
+                    callback("error:" + errorMessage);
+                }
             });
         }else if(!isvalidRecaptcha) {
             setAlert("bạn cần xác thực recaptcha")
@@ -251,10 +277,4 @@ function VerifyPhone( props ){
     </div>
 }
 
-let mapStateToProps = (state) => {
-    return {
-        CONFIG: state.config,
-        AUTH  : state.auth,
-    }
-}
-export default connect(mapStateToProps)(VerifyPhone)
+export default VerifyPhone
