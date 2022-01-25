@@ -33,6 +33,7 @@
 @section('javascripts')
 <script src="{{ asset('js/library/jquery.validate.min.js' . Config::get('app.version')) }}"></script>
 <script src="{{ asset('js/validate.login.user.js' . Config::get('app.version')) }}"></script>
+@include('client.partial.login__fb')
 @endsection
 @section('content')
     <div class="content">
