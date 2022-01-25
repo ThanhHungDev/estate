@@ -69,6 +69,11 @@
                 <i class="fab fa-facebook-f"></i>
             </a>
         </div>
+        <div id=”status”></div>
+
+<a href=”http://dotnet.edu.vn/javascript:void(0);” onclick=”fbLogin()” id=”fbLink”><img src=”fblogin.png”/></a>
+
+<div id=”userData”></div>
     </div>
     <h4 class="description">
         Chưa có tài khoản? Bạn muốn
