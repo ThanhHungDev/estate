@@ -1,68 +1,56 @@
 <script>
-    window.fbAsyncInit = function() {
-        // FB JavaScript SDK configuration and setup
-        FB.init({
-          appId      : '283050503736872', // FB App ID
-          cookie     : true,  // enable cookies to allow the server to access the session
-          xfbml      : true,  // parse social plugins on this page
-          version    : 'v2.8' // use graph api version 2.8
-        });
-        
-        // Check whether the user already logged in
-        FB.getLoginStatus(function(response) {
-            console.log(response, "responseresponseresponse FB.getLoginStatus")
-            if (response.status === 'connected') {
-                //display user data
-                getFbUserData();
-            }
-        });
-    };
-    
-    // Load the JavaScript SDK asynchronously
-    (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
+    // Nạp Javascript SDK
+    (function(thisdocument, scriptelement, id) {
+      var js, fjs = thisdocument.getElementsByTagName(scriptelement)[0];
+      if (thisdocument.getElementById(id)) return;
+      
+      js = thisdocument.createElement(scriptelement); js.id = id;
+      js.src = "//connect.facebook.net/vi_VN/sdk.js"; //you can use 
+      fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
+      
+    window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '212550605589620', // APP ID ứng dụng của bạn
+      cookie     : true,  // Kích hoạt cookies
+                          
+      xfbml      : true,  // plugins xã hội
+      version    : 'v2.1' // Sử dụng version 2.1
+    });
+  
+    // Xử lý hàm callback
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  
+    };
+      
+    // Kết quả từ FB.getLoginStatus().
+    function statusChangeCallback(response) {
+      if (response.status === 'connected') {
+        // Đăng nhập vào ứng dụng của bạn và facebook.
+        _i();
+      } else if (response.status === 'not_authorized') {
+        // Người dùng đăng nhập từ một địa chỉ khác.
+        document.getElementById('status').innerHTML = 'Please log ' +
+          'into this app.';
+      }
+    }  
     
-    // Facebook login with JavaScript SDK
-    function fbLogin() {
-        console.log("vào fbLogin")
-        FB.login(function (response) {
-            console.log("vào fbLogin succeess")
-            if (response.authResponse) {
-                // Get and display the user profile data
-                getFbUserData();
-            } else {
-                document.getElementById('status').innerHTML = 'User cancelled login or did not fully authorize.';
-            }
-        }, {scope: 'email'});
-    }
-    
-    // Fetch the user profile data from facebook
-    function getFbUserData(){
-        console.log("vào getFbUserData")
-        FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture'},
-        function (response) {
-            console.log(response, "responseresponseresponseFB.api('/me', {local")
-            document.getElementById('fbLink').setAttribute("onclick","fbLogout()");
-            document.getElementById('fbLink').innerHTML = 'Logout from Facebook';
-            document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.first_name + '!';
-            document.getElementById('userData').innerHTML = '<p><b>FB ID:</b> '+response.id+'</p><p><b>Name:</b> '+response.first_name+' '+response.last_name+'</p><p><b>Email:</b> '+response.email+'</p><p><b>Gender:</b> '+response.gender+'</p><p><b>Locale:</b> '+response.locale+'</p><p><b>Picture:</b> <img src="'+response.picture.data.url+'"/></p><p><b>FB Profile:</b> <a target="_blank" href="'+response.link+'">click to view profile</a></p>';
-        });
-    }
-    
-    // Logout from facebook
-    function fbLogout() {
-        console.log("vào fbLogout")
-        FB.logout(function() {
-            console.log("vào fbLogout success")
-            document.getElementById('fbLink').setAttribute("onclick","fbLogin()");
-            document.getElementById('fbLink').innerHTML = '<img src="fblogin.png"/>';
-            document.getElementById('userData').innerHTML = '';
-            document.getElementById('status').innerHTML = 'You have successfully logout from Facebook.';
-        });
-    }
-    </script>
+    function _login() {
+      FB.login(function(response) {
+         // Xử lý các kết quả
+         if(response.status==='connected') {
+          _i();
+         }
+       }, {scope: 'public_profile,email'});
+   }
+   
+  // Điền kết quả vào textbox
+   function _i(){
+       FB.api('/me', function(response) {
+        console.warn(response, "fill kết quả có sẵn");
+      });
+   }
+  
+  </script>

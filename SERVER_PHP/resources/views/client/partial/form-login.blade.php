@@ -65,16 +65,12 @@
             <a href="{{ 1 }}" class="otherlogin__btn--item otherlogin__btn--google">
                 <i class="fab fa-google"></i>
             </a>
-            <a href="{{ 1 }}" class="otherlogin__btn--item otherlogin__btn--facebook">
+            <a href="{{ 1 }}" class="otherlogin__btn--item otherlogin__btn--facebook" onclick="_login();">
                 <i class="fab fa-facebook-f"></i>
             </a>
         </div>
-        <div id=”status”></div>
-
-        <a href="/" onclick="fbLogin()" id="fbLink"><img src="fblogin.png"/></a>
-
-        <div id=”userData”></div>
     </div>
+    <div id="status"></div>
     <h4 class="description">
         Chưa có tài khoản? Bạn muốn
         <a href="{{ Route('REGISTER') }}" class="register-inline">
