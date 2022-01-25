@@ -71,9 +71,9 @@
         </div>
         <div id=”status”></div>
 
-<a href=”” onclick=”fbLogin()” id=”fbLink”><img src=”fblogin.png”/></a>
+        <a href="/" onclick="fbLogin()" id="fbLink"><img src="fblogin.png"/></a>
 
-<div id=”userData”></div>
+        <div id=”userData”></div>
     </div>
     <h4 class="description">
         Chưa có tài khoản? Bạn muốn

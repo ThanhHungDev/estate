@@ -81,4 +81,9 @@ mix
         proxy: 'http://localhost',
         notify: false
     })
-    .disableNotifications();
+    .disableNotifications()
+    .webpackConfig({
+        devServer: {
+          server: 'https',
+        },
+    })
