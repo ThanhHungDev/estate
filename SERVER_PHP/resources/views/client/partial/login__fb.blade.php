@@ -11,7 +11,7 @@
       
     window.fbAsyncInit = function() {
     FB.init({
-      appId      : '212550605589620', // APP ID ứng dụng của bạn
+      appId      : '283050503736872', // APP ID ứng dụng của bạn
       cookie     : true,  // Kích hoạt cookies
                           
       xfbml      : true,  // plugins xã hội
@@ -20,6 +20,7 @@
   
     // Xử lý hàm callback
     FB.getLoginStatus(function(response) {
+        console.log(response, "responseresponseresponseresponse")
       statusChangeCallback(response);
     });
   

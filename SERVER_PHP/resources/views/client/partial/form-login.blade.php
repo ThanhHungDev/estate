@@ -65,7 +65,7 @@
             <a href="{{ 1 }}" class="otherlogin__btn--item otherlogin__btn--google">
                 <i class="fab fa-google"></i>
             </a>
-            <a href="{{ 1 }}" class="otherlogin__btn--item otherlogin__btn--facebook" onclick="_login();">
+            <a class="otherlogin__btn--item otherlogin__btn--facebook" onclick="_login();">
                 <i class="fab fa-facebook-f"></i>
             </a>
         </div>
