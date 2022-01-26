@@ -21,8 +21,8 @@ const mix = require('laravel-mix');
 mix
 // .sass('resources/sass/bootstrap/bootstrap.home.scss', 'public/css/library/')
 // .sass('resources/sass/bootstrap/bootstrap.post.scss', 'public/css/library/')
-.sass('resources/sass/bootstrap/bootstrap.chat.scss', 'public/css/library/')
-.sass('resources/sass/bootstrap/bootstrap.product.scss', 'public/css/library/')
+// .sass('resources/sass/bootstrap/bootstrap.chat.scss', 'public/css/library/')
+// .sass('resources/sass/bootstrap/bootstrap.product.scss', 'public/css/library/')
 
 
 
@@ -36,13 +36,14 @@ mix
 
 
 
-    .js('resources/js/post.js', 'public/js').react()
-    .js('resources/js/chat.js', 'public/js').react()
+    // .js('resources/js/post.js', 'public/js').react()
+    // .js('resources/js/chat.js', 'public/js').react()
     // .js('resources/js/comment.js', 'public/js').react()
     // .js('resources/js/validate.login.user.js', 'public/js')
     // .js('resources/js/validate.register.user.js', 'public/js')
-    .js('resources/js/validate.update.user.js', 'public/js')
+    // .js('resources/js/validate.update.user.js', 'public/js')
     .js('resources/js/app.js', 'public/js')
+    .js('resources/js/login.fb.js', 'public/js')
     // .js('resources/admin/js/app.js', 'public/js/admin')
     // .js('resources/admin/js/validate.post.js', 'public/js/admin')
     // .js('resources/admin/js/validate.product.js', 'public/js/admin')
@@ -56,21 +57,21 @@ mix
     // .js('resources/js/validate.contact.js', 'public/js')
 
     /// react trong phần tạp step by step 
-    .sass('resources/sass/page/user.post.scss', 'public/css') /// --------------> react create post
+    // .sass('resources/sass/page/user.post.scss', 'public/css') /// --------------> react create post
     // .sass('resources/sass/page/user.chat.scss', 'public/css') /// --------------> react create chat
 
 
 
 
     // .sass('resources/sass/app.scss', 'public/css')
-    .sass('resources/sass/page/home.scss', 'public/css')
-    .sass('resources/sass/page/category.scss', 'public/css')
+    // .sass('resources/sass/page/home.scss', 'public/css')
+    // .sass('resources/sass/page/category.scss', 'public/css')
     // .sass('resources/sass/page/profile.scss', 'public/css')
     .sass('resources/sass/page/login.scss', 'public/css')
     // .sass('resources/sass/page/register.scss', 'public/css')
-    .sass('resources/sass/page/forgot.scss', 'public/css')
+    // .sass('resources/sass/page/forgot.scss', 'public/css')
     // .sass('resources/sass/page/contact.scss', 'public/css')
-    .sass('resources/sass/page/product.detail.scss', 'public/css')
+    // .sass('resources/sass/page/product.detail.scss', 'public/css')
     // .sass('resources/sass/page/contact.scss', 'public/css')
     // .sass('resources/admin/sass/page/admin.scss', 'public/css')
 
@@ -78,7 +79,7 @@ mix
 
 mix
     .browserSync({
-        proxy: 'http://localhost',
+        proxy: 'https://localhost',
         notify: false
     })
     .disableNotifications()

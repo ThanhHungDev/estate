@@ -55,7 +55,7 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('/favicon/favicon.ico' . Config::get('app.version')) }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/favicon/favicon.ico' . Config::get('app.version')) }}"/>
 
-    @if (!Agent::isRobot() && Config::get('app.env') != 'local')
+    @if (!Agent::isRobot() && Config::get('app.env') != 'local' && $_SERVER['HTTP_HOST'] != 'localhost')
     <script>
         
         if ('serviceWorker' in navigator) {

@@ -30801,13 +30801,16 @@ ul.contact li a span {
   width: 100%;
   text-align: center;
   justify-content: center;
+  align-items: center;
 }
 .page__login .form .otherlogin__btn--item, .modal__login .form .otherlogin__btn--item {
-  border-radius: 50%;
+  border-radius: 20px;
   padding: 9px 12px;
   margin: 4px;
+  font-size: 12px;
   background-color: #f8f9fa;
   color: #212529;
+  cursor: pointer;
   box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.1), 0 2px 10px 0 rgba(0, 0, 0, 0.1);
 }
 .page__login .form .otherlogin__btn--item i, .modal__login .form .otherlogin__btn--item i {
