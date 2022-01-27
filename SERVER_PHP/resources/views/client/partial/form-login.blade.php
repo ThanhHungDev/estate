@@ -63,7 +63,7 @@
                 <i class="fas fa-phone"></i>
                 <span>Điện thoại</span>
             </a>
-            <a href="{{ 1 }}" class="otherlogin__btn--item otherlogin__btn--google">
+            <a id="customBtn" class="otherlogin__btn--item otherlogin__btn--google">
                 <i class="fab fa-google"></i>
                 <span>Google</span>
             </a>
@@ -72,9 +72,9 @@
                 <span>Facebook</span>
             </a>
         </div>
+  <div id="name"></div>
         <!-- Display login status -->
 <div id="status"></div>
-
 <!-- Display user's profile info -->
 <div class="ac-data" id="userData"></div>
     </div>
