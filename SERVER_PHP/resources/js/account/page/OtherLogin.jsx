@@ -21,14 +21,14 @@ function OtherLogin({ CONFIG }){
             <div className="otherlogin">
                 <p className="text-xs text-color-grey text-center py-2">Hoặc đăng nhập bằng: </p>
                 <div className="otherlogin__social">
-                    <button type='button' className="otherlogin__item otherlogin__item--facebook">
+                    <a href={ `${CONFIG.ACCOUNT_ROUTE.BASENAME}/auth/redirect/facebook`} className="otherlogin__item otherlogin__item--facebook">
                         <i className="fab fa-facebook-f"></i>
                         <span>Facebook</span>
-                    </button>
-                    <button type='button' className="otherlogin__item otherlogin__item--google">
+                    </a>
+                    <a href={ `${CONFIG.ACCOUNT_ROUTE.BASENAME}/auth/redirect/google`} className="otherlogin__item otherlogin__item--google">
                         <i className="fab fa-google"></i>
                         <span>Google</span>
-                    </button>
+                    </a>
                 </div>
                 <div className="otherlogin__social">
                     { authphone }

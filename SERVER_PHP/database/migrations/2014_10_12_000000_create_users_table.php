@@ -17,16 +17,16 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('google_id')->nullable();
-            $table->string('facebook_id')->nullable();
+            $table->string('provider')->nullable();
+            $table->string('provider_id')->nullable();
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('email')->unique()->nullable();
             $table->string('crawler_id')->nullable(); /// for crawler
             $table->string('crawler_link')->nullable(); /// for crawler
             $table->timestamp('email_verified_at')->nullable();
             $table->string('avatar')->default(Config::get("image.AVATAR"));
             $table->string('background')->default(Config::get("image.BACKGROUND"));
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->integer('role_id')->default(Config::get("constant.ROLE.USER")); /// xác định là user hay admin
             $table->integer('role')->default(Config::get("constant.USER_TYPE.PERSON"));/// xác định là cá nhân đăng bài hay môi giới đăng bài
             $table->integer('sale_type')->default(Config::get("constant.SALE_TYPE.DEFAULT"));

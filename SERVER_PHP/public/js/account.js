@@ -2688,16 +2688,16 @@ function OtherLogin(_ref) {
         children: "Ho\u1EB7c \u0111\u0103ng nh\u1EADp b\u1EB1ng: "
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
         className: "otherlogin__social",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("button", {
-          type: "button",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("a", {
+          href: "".concat(CONFIG.ACCOUNT_ROUTE.BASENAME, "/auth/redirect/facebook"),
           className: "otherlogin__item otherlogin__item--facebook",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
             className: "fab fa-facebook-f"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
             children: "Facebook"
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("button", {
-          type: "button",
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("a", {
+          href: "".concat(CONFIG.ACCOUNT_ROUTE.BASENAME, "/auth/redirect/google"),
           className: "otherlogin__item otherlogin__item--google",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
             className: "fab fa-google"

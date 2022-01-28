@@ -218,6 +218,7 @@ return [
         App\Providers\GoogleDriveServiceProvider::class,
         Jenssegers\Agent\AgentServiceProvider::class,
         // Barryvdh\Debugbar\ServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
     ],
 
     /*
@@ -288,6 +289,7 @@ return [
         'SupportAgent' => App\Helpers\SupportAgent::class,
         'SpeedSMSAPI' => App\Helpers\SpeedSMSAPI::class,
         // 'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
     ],
 
 ];

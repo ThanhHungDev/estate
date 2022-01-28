@@ -54,6 +54,9 @@ Route::group(['prefix' => '/','middleware' => [ 'LOGIN_REDIRECT', 'HTML_MINIFIER
 
         Route::get('/quen-mat-khau', [ App\Http\Controllers\AccountController::class, 'forgot' ])->name('FORGOT');
         
+
+        Route::get('/auth/redirect/{provider}', [ App\Http\Controllers\SocialController::class, 'redirect' ] );
+        Route::get('/callback/{provider}', [ App\Http\Controllers\SocialController::class, 'callback' ] );
         
         
     });
