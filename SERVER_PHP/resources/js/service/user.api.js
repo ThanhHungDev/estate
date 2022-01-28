@@ -23,6 +23,16 @@ interceptors.setup(Api)
 interceptors.checkToken(Api)
 
 export default {
+    sendCode(phone, capcha) {
+        
+        const params = {
+            phone: phone,
+            'g-recaptcha-response': capcha
+        }
+        console.log(`vào sendCode `, params)
+        return Api.post(CONFIG.API.SEND_CODE_SMS, params)
+        .then(res => res.data )
+    },
     verifyPhone(params) {
         console.log("vào verifyPhone", params)
         return Api.patch(CONFIG.WEB.PATCH_VERIFY_PHONE, params)

@@ -97,6 +97,7 @@ class User extends Authenticatable implements JWTSubject
         'crawler_id', 'crawler_link',
         'google_id',
         'facebook_id',
+        'code',
     ];
 
     /**

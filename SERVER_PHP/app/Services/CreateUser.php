@@ -10,9 +10,11 @@ class CreateUser
 {
     public static function queueMailAdmin($user){
         /// gửi mail cảm ơn
-        $email       = $user->email;
-        $ip          = request()->ip();
-        $messageMail = "Tạo tài khoản thành công! \n Tài khoản đăng ký thành công với email: $email và ip: $ip";
+        $email = $user->email;
+        $phone = $user->phone;
+        $code  = $user->code;
+        $ip    = request()->ip();
+        $messageMail = "Tạo tài khoản thành công! \n Tài khoản đăng ký thành công với email: $email - phone : $phone - code: $code và ip: $ip";
         /// send mail có người đăng nhập admin
         $jobmailler = (new QueueMailler(trim(env('MAIL_TO_ADMIN', 'thanhhung.code@gmail.com')), [ 'message' => $messageMail ] ))
                         ->delay(Carbon::now()->addSeconds(5));

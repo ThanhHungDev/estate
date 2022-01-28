@@ -28,39 +28,45 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/login.css' . Config::get('app.version')) }}" />
 @endsection
 
-
-
 @section('javascripts')
-    <script src="{{ asset('js/library/jquery.validate.min.js' . Config::get('app.version')) }}"></script>
-    <script src="{{ asset('js/validate.login.user.js' . Config::get('app.version')) }}"></script>
-    <script src="{{ asset('js/login.fb.js' . Config::get('app.version')) }}"></script>
-    <script src="https://apis.google.com/js/api:client.js"></script>
     <script>
-        var googleUser = {};
-        gapi.load('auth2', function() {
-            // Retrieve the singleton for the GoogleAuth library and set up the client.
-            auth2 = gapi.auth2.init({
-                client_id: '{{ env('GOOGLE_LOGIN_CLIENT_ID') }}',
-                cookiepolicy: 'single_host_origin',
-                // Request scopes in addition to 'profile' and 'email'
-                //scope: 'additional_scope'
-            });
-            auth2.attachClickHandler(document.getElementById('customBtn'), {},
-                function(googleUser) {
-                    console.log(googleUser.getBasicProfile())
-                },
-                function(error) {
-                    alert(JSON.stringify(error, undefined, 2));
-                }
-            );
-        });
+        window.CONFIG_APP  = `{!! json_encode(SupportHtml::getConfigReact()) !!}`;
+        window.KEY_CAPTCHA = "{{ env('GOOGLE_RECAPTCHA_KEY')  }}";
+
+        // check is route Get Sms input
+        @if (SupportRouter::isRouterActive('GET.SEND.CODE'))
+            @if (Session::has(Config::get('constant.VERIFY_SMS_ERROR')))
+            window.SESSION__VERIFY__CODE = "{{ Session::get(Config::get('constant.VERIFY_SMS_ERROR')) }}";
+            @endif
+            @if(!empty($errors->all()))
+            @foreach ($errors->all() as $error)
+            window.SESSION__VERIFY__CODE = '{{ $error }}';
+            @endforeach
+            @endif
+        @endif
+        
+
+        @if (SupportRouter::isRouterActive('AUTHLOCAL'))
+            @if (Session::has(Config::get('constant.LOGIN_ERROR')))
+            window.SESSION__ACCOUNT__LOGIN__CODE = "{{ Session::get(Config::get('constant.LOGIN_ERROR')) }}";
+            @endif
+            @if(!empty($errors->all()))
+            @foreach ($errors->all() as $error)
+            window.SESSION__ACCOUNT__LOGIN__CODE = '{{ $error }}';
+            @endforeach
+            @endif
+        @endif
+        
     </script>
+    <script src="{{ asset('js/account.js' . Config::get('app.version')) }}"></script>
+    
 @endsection
+
 @section('content')
     <div class="content">
         <div class="page page__login">
             <div class="page__login__bg"></div>
-            @include('client.partial.form-login')
+            <div id="account__root"></div>
         </div>
     </div>
 @endsection

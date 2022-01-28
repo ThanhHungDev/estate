@@ -1,18 +1,21 @@
 @import "./login_form";
 @import "./login_form_chat";
-.page__login{
-
-    // background: url('/images/background/background-topbds.jpg');
-    display: inline-block;
+.account{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    min-height: 200px;
+    max-width: 480px;
+    padding: 0 5px;
+    margin: 0 auto;
     vertical-align: middle;
     text-align: center;
     position: relative;
     overflow: hidden;
-    padding: 16px;
+}
 
-    .page__login__bg{
+.page__login{
+    &__bg{
         position: absolute;
         top: 0;
         left: 0;
@@ -29,21 +32,14 @@
         opacity: 0.5;
     }
 
-    img {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: auto;
-        opacity: 0.4;
-    }
-
     &__form{
         display: block;
-        max-width: 450px;
         margin: 0 auto;
-        position: relative;
-        z-index: 2;
+        width: 100%;
+        background-color: #e5ffea;
+        border-radius: 4px;
+        box-shadow: 0 4px 32px 0 rgba(10, 14, 29, .02), 0 8px 64px 0 rgba(10, 14, 29, .08);
+        padding: 15px;
     }
 
     &--faster{

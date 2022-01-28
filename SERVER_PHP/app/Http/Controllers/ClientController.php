@@ -428,12 +428,6 @@ class ClientController extends Controller
     }
 
     
-
-    public function forgot(){
-
-        return view('client.forgot');
-    }
-    
     public function getUpdateUser(Request $request, $id ){
         $user = User::find($id);
         if( !$user ){

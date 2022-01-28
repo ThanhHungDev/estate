@@ -30,11 +30,11 @@ class ValidRecaptcha implements Rule
         $client = new Client([
             'base_uri' => 'https://google.com/recaptcha/api/'
         ]);
-
+        
         // Gửi dữ liệu đến cho google recaptcha xử lý
         $response = $client->post('siteverify', [
             'query' => [
-                'secret' => env('GOOGLE_RECAPTCHA_SECRET'),
+                'secret' => env('GOOGLE_RECAPTCHA_SECRET'), 
                 'response' => $value
             ]
         ]);

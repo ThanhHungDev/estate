@@ -61,6 +61,7 @@ class SupportHtml{
             'PRODUCT_SHOW'             => trim(Route('product.show', [ 'product' => '__________' ]), "__________"),
             'APARTMENT_STORE'          => Route('product.store'),
             'APARTMENT_UPDATE'         => trim(Route('product.update', [ 'product' => '__________' ]), "__________"),
+            'SEND_CODE_SMS'            => Route('SEND.SMS'),
         ];
         $configApp['WEB'] = [
             'PATCH_VERIFY_PHONE' => Route('PATCH_VERIFY_PHONE'),
@@ -68,12 +69,19 @@ class SupportHtml{
             'LOGIN'              => Route('LOGIN'),
             'POST_LOGIN'         => Route('POST_LOGIN'),
             'POST_LOGIN_FAST'    => Route('POST_LOGIN_FAST'),
+            'FORGOT'             => Route('FORGOT'),
             'UPDATE_USER_INFO'   => trim(Route('UPDATE_USER_INFO', [ 'id' => '__________' ]), "__________"),
             'REGISTER'           => Route('REGISTER'),
-            'FORGOT'             => Route('FORGOT'),
             'POLICY'             => Route('POLICY'),
             'USER_POST'          => Route('USER_POST', ['path' => null ], false ),
             'CHAT'               => Route('CHAT', ['id' => null ], false ),
+            'POST_VERIFY_CODE'   => Route('POST.VERIFY.CODE'),
+        ];
+        $configApp['ACCOUNT_ROUTE'] = [
+            'BASENAME'    => '/nguoi-dung',
+            'AUTHLOCAL'   => '/xac-thuc-tai-khoan',
+            'VERIFYPHONE' => '/xac-minh-code',
+            'AUTHPHONE'   => '/xac-thuc-dien-thoai',
         ];
         $configApp['CONSTANT'] = Config::get('constant');
         $configApp['EVENT']    = self::getEventsRealTime();

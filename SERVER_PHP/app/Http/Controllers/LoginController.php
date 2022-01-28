@@ -55,60 +55,7 @@ class LoginController extends Controller
         return view('client.login');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function postLogin(LOGIN_REQUEST $request)
-    {
-        $remember = $request->has('remember') ? true : false;
-        
-        $dataLogin = array(
-            'email'    => strtolower($request->input('email')),
-            'password' => $request->input('password'),
-            'role_id'  => Config::get('constant.ROLE.USER')
-        );
-        if (!filter_var($dataLogin['email'], FILTER_VALIDATE_EMAIL)) {
-            /// là dữ liệu phone
-            $dataLogin['phone'] = strtolower($request->input('email'));
-            unset($dataLogin['email']);
-        }
-
-        if (Auth::attempt( $dataLogin, $remember )) {
-            
-            $url = Session::get(Config::get("constant.SESSION__REDIRECT--URL"), null );
-            $routeName = Session::get(Config::get("constant.SESSION__REDIRECT--ROUTE"), null );
-            if(!!$url){
-                return redirect($url);
-            }
-            if(!!$routeName){
-                return redirect()->route($routeName);
-            }
-
-            $request->session()->flash(Config::get('constant.LOGIN_ADMIN_SUCCESS'), true);
-            /// check user role 
-            $user = Auth::user();
-            /// tạo 1 token đưa về client lưu vào localStorage
-            if($request->wantsJson()){
-                $token = JWTAuth::fromUser($user);
-                return response()
-                    ->success('Your custom login', $token)
-                    ->setStatusCode(Response::HTTP_OK);
-            }
-            
-
-            if( $user->role_id == Config::get('constant.ROLE.USER')){
-
-                return redirect()->route('USER_DASHBOARD');
-            }else{
-
-                return redirect()->route('ADMIN_DASHBOARD');
-            }
-        }
-        return redirect()->back()->with(Config::get('constant.LOGIN_ERROR'), 'đăng nhập thất bại!!! ');
-    }
+    
 
 
     public function postLoginFast(Request $request)

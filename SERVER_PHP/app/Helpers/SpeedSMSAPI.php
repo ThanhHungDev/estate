@@ -172,9 +172,8 @@ class SpeedSMSAPI {
             return json_decode($result, true);
         }
     }
-    public static function getMessageError($response)
-    {
-        $message = null;
+    public static function getMessageError($response) : string {
+        $message = '';
         switch ($response['code']) {
             case "007":
                 $message = Lang::get('speedsms.error_007');

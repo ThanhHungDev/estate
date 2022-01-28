@@ -1,7 +1,5 @@
 <?php
 
-use App\Helpers\SpeedSMSAPI;
-use App\Helpers\SupportString;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => '/','middleware' => [ 'LOGIN_REDIRECT', 'HTML_MINIFIER' ]], function () { ///'READ_CACHE',
@@ -32,17 +30,33 @@ Route::group(['prefix' => '/','middleware' => [ 'LOGIN_REDIRECT', 'HTML_MINIFIER
 
     Route::get('/search', [ App\Http\Controllers\ClientController::class, 'search' ])->name('SEARCH');
 
-    Route::get('/login', [ App\Http\Controllers\LoginController::class, 'login' ])->name('LOGIN');
-    Route::post('/login', [ App\Http\Controllers\LoginController::class, 'postLogin' ])->name('POST_LOGIN');
+    // Route::get('/login', [ App\Http\Controllers\LoginController::class, 'login' ])->name('LOGIN');
+    // Route::post('/login', [ App\Http\Controllers\LoginController::class, 'postLogin' ])->name('POST_LOGIN');
     Route::post('/login/faster', [ App\Http\Controllers\LoginController::class, 'postLoginFast' ])->name('POST_LOGIN_FAST');
 
-    Route::get('/forgot', [ App\Http\Controllers\ClientController::class, 'forgot' ])->name('FORGOT');
+    
     
     Route::get('/policy', [ App\Http\Controllers\ClientController::class, 'policy' ])->name('POLICY');
     Route::get('/policy-fast-login', [ App\Http\Controllers\ClientController::class, 'policy' ])->name('POLICY');
     Route::get('/term', [ App\Http\Controllers\ClientController::class, 'term' ])->name('TERM');
 
 
+    Route::group(['prefix' => '/nguoi-dung' ], function () {
+        
+        Route::get('/xac-thuc-dien-thoai', [ App\Http\Controllers\AccountController::class, 'login' ])->name('LOGIN'); /// mặc định bước 1 nhập sdt
+        Route::post('/sms/code', [ App\Http\Controllers\AccountController::class, 'postSendSms' ])->name('SEND.SMS'); /// trong bước 1 gọi post data lên send sms => bước 2
+        Route::get('/xac-minh-code', [ App\Http\Controllers\AccountController::class, 'login' ])->name('GET.SEND.CODE'); /// bước send sms bước 2 thành công thì gọi bước 3
+        Route::post('/verify-code', [ App\Http\Controllers\AccountController::class, 'postVerifyPhone' ])->name('POST.VERIFY.CODE'); /// bước 4
+
+
+        Route::get('/xac-thuc-tai-khoan', [ App\Http\Controllers\AccountController::class, 'login' ])->name('AUTHLOCAL');
+        Route::post('/login', [ App\Http\Controllers\AccountController::class, 'postLogin' ])->name('POST_LOGIN');
+
+        Route::get('/quen-mat-khau', [ App\Http\Controllers\AccountController::class, 'forgot' ])->name('FORGOT');
+        
+        
+        
+    });
 
     //// USER CONTROLLERS
     Route::get('/register', [ App\Http\Controllers\UserController::class, 'create' ])->name('REGISTER');
@@ -51,16 +65,6 @@ Route::group(['prefix' => '/','middleware' => [ 'LOGIN_REDIRECT', 'HTML_MINIFIER
     // Route::get('/dang-tin/{path?}', [ App\Http\Controllers\ArticleController::class, 'push' ])
     //     ->where('path', '[a-zA-Z0-9-/]+')
     //     ->name('USER_POST');
-    // Route::any('/test-sms', function () {
-        
-
-    //     $smsAPI = SpeedSMSAPI::getInstance();
-    //     $content = env("SPEEDSMS_TITLE") . SupportString::createCodeVerify();
-    //     $phones = ["+84343086424"]; 
-    //     $sender = env('SPEEDSMS_BRANDNAME', 'localhost');
-    //     $response = $smsAPI::sendSMS($phones, $content, SpeedSMSAPI::SMS_TYPE_BRANDNAME, $sender);
-    //     dd( $response );
-    // });
     Route::patch('/user/product/likes', [ App\Http\Controllers\ReactController::class, 'updateProductLikes' ])->name('USER_AJAX_LIKE_PRODUCT');
 
     // include_once("user.php");

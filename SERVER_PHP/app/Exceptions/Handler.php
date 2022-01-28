@@ -50,7 +50,7 @@ class Handler extends ExceptionHandler
     {
 
         /// api 
-        if ($request->expectsJson()){
+        if ($request->expectsJson() || $request->is('api/*')){
             if($exception instanceof RouteNotFoundException) {
                 return response()
                 ->error(

@@ -8,7 +8,9 @@
     <meta name="robots" content="index, follow" />
     <title> @yield('title') </title>
     <meta name="description" content="@yield('description')">
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    @php $csrf_token = csrf_token() @endphp
+    <meta name="csrf-token" content="{{ $csrf_token }}" />
+    <script>  window.csrf_token = "{{ $csrf_token }}" </script>
 
     @yield('meta-seo')
 

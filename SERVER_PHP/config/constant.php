@@ -217,5 +217,6 @@ return [
     ],
     'REACT' => [
         'LIKE' => "LIKE__PRODUCT"
-    ]
+    ],
+    'VERIFY_SMS_ERROR' => 'VERIFY_SMS_ERROR'
 ];
