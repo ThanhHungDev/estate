@@ -29013,6 +29013,16 @@ ul.contact li a span {
   font-weight: bold;
   font-size: 13px;
 }
+.categories__btn--prev {
+  display: inline-block;
+  color: #0d3617;
+  padding: 0.2rem 0.6rem;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  margin-right: 10px;
+}
+.categories__btn--prev:hover {
+  color: #5a7661;
+}
 
 .page-content-layout {
   position: relative;

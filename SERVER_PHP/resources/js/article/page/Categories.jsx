@@ -13,9 +13,9 @@ function Categories( { CATEGORIES, CONFIG } ){
         <div className="categories">
             <div className="categories__wrapper">
                 <div className="container">
-                    <div className="categories__header">
+                    <div className="categories__header position-relative">
                         {
-                            id && <Link to={ "/" }> quay lại </Link>
+                            id && <Link className="btn categories__btn--prev" to={ "/" }> <i className="fas fa-chevron-left"></i> </Link>
                         }
                         <span>Chọn chủ đề bạn muốn đăng</span>
                     </div>

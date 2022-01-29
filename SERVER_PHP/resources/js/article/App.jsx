@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { BrowserRouter, Switch, Route } from "react-router-dom"
+import useWindowSize from '../chat/hook/resize'
 
 import Categories from './page/Categories'
 import SavePost from "./page/SavePost"
@@ -9,9 +10,10 @@ import SavePost from "./page/SavePost"
 function App( { AUTH, CATEGORIES, CONFIG } ){
 
     console.log(AUTH, "authauthauthauth")
+    const device = useWindowSize()
 
     return (
-        <div className="AppComponent post" id="Application">
+        <div className="AppComponent post" id="Application" style={{ minHeight: (device.calcHeightSubtractHeader) + "px" }}>
             <BrowserRouter basename={CONFIG.WEB.USER_POST}>
                 
                 <Switch>

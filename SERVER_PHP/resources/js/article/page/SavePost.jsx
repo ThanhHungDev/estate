@@ -3,7 +3,8 @@ import { useParams } from "react-router-dom"
 
 function SavePost({ CONFIG, CATEGORIES, AUTH, OLD }){
     const { id } = useParams()
-    const category = CATEGORIES.find( cate => cate.id = id )
+    console.log(id )
+    const category = CATEGORIES.find( cate => cate.id == id )
     
     switch (category.slug) {
         // case 'can-ho-chung-cu':

@@ -58,7 +58,7 @@ mix
     // .js('resources/js/validate.contact.js', 'public/js')
 
     /// react trong phần tạp step by step 
-    // .sass('resources/sass/page/user.post.scss', 'public/css') /// --------------> react create post
+    .sass('resources/sass/page/user.post.scss', 'public/css') /// --------------> react create post
     // .sass('resources/sass/page/user.chat.scss', 'public/css') /// --------------> react create chat
 
 
@@ -68,7 +68,7 @@ mix
     // .sass('resources/sass/page/home.scss', 'public/css')
     // .sass('resources/sass/page/category.scss', 'public/css')
     // .sass('resources/sass/page/profile.scss', 'public/css')
-    .sass('resources/sass/page/login.scss', 'public/css')
+    // .sass('resources/sass/page/login.scss', 'public/css')
     // .sass('resources/sass/page/register.scss', 'public/css')
     // .sass('resources/sass/page/forgot.scss', 'public/css')
     // .sass('resources/sass/page/contact.scss', 'public/css')

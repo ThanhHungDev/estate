@@ -51,11 +51,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
-/* harmony import */ var _page_Categories__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./page/Categories */ "./resources/js/article/page/Categories.jsx");
-/* harmony import */ var _page_SavePost__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./page/SavePost */ "./resources/js/article/page/SavePost.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var _chat_hook_resize__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../chat/hook/resize */ "./resources/js/chat/hook/resize.js");
+/* harmony import */ var _page_Categories__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./page/Categories */ "./resources/js/article/page/Categories.jsx");
+/* harmony import */ var _page_SavePost__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./page/SavePost */ "./resources/js/article/page/SavePost.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -70,40 +71,45 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 function App(_ref) {
   var AUTH = _ref.AUTH,
       CATEGORIES = _ref.CATEGORIES,
       CONFIG = _ref.CONFIG;
   console.log(AUTH, "authauthauthauth");
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+  var device = (0,_chat_hook_resize__WEBPACK_IMPORTED_MODULE_2__["default"])();
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
     className: "AppComponent post",
     id: "Application",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.BrowserRouter, {
+    style: {
+      minHeight: device.calcHeightSubtractHeader + "px"
+    },
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.BrowserRouter, {
       basename: CONFIG.WEB.USER_POST,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Switch, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Switch, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
           exact: true,
           path: "/",
           render: function render(props) {
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_page_Categories__WEBPACK_IMPORTED_MODULE_2__["default"], _objectSpread(_objectSpread({}, props), {}, {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_page_Categories__WEBPACK_IMPORTED_MODULE_3__["default"], _objectSpread(_objectSpread({}, props), {}, {
               CONFIG: CONFIG,
               CATEGORIES: CATEGORIES,
               AUTH: AUTH
             }));
           }
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
           path: "/category/:id",
           render: function render(props) {
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_page_Categories__WEBPACK_IMPORTED_MODULE_2__["default"], _objectSpread(_objectSpread({}, props), {}, {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_page_Categories__WEBPACK_IMPORTED_MODULE_3__["default"], _objectSpread(_objectSpread({}, props), {}, {
               CONFIG: CONFIG,
               CATEGORIES: CATEGORIES,
               AUTH: AUTH
             }));
           }
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
           path: "/save/:id",
           render: function render(props) {
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_page_SavePost__WEBPACK_IMPORTED_MODULE_3__["default"], _objectSpread(_objectSpread({}, props), {}, {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_page_SavePost__WEBPACK_IMPORTED_MODULE_4__["default"], _objectSpread(_objectSpread({}, props), {}, {
               CONFIG: CONFIG,
               CATEGORIES: CATEGORIES,
               AUTH: AUTH
@@ -209,10 +215,13 @@ function Categories(_ref) {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
         className: "container",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-          className: "categories__header",
-          children: [id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+          className: "categories__header position-relative",
+          children: [id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+            className: "btn categories__btn--prev",
             to: "/",
-            children: " quay l\u1EA1i "
+            children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
+              className: "fas fa-chevron-left"
+            }), " "]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
             children: "Ch\u1ECDn ch\u1EE7 \u0111\u1EC1 b\u1EA1n mu\u1ED1n \u0111\u0103ng"
           })]
@@ -336,8 +345,9 @@ function SavePost(_ref) {
   var _useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.useParams)(),
       id = _useParams.id;
 
+  console.log(id);
   var category = CATEGORIES.find(function (cate) {
-    return cate.id = id;
+    return cate.id == id;
   });
 
   switch (category.slug) {
@@ -353,6 +363,137 @@ function SavePost(_ref) {
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SavePost);
+
+/***/ }),
+
+/***/ "./resources/js/chat/hook/resize.js":
+/*!******************************************!*\
+  !*** ./resources/js/chat/hook/resize.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+var WIDTH_MOBILE_DEVICE = 768;
+var MIN_HEIGHT_DEVICE = 400;
+
+var isPcDevice = function isPcDevice() {
+  if (getWidthDevice() <= WIDTH_MOBILE_DEVICE) {
+    return false;
+  }
+
+  return true;
+};
+
+var getWidthDevice = function getWidthDevice() {
+  return window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+};
+
+var getHeightDevice = function getHeightDevice() {
+  var height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+  return height < MIN_HEIGHT_DEVICE ? MIN_HEIGHT_DEVICE : height;
+};
+
+var calcHeightSubtractHeight = function calcHeightSubtractHeight() {
+  var height = getHeightDevice();
+  var tophead = document.getElementsByClassName('tophead');
+
+  if (tophead.length) {
+    tophead = tophead[0];
+  }
+
+  var menuSticky = document.getElementsByClassName('headerpage');
+
+  if (menuSticky.length) {
+    menuSticky = menuSticky[0];
+  }
+
+  var heightMenu = 0;
+
+  try {
+    var _menuSticky;
+
+    heightMenu = (tophead.offsetHeight || 0) + (((_menuSticky = menuSticky) === null || _menuSticky === void 0 ? void 0 : _menuSticky.offsetHeight) || 0) + 50;
+  } catch (error) {}
+
+  return height - heightMenu;
+};
+
+var calcHeightSubtractHeader = function calcHeightSubtractHeader() {
+  var height = getHeightDevice();
+  var tophead = document.getElementsByClassName('tophead');
+
+  if (tophead.length) {
+    tophead = tophead[0];
+  }
+
+  var menuSticky = document.getElementsByClassName('headerpage');
+
+  if (menuSticky.length) {
+    menuSticky = menuSticky[0];
+  }
+
+  var heightMenu = 0;
+
+  try {
+    var _menuSticky2;
+
+    heightMenu = (tophead.offsetHeight || 0) + (((_menuSticky2 = menuSticky) === null || _menuSticky2 === void 0 ? void 0 : _menuSticky2.offsetHeight) || 0);
+  } catch (error) {}
+
+  return height - heightMenu;
+};
+
+var useWindowSize = function useWindowSize() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    isPcDevice: isPcDevice(),
+    widthDevice: getWidthDevice(),
+    heightDevice: getHeightDevice(),
+    calcHeightSubtractHeight: calcHeightSubtractHeight(),
+    calcHeightSubtractHeader: calcHeightSubtractHeader()
+  }),
+      _useState2 = _slicedToArray(_useState, 2),
+      size = _useState2[0],
+      setSize = _useState2[1];
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useLayoutEffect)(function () {
+    function updateSize() {
+      console.log("có updateSize");
+      setSize({
+        isPcDevice: isPcDevice(),
+        widthDevice: getWidthDevice(),
+        heightDevice: getHeightDevice(),
+        calcHeightSubtractHeight: calcHeightSubtractHeight(),
+        calcHeightSubtractHeader: calcHeightSubtractHeader()
+      });
+    }
+
+    window.addEventListener('resize', updateSize);
+    return function () {
+      return window.removeEventListener('resize', updateSize);
+    };
+  }, []);
+  return size;
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useWindowSize);
 
 /***/ }),
 
@@ -1880,10 +2021,10 @@ var index = react__WEBPACK_IMPORTED_MODULE_0__.createContext || createReactConte
 
 /***/ }),
 
-/***/ "./resources/sass/page/login.scss":
-/*!****************************************!*\
-  !*** ./resources/sass/page/login.scss ***!
-  \****************************************/
+/***/ "./resources/sass/page/user.post.scss":
+/*!********************************************!*\
+  !*** ./resources/sass/page/user.post.scss ***!
+  \********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -38506,7 +38647,7 @@ function _setPrototypeOf(o, p) {
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"/js/post": 0,
-/******/ 			"css/login": 0
+/******/ 			"css/user.post": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -38556,8 +38697,8 @@ function _setPrototypeOf(o, p) {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/login"], () => (__webpack_require__("./resources/js/post.js")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/login"], () => (__webpack_require__("./resources/sass/page/login.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/user.post"], () => (__webpack_require__("./resources/js/post.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/user.post"], () => (__webpack_require__("./resources/sass/page/user.post.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
