@@ -1,24 +1,29 @@
 import React from "react"
-import { connect } from "react-redux"
-
+import { Link, useParams } from "react-router-dom"
 import Category from "./Category"
 
 
-function Categories( props ){
+function Categories( { CATEGORIES, CONFIG } ){
 
-    const { CATEGORIES, CONFIG } = props
     // const {form, history, match} = props
+    const { id } = useParams()
+    const categories = CATEGORIES.filter( cate => id ? cate.parent == id : !cate.parent ).sort( (first, second ) => second.id - first.id )
     
     return (
         <div className="categories">
             <div className="categories__wrapper">
                 <div className="container">
                     <div className="categories__header">
-                        Chọn loại Bất động sản muốn đăng
+                        {
+                            id && <Link to={ "/" }> quay lại </Link>
+                        }
+                        <span>Chọn chủ đề bạn muốn đăng</span>
                     </div>
                     <div className="row categories__row">
                         {
-                            CATEGORIES.sort( (first, second ) => second.id - first.id ).map( cat => <Category key={cat.id} category={cat} config={CONFIG} />)
+                            categories.map( 
+                                cat => <Category key={cat.id} category={cat} CONFIG={CONFIG} />
+                            )
                         }
                     </div>
                 </div>
@@ -28,10 +33,4 @@ function Categories( props ){
 }
 
 
-let mapStateToProps = (state) => {
-    return {
-        CATEGORIES: state.categories,
-        CONFIG: state.config
-    }
-}
-export default connect(mapStateToProps)(Categories)
+export default Categories

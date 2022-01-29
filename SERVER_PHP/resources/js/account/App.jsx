@@ -16,10 +16,10 @@ function App({ CONFIG }){
             <BrowserRouter basename={CONFIG.ACCOUNT_ROUTE.BASENAME}>
                 
                 <Switch>
-                    <Route exact path={CONFIG.ACCOUNT_ROUTE.AUTHPHONE} component={ Phone } />
-                    <Route exact path={CONFIG.ACCOUNT_ROUTE.VERIFYPHONE } component={ Code } />
-                    <Route exact path={CONFIG.ACCOUNT_ROUTE.AUTHLOCAL } component={ Account } />
-                    <Route exact path={CONFIG.ACCOUNT_ROUTE.REGISTER } component={ Register } />
+                    <Route exact path={CONFIG.ACCOUNT_ROUTE.AUTHPHONE} render={ props => <Phone { ...props } CONFIG={CONFIG} /> } />
+                    <Route exact path={CONFIG.ACCOUNT_ROUTE.VERIFYPHONE } render={ props => <Code { ...props } CONFIG={CONFIG} /> } /> 
+                    <Route exact path={CONFIG.ACCOUNT_ROUTE.AUTHLOCAL } render={ props => <Account { ...props } CONFIG={CONFIG} /> } />
+                    <Route exact path={CONFIG.ACCOUNT_ROUTE.REGISTER } render={ props => <Register { ...props } CONFIG={CONFIG} /> } />
                     <Route path="*" component={ Abort404 } />
                 </Switch>
             </BrowserRouter>

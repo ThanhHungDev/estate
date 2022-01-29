@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import Validator from "hero-validate"
-import { connect } from 'react-redux'
 import OtherLogin from './OtherLogin'
 import V from "../validator/auth.code"
 import { useLocation } from 'react-router-dom'
@@ -95,11 +94,4 @@ function Code({ CONFIG }){
     )
 }
 
-
-
-let mapStateToProps = (state) => {
-    return {
-        CONFIG    : state.config,
-    }
-}
-export default connect(mapStateToProps)(Code)
+export default Code

@@ -2,28 +2,28 @@ import React, { useState } from "react"
 import { Link } from "react-router-dom"
 
 
-function Category( props ){
-
-    const { category, config } = props
+function Category({ category, CONFIG }){
+    
     const [ src, setSrc ] = useState(category.background)
 
-    function onError() {
-        setSrc( config.image_error )
+    const onError = () => {
+        setSrc( CONFIG.image_error )
         return null;
     }
+    const href = category.parent ? `/save/${category.id}` : `/category/${category.id}`
     
     return (
         <div className="categories__item">
-            <Link className="categories__item-link-img" to={ `/${category.slug}` }>
+            <Link className="categories__item-link-img" to={ href }>
                 <img className="lazyload"
-                    src={ config.lazyload_base64 }
+                    src={ CONFIG.lazyload_base64 }
                     onError={ onError }
                     data-src={src}
                     data-sdrc={src}
                     alt={ category.name } width="300" height="300"/>
             </Link>
             
-            <Link to={ `/${category.slug}` }> {/* ${config.REACT_ASSET} */}
+            <Link to={ href }> 
                 <h5 className="categories__item-link-text">{ category.name }</h5>
             </Link>
         </div>

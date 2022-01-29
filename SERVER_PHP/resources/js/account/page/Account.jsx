@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import Validator from "hero-validate"
-import { connect } from 'react-redux'
 import OtherLogin from './OtherLogin'
 import V from "../validator/auth.account"
 
@@ -110,11 +109,4 @@ function Account({ CONFIG }){
     )
 }
 
-
-
-let mapStateToProps = (state) => {
-    return {
-        CONFIG    : state.config,
-    }
-}
-export default connect(mapStateToProps)(Account)
+export default Account

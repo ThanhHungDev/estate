@@ -1,5 +1,4 @@
 import React, { useRef } from 'react'
-import { connect } from 'react-redux'
 import OtherLogin from './OtherLogin'
 
 
@@ -51,11 +50,4 @@ function Register({ CONFIG }){
     )
 }
 
-
-
-let mapStateToProps = (state) => {
-    return {
-        CONFIG    : state.config,
-    }
-}
-export default connect(mapStateToProps)(Register)
+export default Register
