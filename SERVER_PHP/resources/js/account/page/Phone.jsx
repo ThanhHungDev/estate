@@ -40,16 +40,20 @@ function Phone({ CONFIG }){
     }, [ values, touched, alert, progress ])
 
     const onSubmit = event => {
+        event.preventDefault()
         const errors = Validator.validate( values, V.rules)
         if( errors.hasError ){
             Object.keys(values).map((key, index) => { touched[key] = true })
             console.log(touched, "errors.hasError")
             setTouched(touched)
             setValues({ ...values })
+            return false;
         }
+        console.log("có ra ngoài này")
+        
         const token = recaptchaRef.current.getValue()
         setAlert(token ? null : "Tích chọn capcha!")
-        event.preventDefault()
+        
         if( !token ) return false
         setProgress(true)
         userAPI.sendCode(values.phone, token)

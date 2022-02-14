@@ -7,7 +7,7 @@ function Categories( { CATEGORIES, CONFIG } ){
 
     // const {form, history, match} = props
     const { id } = useParams()
-    const categories = CATEGORIES.filter( cate => id ? cate.parent == id : !cate.parent ).sort( (first, second ) => second.id - first.id )
+    const categories = CATEGORIES.filter( cate => id ? cate.parent == id : !cate.parent ).sort( (first, second ) => first.id - second.id )
     
     return (
         <div className="categories">

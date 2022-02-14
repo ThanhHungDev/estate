@@ -38,7 +38,7 @@ mix
 
     .js('resources/js/post.js', 'public/js').react()
     // .js('resources/js/chat.js', 'public/js').react()
-    // .js('resources/js/account.js', 'public/js').react()
+    .js('resources/js/account.js', 'public/js').react()
     // .js('resources/js/comment.js', 'public/js').react()
     // .js('resources/js/validate.login.user.js', 'public/js')
     // .js('resources/js/validate.register.user.js', 'public/js')
@@ -89,3 +89,4 @@ mix
           server: 'https',
         },
     })
+    .sourceMaps()

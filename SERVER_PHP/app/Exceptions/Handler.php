@@ -98,19 +98,19 @@ class Handler extends ExceptionHandler
                 )
                 ->setStatusCode(Response::HTTP_NOT_FOUND);
             }
-            else if( $exception instanceof Throwable ){
-                return response()
-                ->error(
-                    'Lỗi chưa xác định', 
-                    [
-                        'error' => 'not_define', 
-                        'data' => $request->all(),
-                        'message' => $exception->getMessage()
-                    ],
-                    Response::HTTP_INTERNAL_SERVER_ERROR
-                )
-                ->setStatusCode(Response::HTTP_INTERNAL_SERVER_ERROR);
-            }
+            // else if( $exception instanceof Throwable ){
+            //     return response()
+            //     ->error(
+            //         'Lỗi chưa xác định', 
+            //         [
+            //             'error' => 'not_define', 
+            //             'data' => $request->all(),
+            //             'message' => $exception->getMessage()
+            //         ],
+            //         Response::HTTP_INTERNAL_SERVER_ERROR
+            //     )
+            //     ->setStatusCode(Response::HTTP_INTERNAL_SERVER_ERROR);
+            // }
         }
     }
 }

@@ -56,7 +56,7 @@ class ProductController extends Controller
         $productInput['text_content']    = SupportString::cleanText($productInput['content']);
         $productInput['description_seo'] = SupportString::createDescription($productInput['title'], $productInput['text_content']);
 
-        $images = $request->input('images', [ 'root' => '/img/default.jpg']);
+        $images = $request->input('images', [[ 'root' => env('IMAGE_NOTFOUND', '/img/imagenotfound.jpg')]]);
         $firstImages = $images[0];
         $productInput['background'] = $firstImages['root'];
         $productInput['thumbnail']  = $firstImages['root'];
@@ -153,7 +153,7 @@ class ProductController extends Controller
         $productInput['text_content']    = SupportString::cleanText($productInput['content']);
         $productInput['description_seo'] = SupportString::createDescription($productInput['title'], $productInput['text_content']);
 
-        $images = $request->input('images', [ 'root' => '/img/default.jpg']);
+        $images = $request->input('images', [[ 'root' => env('IMAGE_NOTFOUND', '/img/imagenotfound.jpg')]]);
         $firstImages = $images[0];
         $productInput['background'] = $firstImages['root'];
         $productInput['thumbnail']  = $firstImages['root'];

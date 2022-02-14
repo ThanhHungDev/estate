@@ -69,6 +69,8 @@ class Kernel extends HttpKernel
         'ADMIN_LOGGED' =>\App\Http\Middleware\ADMIN_LOGGED::class,
         'HTML_MINIFIER' => \App\Http\Middleware\HTML_MIFIER::class,
         'LOGIN_REDIRECT' => \App\Http\Middleware\LOGIN_REDIRECT::class,
+        'REDIRECTING' => \App\Http\Middleware\REDIRECTING::class,
+        'REGISTER_REDIRECT' => \App\Http\Middleware\REGISTER_REDIRECT::class,
     ];
 
     

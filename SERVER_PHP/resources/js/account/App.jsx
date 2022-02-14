@@ -19,7 +19,9 @@ function App({ CONFIG }){
                     <Route exact path={CONFIG.ACCOUNT_ROUTE.AUTHPHONE} render={ props => <Phone { ...props } CONFIG={CONFIG} /> } />
                     <Route exact path={CONFIG.ACCOUNT_ROUTE.VERIFYPHONE } render={ props => <Code { ...props } CONFIG={CONFIG} /> } /> 
                     <Route exact path={CONFIG.ACCOUNT_ROUTE.AUTHLOCAL } render={ props => <Account { ...props } CONFIG={CONFIG} /> } />
-                    <Route exact path={CONFIG.ACCOUNT_ROUTE.REGISTER } render={ props => <Register { ...props } CONFIG={CONFIG} /> } />
+                    <Route exact path={CONFIG.ACCOUNT_ROUTE.REGISTER } render={ props => <Register { ...props } CONFIG={CONFIG} /> } title="Đăng ký tài khoản"/>
+                    <Route exact path={CONFIG.ACCOUNT_ROUTE.FORGOT } render={ props => <Register { ...props } CONFIG={CONFIG} /> } />
+                    <Route exact path={CONFIG.ACCOUNT_ROUTE.CHANGEPASS } render={ props => <Register { ...props } CONFIG={CONFIG} /> } />
                     <Route path="*" component={ Abort404 } />
                 </Switch>
             </BrowserRouter>

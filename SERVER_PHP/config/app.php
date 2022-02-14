@@ -277,6 +277,7 @@ return [
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
         'SupportString' => App\Helpers\SupportString::class,
+        'SupportImage' => App\Helpers\SupportImage::class,
         'SupportDB' => App\Helpers\SupportDB::class,
         'SupportHtml' => App\Helpers\SupportHtml::class,
         'SupportRouter' => App\Helpers\SupportRouter::class,

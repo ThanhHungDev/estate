@@ -4,12 +4,19 @@ import { BrowserRouter, Switch, Route } from "react-router-dom"
 import useWindowSize from '../chat/hook/resize'
 
 import Categories from './page/Categories'
-import SavePost from "./page/SavePost"
+import EditArticle from './page/EditArticle'
+import NewArticle from "./page/NewArticle"
 
 
 function App( { AUTH, CATEGORIES, CONFIG } ){
 
     console.log(AUTH, "authauthauthauth")
+    // kiểm tra nếu mà post có đăng nhập chưa?
+    if( !AUTH.JWT ){
+        window.location.href = CONFIG.ACCOUNT_ROUTE.BASENAME + CONFIG.ACCOUNT_ROUTE.AUTHPHONE + "?rredirect=1"
+        return null
+    }
+
     const device = useWindowSize()
 
     return (
@@ -20,9 +27,9 @@ function App( { AUTH, CATEGORIES, CONFIG } ){
                     <Route exact path="/" render={ props => <Categories {...props } CONFIG={ CONFIG } CATEGORIES={ CATEGORIES } AUTH={AUTH}/> }/>
                     <Route path="/category/:id" render={ props => <Categories {...props } CONFIG={ CONFIG } CATEGORIES={ CATEGORIES } AUTH={AUTH}/> }/>
 
-                    {/* <Route path="/edit/:id" component={ EditPost } />
-                    <Route path="/apartment/project/:id" component={ ApartmentProjectDetail } /> */}
-                    <Route path="/save/:id" render={ props => <SavePost {...props } CONFIG={ CONFIG } CATEGORIES={ CATEGORIES } AUTH={AUTH} /> }/>
+                    {/* <Route path="/apartment/project/:id" component={ ApartmentProjectDetail } /> */}
+                    <Route path="/edit/:id" render={ props => <EditArticle {...props } CONFIG={ CONFIG } CATEGORIES={ CATEGORIES } AUTH={AUTH} /> }/>
+                    <Route path="/save/:id" render={ props => <NewArticle {...props } CONFIG={ CONFIG } CATEGORIES={ CATEGORIES } AUTH={AUTH} /> }/>
                     
                 </Switch>
             </BrowserRouter>

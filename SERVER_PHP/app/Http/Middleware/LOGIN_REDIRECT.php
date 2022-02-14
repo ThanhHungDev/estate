@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Session;
 
 class LOGIN_REDIRECT
 {
-    const ROUTE_SAVE = [ "LOGIN", "POST_LOGIN" ];
+    const ROUTE_SAVE = [ "USER_DASHBOARD", "LOGIN", 'SEND.SMS', 'GET.SEND.CODE', 'POST.VERIFY.CODE', 'AUTHLOCAL', "POST_LOGIN", 'FORGOT', 'SOCIAL_LINK', 'SOCIAL_CALLBACK' ];
     /**
      * Handle an incoming request.
      *

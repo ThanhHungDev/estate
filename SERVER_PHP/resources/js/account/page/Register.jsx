@@ -9,7 +9,7 @@ function Register({ CONFIG }){
         <form action="/" method="POST"  className="page__login__form form">
 
             <h2 className="form__title">
-                Đăng nhập
+                Đăng ký
                 <span class="d-block text-xs font-medium pt-2">
                     <i class="text-color-secondary-color-dark"> Đã từng tạo tài khoản </i>
                     Xác thực qua email và password

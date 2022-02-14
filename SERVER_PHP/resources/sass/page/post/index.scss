@@ -23,7 +23,8 @@
         margin: 0px;
     }
     .editor__wrapper-hero{
-        min-height: 7em;
+        min-height: 7.5em;
+        max-height: 12em;
     }
 }
 
@@ -199,24 +200,6 @@
         }
     }
 }
-// .verify{
-//     box-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%), 0 1px 3px 0 rgb(0 0 0 / 12%);
-//     transition: box-shadow 280ms cubic-bezier(0.4,0.0,0.2,1);
-//     background-color: #fff;
-//     border-radius: 8px;
-//     overflow: hidden;
-
-//     &__header{
-//         padding: 15px 5px 10px 5px;
-//         text-transform: capitalize;
-//         line-height: 1.3;
-//         font-size: 16px;
-//     }
-//     &__body{
-//         padding: 15px 5px 15px 5px;
-//     }
-// }
-
 
 
 
@@ -448,16 +431,6 @@
         }
     }
 
-    // .footer__fixed-step{
-    //     position: fixed;
-    //     z-index: 1000;
-    //     padding: 10px;
-    //     left: 0;
-    //     right: 0;
-    //     bottom: 0;
-    //     // background-color: $background-profile;
-    //     text-align: center;
-    // }
     &__footer{
         max-width: 900px;
         text-transform: capitalize;
@@ -502,6 +475,25 @@
             vertical-align: bottom;
             border: 1px solid $gray-200;
             border-radius: 4px;
+        }
+    }
+}
+
+.readm{
+    &__content{
+        overflow: hidden;
+        &.less{
+            max-height: 4em;
+        }
+    }
+    &__btn{
+        padding: 0 5px;
+        cursor: pointer;
+        color: $custom-blue;
+        font-size: 12px;
+        background-color: lighten($color: $custom-blue, $amount: 40%);
+        &:hover{
+            color: color-level($custom-blue, -4);
         }
     }
 }
@@ -578,5 +570,39 @@ ul.timeline {
 
     .opacity-low{
         opacity: 0.7;
+    }
+}
+
+
+
+.article__btn--edit{
+    display: inline-block;
+    margin-left: 10px;
+    border-radius: 4px;
+    padding: .075rem .55rem;
+    font-size: 12px;
+    border-width: 1px !important;
+    border: 1px solid $custom-green-dark;
+    background-color: transparent;
+    color: $custom-green-dark;
+    @include btn-interaction($custom-green-dark, $custom-green-dark, $white);
+    &:hover{
+        .icon__fa-svg{
+            fill: #fff;
+        }
+    }
+    &.active {
+        background-color: $custom-green-dark-100;
+        border: 1px solid $custom-green-dark-100;
+        color: #fff;
+        box-shadow: 0 5px 11px 0 rgb(0 0 0 / 18%), 0 4px 15px 0 rgb(0 0 0 / 15%);
+        .icon__fa-svg{
+            fill: #fff;
+        }
+    }
+    .icon__fa-svg{
+        width: 13px;
+        vertical-align: 0.13em;
+        fill: $custom-green-dark;
     }
 }

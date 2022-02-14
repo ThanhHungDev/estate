@@ -29,21 +29,6 @@ class AccountController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function login(Request $request){
-        
-        $redirect        = $request->input('redirect', null );
-        $routeRedirect   = $request->input('nredirect', null );
-
-        /// nếu redirect lấy referer ra sử dụng thì phải check biến này
-        if( !!$request->input('rredirect', null ) ){
-            $redirect = $request->headers->get('referer');
-        }
-        if($redirect){
-            Session::put(Config::get("constant.SESSION__REDIRECT--URL"),$redirect);
-        }
-        if($routeRedirect){
-            Session::put(Config::get("constant.SESSION__REDIRECT--ROUTE"),$routeRedirect);
-        }
-        
 
         if (Auth::check()){
             /// check user role 
@@ -131,7 +116,7 @@ class AccountController extends Controller
         }
     }
 
-    public function postVerifyPhone(VERIFY_CODE_REQUEST $request){
+    public function postVerifyCode(VERIFY_CODE_REQUEST $request){
         $user = User::where('phone', '=', $request->input('phone'))->first();
         if( !$user ){
             return redirect()->back()->with(Config::get('constant.VERIFY_SMS_ERROR'), 'Không tìm thấy người dùng!!! ');
@@ -142,14 +127,7 @@ class AccountController extends Controller
         $user->active = Config::get("constant.ACTIVITY.ACTIVE");
         $user->save();
         if (Auth::loginUsingId( $user->id )) {
-            $url = Session::get(Config::get("constant.SESSION__REDIRECT--URL"), null );
-            $routeName = Session::get(Config::get("constant.SESSION__REDIRECT--ROUTE"), null );
-            if(!!$url){
-                return redirect($url);
-            }
-            if(!!$routeName){
-                return redirect()->route($routeName);
-            }
+            
             return redirect()->route('USER_DASHBOARD');
         }
         return redirect()->back()->with(Config::get('constant.VERIFY_SMS_ERROR'), 'đăng nhập thất bại!!! ');
@@ -173,15 +151,6 @@ class AccountController extends Controller
 
         if (Auth::attempt( $dataLogin, $remember )) {
             
-            $url = Session::get(Config::get("constant.SESSION__REDIRECT--URL"), null );
-            $routeName = Session::get(Config::get("constant.SESSION__REDIRECT--ROUTE"), null );
-            if(!!$url){
-                return redirect($url);
-            }
-            if(!!$routeName){
-                return redirect()->route($routeName);
-            }
-
             return redirect()->route('USER_DASHBOARD');
         }
         return redirect()->back()->with(Config::get('constant.LOGIN_ERROR'), 'đăng nhập thất bại!!! ');

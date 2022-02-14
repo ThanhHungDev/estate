@@ -59,9 +59,10 @@ class SupportHtml{
             'APARTMENT_PROJECTS'       => Route('APARTMENT_PROJECTS'),
             'APARTMENT_PROJECT_DETAIL' => Route('APARTMENT_PROJECT_DETAIL', [ 'id' => null ]),
             'PRODUCT_SHOW'             => trim(Route('product.show', [ 'product' => '__________' ]), "__________"),
-            'APARTMENT_STORE'          => Route('product.store'),
-            'APARTMENT_UPDATE'         => trim(Route('product.update', [ 'product' => '__________' ]), "__________"),
-            'SEND_CODE_SMS'            => Route('SEND.SMS'),
+            'PRODUCT_STORE'            => Route('product.store'),
+            'PRODUCT_UPDATE'           => trim(Route('product.update', [ 'product' => '__________' ]), "__________"),
+            'ARTICLE_STORE'            => Route('article.store'),
+            'ARTICLE_UPDATE'           => trim(Route('article.update', [ 'article' => '__________' ]), "__________"),
         ];
         $configApp['WEB'] = [
             'PATCH_VERIFY_PHONE' => Route('PATCH_VERIFY_PHONE'),
@@ -76,12 +77,16 @@ class SupportHtml{
             'USER_POST'          => Route('USER_POST', ['path' => null ], false ),
             'CHAT'               => Route('CHAT', ['id' => null ], false ),
             'POST_VERIFY_CODE'   => Route('POST.VERIFY.CODE'),
+            'SEND_CODE_SMS'            => Route('SEND.SMS'),
         ];
         $configApp['ACCOUNT_ROUTE'] = [
             'BASENAME'    => '/nguoi-dung',
             'AUTHLOCAL'   => '/xac-thuc-tai-khoan',
             'VERIFYPHONE' => '/xac-minh-code',
             'AUTHPHONE'   => '/xac-thuc-dien-thoai',
+            'REGISTER'    => '/dang-ky',
+            'FORGOT'      => '/quen-mat-khau',
+            'CHANGEPASS'  => '/thay-doi-mat-khau',
         ];
         $configApp['CONSTANT'] = Config::get('constant');
         $configApp['EVENT']    = self::getEventsRealTime();

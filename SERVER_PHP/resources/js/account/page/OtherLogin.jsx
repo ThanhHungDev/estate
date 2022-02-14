@@ -4,18 +4,22 @@ import { useLocation } from 'react-router-dom'
 
 function OtherLogin({ CONFIG }){
     const location = useLocation()
-    const authphone = location.pathname != CONFIG.ACCOUNT_ROUTE.AUTHPHONE 
-                        ? <Link type='button' className="otherlogin__item otherlogin__item--phone" to={ CONFIG.ACCOUNT_ROUTE.AUTHPHONE }>
-                            <i className="fas fa-phone"></i>
-                            <span>Điện thoại</span>
-                        </Link>
-                        : null
-    const authEmail = location.pathname != CONFIG.ACCOUNT_ROUTE.AUTHLOCAL
-                        ?  <Link type='button' className="otherlogin__item otherlogin__item--phone" to={ CONFIG.ACCOUNT_ROUTE.AUTHLOCAL }>
-                            <i className="fas fa-mail-bulk"></i>
-                            <span>Địa chỉ mail</span>
-                        </Link>
-                        : null
+    
+    const renderLoginType = () => {
+        const authphone = location.pathname != CONFIG.ACCOUNT_ROUTE.AUTHPHONE 
+                            ? <Link type='button' className="otherlogin__item otherlogin__item--phone" to={ CONFIG.ACCOUNT_ROUTE.AUTHPHONE }>
+                                <i className="fas fa-phone"></i>
+                                <span>Điện thoại</span>
+                            </Link>
+                            : null
+        const authEmail = location.pathname != CONFIG.ACCOUNT_ROUTE.AUTHLOCAL
+                            ?  <Link type='button' className="otherlogin__item otherlogin__item--phone" to={ CONFIG.ACCOUNT_ROUTE.AUTHLOCAL }>
+                                <i className="fas fa-mail-bulk"></i>
+                                <span>Địa chỉ mail</span>
+                            </Link>
+                            : null
+        return <div className="otherlogin__social">{ authphone } { authEmail }</div>
+    }
     return (
         <div>
             <div className="otherlogin">
@@ -30,13 +34,10 @@ function OtherLogin({ CONFIG }){
                         <span>Google</span>
                     </a>
                 </div>
-                <div className="otherlogin__social">
-                    { authphone }
-                    { authEmail }
-                </div>
+                { renderLoginType() }
             </div>
             <h4 className="description">
-                Chưa có tài khoản? Bạn muốn <a href="{{ Route('REGISTER') }}" className="register-inline">đăng ký </a>
+                Chưa có tài khoản? Bạn muốn <Link className="register-inline" to={ CONFIG.ACCOUNT_ROUTE.REGISTER }>đăng ký</Link>
             </h4>
         </div>
     )

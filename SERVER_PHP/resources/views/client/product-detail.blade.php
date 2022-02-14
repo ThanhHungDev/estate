@@ -8,15 +8,15 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/library/bootstrap.min.css' . Config::get('app.version'))}}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/library/lightgallery.css' . Config::get('app.version')) }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/product.detail.css' . Config::get('app.version')) }}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/library/slick.css' . Config::get('app.version')) }}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/library/slick-theme.css' . Config::get('app.version')) }}" />
+    {{-- <link rel="stylesheet" type="text/css" href="{{ asset('css/library/slick.css' . Config::get('app.version')) }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/library/slick-theme.css' . Config::get('app.version')) }}" /> --}}
     <link rel='stylesheet' id='realestate-open-sans-css'  href='https://fonts.googleapis.com/css?family=Open+Sans%3A300%2C400%2C600%2C700%2C800&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
     <link rel='stylesheet' id='realestate-libre-baskerville-css'  href='https://fonts.googleapis.com/css?family=Libre+Baskerville%3A400italic&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
 @endsection
 
 
 @section('javascripts')
-    <script type="text/javascript" src="{{ asset('js/library/slick.min.js' . Config::get('app.version')) }}"></script>
+    {{-- <script type="text/javascript" src="{{ asset('js/library/slick.min.js' . Config::get('app.version')) }}"></script> --}}
     <script type="text/javascript" src="{{ asset('js/product.detail.js' . Config::get('app.version')) }}"></script>
     <script type="text/javascript" src="{{ asset('js/library/lightgallery.min.js' . Config::get('app.version')) }}"></script>
     <script>
@@ -35,14 +35,14 @@
         // for (var i = 0; i < lightgalleries.length; i++){
         //     lightGallery(lightgalleries[i]);
         // }
-        $(document).ready(function(){
-            $('#slider').slick({
-                infinite: true,
-                slidesToShow: 5,
-                centerMode: true,
-                focusOnSelect: true,
-            });
-        });
+        // $(document).ready(function(){
+        //     $('#slider').slick({
+        //         infinite: true,
+        //         slidesToShow: 5,
+        //         centerMode: true,
+        //         focusOnSelect: true,
+        //     });
+        // });
         
 
     </script>
@@ -71,6 +71,11 @@
                         <div class="product__title">
                             <h2 class="product__title--negotive" itemprop="name">
                                 {{ $product->getTitleLocateCategory(100)  }}
+                                @auth
+                                @if ($product->user_id == Auth::user()->id)
+                                <a class="for-negotive" href="{{ Route('USER_POST', [ 'path' => "edit/$product->id"]) }}">chỉnh sửa</a>
+                                @endif
+                                @endauth
                             </h2>
                             <div title="Giá: {{ $product->getTooltipPrice() }}" class="product__title--price simple-tooltip"> {{ $product->getStringPrice() }}&nbsp; </div>
                             <div class="product__title--address">
@@ -104,7 +109,7 @@
 
 
                         @php $pics = $product->getImages()->get(); @endphp
-                        @if (!$pics->isEmpty())
+                        {{-- @if (!$pics->isEmpty())
                         <div class="product__slider">
                             <div id="slider" class="slider w-100">
                                 
@@ -119,7 +124,7 @@
                                 @endforeach
                             </div>
                         </div>
-                        @endif
+                        @endif --}}
                         
 
 

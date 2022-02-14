@@ -41,29 +41,30 @@ Route::group(['prefix' => '/','middleware' => [ 'LOGIN_REDIRECT', 'HTML_MINIFIER
     Route::get('/term', [ App\Http\Controllers\ClientController::class, 'term' ])->name('TERM');
 
 
-    Route::group(['prefix' => '/nguoi-dung' ], function () {
+    Route::group(['prefix' => '/nguoi-dung', 'middleware' => [ 'REGISTER_REDIRECT' ]  ], function () {
         
         Route::get('/xac-thuc-dien-thoai', [ App\Http\Controllers\AccountController::class, 'login' ])->name('LOGIN'); /// mặc định bước 1 nhập sdt
         Route::post('/sms/code', [ App\Http\Controllers\AccountController::class, 'postSendSms' ])->name('SEND.SMS'); /// trong bước 1 gọi post data lên send sms => bước 2
         Route::get('/xac-minh-code', [ App\Http\Controllers\AccountController::class, 'login' ])->name('GET.SEND.CODE'); /// bước send sms bước 2 thành công thì gọi bước 3
-        Route::post('/verify-code', [ App\Http\Controllers\AccountController::class, 'postVerifyPhone' ])->name('POST.VERIFY.CODE'); /// bước 4
+        Route::post('/verify-code', [ App\Http\Controllers\AccountController::class, 'postVerifyCode' ])->name('POST.VERIFY.CODE'); /// bước 4
 
 
         Route::get('/xac-thuc-tai-khoan', [ App\Http\Controllers\AccountController::class, 'login' ])->name('AUTHLOCAL');
+        
         Route::post('/login', [ App\Http\Controllers\AccountController::class, 'postLogin' ])->name('POST_LOGIN');
 
         Route::get('/quen-mat-khau', [ App\Http\Controllers\AccountController::class, 'forgot' ])->name('FORGOT');
         
 
-        Route::get('/auth/redirect/{provider}', [ App\Http\Controllers\SocialController::class, 'redirect' ] );
-        Route::get('/callback/{provider}', [ App\Http\Controllers\SocialController::class, 'callback' ] );
+        Route::get('/auth/redirect/{provider}', [ App\Http\Controllers\SocialController::class, 'redirect' ])->name('SOCIAL_LINK');
+        Route::get('/callback/{provider}', [ App\Http\Controllers\SocialController::class, 'callback' ])->name('SOCIAL_CALLBACK');
         
-        
+        Route::get('/dang-ky', [ App\Http\Controllers\AccountController::class, 'login' ])->name('REGISTER');
     });
 
     //// USER CONTROLLERS
-    Route::get('/register', [ App\Http\Controllers\UserController::class, 'create' ])->name('REGISTER');
-    Route::post('/register', [ App\Http\Controllers\UserController::class, 'store' ])->name('STORE_REGISTER');
+    // Route::get('/register', [ App\Http\Controllers\UserController::class, 'create' ])->name('REGISTER');
+    // Route::post('/register', [ App\Http\Controllers\UserController::class, 'store' ])->name('STORE_REGISTER');
 
     Route::get('/dang-tin/{path?}', [ App\Http\Controllers\ArticleController::class, 'push' ])
         ->where('path', '[a-zA-Z0-9-/]+')
@@ -83,12 +84,13 @@ Route::group(['prefix' => '/','middleware' => [ 'LOGIN_REDIRECT', 'HTML_MINIFIER
         
 
         Route::get('/logout', [ App\Http\Controllers\UserController::class, 'logout' ])->name('LOGOUT');
-        Route::get('/', [ App\Http\Controllers\UserController::class, 'profile' ])->name('USER_DASHBOARD');
+        Route::get('/', [ App\Http\Controllers\UserController::class, 'profile' ])->name('USER_DASHBOARD')->middleware('REDIRECTING');
         Route::get('/thong-tin-co-ban', [ App\Http\Controllers\UserController::class, 'about' ])->name('USER_ABOUT');
 
         Route::get('/information', [ App\Http\Controllers\UserController::class, 'profile' ])->name('USER_INFORMATION');
         Route::get('/ajax-demo', [ App\Http\Controllers\UserController::class, 'getUserInfo' ])->name('USER_AJAX');
         Route::resource('product', App\Http\Controllers\Api\ProductController::class, ['only' => ['show', 'store', 'update' ]]);
+        Route::resource('article', App\Http\Controllers\Api\ArticleController::class, ['only' => ['show', 'store', 'update' ]]);
         
     });
     

@@ -25,22 +25,7 @@ class LoginController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function login(Request $request){
-
-        $redirect        = $request->input('redirect', null );
-        $routeRedirect   = $request->input('nredirect', null );
-
-        /// nếu redirect lấy referer ra sử dụng thì phải check biến này
-        if( !!$request->input('rredirect', null ) ){
-            $redirect = $request->headers->get('referer');
-        }
-        if($redirect){
-            Session::put(Config::get("constant.SESSION__REDIRECT--URL"),$redirect);
-        }
-        if($routeRedirect){
-            Session::put(Config::get("constant.SESSION__REDIRECT--ROUTE"),$routeRedirect);
-        }
         
-
         if (Auth::check()){
             /// check user role 
             $user = Auth::user();
