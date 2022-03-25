@@ -1,0 +1,32 @@
+// Variables
+@import '../../styles/variable';
+
+.tophead{
+    line-height: 1.7;
+    font-family: Roboto,sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    
+    border-top: 3px solid $green_light;
+    background-color: $green_dark;
+    color: $white;
+    @include clearfix();
+
+    svg{
+        height: 100%;
+        fill: #20c997;
+        &:hover{
+            fill: darken($color: #20c997, $amount: 15);
+        }
+    }
+}
+.social{
+    display: inline-block;
+    padding: 0 20px;
+
+    &__link{
+        display: inline-block;
+        padding: 0 5px;
+        color: #20c997;
+    }
+}
