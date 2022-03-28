@@ -1,32 +1,121 @@
 // Variables
 @import '../../styles/variable';
+@import "../../styles/mixin";
 
 .tophead{
+    display: flex;
     line-height: 1.7;
     font-family: Roboto,sans-serif;
     font-size: 14px;
     font-weight: 400;
-    
     border-top: 3px solid $green_light;
     background-color: $green_dark;
     color: $white;
-    @include clearfix();
 
     svg{
         height: 100%;
-        fill: #20c997;
+        fill: currentColor;
         &:hover{
             fill: darken($color: #20c997, $amount: 15);
+        }
+    }
+
+    .social{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+
+        .link{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-left: 15px;
+            
         }
     }
 }
 .social{
     display: inline-block;
     padding: 0 20px;
+    vertical-align: middle;
 
     &__link{
         display: inline-block;
-        padding: 0 5px;
+        vertical-align: middle;
         color: #20c997;
+
+        &--img{
+            vertical-align: middle;
+        }
+    }
+}
+
+ul.contact{
+    flex-grow: 999;
+    text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 25px;
+    margin: 0;
+
+    li{
+        display: inline-block;
+        padding-right: 15px;
+
+        a{
+            display: flex;
+            align-items: center;
+
+            &.infor{
+                svg {
+                    fill: #bb868b;  
+                }
+                &:hover svg{
+                    fill: #927c7e;
+                }
+            }
+            &.phone{
+                svg{
+                    fill: #bba886;
+                }
+                &:hover svg{
+                    fill: #92907c;
+                }
+            }
+            span{
+                color: $gray-500;
+                padding-left: 5px;
+                display:inline-block;
+            }
+        }
+    }
+}
+
+
+@include Responsive(SM){
+
+    .social{
+        padding-top: 2px;
+        text-align: center;
+        line-height: 1;
+    }
+    ul.contact{
+        display: inline-block;
+        float: none;
+        text-align: center;
+        line-height: 1.1;
+        padding: 2px 5px;
+
+        li{
+            padding-right: 5px;
+        }
+    }
+}
+@include Responsive(XS){
+
+    .social{
+        display: none;
     }
 }

@@ -8,3 +8,6 @@ không còn làm việc với php nữa
 Ant Design
 Copy idea design : https://preview.themeforest.net/item/gute-react-next-minimalist-blog-template/full_screen_preview/31830628?_ga=2.140566578.1669071364.1648231269-2001760512.1648231269
 
+test performance: 
+ab -c 20 -t 10 http://127.0.0.1:3000/about
+chạy đồng thời 20 request test trong 10 giây
