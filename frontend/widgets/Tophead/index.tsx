@@ -13,7 +13,7 @@ const Tophead = () => {
 
     return <div className={style.tophead}>
         <div className={style.social}>
-            <a className={style.link} href={PAGE.SITE_FB} title="follow facebook với chúng tôi">
+            <a className={style.link} href={`${PAGE.SITE_FB}`} title="follow facebook với chúng tôi">
                 <AccessibleIcon width={ 14 } height={ 14 } fill='currentcolor'/>
             </a>
             <a className={style.link} href="{{ env('SITE_YOUTUBE')}}" title="follow youtube với chúng tôi">

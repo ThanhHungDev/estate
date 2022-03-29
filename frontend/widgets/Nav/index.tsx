@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import SvgTimes from '../../components/Awesome/duotone/Times'
 import ActiveLink from '../../components/Link/ActiveLink'
 import Logo from '../Logo'
 import style from "./nav.module.scss"
@@ -9,22 +10,29 @@ import NavSearch from './NavSearch'
 // }
 
 const Nav: React.FC = () => {
+    const [ toggle, setToggle ] = useState<boolean>(false)
+
+    const showNavMobile = (event: any) => {
+        setToggle(!toggle)
+    }
     return <div id="header__sticky" className={style.headerpage}>
         <div className={style.header}>
             <Logo />
             <div id="menu" className={style.menu}>
-                {/* <div className="d-flex justify-content-center">
+                <div className="d-flex justify-content-center">
                     <div className="form-search-grow mobile">
                         <div className="position-relative">
                         </div>
                     </div>
-                    <i id="js_btn_header_toggle__menu" className="burger float-right mx-3">
-                        <span></span>
-                    </i>
-                </div> */}
+                </div>
                 <div className={style.wrapperNavigate}>
                     <NavSearch />
-                    <ul className={style.navigate}>
+                    <ul className={`${style.navigate} ${toggle && style.showMobile}`}>
+                        { 
+                            toggle && <li className={`${style.navigateBtnTimeClose} mobile text-right`}>
+                                <SvgTimes onClick={ showNavMobile } width={32} height={32}/>
+                            </li>
+                        }
                         <ActiveLink activeClassName={style.active} href="/">
                             <li className={`${style.navigateLink}`}>
                                 <a><span className="title">Trang Chủ</span></a>
@@ -61,8 +69,13 @@ const Nav: React.FC = () => {
                             </i>
                         </li>
                     </ul>
+                    <i className={ style.burger } onClick={ showNavMobile }>
+                        <span></span>
+                    </i>
+                    { toggle && <div className={`${style.backdrop}`} onClick={ showNavMobile }></div> }
                 </div>
             </div>
+            
         </div>
     </div>
 }
