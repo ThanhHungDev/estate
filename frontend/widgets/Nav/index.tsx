@@ -11,9 +11,9 @@ import NavSearch from './NavSearch'
 
 const Nav: React.FC = () => {
     const [ toggle, setToggle ] = useState<boolean>(false)
+    const [ sticky, setSticky ] = useState<number>(28)
+    const [ menuHeight, setMenuHeight ] = useState<number>(75)
     const lastScrollRef = useRef<any>(null)
-    const stickyRef = useRef<any>(null)
-    const showRef = useRef<any>(null)
     const menuRef = useRef<any>(null)
 
 
@@ -22,62 +22,79 @@ const Nav: React.FC = () => {
     }
     
 
-    const stickyMenu = async (sticky : any) => {
-        const winScroll = (document.body.scrollTop || document.documentElement.scrollTop)
-        if (typeof sticky === 'undefined' || !Number.isSafeInteger(sticky)) sticky = 0
-        if ( !lastScrollRef.current ) lastScrollRef.current = 0
+    const stickyMenu = (sticky: number) => {
+        console.log(sticky)
+        const winScroll = typeof window != 'undefined' ? document.documentElement.scrollTop  : (document.body.scrollTop || document.documentElement.scrollTop)
+        if (!lastScrollRef.current) lastScrollRef.current = 0
+
+        let isSticky, isShow
+
         const domheight = document.getElementById("just-for-height")
         if (winScroll && winScroll >= sticky) {
-            domheight && domheight.setAttribute("style", `height: ${menuRef.current.clientHeight}px`)
-            stickyRef.current = true
+            isSticky = true
         } else {
-            domheight && domheight.setAttribute("style", `height: 0`)
-            showRef.current = false
-            stickyRef.current = false
+            // 
+            isShow = false
+            isSticky = false
         }
-        
-        if (sticky && stickyRef.current) {
-            let isShow = false
+
+        if (sticky) {
             /// detect case f5 browser
             if( 
-                (winScroll > 0 && lastScrollRef.current == 0)
+                (winScroll > 0 && !lastScrollRef.current)
                 || 
-                lastScrollRef.current && winScroll < lastScrollRef.current
+                lastScrollRef.current && winScroll < lastScrollRef.current && winScroll > sticky
             ){
                 /// is f5
                 isShow = true
             }
-            showRef.current = isShow
         }
         lastScrollRef.current = winScroll
-        setTimeout(()=> {
-            // console.log(winScroll + "----->" + sticky + "----->" + stickyRef.current, showRef.current);
-            const dom = document.getElementById("header__sticky")
-            if(stickyRef.current) dom?.classList.add(style.sticky)
-            else dom?.classList.remove(style.sticky)
+        console.log(window.scrollY + "----->" + sticky + "----->" + isSticky, isShow)
+        const dom = document.getElementById("header__sticky")
+        if(isSticky){
+            domheight && domheight.setAttribute("style", `height: ${menuHeight}px`)
+            dom?.classList.add(style.sticky)
+        } 
+        else {
+            dom?.classList.remove(style.sticky)
+            domheight && domheight.setAttribute("style", `height: 0`)
+        }
 
-            if(showRef.current) dom?.classList.add(style.show)
-            else dom?.classList.remove(style.show)
-        }, 0)
+        if(isShow) dom?.classList.add(style.show)
+        else dom?.classList.remove(style.show)
     }
     
-    const handleNavigation = (event : any) => {
-        // if (!window.IS_ROBOT ) {
-            const sticky = menuRef.current?.offsetTop + 1; // menu.outerHeight()
-            // console.log(sticky)
-            // if ($(window).width() > 767) {
-                stickyMenu(sticky)
-            // }
-        // }
+    // ES6 code
+    const throttle = (func: any, delay: any) => {
+        let lastCall = 0
+        console.log(typeof window != 'undefined' ? document.documentElement.scrollTop  : 0, "window.scrollY")
+        return function () {
+            const now = new Date().getTime()
+
+            if (now - lastCall < delay) return
+
+            lastCall = now
+            return func(sticky)
+        }
     }
+    const tHandler = throttle(stickyMenu, 200)
 
+    // https://stackoverflow.com/questions/68751736/throttle-window-scroll-event-in-react-with-settimeout
     useEffect(() => {
-        window.addEventListener("scroll", (e) => handleNavigation(e))
-
+        const sticky = (document.getElementById("header__sticky")?.offsetTop || 28) + 1
+        const menuHeight = document.getElementById("header__sticky")?.clientHeight || 75
+        setSticky(sticky)
+        setMenuHeight(menuHeight)
+        window.addEventListener("scroll", tHandler)
         return () => { // return a cleanup function to unregister our function since its gonna run multiple times
-            window.removeEventListener("scroll", (e) => handleNavigation(e))
-        };
-    }, []);
+            window.removeEventListener("scroll", tHandler)
+        }
+    }, [])
+    useEffect(() => {
+        console.log("vào 3 lần")
+    })
+    
 
     return <>
         <div ref = { menuRef } id="header__sticky" className={ style.headerpage }>

@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Favicon from '../widgets/Favicon'
 import Nav from '../widgets/Nav'
 import Tophead from '../widgets/Tophead'
+import Slider from "../widgets/Slider"
 
 const Home: NextPage = () => {
 
@@ -17,6 +18,10 @@ const Home: NextPage = () => {
       <Tophead />
       <Nav />
       <div className="main">
+        <div className="homeslider">
+          <Slider />
+        </div>
+        
         Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
         Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
         Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
