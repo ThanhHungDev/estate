@@ -1,0 +1,15 @@
+import * as React from "react";
+
+const SvgUserRobot = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 448 512" {...props}>
+    <path d="M18 256h30V128H18a17.978 17.978 0 00-18 18v92a17.98 17.98 0 0018 18zm412-128h-30v128h30a17.978 17.978 0 0018-18v-92a17.977 17.977 0 00-18-18zM116 320h216a36.036 36.036 0 0036-36V109a44.984 44.984 0 00-45-45h-81V18a18 18 0 10-36 0v46h-81a44.985 44.985 0 00-45 45v175a36.037 36.037 0 0036 36zm188-48h-32v-32h32zm-16-144a32 32 0 11-32 32 31.997 31.997 0 0132-32zm-80 112h32v32h-32zm-32 32h-32v-32h32zm-16-144a32 32 0 11-32 32 31.997 31.997 0 0132-32zm192 224H96a96 96 0 00-96 96v32a32 32 0 0032 32h96v-64a32 32 0 0132-32h128a32 32 0 0132 32v64h96a32 32 0 0032-32v-32a96 96 0 00-96-96zm-176 96a16 16 0 00-16 16v48h32v-48a16 16 0 00-16-16zm96 0a16 16 0 1016 16 16 16 0 00-16-16z" />
+  </svg>
+);
+
+SvgUserRobot.displayName = "SvgUserRobot";
+SvgUserRobot.defaultProps = {
+  width: 24,
+  height: 24,
+  fill: "currentcolor",
+};
+export default SvgUserRobot;

@@ -1,0 +1,73 @@
+
+@import "../../styles/variable";
+@import "../../styles/mixin";
+
+.slider{
+    overflow: hidden;
+    border-radius: 4px;
+    // background-color: $green_dark;
+    border: 1px solid color-level($custom-blue-grey, -7);
+    
+
+    .slick-dots{
+        li{
+            margin: 0;
+            &.slick-active button:before{
+                // background-color: $red;
+                color: $pink;
+            }
+        }
+    }
+    &__item{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        &-img{
+            width: 40%;
+            img{
+                width: auto;
+            }
+        }
+
+        &-content{
+            
+            overflow: hidden;
+            padding: 15px;
+            width: 60%;
+        }
+        @include ScreenMax( XS ){ 
+            flex-direction: column;
+            &-img{
+                width: 60%;
+                padding: 5px;
+            }
+            &-content{
+                width: 100%;
+            }
+        }
+        &-topic{
+            font-size: 14px;
+            font-weight: 700;
+            color: $gray-800;
+
+            time{
+                display: inline;
+                font-weight: 100;
+                font-size: 12px;
+            }
+        }
+        &-title{
+            padding-top: 15px;
+            padding-bottom: 20px;
+            @include ScreenMax( MD ){ font-size: 1.25rem; }
+        }
+        &-des{
+
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 1.4;
+        }
+    }
+    
+}

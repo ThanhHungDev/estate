@@ -1,0 +1,15 @@
+import * as React from "react";
+
+const SvgSensorSmoke = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 640 512" {...props}>
+    <path d="M586.25 293.61a72.1 72.1 0 00-71.58-64.28 71.34 71.34 0 00-22.29 3.55 98.67 98.67 0 00-168.77 54.79A98.67 98.67 0 00354.67 480h186.66a98.59 98.59 0 0044.92-186.39zM541.33 448H354.67a66.67 66.67 0 110-133.33c.46 0 .9.12 1.36.13a66.6 66.6 0 01127.19-37.92 39.83 39.83 0 0168.67 38.85A66.55 66.55 0 01541.33 448zM224 144v128a16 16 0 0032 0V144a16 16 0 00-32 0zM64 448a32 32 0 01-32-32V96a32 32 0 0132-32h320a32 32 0 0132 32v75.11c1.8-.07 3.52-.44 5.33-.44a131.76 131.76 0 0126.67 3V96a64 64 0 00-64-64H64A64 64 0 000 96v320a64 64 0 0064 64h206a130.94 130.94 0 01-27.06-32zm96-304v128a16 16 0 0032 0V144a16 16 0 00-32 0zm-64 0v128a16 16 0 0032 0V144a16 16 0 00-32 0z" />
+  </svg>
+);
+
+SvgSensorSmoke.displayName = "SvgSensorSmoke";
+SvgSensorSmoke.defaultProps = {
+  width: 24,
+  height: 24,
+  fill: "currentcolor",
+};
+export default SvgSensorSmoke;

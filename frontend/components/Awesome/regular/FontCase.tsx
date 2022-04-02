@@ -1,0 +1,15 @@
+import * as React from "react";
+
+const SvgFontCase = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 640 512" {...props}>
+    <path d="M624 160h-16a16 16 0 00-16 16v12.82C570 171.07 542.44 160 512 160a128 128 0 00-128 128v32a128 128 0 00128 128c30.44 0 58-11.07 80-28.82V432a16 16 0 0016 16h16a16 16 0 0016-16V176a16 16 0 00-16-16zm-32 160a80 80 0 01-160 0v-32a80 80 0 01160 0zM212.5 74.35a16 16 0 00-15-10.35h-43.03a16 16 0 00-15 10.35L1 426.35A16 16 0 0016 448h17.14a16 16 0 0015-10.35L88.22 336h175.56l40.11 101.65a16 16 0 0015 10.35H336a16 16 0 0015-21.65zM107.16 288L176 113.58 244.84 288z" />
+  </svg>
+);
+
+SvgFontCase.displayName = "SvgFontCase";
+SvgFontCase.defaultProps = {
+  width: 24,
+  height: 24,
+  fill: "currentcolor",
+};
+export default SvgFontCase;
