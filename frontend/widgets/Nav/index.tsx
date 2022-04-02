@@ -4,6 +4,7 @@ import ActiveLink from '../../components/Link/ActiveLink'
 import Logo from '../Logo'
 import style from "./nav.module.scss"
 import NavSearch from './NavSearch'
+import * as $ from "jquery"
 // import PropTypes from 'prop-types'
 
 // Nav.propTypes = {
@@ -24,7 +25,7 @@ const Nav: React.FC = () => {
 
     const stickyMenu = (sticky: number) => {
         console.log(sticky)
-        const winScroll = typeof window != 'undefined' ? document.documentElement.scrollTop  : (document.body.scrollTop || document.documentElement.scrollTop)
+        const winScroll = $(window).scrollTop()
         if (!lastScrollRef.current) lastScrollRef.current = 0
 
         let isSticky, isShow
@@ -50,7 +51,7 @@ const Nav: React.FC = () => {
             }
         }
         lastScrollRef.current = winScroll
-        console.log(window.scrollY + "----->" + sticky + "----->" + isSticky, isShow)
+        console.log($(window).scrollTop() + "----->" + sticky + "----->" + isSticky, isShow)
         const dom = document.getElementById("header__sticky")
         if(isSticky){
             domheight && domheight.setAttribute("style", `height: ${menuHeight}px`)
