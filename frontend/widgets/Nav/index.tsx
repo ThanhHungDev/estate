@@ -4,7 +4,6 @@ import ActiveLink from '../../components/Link/ActiveLink'
 import Logo from '../Logo'
 import style from "./nav.module.scss"
 import NavSearch from './NavSearch'
-import * as $ from "jquery"
 // import PropTypes from 'prop-types'
 
 // Nav.propTypes = {
@@ -23,9 +22,8 @@ const Nav: React.FC = () => {
     }
     
 
-    const stickyMenu = (sticky: number) => {
-        console.log(sticky)
-        const winScroll = $(window).scrollTop()
+    const stickyMenu = (sticky: number, winScroll: number ) => {
+        console.log("vaof")
         if (!lastScrollRef.current) lastScrollRef.current = 0
 
         let isSticky, isShow
@@ -51,7 +49,7 @@ const Nav: React.FC = () => {
             }
         }
         lastScrollRef.current = winScroll
-        console.log($(window).scrollTop() + "----->" + sticky + "----->" + isSticky, isShow)
+        console.log(winScroll + "----->" + sticky + "----->" + isSticky, isShow)
         const dom = document.getElementById("header__sticky")
         if(isSticky){
             domheight && domheight.setAttribute("style", `height: ${menuHeight}px`)
@@ -66,20 +64,23 @@ const Nav: React.FC = () => {
         else dom?.classList.remove(style.show)
     }
     
-    // ES6 code
-    const throttle = (func: any, delay: any) => {
-        let lastCall = 0
-        console.log(typeof window != 'undefined' ? document.documentElement.scrollTop  : 0, "window.scrollY")
-        return function () {
-            const now = new Date().getTime()
+    // // ES6 code
+    // const throttle = (func: any, delay: any, scrollTop: number) => {
+    //     let lastCall = 0
+    //     return function () {
+    //         const now = new Date().getTime()
 
-            if (now - lastCall < delay) return
+    //         if (now - lastCall < delay) return
 
-            lastCall = now
-            return func(sticky)
-        }
+    //         lastCall = now
+    //         return func(, scrollTop)
+    //     }
+    // }
+    const tHandler = (event : any ) => {
+        const scrollTop = window.scrollY
+        console.log(scrollTop, "scrollTopscrollTopscrollTop")
+        stickyMenu(sticky, scrollTop)
     }
-    const tHandler = throttle(stickyMenu, 200)
 
     // https://stackoverflow.com/questions/68751736/throttle-window-scroll-event-in-react-with-settimeout
     useEffect(() => {
