@@ -1,4 +1,7 @@
 import * as SliderController from "./index"
+import HttpStatus from "../../http.status"
+
+import sliders from "./seed.json"
 
 describe('ALL', () => {
     // it('should throw 400 error if id is empty string', async () => {
@@ -25,7 +28,7 @@ describe('ALL', () => {
     //     expect(mNext).toBeCalledWith(new Error('invalid format.'));
     // });
 
-    it('should retrieve one member by id and send response correctly', async () => {
+    it('getter', async () => {
         
         const mReq = {
             body: jest.fn().mockReturnValue({}),
@@ -43,4 +46,18 @@ describe('ALL', () => {
             })
         )
     })
+
+    it('create', async () => {
+        const mReq = {
+            body: jest.fn().mockReturnValue({
+                slider: sliders[0]
+            }),
+            params: jest.fn().mockReturnValue({  }),
+        }
+        const mRes = { status: jest.fn().mockReturnThis(), json: jest.fn() }
+        const mNext = jest.fn()
+        await SliderController.store(mReq, mRes, mNext)
+        expect(mRes.status).toBeCalledWith(HttpStatus.CREATED)
+    })
+
 })

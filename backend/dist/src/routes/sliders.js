@@ -27,13 +27,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const SliderController = __importStar(require("../controller/slider.controler"));
+const SliderController = __importStar(require("../controller/slider"));
 const router = express_1.default.Router();
 exports.default = (app) => {
     router.get('/', SliderController.index);
-    // router.get('/', function(req, res, next) {
-    //     res.send('respond slider');
-    // })
+    router.post('/', SliderController.store);
     return app.use("/slider", router);
 };
 //# sourceMappingURL=sliders.js.map

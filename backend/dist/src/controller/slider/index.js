@@ -8,15 +8,29 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.index = void 0;
+exports.store = exports.index = void 0;
+const http_status_1 = __importDefault(require("../../http.status"));
 const index = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     /// response 
     const response = {
-        code: 200,
+        code: http_status_1.default.OK,
         message: "danh sách slider"
     };
     res.status(response.code).json(response);
 });
 exports.index = index;
+const store = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const { slider } = req.body;
+    /// response 
+    const response = {
+        code: http_status_1.default.CREATED,
+        message: slider
+    };
+    res.status(response.code).json(response);
+});
+exports.store = store;
 //# sourceMappingURL=index.js.map

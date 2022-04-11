@@ -31,8 +31,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const SliderController = __importStar(require("./index"));
+const http_status_1 = __importDefault(require("../../http.status"));
+const seed_json_1 = __importDefault(require("./seed.json"));
 describe('ALL', () => {
     // it('should throw 400 error if id is empty string', async () => {
     //     const mReq = { params: { id: '' } };
@@ -55,7 +60,7 @@ describe('ALL', () => {
     //     await SliderController.index(mReq, mRes, mNext)
     //     expect(mNext).toBeCalledWith(new Error('invalid format.'));
     // });
-    it('should retrieve one member by id and send response correctly', () => __awaiter(void 0, void 0, void 0, function* () {
+    it('getter', () => __awaiter(void 0, void 0, void 0, function* () {
         const mReq = {
             body: jest.fn().mockReturnValue({}),
             params: jest.fn().mockReturnValue({ id: '1' }),
@@ -68,6 +73,18 @@ describe('ALL', () => {
         expect(mRes.json).toHaveBeenCalledWith(expect.objectContaining({
             message: "danh sách slider"
         }));
+    }));
+    it('create', () => __awaiter(void 0, void 0, void 0, function* () {
+        const mReq = {
+            body: jest.fn().mockReturnValue({
+                slider: seed_json_1.default[0]
+            }),
+            params: jest.fn().mockReturnValue({}),
+        };
+        const mRes = { status: jest.fn().mockReturnThis(), json: jest.fn() };
+        const mNext = jest.fn();
+        yield SliderController.store(mReq, mRes, mNext);
+        expect(mRes.status).toBeCalledWith(http_status_1.default.CREATED);
     }));
 });
 //# sourceMappingURL=slider.test.js.map
