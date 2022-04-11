@@ -1,0 +1,35 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node dist/src/index.js",
+    "server": "nodemon /dist/src/index.js",
+    "start-ts": "ts-node src/index.ts",
+    "server-ts": "nodemon --exec ts-node src/index.ts",
+    "watch": "tsc -w",
+    "test": "jest src/*"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.12",
+    "@types/debug": "^4.1.7",
+    "@types/express": "^4.17.13",
+    "@types/jest": "^27.4.1",
+    "@types/morgan": "^1.9.3",
+    "@types/node": "^17.0.21",
+    "jest": "^27.5.1",
+    "nodemon": "^2.0.15",
+    "ts-jest": "^27.1.4",
+    "ts-node": "^10.6.0",
+    "typescript": "^4.6.3"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "debug": "^4.3.4",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "helmet": "^5.0.2",
+    "mongoose": "^5.13.2",
+    "morgan": "^1.10.0"
+  }
+}
