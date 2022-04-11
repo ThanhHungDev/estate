@@ -48,16 +48,19 @@ describe('ALL', () => {
     })
 
     it('create', async () => {
+        console.log({
+            "slider": sliders[0]
+        })
         const mReq = {
             body: jest.fn().mockReturnValue({
-                slider: sliders[0]
+                "slider": sliders[0]
             }),
             params: jest.fn().mockReturnValue({  }),
         }
         const mRes = { status: jest.fn().mockReturnThis(), json: jest.fn() }
         const mNext = jest.fn()
         await SliderController.store(mReq, mRes, mNext)
-        expect(mRes.status).toBeCalledWith(HttpStatus.CREATED)
+        expect(mRes.status).toBeCalledWith(HttpStatus.OK)
     })
 
 })

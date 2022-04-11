@@ -91,4 +91,5 @@ MessageSchema.methods.toResources = function() {
     }
 };
 
-export default mongoose.model("message", MessageSchema)
+const MessageModel = mongoose.model("message", MessageSchema)
+export default MessageModel

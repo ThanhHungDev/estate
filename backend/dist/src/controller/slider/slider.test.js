@@ -75,16 +75,19 @@ describe('ALL', () => {
         }));
     }));
     it('create', () => __awaiter(void 0, void 0, void 0, function* () {
+        console.log({
+            "slider": seed_json_1.default[0]
+        });
         const mReq = {
             body: jest.fn().mockReturnValue({
-                slider: seed_json_1.default[0]
+                "slider": seed_json_1.default[0]
             }),
             params: jest.fn().mockReturnValue({}),
         };
         const mRes = { status: jest.fn().mockReturnThis(), json: jest.fn() };
         const mNext = jest.fn();
         yield SliderController.store(mReq, mRes, mNext);
-        expect(mRes.status).toBeCalledWith(http_status_1.default.CREATED);
+        expect(mRes.status).toBeCalledWith(http_status_1.default.OK);
     }));
 });
 //# sourceMappingURL=slider.test.js.map

@@ -1,9 +1,26 @@
 'use strict'
 
-import mongoose from "mongoose"
-const Schema = mongoose.Schema
+import { Model, Schema, model } from 'mongoose'
 
-const SliderSchema = new Schema(
+
+export interface ISlider extends Document {
+    _id: string;
+    src: string;
+    alt: string;
+    topic: string;
+    title: string;
+    excerpt: string;
+    content: string;
+    createdAt: string;
+    updatedAt: string;
+}
+
+  
+export interface SliderModel extends Model<ISlider> {
+    toResources() : any
+}
+
+const SliderSchema = new Schema<ISlider, SliderModel>(
     {
         src: {
             type: String,
@@ -35,6 +52,9 @@ const SliderSchema = new Schema(
         timestamps: true
     }
 )
+SliderSchema.static('myStaticMethod', function myStaticMethod() {
+    return 26061995
+});
 
 SliderSchema.methods.toResources = function() {
     
@@ -51,4 +71,4 @@ SliderSchema.methods.toResources = function() {
     }
 };
 
-export default mongoose.model("slider", SliderSchema)
+export default model<ISlider, SliderModel>("slider", SliderSchema)
