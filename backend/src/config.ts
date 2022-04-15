@@ -21,6 +21,7 @@ export const database = {
         logging      : false
     },
     mongodb : process.env.DB_MONGO,
+    mongotest : process.env.DB_MONGO_TEST,
 }
 
 export const TimeExpireAccessToken = 20 * 60 * 60,

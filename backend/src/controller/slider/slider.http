@@ -1,0 +1,12 @@
+POST http://localhost:4000/slider HTTP/1.1
+content-type: application/json
+
+{
+    "id": 3,
+    "src": "/img/slider/slider3.webp",
+    "alt": "Giá cả hợp lý",
+    "topic": "Giá cả hợp lý",
+    "title": "Giúp khách hàng có cái nhìn tổng quan và thẩm định được giá trị bất động sản",
+    "excerpt": "Với một quy trình tư vấn chuyên nghiệp, chúng tôi Bất Động Sản nhà đất bảo lộc sẽ giúp khách hàng thẩm định và định giá được bất đông sản đáp ứng nhu cầu nhà ở của khách hàng nhanh nhất.",
+    "content": null
+}

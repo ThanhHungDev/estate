@@ -1,6 +1,5 @@
 import mongoose from "mongoose"
-import dotenv from "dotenv"
-dotenv.config()
+import * as Config from "./config"
 
 mongoose.set('debug', true)
 mongoose.set('useFindAndModify', true)
@@ -8,7 +7,7 @@ mongoose.set('useFindAndModify', true)
 // CONNECTION EVENTS
 // When successfully connected
 mongoose.connection.on('connected', () => {
-    console.log('Mongoose default connected ' + process.env.DB_MONGO)
+    console.log('Mongoose default connected ' + Config.database.mongodb)
 });
 
 // If the connection throws an error
@@ -33,9 +32,9 @@ mongoose.connection.on('open', () => {
  */
 export default {
     myConnection : () => {
-        console.log(`Mongoose connecting ${process.env.DB_MONGO}`)
+        console.log(`Mongoose connecting ${Config.database.mongodb}`)
         /// connect mongodb
-        mongoose.connect(process.env.DB_MONGO || '', 
+        mongoose.connect(Config.database.mongodb || '', 
             {
                 useNewUrlParser: true, 
                 useUnifiedTopology: true,

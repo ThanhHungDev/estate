@@ -13,35 +13,30 @@ export const index = async (req: any, res: any, next: any ) => {
 }
 export const store = async ( req: any, res : any, next: any ) => {
     const response : any = { code: undefined }
-    const { slider } = req.body
-    console.log(req.body)
+    const { src, alt, topic, title, excerpt, content } = req.body
     /// giả sử khúc này  tới đây bạn đã sử dụng middleware ở ngoài để validate dữ liệu đầu vào
     try {
-        const { src, alt, topic, title, excerpt, content } = slider
         /// check email tồn tại
-        const isExist = await Slider.findOne({ src })
-        if( isExist ){
-            response.code = HttpStatus.CONFLICT /// 409 Conflict
-            throw new Error("src đã tồn tại!!")
-        }
+        // const isExist = await Slider.findOne({ src })
+        // if( isExist ){
+        //     response.code = HttpStatus.CONFLICT /// 409 Conflict
+        //     throw new Error("src đã tồn tại!!")
+        // }
         /// lưu vào db mongo
         const result = await new Slider({ src, alt, topic, title, excerpt, content }).save()
         /// khúc này nếu bạn kỹ tính hãy tạo 1 phương thức chung để format dữ liệu 
         /// còn mình làm nhanh thì trả ra dữ liệu luôn
-        console.log(result.toJSON())
         response.code             = HttpStatus.CREATED
         response.data             = result.toJSON()
         response.message          = "tạo slider thành công"
         response.internal_message = "tạo slider thành công"
-        return res.status(response.code).json(response)
+        res.status(response.code).json(response)
     } catch (error: any) {
-        
         let err                       = { error: 'error', message: error.message }
             response.code             = response.code || HttpStatus.INTERNAL_SERVER_ERROR
             response.message          = error.message
             response.internal_message = error.message
             response.errors           = [ err ]
-        console.log(response)
         return res.status(response.code).json(response)
     }
 }

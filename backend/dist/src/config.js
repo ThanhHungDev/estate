@@ -43,6 +43,7 @@ exports.database = {
         logging: false
     },
     mongodb: process.env.DB_MONGO,
+    mongotest: process.env.DB_MONGO_TEST,
 };
 exports.TimeExpireAccessToken = 20 * 60 * 60, exports.salt = 5, exports.IS_ENVIROMENT_PRODUCT = true, exports.CORS_API = process.env.APP_ENV == 'local' ? '*' : '*', exports.CORS_IO = process.env.APP_ENV == 'local' ? '*:*' : '*:*'; /// : process.env.ASSET_PHP_URL + ":*",
 //# sourceMappingURL=config.js.map

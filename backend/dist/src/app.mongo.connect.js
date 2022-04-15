@@ -1,17 +1,39 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
-const dotenv_1 = __importDefault(require("dotenv"));
-dotenv_1.default.config();
+const Config = __importStar(require("./config"));
 mongoose_1.default.set('debug', true);
 mongoose_1.default.set('useFindAndModify', true);
 // CONNECTION EVENTS
 // When successfully connected
 mongoose_1.default.connection.on('connected', () => {
-    console.log('Mongoose default connected ' + process.env.DB_MONGO);
+    console.log('Mongoose default connected ' + Config.database.mongodb);
 });
 // If the connection throws an error
 mongoose_1.default.connection.on('error', (err) => {
@@ -31,9 +53,9 @@ mongoose_1.default.connection.on('open', () => {
  */
 exports.default = {
     myConnection: () => {
-        console.log(`Mongoose connecting ${process.env.DB_MONGO}`);
+        console.log(`Mongoose connecting ${Config.database.mongodb}`);
         /// connect mongodb
-        mongoose_1.default.connect(process.env.DB_MONGO || '', {
+        mongoose_1.default.connect(Config.database.mongodb || '', {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useCreateIndex: true,
