@@ -59,8 +59,8 @@ app.use(function (err: any, req: any, res: any, next: any) {
 server.listen(PORT, () => {
 
     console.log(`server run: http://localhost:${PORT}`)
-    dbConnect.myConnection()
-});
+    dbConnect.myConnection(app)
+})
 
 server.on('error', onError);
 server.on('listening', onListening);

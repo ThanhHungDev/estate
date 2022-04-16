@@ -72,7 +72,7 @@ app_1.default.use(function (err, req, res, next) {
 // server.listen(port); /// comment lại 
 server.listen(PORT, () => {
     console.log(`server run: http://localhost:${PORT}`);
-    app_mongo_connect_1.default.myConnection();
+    app_mongo_connect_1.default.myConnection(app_1.default);
 });
 server.on('error', onError);
 server.on('listening', onListening);

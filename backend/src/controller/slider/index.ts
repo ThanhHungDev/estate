@@ -1,42 +1,51 @@
+import { Request, Response, NextFunction } from 'express'
 import HttpStatus from "../../http.status"
 import Slider from "../../models/slider.model"
+import { ApiResponse } from "../../types/response"
 
+export default class SliderController{
 
-export const index = async (req: any, res: any, next: any ) => {
-
-    /// response 
-    const response = {
-        code   : HttpStatus.OK,
-        message: "danh sách slider"
-    }
-    res.status(response.code).json(response)
-}
-export const store = async ( req: any, res : any, next: any ) => {
-    const response : any = { code: undefined }
-    const { src, alt, topic, title, excerpt, content } = req.body
-    /// giả sử khúc này  tới đây bạn đã sử dụng middleware ở ngoài để validate dữ liệu đầu vào
-    try {
-        /// check email tồn tại
-        // const isExist = await Slider.findOne({ src })
-        // if( isExist ){
-        //     response.code = HttpStatus.CONFLICT /// 409 Conflict
-        //     throw new Error("src đã tồn tại!!")
-        // }
-        /// lưu vào db mongo
-        const result = await new Slider({ src, alt, topic, title, excerpt, content }).save()
-        /// khúc này nếu bạn kỹ tính hãy tạo 1 phương thức chung để format dữ liệu 
-        /// còn mình làm nhanh thì trả ra dữ liệu luôn
-        response.code             = HttpStatus.CREATED
-        response.data             = result.toJSON()
-        response.message          = "tạo slider thành công"
-        response.internal_message = "tạo slider thành công"
+    public index = async (req: Request, res: Response): Promise<any> => {
+        const response : ApiResponse = {
+            code   : HttpStatus.OK,
+            message: "Danh sách slider",
+        }
         res.status(response.code).json(response)
-    } catch (error: any) {
-        let err                       = { error: 'error', message: error.message }
+    }
+
+
+    public store = async ( req : Request, res: Response, next: NextFunction ) => {
+        const response: ApiResponse = {
+            code   : HttpStatus.OK,
+            message: "Create slider",
+        }
+        
+        try {
+            const { src, alt, topic, title, excerpt, content } = req.body
+            /// check email tồn tại
+            // const isExist = await Slider.findOne({ src })
+            // if( isExist ){
+            //     response.code = HttpStatus.CONFLICT /// 409 Conflict
+            //     throw new Error("src đã tồn tại!!")
+            // }
+            /// lưu vào db mongo
+            const result = await new Slider({ src, alt, topic, title, excerpt, content }).save()
+            /// khúc này nếu bạn kỹ tính hãy tạo 1 phương thức chung để format dữ liệu 
+            /// còn mình làm nhanh thì trả ra dữ liệu luôn
+            response.code             = HttpStatus.CREATED
+            response.data             = result.toJSON()
+            response.message          = "Tạo slider thành công"
+            response.internal_message = "Tạo slider thành công"
+            res.status(response.code).json(response)
+        } catch (error) {
+            const err                       = error instanceof Error ? error : new Error(typeof error === 'string' ? error : 'Server Error!')
+
             response.code             = response.code || HttpStatus.INTERNAL_SERVER_ERROR
-            response.message          = error.message
-            response.internal_message = error.message
+            response.message          = err.message
+            response.internal_message = err.message
             response.errors           = [ err ]
-        return res.status(response.code).json(response)
+
+            return res.status(response.code).json(response)
+        }
     }
 }

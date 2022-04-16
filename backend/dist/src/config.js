@@ -23,17 +23,11 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CORS_IO = exports.CORS_API = exports.IS_ENVIROMENT_PRODUCT = exports.salt = exports.TimeExpireAccessToken = exports.database = exports.SERVER = exports.local_port = exports.local_ip = exports.local = void 0;
+exports.CORS_IO = exports.CORS_API = exports.database = void 0;
 const dotenv = __importStar(require("dotenv"));
 dotenv.config();
-exports.local = process.env.ASSET_REALTIME, exports.local_ip = process.env.ASSET_REALTIME_IP, exports.local_port = process.env.ASSET_REALTIME_PORT;
-exports.SERVER = {
-    PORT: exports.local_port,
-    DOMAIN: exports.local,
-    IP: exports.local_ip
-};
-exports.database = {
-    postgre: {
+const postgre = {
+    development: {
         type: process.env.DB_TYPE,
         username: process.env.DB_USER,
         password: process.env.DB_PASS,
@@ -42,8 +36,30 @@ exports.database = {
         dialect: 'postgres',
         logging: false
     },
-    mongodb: process.env.DB_MONGO,
-    mongotest: process.env.DB_MONGO_TEST,
+    test: {
+        type: process.env.DB_TYPE,
+        username: process.env.DB_USER,
+        password: process.env.DB_PASS,
+        database_name: process.env.DB_NAME,
+        host: process.env.DB_HOST,
+        dialect: 'postgres',
+        logging: false
+    }
 };
-exports.TimeExpireAccessToken = 20 * 60 * 60, exports.salt = 5, exports.IS_ENVIROMENT_PRODUCT = true, exports.CORS_API = process.env.APP_ENV == 'local' ? '*' : '*', exports.CORS_IO = process.env.APP_ENV == 'local' ? '*:*' : '*:*'; /// : process.env.ASSET_PHP_URL + ":*",
+const mongoURI = {
+    development: process.env.DB_MONGO || '',
+    test: process.env.DB_MONGO_TEST || '',
+};
+exports.database = {
+    postgre,
+    mongoURI,
+};
+exports.CORS_API = {
+    development: '*',
+    test: '*',
+};
+exports.CORS_IO = {
+    development: '*:*',
+    test: '*:*',
+};
 //# sourceMappingURL=config.js.map

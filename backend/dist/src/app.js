@@ -35,15 +35,14 @@ const cors_1 = __importDefault(require("cors"));
 const helmet_1 = __importDefault(require("helmet"));
 const morgan_1 = __importDefault(require("morgan"));
 const path_1 = __importDefault(require("path"));
-const users_1 = __importDefault(require("./routes/users"));
-const sliders_1 = __importDefault(require("./routes/sliders"));
+const routes_1 = __importDefault(require("./routes"));
 const Config = __importStar(require("./config"));
 // import HttpStatusCode from "./http.status"
 dotenv.config();
+const NODE_ENV = process.env.NODE_ENV || 'development';
 /**
  * App Variables
  */
-const PORT = parseInt(process.env.ASSET_REALTIME_PORT || '3000', 10);
 const app = (0, express_1.default)();
 /**
  *  App Configuration
@@ -55,7 +54,7 @@ app.use(express_1.default.urlencoded({ extended: true }));
 app.use(express_1.default.json());
 app.use(express_1.default.static(path_1.default.join(__dirname, 'public')));
 app.use((0, cors_1.default)({
-    origin: Config.CORS_API
+    origin: Config.CORS_API[NODE_ENV]
 }));
 /// tạo ssl
 app.get('/.well-known/acme-challenge/5asQWrZXRfdUmDnWuT0mwc93nlw8HavxmT77Pz5aHoo', function (req, res) {
@@ -102,7 +101,6 @@ app.get('/.well-known/acme-challenge/5asQWrZXRfdUmDnWuT0mwc93nlw8HavxmT77Pz5aHoo
 //     // console.log("Ung dung Node.js dang hoat dong tai dia chi: http://%s:%s", host, port)
 // })
 /// set root users
-(0, users_1.default)(app);
-(0, sliders_1.default)(app);
+new routes_1.default(app);
 exports.default = app;
 //# sourceMappingURL=app.js.map

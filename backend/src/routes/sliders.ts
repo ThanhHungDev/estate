@@ -1,11 +1,18 @@
-import express from "express"
-import * as SliderController from "../controller/slider"
-const router = express.Router()
+import { Router } from "express"
+import SliderController from "../controller/slider"
 
-export default ( app: any ) => {
-
-    router.get('/', SliderController.index)
-    router.post('/', SliderController.store)
-
-    return app.use( "/slider", router )
+class SliderRoutes {
+    router = Router()
+    sliderController = new SliderController()
+  
+    constructor() {
+        this.intializeRoutes()
+    }
+    intializeRoutes() {
+        // this.router.route('/').get(this.sliderController.index)
+        // this.router.route('/').post(this.sliderController.store)
+        this.router.get('/', this.sliderController.index)
+        this.router.get('/', this.sliderController.store)
+    }
 }
+export default new SliderRoutes().router

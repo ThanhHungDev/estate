@@ -28,12 +28,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const Config = __importStar(require("./config"));
+const dotenv = __importStar(require("dotenv"));
+dotenv.config();
 mongoose_1.default.set('debug', true);
 mongoose_1.default.set('useFindAndModify', true);
 // CONNECTION EVENTS
 // When successfully connected
 mongoose_1.default.connection.on('connected', () => {
-    console.log('Mongoose default connected ' + Config.database.mongodb);
+    const env = process.env.NODE_ENV || 'development';
+    console.log('Mongoose default connected ' + Config.database.mongoURI[env] || '');
 });
 // If the connection throws an error
 mongoose_1.default.connection.on('error', (err) => {
@@ -52,10 +55,12 @@ mongoose_1.default.connection.on('open', () => {
  * hàm `myConnection` để file thực thi app.js hoặc bin/www thực thi connection
  */
 exports.default = {
-    myConnection: () => {
-        console.log(`Mongoose connecting ${Config.database.mongodb}`);
+    myConnection: (appExpress) => {
+        const env = process.env.NODE_ENV || 'development';
+        console.log(Config.database.mongoURI);
+        console.log(`Mongoose connecting ${Config.database.mongoURI[env] || ''}`);
         /// connect mongodb
-        mongoose_1.default.connect(Config.database.mongodb || '', {
+        mongoose_1.default.connect(Config.database.mongoURI[env] || '', {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useCreateIndex: true,

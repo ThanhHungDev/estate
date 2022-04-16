@@ -7,17 +7,15 @@ import cors from "cors"
 import helmet from "helmet"
 import morgan from "morgan"
 import path from "path"
-import UserRouter from "./routes/users"
-import SliderRouter from "./routes/sliders"
+import Router from "./routes"
 import * as Config from "./config"
+import { EnvObjectOption } from "./types/config"
 // import HttpStatusCode from "./http.status"
 dotenv.config()
-
+const NODE_ENV : string = process.env.NODE_ENV || 'development'
 /**
  * App Variables
  */
-const PORT: number = parseInt((process.env.ASSET_REALTIME_PORT as string) || '3000', 10)
-
 const app = express()
 /**
  *  App Configuration
@@ -31,7 +29,7 @@ app.use(express.json())
 
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(cors({
-    origin: Config.CORS_API
+    origin: Config.CORS_API[ NODE_ENV as keyof EnvObjectOption ]
 }))
 
 /// tạo ssl
@@ -89,7 +87,6 @@ app.get('/.well-known/acme-challenge/5asQWrZXRfdUmDnWuT0mwc93nlw8HavxmT77Pz5aHoo
 // })
 
 /// set root users
-UserRouter(app)
-SliderRouter(app)
+new Router(app)
 
 export default app
