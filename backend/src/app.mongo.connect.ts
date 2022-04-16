@@ -38,7 +38,7 @@ mongoose.connection.on('open', () => {
 export default {
     myConnection : (appExpress: Express) => {
         const env : string = process.env.NODE_ENV || 'development'
-        console.log(Config.database.mongoURI)
+        // console.log(Config.database.mongoURI)
         console.log(`Mongoose connecting ${Config.database.mongoURI[env as keyof EnvObjectOption] || ''}`)
         /// connect mongodb
         mongoose.connect(Config.database.mongoURI[env as keyof EnvObjectOption] || '', 

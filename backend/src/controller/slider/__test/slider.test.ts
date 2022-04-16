@@ -1,7 +1,7 @@
-import * as SliderController from "./index"
-import HttpStatus from "../../http.status"
+import SliderController from "../index"
+import HttpStatus from "../../../http.status"
 
-import sliders from "./seed.json"
+import sliders from "../seed.json"
 
 describe('ALL', () => {
     // it('should throw 400 error if id is empty string', async () => {
@@ -36,7 +36,7 @@ describe('ALL', () => {
         }
         const mRes = { status: jest.fn().mockReturnThis(), json: jest.fn() }
         const mNext = jest.fn()
-        await SliderController.index(mReq, mRes, mNext)
+        await (new SliderController()).index(mReq, mRes, mNext)
 
         expect(mRes.status).toBeCalledWith(200)
         expect(mRes.json).toBeCalledWith({ code: 200, message: "danh sách slider" })

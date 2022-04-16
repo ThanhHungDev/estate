@@ -12,6 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const express_validator_1 = require("express-validator");
 const http_status_1 = __importDefault(require("../../http.status"));
 const slider_model_1 = __importDefault(require("../../models/slider.model"));
 class SliderController {
@@ -28,6 +29,11 @@ class SliderController {
                 code: http_status_1.default.OK,
                 message: "Create slider",
             };
+            const errors = (0, express_validator_1.validationResult)(req);
+            if (!errors.isEmpty()) {
+                res.status(http_status_1.default.UNPROCESSABLE_ENTITY).json({ errors: errors.array() });
+                return;
+            }
             try {
                 const { src, alt, topic, title, excerpt, content } = req.body;
                 /// check email tồn tại

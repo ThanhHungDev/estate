@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express'
+import { validationResult } from "express-validator"
 import HttpStatus from "../../http.status"
 import Slider from "../../models/slider.model"
 import { ApiResponse } from "../../types/response"
@@ -18,6 +19,12 @@ export default class SliderController{
         const response: ApiResponse = {
             code   : HttpStatus.OK,
             message: "Create slider",
+        }
+        const errors = validationResult(req)
+
+        if (!errors.isEmpty()) {
+            res.status(HttpStatus.UNPROCESSABLE_ENTITY).json({ errors: errors.array() })
+            return
         }
         
         try {

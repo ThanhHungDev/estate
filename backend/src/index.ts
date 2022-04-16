@@ -30,7 +30,7 @@ app.set('port', PORT)
 /**
  * Create HTTP server.
  */
-console.log(Config.CORS_IO)
+// console.log(Config.CORS_IO)
 const server = http.createServer(app)
 // eventIO.attach(server, {
 // origins: CONFIG.CORS_IO

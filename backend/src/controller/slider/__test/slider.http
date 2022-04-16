@@ -1,6 +1,14 @@
-POST http://localhost:4000/slider HTTP/1.1
+POST http://localhost:4000/api/slider HTTP/1.1
 content-type: application/json
 
+{
+
+}
+
+
+
+
+#######
 {
     "id": 3,
     "src": "/img/slider/slider3.webp",

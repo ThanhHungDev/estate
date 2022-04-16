@@ -57,7 +57,7 @@ mongoose_1.default.connection.on('open', () => {
 exports.default = {
     myConnection: (appExpress) => {
         const env = process.env.NODE_ENV || 'development';
-        console.log(Config.database.mongoURI);
+        // console.log(Config.database.mongoURI)
         console.log(`Mongoose connecting ${Config.database.mongoURI[env] || ''}`);
         /// connect mongodb
         mongoose_1.default.connect(Config.database.mongoURI[env] || '', {
