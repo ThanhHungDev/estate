@@ -55,7 +55,7 @@ mongoose_1.default.connection.on('open', () => {
  * hàm `myConnection` để file thực thi app.js hoặc bin/www thực thi connection
  */
 exports.default = {
-    myConnection: (appExpress) => {
+    myConnection: () => {
         const env = process.env.NODE_ENV || 'development';
         // console.log(Config.database.mongoURI)
         console.log(`Mongoose connecting ${Config.database.mongoURI[env] || ''}`);

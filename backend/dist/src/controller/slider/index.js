@@ -17,13 +17,6 @@ const http_status_1 = __importDefault(require("../../http.status"));
 const slider_model_1 = __importDefault(require("../../models/slider.model"));
 class SliderController {
     constructor() {
-        this.index = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            const response = {
-                code: http_status_1.default.OK,
-                message: "Danh sách slider",
-            };
-            res.status(response.code).json(response);
-        });
         this.store = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             const response = {
                 code: http_status_1.default.OK,
@@ -37,11 +30,11 @@ class SliderController {
             try {
                 const { src, alt, topic, title, excerpt, content } = req.body;
                 /// check email tồn tại
-                // const isExist = await Slider.findOne({ src })
-                // if( isExist ){
-                //     response.code = HttpStatus.CONFLICT /// 409 Conflict
-                //     throw new Error("src đã tồn tại!!")
-                // }
+                const isExist = yield slider_model_1.default.findOne({ src });
+                if (isExist) {
+                    response.code = http_status_1.default.CONFLICT; /// 409 Conflict
+                    throw new Error("src đã tồn tại!!");
+                }
                 /// lưu vào db mongo
                 const result = yield new slider_model_1.default({ src, alt, topic, title, excerpt, content }).save();
                 /// khúc này nếu bạn kỹ tính hãy tạo 1 phương thức chung để format dữ liệu 
@@ -60,6 +53,17 @@ class SliderController {
                 response.errors = [err];
                 return res.status(response.code).json(response);
             }
+        });
+    }
+    index(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const sliders = yield slider_model_1.default.find({}).lean();
+            const response = {
+                code: http_status_1.default.OK,
+                message: "Danh sách slider",
+                data: sliders
+            };
+            res.status(response.code).json(response);
         });
     }
 }

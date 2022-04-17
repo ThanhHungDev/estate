@@ -6,10 +6,12 @@ import { ApiResponse } from "../../types/response"
 
 export default class SliderController{
 
-    public index = async (req: Request, res: Response): Promise<any> => {
+    public async index(req: Request, res: Response) : Promise<any>{
+        const sliders = await Slider.find({}).lean()
         const response : ApiResponse = {
             code   : HttpStatus.OK,
             message: "Danh sách slider",
+            data: sliders
         }
         res.status(response.code).json(response)
     }
@@ -21,7 +23,6 @@ export default class SliderController{
             message: "Create slider",
         }
         const errors = validationResult(req)
-
         if (!errors.isEmpty()) {
             res.status(HttpStatus.UNPROCESSABLE_ENTITY).json({ errors: errors.array() })
             return
@@ -30,11 +31,11 @@ export default class SliderController{
         try {
             const { src, alt, topic, title, excerpt, content } = req.body
             /// check email tồn tại
-            // const isExist = await Slider.findOne({ src })
-            // if( isExist ){
-            //     response.code = HttpStatus.CONFLICT /// 409 Conflict
-            //     throw new Error("src đã tồn tại!!")
-            // }
+            const isExist = await Slider.findOne({ src })
+            if( isExist ){
+                response.code = HttpStatus.CONFLICT /// 409 Conflict
+                throw new Error("src đã tồn tại!!")
+            }
             /// lưu vào db mongo
             const result = await new Slider({ src, alt, topic, title, excerpt, content }).save()
             /// khúc này nếu bạn kỹ tính hãy tạo 1 phương thức chung để format dữ liệu 

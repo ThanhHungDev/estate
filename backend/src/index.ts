@@ -9,7 +9,7 @@ import Debug from "debug"
 import http from "http"
 import * as Config from "./config"
 import dotenv from "dotenv"
-import dbConnect from "./app.mongo.connect"
+import mongoConnect from "./app.mongo.connect"
 // import eventSocketIO from "./app.socket"
 
 dotenv.config()
@@ -59,7 +59,7 @@ app.use(function (err: any, req: any, res: any, next: any) {
 server.listen(PORT, () => {
 
     console.log(`server run: http://localhost:${PORT}`)
-    dbConnect.myConnection(app)
+    mongoConnect.myConnection()
 })
 
 server.on('error', onError);

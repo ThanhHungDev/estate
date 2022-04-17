@@ -1,4 +1,3 @@
-import { Express } from "express"
 import mongoose from "mongoose"
 import * as Config from "./config"
 import * as dotenv from "dotenv"
@@ -36,7 +35,7 @@ mongoose.connection.on('open', () => {
  * hàm `myConnection` để file thực thi app.js hoặc bin/www thực thi connection
  */
 export default {
-    myConnection : (appExpress: Express) => {
+    myConnection : () => {
         const env : string = process.env.NODE_ENV || 'development'
         // console.log(Config.database.mongoURI)
         console.log(`Mongoose connecting ${Config.database.mongoURI[env as keyof EnvObjectOption] || ''}`)
