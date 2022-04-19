@@ -10,7 +10,8 @@
     "watch": "tsc -w",
     "jest-test": "jest src/*",
     "mtest": "mocha --timeout 10000",
-    "test": "mocha -r ts-node/register src/**/__test/**/*.spec.ts --timeout 10000"
+    "test": "mocha -r ts-node/register src/**/__test/**/*.spec.ts --timeout 10000",
+    "tsoa:gen": "tsoa routes && tsoa swagger"
   },
   "devDependencies": {
     "@types/chai": "^4.3.1",
@@ -45,6 +46,7 @@
     "faker": "5.5.3",
     "helmet": "^5.0.2",
     "mongoose": "^5.13.2",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "tsoa": "^3.10.0"
   }
 }

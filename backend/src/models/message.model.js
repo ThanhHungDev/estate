@@ -75,6 +75,56 @@ MessageSchema.statics.messageInChannel = function(channelID, limit = 20 ) {
     ])
 }
 
+
+/**
+ * @swagger
+ * components:
+ *     schemas:
+ *         MessageResources:
+ *             type: object
+ *             properties:
+ *                  _id:
+ *                     type: string
+ *                     description: là id trong mongo. thực tế sẽ là mongoose.Types.ObjectId(id). 
+ *                     example: 5f991cda17e4b67ffd192041
+ *                  read:
+ *                     type: boolean
+ *                     description: nếu false là chưa đọc, còn true là đã đọc
+ *                     example: false
+ *                  attachment: 
+ *                     type: array
+ *                     description: là mảng các phần tử đường dẫn file
+ *                     example: [ ]
+ *                  user: 
+ *                      type: integer
+ *                      description: 
+ *                      example: 10
+ *                  body:
+ *                      type: string
+ *                      description: 
+ *                      example: "chuỗi nội dung tin nhắn"
+ *                  channel: 
+ *                      type: string
+ *                      description: là id trong mongo. thực tế sẽ là mongoose.Types.ObjectId(id). 
+ *                      example: 5f991cda17e4bsfsfd192041
+ *                  style:
+ *                      type: string
+ *                      description: kiểu hiện thị nội dung message chat.
+ *                      example: ""
+ *                  booking: 
+ *                      type: array
+ *                      description: 
+ *                      example: []
+ *                  createdAt: 
+ *                      type: string
+ *                      description: 
+ *                      example: "2021-01-20T08:59:16.468Z"
+ *                  updatedAt: 
+ *                      type: string
+ *                      description: 
+ *                      example: "2021-01-20T08:59:16.468Z"
+ */
+
 MessageSchema.methods.toResources = function() {
     
     return {

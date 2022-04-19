@@ -10,7 +10,7 @@ import path from "path"
 import Router from "./routes"
 import * as Config from "./config"
 import { EnvObjectOption } from "./types/config"
-// import HttpStatusCode from "./http.status"
+
 dotenv.config()
 const NODE_ENV : string = process.env.NODE_ENV || 'development'
 /**

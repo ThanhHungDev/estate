@@ -37,7 +37,6 @@ const morgan_1 = __importDefault(require("morgan"));
 const path_1 = __importDefault(require("path"));
 const routes_1 = __importDefault(require("./routes"));
 const Config = __importStar(require("./config"));
-// import HttpStatusCode from "./http.status"
 dotenv.config();
 const NODE_ENV = process.env.NODE_ENV || 'development';
 /**
