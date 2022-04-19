@@ -10,7 +10,7 @@
     "watch": "tsc -w",
     "jest-test": "jest src/*",
     "mtest": "mocha --timeout 10000",
-    "test": "mocha -r ts-node/register src/**/__test/**/*.spec.ts"
+    "test": "mocha -r ts-node/register src/**/__test/**/*.spec.ts --timeout 10000"
   },
   "devDependencies": {
     "@types/chai": "^4.3.1",
