@@ -3,7 +3,7 @@
 /**
  * Module dependencies.
  */
-
+import "reflect-metadata"
 import app from "./app"
 import Debug from "debug"
 import http from "http"

@@ -1,18 +1,12 @@
 import { Request, Response, NextFunction } from 'express'
-import { Controller, Route, Get, Tags } from 'tsoa'
 
 import { validationResult } from "express-validator"
 import HttpStatus from "../../http.status"
 import Slider from "../../models/slider.model"
 import { ApiResponse } from "../../types/response"
 
+export default class SliderController {
 
-
-@Route('/api/slider')
-@Tags('SliderController')
-export default class SliderController extends Controller {
-
-    @Get()  //specify the request type
     public async index(req: Request, res: Response) : Promise<any>{
         const sliders = await Slider.find({}).lean()
         const response : ApiResponse = {
