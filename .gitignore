@@ -45,3 +45,5 @@ package-lock.json
 .env.*
 CHAT_BAK/*
 db.sql
+
+./backend/dist/*
