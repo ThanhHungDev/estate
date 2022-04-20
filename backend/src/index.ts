@@ -7,7 +7,6 @@
 import app from "./app"
 import Debug from "debug"
 import http from "http"
-import * as Config from "./config"
 import dotenv from "dotenv"
 import mongoConnect from "./app.mongo.connect"
 // import eventSocketIO from "./app.socket"
