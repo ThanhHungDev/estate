@@ -3,12 +3,12 @@
 /**
  * Module dependencies.
  */
-import "reflect-metadata"
 import app from "./app"
 import Debug from "debug"
 import http from "http"
 import dotenv from "dotenv"
 import mongoConnect from "./app.mongo.connect"
+import postgreConnect from "./app.postgre.connect"
 // import eventSocketIO from "./app.socket"
 
 dotenv.config()
@@ -59,6 +59,7 @@ server.listen(PORT, () => {
 
     console.log(`server run: http://localhost:${PORT}`)
     mongoConnect.myConnection()
+    postgreConnect.connectDB()
 })
 
 server.on('error', onError);
