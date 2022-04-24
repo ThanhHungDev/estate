@@ -14,11 +14,11 @@ const postgre : EnvObjectOption = {
         logging      : false
     },
     test: {
-        type         : process.env.DB_TYPE,
-        username     : process.env.DB_USER,
-        password     : process.env.DB_PASS,
-        database_name: process.env.DB_NAME,
-        host         : process.env.DB_HOST,
+        type         : process.env.DB_TEST_TYPE,
+        username     : process.env.DB_TEST_USER,
+        password     : process.env.DB_TEST_PASS,
+        database_name: process.env.DB_TEST_NAME,
+        host         : process.env.DB_TEST_HOST,
         dialect      : 'postgres',
         logging      : false
     }
