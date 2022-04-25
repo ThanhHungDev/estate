@@ -23,7 +23,7 @@ const Nav: React.FC = () => {
     
 
     const stickyMenu = (sticky: number, winScroll: number ) => {
-        console.log("vaof")
+        // console.log("vaof")
         if (!lastScrollRef.current) lastScrollRef.current = 0
 
         let isSticky, isShow
@@ -49,7 +49,7 @@ const Nav: React.FC = () => {
             }
         }
         lastScrollRef.current = winScroll
-        console.log(winScroll + "----->" + sticky + "----->" + isSticky, isShow)
+        // console.log(winScroll + "----->" + sticky + "----->" + isSticky, isShow)
         const dom = document.getElementById("header__sticky")
         if(isSticky){
             domheight && domheight.setAttribute("style", `height: ${menuHeight}px`)
@@ -78,7 +78,7 @@ const Nav: React.FC = () => {
     // }
     const tHandler = (event : any ) => {
         const scrollTop = window.scrollY
-        console.log(scrollTop, "scrollTopscrollTopscrollTop")
+        // console.log(scrollTop, "scrollTopscrollTopscrollTop")
         stickyMenu(sticky, scrollTop)
     }
 
@@ -93,9 +93,9 @@ const Nav: React.FC = () => {
             window.removeEventListener("scroll", tHandler)
         }
     }, [])
-    useEffect(() => {
-        console.log("vào 3 lần")
-    })
+    // useEffect(() => {
+    //     console.log("vào 3 lần")
+    // })
     
 
     return <>

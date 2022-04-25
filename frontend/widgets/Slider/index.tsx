@@ -1,8 +1,13 @@
 import React, { useState, useRef } from 'react'
 import { Carousel } from 'antd'
 import style from "./slider.module.scss"
+import { ISlider } from '../../pages'
 
-const Slider = () => {
+type SliderProps = {
+  data: ISlider[]
+}
+
+const Slider = ({ data } : SliderProps) => {
 
   const contentStyle: React.CSSProperties = {
     height: '160px',
