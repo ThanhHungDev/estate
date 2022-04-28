@@ -7,7 +7,7 @@
     border-radius: 4px;
     // background-color: $green_dark;
     border: 1px solid color-level($custom-blue-grey, -7);
-    
+
 
     .slick-dots{
         li{
@@ -18,19 +18,19 @@
             }
         }
     }
-    &__item{
-        display: flex;
+    &Item{
+        display: flex!important;
         justify-content: center;
         align-items: center;
         
-        &-img{
+        &Image{
             width: 40%;
             img{
                 width: auto;
             }
         }
 
-        &-content{
+        &Content{
             
             overflow: hidden;
             padding: 15px;
@@ -38,15 +38,15 @@
         }
         @include ScreenMax( XS ){ 
             flex-direction: column;
-            &-img{
+            &Image{
                 width: 60%;
                 padding: 5px;
             }
-            &-content{
+            &Content{
                 width: 100%;
             }
         }
-        &-topic{
+        &Topic{
             font-size: 14px;
             font-weight: 700;
             color: $gray-800;
@@ -57,12 +57,12 @@
                 font-size: 12px;
             }
         }
-        &-title{
+        &Title{
             padding-top: 15px;
             padding-bottom: 20px;
             @include ScreenMax( MD ){ font-size: 1.25rem; }
         }
-        &-des{
+        &Des{
 
             font-size: 14px;
             font-weight: normal;

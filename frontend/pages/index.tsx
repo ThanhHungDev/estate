@@ -5,6 +5,7 @@ import Favicon from '../widgets/Favicon'
 import Nav from '../widgets/Nav'
 import Tophead from '../widgets/Tophead'
 import Slider from "../widgets/Slider"
+import HttpStatusCode from '../constants/http.status'
 
 type HomeProps = {
   notFound: boolean
@@ -13,6 +14,7 @@ type HomeProps = {
 
 const Home: NextPage<HomeProps> = ({ notFound, sliders } : HomeProps ) => {
 
+  console.log(sliders)
   return <div className='home-page'>
     <Head>
       <title>Create Next App</title>
@@ -129,16 +131,16 @@ export interface ISlider {
 export async function getServerSideProps() {
   // console.log(`${process.env.API_URL}/slider`)
   const res = await fetch(`${process.env.API_URL}/slider`)
-  const data = await res.json()
-  if (!data) {
+  const response = await res.json()
+  if (!response || response.code != HttpStatusCode.OK) {
     return {
       notFound: true,
     }
   }
-  const sliders = data as ISlider[]
+  const sliders = response.data as ISlider[]
   return {
     props: {
-      sliders 
+      sliders
     } // will be passed to the page component as props
   }
 }
