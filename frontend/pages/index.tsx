@@ -27,7 +27,7 @@ const Home: NextPage<HomeProps> = ({ notFound, sliders } : HomeProps ) => {
       <div className="main">
         { notFound && <>không gọi api thành công</> }
         {
-          sliders.length && <div className="homeslider"><Slider data={sliders}/></div>
+          !notFound && sliders.length && <div className="homeslider"><Slider data={sliders}/></div>
         }
         
         
@@ -130,17 +130,25 @@ export interface ISlider {
 }
 export async function getServerSideProps() {
   // console.log(`${process.env.API_URL}/slider`)
-  const res = await fetch(`${process.env.API_URL}/slider`)
-  const response = await res.json()
-  if (!response || response.code != HttpStatusCode.OK) {
+  try {
+    const res = await fetch(`${process.env.API_URL}/slider`)
+    const response = await res.json()
+    if (!response || response.code != HttpStatusCode.OK) {
+      return {
+        props: {
+          notFound: true,
+        }
+      }
+    }
+    const sliders = response.data as ISlider[]
+    return {
+      props: {
+        sliders
+      } // will be passed to the page component as props
+    }
+  } catch (error) {
     return {
       notFound: true,
     }
-  }
-  const sliders = response.data as ISlider[]
-  return {
-    props: {
-      sliders
-    } // will be passed to the page component as props
   }
 }
