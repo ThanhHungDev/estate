@@ -7,6 +7,10 @@ import Tophead from '../widgets/Tophead'
 import Slider from "../widgets/Slider"
 import HttpStatusCode from '../constants/http.status'
 
+/** style */
+import style from "./index.module.scss"
+// import styleCommon from "../styles/common.module.css"
+
 type HomeProps = {
   notFound: boolean
   sliders: ISlider[]
@@ -14,7 +18,6 @@ type HomeProps = {
 
 const Home: NextPage<HomeProps> = ({ notFound, sliders } : HomeProps ) => {
 
-  console.log(sliders)
   return <div className='home-page'>
     <Head>
       <title>Create Next App</title>
@@ -27,7 +30,7 @@ const Home: NextPage<HomeProps> = ({ notFound, sliders } : HomeProps ) => {
       <div className="main">
         { notFound && <>không gọi api thành công</> }
         {
-          !notFound && sliders.length && <div className="homeslider"><Slider data={sliders}/></div>
+          !notFound && sliders.length && <div className={style.homeslider}><Slider data={sliders}/></div>
         }
         
         

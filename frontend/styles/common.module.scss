@@ -1,0 +1,276 @@
+@import "./variable";
+@import "./str";
+@import "./mixin";
+
+
+
+/*page ----------------------------------------------------*/
+
+.lineHeightZero {
+    line-height: 0;
+  }
+  
+  .floatLeft {
+    float: left !important;
+  }
+  
+  .floatRight {
+    float: right !important;
+  }
+  
+  .floatNone {
+    float: none !important;
+  }
+  
+  .mobile {
+    display: none;
+  
+    @include Responsive(SM) {
+      display: unset;
+    }
+  }
+  
+  /* Clearfix -----------------------------------------*/
+  
+  .clear {
+    zoom: 1;
+  }
+  
+  .clear:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+    overflow: hidden;
+  }
+  
+  .overflowHidden {
+    overflow: hidden;
+  }
+  
+  /** * display */
+  
+  .dNone {
+    display: none !important;
+  }
+  
+  .dInline {
+    display: inline !important;
+  }
+  
+  .dinlineBlock {
+    display: inline-block !important;
+  }
+  
+  .dBlock {
+    display: block !important;
+  }
+  
+  .dTable {
+    display: table !important;
+  }
+  
+  .dTableRow {
+    display: table-row !important;
+  }
+  
+  .dTableCell {
+    display: table-cell !important;
+  }
+  
+  .dFlex {
+    display: flex !important;
+  }
+  
+  .flexZero{
+    flex: 0;
+  }
+  .flexOne{
+    flex: 1;
+  }
+  
+  .dInlineFlex {
+    display: inline-flex !important;
+  }
+  
+  .positionRelative {
+    position: relative;
+  }
+  
+  .italic {
+    font-style: italic !important;
+  }
+  
+  .notItalic {
+    font-style: normal !important;
+  }
+  
+  .uppercase {
+    text-transform: uppercase !important;
+  }
+  
+  .lowercase {
+    text-transform: lowercase !important;
+  }
+  
+  .capitalize {
+    text-transform: capitalize !important;
+  }
+  
+  .normalCase {
+    text-transform: none !important;
+  }
+  
+  .underline {
+    text-decoration: underline !important;
+  }
+  
+  .lineThrough {
+    text-decoration: line-through !important;
+  }
+  
+  .noUnderline {
+    text-decoration: none !important;
+  }
+  
+  /**************************************************/
+  
+  .fontHairline {
+    font-weight: 100 !important;
+  }
+  
+  .fontThin {
+    font-weight: 200 !important;
+  }
+  
+  .fontLight {
+    font-weight: 300 !important;
+  }
+  
+  .fontNormal {
+    font-weight: 400 !important;
+  }
+  
+  .fontMedium {
+    font-weight: 500 !important;
+  }
+  
+  .fontSemibold {
+    font-weight: 600 !important;
+  }
+  
+  .fontBold {
+    font-weight: 700 !important;
+  }
+  
+  .fontExtrabold {
+    font-weight: 800 !important;
+  }
+  
+  .fontBlack {
+    font-weight: 900 !important;
+  }
+  //// text aline
+  .textCenter {
+    text-align: center;
+  }
+  .textRight {
+    text-align: right;
+  }
+  .textLeft {
+    text-align: left;
+  }
+  
+  //// margin AUTO
+  .verticalAlignMiddle {
+    vertical-align: middle;
+  }
+  .mgAuto {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .roundedCircle {
+    border-radius: 50% !important;
+  }
+  
+  .border {
+    border: 1px solid #dee2e6 !important;
+  }
+  .borderTop {
+    border-top: 1px solid #dee2e6 !important;
+  }
+  .borderRight {
+    border-right: 1px solid #dee2e6 !important;
+  }
+  .borderBottom {
+    border-bottom: 1px solid #dee2e6 !important;
+  }
+  .borderLeft {
+    border-left: 1px solid #dee2e6 !important;
+  }
+  
+  @each $name, $color in $custom-colors {
+    .textColor#{camelize("-" + $name)} {
+      color: $color;
+    }
+  }
+  @each $name, $color in $custom-colors {
+    .borderColor#{camelize("-" + $name)} {
+      border-color: $color;
+    }
+  }
+  @each $name, $color in $custom-colors {
+    .bgColor#{camelize("-" +$name)} {
+      background-color: $color;
+    }
+  }
+  
+  @each $width in $custom-width {
+    .w#{camelize("-" +$width)} {
+      width: #{$width + "%"};
+    }
+  }
+  
+  @each $name, $font-size in $custom-font-size {
+    .text#{camelize("-" +$name)} {
+      font-size: $font-size;
+    }
+  }
+  @each $name, $font-size in $custom-font-size {
+    .iText#{camelize("-" +$name)} {
+      font-size: $font-size !important;
+    }
+  }
+  /**********************************************************/
+  
+  
+  
+  @mixin generate($prefix, $property) {
+    // List of sizes to generate for each
+    $sizes: ( 0, .25, .5, 1, 1.5, 3 );
+    // Spacing to multiply the sizes by
+    $spacing: 1rem;
+    
+    // Loop through all of the sizes(we use @for rather than @each, as we want access to the index)
+    @for $i from 1 through length($sizes) {
+      // Get the size for the current index
+      $size: nth($sizes, $i);
+      
+      // Create the rule
+      .#{$prefix}#{$i - 1} {
+        #{$property}: $spacing * $size;
+      }
+    }
+  }
+  @include generate(mL, margin-left);
+  @include generate(mR, margin-right);
+  @include generate(mT, margin-top);
+  @include generate(mB, margin-bottom);
+  
+  @include generate(pL, padding-left);
+  @include generate(pR, padding-right);
+  @include generate(pT, padding-top);
+  @include generate(pB, padding-bottom);

@@ -1,0 +1,11 @@
+.logo {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  display: inline-block;
+  cursor: pointer;
+  z-index: 111;
+}
+/*# sourceMappingURL=logo.module.css.map */
