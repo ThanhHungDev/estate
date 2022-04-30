@@ -48,3 +48,4 @@ db.sql
 
 ./backend/dist/*
 backend/yarn.lock
+MernBB

@@ -134,7 +134,7 @@ export interface ISlider {
 export async function getServerSideProps() {
   // console.log(`${process.env.API_URL}/slider`)
   try {
-    const res = await fetch(`${process.env.API_URL}/slider`)
+    const res = await fetch(`${process.env?.API_URL}/slider`)
     const response = await res.json()
     if (!response || response.code != HttpStatusCode.OK) {
       return {
