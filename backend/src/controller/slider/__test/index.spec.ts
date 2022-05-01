@@ -17,7 +17,7 @@ chai.use(chaiHttp)
 import appExpress from "../../../app"
 // import * as SliderController from "../../slider"
 import HttpStatus from "../../../http.status"
-import sliders from "../../slider/seed.json"
+import sliders from "./seed.json"
 import Slider from "../../../models/slider.model"
 
 Slider.remove({})

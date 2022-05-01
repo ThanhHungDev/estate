@@ -6,6 +6,7 @@ import Nav from '../widgets/Nav'
 import Tophead from '../widgets/Tophead'
 import Slider from "../widgets/Slider"
 import HttpStatusCode from '../constants/http.status'
+import { List, Avatar,Skeleton } from 'antd'
 
 /** style */
 import style from "./index.module.scss"
@@ -13,10 +14,12 @@ import style from "./index.module.scss"
 
 type HomeProps = {
   notFound: boolean
-  sliders: ISlider[]
+  sliders: ISlider[],
+  categories: ICategory[],
+  supperCates: ICategory[],
 }
 
-const Home: NextPage<HomeProps> = ({ notFound, sliders } : HomeProps ) => {
+const Home: NextPage<HomeProps> = ({ notFound, sliders, categories, supperCates }: HomeProps) => {
 
   return <div className='home-page'>
     <Head>
@@ -28,91 +31,29 @@ const Home: NextPage<HomeProps> = ({ notFound, sliders } : HomeProps ) => {
       <Tophead />
       <Nav />
       <div className="main">
-        { notFound && <>không gọi api thành công</> }
+        {notFound && <>không gọi api thành công</>}
         {
-          !notFound && sliders.length && <div className={style.homeslider}><Slider data={sliders}/></div>
+          !notFound && sliders.length && <div className={style.homeslider}><Slider data={sliders} /></div>
         }
-        
-        
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. A ut eligendi delectus suscipit vero! Optio esse hic illum similique, excepturi consequatur architecto tempora eligendi, molestiae maxime sequi provident nulla? Deleniti.
-        
+        <List
+          itemLayout="horizontal"
+          dataSource={supperCates}
+          renderItem={(item : ICategory) => (
+            <List.Item
+              className={style.list}
+              actions={[<a key="list-loadmore-edit">edit</a>, <a key="list-loadmore-more">more</a>]}
+            >
+              <Skeleton avatar title={false} loading={true} active>
+                <List.Item.Meta
+                  avatar={<Avatar src={item.background}/>}
+                  title={<a href="https://ant.design">{item.title}</a>}
+                  description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                />
+                <div>content</div>
+              </Skeleton>
+            </List.Item>
+          )}
+        />
       </div>
     </div>
   </div>
@@ -131,22 +72,44 @@ export interface ISlider {
   createdAt: string
   updatedAt: string
 }
+export interface ICategory {
+  _id: string
+  user_id: string
+  censor: boolean
+  title: string
+  slug: string
+  parent: number
+  verify: boolean
+  excerpt: string
+  content: string
+  catalogue: string
+  view: number
+  background: string
+  thumbnail: string
+  site_name: string
+  image_seo: string
+  description_seo: string
+  createdAt: string
+  updatedAt: string
+}
 export async function getServerSideProps() {
   // console.log(`${process.env.API_URL}/slider`)
   try {
-    const res = await fetch(`${process.env?.API_URL}/slider`)
-    const response = await res.json()
-    if (!response || response.code != HttpStatusCode.OK) {
-      return {
-        props: {
-          notFound: true,
-        }
-      }
-    }
-    const sliders = response.data as ISlider[]
+    const [sliderRes, categoryRes] = await Promise.all([
+      fetch(`${process.env?.API_URL}/slider`),
+      fetch(`${process.env?.API_URL}/category`)
+    ])
+    const [slidersResponse, categoryResponse] = await Promise.all([
+      sliderRes.json(),
+      categoryRes.json()
+    ])
+    if (!slidersResponse || slidersResponse.code != HttpStatusCode.OK) throw Error("data fail slider")
+    if (!categoryResponse || categoryResponse.code != HttpStatusCode.OK) throw Error("data fail category")
     return {
       props: {
-        sliders
+        sliders: slidersResponse.data as ISlider[],
+        categories: categoryResponse.data as ICategory[],
+        supperCates: categoryResponse.parents as ICategory[],
       } // will be passed to the page component as props
     }
   } catch (error) {
