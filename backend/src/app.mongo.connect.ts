@@ -40,7 +40,7 @@ export default {
         // console.log(Config.database.mongoURI)
         console.log(`Mongoose connecting ${Config.database.mongoURI[env as keyof EnvObjectOption] || ''}`)
         /// connect mongodb
-        mongoose.connect(Config.database.mongoURI[env as keyof EnvObjectOption] || '', 
+        return mongoose.connect(Config.database.mongoURI[env as keyof EnvObjectOption] || '', 
             {
                 useNewUrlParser: true, 
                 useUnifiedTopology: true,

@@ -4,7 +4,6 @@ import { Model, Schema, model } from 'mongoose'
 
 
 export interface ISlider extends Document {
-    _id: string;
     src: string;
     alt: string;
     topic: string;

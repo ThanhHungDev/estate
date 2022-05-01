@@ -13,6 +13,7 @@
     "test": "mocha -r ts-node/register src/**/__test/**/*.spec.ts --timeout 10000"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/chai": "^4.3.1",
     "@types/chai-http": "^4.2.0",
     "@types/cors": "^2.8.12",
@@ -38,6 +39,7 @@
   },
   "dependencies": {
     "apollo-server-express": "^3.6.7",
+    "bcrypt": "^5.0.1",
     "class-validator": "^0.13.2",
     "cors": "^2.8.5",
     "debug": "^4.3.4",
