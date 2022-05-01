@@ -1,1 +1,0 @@
-export const COLOR = process.env.THEME_COLOR || '#62854F'
